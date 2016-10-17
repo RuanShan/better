@@ -12,6 +12,7 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.timestamps null: false
     end
 
+    #充值记录
     create_table :payments do |t|
       t.references :user
       t.string :transfer_from
@@ -43,11 +44,7 @@ class CreatePayments < ActiveRecord::Migration[5.0]
     create_table :user_messages do |t|
       t.references :user
       t.references :message
-      t.string :code
-      t.integer :country_id, default: 1
-      t.integer :province_id, default: 2
-      t.integer :city_id, default: 2
-      t.string :address, null:false, default: ''
+
       t.integer :state, null:false, default:0
       t.timestamps null: false
     end
