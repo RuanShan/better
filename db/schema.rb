@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017071429) do
+ActiveRecord::Schema.define(version: 20161017142644) do
 
   create_table "exchange_rates", force: :cascade do |t|
     t.decimal  "withdraw_rate",   default: "1.0", null: false
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 20161017071429) do
     t.string   "params",          default: "",    null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+  end
+
+  create_table "game_centers", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["name"], name: "index_game_centers_on_name", unique: true
   end
 
   create_table "messages", force: :cascade do |t|

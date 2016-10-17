@@ -44,7 +44,6 @@ class CreatePayments < ActiveRecord::Migration[5.0]
     create_table :user_messages do |t|
       t.references :user
       t.references :message
-
       t.integer :state, null:false, default:0
       t.timestamps null: false
     end
