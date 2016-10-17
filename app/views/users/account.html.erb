@@ -1,11 +1,13 @@
+<%= render partial: "profile" %>
+
 <div class="row">
 
-  <% yield :user_sidebar %>
+  <%= render partial: "shared/user_sidebar" %>
 
-  <div class="col-sm-8">
+  <div class="col-md-9 user-content" >
 
     <h3>User</h3>
-    <p>Name: <%= @user.name if @user.name %></p>
+    <p>Name: <%= @user.nickname if @user.nickname %></p>
     <p>Email: <%= @user.email if @user.email %></p>
   </div>
 </div>

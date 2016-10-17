@@ -1,0 +1,44 @@
+.profile{
+  padding: 6px;
+  background: silver;
+  height: 86px;
+}
+.user-sidebar
+{
+  padding: 0;
+}
+
+div.my-navs{
+min-height: 1020px;
+background-color: #e4e0e5;
+padding-top: 15px;
+}
+div.my-sub-contents{
+width: 987px;
+min-height: 975px;
+}
+div.my-sub-contents div.title{
+height: 45px;
+width: 100%;
+background-color: rgba(255,255,255,0.6);
+}
+div.my-navs-item{
+height: 40px;
+line-height: 40px;
+margin: 10px 0px;
+padding: 0px 20px;
+}
+div.my-navs-item-parent{
+height: 40px;
+line-height: 40px;
+margin: 10px 0px;
+padding: 0px 20px;
+}
+div.my-navs-item:hover{
+background-color: #d2cdd4;
+border-right: 4px solid #db1829;
+}
+div.my-navs-item-active{
+background-color: #d2cdd4;
+border-right: 4px solid #db1829;
+}

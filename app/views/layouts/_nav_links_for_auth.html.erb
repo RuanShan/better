@@ -1,6 +1,6 @@
 <nav>
 <% if user_signed_in? %>
-  <li class='account-nav-item'><%= link_to 'account', edit_user_registration_path, class: 'nav-link' %></li>
+  <li class='account-nav-item'><%= link_to 'Account', account_users_path, class: 'nav-link' %></li>
   <li class='account-nav-item'><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete', class: 'nav-link' %></li>
 <% else %>
   <li class='account-nav-item'><%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %></li>
