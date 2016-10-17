@@ -1,0 +1,9 @@
+## finance api
+http://stackoverflow.com/questions/10040954/alternative-to-google-finance-api
+
+http://meumobi.github.io/stocks%20apis/2016/03/13/get-realtime-stock-quotes-yahoo-finance-api.html
+
+
+#Retrieve currency exchange rates from Yahoo! Finance.
+
+https://github.com/scottjbarr/yahoo_currency
