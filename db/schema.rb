@@ -10,7 +10,87 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017020325) do
+ActiveRecord::Schema.define(version: 20161017071429) do
+
+  create_table "exchange_rates", force: :cascade do |t|
+    t.decimal  "withdraw_rate",   default: "1.0", null: false
+    t.decimal  "deposit_rate",    default: "1.0", null: false
+    t.decimal  "withdraw_factor", default: "1.0", null: false
+    t.decimal  "deposit_factor",  default: "1.0", null: false
+    t.string   "params",          default: "",    null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "title",      null: false
+    t.text     "content",    null: false
+    t.integer  "user_id"
+    t.integer  "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "merchant"
+    t.string   "secret",     default: "",    null: false
+    t.string   "code",       default: "",    null: false
+    t.integer  "state",      default: 0,     null: false
+    t.boolean  "enabled",    default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_payment_methods_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "transfer_from"
+    t.string   "transfer_to"
+    t.decimal  "amount"
+    t.integer  "state",         default: 0, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string   "site_name"
+    t.string   "company_name"
+    t.string   "contact_email"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "user_banks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "code"
+    t.integer  "country_id",  default: 1
+    t.integer  "province_id", default: 2
+    t.integer  "city_id",     default: 2
+    t.string   "address",     default: "f", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["user_id"], name: "index_user_banks_on_user_id"
+  end
+
+  create_table "user_messages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "message_id"
+    t.string   "code"
+    t.integer  "country_id",  default: 1
+    t.integer  "province_id", default: 2
+    t.integer  "city_id",     default: 2
+    t.string   "address",     default: "", null: false
+    t.integer  "state",       default: 0,  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["message_id"], name: "index_user_messages_on_message_id"
+    t.index ["user_id"], name: "index_user_messages_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

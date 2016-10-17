@@ -1,10 +1,10 @@
 // import the CSS framework
 // Do not use *= require in Sass or your other stylesheets will not be able to access the Bootstrap mixins and variables.
+@import "bootstrap-sprockets";
 @import "bootstrap";
 
 // make all images responsive by default
 img {
-  @extend .img-fluid;
   margin: 0 auto;
 }
 // override for the 'Home' navigation link
@@ -17,14 +17,13 @@ img {
 // to make views framework-neutral
 .column {
   @extend .col-md-6;
-  @extend .text-xs-center;
 }
 .form {
   @extend .col-md-6;
 }
 .form-centered {
   @extend .col-md-6;
-  @extend .text-xs-center;
+  @extend .text-center;
 }
 .submit {
   @extend .btn;
@@ -53,10 +52,8 @@ section {
   margin: 0 auto;
 }
 .authform form {
-  @extend .card;
   @extend .col-md-9;
   padding-bottom: 40px;
-  @extend .bg-faded;
   @extend .small;
 }
 .authform .right {
@@ -67,7 +64,6 @@ section {
   @extend .btn-primary;
 }
 .authform fieldset {
-  @extend .card;
 }
 #error_explanation:not(:empty) {
   @extend .alert;

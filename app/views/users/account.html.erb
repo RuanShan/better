@@ -1,0 +1,11 @@
+<div class="row">
+
+  <% yield :user_sidebar %>
+
+  <div class="col-sm-8">
+
+    <h3>User</h3>
+    <p>Name: <%= @user.name if @user.name %></p>
+    <p>Email: <%= @user.email if @user.email %></p>
+  </div>
+</div>
