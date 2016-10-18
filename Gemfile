@@ -29,6 +29,7 @@ gem 'simple_form'
 #https://github.com/activerecord-hackery/ransack
 gem 'ransack'
 gem 'friendly_id', '~> 5.1.0'
+gem 'will_paginate', '~> 3.1.0'
 
 group :development do
   gem 'better_errors'
