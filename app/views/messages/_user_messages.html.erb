@@ -1,0 +1,26 @@
+<%@page ||=1
+@messages ||= current_user.user_messages.paginate(:page => @page)%>
+<h3>Messages</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <td>time</td>
+      <td>subject <%=link_to 'clear', read_messages_path, :method=>:put, :remote=>true%></td>
+      <td>delete</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @messages.each do |message| %>
+    <tr>
+      <td><%= message.created_at %></td>
+      <td><span id="mspan<%=message.id%>" <%unless message.read?%>style="font-weight:bold;"<%end%> ><%=link_to message.title, read_message_path(message),
+      :method=>:put, :remote=>true,:onclick=>"$('#mc#{message.id}').toggle();$('#mspan#{message.id}').css('font-weight','normal')" %></span></td>
+      <td><%=link_to 'delete',message_path(message), :method=>:delete, :remote=>true%></td>
+    </tr>
+    <tr id="mc<%=message.id%>" style="display:none;">
+      <td colspan="3"><%= message.content %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @messages %>

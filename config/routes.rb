@@ -19,6 +19,11 @@ Rails.application.routes.draw do
   end
   resources :deposits
 
+  resources :messages do
+    put 'read', on: :member
+    put 'read', on: :collection
+  end
+
   get '/account', to: "users#account", as: :account
 
   namespace :admin do
