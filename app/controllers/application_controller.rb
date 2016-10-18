@@ -9,4 +9,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
+  def after_sign_in_path_for(resource)
+    if resource.class == Administrator
+      admin_root_path
+    elsif resource.class == Broker
+      agent_root_path
+    else
+      request.referrer || root_path
+    end
+  end
 end
