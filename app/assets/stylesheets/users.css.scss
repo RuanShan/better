@@ -7,11 +7,17 @@
 {
   padding: 0;
 }
+span.my-mini-title{
+font-size: 15px;
+display: block;
+border-bottom: 1px solid #e7eff2;
+padding-bottom: 12px;
+}
 
 div.my-navs{
-min-height: 1020px;
-background-color: #e4e0e5;
-padding-top: 15px;
+  min-height: 1020px;
+  background-color: #e4e0e5;
+  padding-top: 15px;
 }
 div.my-sub-contents{
 width: 987px;
@@ -32,22 +38,22 @@ background-color: lightgreen;
 }
 .my-navs-item{
   display:block;
-height: 40px;
-line-height: 40px;
-margin: 10px 0px;
-padding: 0px 20px;
+  height: 40px;
+  line-height: 40px;
+  margin: 10px 0px;
+  padding: 0px 20px;
 }
 div.my-navs-item-parent{
-height: 40px;
-line-height: 40px;
-margin: 10px 0px;
-padding: 0px 20px;
+  height: 40px;
+  line-height: 40px;
+  margin: 10px 0px;
+  padding: 0px 20px;
 }
 .my-navs-item:hover{
-background-color: #d2cdd4;
-border-right: 4px solid #db1829;
+  background-color: #d2cdd4;
+  border-right: 4px solid #db1829;
 }
 .my-navs-item-active{
-background-color: #d2cdd4;
-border-right: 4px solid #db1829;
+  background-color: #d2cdd4;
+  border-right: 4px solid #db1829;
 }

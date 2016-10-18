@@ -2,7 +2,7 @@
 
   <div class="col-md-2">
     <p>你好！ <%= current_user.nickname %> </p>
-    <p>  最近登录：2016-10-17 18:25:16  </p>
+    <p>  最近登录：<%= l current_user.last_sign_in_at, format: :better %>  </p>
   </div>
   <div class="col-md-10">
       <div class="pull-left">

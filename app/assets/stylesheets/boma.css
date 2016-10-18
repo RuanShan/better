@@ -1204,13 +1204,7 @@ height: 100%;
 background-color: white;
 padding: 0 22px;
 }
-span.my-mini-title{
-font-size: 15px;
-display: block;
-border-bottom: 1px solid #e7eff2;
-margin: 12px;
-padding-bottom: 12px;
-}
+
 div.my-index-content{
 background-color: white;
 min-height: 650px;
