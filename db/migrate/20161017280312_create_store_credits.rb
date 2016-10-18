@@ -1,13 +1,13 @@
 #用户站内钱包
 class CreateStoreCredits < ActiveRecord::Migration
   def change
+    # 每一条转账记录对应两条 store_credits
     create_table :store_credits do |t|
       t.references :user
       t.references :game_center # 0 即中心钱包
       t.decimal :amount, precision: 8, scale: 2, default: 0.0, null: false
-      t.text :memo
+      t.string :memo
       t.datetime :deleted_at
-      t.string :currency
       t.integer :originator_id
       t.string :originator_type
       t.timestamps null: false

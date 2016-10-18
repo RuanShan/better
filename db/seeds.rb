@@ -9,6 +9,6 @@ user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
 # Environment variables (ENV['...']) can be set in the file .env file.
 
-[{name: "AG娱乐"},{name: "BD娱乐"},{name: "QQ娱乐"},{name: "MG娱乐"},{name: "BB体育"}].each{|attrs|
+[{name: "中心钱包"}, {name: "AG娱乐"},{name: "BD娱乐"},{name: "QQ娱乐"},{name: "MG娱乐"},{name: "BB体育"}].each{|attrs|
   GameCenter.create!( attrs )
 }

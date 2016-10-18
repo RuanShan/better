@@ -12,11 +12,11 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.timestamps null: false
     end
 
-    #充值记录
-    create_table :payments do |t|
+    #充值记录, 记录金钱交易，每一条成功的充值记录，对应一条 store_credits
+    create_table :deposits do |t|
+      t.references :payment_method
       t.references :user
-      t.string :transfer_from
-      t.string :transfer_to
+      t.string :currency
       t.decimal :amount
       t.integer :state, null: false, default: 0
       t.timestamps null: false
@@ -30,6 +30,14 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.integer :province_id, default: 2
       t.integer :city_id, default: 2
       t.string :address, null:false, default: false
+      t.timestamps null: false
+    end
+
+    #提款记录, 每一条成功的提款记录，对应一条 store_credits
+    create_table :drawings do |t|
+      t.references :user_bank
+      t.decimal :amount
+      t.integer :state, null: false, default: 0
       t.timestamps null: false
     end
 
