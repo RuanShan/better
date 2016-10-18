@@ -881,13 +881,7 @@ margin-top: 34px;
 height: 186px;
 background: url(../images/common/my/banner2.jpg?v=ef39525b) no-repeat center top white;
 }
-div.my-sub-title{
-height: 45px;
-line-height: 45px;
-padding-left: 30px;
-font-size: 16px;
-font-weight: 600;
-}
+
 div.my-sub-container{
 min-height: 500px;
 background-color: white;

@@ -1,56 +1,64 @@
 <div class="col-md-2   user-sidebar">
 
 	<div class="my-navs am-fl">
-					<!-- ngRepeat: item in navs --><div ng-repeat="item in navs" class="ng-scope">
+					<!-- ngRepeat: item in navs -->
+					<div ng-repeat="item in navs" class="ng-scope">
 						<div class="my-navs-item-parent">
 							<span ng-class="item.icon" class="icon my-icon-account"></span>
-							<span ng-bind="item[$root.lang]" class="am-margin-left-sm name ng-binding">我的账户</span>
+							<span  class="am-margin-left-sm name ">我的账户</span>
 						</div>
-						<!-- ngRepeat: it in item.children track by $index --><div ng-click="hrefPage(it)" ng-class="{'my-navs-item-active' : navId === it.navId}" ng-repeat="it in item.children track by $index" class="my-navs-item pointer ng-scope">
-							<span ng-bind="it[$root.lang]" class="subnav ng-binding">账户概况</span>
-						</div><!-- end ngRepeat: it in item.children track by $index --><div ng-click="hrefPage(it)" ng-class="{'my-navs-item-active' : navId === it.navId}" ng-repeat="it in item.children track by $index" class="my-navs-item pointer ng-scope my-navs-item-active">
-							<span ng-bind="it[$root.lang]" class="subnav ng-binding">充值</span>
-						</div><!-- end ngRepeat: it in item.children track by $index --><div ng-click="hrefPage(it)" ng-class="{'my-navs-item-active' : navId === it.navId}" ng-repeat="it in item.children track by $index" class="my-navs-item pointer ng-scope">
-							<span ng-bind="it[$root.lang]" class="subnav ng-binding">提现</span>
-						</div><!-- end ngRepeat: it in item.children track by $index --><div ng-click="hrefPage(it)" ng-class="{'my-navs-item-active' : navId === it.navId}" ng-repeat="it in item.children track by $index" class="my-navs-item pointer ng-scope">
-							<span ng-bind="it[$root.lang]" class="subnav ng-binding">转账</span>
-						</div><!-- end ngRepeat: it in item.children track by $index -->
-					</div><!-- end ngRepeat: item in navs --><div ng-repeat="item in navs" class="ng-scope">
+							<%= link_to account_path, class: ( current_page?('/account') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
+    							<span class="subnav">账户概况</span>
+							<% end -%>
+							<%= link_to new_deposit_path, class: ( current_page?( '/deposits/new') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
+								<span class="subnav ">充值</span>
+							<% end -%>
+							<%= link_to new_drawing_path, class: ( current_page?( '/drawings/new') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
+								<span class="subnav ">提现</span>
+							<% end -%>
+							<%= link_to new_transfer_path, class: ( current_page?( '/transfers/new') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
+								<span class="subnav ">转账</span>
+							<% end -%>
+					</div><!-- end ngRepeat: item in navs -->
+					<div ng-repeat="item in navs" class="ng-scope">
 						<div class="my-navs-item-parent">
 							<span ng-class="item.icon" class="icon my-icon-detail"></span>
-							<span ng-bind="item[$root.lang]" class="am-margin-left-sm name ng-binding">账户明细</span>
+							<span  class="am-margin-left-sm name ">账户明细</span>
 						</div>
-						<!-- ngRepeat: it in item.children track by $index --><div ng-click="hrefPage(it)" ng-class="{'my-navs-item-active' : navId === it.navId}" ng-repeat="it in item.children track by $index" class="my-navs-item pointer ng-scope">
-							<span ng-bind="it[$root.lang]" class="subnav ng-binding">红利记录</span>
-						</div><!-- end ngRepeat: it in item.children track by $index --><div ng-click="hrefPage(it)" ng-class="{'my-navs-item-active' : navId === it.navId}" ng-repeat="it in item.children track by $index" class="my-navs-item pointer ng-scope">
-							<span ng-bind="it[$root.lang]" class="subnav ng-binding">投注记录</span>
-						</div><!-- end ngRepeat: it in item.children track by $index --><div ng-click="hrefPage(it)" ng-class="{'my-navs-item-active' : navId === it.navId}" ng-repeat="it in item.children track by $index" class="my-navs-item pointer ng-scope">
-							<span ng-bind="it[$root.lang]" class="subnav ng-binding">充值记录</span>
-						</div><!-- end ngRepeat: it in item.children track by $index --><div ng-click="hrefPage(it)" ng-class="{'my-navs-item-active' : navId === it.navId}" ng-repeat="it in item.children track by $index" class="my-navs-item pointer ng-scope">
-							<span ng-bind="it[$root.lang]" class="subnav ng-binding">提款记录</span>
-						</div><!-- end ngRepeat: it in item.children track by $index --><div ng-click="hrefPage(it)" ng-class="{'my-navs-item-active' : navId === it.navId}" ng-repeat="it in item.children track by $index" class="my-navs-item pointer ng-scope">
-							<span ng-bind="it[$root.lang]" class="subnav ng-binding">转账记录</span>
-						</div><!-- end ngRepeat: it in item.children track by $index -->
+						<div  class="my-navs-item pointer ng-scope">
+							<span class="subnav ">红利记录</span>
+						</div><div  class="my-navs-item pointer ng-scope">
+							<span class="subnav ">投注记录</span>
+						</div>
+						<%= link_to deposits_path, class: ( current_page?(controller: 'deposits') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
+							<span class="subnav ">充值记录</span>
+						<% end -%>
+						<%= link_to drawings_path, class: ( current_page?(controller: 'drawings') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
+							<span class="subnav ">提款记录</span>
+						<% end -%>
+						<%= link_to transfers_path, class: ( current_page?(controller: 'transfers') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
+							<span class="subnav ">转账记录</span>
+						<% end -%>
 					</div><!-- end ngRepeat: item in navs --><div ng-repeat="item in navs" class="ng-scope">
 						<div class="my-navs-item-parent">
 							<span ng-class="item.icon" class="icon my-icon-safety"></span>
-							<span ng-bind="item[$root.lang]" class="am-margin-left-sm name ng-binding">账户安全</span>
+							<span  class="am-margin-left-sm name ">账户安全</span>
 						</div>
-						<!-- ngRepeat: it in item.children track by $index --><div ng-click="hrefPage(it)" ng-class="{'my-navs-item-active' : navId === it.navId}" ng-repeat="it in item.children track by $index" class="my-navs-item pointer ng-scope">
-							<span ng-bind="it[$root.lang]" class="subnav ng-binding">安全中心</span>
-						</div><!-- end ngRepeat: it in item.children track by $index --><div ng-click="hrefPage(it)" ng-class="{'my-navs-item-active' : navId === it.navId}" ng-repeat="it in item.children track by $index" class="my-navs-item pointer ng-scope">
-							<span ng-bind="it[$root.lang]" class="subnav ng-binding">个人资料</span>
-						</div><!-- end ngRepeat: it in item.children track by $index --><div ng-click="hrefPage(it)" ng-class="{'my-navs-item-active' : navId === it.navId}" ng-repeat="it in item.children track by $index" class="my-navs-item pointer ng-scope">
-							<span ng-bind="it[$root.lang]" class="subnav ng-binding">修改密码</span>
-						</div><!-- end ngRepeat: it in item.children track by $index -->
+						<div  class="my-navs-item pointer ng-scope">
+							<span class="subnav ">安全中心</span>
+						</div><div  class="my-navs-item pointer ng-scope">
+							<span class="subnav ">个人资料</span>
+						</div><div  class="my-navs-item pointer ng-scope">
+							<span class="subnav ">修改密码</span>
+						</div>
 					</div><!-- end ngRepeat: item in navs --><div ng-repeat="item in navs" class="ng-scope">
 						<div class="my-navs-item-parent">
 							<span ng-class="item.icon" class="icon my-icon-message"></span>
-							<span ng-bind="item[$root.lang]" class="am-margin-left-sm name ng-binding">我的消息</span>
+							<span  class="am-margin-left-sm name ">我的消息</span>
 						</div>
-						<!-- ngRepeat: it in item.children track by $index --><div ng-click="hrefPage(it)" ng-class="{'my-navs-item-active' : navId === it.navId}" ng-repeat="it in item.children track by $index" class="my-navs-item pointer ng-scope">
-							<span ng-bind="it[$root.lang]" class="subnav ng-binding">系统通知</span>
-						</div><!-- end ngRepeat: it in item.children track by $index -->
+						<div  class="my-navs-item pointer ng-scope">
+							<span class="subnav ">系统通知</span>
+						</div>
 					</div><!-- end ngRepeat: item in navs -->
-				</div>        
+				</div>
 </div>

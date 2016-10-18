@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @payment_method.name %>
+</p>
+
+<p>
+  <strong>Merchant:</strong>
+  <%= @payment_method.merchant %>
+</p>
+
+<p>
+  <strong>Pid:</strong>
+  <%= @payment_method.pid %>
+</p>
+
+<p>
+  <strong>Key:</strong>
+  <%= @payment_method.key %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @payment_method.state %>
+</p>
+
+<p>
+  <strong>Enabled:</strong>
+  <%= @payment_method.enabled %>
+</p>
+
+<%= link_to 'Edit', edit_payment_method_path(@payment_method) %> |
+<%= link_to 'Back', payment_methods_path %>

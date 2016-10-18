@@ -9,6 +9,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end
@@ -21,9 +22,13 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
 gem 'devise'
-gem 'devise-i18n'
 gem 'devise_invitable'
 gem 'high_voltage'
+#https://github.com/plataformatec/simple_form
+gem 'simple_form'
+#https://github.com/activerecord-hackery/ransack
+gem 'ransack'
+gem 'friendly_id', '~> 5.1.0'
 
 group :development do
   gem 'better_errors'

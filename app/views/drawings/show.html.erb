@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User bank:</strong>
+  <%= @drawing.user_bank %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @drawing.number %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @drawing.amount %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @drawing.state %>
+</p>
+
+<%= link_to 'Edit', edit_drawing_path(@drawing) %> |
+<%= link_to 'Back', drawings_path %>

@@ -1,0 +1,58 @@
+<%= render partial: "profile" %>
+
+<div class="row">
+  <%= render partial: "shared/user_sidebar" %>
+  <div class="col-md-10 user-content" >
+    <div class="my-sub-title">转账</div>
+
+    <div class="my-sub-container relative">
+    		<div class="back-color-yellow am-padding-sm">
+    			<span ng-bind="'trans-desc' | i18n" class="ng-binding">&#12288;1. 平台之间不可以直接转账，平台只能和中心钱包进行转账操作</span><br>
+    			<span ng-bind="'trans-desc2' | i18n" class="ng-binding">&#12288;2. BBIN和AG转账金额只能是整数，WBG平台请至少保留0.01的余额才能确保转账成功</span>
+    		</div>
+    		<form novalidate="" name="transfersForm" w5c-submit="transfers()" w5c-form-validate="validateOptions" class="am-form am-margin-top ng-pristine ng-invalid ng-invalid-required">
+    			<div class="boma-input-set">
+    				<div class="withdraw-txt am-text-right"><span ng-bind="'transfers-from' | i18n" class="ng-binding">转出至：</span></div>
+    				<div class="bg withdraw-bg">
+    					<select class="am-fl boma-select ng-isolate-scope ng-valid valid" name="platforms" ng-model="_transfers.trans_from" dictionary="" ng-change="selectPf('from');"><!-- ngRepeat: item in dictionary --><option value="CENTER" ng-repeat="item in dictionary" title="中心钱包" class="ng-binding ng-scope">中心钱包</option><!-- end ngRepeat: item in dictionary --><option value="GD" ng-repeat="item in dictionary" title="GD" class="ng-binding ng-scope">GD</option><!-- end ngRepeat: item in dictionary --><option value="AG" ng-repeat="item in dictionary" title="AG" class="ng-binding ng-scope">AG</option><!-- end ngRepeat: item in dictionary --><option value="SB" ng-repeat="item in dictionary" title="沙巴体育" class="ng-binding ng-scope">沙巴体育</option><!-- end ngRepeat: item in dictionary --><option value="PT" ng-repeat="item in dictionary" title="PT平台" class="ng-binding ng-scope">PT平台</option><!-- end ngRepeat: item in dictionary --><option value="BBIN" ng-repeat="item in dictionary" title="波音平台" class="ng-binding ng-scope">波音平台</option><!-- end ngRepeat: item in dictionary --><option value="MG" ng-repeat="item in dictionary" title="MG" class="ng-binding ng-scope">MG</option><!-- end ngRepeat: item in dictionary --></select>
+    				</div>
+    			</div>
+    			<div class="my-trans-balance">
+    				<span ng-bind="'transfers-balance1' | i18n" class="boma-color-gray ng-binding">可转余额：</span>
+    				<!-- ngIf: _transfers.trans_from != 'CENTER' -->
+    				<!-- ngIf: _transfers.trans_from == 'CENTER' --><span ng-if="_transfers.trans_from == 'CENTER'" ng-bind="$root.user.balance.centreBalance | currency: '￥' : 2" class="boma-color-red ng-binding ng-scope">￥0.00</span><!-- end ngIf: _transfers.trans_from == 'CENTER' -->
+    			</div>
+    			<div class="boma-input-set">
+    				<div class="withdraw-txt am-text-right"><span ng-bind="'transfers-to' | i18n" class="ng-binding">转入至：</span></div>
+    				<div class="bg withdraw-bg">
+    					<select class="am-fl boma-select ng-isolate-scope ng-valid" name="platforms" ng-model="_transfers.trans_to" dictionary="" ng-change="selectPf();"><!-- ngRepeat: item in dictionary --><option value="CENTER" ng-repeat="item in dictionary" title="中心钱包" class="ng-binding ng-scope">中心钱包</option><!-- end ngRepeat: item in dictionary --><option value="GD" ng-repeat="item in dictionary" title="GD" class="ng-binding ng-scope">GD</option><!-- end ngRepeat: item in dictionary --><option value="AG" ng-repeat="item in dictionary" title="AG" class="ng-binding ng-scope">AG</option><!-- end ngRepeat: item in dictionary --><option value="SB" ng-repeat="item in dictionary" title="沙巴体育" class="ng-binding ng-scope">沙巴体育</option><!-- end ngRepeat: item in dictionary --><option value="PT" ng-repeat="item in dictionary" title="PT平台" class="ng-binding ng-scope">PT平台</option><!-- end ngRepeat: item in dictionary --><option value="BBIN" ng-repeat="item in dictionary" title="波音平台" class="ng-binding ng-scope">波音平台</option><!-- end ngRepeat: item in dictionary --><option value="MG" ng-repeat="item in dictionary" title="MG" class="ng-binding ng-scope">MG</option><!-- end ngRepeat: item in dictionary --></select>
+    				</div>
+    			</div>
+    			<div class="my-trans-balance">
+    				<span ng-bind="'transfers-balance2' | i18n" class="boma-color-gray ng-binding">剩余金额：</span>
+    				<!-- ngIf: _transfers.trans_to != 'CENTER' --><span ng-if="_transfers.trans_to != 'CENTER'" ng-bind="tempRefresh[_transfers.trans_to]" class="boma-color-red ng-binding ng-scope">￥0.00</span><!-- end ngIf: _transfers.trans_to != 'CENTER' -->
+    				<!-- ngIf: _transfers.trans_to == 'CENTER' -->
+    			</div>
+    			<div class="boma-input-set">
+    				<div class="withdraw-txt am-text-right"><span ng-bind="'transfers-money' | i18n" class="ng-binding">转账金额：</span></div>
+    				<div class="bg withdraw-bg">
+    					<input required="" input-limit="" min="0.01" re="/^[0-9]+(\.[0-9]{0,2})?$/" name="amount" ng-model="_transfers.trans_amount" placeholder="请输入转账金额" class="am-form-field am-input-sm ng-pristine ng-untouched ng-isolate-scope ng-invalid ng-invalid-required valid" autocomplete="off">
+    					<span ng-bind="'common-currencyunit' | i18n" class="ng-binding">元</span>
+    				</div>
+    			</div>
+    			<!-- <div class="boma-input-set">
+    				<div class="withdraw-txt am-text-right"><span ng-bind="'common-fund_password' | i18n"></span></div>
+    				<div class="bg withdraw-bg">
+    					<input autocomplete="off" password placeholder="{{'withdraw-input-6' | i18n}}"
+    					ng-pattern="/^[0-9a-zA-Z]{4,14}$/" class="am-form-field am-input-sm" name="branch_name" ng-model="_transfers.fund_password" required>
+    				</div>
+    			</div> -->
+    			<div class="boma-submit-footer">
+    				<button type="submit"><span ng-bind="'common-submit' | i18n" class="ng-binding">提交</span></button>
+    			</div>
+    		</form>
+    		<span ng-click="changePf()" class="my-withdraw-change-pf"></span>
+    	</div>
+
+  </div>
+</div>

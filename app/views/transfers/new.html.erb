@@ -1,0 +1,8 @@
+<%= render partial: "users/profile" %>
+<div class="row">
+  <%= render partial: "shared/user_sidebar" %>
+  <div class="col-md-10 user-content" >
+    <div class="my-sub-title">转账</div>
+      <%= render 'form', transfer: @transfer %>
+  </div>
+</div>

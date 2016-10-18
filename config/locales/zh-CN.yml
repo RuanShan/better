@@ -1,1 +1,7 @@
 zh-CN:
+  activerecord:
+    attributes:
+      deposit:
+        number: "交易号码"
+        mount: "金额(RMB)"
+        createed_at: "日期/时间(GMT+8)"

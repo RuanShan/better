@@ -8,8 +8,14 @@ class UsersController < ApplicationController
   end
 
   def account
+Rails.logger.debug " params=#{params.inspect}"    
     @user = current_user
-    
+    @deposits = @user.deposits.order("created_at desc").limit(10)
+  end
+
+  def deposit
+    @user = current_user
+    @game_centers = GameCenter.all
   end
 
   def show

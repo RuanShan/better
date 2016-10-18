@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @transfer.user %>
+</p>
+
+<p>
+  <strong>From game center:</strong>
+  <%= @transfer.from_game_center %>
+</p>
+
+<p>
+  <strong>To game center:</strong>
+  <%= @transfer.to_game_center %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @transfer.number %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @transfer.amount %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @transfer.state %>
+</p>
+
+<%= link_to 'Edit', edit_transfer_path(@transfer) %> |
+<%= link_to 'Back', transfers_path %>

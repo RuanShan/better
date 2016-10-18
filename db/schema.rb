@@ -10,7 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017142644) do
+ActiveRecord::Schema.define(version: 20161017280313) do
+
+  create_table "deposits", force: :cascade do |t|
+    t.integer  "payment_method_id"
+    t.integer  "user_id"
+    t.string   "number"
+    t.string   "currency"
+    t.decimal  "amount"
+    t.integer  "state",             default: 0, null: false
+    t.string   "memo"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["number"], name: "index_deposits_on_number", unique: true
+    t.index ["payment_method_id"], name: "index_deposits_on_payment_method_id"
+    t.index ["user_id"], name: "index_deposits_on_user_id"
+  end
+
+  create_table "drawings", force: :cascade do |t|
+    t.integer  "user_bank_id"
+    t.string   "number"
+    t.decimal  "amount"
+    t.integer  "state",        default: 0, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["user_bank_id"], name: "index_drawings_on_user_bank_id"
+  end
 
   create_table "exchange_rates", force: :cascade do |t|
     t.decimal  "withdraw_rate",   default: "1.0", null: false
@@ -41,27 +66,26 @@ ActiveRecord::Schema.define(version: 20161017142644) do
   end
 
   create_table "payment_methods", force: :cascade do |t|
-    t.integer  "user_id"
     t.string   "name"
     t.string   "merchant"
-    t.string   "secret",     default: "",    null: false
-    t.string   "code",       default: "",    null: false
+    t.string   "pid",        default: "",    null: false
+    t.string   "key",        default: "",    null: false
     t.integer  "state",      default: 0,     null: false
     t.boolean  "enabled",    default: false, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["user_id"], name: "index_payment_methods_on_user_id"
   end
 
-  create_table "payments", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "transfer_from"
-    t.string   "transfer_to"
-    t.decimal  "amount"
-    t.integer  "state",         default: 0, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.index ["user_id"], name: "index_payments_on_user_id"
+  create_table "promotions", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "code"
+    t.integer  "rule",        default: 0, null: false
+    t.integer  "factor1"
+    t.integer  "factor2"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["name"], name: "index_promotions_on_name", unique: true
   end
 
   create_table "settings", force: :cascade do |t|
@@ -70,6 +94,36 @@ ActiveRecord::Schema.define(version: 20161017142644) do
     t.string   "contact_email"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "store_credits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "game_center_id"
+    t.decimal  "amount",          precision: 8, scale: 2, default: "0.0", null: false
+    t.string   "memo"
+    t.datetime "deleted_at"
+    t.integer  "originator_id"
+    t.string   "originator_type"
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.index ["deleted_at"], name: "index_store_credits_on_deleted_at"
+    t.index ["originator_id", "originator_type"], name: "store_credits_originator"
+    t.index ["user_id", "game_center_id"], name: "index_store_credits_on_user_id_and_game_center_id"
+    t.index ["user_id"], name: "index_store_credits_on_user_id"
+  end
+
+  create_table "transfers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "from_game_center_id"
+    t.integer  "to_game_center_id"
+    t.string   "number"
+    t.decimal  "amount"
+    t.integer  "state",               default: 0, null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["from_game_center_id"], name: "index_transfers_on_from_game_center_id"
+    t.index ["to_game_center_id"], name: "index_transfers_on_to_game_center_id"
+    t.index ["user_id"], name: "index_transfers_on_user_id"
   end
 
   create_table "user_banks", force: :cascade do |t|
@@ -88,14 +142,9 @@ ActiveRecord::Schema.define(version: 20161017142644) do
   create_table "user_messages", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "message_id"
-    t.string   "code"
-    t.integer  "country_id",  default: 1
-    t.integer  "province_id", default: 2
-    t.integer  "city_id",     default: 2
-    t.string   "address",     default: "", null: false
-    t.integer  "state",       default: 0,  null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "state",      default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["message_id"], name: "index_user_messages_on_message_id"
     t.index ["user_id"], name: "index_user_messages_on_user_id"
   end
