@@ -21,6 +21,7 @@ group :development do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
+#https://github.com/plataformatec/devise
 gem 'devise'
 gem 'devise_invitable'
 gem 'high_voltage'

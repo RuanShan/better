@@ -28,6 +28,11 @@ Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.
 
 Getting Started
 ---------------
+- rails db:create
+- rails db:migrate:reset
+- rails db:seed
+- rails better:load_sample
+
 
 Documentation and Support
 -------------------------

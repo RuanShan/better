@@ -1,6 +1,6 @@
-class DeviseCreateAdmins < ActiveRecord::Migration[5.0]
+class DeviseCreateAdministrators < ActiveRecord::Migration[5.0]
   def change
-    create_table :admins do |t|
+    create_table :administrators do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -34,8 +34,8 @@ class DeviseCreateAdmins < ActiveRecord::Migration[5.0]
       t.timestamps null: false
     end
 
-    add_index :admins, :email,                unique: true
-    add_index :admins, :reset_password_token, unique: true
+    add_index :administrators, :email,                unique: true
+    add_index :administrators, :reset_password_token, unique: true
     # add_index :admins, :confirmation_token,   unique: true
     # add_index :admins, :unlock_token,         unique: true
   end

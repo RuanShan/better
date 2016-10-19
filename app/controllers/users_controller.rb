@@ -1,14 +1,12 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :admin_only, :except => :show
 
   def index
     @users = User.all
   end
 
   def account
-Rails.logger.debug " params=#{params.inspect}"
     @user = current_user
     @deposits = @user.deposits.order("created_at desc").limit(10)
   end
@@ -50,11 +48,6 @@ Rails.logger.debug " params=#{params.inspect}"
 
   private
 
-  def admin_only
-    unless current_user.admin?
-      redirect_to root_path, :alert => "Access denied."
-    end
-  end
 
   def secure_params
     params.require(:user).permit(:role)
