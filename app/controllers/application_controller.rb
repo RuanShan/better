@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
+  around_filter :set_current_user
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+
 
   protected
 
@@ -15,7 +17,16 @@ class ApplicationController < ActionController::Base
     elsif resource.class == Broker
       agent_root_path
     else
-      request.referrer || root_path
+      account_path
     end
   end
+
+  def set_current_user
+    Current.user = current_user
+    yield
+  ensure
+    # to address the thread variable leak issues in Puma/Thin webserver
+    Current.user = nil
+  end
+
 end
