@@ -49,7 +49,7 @@
 						</div><div  class="my-navs-item pointer ng-scope">
 							<span class="subnav ">个人资料</span>
 						</div><div  class="my-navs-item pointer ng-scope">
-							<span class="subnav ">修改密码</span>
+							<span class="subnav "><%=link_to "修改密码", change_password_user_path(current_user)%></span>
 						</div>
 					</div><!-- end ngRepeat: item in navs --><div ng-repeat="item in navs" class="ng-scope">
 						<div class="my-navs-item-parent">

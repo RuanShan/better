@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def account
-Rails.logger.debug " params=#{params.inspect}"    
+Rails.logger.debug " params=#{params.inspect}"
     @user = current_user
     @deposits = @user.deposits.order("created_at desc").limit(10)
   end
@@ -40,6 +40,12 @@ Rails.logger.debug " params=#{params.inspect}"
     user = User.find(params[:id])
     user.destroy
     redirect_to users_path, :notice => "User deleted."
+  end
+
+  def changepwd
+    password_type = params[:password] ? "password" : (params[:money_password] ? "money_password" : "")
+    current_user.change_password(password_type)
+    flash.now[:message] = “password changed”
   end
 
   private

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     get 'deposit', on: :collection
     get 'drawing', on: :collection
     get 'transfer', on: :collection
+    get 'change_password', on: :member
+    patch 'changepwd', on: :member
   end
   resources :deposits
 

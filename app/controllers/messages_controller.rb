@@ -9,9 +9,7 @@ class MessagesController < ApplicationController
 
   def read
     if params["id"]
-      @user_message_id=params["id"]
-      user_message = UserMessage.find(params["id"])
-      user_message.read
+      current_user.read_message params["id"]
     else
       current_user.read_messages
       render "user_messages"
@@ -19,7 +17,7 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    UserMessage.find(params["id"]).destroy
+    current_user.delete_message params["id"]
     render "user_messages"
   end
 

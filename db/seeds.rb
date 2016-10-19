@@ -12,4 +12,3 @@ puts 'CREATED ADMIN USER: ' << user.email
 [{name: "中心钱包"}, {name: "AG娱乐"},{name: "BD娱乐"},{name: "QQ娱乐"},{name: "MG娱乐"},{name: "BB体育"}].each{|attrs|
   GameCenter.create!( attrs )
 }
-message = PublicMessage.new.call
