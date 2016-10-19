@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  around_filter :set_current_user
   protect_from_forgery with: :exception
+  around_action :set_current_user
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_current_user
-    Current.user = current_user
+    Current.user = current_user if user_signed_in?
     yield
   ensure
     # to address the thread variable leak issues in Puma/Thin webserver
