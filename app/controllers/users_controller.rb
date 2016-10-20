@@ -41,9 +41,13 @@ class UsersController < ApplicationController
   end
 
   def changepwd
-    password_type = params[:password] ? "password" : (params[:money_password] ? "money_password" : "")
-    current_user.change_password(password_type)
-    flash.now[:message] = “password changed”
+    current_user.change_password(params["user"])
+    if current_user.errors.empty?
+      flash[:notice] = "Password changed!"
+    else
+      flash[:error] = current_user.errors.full_messages[0]
+    end
+    redirect_to change_password_user_path(current_user)
   end
 
   private

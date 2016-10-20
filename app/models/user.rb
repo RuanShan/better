@@ -11,23 +11,27 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
   alias_attribute :name, :nickname
 
+  attr_reader :money_password, :current_money_password
+  attr_accessor :money_password_confirmation, :password_prefix
+  validates :money_password, confirmation: true
 
   def set_default_role
     self.role ||= :user
   end
 
-  def change_password(password_type,password_options)
-    if password_type=="password"
-      if valid_password? password_options[:current_password]
-        reset_password(password_options[:password],password_options[:password_confirmation] )
-      end
-    elsif password_type=="money_password"
-      if valid_money_password? password_options[:current_password]
-        money_password = password_options[:password]
-        save
-      end
+  def change_password(password_options)
+    @password_prefix = password_options[:money_password] ? "money_" : ""
+    if valid_password? password_options["current_#{@password_prefix}password"]
+      reset_password(password_options["#{@password_prefix}password"],password_options["#{@password_prefix}password_confirmation"] )
     else
+      errors.set(:current_password, ["not right"])
     end
+  end
+
+  def reset_password(new_password, new_password_confirmation)
+    self.send "#{@password_prefix}password=", new_password
+    self.send "#{@password_prefix}password_confirmation=", new_password_confirmation
+    save
   end
 
   def money_password=(new_password)
@@ -35,8 +39,8 @@ class User < ApplicationRecord
     self.encrypted_money_password = password_digest(@money_password) if @money_password.present?
   end
 
-  def valid_money_password?(password)
-    Devise::Encryptor.compare(self.class, encrypted_money_password, password)
+  def valid_password?(password)
+    Devise::Encryptor.compare(self.class, self.send("encrypted_#{@password_prefix}password"), password)
   end
 
   def private_messages
