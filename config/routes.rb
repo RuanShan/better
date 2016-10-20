@@ -17,11 +17,11 @@ Rails.application.routes.draw do
     get 'drawing', on: :collection
     get 'transfer', on: :collection
     member do
-      get 'change_password'
-      patch 'changepwd'
-      get 'change_profile'
-      patch 'changepro'
+      match 'change_password', via: [:get, :patch]
+      match 'change_profile', via: [:get, :patch]
       get 'security_center'
+      match 'set_email', via: [:get, :patch]
+      match 'set_password_protection', via: [:get, :patch]
     end
   end
   resources :deposits

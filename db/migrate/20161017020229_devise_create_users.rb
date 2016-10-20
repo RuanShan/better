@@ -35,6 +35,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.integer :gender, null: false, default: 0
       t.string :phone, null: false, default: ""
       t.string :qq, null: false, default: ""
+      t.string :pp_question, null: false, default: ""
+      t.string :pp_answer, null: false, default: ""
       t.timestamps null: false
     end
 

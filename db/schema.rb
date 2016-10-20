@@ -210,6 +210,8 @@ ActiveRecord::Schema.define(version: 20161018122350) do
     t.integer  "gender",                   default: 0,  null: false
     t.string   "phone",                    default: "", null: false
     t.string   "qq",                       default: "", null: false
+    t.string   "pp_question",              default: "", null: false
+    t.string   "pp_answer",                default: "", null: false
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.string   "confirmation_token"
