@@ -15,7 +15,7 @@
       <td><%= message.created_at %></td>
       <td><span id="mspan<%=message.id%>" <%unless current_user.read? message.id %>style="font-weight:bold;"<%end%> ><%=link_to message.title, read_message_path(message),
       :method=>:put, :remote=>true,:onclick=>"$('#mc#{message.id}').toggle();$('#mspan#{message.id}').css('font-weight','normal')" %></span></td>
-      <td><%=link_to 'delete',message_path(message), :method=>:delete, :remote=>true%></td>
+      <td><%=link_to 'delete',message_path(message,:page=>@page), :method=>:delete, :remote=>true%></td>
     </tr>
     <tr id="mc<%=message.id%>" style="display:none;">
       <td colspan="3"><%= message.content %></td>

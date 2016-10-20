@@ -40,11 +40,11 @@ class User < ApplicationRecord
   end
 
   def private_messages
-    Message.where("user_id=?",id).all
+    Message.where("state=?",id).all
   end
 
   def received_messages
-    Message.where("user_id in (0,#{id})").order("created_at DESC").all
+    Message.where("state in (0,#{id})").order("created_at DESC").all
   end
 
   def available_messages
