@@ -28,7 +28,8 @@ class DepositsController < ApplicationController
   # POST /deposits.json
   def create
     @deposit = Deposit.new(deposit_params)
-
+    @deposit.user = current_user
+    
     respond_to do |format|
       if @deposit.save
         format.html { redirect_to @deposit, notice: 'Deposit was successfully created.' }

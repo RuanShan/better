@@ -32,6 +32,8 @@ gem 'ransack'
 gem 'friendly_id', '~> 5.1.0'
 gem 'will_paginate', '~> 3.1.0'
 
+gem 'alipay'
+
 group :development do
   gem 'better_errors'
   gem 'capistrano', '~> 3.0.1'

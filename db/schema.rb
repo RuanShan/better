@@ -111,14 +111,18 @@ ActiveRecord::Schema.define(version: 20161018122350) do
   end
 
   create_table "payment_methods", force: :cascade do |t|
+    t.string   "type"
     t.string   "name"
     t.string   "merchant"
-    t.string   "pid",        default: "",    null: false
-    t.string   "key",        default: "",    null: false
-    t.integer  "state",      default: 0,     null: false
-    t.boolean  "enabled",    default: false, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "pid",           default: "",    null: false
+    t.string   "key",           default: "",    null: false
+    t.string   "payee_name"
+    t.string   "payee_address"
+    t.string   "payee_account"
+    t.integer  "state",         default: 0,     null: false
+    t.boolean  "enabled",       default: false, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "promotions", force: :cascade do |t|

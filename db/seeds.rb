@@ -15,3 +15,6 @@ puts 'CREATED ADMIN USER: ' << user.email
   GameCenter.create!( attrs )
 }
 #message = PublicMessage.new.call
+Gateway::AlipayBank.create!  name: "在线支付", merchant: "支付宝", enabled: true
+Gateway::BankTransfer.create!  name: "银行转账", merchant: "汇潮", enabled: true
+Gateway::Weixin.create!  name: "微信充值", merchant: "腾讯", enabled: true

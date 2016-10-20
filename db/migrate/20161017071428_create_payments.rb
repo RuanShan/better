@@ -1,12 +1,17 @@
 class CreatePayments < ActiveRecord::Migration[5.0]
   def change
-
+    # this is STI 
     create_table :payment_methods do |t|
+      t.string :type
       #t.references :user
       t.string :name
       t.string :merchant
       t.string :pid, null: false, default: ''
       t.string :key, null: false, default: ''
+      t.string :payee_name    #转账 收款方户名
+      t.string :payee_address #转账 收款方地址
+      t.string :payee_account #转账 收款方账号
+
       t.integer :state, null: false, default: 0
       t.boolean :enabled, null:false, default: false
       t.timestamps null: false
