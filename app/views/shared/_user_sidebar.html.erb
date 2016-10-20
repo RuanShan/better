@@ -45,9 +45,9 @@
 							<span  class="am-margin-left-sm name ">账户安全</span>
 						</div>
 						<div  class="my-navs-item pointer ng-scope">
-							<span class="subnav ">安全中心</span>
+							<span class="subnav "><%=link_to "安全中心", security_center_user_path(current_user)%></span>
 						</div><div  class="my-navs-item pointer ng-scope">
-							<span class="subnav ">个人资料</span>
+							<span class="subnav "><%=link_to "个人资料", change_profile_user_path(current_user)%></span>
 						</div><div  class="my-navs-item pointer ng-scope">
 							<span class="subnav "><%=link_to "修改密码", change_password_user_path(current_user)%></span>
 						</div>

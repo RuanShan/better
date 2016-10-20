@@ -50,11 +50,21 @@ class UsersController < ApplicationController
     redirect_to change_password_user_path(current_user)
   end
 
+  def changepro
+    current_user.update_attributes(secure_params)
+    if current_user.errors.empty?
+      flash[:notice] = "Profile updated!"
+    else
+      flash[:error] = current_user.errors.full_messages[0]
+    end
+    redirect_to change_profile_user_path(current_user)
+  end
+
   private
 
 
   def secure_params
-    params.require(:user).permit(:role)
+    params.require(:user).permit(:role, :gender, :phone, :qq)
   end
 
 end

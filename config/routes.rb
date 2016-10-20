@@ -16,8 +16,13 @@ Rails.application.routes.draw do
     get 'deposit', on: :collection
     get 'drawing', on: :collection
     get 'transfer', on: :collection
-    get 'change_password', on: :member
-    patch 'changepwd', on: :member
+    member do
+      get 'change_password'
+      patch 'changepwd'
+      get 'change_profile'
+      patch 'changepro'
+      get 'security_center'
+    end
   end
   resources :deposits
 
