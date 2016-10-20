@@ -4,6 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
+      t.string :encrypted_money_password, null: false, default: ""
 
       ## Recoverable
       t.string   :reset_password_token
@@ -31,7 +32,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       # t.datetime :locked_at
 
       t.string :nickname
-
+      t.integer :gender, null: false, default: 0
+      t.string :phone, null: false, default: ""
+      t.string :qq, null: false, default: ""
+      t.string :pp_question, null: false, default: ""
+      t.string :pp_answer, null: false, default: ""
       t.timestamps null: false
     end
 

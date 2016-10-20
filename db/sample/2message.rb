@@ -1,1 +1,1 @@
-FactoryGirl.create(:system_message, administrator: @admin)
+FactoryGirl.create_list(:system_message, 20, administrator: @admin)

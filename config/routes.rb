@@ -16,6 +16,13 @@ Rails.application.routes.draw do
     get 'deposit', on: :collection
     get 'drawing', on: :collection
     get 'transfer', on: :collection
+    member do
+      match 'change_password', via: [:get, :patch]
+      match 'change_profile', via: [:get, :patch]
+      get 'security_center'
+      match 'set_email', via: [:get, :patch]
+      match 'set_password_protection', via: [:get, :patch]
+    end
   end
   resources :deposits
 
