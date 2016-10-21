@@ -32,12 +32,10 @@ class CreatePayments < ActiveRecord::Migration[5.0]
 
     create_table :user_banks do |t|
       t.references :user, foreign_key: true
-      t.string :name
-      t.string :code
-      t.integer :country_id, default: 1
-      t.integer :province_id, default: 2
-      t.integer :city_id, default: 2
-      t.string :address, null:false, default: false
+      t.string :name, null:false, default: ""
+      t.string :card_number, null:false, default: ""
+      t.string :branch_name, null:false, default: ""
+      t.string :address, null:false, default: ""
       t.timestamps null: false
     end
 

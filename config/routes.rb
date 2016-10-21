@@ -22,6 +22,8 @@ Rails.application.routes.draw do
       get 'security_center'
       match 'set_email', via: [:get, :patch]
       match 'set_password_protection', via: [:get, :patch]
+      match 'bind_name', via: [:get, :patch]
+      match 'bind_bank', via: [:get, :post]
     end
   end
   resources :deposits

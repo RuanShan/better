@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :user_messages
+  has_many :user_banks
   enum role: [:user, :vip ]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -12,9 +13,10 @@ class User < ApplicationRecord
   alias_attribute :name, :nickname
 
   attr_reader :money_password, :current_money_password
-  attr_accessor :money_password_confirmation, :password_prefix
+  attr_accessor :money_password_confirmation, :password_prefix, :setting_pp, :binding_name
   validates :money_password, confirmation: true
-  validates :pp_question, :pp_answer, presence: true, on: :update
+  validates :pp_question, :pp_answer, presence: true, if: :setting_pp
+  validates :real_name, :id_number, presence: true, if: :binding_name
 
   def set_default_role
     self.role ||= :user
@@ -52,31 +54,45 @@ class User < ApplicationRecord
   end
 
   def set_password_protection(pp_options)
+    @setting_pp = true
     current_password = pp_options.delete("current_password")
     if valid_password? current_password
+      if pp_options['pp_question'].present?
+        errors.set(:pp_answer, ["can not be blank"]) if pp_options['pp_answer'].blank?
+      else
+        errors.set(:pp_question, ["can not be blank"])
+      end
       self.update_attributes(pp_options)
     else
       errors.set(:current_password, ["not right"])
     end
   end
 
+  def bind_name(name_options)
+    @binding_name = true
+    self.update_attributes(name_options)
+  end
+
+  def bind_bank(current_money_password,bank_options)
+    @password_prefix="money_"
+    if valid_password? current_money_password
+      user_banks.create(bank_options)
+    else
+      new_user_bank = user_banks.new
+      new_user_bank.errors.set(:current_money_password, ["not right"])
+      new_user_bank
+    end
+  end
+
   def security_score
     score = 0
-    score+= 30 unless encrypted_password.blank?
-    score+= 15 if bind_name?
-    score+= 15 unless encrypted_money_password.blank?
-    score+= 20 if bind_bank?
-    score+= 10 unless email.blank?
+    score+= 30 if encrypted_password.present?
+    score+= 15 if real_name.present?
+    score+= 15 if encrypted_money_password.present?
+    score+= 20 if user_banks.size > 0
+    score+= 10 if email.present?
     score+= 10 if set_password_protection?
     score
-  end
-
-  def bind_name?
-    false
-  end
-
-  def bind_bank?
-    false
   end
 
   def set_password_protection?

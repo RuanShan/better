@@ -62,11 +62,11 @@ ActiveRecord::Schema.define(version: 20161018122350) do
     t.integer  "user_id"
     t.string   "number"
     t.string   "currency"
-    t.decimal  "amount"
-    t.integer  "state",             default: 0, null: false
+    t.decimal  "amount",            default: "0.0", null: false
+    t.integer  "state",             default: 0,     null: false
     t.string   "memo"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.index ["number"], name: "index_deposits_on_number", unique: true
     t.index ["payment_method_id"], name: "index_deposits_on_payment_method_id"
     t.index ["user_id"], name: "index_deposits_on_user_id"
@@ -177,14 +177,12 @@ ActiveRecord::Schema.define(version: 20161018122350) do
 
   create_table "user_banks", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "name"
-    t.string   "code"
-    t.integer  "country_id",  default: 1
-    t.integer  "province_id", default: 2
-    t.integer  "city_id",     default: 2
-    t.string   "address",     default: "f", null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",        default: "", null: false
+    t.string   "card_number", default: "", null: false
+    t.string   "branch_name", default: "", null: false
+    t.string   "address",     default: "", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.index ["user_id"], name: "index_user_banks_on_user_id"
   end
 
@@ -216,6 +214,9 @@ ActiveRecord::Schema.define(version: 20161018122350) do
     t.string   "qq",                       default: "", null: false
     t.string   "pp_question",              default: "", null: false
     t.string   "pp_answer",                default: "", null: false
+    t.string   "real_name"
+    t.integer  "id_type",                  default: 0,  null: false
+    t.string   "id_number"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.string   "confirmation_token"
