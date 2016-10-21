@@ -5,6 +5,14 @@ class ApplicationController < ActionController::Base
 
 
   protected
+  def render_dialog( options={} )
+
+    dialog_view = options[:dialog_view]
+    dialog_view ||= params[:action]
+    dialog_content_selector = "#modal .modal-content"
+    render 'shared/dialog', locals:{ dialog_view: dialog_view, dialog_content_selector: dialog_content_selector }
+
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])

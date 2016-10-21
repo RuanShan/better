@@ -33,6 +33,7 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'will_paginate', '~> 3.1.0'
 
 gem 'alipay'
+gem 'monetize'
 
 group :development do
   gem 'better_errors'

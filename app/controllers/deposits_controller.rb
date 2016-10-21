@@ -29,14 +29,18 @@ class DepositsController < ApplicationController
   def create
     @deposit = Deposit.new(deposit_params)
     @deposit.user = current_user
-    
+
     respond_to do |format|
       if @deposit.save
         format.html { redirect_to @deposit, notice: 'Deposit was successfully created.' }
         format.json { render :show, status: :created, location: @deposit }
+        format.js { redirect_to action: 'index', status: 303 }
+        #format.js{ render_dialog dialog_view: 'wait_gateway_response' }
       else
+        @model = @deposit
         format.html { render :new }
         format.json { render json: @deposit.errors, status: :unprocessable_entity }
+        format.js{ render_dialog  dialog_view: 'shared/model_errors' }
       end
     end
   end

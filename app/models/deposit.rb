@@ -1,4 +1,7 @@
 class Deposit < ApplicationRecord
+  extend DisplayMoney
+  money_methods :amount
+
   extend FriendlyId
   friendly_id :number, slug_column: :number, use: :slugged
   include NumberGenerator.new(prefix: 'R')

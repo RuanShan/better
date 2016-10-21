@@ -1,6 +1,6 @@
 class CreatePayments < ActiveRecord::Migration[5.0]
   def change
-    # this is STI 
+    # this is STI
     create_table :payment_methods do |t|
       t.string :type
       #t.references :user
@@ -23,7 +23,7 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.references :user, foreign_key: true
       t.string :number  #serial number
       t.string :currency
-      t.decimal :amount
+      t.decimal :amount, null: false, default: 0.0
       t.integer :state, null: false, default: 0
       t.string :memo
       t.timestamps null: false

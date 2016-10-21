@@ -141,6 +141,11 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
+    monetize (1.4.0)
+      money (~> 6.7)
+    money (6.7.1)
+      i18n (>= 0.6.4, <= 0.7.0)
+      sixarm_ruby_unaccent (>= 1.1.1, < 2)
     multi_json (1.12.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -243,6 +248,7 @@ GEM
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
+    sixarm_ruby_unaccent (1.1.1)
     slop (3.6.0)
     spring (2.0.0)
       activesupport (>= 4.2)
@@ -316,6 +322,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (~> 3.0.5)
+  monetize
   pry-rails
   pry-rescue
   puma (~> 3.0)

@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <h4 class="modal-title">Modal title</h4>
+</div>
+<div class="modal-body">
+  <p>该订单已生成，您可以在账号明细中找到该订单。 订单编号：<%= @deposit.number %>
+    充值金额：<%= @deposit.display_amount %> RMB
+  </p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+  <button type="button" class="btn btn-primary">去转账</button>
+</div>

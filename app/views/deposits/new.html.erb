@@ -21,8 +21,8 @@
     <!-- Tab panes -->
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="home">
-        <%= form_for(deposit) do |f| %>
-        <%= render partial: "shared/model_errors", locals: { model: deposit} %>
+        <%= simple_form_for(deposit, remote: true ) do |f| %>
+          <%= f.input :payment_method_id, input_html: { value: 1 }, as: :hidden %>
           <%= render partial: "payment_methods/method_alipay_bank" %>
           <div class="field">
             <%= f.label :amount %>
@@ -34,8 +34,8 @@
         <% end %>
       </div>
       <div role="tabpanel" class="tab-pane" id="profile">
-        <%= form_for(deposit) do |f| %>
-        <%= render partial: "shared/model_errors", locals: { model: deposit} %>
+        <%= simple_form_for(deposit) do |f| %>
+        <%= f.input :payment_method_id, input_html: { value: 2 }, as: :hidden %>
           <%= render partial: "payment_methods/method_bank_transfer" %>
           <div class="field">
             <%= f.label :amount %>
@@ -47,8 +47,8 @@
         <% end %>
       </div>
       <div role="tabpanel" class="tab-pane" id="messages">
-        <%= form_for(deposit) do |f| %>
-          <%= render partial: "shared/model_errors", locals: { model: deposit} %>
+        <%= simple_form_for(deposit) do |f| %>
+        <%= f.input :payment_method_id, input_html: { value: 3 }, as: :hidden %>
           <%= render partial: "payment_methods/method_weixin" %>
           <div class="field">
             <%= f.label :amount %>
