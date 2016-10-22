@@ -6,7 +6,7 @@ class DrawingsController < ApplicationController
   # GET /drawings.json
   def index
     @page = params["page"]
-    @drawings = Drawing.all
+    @drawings = Drawing.all.paginate(:page => @page)
   end
 
   # GET /drawings/1

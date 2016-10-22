@@ -6,12 +6,12 @@
     <div class="my-sub-title ng-binding">充值记录</div>
     <div class="">
       <%=form_tag search_deposits_path, id:'deposit_form',remote:true do%>
-        <%=content_tag :span, "start date", style:'display:block;float:left'%><%=calendar "start_date"%><%=content_tag :span, "to", style:'display:block;float:left'%><%=calendar "end_date"%>
-        state<%=deposit_state_select "state"%>
-        <%=submit_tag "search"%>
+        <%=text_span "start date"%><%=calendar "start_date"%><%=text_span "to"%><%=calendar "end_date"%>
+        <%=text_span "state"%><%=deposit_state_select "state"%>
+        <%=content_tag(:div, submit_tag("search",  class:"form-control"), style:'width:100px;float:left;margin:5px;')%>
       <%end%>
     </div>
-    <div id="deposit_records">
+    <div id="deposit_records" style="padding-top:20px;">
       <%= render partial: "records" %>
     </div>
   </div>
