@@ -4,31 +4,20 @@
   <div class="col-md-10 user-content" >
     <p id="notice"><%= notice %></p>
     <div class="my-sub-title ng-binding">充值记录</div>
-    <table>
-      <thead>
-        <tr>
-          <th>Payment method</th>
-          <th>User</th>
-          <th>Amount</th>
-          <th>State</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @deposits.each do |deposit| %>
-          <tr>
-            <td><%= deposit.payment_method %></td>
-            <td><%= deposit.user %></td>
-            <td><%= deposit.amount %></td>
-            <td><%= deposit.state %></td>
-            <td><%= link_to 'Show', deposit %></td>
-            <td><%= link_to 'Edit', edit_deposit_path(deposit) %></td>
-            <td><%= link_to 'Destroy', deposit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
+    <div class="">
+      <%=form_tag search_deposits_path, id:'deposit_form',remote:true do%>
+        <%=content_tag :span, "start date", style:'display:block;float:left'%><%=calendar "start_date"%><%=content_tag :span, "to", style:'display:block;float:left'%><%=calendar "end_date"%>
+        state<%=deposit_state_select "state"%>
+        <%=submit_tag "search"%>
+      <%end%>
+    </div>
+    <div id="deposit_records">
+      <%= render partial: "records" %>
+    </div>
   </div>
 </div>
+<script type="text/javascript">
+  $(function () {
+    $('.calendar').datetimepicker({format: "YYYY-MM-DD"});
+  });
+</script>

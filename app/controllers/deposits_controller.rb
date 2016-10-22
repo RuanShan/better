@@ -5,6 +5,7 @@ class DepositsController < ApplicationController
   # GET /deposits
   # GET /deposits.json
   def index
+    @page = params["page"]
     @user = current_user
     @deposits = Deposit.all
   end
@@ -69,6 +70,14 @@ class DepositsController < ApplicationController
     end
   end
 
+  def search
+    @page = params["page"]
+    @search = true
+    @deposits = Deposit.search(search_params)
+    render 'shared/partials', locals:{ partial_hash: {"#deposit_records"=>"records"} }
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_deposit
@@ -78,5 +87,9 @@ class DepositsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def deposit_params
       params.require(:deposit).permit(:payment_method_id, :user_id, :amount, :state)
+    end
+
+    def search_params
+      params.permit(:start_date, :end_date, :state)
     end
 end

@@ -21,6 +21,9 @@ group :development do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.42'
+
 #https://github.com/plataformatec/devise
 gem 'devise'
 gem 'devise_invitable'

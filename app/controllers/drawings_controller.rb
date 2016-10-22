@@ -5,6 +5,7 @@ class DrawingsController < ApplicationController
   # GET /drawings
   # GET /drawings.json
   def index
+    @page = params["page"]
     @drawings = Drawing.all
   end
 
@@ -62,6 +63,14 @@ class DrawingsController < ApplicationController
     end
   end
 
+  def search
+    @page = params["page"]
+    @search = true
+    @drawings = Drawing.search(search_params)
+    render 'shared/partials', locals:{ partial_hash: {"#drawing_records"=>"records"} }
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_drawing
@@ -71,5 +80,9 @@ class DrawingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def drawing_params
       params.require(:drawing).permit(:user_bank_id, :number, :amount, :state)
+    end
+
+    def search_params
+      params.permit(:start_date, :end_date, :state)
     end
 end

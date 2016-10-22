@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :transfers
-  resources :drawings
+  resources :transfers do
+    post 'search', on: :collection
+  end
+  resources :drawings do
+    post 'search', on: :collection
+  end
   resources :payment_methods
 
   devise_for :users              #会员
@@ -26,7 +30,10 @@ Rails.application.routes.draw do
       match 'bind_bank', via: [:get, :post]
     end
   end
-  resources :deposits
+  
+  resources :deposits do
+    post 'search', on: :collection
+  end
 
   resources :messages do
     put 'read', on: :member

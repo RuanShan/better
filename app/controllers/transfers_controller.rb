@@ -5,8 +5,8 @@ class TransfersController < ApplicationController
   # GET /transfers
   # GET /transfers.json
   def index
-    @user = current_user
-    @transfers = Transfer.all
+    @page = params["page"]
+    @transfers = Transfer.all.paginate(:page => @page)
   end
 
   # GET /transfers/1
@@ -63,6 +63,13 @@ class TransfersController < ApplicationController
     end
   end
 
+  def search
+    @page = params["page"]
+    @search = true
+    @transfers = Transfer.search(search_params).paginate(:page => @page)
+    render 'shared/partials', locals:{ partial_hash: {"#transfer_records"=>"records"} }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transfer
@@ -72,5 +79,9 @@ class TransfersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def transfer_params
       params.require(:transfer).permit(:user_id, :from_game_center_id, :to_game_center, :number, :amount, :state)
+    end
+
+    def search_params
+      params.permit(:start_date, :end_date, :from_game_center_id, :to_game_center_id, :state)
     end
 end

@@ -3,33 +3,22 @@
   <%= render partial: "shared/user_sidebar" %>
   <div class="col-md-10 user-content" >
     <p id="notice"><%= notice %></p>
-    <div class="my-sub-title ng-binding">充值记录</div>
-
-      <table>
-        <thead>
-          <tr>
-            <th>User bank</th>
-            <th>Number</th>
-            <th>Amount</th>
-            <th>State</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @drawings.each do |drawing| %>
-            <tr>
-              <td><%= drawing.user_bank %></td>
-              <td><%= drawing.number %></td>
-              <td><%= drawing.amount %></td>
-              <td><%= drawing.state %></td>
-              <td><%= link_to 'Show', drawing %></td>
-              <td><%= link_to 'Edit', edit_drawing_path(drawing) %></td>
-              <td><%= link_to 'Destroy', drawing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+    <div class="my-sub-title ng-binding">withdraw记录</div>
+    <div class="">
+      <%=form_tag search_drawings_path, id:'drawing_form',remote:true do%>
+        <%=content_tag :span, "start date", style:'display:block;float:left'%><%=calendar "start_date"%><%=content_tag :span, "to", style:'display:block;float:left'%><%=calendar "end_date"%>
+        state<%=drawing_state_select "state"%>
+        <%=submit_tag "search"%>
+      <%end%>
+    </div>
+    <div id="drawing_records">
+      <%= render partial: "records" %>
+    </div>
 
   </div>
 </div>
+<script type="text/javascript">
+  $(function () {
+    $('.calendar').datetimepicker({format: "YYYY-MM-DD"});
+  });
+</script>
