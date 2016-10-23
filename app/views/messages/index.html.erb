@@ -1,11 +1,3 @@
-
-<%= render partial: "users/profile" %>
-
-<div class="row">
-
-  <%= render partial: "shared/user_sidebar" %>
-
-  <div id="user_messages" class="col-md-9 user-content" >
-    <%= render partial: "user_messages" %>
-  </div>
-</div>
+<%=account_template "Messages" do %>
+  <%render partial: "user_messages"%>
+<% end %>

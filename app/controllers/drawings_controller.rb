@@ -66,7 +66,7 @@ class DrawingsController < ApplicationController
   def search
     @page = params["page"]
     @search = true
-    @drawings = Drawing.search(search_params)
+    @drawings = Drawing.search(search_params).paginate(:page => @page)
     render 'shared/partials', locals:{ partial_hash: {"#drawing_records"=>"records"} }
   end
 

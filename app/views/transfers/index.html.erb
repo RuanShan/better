@@ -1,24 +1,3 @@
-<%= render partial: "users/profile" %>
-<div class="row">
-  <%= render partial: "shared/user_sidebar" %>
-  <div class="col-md-10 user-content" >
-    <p id="notice"><%= notice %></p>
-    <div class="my-sub-title ng-binding">transfers记录</div>
-    <div class="" style="clear:both;">
-      <%=form_tag search_transfers_path, id:'transfer_form',remote:true do%>
-        <%=text_span "start date"%><%=calendar "start_date"%><%=text_span "to"%><%=calendar "end_date"%>
-        <%=text_span "transfer from"%><%=game_center_select "from_game_center_id"%><%=text_span "to"%><%=game_center_select "to_game_center_id"%>
-        <%=text_span "state"%><%=transfer_state_select "state"%>
-        <%=content_tag(:div, submit_tag("search",  class:"form-control"), style:'width:100px;float:left;margin:5px;')%>
-      <%end%>
-    </div>
-    <div id="transfer_records" style="clear:both;float:left">
-      <%= render partial: "records" %>
-    </div>
-  </div>
-</div>
-<script type="text/javascript">
-  $(function () {
-    $('.calendar').datetimepicker({format: "YYYY-MM-DD"});
-  });
-</script>
+<%=account_template "transfers记录" do %>
+  <%render partial: "search_conditions"%>
+<% end %>

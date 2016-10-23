@@ -73,7 +73,7 @@ class DepositsController < ApplicationController
   def search
     @page = params["page"]
     @search = true
-    @deposits = Deposit.search(search_params)
+    @deposits = Deposit.search(search_params).paginate(:page => @page)
     render 'shared/partials', locals:{ partial_hash: {"#deposit_records"=>"records"} }
   end
 

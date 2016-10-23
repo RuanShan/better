@@ -1,30 +1,3 @@
-
-<%= render partial: "users/profile" %>
-
-<div class="row">
-
-  <%= render partial: "shared/user_sidebar" %>
-  <div id="set_email" class="col-md-9 user-content" >
-    <%= form_for(current_user, :url=>{:action=>"set_email"}) do |f| %>
-      <div id="user_profile" class="field">
-        <div class="field">
-          <%= f.label :current_email %>
-          <%= current_user.email  %>
-        </div>
-        <div class="field">
-          <%= f.label :current_password %><br />
-          <%= f.password_field :current_password, :autocomplete => "off"  %>
-        </div>
-        <div class="field">
-          <%= f.label :email, "New email" %><br />
-          <%= f.text_field :email %>
-        </div>
-        <div class="action_container">
-          <%= f.submit %>
-        </div>
-      </div>
-
-    <% end %>
-
-  </div>
-</div>
+<%=account_template "Set email" do %>
+  <%render partial: "email_form"%>
+<% end %>

@@ -1,0 +1,31 @@
+<div style="width:400px;">
+  <%= form_for(@user_bank, :url=>{:controller=>"users", :action=>"bind_bank"},:role=>"form") do |f| %>
+    <div class="form-group">
+      <%=label_tag :current_money_password %><br />
+      <%=password_field_tag :current_money_password, '', :autocomplete => "off", class:"form-control"  %>
+    </div>
+    <div class="form-group">
+      <%=label_tag :real_name, "Name on card" %>
+      <%=inline_text_span(current_user.real_name)%>
+    </div>
+    <div class="form-group">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :card_number %><br />
+      <%= f.text_field :card_number, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :branch_name %><br />
+      <%= f.text_field :branch_name, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :address %><br />
+      <%= f.text_field :address, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "bind bank", class:"btn" %>
+    </div>
+  <% end %>
+</div>

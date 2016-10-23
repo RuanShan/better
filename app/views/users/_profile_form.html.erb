@@ -1,0 +1,25 @@
+<div style="padding-top:15px;width:350px;">
+  <%= form_for(current_user, :url=>{:action=>"change_profile"},:role=>"form") do |f| %>
+    <div class="form-group">
+      <%= f.label :nickname%>
+      <%=inline_text_span(current_user.name)%>
+    </div>
+    <div>
+      <%= f.label :gender %>
+      <label class="checkbox-inline"><%= f.radio_button :gender, 1, class:"" %><%=inline_text_span("male")%></label>
+      <label class="checkbox-inline"><%= f.radio_button :gender, 2, class:"" %><%=inline_text_span("female")%></label>
+      <label class="checkbox-inline"><%= f.radio_button :gender, 0, class:"" %><%=inline_text_span("secret")%></label>
+    </div>
+    <div class="form-group">
+      <%= f.label :phone%><br />
+      <%= f.text_field :phone, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :qq, "QQ" %><br />
+      <%= f.text_field :qq, class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Update profile", class:"btn" %>
+    </div>
+  <% end %>
+</div>
