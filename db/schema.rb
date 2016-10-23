@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161022150220) do
+ActiveRecord::Schema.define(version: 20161023090958) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -29,32 +29,16 @@ ActiveRecord::Schema.define(version: 20161022150220) do
     t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
   end
 
-  create_table "bid", force: :cascade do |t|
-    t.integer  "game_id"
+  create_table "bids", force: :cascade do |t|
+    t.integer  "game_round_id"
     t.integer  "user_id"
-    t.string   "params1"
-    t.string   "params2"
-    t.string   "params3"
-    t.string   "params4"
-    t.string   "params5"
-    t.string   "params6"
-    t.decimal  "paramd1"
-    t.decimal  "paramd2"
-    t.decimal  "paramd3"
-    t.decimal  "paramd4"
-    t.decimal  "paramd5"
-    t.decimal  "paramd6"
-    t.decimal  "paramd7"
-    t.decimal  "paramd8"
-    t.decimal  "paramd9"
-    t.decimal  "paramd10"
-    t.decimal  "paramd11"
-    t.decimal  "paramd12"
-    t.integer  "state",      default: 0, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["game_id"], name: "index_bid_on_game_id"
-    t.index ["user_id"], name: "index_bid_on_user_id"
+    t.decimal  "amount"
+    t.decimal  "rate"
+    t.integer  "state",         default: 0, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["game_round_id"], name: "index_bids_on_game_round_id"
+    t.index ["user_id"], name: "index_bids_on_user_id"
   end
 
   create_table "brokers", force: :cascade do |t|
@@ -123,21 +107,40 @@ ActiveRecord::Schema.define(version: 20161022150220) do
     t.datetime "updated_at",                      null: false
   end
 
-  create_table "game", force: :cascade do |t|
-    t.string   "slug"
-    t.string   "name"
-    t.text     "description"
-    t.integer  "state",       default: 0, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
   create_table "game_centers", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["name"], name: "index_game_centers_on_name", unique: true
+  end
+
+  create_table "game_rounds", force: :cascade do |t|
+    t.integer  "game_id"
+    t.decimal  "paramd1"
+    t.decimal  "paramd2"
+    t.decimal  "paramd3"
+    t.decimal  "paramd4"
+    t.decimal  "paramd5"
+    t.decimal  "paramd6"
+    t.decimal  "paramd7"
+    t.decimal  "paramd8"
+    t.decimal  "paramd9"
+    t.decimal  "paramd10"
+    t.decimal  "paramd11"
+    t.decimal  "paramd12"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_rounds_on_game_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string   "slug"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "state",       default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "messages", force: :cascade do |t|

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :bids
+  resources :bids do
+    post 'search', on: :collection
+  end
   resources :games
   resources :user_wallets
   resources :transfers do
@@ -33,7 +35,7 @@ Rails.application.routes.draw do
       match 'bind_bank', via: [:get, :post]
     end
   end
-  
+
   resources :deposits do
     post 'search', on: :collection
   end

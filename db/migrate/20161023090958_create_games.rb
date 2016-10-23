@@ -3,7 +3,7 @@ class CreateGames < ActiveRecord::Migration[5.0]
 
     # 投注记录
     create_table :bids do |t|
-      t.references :game_rounds, foreign_key: true
+      t.references :game_round, foreign_key: true
       t.references :user, foreign_key: true
 
       t.decimal :amount  # 投注价格

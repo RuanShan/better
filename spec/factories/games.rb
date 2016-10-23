@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :game do
-    name "MyString"
+    sequence(:name) { |n| "Game #{n}" }
     slug "MyString"
     description "MyText"
     state 1

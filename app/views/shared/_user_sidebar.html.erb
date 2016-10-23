@@ -28,7 +28,7 @@
 						<div  class="my-navs-item pointer ng-scope">
 							<span class="subnav ">红利记录</span>
 						</div><div  class="my-navs-item pointer ng-scope">
-							<span class="subnav ">投注记录</span>
+							<span class="subnav "><%=link_to "投注记录", bids_path%></span>
 						</div>
 						<%= link_to deposits_path, class: ( current_page?(controller: 'deposits') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
 							<span class="subnav ">充值记录</span>

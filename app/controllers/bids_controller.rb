@@ -4,7 +4,8 @@ class BidsController < ApplicationController
   # GET /bids
   # GET /bids.json
   def index
-    @bids = Bid.all
+    @page = params["page"]
+    @bids = Bid.all.paginate(:page => @page)
   end
 
   # GET /bids/1
@@ -61,6 +62,13 @@ class BidsController < ApplicationController
     end
   end
 
+  def search
+    @page = params["page"]
+    @search = true
+    @bids = Bid.search(search_params).paginate(:page => @page)
+    render 'shared/partials', locals:{ partial_hash: {"#bid_records"=>"records"} }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bid
@@ -70,5 +78,9 @@ class BidsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_params
       params.require(:bid).permit(:game_round_id, :user_id, :amount, :rate, :state)
+    end
+
+    def search_params
+      params.permit(:start_date, :end_date, :game_id)
     end
 end

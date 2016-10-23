@@ -1,0 +1,44 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>DateTime</th>
+      <th>Plantform</th>
+      <th>Bid Amount</th>
+      <th>Win/lose Amount</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%total_amount=0%>
+    <%total_win_lose_amount=0%>
+    <% if @bids.empty? %>
+      <tr>
+        <td colspan="5">No bid records</td>
+      <tr>
+    <% else %>
+    <% @bids.each do |bid| %>
+      <tr>
+        <td><%= bid.created_at.to_i %></td>
+        <td><%= bid.created_at %></td>
+        <td><%= bid.platform %></td>
+        <td><%= bid.amount %></td>
+        <td><%= bid.win_lose_amount %></td>
+      </tr>
+      <%total_amount += bid.amount%>
+      <%total_win_lose_amount += bid.win_lose_amount%>
+    <% end %>
+  <% end %>
+  <tr>
+    <td colspan="5">
+      <%=content_tag :span, "total win/lose amount:#{total_win_lose_amount}", style: 'float:right;'%>
+      <%=content_tag :span, "total amount:#{total_amount}", style: 'float:right;margin-right:20px;'%>
+    </td>
+  <tr>
+  </tbody>
+</table>
+<%if @search%>
+  <%= full_will_paginate @bids, {form_id:'bid_form'} %>
+<% else %>
+  <%= will_paginate @bids %>
+<% end %>
