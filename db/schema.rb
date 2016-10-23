@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018122350) do
+ActiveRecord::Schema.define(version: 20161022150220) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -27,6 +27,34 @@ ActiveRecord::Schema.define(version: 20161018122350) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_administrators_on_email", unique: true
     t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
+  end
+
+  create_table "bid", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "user_id"
+    t.string   "params1"
+    t.string   "params2"
+    t.string   "params3"
+    t.string   "params4"
+    t.string   "params5"
+    t.string   "params6"
+    t.decimal  "paramd1"
+    t.decimal  "paramd2"
+    t.decimal  "paramd3"
+    t.decimal  "paramd4"
+    t.decimal  "paramd5"
+    t.decimal  "paramd6"
+    t.decimal  "paramd7"
+    t.decimal  "paramd8"
+    t.decimal  "paramd9"
+    t.decimal  "paramd10"
+    t.decimal  "paramd11"
+    t.decimal  "paramd12"
+    t.integer  "state",      default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["game_id"], name: "index_bid_on_game_id"
+    t.index ["user_id"], name: "index_bid_on_user_id"
   end
 
   create_table "brokers", force: :cascade do |t|
@@ -83,6 +111,9 @@ ActiveRecord::Schema.define(version: 20161018122350) do
   end
 
   create_table "exchange_rates", force: :cascade do |t|
+    t.string   "code"
+    t.string   "name"
+    t.decimal  "rate"
     t.decimal  "withdraw_rate",   default: "1.0", null: false
     t.decimal  "deposit_rate",    default: "1.0", null: false
     t.decimal  "withdraw_factor", default: "1.0", null: false
@@ -90,6 +121,15 @@ ActiveRecord::Schema.define(version: 20161018122350) do
     t.string   "params",          default: "",    null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+  end
+
+  create_table "game", force: :cascade do |t|
+    t.string   "slug"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "state",       default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "game_centers", force: :cascade do |t|
@@ -194,6 +234,24 @@ ActiveRecord::Schema.define(version: 20161018122350) do
     t.datetime "updated_at",             null: false
     t.index ["message_id"], name: "index_user_messages_on_message_id"
     t.index ["user_id"], name: "index_user_messages_on_user_id"
+  end
+
+  create_table "user_wallets", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "game_center_id"
+    t.decimal  "amount"
+    t.string   "memo"
+    t.datetime "deleted_at"
+    t.integer  "originator_id"
+    t.string   "originator_type"
+    t.boolean  "is_bonus",        default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["deleted_at"], name: "index_user_wallets_on_deleted_at"
+    t.index ["game_center_id"], name: "index_user_wallets_on_game_center_id"
+    t.index ["originator_id", "originator_type"], name: "user_wallets_originator"
+    t.index ["user_id", "game_center_id"], name: "index_user_wallets_on_user_id_and_game_center_id"
+    t.index ["user_id"], name: "index_user_wallets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

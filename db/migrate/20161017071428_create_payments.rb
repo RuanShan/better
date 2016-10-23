@@ -64,6 +64,9 @@ class CreatePayments < ActiveRecord::Migration[5.0]
     end
 
     create_table :exchange_rates do |t|
+      t.string :code  # 'USDCNY'
+      t.string :name  # '美元汇人民币'
+      t.decimal :rate # 6.7654
       t.decimal :withdraw_rate, null: false, default: 1.0
       t.decimal :deposit_rate, null: false, default: 1.0
       t.decimal :withdraw_factor, null: false, default: 1.0

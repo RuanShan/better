@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :user_wallets
   resources :transfers do
     post 'search', on: :collection
   end
