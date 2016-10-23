@@ -1,0 +1,39 @@
+
+<%= render partial: "users/profile" %>
+
+<div class="row">
+
+  <%= render partial: "shared/user_sidebar" %>
+  <div id="bind_name" class="col-md-7 user-content" >
+    <%= form_for(current_user, :url=>{:action=>"bind_name"}) do |f| %>
+      <div id="real_name" class="field">
+        <div class="field">
+          <%= f.label :real_name %><br />
+          <%= f.text_field :real_name %>
+        </div>
+        <div class="field">
+          <%= f.label :id_type %><br />
+          <%= f.radio_button :id_type, 0 %>ID Card
+          <%= f.radio_button :id_type, 1 %>PassPort
+        </div>
+        <div class="field">
+          <%= f.label :id_number %><br />
+          <%= f.text_field :id_number %>
+        </div>
+        <div class="field">
+          <%= f.label :phone %><br />
+          <%= f.text_field :phone %><%=link_to "send_validte_code" %>
+        </div>
+        <div class="field">
+          <%=label_tag :validate_code %><br />
+          <%=text_field_tag :validate_code %>
+        </div>
+        <div class="action_container">
+          <%= f.submit %>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>

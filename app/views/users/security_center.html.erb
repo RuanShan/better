@@ -1,0 +1,64 @@
+
+<%= render partial: "users/profile" %>
+
+<div class="row">
+
+  <%= render partial: "shared/user_sidebar" %>
+  <div id="security_center" class="col-md-9 user-content" >
+    <table class="table">
+      <thead>
+        <tr>
+          <td>icon</td>
+          <td>security index</td>
+          <td colspan="2"><%=score_bar(current_user.security_score,400)%></td>
+          <td><%=current_user.security_score%></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>icon</td>
+          <td>login password</td>
+          <td>+30</td>
+          <td>description</td>
+          <td><%=link_to "修改密码", change_password_user_path(current_user)%></td>
+        </tr>
+        <tr>
+          <td>icon</td>
+          <td>bind name</td>
+          <td>+15</td>
+          <td>description</td>
+          <td><%=link_to "bind now", bind_name_user_path(current_user)%></td>
+        </tr>
+        <tr>
+          <td>icon</td>
+          <td>money password</td>
+          <td>+15</td>
+          <td>description</td>
+          <td><%=link_to "修改密码", change_password_user_path(current_user)%></td>
+        </tr>
+        <tr>
+          <td>icon</td>
+          <td>bind bank</td>
+          <td>+20</td>
+          <td>description</td>
+          <td><%=link_to "bind now", bind_bank_user_path(current_user)%></td>
+        </tr>
+        <tr>
+          <td>icon</td>
+          <td>bind email</td>
+          <td>+10</td>
+          <td>description</td>
+          <td><%=link_to "bind email", set_email_user_path(current_user)%></td>
+        </tr>
+        <tr>
+          <td>icon</td>
+          <td>password protect</td>
+          <td>+10</td>
+          <td>description</td>
+          <td><%=link_to "setup now", set_password_protection_user_path(current_user)%></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Datetime</th>
+      <th>Serialnumber</th>
+      <th>Transfer from</th>
+      <th>Transfer to</th>
+      <th>Amount</th>
+      <th>State</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%total_amount=0%>
+    <% if @transfers.empty? %>
+      <tr>
+        <td colspan="7">No transfer records</td>
+      <tr>
+    <% else %>
+      <% @transfers.each do |transfer| %>
+        <tr>
+          <td><%= transfer.created_at.to_i %></td>
+          <td><%= transfer.created_at %></td>
+          <td><%= transfer.number %></td>
+          <td><%= transfer.from_game_center.name %></td>
+          <td><%= transfer.to_game_center.name %></td>
+          <td><%= transfer.amount %></td>
+          <td><%= transfer.state %></td>
+        </tr>
+        <%total_amount += transfer.amount%>
+      <% end %>
+    <% end %>
+    <tr>
+      <td colspan="7"><%=content_tag :span, "total amount:#{total_amount}", style: 'float:right;'%></td>
+    <tr>
+  </tbody>
+</table>
+<%if @search%>
+  <%= full_will_paginate @deposits, {form_id:'transfer_form'} %>
+<% else %>
+  <%= will_paginate @deposits %>
+<% end %>

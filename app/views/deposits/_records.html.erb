@@ -1,0 +1,46 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>DateTime</th>
+      <th>Number</th>
+      <th>Deposit method</th>
+      <th>Amount</th>
+      <th>State</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%total_amount=0%>
+    <% if @deposits.empty? %>
+      <tr>
+        <td colspan="6">No deposit records</td>
+      <tr>
+    <% else %>
+    <% @deposits.each do |deposit| %>
+      <tr>
+        <td><%= deposit.created_at.to_i %></td>
+        <td><%= deposit.created_at %></td>
+        <td><%= deposit.number %></td>
+        <td><%= deposit.payment_method.name %></td>
+        <td><%= deposit.amount %></td>
+        <td><%= deposit.state %></td>
+      </tr>
+      <%total_amount += deposit.amount%>
+    <% end %>
+  <% end %>
+  <tr>
+    <td colspan="6"><%=content_tag :span, "total amount:#{total_amount}", style: 'float:right;'%></td>
+  <tr>
+  </tbody>
+</table>
+<%if @search%>
+  <%= full_will_paginate @deposits, {form_id:'deposit_form'} %>
+<% else %>
+  <%= will_paginate @deposits %>
+<% end %>
+<script type="text/javascript">
+  $(function () {
+    $('.calendar').datetimepicker({format: "YYYY-MM-DD"});
+  });
+</script>

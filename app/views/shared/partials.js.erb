@@ -1,0 +1,3 @@
+<% partial_hash.each{|partial_selector, partial_view| %>
+  $("<%= partial_selector %>").html("<%= escape_javascript(render partial: partial_view) %>");
+<% } %>

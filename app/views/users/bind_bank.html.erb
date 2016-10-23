@@ -1,0 +1,42 @@
+
+<%= render partial: "users/profile" %>
+
+<div class="row">
+
+  <%= render partial: "shared/user_sidebar" %>
+  <div id="bind_bank" class="col-md-7 user-content" >
+    <%= form_for(@user_bank, :url=>{:controller=>"users", :action=>"bind_bank"}) do |f| %>
+      <div id="bank" class="field">
+        <div class="field">
+          <%=label_tag :current_money_password %><br />
+          <%=password_field_tag :current_money_password, '', :autocomplete => "off"  %>
+        </div>
+        <div class="field">
+          <%=label_tag :real_name, "Name on card" %>
+          <%= current_user.real_name  %>
+        </div>
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :card_number %><br />
+          <%= f.text_field :card_number %>
+        </div>
+        <div class="field">
+          <%= f.label :branch_name %><br />
+          <%= f.text_field :branch_name %>
+        </div>
+        <div class="field">
+          <%= f.label :address %><br />
+          <%= f.text_field :address %>
+        </div>
+        <div class="action_container">
+          <%= f.submit %>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>

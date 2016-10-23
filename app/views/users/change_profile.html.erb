@@ -1,0 +1,36 @@
+
+<%= render partial: "users/profile" %>
+
+<div class="row">
+
+  <%= render partial: "shared/user_sidebar" %>
+  <div id="change_profile" class="col-md-9 user-content" >
+    <%= form_for(current_user, :url=>{:action=>"change_profile"}) do |f| %>
+      <div id="user_profile" class="field">
+        <div class="field">
+          <%= f.label :nickname %>
+          <%= current_user.name  %>
+        </div>
+        <div class="field">
+          <%= f.label :gender %><br />
+          <%= f.radio_button :gender, 1 %>male
+          <%= f.radio_button :gender, 2 %>female
+          <%= f.radio_button :gender, 0 %>secret
+        </div>
+        <div class="field">
+          <%= f.label :phone %><br />
+          <%= f.text_field :phone %>
+        </div>
+        <div class="field">
+          <%= f.label :qq, "QQ" %><br />
+          <%= f.text_field :qq %>
+        </div>
+        <div class="action_container">
+          <%= f.submit %>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>
