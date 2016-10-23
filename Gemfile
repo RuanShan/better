@@ -33,9 +33,15 @@ gem 'simple_form'
 #https://github.com/activerecord-hackery/ransack
 gem 'ransack'
 gem 'friendly_id', '~> 5.1.0'
+
+# 分页
 gem 'will_paginate', '~> 3.1.0'
 
+# 状态机功能
+gem 'state_machines-activerecord'
+# 支付宝接口
 gem 'alipay'
+# 货币及显示格式定义
 gem 'monetize'
 
 group :development do

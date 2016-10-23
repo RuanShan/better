@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :bids
+  resources :games
   resources :user_wallets
   resources :transfers do
     post 'search', on: :collection
