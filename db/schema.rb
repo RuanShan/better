@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
   create_table "deposits", force: :cascade do |t|
     t.integer  "payment_method_id"
     t.integer  "user_id"
+    t.integer  "game_center_id"
     t.string   "number"
     t.string   "currency"
     t.decimal  "amount",            default: "0.0", null: false
@@ -79,18 +80,21 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.string   "memo"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.index ["game_center_id"], name: "index_deposits_on_game_center_id"
     t.index ["number"], name: "index_deposits_on_number", unique: true
     t.index ["payment_method_id"], name: "index_deposits_on_payment_method_id"
     t.index ["user_id"], name: "index_deposits_on_user_id"
   end
 
   create_table "drawings", force: :cascade do |t|
+    t.integer  "game_center_id"
     t.integer  "user_bank_id"
     t.string   "number"
     t.decimal  "amount"
-    t.integer  "state",        default: 0, null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "state",          default: 0, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["game_center_id"], name: "index_drawings_on_game_center_id"
     t.index ["user_bank_id"], name: "index_drawings_on_user_bank_id"
   end
 
@@ -135,12 +139,14 @@ ActiveRecord::Schema.define(version: 20161023090958) do
   end
 
   create_table "games", force: :cascade do |t|
+    t.integer  "game_center_id"
     t.string   "slug"
     t.string   "name"
     t.text     "description"
-    t.integer  "state",       default: 0, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "state",          default: 0, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["game_center_id"], name: "index_games_on_game_center_id"
   end
 
   create_table "messages", force: :cascade do |t|

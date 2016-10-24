@@ -2,12 +2,9 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :user %>
     <%= f.association :from_game_center %>
-    <%= f.input :to_game_center %>
-    <%= f.input :number %>
-    <%= f.input :amount %>
-    <%= f.input :state %>
+    <%= f.association :to_game_center %>
+    <%= f.input :amount, as: 'string' %>
   </div>
 
   <div class="form-actions">

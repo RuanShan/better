@@ -3,7 +3,7 @@ FactoryGirl.define do
     user nil
     from_game_center nil
     to_game_center ""
-    number "MyString"
+    sequence(:number) { |n| "MyString#{n}" }
     amount "9.99"
     state 1
   end

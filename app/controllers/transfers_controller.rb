@@ -6,7 +6,7 @@ class TransfersController < ApplicationController
   # GET /transfers.json
   def index
     @page = params["page"]
-    @transfers = Transfer.all.paginate(:page => @page)
+    @transfers = Transfer.order("created_at desc").all.paginate(:page => @page)
   end
 
   # GET /transfers/1
@@ -26,11 +26,11 @@ class TransfersController < ApplicationController
   # POST /transfers
   # POST /transfers.json
   def create
-    @transfer = Transfer.new(transfer_params)
+    @transfer = current_user.transfers.build(transfer_params)
 
     respond_to do |format|
       if @transfer.save
-        format.html { redirect_to @transfer, notice: 'Transfer was successfully created.' }
+        format.html { redirect_to :transfers, notice: 'Transfer was successfully created.' }
         format.json { render :show, status: :created, location: @transfer }
       else
         format.html { render :new }
@@ -78,7 +78,7 @@ class TransfersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transfer_params
-      params.require(:transfer).permit(:user_id, :from_game_center_id, :to_game_center, :number, :amount, :state)
+      params.require(:transfer).permit(:user_id, :from_game_center_id, :to_game_center_id, :number, :amount, :state)
     end
 
     def search_params

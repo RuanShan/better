@@ -1,6 +1,12 @@
 class User < ApplicationRecord
   has_many :user_messages
   has_many :user_banks
+  has_many :deposits
+  has_many :drawings
+  has_many :transfers
+  has_many :bids
+  has_many :user_wallets
+
   enum role: [:user, :vip ]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
