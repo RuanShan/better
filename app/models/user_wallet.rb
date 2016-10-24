@@ -2,12 +2,18 @@ class UserWallet < ApplicationRecord
   belongs_to :user
   belongs_to :game_center
 
+  scope :bonuses, -> {where(is_bonus: true)}
   enum originator_type: { deposit:0, drawing: 1, transfer:2, bid:3 }
 
   def self.add_wallet(originator)
     wallet_params = get_params(originator)
     user = originator.user
     wallet_params.each{|wallet_param| new_wallet = user.user_wallets.create(wallet_param)}
+  end
+
+  def self.search_bonuses(search_params)
+    self.bonuses.where("created_at>? and created_at<?",(search_params["start_date"]+" 00:00:00").to_datetime,
+    (search_params["end_date"]+" 23:59:59").to_datetime).order("created_at desc").all
   end
 
   private

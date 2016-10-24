@@ -4,7 +4,10 @@ Rails.application.routes.draw do
     post 'search', on: :collection
   end
   resources :games
-  resources :user_wallets
+  resources :user_wallets do
+    get 'bonuses', on: :collection
+    post 'search_bonuses', on: :collection
+  end
   resources :transfers do
     post 'search', on: :collection
   end

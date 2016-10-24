@@ -7,7 +7,7 @@ class DepositsController < ApplicationController
   def index
     @page = params["page"]
     @user = current_user
-    @deposits = Deposit.all.paginate(:page => @page)
+    @deposits = Deposit.order("created_at desc").all.paginate(:page => @page)
   end
 
   # GET /deposits/1

@@ -61,6 +61,19 @@ class UserWalletsController < ApplicationController
     end
   end
 
+  def bonuses
+    @page = params["page"]
+    @bonuses = UserWallet.bonuses.order("created_at desc").all.paginate(:page => @page)
+  end
+
+  def search_bonuses
+    @page = params["page"]
+    @search = true
+    @bonuses = UserWallet.search_bonuses(bonus_search_params).paginate(:page => @page)
+    render 'shared/partials', locals:{ partial_hash: {"#bonus_records"=>"records"} }
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_wallet
@@ -71,4 +84,9 @@ class UserWalletsController < ApplicationController
     def user_wallet_params
       params.require(:user_wallet).permit(:user_id, :game_center_id, :amount, :memo, :deleted_at)
     end
+
+    def bonus_search_params
+      params.permit(:start_date, :end_date)
+    end
+
 end

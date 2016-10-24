@@ -6,7 +6,7 @@ class DrawingsController < ApplicationController
   # GET /drawings.json
   def index
     @page = params["page"]
-    @drawings = Drawing.all.paginate(:page => @page)
+    @drawings = Drawing.order("created_at desc").all.paginate(:page => @page)
   end
 
   # GET /drawings/1

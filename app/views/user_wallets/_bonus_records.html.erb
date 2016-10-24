@@ -1,0 +1,40 @@
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Datetime</th>
+      <th>Serialnumber</th>
+      <th>Amount</th>
+      <th>Memo</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%total_amount=0%>
+    <% if @bonuses.empty? %>
+      <tr>
+        <td colspan="5">No bonus records</td>
+      <tr>
+    <% else %>
+      <% @bonuses.each do |bonus| %>
+        <tr>
+          <td><%= bonus.created_at.to_i %></td>
+          <td><%= bonus.created_at %></td>
+          <td><%= bonus.number %></td>
+          <td><%= bonus.amount %></td>
+          <td><%= bonus.memo %></td>
+        </tr>
+        <%total_amount += transfer.amount%>
+      <% end %>
+    <% end %>
+    <tr>
+      <td colspan="5"><%=content_tag :span, "total amount:#{total_amount}", style: 'float:right;'%></td>
+    <tr>
+  </tbody>
+</table>
+<%if @search%>
+  <%= full_will_paginate @bonuses, {form_id:'bonus_form'} %>
+<% else %>
+  <%= will_paginate @bonuses %>
+<% end %>

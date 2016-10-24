@@ -9,6 +9,6 @@ class Drawing < ApplicationRecord
 
   def self.search(search_params)
     self.where("created_at>? and created_at<? and state=?",(search_params["start_date"]+" 00:00:00").to_datetime,
-    (search_params["end_date"]+" 23:59:59").to_datetime,search_params["state"]).all
+    (search_params["end_date"]+" 23:59:59").to_datetime,search_params["state"]).order("created_at desc").all
   end
 end
