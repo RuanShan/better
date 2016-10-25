@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       match 'set_email', via: [:get, :patch]
       match 'set_password_protection', via: [:get, :patch]
       match 'bind_name', via: [:get, :patch]
+      get 'send_validate_code'
       match 'bind_bank', via: [:get, :post]
     end
   end

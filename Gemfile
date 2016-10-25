@@ -44,6 +44,9 @@ gem 'alipay'
 # 货币及显示格式定义
 gem 'monetize'
 
+#send sms
+gem 'alidayu-ruby', require: 'alidayu'
+
 group :development do
   gem 'better_errors'
   gem 'capistrano', '~> 3.0.1'

@@ -18,7 +18,7 @@
       <div class="input-group">
         <%= f.text_field :phone, class:"form-control" %>
         <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Send validate code</button>
+          <a class="btn btn-default" href="#" onclick="var phone=$('#user_phone').val();$(this).attr('href','/users/1/send_validate_code?phone='+phone).removeAttr('onclick').click();" data-remote="true">Send validate code</a>
         </span>
       </div>
     </div>
