@@ -16,6 +16,7 @@ class DrawingsController < ApplicationController
 
   # GET /drawings/new
   def new
+    @user_banks = current_user.user_banks.green
     @drawing = Drawing.new
   end
 

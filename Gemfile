@@ -44,6 +44,8 @@ gem 'alipay'
 # 货币及显示格式定义
 gem 'monetize'
 
+gem 'acts_as_paranoid'
+
 #send sms
 gem 'alidayu-ruby', require: 'alidayu'
 

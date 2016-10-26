@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
   create_table "bids", force: :cascade do |t|
     t.integer  "game_round_id"
     t.integer  "user_id"
+    t.string   "number"
     t.decimal  "amount"
     t.decimal  "rate"
     t.integer  "state",         default: 0, null: false
@@ -230,6 +231,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.string   "card_number", default: "", null: false
     t.string   "branch_name", default: "", null: false
     t.string   "address",     default: "", null: false
+    t.integer  "state",       default: 0,  null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.index ["user_id"], name: "index_user_banks_on_user_id"
