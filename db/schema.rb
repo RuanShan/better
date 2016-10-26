@@ -231,6 +231,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.string   "card_number", default: "", null: false
     t.string   "branch_name", default: "", null: false
     t.string   "address",     default: "", null: false
+    t.integer  "state",       default: 0,  null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.index ["user_id"], name: "index_user_banks_on_user_id"

@@ -1,3 +1,116 @@
+<<<<<<< HEAD
 <%=account_template "提现" do %>
   <%render 'form', drawing: @drawing%>
 <% end %>
+=======
+<%= render partial: "users/profile" %>
+<div class="row">
+  <%= render partial: "shared/user_sidebar" %>
+  <div class="col-md-10 user-content" >
+    <div class="my-sub-title">提现</div>
+
+    <div>
+      <span class="color-gray" ng-bind="'withdraw-desc' | i18n">除中心钱包以外的平台余额都不可以直接提现，如需提现需先转入中心钱包。</span>
+      <div class="withdraw-info-block  relative">
+        <div class="am-g">
+          <div class="am-u-sm-3">
+            <span class="" ng-bind="'withdraw-limit-permin' | i18n">每笔最少提款：</span><span class="boma-color-red" ng-bind="_limit.per_min | currency: '': 2">50.00</span>
+          </div>
+          <div class="am-u-sm-3 boma-fl">
+            <span class="" ng-bind="'withdraw-limit-permax' | i18n">每笔最多提款：</span><span class="boma-color-red" ng-bind="_limit.per_max | currency: '': 2">50,000.00</span>
+          </div>
+        </div>
+        <div class="am-g am-margin-top-sm">
+          <div class="am-u-sm-3">
+            <span class="" ng-bind="'withdraw-limit-perday' | i18n">每天最多提款：</span><span class="boma-color-red" ng-bind="_limit.day_max | currency: '': 2">200,000.00</span>
+          </div>
+          <div class="am-u-sm-3 boma-fl">
+            <span class="" ng-bind="'withdraw-limit-daycount' | i18n">每天提款次数：</span><span class="boma-color-red" ng-bind="_limit.day_count">50</span>
+          </div>
+        </div>
+        <span class="show-detail absolute" ng-click="showRule()"></span>
+      </div>
+
+      <form class="am-margin-top-xl am-form ng-pristine ng-invalid ng-invalid-required ng-valid-pattern" w5c-form-validate="validateOptions" w5c-submit="withdraw()" name="withdrawForm" novalidate="">
+<%= render partial: "user_banks" %>
+
+        <!-- ngIf: bindCards.length > 0 --><div style="" class="boma-input-set ng-scope" ng-if="bindCards.length > 0">
+          <div class="withdraw-txt am-text-right"><span class="" ng-bind="'withdraw-usual-card' | i18n">常用银行卡：</span></div>
+          <div class="withdraw-usualcard">
+            <div class="btn-group" data-toggle="buttons">
+              <%= @user_banks.each{|user_bank| %>
+                <label class="btn btn-primary active">
+                  <%= radio_button("category", "rails") %>
+                  <input type="radio" name="options" id="option2" autocomplete="off"> <%= user_bank.display_number %>
+                </label>
+              <% } %>
+              <label class="btn btn-primary">
+                <input type="radio" name="options" id="option3" autocomplete="off">添加新卡
+              </label>
+            </div>
+
+
+            <!-- ngRepeat: item in bindCards --><div class="card ng-scope active" ng-class="{'active': item == _b}" ng-repeat="item in bindCards" ng-click="setBindCard(item)">
+              中国建设银行（**5549）
+              <!-- ngIf: item != _b && !isLocked -->
+            </div><!-- end ngRepeat: item in bindCards -->
+            <!-- ngIf: !isLocked --><div class="card new am-text-center ng-scope" ng-click="setBindCard()" ng-class="{'active': !_b}" ng-if="!isLocked">
+              <span class=" icon-addcard" ng-class="{'icon-addcard-active': !_b, 'icon-addcard': _b}" ng-bind="'withdraw-addcard' | i18n">添加新卡</span>
+            </div><!-- end ngIf: !isLocked -->
+          </div>
+        </div><!-- end ngIf: bindCards.length > 0 -->
+        <!-- ngIf: isLocked -->
+        <div class="boma-input-set">
+          <div class="withdraw-txt am-text-right"><span class="" ng-bind="'withdraw-money' | i18n">提现金额：</span></div>
+          <div class="bg withdraw-bg">
+            <input autocomplete="off" class="am-form-field am-input-sm ng-pristine ng-untouched ng-isolate-scope ng-invalid ng-invalid-required valid" ng-model="_withdraw.amount" name="amount" re="/^[0-9]+(\.[0-9]{0,2})?$/" input-limit="" max="50000" min="50" placeholder="请输入提现金额" required="">
+            <span class="" ng-bind="'common-currencyunit' | i18n">元</span>
+          </div>
+        </div>
+        <div class="boma-input-set">
+          <div class="withdraw-txt am-text-right"><span class="" ng-bind="'common-bank-name' | i18n">银行名称：</span></div>
+          <div class="bg withdraw-bg">
+            <select dictionary="" ng-model="_withdraw.bank_code" name="withdrawal_bank" ng-disabled="isLocked" class="am-fl boma-select ng-isolate-scope ng-valid valid"><!-- ngRepeat: item in dictionary --><option class=" ng-scope" title="中国工商银行" ng-repeat="item in dictionary" value="ICBC">中国工商银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="中国农业银行" ng-repeat="item in dictionary" value="ABC">中国农业银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="中国招商银行" ng-repeat="item in dictionary" value="CMB">中国招商银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="中国建设银行" ng-repeat="item in dictionary" value="CCB">中国建设银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="交通银行" ng-repeat="item in dictionary" value="COMM">交通银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="中国银行" ng-repeat="item in dictionary" value="BOC">中国银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="中国光大银行" ng-repeat="item in dictionary" value="CEB">中国光大银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="中国民生银行" ng-repeat="item in dictionary" value="CMBC">中国民生银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="中信银行" ng-repeat="item in dictionary" value="CITIC">中信银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="中国平安银行" ng-repeat="item in dictionary" value="SZPAB">中国平安银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="上海浦发展银行" ng-repeat="item in dictionary" value="SPDB">上海浦发展银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="兴业银行" ng-repeat="item in dictionary" value="CIB">兴业银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="中国邮政储蓄银行" ng-repeat="item in dictionary" value="PSBC">中国邮政储蓄银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="广东发展银行" ng-repeat="item in dictionary" value="GDB">广东发展银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="华夏银行" ng-repeat="item in dictionary" value="HXB">华夏银行</option><!-- end ngRepeat: item in dictionary --><option class=" ng-scope" title="支付宝" ng-repeat="item in dictionary" value="ALIPAY">支付宝</option><!-- end ngRepeat: item in dictionary --></select>
+          </div>
+        </div>
+        <div class="boma-input-set">
+          <div class="withdraw-txt am-text-right"><span class="" ng-bind="'common-subbank-name' | i18n">分支银行：</span></div>
+          <div class="bg withdraw-bg">
+            <input style="" autocomplete="off" class="am-form-field am-input-sm ng-pristine ng-untouched valid ng-valid ng-valid-required" name="branch_name" placeholder="请输入银行支行或分行名称" ng-model="_withdraw.branch_name" ng-disabled="isLocked" required="">
+          </div>
+        </div>
+        <div class="boma-input-set">
+          <div class="withdraw-txt am-text-right"><span class="" ng-bind="'common-bank-add' | i18n">银行地址：</span></div>
+          <div class="bg withdraw-bg">
+            <input style="" autocomplete="off" class="am-form-field am-input-sm ng-pristine ng-untouched valid ng-valid ng-valid-required" name="bank_address" placeholder="请输入银行地址" ng-model="_withdraw.bank_address" ng-disabled="isLocked" required="">
+          </div>
+        </div>
+        <div class="boma-input-set">
+          <div class="withdraw-txt am-text-right"><span class="" ng-bind="'common-account-name' | i18n">户名：</span></div>
+          <div class="bg withdraw-bg">
+            <input autocomplete="off" class="am-form-field am-input-sm ng-pristine ng-untouched ng-valid ng-valid-required valid" name="account_name" placeholder="请输入户名" ng-model="$root.user.safety.realname" readonly="" required="">
+          </div>
+        </div>
+        <div class="boma-input-set">
+          <div class="withdraw-txt am-text-right"><span class="" ng-bind="'common-account-no' | i18n">银行卡号：</span></div>
+          <div class="bg withdraw-bg">
+            <input style="" autocomplete="off" class="am-form-field am-input-sm ng-pristine ng-untouched valid ng-valid ng-valid-required" name="card_no" placeholder="请输入银行卡号" ng-model="_withdraw.card_no" ng-disabled="isLocked" required="">
+          </div>
+        </div>
+        <div class="boma-input-set">
+          <div class="withdraw-txt am-text-right"><span class="" ng-bind="'common-fund_password' | i18n">资金密码：</span></div>
+          <div class="bg withdraw-bg">
+            <input autocomplete="off" password="" class="am-form-field am-input-sm ng-pristine ng-untouched ng-invalid ng-invalid-required ng-valid-pattern valid" placeholder="请输入资金密码" ng-pattern="/^[0-9a-zA-Z]{4,14}$/" name="fund_password" ng-model="_withdraw.fund_password" required="">
+          </div>
+        </div>
+        <div class="boma-submit-footer">
+          <!-- ngIf: _limit --><button style="" class="ng-scope" ng-if="_limit" type="submit"><span class="" ng-bind="'common-submit' | i18n">提交</span></button><!-- end ngIf: _limit -->
+        </div>
+      </form>
+
+    </div>
+
+
+  </div>
+</div>
+>>>>>>> 7498749d92bf914f42280747299f1d68acaeca90

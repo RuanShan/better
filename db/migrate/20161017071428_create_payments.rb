@@ -37,12 +37,17 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.string :card_number, null:false, default: ""
       t.string :branch_name, null:false, default: ""
       t.string :address, null:false, default: ""
+
+      t.integer :state, null:false, default: 0 # 银行卡是否验证。
+      t.datetime :deleted_at
+      t.index :deleted_at
       t.timestamps null: false
     end
 
+
     #提款记录, 每一条成功的提款记录，对应一条 store_credits
     create_table :drawings do |t|
-      t.references :game_center, foreign_key: true 
+      t.references :game_center, foreign_key: true
       t.references :user_bank
       t.string :number  #serial number
       t.decimal :amount
