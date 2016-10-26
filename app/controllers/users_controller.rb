@@ -152,7 +152,7 @@ class UsersController < ApplicationController
         redirect_to bind_bank_user_path(current_user)
       end
     else
-      @user_bank = current_user.user_banks.new
+      @user_bank = current_user.bind_bank? ? current_user.user_banks.first : current_user.user_banks.new
     end
   end
 

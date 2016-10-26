@@ -17,6 +17,7 @@ class DrawingsController < ApplicationController
   # GET /drawings/new
   def new
     @drawing = Drawing.new
+    @drawing.user_bank = current_user.bind_bank? ? current_user.user_banks.first : UserBank.new
   end
 
   # GET /drawings/1/edit
@@ -26,16 +27,29 @@ class DrawingsController < ApplicationController
   # POST /drawings
   # POST /drawings.json
   def create
-    @drawing = Drawing.new(drawing_params)
-
-    respond_to do |format|
-      if @drawing.save
-        format.html { redirect_to @drawing, notice: 'Drawing was successfully created.' }
-        format.json { render :show, status: :created, location: @drawing }
+    current_money_password = params["current_money_password"]
+    current_user.password_prefix="money_"
+    if current_user.valid_password?(current_money_password)
+      user_bank_id = drawing_params['user_bank_attributes']['id']
+      if user_bank_id && user_bank_id.to_i > 0
+        final_params = drawing_with_bank_params.merge("user_bank_id"=> user_bank_id)
       else
-        format.html { render :new }
-        format.json { render json: @drawing.errors, status: :unprocessable_entity }
+        final_params = drawing_params.to_h
+        final_params["user_bank_attributes"] = final_params["user_bank_attributes"].merge("user_id"=> current_user.id)
       end
+      @drawing = Drawing.new(final_params)
+      respond_to do |format|
+        if @drawing.save
+          format.html { redirect_to :drawings, notice: 'Drawing was successfully created.' }
+          format.json { render :show, status: :created, location: @drawing }
+        else
+          format.html { render :new }
+          format.json { render json: @drawing.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      flash[:error] = "money password not right!"
+      redirect_to new_drawing_path
     end
   end
 
@@ -79,7 +93,11 @@ class DrawingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drawing_params
-      params.require(:drawing).permit(:user_bank_id, :number, :amount, :state)
+      params.require(:drawing).permit(:amount, user_bank_attributes:[:id, :name, :card_number, :branch_name, :address ])
+    end
+
+    def drawing_with_bank_params
+      params.require(:drawing).permit(:amount)
     end
 
     def search_params

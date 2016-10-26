@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
   create_table "bids", force: :cascade do |t|
     t.integer  "game_round_id"
     t.integer  "user_id"
+    t.string   "number"
     t.decimal  "amount"
     t.decimal  "rate"
     t.integer  "state",         default: 0, null: false
