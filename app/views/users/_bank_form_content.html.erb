@@ -1,0 +1,8 @@
+<%=label_tag :real_name, "Name on card" %>
+<%=inline_text_span(current_user.real_name)%>
+<%= bank_form.input :name, as:"string" %>
+<%= bank_form.input :card_number, as:"string" %>
+<%= bank_form.input :branch_name, as:"string" %>
+<%= bank_form.input :address, as:"string" %>
+<%=label_tag :current_money_password %>
+<%=password_field_tag :current_money_password, '', :autocomplete => "off", class:"form-control"  %>

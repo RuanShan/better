@@ -93,16 +93,36 @@ class User < ApplicationRecord
   def security_score
     score = 0
     score+= 30 if encrypted_password.present?
-    score+= 15 if real_name.present?
-    score+= 15 if encrypted_money_password.present?
-    score+= 20 if user_banks.size > 0
-    score+= 10 if email.present?
+    score+= 15 if bind_name?
+    score+= 15 if has_money_password?
+    score+= 20 if bind_bank?
+    score+= 10 if bind_email?
     score+= 10 if set_password_protection?
     score
   end
 
+  def has_money_password?
+    encrypted_money_password.present?
+  end
+
+  def bind_name?
+    real_name.present?
+  end
+
+  def bind_bank?
+    user_banks.present?
+  end
+
+  def bind_email?
+    email.present?
+  end
+
   def set_password_protection?
     pp_question.present? && pp_answer.present?
+  end
+  #============================money===========================================
+  def center_wallet_balance
+    user_wallets.inject(0){|total_amount,w|total_amount+=w.amount}
   end
 #============================messages===========================================
   def private_messages
