@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     elsif resource.class == Broker
       agent_root_path
     else
-      account_path
+      my_account_index_path
     end
   end
 
