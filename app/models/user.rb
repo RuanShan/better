@@ -23,6 +23,8 @@ class User < ApplicationRecord
   validates :money_password, confirmation: true
   validates :pp_question, :pp_answer, presence: true, if: :setting_pp
   validates :real_name, :id_number, presence: true, if: :binding_name
+  validates :phone, length: { in: 7..11 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(user) { user.phone.present? }
+  validates :qq, length: { in: 5..10 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(user) { user.qq.present? }
 
   def set_default_role
     self.role ||= :user
@@ -46,7 +48,7 @@ class User < ApplicationRecord
     if valid_password? password_options["current_#{@password_prefix}password"]
       reset_password(password_options["#{@password_prefix}password"],password_options["#{@password_prefix}password_confirmation"] )
     else
-      errors.set(:current_password, ["not right"])
+      errors.add(:current_password, "not right")
     end
   end
 
@@ -55,7 +57,7 @@ class User < ApplicationRecord
       self.email = email_options["email"]
       save
     else
-      errors.set(:current_password, ["not right"])
+      errors.add(:current_password, ["not right"])
     end
   end
 
@@ -64,13 +66,13 @@ class User < ApplicationRecord
     current_password = pp_options.delete("current_password")
     if valid_password? current_password
       if pp_options['pp_question'].present?
-        errors.set(:pp_answer, ["can not be blank"]) if pp_options['pp_answer'].blank?
+        errors.add(:pp_answer, ["can not be blank"]) if pp_options['pp_answer'].blank?
       else
-        errors.set(:pp_question, ["can not be blank"])
+        errors.add(:pp_question, ["can not be blank"])
       end
       self.update_attributes(pp_options)
     else
-      errors.set(:current_password, ["not right"])
+      errors.add(:current_password, ["not right"])
     end
   end
 
@@ -85,7 +87,7 @@ class User < ApplicationRecord
       user_banks.create(bank_options)
     else
       new_user_bank = user_banks.new
-      new_user_bank.errors.set(:current_money_password, ["not right"])
+      new_user_bank.errors.add(:current_money_password, ["not right"])
       new_user_bank
     end
   end

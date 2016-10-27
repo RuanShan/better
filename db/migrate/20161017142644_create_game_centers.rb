@@ -16,7 +16,6 @@ class CreateGameCenters < ActiveRecord::Migration[5.0]
       t.references :to_game_center, foreign_key: true   # to game_centers
       t.string :number
       t.decimal :amount, null: false, default: 0
-      t.integer :state, null: false, default: 0
       t.string :machine_state, limit: 12
       t.timestamps null: false
     end

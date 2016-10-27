@@ -1,6 +1,6 @@
 module My
   class AccountController < BaseController
-    
+
     def index
       @user = current_user
       @deposits = @user.deposits.order("created_at desc").limit(10)
@@ -36,10 +36,8 @@ module My
         current_user.change_password(params["user"])
         if current_user.errors.empty?
           flash[:notice] = "Password changed!"
-        else
-          flash[:error] = current_user.errors.full_messages[0]
         end
-        redirect_to change_password_user_path(current_user)
+        render :change_password
       end
     end
 
@@ -48,10 +46,9 @@ module My
         current_user.update_attributes(profile_params)
         if current_user.errors.empty?
           flash[:notice] = "Profile updated!"
-        else
-          flash[:error] = current_user.errors.full_messages[0]
         end
-        redirect_to change_profile_user_path(current_user)
+        render :change_profile
+        #redirect_to change_profile_user_path(current_user)
       end
     end
 
@@ -91,23 +88,28 @@ module My
               flash[:notice] = "bind name success!"
               redirect_to security_center_user_path(current_user)
             else
-              flash[:error] = current_user.errors.full_messages[0]
-              redirect_to bind_name_user_path(current_user)
+              render :bind_name
+
+              #flash[:error] = current_user.errors.full_messages[0]
+              #redirect_to bind_name_user_path(current_user)
             end
           else
             flash[:notice] = "phone number must be the one send validate code!"
-            redirect_to bind_name_user_path(current_user)
+            render :bind_name
+            #redirect_to bind_name_user_path(current_user)
           end
         else
-          redirect_to bind_name_user_path(current_user)
+          render :bind_name
+          #redirect_to bind_name_user_path(current_user)
         end
       end
     end
 
     def send_validate_code
       phone = params["phone"]
-      #code="123456"
-      #error_message=""
+      code="123456"
+      error_message=""
+=begin
       code =rand(999999).to_s
       alidayu_respond = Alidayu.send_sms({
         template_id: "SMS_22595044",
@@ -121,6 +123,7 @@ module My
       #logger.debug "----------------code=#{code},alidayu_respond=#{alidayu_respond.inspect}"
       error_message = validate_alidayu_response(alidayu_respond)
       #logger.debug "----------------error_message=#{error_message.inspect}"
+=end
       if error_message == ""
         session["validate_phone"] = phone
         session["validate_code"] = code

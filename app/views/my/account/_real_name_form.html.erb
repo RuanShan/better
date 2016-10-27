@@ -1,33 +1,19 @@
 <div class="" style="width:300px;">
-  <%= form_for(current_user, :url=>{:action=>"bind_name"},:role=>"form") do |f| %>
-    <div class="form-group">
-      <%= f.label :real_name %><br />
-      <%= f.text_field :real_name, class:"form-control" %>
-    </div>
-    <div class="form-group">
+  <%= simple_form_for(current_user, :url=>{:controller=>"my/account",:action=>"bind_name"}) do |f| %>
+    <%= f.error_notification %>
+    <div class="form-inputs">
+      <%= f.input :real_name, as:"string" %>
       <%= f.label :id_type %>
-      <label class="checkbox-inline"><%= f.radio_button :id_type, 0 %><%=inline_text_span("ID Card")%></label>
-      <label class="checkbox-inline"><%= f.radio_button :id_type, 1 %><%=inline_text_span("PassPort")%></label>
+      <%= f.collection_radio_buttons :id_type, [[0, 'ID Card'] ,[1, 'PassPort']], :first, :last %>
+      <%= f.input :id_number %>
+      <%= f.input :phone, as:"string" %>
+      <a class="btn btn-default" href="#" onclick="var phone=$('#user_phone').val();$(this).attr('href','/my/account/1/send_validate_code?phone='+phone).removeAttr('onclick').click();" data-remote="true">Send validate code</a>
+      <br /><br />
+      <%=label_tag :validate_code %>
+      <%=text_field_tag :validate_code, "", class:"form-control" %><br />
     </div>
-    <div class="form-group">
-      <%= f.label :id_number %><br />
-      <%= f.text_field :id_number, class:"form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :phone %><br />
-      <div class="input-group">
-        <%= f.text_field :phone, class:"form-control" %>
-        <span class="input-group-btn">
-          <a class="btn btn-default" href="#" onclick="var phone=$('#user_phone').val();$(this).attr('href','/users/1/send_validate_code?phone='+phone).removeAttr('onclick').click();" data-remote="true">Send validate code</a>
-        </span>
-      </div>
-    </div>
-    <div class="form-group">
-      <%=label_tag :validate_code %><br />
-      <%=text_field_tag :validate_code, "", class:"form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.submit "bind name", class:"btn" %>
+    <div class="form-actions">
+      <%= f.button :submit %>
     </div>
   <% end %>
 </div>

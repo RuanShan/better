@@ -16,7 +16,8 @@ class Transfer < ApplicationRecord
   has_many :wallets, as: :originator
 
   validates_presence_of :from_game_center, :to_game_center, :user
-  
+  validates :amount, numericality: true#{ greater_than_or_equal_to: 50, less_than_or_equal_to: 50000}
+
   # 缺省状态是等待处理， 即 pending: 0
   #enum state: { failure:0, pending: 2, success:1, unknown:4 }
 
@@ -36,7 +37,7 @@ class Transfer < ApplicationRecord
   #after_create :add_to_wallet
 
   def self.search(search_params)
-    self.where("created_at>? and created_at<? and from_game_center_id=? and to_game_center_id=? and state=?",
+    self.where("created_at>? and created_at<? and from_game_center_id=? and to_game_center_id=? and machine_state=?",
     (search_params["start_date"]+" 00:00:00").to_datetime,(search_params["end_date"]+" 23:59:59").to_datetime,search_params["from_game_center_id"],search_params["to_game_center_id"],search_params["state"]).order("created_at desc").all
   end
 
