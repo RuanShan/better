@@ -1,0 +1,15 @@
+<div class="">
+  <%=form_tag search_my_drawings_path, id:'drawing_form',remote:true do%>
+    <%=text_span "start date"%><%=calendar "start_date"%><%=text_span "to"%><%=calendar "end_date"%>
+    <%=text_span "state"%><%=drawing_state_select "state"%>
+    <%=content_tag(:div, submit_tag("search",  class:"form-control"), style:'width:100px;float:left;margin:5px;')%>
+  <%end%>
+</div>
+<div id="drawing_records" style="padding-top:20px;">
+  <%= render partial: "records" %>
+</div>
+<script type="text/javascript">
+  $(function () {
+    $('.calendar').datetimepicker({format: "YYYY-MM-DD"});
+  });
+</script>

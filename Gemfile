@@ -21,8 +21,13 @@ group :development do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
+
+# 时间js
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.42'
+
+# select2
+gem "select2-rails"
 
 #https://github.com/plataformatec/devise
 gem 'devise'
@@ -44,7 +49,7 @@ gem 'alipay'
 # 货币及显示格式定义
 gem 'monetize'
 
-gem 'paranoid'
+#gem 'paranoid'
 
 #send sms
 gem 'alidayu-ruby', require: 'alidayu'

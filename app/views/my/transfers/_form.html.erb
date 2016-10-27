@@ -1,0 +1,13 @@
+<%= simple_form_for(@transfer, url: my_transfers_path ) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :from_game_center %>
+    <%= f.association :to_game_center %>
+    <%= f.input :amount, as: 'string' %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

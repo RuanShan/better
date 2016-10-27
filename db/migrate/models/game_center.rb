@@ -1,0 +1,2 @@
+class GameCenter < ApplicationRecord
+end

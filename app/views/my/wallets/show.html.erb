@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @wallet.user %>
+</p>
+
+<p>
+  <strong>Game center:</strong>
+  <%= @wallet.game_center %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @wallet.amount %>
+</p>
+
+<p>
+  <strong>Memo:</strong>
+  <%= @wallet.memo %>
+</p>
+
+<p>
+  <strong>Deleted at:</strong>
+  <%= @wallet.deleted_at %>
+</p>
+
+<%= link_to 'Edit', edit_wallet_path(@wallet) %> |
+<%= link_to 'Back', wallets_path %>

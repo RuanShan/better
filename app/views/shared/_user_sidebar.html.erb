@@ -1,4 +1,4 @@
-<div class="col-md-2   sidebar">
+<div class="col-md-2  user-sidebar">
 
 	<div class="my-navs am-fl">
 					<!-- ngRepeat: item in navs -->
@@ -7,16 +7,16 @@
 							<span ng-class="item.icon" class="icon my-icon-account"></span>
 							<span  class="am-margin-left-sm name ">我的账户</span>
 						</div>
-							<%= link_to account_path, class: ( current_page?('/account') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
+							<%= link_to my_account_index_path, class: ( current_page?('/account') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
     							<span class="subnav">账户概况</span>
 							<% end -%>
-							<%= link_to new_deposit_path, class: ( current_page?( '/deposits/new') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
+							<%= link_to new_my_deposit_path, class: ( current_page?( '/deposits/new') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
 								<span class="subnav ">充值</span>
 							<% end -%>
-							<%= link_to new_drawing_path, class: ( current_page?( '/drawings/new') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
+							<%= link_to new_my_drawing_path, class: ( current_page?( '/drawings/new') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
 								<span class="subnav ">提现</span>
 							<% end -%>
-							<%= link_to new_transfer_path, class: ( current_page?( '/transfers/new') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
+							<%= link_to new_my_transfer_path, class: ( current_page?( '/transfers/new') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
 								<span class="subnav ">转账</span>
 							<% end -%>
 					</div><!-- end ngRepeat: item in navs -->
@@ -26,17 +26,17 @@
 							<span  class="am-margin-left-sm name ">账户明细</span>
 						</div>
 						<div  class="my-navs-item pointer ng-scope">
-							<span class="subnav "><%=link_to "红利记录", bonuses_user_wallets_path%></span>
+							<span class="subnav "><%=link_to "红利记录", bonuses_my_wallets_path%></span>
 						</div><div  class="my-navs-item pointer ng-scope">
-							<span class="subnav "><%=link_to "投注记录", bids_path%></span>
+							<span class="subnav "><%=link_to "投注记录", my_bids_path%></span>
 						</div>
-						<%= link_to deposits_path, class: ( current_page?(controller: 'deposits') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
+						<%= link_to my_deposits_path, class: ( current_page?(controller: 'deposits') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
 							<span class="subnav ">充值记录</span>
 						<% end -%>
-						<%= link_to drawings_path, class: ( current_page?(controller: 'drawings') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
+						<%= link_to my_drawings_path, class: ( current_page?(controller: 'drawings') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
 							<span class="subnav ">提款记录</span>
 						<% end -%>
-						<%= link_to transfers_path, class: ( current_page?(controller: 'transfers') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
+						<%= link_to my_transfers_path, class: ( current_page?(controller: 'transfers') ? "my-navs-item my-navs-item-active" : "my-navs-item" )do -%>
 							<span class="subnav ">转账记录</span>
 						<% end -%>
 					</div><!-- end ngRepeat: item in navs --><div ng-repeat="item in navs" class="ng-scope">
@@ -45,11 +45,11 @@
 							<span  class="am-margin-left-sm name ">账户安全</span>
 						</div>
 						<div  class="my-navs-item pointer ng-scope">
-							<span class="subnav "><%=link_to "安全中心", security_center_user_path(current_user)%></span>
+							<span class="subnav "><%=link_to "安全中心", security_center_my_account_path(current_user)%></span>
 						</div><div  class="my-navs-item pointer ng-scope">
-							<span class="subnav "><%=link_to "个人资料", change_profile_user_path(current_user)%></span>
+							<span class="subnav "><%=link_to "个人资料", change_profile_my_account_path(current_user)%></span>
 						</div><div  class="my-navs-item pointer ng-scope">
-							<span class="subnav "><%=link_to "修改密码", change_password_user_path(current_user)%></span>
+							<span class="subnav "><%=link_to "修改密码", change_password_my_account_path(current_user)%></span>
 						</div>
 					</div><!-- end ngRepeat: item in navs --><div ng-repeat="item in navs" class="ng-scope">
 						<div class="my-navs-item-parent">
@@ -57,7 +57,7 @@
 							<span  class="am-margin-left-sm name ">我的消息</span>
 						</div>
 						<div  class="my-navs-item pointer ng-scope">
-							<span class="subnav "><%=link_to "系统通知", messages_path%></span>
+							<span class="subnav "><%=link_to "系统通知", my_messages_path%></span>
 						</div>
 					</div><!-- end ngRepeat: item in navs -->
 				</div>

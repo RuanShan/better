@@ -1,0 +1,57 @@
+<span class="color-gray" ng-bind="'withdraw-desc' | i18n">除中心钱包以外的平台余额都不可以直接提现，如需提现需先转入中心钱包。</span>
+<div class="withdraw-info-block  relative">
+  <div class="am-g">
+    <div class="am-u-sm-3">
+      <span class="" ng-bind="'withdraw-limit-permin' | i18n">每笔最少提款：</span><span class="boma-color-red" ng-bind="_limit.per_min | currency: '': 2">50.00</span>
+    </div>
+    <div class="am-u-sm-3 boma-fl">
+      <span class="" ng-bind="'withdraw-limit-permax' | i18n">每笔最多提款：</span><span class="boma-color-red" ng-bind="_limit.per_max | currency: '': 2">50,000.00</span>
+    </div>
+  </div>
+  <div class="am-g am-margin-top-sm">
+    <div class="am-u-sm-3">
+      <span class="" ng-bind="'withdraw-limit-perday' | i18n">每天最多提款：</span><span class="boma-color-red" ng-bind="_limit.day_max | currency: '': 2">200,000.00</span>
+    </div>
+    <div class="am-u-sm-3 boma-fl">
+      <span class="" ng-bind="'withdraw-limit-daycount' | i18n">每天提款次数：</span><span class="boma-color-red" ng-bind="_limit.day_count">50</span>
+    </div>
+  </div>
+</div>
+<br />
+
+<%= simple_form_for(@drawing, url: my_drawings_path) do |f| %>
+  <div class="form-inputs">
+    <%#= f.association :user_bank, as:'hidden' %>
+    <%current_user.user_banks.each{|user_bank| %>
+      <%=link_to user_bank.name, nil, href:'javascript:void(0)', class:"btn btn-primary", onclick:"select_bank('#{user_bank.id}', '#{user_bank.to_json}');"%>
+    <%}%>
+    <%=link_to "Add new card", nil, href:'javascript:void(0)', class:"btn btn-default", onclick:"select_bank('#{UserBank.new.id}', '#{UserBank.new.to_json}');"%><br />
+
+    <%= f.fields_for :user_bank do |user_banks_form| %>
+      <%=render 'my/account/bank_form_content', :bank_form => user_banks_form%>
+    <% end %>
+    <%= f.input :amount, as: 'string' %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+<script>
+  function select_bank(bank_id, user_bank_json){
+    var user_bank = $.parseJSON(user_bank_json);
+    if(bank_id==""){
+      if($("#drawing_user_bank_attributes_id").length>0){$("#drawing_user_bank_attributes_id").remove();}
+    }else{
+      if($("#drawing_user_bank_attributes_id").length>0){
+        $("#drawing_user_bank_attributes_id").val(bank_id);
+      }else{
+        $("#current_money_password").after("<input id='drawing_user_bank_attributes_id' type='hidden' name='drawing[user_bank_attributes][id]'' value='"+bank_id+"'>" );
+      }
+    }
+    $("#drawing_user_bank_attributes_name").val(user_bank.name);
+    $("#drawing_user_bank_attributes_card_number").val(user_bank.card_number);
+    $("#drawing_user_bank_attributes_branch_name").val(user_bank.branch_name);
+    $("#drawing_user_bank_attributes_address").val(user_bank.address);
+  }
+</script>

@@ -113,10 +113,11 @@ ActiveRecord::Schema.define(version: 20161023090958) do
   end
 
   create_table "game_centers", force: :cascade do |t|
+    t.boolean  "is_master",   default: false
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["name"], name: "index_game_centers_on_name", unique: true
   end
 
@@ -217,9 +218,10 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.integer  "to_game_center_id"
     t.string   "number"
     t.decimal  "amount"
-    t.integer  "state",               default: 0, null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.integer  "state",                          default: 0, null: false
+    t.string   "machine_state",       limit: 12
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.index ["from_game_center_id"], name: "index_transfers_on_from_game_center_id"
     t.index ["to_game_center_id"], name: "index_transfers_on_to_game_center_id"
     t.index ["user_id"], name: "index_transfers_on_user_id"
@@ -232,8 +234,10 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.string   "branch_name", default: "", null: false
     t.string   "address",     default: "", null: false
     t.integer  "state",       default: 0,  null: false
+    t.datetime "deleted_at"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.index ["deleted_at"], name: "index_user_banks_on_deleted_at"
     t.index ["user_id"], name: "index_user_banks_on_user_id"
   end
 
@@ -247,7 +251,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.index ["user_id"], name: "index_user_messages_on_user_id"
   end
 
-  create_table "user_wallets", force: :cascade do |t|
+  create_table "wallets", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "game_center_id"
     t.decimal  "amount"
@@ -258,11 +262,11 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.boolean  "is_bonus",        default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.index ["deleted_at"], name: "index_user_wallets_on_deleted_at"
-    t.index ["game_center_id"], name: "index_user_wallets_on_game_center_id"
-    t.index ["originator_id", "originator_type"], name: "user_wallets_originator"
-    t.index ["user_id", "game_center_id"], name: "index_user_wallets_on_user_id_and_game_center_id"
-    t.index ["user_id"], name: "index_user_wallets_on_user_id"
+    t.index ["deleted_at"], name: "index_wallets_on_deleted_at"
+    t.index ["game_center_id"], name: "index_wallets_on_game_center_id"
+    t.index ["originator_id", "originator_type"], name: "wallets_originator"
+    t.index ["user_id", "game_center_id"], name: "index_wallets_on_user_id_and_game_center_id"
+    t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

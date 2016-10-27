@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require moment
 //= require bootstrap-datetimepicker
+//= require select2
 //= require cable
 
 function page_submit_form(form_id,page)
