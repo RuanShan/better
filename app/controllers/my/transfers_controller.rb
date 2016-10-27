@@ -65,9 +65,13 @@ module My
 
     def search
       @page = params["page"]
-      @search = true
+      @start_date = search_params[:start_date]
+      @end_date = search_params[:end_date]
+      @from_game_center_id = search_params[:from_game_center_id]
+      @to_game_center_id = search_params[:to_game_center_id]
+      @state = search_params[:state]
       @transfers = Transfer.search(search_params).paginate(:page => @page)
-      render 'shared/partials', locals:{ partial_hash: {"#transfer_records"=>"records"} }
+      render :index
     end
 
     private

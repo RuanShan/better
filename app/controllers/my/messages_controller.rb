@@ -3,6 +3,7 @@ module My
 
     def index
       @page = params["page"]
+      @messages = current_user.available_messages.paginate(:page => @page)
     end
 
     def read
@@ -10,14 +11,14 @@ module My
         current_user.read_message params["id"]
       else
         current_user.read_messages
-        render :js => "window.location = '/messages'"
+        render :index
       end
     end
 
     def destroy
       @page=params["page"]
       current_user.delete_message params["id"]
-      render "user_messages"
+      redirect_to controller: 'my/messages', :page=>@page
     end
 
   end

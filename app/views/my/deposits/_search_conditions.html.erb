@@ -1,7 +1,12 @@
+<%
+@start_date ||= ""
+@end_date ||= ""
+@state ||= "1"
+%>
 <div class="">
-  <%=form_tag search_my_deposits_path, id:'deposit_form',remote:true do%>
-    <%=text_span "start date"%><%=calendar "start_date"%><%=text_span "to"%><%=calendar "end_date"%>
-    <%=text_span "state"%><%=deposit_state_select "state"%>
+  <%=form_tag search_my_deposits_path do%>
+    <%=text_span "start date"%><%=calendar "start_date", @start_date%><%=text_span "to"%><%=calendar "end_date", @end_date%>
+    <%=text_span "state"%><%=deposit_state_select "state", @state%>
     <%=content_tag(:div, submit_tag("search",  class:"form-control"), style:'width:100px;float:left;margin:5px;')%>
   <%end%>
 </div>

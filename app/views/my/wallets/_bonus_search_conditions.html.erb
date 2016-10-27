@@ -1,6 +1,10 @@
+<%
+@start_date ||= ""
+@end_date ||= ""
+%>
 <div class="clearfix" >
-  <%=form_tag search_bonuses_my_wallets_path, id:'bonus_form',remote:true do%>
-    <%=text_span "start date"%><%=calendar "start_date"%><%=text_span "to"%><%=calendar "end_date"%>
+  <%=form_tag search_bonuses_my_wallets_path do%>
+    <%=text_span "start date"%><%=calendar "start_date", @start_date%><%=text_span "to"%><%=calendar "end_date", @end_date%>
     <%=content_tag(:div, submit_tag("search",  class:"form-control"), style:'width:100px;float:left;margin:5px;')%>
   <%end%>
 </div>

@@ -1,4 +1,4 @@
-class UserWallet < ApplicationRecord
+class Wallet < ApplicationRecord
   belongs_to :user
   belongs_to :game_center
 

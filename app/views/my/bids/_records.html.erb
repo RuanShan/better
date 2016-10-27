@@ -37,8 +37,4 @@
   <tr>
   </tbody>
 </table>
-<%if @search%>
-  <%= full_will_paginate @bids, {form_id:'bid_form'} %>
-<% else %>
-  <%= will_paginate @bids %>
-<% end %>
+<%= will_paginate @bids %>

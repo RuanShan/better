@@ -72,9 +72,11 @@ module My
 
     def search
       @page = params["page"]
-      @search = true
+      @start_date = search_params[:start_date]
+      @end_date = search_params[:end_date]
+      @state = search_params[:state]
       @deposits = Deposit.search(search_params).paginate(:page => @page)
-      render 'shared/partials', locals:{ partial_hash: {"#deposit_records"=>"records"} }
+      render :index
     end
 
 

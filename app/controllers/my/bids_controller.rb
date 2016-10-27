@@ -65,9 +65,11 @@ module My
 
     def search
       @page = params["page"]
-      @search = true
+      @start_date = search_params[:start_date]
+      @end_date = search_params[:end_date]
+      @platform = search_params[:game_id]
       @bids = Bid.search(search_params).paginate(:page => @page)
-      render 'shared/partials', locals:{ partial_hash: {"#bid_records"=>"records"} }
+      render :index
     end
 
     private

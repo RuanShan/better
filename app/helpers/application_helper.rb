@@ -28,8 +28,8 @@ module ApplicationHelper
     content_tag :span, text, style:'margin:5px;'
   end
 
-  def calendar(text_id)
-    calendar_text = text_field_tag(text_id, '', class:'form-control', size:10)
+  def calendar(text_id, value)
+    calendar_text = text_field_tag(text_id, value, class:'form-control', size:10)
     calendar_span = content_tag(:span, content_tag(:span, "", class:'glyphicon glyphicon-calendar'), class:'input-group-addon')
     content_tag(:div, calendar_text+calendar_span, class:'calendar input-group date', style:'width:140px;float:left;margin:5px;')
   end

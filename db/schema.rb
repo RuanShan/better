@@ -217,11 +217,11 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.integer  "from_game_center_id"
     t.integer  "to_game_center_id"
     t.string   "number"
-    t.decimal  "amount"
-    t.integer  "state",                          default: 0, null: false
+    t.decimal  "amount",                         default: "0.0", null: false
+    t.integer  "state",                          default: 0,     null: false
     t.string   "machine_state",       limit: 12
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.index ["from_game_center_id"], name: "index_transfers_on_from_game_center_id"
     t.index ["to_game_center_id"], name: "index_transfers_on_to_game_center_id"
     t.index ["user_id"], name: "index_transfers_on_user_id"
@@ -249,24 +249,6 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.datetime "updated_at",             null: false
     t.index ["message_id"], name: "index_user_messages_on_message_id"
     t.index ["user_id"], name: "index_user_messages_on_user_id"
-  end
-
-  create_table "wallets", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "game_center_id"
-    t.decimal  "amount"
-    t.string   "memo"
-    t.datetime "deleted_at"
-    t.integer  "originator_id"
-    t.string   "originator_type"
-    t.boolean  "is_bonus",        default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.index ["deleted_at"], name: "index_wallets_on_deleted_at"
-    t.index ["game_center_id"], name: "index_wallets_on_game_center_id"
-    t.index ["originator_id", "originator_type"], name: "wallets_originator"
-    t.index ["user_id", "game_center_id"], name: "index_wallets_on_user_id_and_game_center_id"
-    t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -310,6 +292,24 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "game_center_id"
+    t.decimal  "amount"
+    t.string   "memo"
+    t.datetime "deleted_at"
+    t.integer  "originator_id"
+    t.string   "originator_type"
+    t.boolean  "is_bonus",        default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["deleted_at"], name: "index_wallets_on_deleted_at"
+    t.index ["game_center_id"], name: "index_wallets_on_game_center_id"
+    t.index ["originator_id", "originator_type"], name: "wallets_originator"
+    t.index ["user_id", "game_center_id"], name: "index_wallets_on_user_id_and_game_center_id"
+    t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
 end

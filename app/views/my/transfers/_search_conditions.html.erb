@@ -1,8 +1,15 @@
+<%
+@start_date ||= ""
+@end_date ||= ""
+@from_game_center_id||= "1"
+@to_game_center_id||= "1"
+@state ||= "1"
+%>
 <div class="clearfix" style="clear:both;">
-  <%=form_tag search_my_transfers_path, id:'transfer_form',remote:true do%>
-    <%=text_span "start date"%><%=calendar "start_date"%><%=text_span "to"%><%=calendar "end_date"%>
-    <%=text_span "transfer from"%><%=game_center_select "from_game_center_id"%><%=text_span "to"%><%=game_center_select "to_game_center_id"%>
-    <%=text_span "state"%><%=transfer_state_select "state"%>
+  <%=form_tag search_my_transfers_path do%>
+    <%=text_span "start date"%><%=calendar "start_date", @start_date%><%=text_span "to"%><%=calendar "end_date", @end_date%>
+    <%=text_span "transfer from"%><%=game_center_select "from_game_center_id", @from_game_center_id%><%=text_span "to"%><%=game_center_select "to_game_center_id", @to_game_center_id%>
+    <%=text_span "state"%><%=transfer_state_select "state", @state%>
     <%=content_tag(:div, submit_tag("search",  class:"form-control"), style:'width:100px;float:left;margin:5px;')%>
   <%end%>
 </div>

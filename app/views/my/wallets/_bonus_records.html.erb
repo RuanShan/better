@@ -33,8 +33,4 @@
     <tr>
   </tbody>
 </table>
-<%if @search%>
-  <%= full_will_paginate @bonuses, {form_id:'bonus_form'} %>
-<% else %>
-  <%= will_paginate @bonuses %>
-<% end %>
+<%= will_paginate @bonuses %>

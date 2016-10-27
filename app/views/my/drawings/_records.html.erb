@@ -34,8 +34,4 @@
     <tr>
   </tbody>
 </table>
-<%if @search%>
-  <%= full_will_paginate @drawings, {form_id:'drawing_form'} %>
-<% else %>
-  <%= will_paginate @drawings %>
-<% end %>
+<%= will_paginate @drawings %>

@@ -64,15 +64,15 @@ module My
 
     def bonuses
       @page = params["page"]
-      @bonuses = UserWallet.bonuses.order("created_at desc").all.paginate(:page => @page)
+      @bonuses = Wallet.bonuses.order("created_at desc").all.paginate(:page => @page)
     end
 
     def search_bonuses
       @page = params["page"]
-      @search = true
-      @bonuses = UserWallet.search_bonuses(bonus_search_params).paginate(:page => @page)
-      render 'shared/partials', locals:{ partial_hash: {"#bonus_records"=>"records"} }
-
+      @start_date = bonus_search_params[:start_date]
+      @end_date = bonus_search_params[:end_date]
+      @bonuses = Wallet.search_bonuses(bonus_search_params).paginate(:page => @page)
+      render :bonuses
     end
 
     private

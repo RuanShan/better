@@ -34,8 +34,4 @@
   <tr>
   </tbody>
 </table>
-<%if @search%>
-  <%= full_will_paginate @deposits, {form_id:'deposit_form'} %>
-<% else %>
-  <%= will_paginate @deposits %>
-<% end %>
+<%= will_paginate @deposits %>
