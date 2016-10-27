@@ -1,5 +1,5 @@
 class Drawing < ApplicationRecord
-  belongs_to :user_bank
+  belongs_to :green_user_bank, ->{ green }
   delegate :user, to: :user_bank
   enum state: { failure:0, pending: 2, success:1, unknown:4 }
 

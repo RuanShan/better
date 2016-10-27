@@ -1,5 +1,5 @@
 class UserBank < ApplicationRecord
-  acts_as_paranoid
+  #acts_as_paranoid 
   include NumberFormatting
 
   enum state:{ pending: 0, green: 1, red: 4}

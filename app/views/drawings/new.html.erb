@@ -26,19 +26,14 @@
         <span class="show-detail absolute" ng-click="showRule()"></span>
       </div>
 
-      <form class="am-margin-top-xl am-form ng-pristine ng-invalid ng-invalid-required ng-valid-pattern" w5c-form-validate="validateOptions" w5c-submit="withdraw()" name="withdrawForm" novalidate="">
-<%= render partial: "user_banks" %>
+      <%= simple_form_for(@drawing) do |f| %>
 
         <!-- ngIf: bindCards.length > 0 --><div style="" class="boma-input-set ng-scope" ng-if="bindCards.length > 0">
           <div class="withdraw-txt am-text-right"><span class="" ng-bind="'withdraw-usual-card' | i18n">常用银行卡：</span></div>
           <div class="withdraw-usualcard">
+
             <div class="btn-group" data-toggle="buttons">
-              <%= @user_banks.each{|user_bank| %>
-                <label class="btn btn-primary active">
-                  <%= radio_button("category", "rails") %>
-                  <input type="radio" name="options" id="option2" autocomplete="off"> <%= user_bank.display_number %>
-                </label>
-              <% } %>
+
               <label class="btn btn-primary">
                 <input type="radio" name="options" id="option3" autocomplete="off">添加新卡
               </label>
@@ -101,7 +96,7 @@
         <div class="boma-submit-footer">
           <!-- ngIf: _limit --><button style="" class="ng-scope" ng-if="_limit" type="submit"><span class="" ng-bind="'common-submit' | i18n">提交</span></button><!-- end ngIf: _limit -->
         </div>
-      </form>
+      <% end %>
 
     </div>
 
