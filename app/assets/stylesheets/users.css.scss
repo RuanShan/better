@@ -7,8 +7,16 @@
 }
 .user-content
 {
+  background-color: #d2cdd4;
   padding: 0;
+  .panel
+  {
+    background-color: #ffffff;
+    margin: 15px;
+    padding: 15px;
+  }
 }
+
 
 span.my-mini-title{
 font-size: 15px;
@@ -32,12 +40,12 @@ width: 100%;
 background-color: rgba(255,255,255,0.6);
 }
 div.my-sub-title{
-height: 45px;
-line-height: 45px;
-padding-left: 30px;
-font-size: 16px;
-font-weight: 600;
-background-color: lightgreen;
+  height: 45px;
+  line-height: 45px;
+  padding-left: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: lightgreen;
 }
 .my-navs-item{
   display:block;
@@ -45,6 +53,8 @@ background-color: lightgreen;
   line-height: 40px;
   margin: 10px 0px;
   padding: 0px 20px;
+  border-left: 4px solid transparent;
+
 }
 div.my-navs-item-parent{
   height: 40px;
@@ -54,9 +64,9 @@ div.my-navs-item-parent{
 }
 .my-navs-item:hover{
   background-color: #d2cdd4;
-  border-right: 4px solid #db1829;
+  border-left: 4px solid #db1829;
 }
 .my-navs-item-active{
   background-color: #d2cdd4;
-  border-right: 4px solid #db1829;
+  border-left: 4px solid #db1829;
 }
