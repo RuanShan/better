@@ -11,7 +11,7 @@ module My
         current_user.read_message params["id"]
       else
         current_user.read_messages
-        render :index
+        redirect_to controller: 'my/messages', :page=>@page
       end
     end
 
