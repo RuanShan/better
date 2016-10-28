@@ -1,16 +1,16 @@
+<%disabled = current_user.real_name.present? ? true : false%>
 <div class="" style="width:300px;">
   <%= simple_form_for(current_user, :url=>{:controller=>"my/account",:action=>"bind_name"}) do |f| %>
     <%= f.error_notification %>
     <div class="form-inputs">
-      <%= f.input :real_name, as:"string" %>
+      <%= f.input :real_name, as:"string", disabled: disabled %>
       <%= f.label :id_type %>
-      <%= f.collection_radio_buttons :id_type, [[0, 'ID Card'] ,[1, 'PassPort']], :first, :last %>
-      <%= f.input :id_number %>
+      <%= f.collection_radio_buttons :id_type, [[0, 'ID Card'] ,[1, 'PassPort']], :first, :last, disabled: disabled %>
+      <%= f.input :id_number, disabled: disabled %>
       <%= f.input :phone, as:"string" %>
-      <a class="btn btn-default" href="#" onclick="var phone=$('#user_phone').val();$(this).attr('href','/my/account/1/send_validate_code?phone='+phone).removeAttr('onclick').click();" data-remote="true">Send validate code</a>
-      <br /><br />
-      <%=label_tag :validate_code %>
-      <%=text_field_tag :validate_code, "", class:"form-control" %><br />
+      <%=link_to "Send validate code", {}, class:"btn btn-default", href:"#", onclick:"$('#send_code').val('1');$('#edit_user_#{current_user.id}').submit();return false;" %>
+      <%=hidden_field_tag :send_code, "0" %>
+      <%= f.input :validate_code %>
     </div>
     <div class="form-actions">
       <%= f.button :submit %>

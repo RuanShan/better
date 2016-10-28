@@ -1,10 +1,12 @@
 <div style="width:400px;">
-  <%= simple_form_for(@user_bank, :url=>{:controller=>"users", :action=>"bind_bank"}) do |f| %>
+  <%= simple_form_for(@user_bank, :url=>{ :action=>"bind_bank"}, :method=>"post") do |f| %>
     <div class="form-inputs">
-      <%=render 'users/bank_form_content', bank_form: f%>
+      <%=render 'my/account/bank_form_content', bank_form: f%>
     </div>
-    <div class="form-actions">
-      <%= f.submit "bind bank", class:"btn" %>
-    </div>
+    <%unless @user_bank.persisted?%>
+      <div class="form-actions">
+        <%= f.submit "bind bank", class:"btn" %>
+      </div>
+    <% end %>
   <% end %>
 </div>

@@ -19,11 +19,11 @@ class User < ApplicationRecord
   alias_attribute :name, :nickname
 
   attr_reader :money_password, :current_money_password
-  attr_accessor :money_password_confirmation, :password_prefix, :setting_pp, :binding_name
+  attr_accessor :money_password_confirmation, :password_prefix, :setting_pp, :binding_name, :validate_code
   validates :money_password, confirmation: true
   validates :pp_question, :pp_answer, presence: true, if: :setting_pp
   validates :real_name, :id_number, presence: true, if: :binding_name
-  validates :phone, length: { in: 7..11 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(user) { user.phone.present? }
+  validates :phone, length: { in: 7..11 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(user) { user.phone.present? or user.binding_name }
   validates :qq, length: { in: 5..10 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(user) { user.qq.present? }
 
   def set_default_role
@@ -57,7 +57,7 @@ class User < ApplicationRecord
       self.email = email_options["email"]
       save
     else
-      errors.add(:current_password, ["not right"])
+      errors.add(:current_password, "not right")
     end
   end
 
@@ -66,19 +66,46 @@ class User < ApplicationRecord
     current_password = pp_options.delete("current_password")
     if valid_password? current_password
       if pp_options['pp_question'].present?
-        errors.add(:pp_answer, ["can not be blank"]) if pp_options['pp_answer'].blank?
+        errors.add(:pp_answer, "can not be blank") if pp_options['pp_answer'].blank?
       else
-        errors.add(:pp_question, ["can not be blank"])
+        errors.add(:pp_question, "can not be blank")
       end
       self.update_attributes(pp_options)
     else
-      errors.add(:current_password, ["not right"])
+      errors.add(:current_password, "not right")
     end
   end
 
-  def bind_name(name_options)
+  def bind_name(send_code, name_options, session)
     @binding_name = true
-    self.update_attributes(name_options)
+    self.assign_attributes(name_options)
+    if send_code == 1
+      code =rand(999999).to_s
+      alidayu_respond = Alidayu.send_sms({
+        template_id: "SMS_22595044",
+        sign_name: "软山网络",#软山网络,大连软山
+        params: {
+          code: code,
+          product: '',
+        },
+        phones: phone
+      })
+      #logger.debug "----------------code=#{code},alidayu_respond=#{alidayu_respond.inspect}"
+      validate_alidayu_response(alidayu_respond)
+      if errors.empty?
+        session["validate_phone"] = phone
+        session["validate_code"] = code
+        session["validate_code_send_time"] = Time.now
+      end
+      errors.add(:validate_code, "validate code sended to your phone, please input the code")
+    else
+      validate_my_code(session)
+      if session["validate_phone"] == phone
+        self.save
+      else
+        errors.add(:phone, "phone number must be the one send validate code!")
+      end
+    end
   end
 
   def bind_bank(current_money_password,bank_options)
@@ -87,7 +114,7 @@ class User < ApplicationRecord
       user_banks.create(bank_options)
     else
       new_user_bank = user_banks.new
-      new_user_bank.errors.add(:current_money_password, ["not right"])
+      new_user_bank.errors.add(:current_money_password, "not right")
       new_user_bank
     end
   end
@@ -168,5 +195,43 @@ class User < ApplicationRecord
     self.send "#{@password_prefix}password_confirmation=", new_password_confirmation
     save
   end
+
+  def validate_my_code(session)
+    if session["validate_code"].present? && session["validate_code_send_time"].present?
+      last_send_duration = Time.now - session["validate_code_send_time"].to_datetime
+      if last_send_duration > 10*60
+        errors.add(:validate_code, "validate code timeout, please send again!")
+      else
+        logger.debug "++++++++++validate_code=#{validate_code},session['validate_code']=#{session['validate_code']}"
+        unless validate_code == session["validate_code"]
+          errors.add(:validate_code, "validate code not right!")
+        end
+      end
+    else
+      errors.add(:validate_code, "please send validate code!")
+    end
+  end
+
+  #error_respond={"error_response"=>{"code"=>15, "msg"=>"Remote service error", "sub_code"=>"isv.BUSINESS_LIMIT_CONTROL", "sub_msg"=>"触发业务流控", "request_id"=>"3b4kmfzkvbq7"}}
+  #success_respond={"alibaba_aliqin_fc_sms_num_send_response"=>{"result"=>{"err_code"=>"0", "model"=>"104132741839^1105207555898", "success"=>true}, "request_id"=>"z24nkhmlp79h"}}
+  def validate_alidayu_response(alidayu_response)
+    if alidayu_response["error_response"]
+      error_code = alidayu_response["error_response"]["code"]
+      case error_code
+      when 15
+      when 40
+        errors.add(:phone, "please input your phone number")
+      else
+        error_message = alidayu_response["error_response"]["msg"]+":"+alidayu_response["error_response"]["sub_msg"]
+        errors.add(:validate_code, error_message)
+      end
+    else
+      rresponse = alidayu_response["alibaba_aliqin_fc_sms_num_send_response"]["result"]
+      unless rresponse["success"] == true
+        errors.add(:validate_code, "send fail! please resend!")
+      end
+    end
+  end
+
 
 end
