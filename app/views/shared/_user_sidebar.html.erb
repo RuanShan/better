@@ -10,20 +10,16 @@
 						<%= build_user_nav_link "账户概况", {controller: 'my/account'} %>
 						<%= build_user_nav_link "充值", {controller: 'my/deposits', action: 'new'} %>
 						<%= build_user_nav_link "提现", {controller: 'my/drawings', action: 'new'} %>
-						<%= build_user_nav_link "转账", {controller: 'my/transfers', action: 'new'} %>
 					</div>
 					<div >
 						<div class="my-navs-item-parent">
 							<span ng-class="item.icon" class="icon my-icon-detail"></span>
 							<span  class="am-margin-left-sm name ">账户明细</span>
 						</div>
-
 						<%= build_user_nav_link "红利记录", {controller: 'my/wallets', action: 'bonuses'} %>
 						<%= build_user_nav_link "投注记录", {controller: 'my/bids'} %>
 						<%= build_user_nav_link "充值记录", {controller: 'my/deposits'} %>
 						<%= build_user_nav_link "提款记录", {controller: 'my/drawings'} %>
-						<%= build_user_nav_link "转账记录", {controller: 'my/transfers'} %>
-
 					</div>
 					<div >
 						<div class="my-navs-item-parent">

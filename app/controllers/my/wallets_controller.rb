@@ -83,7 +83,7 @@ module My
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def wallet_params
-        params.require(:wallet).permit(:user_id, :game_center_id, :amount, :memo, :deleted_at)
+        params.require(:wallet).permit(:user_id, :amount, :memo, :deleted_at)
       end
 
       def bonus_search_params

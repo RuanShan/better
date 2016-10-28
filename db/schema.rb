@@ -73,30 +73,28 @@ ActiveRecord::Schema.define(version: 20161023090958) do
   create_table "deposits", force: :cascade do |t|
     t.integer  "payment_method_id"
     t.integer  "user_id"
-    t.integer  "game_center_id"
     t.string   "number"
     t.string   "currency"
-    t.decimal  "amount",            default: "0.0", null: false
-    t.integer  "state",             default: 0,     null: false
+    t.decimal  "amount",                       default: "0.0", null: false
+    t.string   "state",             limit: 12
     t.string   "memo"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.index ["game_center_id"], name: "index_deposits_on_game_center_id"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.index ["number"], name: "index_deposits_on_number", unique: true
     t.index ["payment_method_id"], name: "index_deposits_on_payment_method_id"
     t.index ["user_id"], name: "index_deposits_on_user_id"
   end
 
   create_table "drawings", force: :cascade do |t|
-    t.integer  "game_center_id"
+    t.integer  "user_id"
     t.integer  "user_bank_id"
     t.string   "number"
     t.decimal  "amount"
-    t.integer  "state",          default: 0, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.index ["game_center_id"], name: "index_drawings_on_game_center_id"
+    t.string   "state",        limit: 12
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.index ["user_bank_id"], name: "index_drawings_on_user_bank_id"
+    t.index ["user_id"], name: "index_drawings_on_user_id"
   end
 
   create_table "exchange_rates", force: :cascade do |t|
@@ -141,14 +139,13 @@ ActiveRecord::Schema.define(version: 20161023090958) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.integer  "game_center_id"
+    t.integer  "game_center_id", default: 0, null: false
     t.string   "slug"
     t.string   "name"
     t.text     "description"
     t.integer  "state",          default: 0, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["game_center_id"], name: "index_games_on_game_center_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -180,11 +177,12 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.string   "name"
     t.string   "description"
     t.string   "code"
-    t.integer  "rule",        default: 0, null: false
-    t.integer  "factor1"
-    t.integer  "factor2"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "rule",        default: 0,     null: false
+    t.decimal  "factor1",     default: "0.0", null: false
+    t.decimal  "factor2",     default: "0.0", null: false
+    t.decimal  "factor3",     default: "0.0", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["name"], name: "index_promotions_on_name", unique: true
   end
 
@@ -198,7 +196,6 @@ ActiveRecord::Schema.define(version: 20161023090958) do
 
   create_table "store_credits", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "game_center_id"
     t.decimal  "amount",          precision: 8, scale: 2, default: "0.0", null: false
     t.string   "memo"
     t.datetime "deleted_at"
@@ -208,7 +205,6 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.datetime "updated_at",                                              null: false
     t.index ["deleted_at"], name: "index_store_credits_on_deleted_at"
     t.index ["originator_id", "originator_type"], name: "store_credits_originator"
-    t.index ["user_id", "game_center_id"], name: "index_store_credits_on_user_id_and_game_center_id"
     t.index ["user_id"], name: "index_store_credits_on_user_id"
   end
 
@@ -218,7 +214,6 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.integer  "to_game_center_id"
     t.string   "number"
     t.decimal  "amount",                         default: "0.0", null: false
-    t.integer  "state",                          default: 0,     null: false
     t.string   "machine_state",       limit: 12
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
@@ -296,7 +291,6 @@ ActiveRecord::Schema.define(version: 20161023090958) do
 
   create_table "wallets", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "game_center_id"
     t.decimal  "amount"
     t.string   "memo"
     t.datetime "deleted_at"
@@ -306,9 +300,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.index ["deleted_at"], name: "index_wallets_on_deleted_at"
-    t.index ["game_center_id"], name: "index_wallets_on_game_center_id"
     t.index ["originator_id", "originator_type"], name: "wallets_originator"
-    t.index ["user_id", "game_center_id"], name: "index_wallets_on_user_id_and_game_center_id"
     t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 

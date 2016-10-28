@@ -15,10 +15,6 @@ module ApplicationHelper
     user_profile+row
   end
 
-  def game_center_select(tag_name, selected_game_center="1")
-    gc_select = select_tag tag_name, options_for_select(GameCenter.all.collect {|cc| [ cc.name, cc.id ] }, selected_game_center ), class:"form-control"
-    content_tag(:div, gc_select, style:'width:100px;float:left;margin:5px;')
-  end
 
   def text_span(text)
     content_tag :span, text, style:'display:block;float:left;padding:5px;margin:5px;'

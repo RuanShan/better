@@ -55,9 +55,7 @@ Rails.application.routes.draw do
       get 'bonuses', on: :collection
       post 'search_bonuses', on: :collection
     end
-    resources :transfers do
-      post 'search', on: :collection
-    end
+
     resources :drawings do
       post 'search', on: :collection
     end

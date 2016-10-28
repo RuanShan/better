@@ -5,7 +5,6 @@ class Bid < ApplicationRecord
   enum state: { failure:0, pending: 2, success:1, unknown:4 }
 
   delegate :game, to: :game_round
-  delegate :game_center, to: :game
 
   def platform
     game.name
