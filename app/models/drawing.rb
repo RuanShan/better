@@ -1,3 +1,5 @@
+# 提款处理过程： 创建提款记录 -> 后台审核提款 -> 处理提款  -> 提款成功
+#                                        -> 提款失败
 class Drawing < ApplicationRecord
 
   extend DisplayMoney
@@ -7,28 +9,36 @@ class Drawing < ApplicationRecord
   friendly_id :number, slug_column: :number, use: :slugged
   include NumberGenerator.new(prefix: 'R')
 
-  belongs_to :user_bank
-  belongs_to :game_center
+  has_one :wallet, as: :originator
+  belongs_to :user_bank, required: true
   accepts_nested_attributes_for :user_bank
   delegate :user, to: :user_bank
+  delegate :name, to: :user_bank, prefix: true
 
-  enum state: { failure:0, pending: 2, success:1, unknown:4 }
-
+  scope :on_date, ->(datetime){ where( ["created_at>? and created_at<=?",  datetime.beginning_of_day, datetime.end_of_day] )}
+  scope :today, ->{ on_date( DateTime.current ) }
   #每笔最少提款：50.00
   #每笔最多提款：50,000.00
   #每天最多提款：200,000.00
   #每天提款次数：50
+
   validates :amount, numericality: { greater_than_or_equal_to: 50, less_than_or_equal_to: 50000}
 
-  before_create :set_state
-  after_create :add_to_wallet
-
   validate do |drawing|
-    drawing.validate_amount
+    drawing.validate_amount if user_bank # validate require user presence
   end
 
-  def method
-    user_bank.name
+  # 缺省状态是等待处理， 即 pending: 0
+  state_machine :state, initial: :pending do
+    # pending: 等待处理
+    # success: 提款成功
+    # failure: 提款失败
+    after_transition to: :success, do: :adjust_wallet
+
+    event :process do
+      transition pending: :success, if: ->(drawing) { drawing.valid_to_process? }
+      transition pending: :failure, if: ->(drawing) { !drawing.valid_to_process? }
+    end
   end
 
   def self.search(search_params)
@@ -36,36 +46,27 @@ class Drawing < ApplicationRecord
     (search_params["end_date"]+" 23:59:59").to_datetime,search_params["state"]).order("created_at desc").all
   end
 
-  def self.drawings_for_day(date=Time.zone.today)
-    self.where("created_at>? and created_at<? and state=1",(date.to_s+" 00:00:00").to_datetime,
-    (date.to_s+" 23:59:59").to_datetime).order("created_at desc").all
+  def valid_to_process?
+    #TODO
+    # available money to transfer
+    true
   end
 
-  def self.drawings_amount_for_day(date=Time.zone.today)
-    drawings_for_day(date).inject(0){|total_amount,d|total_amount+=d.amount}
-  end
-
-  def set_state
-    self.game_center_id=1
-    self.state=1
+  def adjust_wallet
+    create_wallet!( user: user, amount: -self.amount, is_bonus: false )
   end
 
   def validate_amount
     message = ""
-    if amount > user.center_wallet_balance
+    if amount > user.wallet_balance
       message = "amount greater than balance"
     end
-    if self.class.drawings_for_day.size == 50
+    if user.drawings.today.count == 50
       message = "drawing over 50 times"
     end
-    if self.class.drawings_amount_for_day+amount > 200000
+    if user.drawings.today.sum(:amount) + amount > 200000
       message = "drawing over 200,000.00"
     end
     self.errors.add(:amount, message) if message.present?
   end
-
-  def add_to_wallet
-    UserWallet.add_wallet(self)
-  end
-
 end

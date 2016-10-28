@@ -88,11 +88,11 @@ module My
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def deposit_params
-        params.require(:deposit).permit(:payment_method_id, :user_id, :amount, :state)
+        params.require(:deposit).permit(:payment_method_id, :user_id, :amount)
       end
 
       def search_params
-        params.permit(:start_date, :end_date, :state)
+        params.permit(:start_date, :end_date)
       end
   end
 end

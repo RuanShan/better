@@ -5,8 +5,6 @@ RSpec.describe Transfer, type: :model do
 
   let!( :transfer)  { create :transfer_with_game_centers}
 
-
-
   it "has initial machine state pending" do
     transfer = Transfer.new
     expect(transfer.pending?).to be_truthy

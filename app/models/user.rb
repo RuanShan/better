@@ -1,19 +1,18 @@
 class User < ApplicationRecord
+  include WalletBlance
+
   has_many :user_messages
   has_many :user_banks
   has_many :deposits
   has_many :drawings
   has_many :transfers
   has_many :bids
-  has_many :wallets
 
   enum role: [:user, :vip ]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-
-  has_many :deposits
 
   after_initialize :set_default_role, :if => :new_record?
   alias_attribute :name, :nickname
@@ -124,7 +123,8 @@ class User < ApplicationRecord
   end
   #============================money===========================================
   def center_wallet_balance
-    wallets.inject(0){|total_amount,w|total_amount+=w.amount}
+    wallets.master.sum(:amount)
+    #wallets.inject(0){|total_amount,w|total_amount+=w.amount}
   end
 #============================messages===========================================
   def private_messages

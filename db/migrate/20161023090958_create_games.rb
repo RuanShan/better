@@ -17,7 +17,7 @@ class CreateGames < ActiveRecord::Migration[5.0]
 
     # 游戏定义
     create_table :games do |t|
-      t.references :game_center, foreign_key: true
+      t.integer :game_center_id, null: false, default: 0
       t.string :slug, uniq:true
       t.string :name
       t.text :description

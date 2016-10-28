@@ -2,7 +2,6 @@ class CreateUserWallets < ActiveRecord::Migration[5.0]
   def change
     create_table :wallets do |t|
       t.references :user, foreign_key: true             # add_index :wallets, :user_id
-      t.references :game_center, foreign_key: true      # add_index :game_center, :user_id
       t.decimal :amount
       t.string :memo
       t.datetime :deleted_at
@@ -17,7 +16,6 @@ class CreateUserWallets < ActiveRecord::Migration[5.0]
 
     add_index :wallets, :deleted_at
 
-    add_index :wallets, [:user_id, :game_center_id]
     add_index :wallets, [:originator_id, :originator_type], name: :wallets_originator
 
   end

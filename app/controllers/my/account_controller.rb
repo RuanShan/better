@@ -8,7 +8,6 @@ module My
 
     def deposit
       @user = current_user
-      @game_centers = GameCenter.all
     end
 
     def show

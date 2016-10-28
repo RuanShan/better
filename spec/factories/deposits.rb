@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :deposit do
-    payment_method nil
+    payment_method
     user nil
     amount "9.99"
-    state 1
   end
 end
