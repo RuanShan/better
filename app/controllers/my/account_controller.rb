@@ -4,6 +4,7 @@ module My
     def index
       @user = current_user
       @deposits = @user.deposits.order("created_at desc").limit(10)
+      @bonuses = @user.wallets.bonuses.includes(:originator).order("created_at desc").limit(10)
     end
 
     def deposit

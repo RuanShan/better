@@ -33,4 +33,4 @@
     <tr>
   </tbody>
 </table>
-<%= will_paginate @bonuses %>
+<%= will_paginate @bonuses if @bonuses.respond_to? :total_pages%>

@@ -1,7 +1,10 @@
 class Wallet < ApplicationRecord
+  extend  DisplayDateTime
+  date_time_methods :created_at
+
   belongs_to :user, required: true
 
-  scope :bonuses, -> {where(is_bonus: true)}
+  scope :bonuses, -> { where(is_bonus: true) }
   #enum originator_type: { deposit:0, drawing: 1, transfer:2, bid:3 }
 
   def self.add_wallet(originator)

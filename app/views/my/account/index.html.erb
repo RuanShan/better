@@ -1,26 +1,12 @@
 
+<div class="my-sub-title">
+  <span> 中心钱包 </span>
+  <div class="pull-right">
+    <button href-plus="" url="#/my/recharge" class="btn btn-primary"><span class="" ng-bind="'user-operation-charge' | i18n">充值</span></button>
+    <button href-plus="" url="#/my/withdraw" class="btn btn-primary"><span class="" ng-bind="'user-operation-withdrawal' | i18n">提款</span></button>
+  </div>
+</div>
 
-  <div class="col-md-10 user-content" >
-    <div class="row">
-      <div class="col-md-4">
-        <p>
-    			<span class="my-mini-title " ng-bind="'my-centerMoney' | i18n">中心钱包</span>
-    			<span class="money " ng-bind="$root.user.balance.centreBalance | currency: '' : 2">0.00</span><span class="" ng-bind="'common-currencyunit' | i18n">元</span>
-    			<div class="button-set am-text-center">
-    				<button href-plus="" url="#/my/recharge" class="btn btn-primary"><span class="" ng-bind="'user-operation-charge' | i18n">充值</span></button>
-    				<button href-plus="" url="#/my/withdraw" class="btn btn-primary"><span class="" ng-bind="'user-operation-withdrawal' | i18n">提款</span></button>
-    				<button href-plus="" url="#/my/transfers" class="btn btn-primary"><span class="" ng-bind="'user-operation-transfers' | i18n">转账</span></button>
-    			</div>
-        </p>
-  			<div class="recover relative">
-  				<span class="pointer" ng-click="onekeyBack()"></span>
-  			</div>
-
-      </div>
-      <div class="col-md-8">
-        娱乐
-      </div>
-    </div>
     <div class="panel">
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
@@ -34,18 +20,16 @@
 
       <!-- Tab panes -->
       <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="home"> 红利记录 </div>
+        <div role="tabpanel" class="tab-pane active" id="home">
+          <%= render partial: "my/wallets/bonus_records" %>
+        </div>
         <div role="tabpanel" class="tab-pane" id="profile">投注记录</div>
         <div role="tabpanel" class="tab-pane" id="messages">
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>日期/时间(GMT+8)</th>
-                <th>交易号码</th>
-                <th>存款方式</th>
-                <th>金额(RMB) </th>
-                <th>状态 </th>
+                <th>ID</th> <th>日期/时间(GMT+8)</th> <th>交易号码</th>  <th>存款方式</th>
+                <th>金额(RMB) </th>  <th>状态 </th>
               </tr>
             </thead>
 
@@ -66,6 +50,3 @@
         <div role="tabpanel" class="tab-pane" id="settings">...</div>
         <div role="tabpanel" class="tab-pane" id="transfers">...</div>
       </div>
-    </p>
-
-  </div>
