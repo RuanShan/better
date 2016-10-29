@@ -5,7 +5,7 @@
     <div class="form-inputs">
       <%= f.input :real_name, disabled: disabled%>
       <%= f.label :id_type %>
-      <%= f.collection_radio_buttons :id_type, [[0, 'ID Card'] ,[1, 'PassPort']], :first, :last, disabled: disabled %>
+      <%= f.collection_radio_buttons :id_type, [['id_card', 'ID Card'] ,['passport', 'PassPort']], :first, :last, disabled: disabled %>
       <%= f.input :id_number, disabled: disabled %>
       <%= f.input :phone %>
       <%=link_to "Send validate code", {}, class:"btn btn-default", href:"#", onclick:"$('#send_code').val('1');$('#edit_user_#{current_user.id}').submit();return false;" %>

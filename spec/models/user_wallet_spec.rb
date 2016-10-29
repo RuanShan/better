@@ -22,4 +22,5 @@ RSpec.describe Wallet, type: :model do
       expect( user.wallet_balance).to eq 1000-50
     end
   end
+  
 end

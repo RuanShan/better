@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :bids
 
   enum role: [:user, :vip ]
+  enum gender: [:secret, :male, :female ]
+  enum id_type: [:id_card, :passport]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
@@ -43,7 +45,8 @@ class User < ApplicationRecord
   end
 
   def change_password(password_options)
-    @password_prefix = password_options[:money_password] ? "money_" : ""
+    @password_prefix = password_options["money_password"] ? "money_" : ""
+    logger.debug "@password_prefix =#{@password_prefix }"
     if valid_password? password_options["current_#{@password_prefix}password"]
       reset_password(password_options["#{@password_prefix}password"],password_options["#{@password_prefix}password_confirmation"] )
     else
@@ -152,6 +155,19 @@ class User < ApplicationRecord
   def center_wallet_balance
     wallets.master.sum(:amount)
     #wallets.inject(0){|total_amount,w|total_amount+=w.amount}
+  end
+
+  def drawings_today
+    user_banks.inject([]){|dt, ub|dt.concat(ub.drawings.today)}
+  end
+
+  def drawings_count_today
+    drawings_today.size
+    #user_banks.inject(0){|drawings_count, ub|drawings_count+=ub.drawings.today.count}
+  end
+
+  def drawings_sum_today
+    drawings_today.pluck(:amount).sum
   end
 #============================messages===========================================
   def private_messages

@@ -1,9 +1,10 @@
 class UserBank < ApplicationRecord
-  #acts_as_paranoid 
+  #acts_as_paranoid
   include NumberFormatting
 
   enum state:{ pending: 0, green: 1, red: 4}
   belongs_to :user
+  has_many :drawings
   validates :name, :card_number, :branch_name, :address, presence: true
 
   # Returns a display-friendly version of the card number.

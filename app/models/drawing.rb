@@ -25,7 +25,8 @@ class Drawing < ApplicationRecord
   validates :amount, numericality: { greater_than_or_equal_to: 50, less_than_or_equal_to: 50000}
 
   validate do |drawing|
-    drawing.validate_amount if user_bank # validate require user presence
+    # validate require user presence and is a new record, saved record could cause valid amount get error
+    drawing.validate_amount if user_bank && self.new_record?
   end
 
   # 缺省状态是等待处理， 即 pending: 0
@@ -61,10 +62,10 @@ class Drawing < ApplicationRecord
     if amount > user.wallet_balance
       message = "amount greater than balance"
     end
-    if user.drawings.today.count == 50
+    if user.drawings_count_today == 50
       message = "drawing over 50 times"
     end
-    if user.drawings.today.sum(:amount) + amount > 200000
+    if user.drawings_sum_today + amount > 200000
       message = "drawing over 200,000.00"
     end
     self.errors.add(:amount, message) if message.present?

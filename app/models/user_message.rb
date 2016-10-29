@@ -1,5 +1,5 @@
 class UserMessage < ApplicationRecord
-  enum state: { unread: 0, read: 1 }
+  enum state: { deleted: 0, read: 1 }
   belongs_to :user
   belongs_to :message
 

@@ -6,8 +6,8 @@ FactoryGirl.define do
     password "please123"
     money_password "please123"
     gender 0
-    trait :admin do
-      role 'admin'
+    trait :vip do
+      role 'vip'
     end
 
   end

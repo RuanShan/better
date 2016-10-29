@@ -6,7 +6,7 @@
       <%= f.label :nickname%>
       <%=inline_text_span(current_user.name)%><br>
       <%= f.label :gender%>
-      <%= f.collection_radio_buttons :gender, [[1, 'Male'] ,[2, 'Female'],[0, 'Secret']], :first, :last%>
+      <%= f.collection_radio_buttons :gender, [['male', 'Male'] ,['female', 'Female'],['secret', 'Secret']], :first, :last%>
       <%= f.input :phone, as:"string" %>
       <%= f.input :qq, as:"string" %>
     </div>
