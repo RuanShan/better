@@ -19,9 +19,8 @@
 </div>
 <br />
 
-<%= simple_form_for(@drawing, url: my_drawings_path) do |f| %>
+<%= better_form_for(@drawing, url: my_drawings_path) do |f| %>
   <div class="form-inputs">
-    <%#= f.association :user_bank, as:'hidden' %>
     <%current_user.user_banks.each{|user_bank| %>
       <%=link_to user_bank.name, nil, href:'javascript:void(0)', class:"btn btn-primary", onclick:"select_bank('#{user_bank.id}', '#{user_bank.to_json}');"%>
     <%}%>

@@ -1,5 +1,5 @@
-<div style="width:300px;">
-  <%= simple_form_for(current_user, :url=>{:action=>"set_email"}) do |f| %>
+<div>
+  <%= better_form_for(current_user, :url=>{:action=>"set_email"}) do |f| %>
     <div class="form-inputs">
       <%= f.label :current_email %>
       <%=inline_text_span(current_user.email)%>

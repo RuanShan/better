@@ -1,5 +1,5 @@
-<div style="padding-top:15px;width:350px;">
-  <%= simple_form_for(current_user, :url=>{:action=>"change_profile"}) do |f| %>
+<div>
+  <%= better_form_for(current_user, :url=>{:action=>"change_profile"}) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
