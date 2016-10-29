@@ -18,12 +18,3 @@
 //= require bootstrap-datetimepicker
 //= require select2
 //= require cable
-
-function page_submit_form(form_id,page)
-{ if($('#'+form_id+'>#page').length>0){
-    $('#'+form_id+'>#page').val(page);
-  }else{
-    $("<input type='hidden' id='page' name='page' value='"+page+"'/>").appendTo($('#'+form_id));
-  }
-  $('#'+form_id).submit();
-}
