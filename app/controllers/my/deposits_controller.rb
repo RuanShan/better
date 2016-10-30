@@ -29,19 +29,20 @@ module My
     # POST /deposits.json
     def create
       @deposit = Deposit.new(deposit_params)
-      @deposit.user = current_user
+      @deposit.user = user
+      @deposit.do_with_promotion
 
       respond_to do |format|
-        if @deposit.save
+        if @deposit.errors.empty?
           format.html { redirect_to @deposit, notice: 'Deposit was successfully created.' }
           format.json { render :show, status: :created, location: @deposit }
           format.js { redirect_to action: 'index', status: 303 }
           #format.js{ render_dialog dialog_view: 'wait_gateway_response' }
         else
-          @model = @deposit
+          #@model = @deposit
           format.html { render :new }
           format.json { render json: @deposit.errors, status: :unprocessable_entity }
-          format.js{ render_dialog  dialog_view: 'shared/model_errors' }
+          #format.js{ render_dialog  dialog_view: 'shared/model_errors' }
         end
       end
     end
@@ -88,7 +89,7 @@ module My
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def deposit_params
-        params.require(:deposit).permit(:payment_method_id, :user_id, :amount)
+        params.require(:deposit).permit(:payment_method_id, :user_id, :amount, :promotion_code)
       end
 
       def search_params

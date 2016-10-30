@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.decimal  "amount",                       default: "0.0", null: false
     t.string   "state",             limit: 12
     t.string   "memo"
+    t.string   "promotion_code"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.index ["number"], name: "index_deposits_on_number", unique: true

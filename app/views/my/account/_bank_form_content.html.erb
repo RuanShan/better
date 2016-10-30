@@ -7,6 +7,5 @@
 <%= bank_form.input :branch_name, as:"string", disabled: disabled  %>
 <%= bank_form.input :address, as:"string", disabled: disabled  %>
 <div id="password_div" style="<%=password_display%>">
-  <%= label_tag :current_money_password %>
-  <%= password_field_tag :current_money_password, '', :autocomplete => "off", class:"form-control"  %>
+  <%= bank_form.input :current_money_password, class:"required" %>
 </div>

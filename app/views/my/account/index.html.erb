@@ -15,7 +15,6 @@
         <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">投注记录</a></li>
         <li role="presentation"><a href="#messages" role="tab" data-toggle="tab">充值记录</a></li>
         <li role="presentation"><a href="#settings" role="tab" data-toggle="tab">提款记录</a></li>
-        <li role="presentation"><a href="#settings" role="tab" data-toggle="tab">转账记录</a></li>
       </ul>
 
       <!-- Tab panes -->
@@ -23,30 +22,13 @@
         <div role="tabpanel" class="tab-pane active" id="home">
           <%= render partial: "my/wallets/bonus_records" %>
         </div>
-        <div role="tabpanel" class="tab-pane" id="profile">投注记录</div>
-        <div role="tabpanel" class="tab-pane" id="messages">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>ID</th> <th>日期/时间(GMT+8)</th> <th>交易号码</th>  <th>存款方式</th>
-                <th>金额(RMB) </th>  <th>状态 </th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @deposits.each do |deposit| %>
-                <tr>
-                  <td><%= deposit.created_at.to_i %></td>
-                  <td><%= deposit.updated_at %></td>
-                  <td><%= deposit.number %></td>
-                  <td><%= deposit.payment_method_name %></td>
-                  <td><%= deposit.amount %></td>
-                  <td><%= deposit.state %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+        <div role="tabpanel" class="tab-pane" id="profile">
+          <%= render partial: "my/bids/records" %>
         </div>
-        <div role="tabpanel" class="tab-pane" id="settings">...</div>
-        <div role="tabpanel" class="tab-pane" id="transfers">...</div>
+        <div role="tabpanel" class="tab-pane" id="messages">
+          <%= render partial: "my/deposits/records" %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="settings">
+          <%= render partial: "my/drawings/records" %>
+        </div>
       </div>

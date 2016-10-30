@@ -16,7 +16,7 @@ class Deposit < ApplicationRecord
   delegate :name, to: :payment_method, prefix: true
   delegate :nickname, to: :user, prefix: true
 
-  attr_accessor :bonus
+  validates :amount, numericality: { greater_than_or_equal_to: 50, less_than_or_equal_to: 50000}
 
   # 缺省状态是等待处理， 即 pending: 0
   state_machine :state, initial: :pending do
@@ -31,28 +31,47 @@ class Deposit < ApplicationRecord
     end
   end
 
+  def do_with_promotion
+    if promotion_code.present?
+      if promotion.present?
+        unless promotion.valid_amount?(amount)
+          promotion_code_error_message= "this promotion need to deposit at lest #{promotion.factor1}"
+        end
+      else
+        promotion_code_error_message= "promotion code doesn't exists"
+      end
+    end
+    if promotion_code_error_message.present?
+      errors.add(:promotion_code, promotion_code_error_message)
+    else
+      self.save
+    end
+  end
+
   def self.search(search_params)
     self.where("created_at>? and created_at<? and state=?",(search_params["start_date"]+" 00:00:00").to_datetime,
     (search_params["end_date"]+" 23:59:59").to_datetime,search_params["state"]).order("created_at desc").all
   end
 
+  def promotion
+    Promotion.find_by_code(promotion_code)
+  end
 
   def valid_to_process?
     #TODO
     # available money to transfer
-    true
+    persisted? ? true : false
   end
 
   def adjust_wallet
-
     wallets.create!( user: user, amount: self.amount, is_bonus: false )
-    #TODO handle promotion code
-      #if originator.bonus>0
-      #  bonus_param = wallet_param.dup
-      #  bonus_param[:amount] = originator.bonus
-      #  bonus_param[:is_bonus]=true
-      #  wallet_params << bonus_param
-      #end
+    if promotion.present?
+      logger.debug "promotion=#{promotion.inspect}"
+      bonus = promotion.compute_bonus(amount)
+      logger.debug "bonus=#{bonus.inspect}"
+      wallets.create!( user: user, amount: bonus, is_bonus: true )
+    end
+
   end
 
 end

@@ -5,5 +5,18 @@
 #
 class Promotion < ApplicationRecord
 
-  
+  def valid_amount?(amount)
+    case rule
+    when 1
+      return true if amount >= factor1
+    end
+    return false
+  end
+
+  def compute_bonus(amount)
+    case rule
+    when 1
+      factor3
+    end
+  end
 end

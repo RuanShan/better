@@ -6,6 +6,7 @@ class UserBank < ApplicationRecord
   belongs_to :user
   has_many :drawings
   validates :name, :card_number, :branch_name, :address, presence: true
+  attr_accessor :current_money_password
 
   # Returns a display-friendly version of the card number.
   #

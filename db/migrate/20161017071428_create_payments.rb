@@ -26,6 +26,7 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.decimal :amount, null: false, default: 0.0
       t.string :state, limit: 12
       t.string :memo
+      t.string :promotion_code
       t.timestamps null: false
     end
     add_index :deposits, [:number], unique: true

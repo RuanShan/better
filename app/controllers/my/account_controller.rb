@@ -3,8 +3,10 @@ module My
 
     def index
       @user = current_user
-      @deposits = @user.deposits.order("created_at desc").limit(10)
       @bonuses = @user.wallets.bonuses.includes(:originator).order("created_at desc").limit(10)
+      @bids = @user.bids.order("created_at desc").limit(10)
+      @deposits = @user.deposits.order("created_at desc").limit(10)
+      @drawings = @user.drawings.order("created_at desc").limit(10)
     end
 
     def deposit
@@ -90,16 +92,16 @@ module My
 
     def bind_bank
       if request.post?
-        current_money_password = params["current_money_password"]
-        new_bank = current_user.bind_bank(current_money_password, bank_params)
-        if new_bank.errors.empty?
+        @user_bank = current_user.bind_bank(bank_params)
+        if @user_bank.errors.empty?
           flash[:notice] = "bind bank success!"
           redirect_to security_center_my_account_path(current_user)
         else
+          logger.debug "@user_bank.errors=#{@user_bank.errors.inspect}"
           render :bind_bank
         end
       else
-        @user_bank = current_user.bind_bank? ? current_user.user_banks.first : current_user.user_banks.new
+        @user_bank = current_user.user_banks.green.present? ? current_user.user_banks.green.first : current_user.user_banks.new
       end
     end
 
@@ -127,7 +129,7 @@ module My
     end
 
     def bank_params
-      params.require(:user_bank).permit(:name, :card_number, :branch_name, :address)
+      params.require(:user_bank).permit(:name, :card_number, :branch_name, :address, :current_money_password)
     end
 
   end

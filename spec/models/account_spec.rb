@@ -61,7 +61,7 @@ RSpec.describe User, type: :model do
 
   it "user can bind bank" do
     expect( user.user_banks).to eq []
-    user.bind_bank("please123", {"name"=> 'ICBC bank', "card_number"=> '1234567890', "branch_name"=> 'changxing', "address"=> 'xinggong street' })
+    user.bind_bank({"current_money_password"=>'please123',"name"=> 'ICBC bank', "card_number"=> '1234567890', "branch_name"=> 'changxing', "address"=> 'xinggong street' })
     user_banks = user.user_banks
     expect( user_banks.size).to eq 1
     expect( user_banks[0].name).to eq "ICBC bank"

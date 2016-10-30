@@ -34,4 +34,4 @@
   <tr>
   </tbody>
 </table>
-<%= will_paginate @deposits %>
+<%= will_paginate @deposits if @deposits.respond_to? :total_pages%>

@@ -37,4 +37,4 @@
   <tr>
   </tbody>
 </table>
-<%= will_paginate @bids %>
+<%= will_paginate @bids if @bids.respond_to? :total_pages %>

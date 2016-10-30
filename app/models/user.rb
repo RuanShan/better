@@ -110,8 +110,9 @@ class User < ApplicationRecord
     end
   end
 
-  def bind_bank(current_money_password,bank_options)
+  def bind_bank(bank_options)
     @password_prefix="money_"
+    current_money_password = bank_options["current_money_password"]
     if valid_password? current_money_password
       user_banks.create(bank_options)
     else

@@ -1,10 +1,6 @@
 
   <div class="my-sub-title">充值</div>
   <div class="panel">
-    <div class="boma-select-group am-margin-bottom-lg">
-			<span ng-bind="'recharge-to' | i18n" class="am-fl">存款到：</span>
-			<select class="am-fl boma-select ng-isolate-scope ng-valid" name="platforms" ng-model="_recharge.pf" dictionary=""><!-- ngRepeat: item in dictionary --><option value="CENTER" ng-repeat="item in dictionary" title="中心钱包" class=" ng-scope">中心钱包</option><!-- end ngRepeat: item in dictionary --><option value="GD" ng-repeat="item in dictionary" title="GD" class=" ng-scope">GD</option><!-- end ngRepeat: item in dictionary --><option value="AG" ng-repeat="item in dictionary" title="AG" class=" ng-scope">AG</option><!-- end ngRepeat: item in dictionary --><option value="SB" ng-repeat="item in dictionary" title="沙巴体育" class=" ng-scope">沙巴体育</option><!-- end ngRepeat: item in dictionary --><option value="PT" ng-repeat="item in dictionary" title="PT平台" class=" ng-scope">PT平台</option><!-- end ngRepeat: item in dictionary --><option value="BBIN" ng-repeat="item in dictionary" title="波音平台" class=" ng-scope">波音平台</option><!-- end ngRepeat: item in dictionary --><option value="MG" ng-repeat="item in dictionary" title="MG" class=" ng-scope">MG</option><!-- end ngRepeat: item in dictionary --></select>
-		</div>
     <%  deposit = @deposit %>
 
     <!-- Nav tabs -->
@@ -17,42 +13,41 @@
     <!-- Tab panes -->
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="home">
-        <%= simple_form_for(deposit, url: my_deposits_path, remote: true ) do |f| %>
+        <%= better_form_for(deposit, url: my_deposits_path ) do |f| %>
           <%= f.input :payment_method_id, input_html: { value: 1 }, as: :hidden %>
           <%= render partial: "payment_methods/method_alipay_bank" %>
-          <div class="field">
-            <%= f.label :amount %>
-            <%= f.text_field :amount %>
+          <div class="form-inputs">
+            <%= f.input :amount, as:"string" %>
+            <%= f.input :promotion_code, as:"string" %>
           </div>
-          <div class="actions">
-            <%= f.submit %>
+          <div class="form-actions">
+            <%= f.submit "deposit", class:"btn"  %>
           </div>
         <% end %>
       </div>
       <div role="tabpanel" class="tab-pane" id="profile">
-        <%= simple_form_for(deposit, url: my_deposits_path) do |f| %>
+        <%= better_form_for(deposit, url: my_deposits_path) do |f| %>
         <%= f.input :payment_method_id, input_html: { value: 2 }, as: :hidden %>
           <%= render partial: "payment_methods/method_bank_transfer" %>
-          <div class="field">
-            <%= f.label :amount %>
-            <%= f.text_field :amount %>
+          <div class="form-inputs">
+            <%= f.input :amount, as:"string" %>
+            <%= f.input :promotion_code, as:"string" %>
           </div>
-          <div class="actions">
-            <%= f.submit %>
+          <div class="form-actions">
+            <%= f.submit "deposit", class:"btn"  %>
           </div>
         <% end %>
       </div>
       <div role="tabpanel" class="tab-pane" id="messages">
-        <%= simple_form_for(deposit, url: my_deposits_path) do |f| %>
+        <%= better_form_for(deposit, url: my_deposits_path) do |f| %>
         <%= f.input :payment_method_id, input_html: { value: 3 }, as: :hidden %>
           <%= render partial: "payment_methods/method_weixin" %>
-          <div class="field">
-            <%= f.label :amount %>
-            <%= f.text_field :amount %>
+          <div class="form-inputs">
+            <%= f.input :amount, as:"string" %>
+            <%= f.input :promotion_code, as:"string" %>
           </div>
-
-          <div class="actions">
-            <%= f.submit %>
+          <div class="form-actions">
+            <%= f.submit "deposit", class:"btn"  %>
           </div>
         <% end %>
       </div>
