@@ -40,6 +40,8 @@ module My
           flash[:notice] = "Password changed!"
         end
         render :change_password
+      else
+        @selected_password = params["selected_password"] ? params["selected_password"] : "login"
       end
     end
 

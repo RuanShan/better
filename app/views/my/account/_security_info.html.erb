@@ -1,54 +1,55 @@
+为了增强您的账户安全，请提交详细信息，便于工作人员审核
 <table class="table">
   <thead>
     <tr>
       <td>icon</td>
-      <td>security index</td>
+      <td>安全指数</td>
       <td colspan="2"><%=score_bar(current_user.security_score,400)%></td>
-      <td><%=current_user.security_score%></td>
+      <td><%=current_user.security_score%>分</td>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>icon</td>
-      <td>login password</td>
+      <td>登录密码</td>
       <td>+30</td>
-      <td>description</td>
+      <td>强度高的密码更安全</td>
       <td><%=link_to "修改密码", change_password_my_account_path(current_user), class:"btn btn-primary"%></td>
     </tr>
     <tr>
       <td>icon</td>
-      <td>bind name</td>
+      <td>绑定实名</td>
       <td>+15</td>
-      <td>description</td>
-      <td><%=link_to "bind now", bind_name_my_account_path(current_user), class:"btn btn-primary"%></td>
+      <td>个人真实身份信息， 用户提款和确认身份</td>
+      <td><%=link_to current_user.bind_name? ? "立即查看" : "立即绑定", bind_name_my_account_path(current_user), class:"btn btn-primary"%></td>
     </tr>
     <tr>
       <td>icon</td>
-      <td>money password</td>
+      <td>资金密码</td>
       <td>+15</td>
-      <td>description</td>
+      <td>非常重要！ 用于提款或转账时验证身份</td>
       <td><%=link_to "修改密码", change_password_my_account_path(current_user), class:"btn btn-primary"%></td>
     </tr>
     <tr>
       <td>icon</td>
-      <td>bind bank</td>
+      <td>绑定银行卡</td>
       <td>+20</td>
-      <td>description</td>
-      <td><%=link_to "bind now", bind_bank_my_account_path(current_user), class:"btn btn-primary"%></td>
+      <td>提款银行卡，绑定后账户资金更加安全</td>
+      <td><%=link_to current_user.bind_bank? ? "立即查看" : "立即绑定", bind_bank_my_account_path(current_user), class:"btn btn-primary"%></td>
     </tr>
     <tr>
       <td>icon</td>
-      <td>bind email</td>
+      <td>绑定邮箱</td>
       <td>+10</td>
-      <td>description</td>
-      <td><%=link_to "bind email", set_email_my_account_path(current_user), class:"btn btn-primary"%></td>
+      <td>用于保护账户安全和找回密码</td>
+      <td><%=link_to current_user.bind_email? ? "立即查看" : "立即绑定", set_email_my_account_path(current_user), class:"btn btn-primary"%></td>
     </tr>
     <tr>
       <td>icon</td>
-      <td>password protect</td>
+      <td>密保问题</td>
       <td>+10</td>
-      <td>description</td>
-      <td><%=link_to "setup now", set_password_protection_my_account_path(current_user), class:"btn btn-primary"%></td>
+      <td>用户找回密码、修改账户资料时验证身份</td>
+      <td><%=link_to current_user.set_password_protection? ? "立即查看" : "立即设置", set_password_protection_my_account_path(current_user), class:"btn btn-primary"%></td>
     </tr>
 
   </tbody>

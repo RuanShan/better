@@ -17,11 +17,11 @@
           <%= f.input :payment_method_id, input_html: { value: 1 }, as: :hidden %>
           <%= render partial: "payment_methods/method_alipay_bank" %>
           <div class="form-inputs">
-            <%= f.input :amount, as:"string" %>
-            <%= f.input :promotion_code, as:"string" %>
+            <%= f.input :amount, label: "充值全额", as:"string" %>
+            <%= f.input :promotion_code, label: "活动代码", as:"string" %>
           </div>
           <div class="form-actions">
-            <%= f.submit "deposit", class:"btn"  %>
+            <%= f.submit "下一步", class:"btn"  %>
           </div>
         <% end %>
       </div>
@@ -30,11 +30,11 @@
         <%= f.input :payment_method_id, input_html: { value: 2 }, as: :hidden %>
           <%= render partial: "payment_methods/method_bank_transfer" %>
           <div class="form-inputs">
-            <%= f.input :amount, as:"string" %>
-            <%= f.input :promotion_code, as:"string" %>
+            <%= f.input :amount, label: "充值全额", as:"string" %>
+            <%= f.input :promotion_code, label: "活动代码", as:"string" %>
           </div>
           <div class="form-actions">
-            <%= f.submit "deposit", class:"btn"  %>
+            <%= f.submit "下一步", class:"btn"  %>
           </div>
         <% end %>
       </div>
@@ -43,11 +43,11 @@
         <%= f.input :payment_method_id, input_html: { value: 3 }, as: :hidden %>
           <%= render partial: "payment_methods/method_weixin" %>
           <div class="form-inputs">
-            <%= f.input :amount, as:"string" %>
-            <%= f.input :promotion_code, as:"string" %>
+            <%= f.input :amount, label: "充值全额", as:"string" %>
+            <%= f.input :promotion_code, label: "活动代码", as:"string" %>
           </div>
           <div class="form-actions">
-            <%= f.submit "deposit", class:"btn"  %>
+            <%= f.submit "下一步", class:"btn"  %>
           </div>
         <% end %>
       </div>

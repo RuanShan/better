@@ -6,16 +6,16 @@
   </div>
   <div class="col-md-10">
       <div class="pull-left">
-        账户资产（资产 =中心钱包+其他平台钱包）
+        账户资产: ￥<%=current_user.center_wallet_balance%>
       </div>
       <div class="pull-right">
-        资金密码
-        电子邮箱
-        密保问题
+        <%=link_to "资金密码", change_password_my_account_path(current_user, :selected_password=> "money")%>
+        <%=link_to "电子邮箱", set_email_my_account_path(current_user)%>
+        <%=link_to "密保问题", set_password_protection_my_account_path(current_user)%>
       </div>
 
       <div class="pull-right">
-        安全指数80 提升
+        安全指数80 <%=link_to "提升", {controller: 'my/account', action: 'security_center', id: current_user}%>
       </div>
 
   </div>

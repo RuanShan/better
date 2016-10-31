@@ -2,11 +2,11 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>DateTime</th>
-      <th>Number</th>
-      <th>Deposit method</th>
-      <th>Amount</th>
-      <th>State</th>
+      <th>日期/时间(GMT+8)</th>
+      <th>交易号码</th>
+      <th>存款方式</th>
+      <th>全额(RMB)</th>
+      <th>状态</th>
     </tr>
   </thead>
 
@@ -14,7 +14,7 @@
     <%total_amount=0%>
     <% if @deposits.empty? %>
       <tr>
-        <td colspan="6">No deposit records</td>
+        <td colspan="6">暂无记录</td>
       <tr>
     <% else %>
     <% @deposits.each do |deposit| %>
@@ -30,7 +30,7 @@
     <% end %>
   <% end %>
   <tr>
-    <td colspan="6"><%=content_tag :span, "total amount:#{total_amount}", style: 'float:right;'%></td>
+    <td colspan="6"><%=content_tag :span, "充值记录总额(￥):#{total_amount}", style: 'float:right;'%></td>
   <tr>
   </tbody>
 </table>

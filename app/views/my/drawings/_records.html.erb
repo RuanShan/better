@@ -2,11 +2,11 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>Datetime</th>
-      <th>Serialnumber</th>
-      <th>Method</th>
-      <th>Amount</th>
-      <th>State</th>
+      <th>日期/时间(GMT+8)</th>
+      <th>交易号码</th>
+      <th>提款方式</th>
+      <th>全额(RMB)</th>
+      <th>状态</th>
     </tr>
   </thead>
 
@@ -14,7 +14,7 @@
     <%total_amount=0%>
     <% if @drawings.empty? %>
       <tr>
-        <td colspan="6">No drawing records</td>
+        <td colspan="6">暂无记录</td>
       <tr>
     <% else %>
       <% @drawings.each do |drawing| %>
@@ -30,7 +30,7 @@
       <% end %>
     <% end %>
     <tr>
-      <td colspan="6"><%=content_tag :span, "total amount:#{total_amount}", style: 'float:right;'%></td>
+      <td colspan="6"><%=content_tag :span, "提款记录总额(￥):#{total_amount}", style: 'float:right;'%></td>
     <tr>
   </tbody>
 </table>

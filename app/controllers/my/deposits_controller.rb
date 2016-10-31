@@ -29,7 +29,7 @@ module My
     # POST /deposits.json
     def create
       @deposit = Deposit.new(deposit_params)
-      @deposit.user = user
+      @deposit.user = current_user
       @deposit.do_with_promotion
 
       respond_to do |format|

@@ -2,10 +2,10 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>DateTime</th>
-      <th>Plantform</th>
-      <th>Bid Amount</th>
-      <th>Win/lose Amount</th>
+      <th>日期/时间(GMT+8)</th>
+      <th>平台</th>
+      <th>投注全额(RMB)</th>
+      <th>输赢全额(RMB)</th>
     </tr>
   </thead>
 
@@ -14,7 +14,7 @@
     <%total_win_lose_amount=0%>
     <% if @bids.empty? %>
       <tr>
-        <td colspan="5">No bid records</td>
+        <td colspan="5">暂无记录</td>
       <tr>
     <% else %>
     <% @bids.each do |bid| %>
@@ -31,8 +31,8 @@
   <% end %>
   <tr>
     <td colspan="5">
-      <%=content_tag :span, "total win/lose amount:#{total_win_lose_amount}", style: 'float:right;'%>
-      <%=content_tag :span, "total amount:#{total_amount}", style: 'float:right;margin-right:20px;'%>
+      <%=content_tag :span, "输赢记录总额(￥):#{total_win_lose_amount}", style: 'float:right;'%>
+      <%=content_tag :span, "投注记录总额(￥):#{total_amount}", style: 'float:right;margin-right:20px;'%>
     </td>
   <tr>
   </tbody>

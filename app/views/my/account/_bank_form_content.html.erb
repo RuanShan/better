@@ -1,11 +1,13 @@
 <%disabled = (@user_bank && @user_bank.persisted?) ? true : false%>
 <%password_display=(@user_bank && @user_bank.persisted?) ? "display:none" : "display:block"%>
-<%= label_tag :real_name, "Name on card" %>
-<%= inline_text_span(current_user.real_name)%>
-<%= bank_form.input :name, as:"string", disabled: disabled %>
-<%= bank_form.input :card_number, as:"string", disabled: disabled  %>
-<%= bank_form.input :branch_name, as:"string", disabled: disabled  %>
-<%= bank_form.input :address, as:"string", disabled: disabled  %>
+<div class="form-group string optional user_phone" style="display:block;margin:10px 0;">
+  <%= label_tag :real_name, "户名", class: 'col-md-2', style: 'text-align:right;' %>
+  <%= inline_text_span(current_user.real_name)%>
+</div>
+<%= bank_form.input :name, label: '银行名称', as:"string", disabled: disabled %>
+<%= bank_form.input :card_number, label: '银行卡号', as:"string", disabled: disabled  %>
+<%= bank_form.input :branch_name, label: '分支名称', as:"string", disabled: disabled  %>
+<%= bank_form.input :address, label: '地址', as:"string", disabled: disabled  %>
 <div id="password_div" style="<%=password_display%>">
-  <%= bank_form.input :current_money_password, class:"required" %>
+  <%= bank_form.input :current_money_password, label: '资金密码', class:"required" %>
 </div>

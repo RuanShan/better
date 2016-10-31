@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def better_form_for(object, *args, &block)
     options = args.extract_options!
-    simple_form_for(object, *(args << options.merge(builder: BetterFormBuilder, defaults: { wrapper_html: { style: 'display:block;margin:10px 0;' }, input_html: {:style => 'margin:0px 10px;'} }, :html => {:class => 'form-inline' })), &block)
+    simple_form_for(object, *(args << options.merge(builder: BetterFormBuilder, defaults: { wrapper_html: { style: 'display:block;margin:10px 0;' }, label_html: { class: 'col-md-2', style: 'text-align:right;' }, input_html: {} }, :html => {:class => 'form-inline' })), &block)
   end
 
   def text_span(text)
@@ -22,6 +22,6 @@ end
 
 class BetterFormBuilder < SimpleForm::FormBuilder
   def fields_for(attribute_name, options = {}, &block)
-    super(attribute_name, options.merge(defaults: { wrapper_html: { style: 'display:block;margin:10px 0;' }, input_html: {:style => 'margin:0px 10px;'} }, :html => {:class => 'form-inline' }), &block)
+    super(attribute_name, options.merge(defaults: { wrapper_html: { style: 'display:block;margin:10px 0;' }, label_html: { class: 'col-md-2', style: 'text-align:right;' }, input_html: {:style => 'margin:0px 10px;'} }, :html => {:class => 'form-inline' }), &block)
   end
 end

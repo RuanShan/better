@@ -1,10 +1,9 @@
-<h3>Messages</h3>
 <table class="table">
   <thead>
     <tr>
-      <td>time</td>
-      <td>subject <%=link_to 'clear', read_my_messages_path, :method=>:put%></td>
-      <td>delete</td>
+      <td>日期/时间</td>
+      <td>主题<%=link_to '全部标记为空', read_my_messages_path, :method=>:put%></td>
+      <td>清空</td>
     </tr>
   </thead>
   <tbody>
@@ -16,7 +15,7 @@
           <%=link_to message.title, read_my_message_path(message),:method=>:put, :remote=>true,:onclick=>"$('#mc#{message.id}').toggle();$('#mspan#{message.id}').css('font-weight','normal')" %>
         </span>
       </td>
-      <td><%=link_to 'delete',my_message_path(message,:page=>@page), :method=>:delete%></td>
+      <td><%=link_to '删除',my_message_path(message,:page=>@page), :method=>:delete%></td>
     </tr>
     <tr id="mc<%=message.id%>" style="display:none;">
       <td colspan="3"><%= message.content %></td>

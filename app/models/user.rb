@@ -1,6 +1,6 @@
+require "id_card.rb"
 class User < ApplicationRecord
   include WalletBlance
-
   has_many :user_messages
   has_many :user_banks
   has_many :deposits
@@ -81,7 +81,10 @@ class User < ApplicationRecord
   def bind_name(send_code, name_options, session)
     @binding_name = true
     self.assign_attributes(name_options)
+
     if send_code == 1
+      code=123456
+=begin
       code =rand(999999).to_s
       alidayu_respond = Alidayu.send_sms({
         template_id: "SMS_22595044",
@@ -94,6 +97,7 @@ class User < ApplicationRecord
       })
       #logger.debug "----------------code=#{code},alidayu_respond=#{alidayu_respond.inspect}"
       validate_alidayu_response(alidayu_respond)
+=end
       if errors.empty?
         session["validate_phone"] = phone
         session["validate_code"] = code
@@ -103,7 +107,16 @@ class User < ApplicationRecord
     else
       validate_my_code(session)
       if session["validate_phone"] == phone
-        self.save
+        if id_type == "id_card"
+          error_code, result = Juhe::IdCard.search(id_number, real_name)
+          if error_code.to_i == 0
+            match = result["res"].to_i == 1 ? true : false
+            errors.add(:real_name, "real name and id number are not match") unless match
+          else
+            errors.add(:real_name, "verify failed : #{result}")
+          end
+        end
+        self.save if self.errors.empty?
       else
         errors.add(:phone, "phone number must be the one send validate code!")
       end
@@ -113,13 +126,20 @@ class User < ApplicationRecord
   def bind_bank(bank_options)
     @password_prefix="money_"
     current_money_password = bank_options["current_money_password"]
+    new_user_bank = user_banks.build(bank_options)
     if valid_password? current_money_password
-      user_banks.create(bank_options)
+      error_code, result = Juhe::Bank.verify_bank(new_user_bank.card_number, id_number, real_name, app_key:'5545c1865155bc88228d2520cc5c56d2')
+      if error_code.to_i == 0
+        match = result["res"].to_i == 1 ? true : false
+        new_user_bank.errors.add(:card_number, "real name and card number are not match") unless match
+      else
+        new_user_bank.errors.add(:card_number, "verify failed : #{result}")
+      end
+      new_user_bank.save if new_user_bank.errors.empty?
     else
-      new_user_bank = user_banks.new
       new_user_bank.errors.add(:current_money_password, "not right")
-      new_user_bank
     end
+    new_user_bank
   end
 
   def security_score
@@ -154,8 +174,8 @@ class User < ApplicationRecord
   end
   #============================money===========================================
   def center_wallet_balance
-    wallets.master.sum(:amount)
-    #wallets.inject(0){|total_amount,w|total_amount+=w.amount}
+    #wallets.master.sum(:amount)
+    wallets.inject(0){|total_amount,w|total_amount+=w.amount}
   end
 
   def drawings_today
@@ -219,8 +239,8 @@ class User < ApplicationRecord
       if last_send_duration > 10*60
         errors.add(:validate_code, "validate code timeout, please send again!")
       else
-        logger.debug "++++++++++validate_code=#{validate_code},session['validate_code']=#{session['validate_code']}"
-        unless validate_code == session["validate_code"]
+        #logger.debug "++++++++++validate_code=#{validate_code},session['validate_code']=#{session['validate_code']}"
+        unless validate_code.to_s == session["validate_code"].to_s
           errors.add(:validate_code, "validate code not right!")
         end
       end

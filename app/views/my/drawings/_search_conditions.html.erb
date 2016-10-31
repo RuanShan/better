@@ -5,9 +5,9 @@
 %>
 <div class="">
   <%=form_tag search_my_drawings_path do%>
-    <%=text_span "start date"%><%=calendar "start_date", @start_date%><%=text_span "to"%><%=calendar "end_date", @end_date%>
-    <%=text_span "state"%><%=drawing_state_select "state", @state%>
-    <%=content_tag(:div, submit_tag("search",  class:"form-control"), style:'width:100px;float:left;margin:5px;')%>
+    <%=text_span "起始日期"%><%=calendar "start_date", @start_date%><%=text_span "到"%><%=calendar "end_date", @end_date%>
+    <%=text_span "状态"%><%=drawing_state_select "state", @state%>
+    <%=content_tag(:div, submit_tag("查询",  class:"form-control"), style:'width:100px;float:left;margin:5px;')%>
   <%end%>
 </div>
 <div id="drawing_records" style="padding-top:20px;">

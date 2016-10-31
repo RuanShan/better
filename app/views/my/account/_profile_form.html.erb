@@ -3,15 +3,19 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.label :nickname%>
-      <%=inline_text_span(current_user.name)%><br>
-      <%= f.label :gender%>
-      <%= f.collection_radio_buttons :gender, [['male', 'Male'] ,['female', 'Female'],['secret', 'Secret']], :first, :last%>
-      <%= f.input :phone, as:"string" %>
-      <%= f.input :qq, as:"string" %>
+      <div class="form-group string optional user_phone" style="display:block;margin:10px 0;">
+        <%= f.label :nickname, "用户名", class: 'col-md-2', style: 'text-align:right;'%>
+        <%=inline_text_span(current_user.name)%>
+      </div>
+      <div class="form-group string optional user_phone" style="display:block;margin:10px 0;">
+        <%= f.label :gender, "性别", class: 'col-md-2', style: 'text-align:right;'%>
+        <%= f.collection_radio_buttons :gender, [['male', '男'] ,['female', '女'],['secret', '保密']], :first, :last%>
+      </div>
+      <%= f.input :phone, label: '联系电话', as:"string" %>
+      <%= f.input :qq, label: 'QQ号', as:"string" %>
     </div>
     <div class="form-actions">
-      <%= f.button :submit %>
+      <%= f.button :submit, "更新资料", class: 'col-md-offset-2' %>
     </div>
   <% end %>
 </div>
