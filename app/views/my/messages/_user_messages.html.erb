@@ -1,15 +1,16 @@
+<%if @messages.present?%>
 <table class="table">
   <thead>
     <tr>
       <td>日期/时间</td>
-      <td>主题<%=link_to '全部标记为空', read_my_messages_path, :method=>:put%></td>
-      <td>清空</td>
+      <td><div style="width:40%;float:left;">主题</div><div style="width:60%;text-align:right;float:left;"><%=link_to '全部标记为空', read_my_messages_path, :method=>:put%></div></td>
+      <td><%=link_to "清空", delete_my_messages_path(), :method=>:put %></td>
     </tr>
   </thead>
   <tbody>
     <% @messages.each do |message| %>
     <tr>
-      <td><%= message.created_at %></td>
+      <td><%= message.created_at.to_s(:db) %></td>
       <td>
         <span id="mspan<%=message.id%>" <%unless current_user.read? message.id %>style="font-weight:bold;"<%end%> >
           <%=link_to message.title, read_my_message_path(message),:method=>:put, :remote=>true,:onclick=>"$('#mc#{message.id}').toggle();$('#mspan#{message.id}').css('font-weight','normal')" %>
@@ -24,3 +25,6 @@
   </tbody>
 </table>
 <%= will_paginate @messages %>
+<% else %>
+  您还没有收到消息
+<% end %>

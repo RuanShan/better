@@ -108,6 +108,7 @@ class User < ApplicationRecord
       validate_my_code(session)
       if session["validate_phone"] == phone
         if id_type == "id_card"
+          logger.debug "++++++++++++id_number=#{id_number}"
           error_code, result = Juhe::IdCard.search(id_number, real_name)
           if error_code.to_i == 0
             match = result["res"].to_i == 1 ? true : false
@@ -127,19 +128,38 @@ class User < ApplicationRecord
     @password_prefix="money_"
     current_money_password = bank_options["current_money_password"]
     new_user_bank = user_banks.build(bank_options)
+    logger.debug "==========================bank_options=#{bank_options.inspect}"
+    logger.debug "==========================new_user_bank=#{new_user_bank.inspect}"
+    if new_user_bank.id.present? && user_banks.pluck(:id).include?(new_user_bank.id.to_i)
+      new_user_bank = UserBank.find(new_user_bank.id)
+      logger.debug "==========================new_user_bank exists, is =#{new_user_bank.inspect}"
+    end
     if valid_password? current_money_password
-      error_code, result = Juhe::Bank.verify_bank(new_user_bank.card_number, id_number, real_name, app_key:'5545c1865155bc88228d2520cc5c56d2')
-      if error_code.to_i == 0
-        match = result["res"].to_i == 1 ? true : false
-        new_user_bank.errors.add(:card_number, "真实姓名和银行卡号不匹配，请重新输入") unless match
-      else
-        new_user_bank.errors.add(:card_number, "验证失败 : #{result}")
+      unless new_user_bank.persisted?
+        error_code, result = Juhe::Bank.verify_bank(new_user_bank.card_number, id_number, real_name)
+        if error_code.to_i == 0
+          match = result["res"].to_i == 1 ? true : false
+          new_user_bank.errors.add(:card_number, "真实姓名和银行卡号不匹配，请重新输入") unless match
+        else
+          new_user_bank.errors.add(:card_number, "验证失败 : #{result}")
+        end
+        new_user_bank.save if new_user_bank.errors.empty?
       end
-      new_user_bank.save if new_user_bank.errors.empty?
     else
       new_user_bank.errors.add(:current_money_password, "当前资金密码不正确")
     end
     new_user_bank
+  end
+
+  def drawing(drawing_options)
+    new_user_bank = bind_bank(drawing_options['user_bank_attributes'])
+    new_drawing = self.drawings.build
+    new_drawing.user_bank = new_user_bank
+    if new_user_bank.errors.empty?
+      new_drawing.amount = drawing_options['amount']
+      new_drawing.save
+    end
+    new_drawing
   end
 
   def security_score
@@ -224,6 +244,11 @@ class User < ApplicationRecord
     deleted_message.state=0
     deleted_message.save
   end
+
+  def delete_messages
+    available_messages.each{|am|delete_message(am.id)}
+  end
+
 
   private
 

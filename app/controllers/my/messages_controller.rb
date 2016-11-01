@@ -21,6 +21,11 @@ module My
       redirect_to controller: 'my/messages', :page=>@page
     end
 
+    def delete
+      current_user.delete_messages
+      redirect_to controller: 'my/messages'
+    end
+
   end
 
 end

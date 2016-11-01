@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     resources :messages do
       put 'read', on: :member
       put 'read', on: :collection
+      put 'delete', on: :collection
     end
 
     resources :bids do

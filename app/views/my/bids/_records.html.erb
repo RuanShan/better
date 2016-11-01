@@ -20,10 +20,10 @@
     <% @bids.each do |bid| %>
       <tr>
         <td><%= bid.created_at.to_i %></td>
-        <td><%= bid.created_at %></td>
+        <td><%= bid.display_created_at %></td>
         <td><%= bid.platform %></td>
-        <td><%= bid.amount %></td>
-        <td><%= bid.win_lose_amount %></td>
+        <td><%= bid.display_amount %></td>
+        <td><%= bid.display_win_lose_amount %></td>
       </tr>
       <%total_amount += bid.amount%>
       <%total_win_lose_amount += bid.win_lose_amount%>
@@ -31,8 +31,8 @@
   <% end %>
   <tr>
     <td colspan="5">
-      <%=content_tag :span, "输赢记录总额(￥):#{total_win_lose_amount}", style: 'float:right;'%>
-      <%=content_tag :span, "投注记录总额(￥):#{total_amount}", style: 'float:right;margin-right:20px;'%>
+      <%=content_tag :span, "输赢记录总额:#{display_money(total_win_lose_amount)}", style: 'float:right;'%>
+      <%=content_tag :span, "投注记录总额:#{display_money(total_amount)}", style: 'float:right;margin-right:20px;'%>
     </td>
   <tr>
   </tbody>

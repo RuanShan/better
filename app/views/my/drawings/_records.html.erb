@@ -20,17 +20,17 @@
       <% @drawings.each do |drawing| %>
         <tr>
           <td><%= drawing.created_at.to_i %></td>
-          <td><%= drawing.created_at %></td>
+          <td><%= drawing.display_created_at %></td>
           <td><%= drawing.number %></td>
           <td><%= drawing.user_bank_name %></td>
-          <td><%= drawing.amount %></td>
-          <td><%= drawing.state %></td>
+          <td><%= drawing.display_amount %></td>
+          <td><%= display_state(drawing.state) %></td>
         </tr>
         <%total_amount += drawing.amount%>
       <% end %>
     <% end %>
     <tr>
-      <td colspan="6"><%=content_tag :span, "提款记录总额(￥):#{total_amount}", style: 'float:right;'%></td>
+      <td colspan="6"><%=content_tag :span, "提款记录总额:#{display_money(total_amount)}", style: 'float:right;'%></td>
     <tr>
   </tbody>
 </table>

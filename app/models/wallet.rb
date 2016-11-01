@@ -1,4 +1,6 @@
 class Wallet < ApplicationRecord
+  extend DisplayMoney
+  money_methods :amount
   extend  DisplayDateTime
   date_time_methods :created_at
 

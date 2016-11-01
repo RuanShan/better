@@ -5,11 +5,20 @@
     <%= f.error_notification %>
     <div class="form-inputs">
       <%= f.input :real_name, label: '真实姓名', disabled: disabled%>
-      <%= f.label :id_type, "证件类型", class: 'col-md-2', style: 'text-align:right;'  %>
-      <%= f.collection_radio_buttons :id_type, [['id_card', '身份证'] ,['passport', '护照']], :first, :last, disabled: disabled %>
+      <div class="form-group string optional ">
+        <%= f.label :id_type, "证件类型", class: 'col-md-2', style: 'text-align:right;'  %>
+        <div class="col-md-10">
+          <%= f.collection_radio_buttons :id_type, [['id_card', '身份证'] ,['passport', '护照']], :first, :last, disabled: disabled %>
+        </div>
+      </div>
       <%= f.input :id_number, label: '证件号', disabled: disabled %>
       <%= f.input :phone, label: '电话号码' %>
-      <%=link_to "发送验证码", {}, class:"btn btn-default col-sm-offset-2", href:"#", onclick:"$('#send_code').val('1');$('#edit_user_#{current_user.id}').submit();return false;" %>
+      <div class="form-group string optional ">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <%=link_to "发送验证码", {}, class:"btn btn-default", href:"#", onclick:"$('#send_code').val('1');$('#edit_user_#{current_user.id}').submit();return false;" %>
+        </div>
+      </div>
       <%= f.input :validate_code, label: '验证码' %>
       <%=hidden_field_tag :send_code, "0" %>
     </div>

@@ -2,8 +2,8 @@
 <div class="my-sub-title">
   <span> 中心钱包 </span>
   <div class="pull-right">
-    <button href-plus="" url="#/my/recharge" class="btn btn-primary"><span class="" ng-bind="'user-operation-charge' | i18n">充值</span></button>
-    <button href-plus="" url="#/my/withdraw" class="btn btn-primary"><span class="" ng-bind="'user-operation-withdrawal' | i18n">提款</span></button>
+    <%=link_to "充值", {controller: 'my/deposits', action: 'new'}, class:"btn btn-primary"%>
+    <%=link_to "提款", {controller: 'my/drawings', action: 'new'}, class:"btn btn-primary"%>
   </div>
 </div>
 

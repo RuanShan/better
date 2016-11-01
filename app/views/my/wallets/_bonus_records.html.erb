@@ -20,16 +20,16 @@
       <% @bonuses.each do |bonus| %>
         <tr>
           <td><%= bonus.created_at.to_i %></td>
-          <td><%= bonus.created_at %></td>
+          <td><%= bonus.display_created_at %></td>
           <td><%= bonus.number %></td>
-          <td><%= bonus.amount %></td>
+          <td><%= bonus.display_amount %></td>
           <td><%= bonus.memo %></td>
         </tr>
         <%total_amount += transfer.amount%>
       <% end %>
     <% end %>
     <tr>
-      <td colspan="5"><%=content_tag :span, "红利记录总额(￥):#{total_amount}", style: 'float:right;'%></td>
+      <td colspan="5"><%=content_tag :span, "红利记录总额:#{display_money(total_amount)}", style: 'float:right;'%></td>
     <tr>
   </tbody>
 </table>

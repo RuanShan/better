@@ -4,6 +4,8 @@ class Drawing < ApplicationRecord
 
   extend DisplayMoney
   money_methods :amount
+  extend  DisplayDateTime
+  date_time_methods :created_at
 
   extend FriendlyId
   friendly_id :number, slug_column: :number, use: :slugged

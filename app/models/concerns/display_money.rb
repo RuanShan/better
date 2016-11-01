@@ -21,7 +21,7 @@
         money_method = { money_method => {} } unless money_method.is_a? Hash
         money_method.each do |method_name, opts|
           define_method("display_#{method_name}") do
-            default_opts = respond_to?(:currency) ? { currency: currency } : { currency: 'RMB' }
+            default_opts = respond_to?(:currency) ? { currency: currency } : { currency: 'CNY' }
 
             BetterMoney.new(send(method_name), default_opts)
           end

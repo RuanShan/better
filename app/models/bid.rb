@@ -1,4 +1,9 @@
 class Bid < ApplicationRecord
+  extend DisplayMoney
+  money_methods :amount, :win_lose_amount
+  extend  DisplayDateTime
+  date_time_methods :created_at
+
   belongs_to :game_round
   belongs_to :user
 

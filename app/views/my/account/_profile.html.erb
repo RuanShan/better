@@ -6,7 +6,7 @@
   </div>
   <div class="col-md-10">
       <div class="pull-left">
-        账户资产: ￥<%=current_user.center_wallet_balance%>
+        账户资产: <%=display_money(current_user.center_wallet_balance)%>
       </div>
       <div class="pull-right">
         <%=link_to "资金密码", change_password_my_account_path(current_user, :selected_password=> "money")%>

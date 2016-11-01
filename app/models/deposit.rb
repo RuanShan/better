@@ -4,6 +4,8 @@
 class Deposit < ApplicationRecord
   extend DisplayMoney
   money_methods :amount
+  extend  DisplayDateTime
+  date_time_methods :created_at
 
   extend FriendlyId
   friendly_id :number, slug_column: :number, use: :slugged
@@ -35,10 +37,10 @@ class Deposit < ApplicationRecord
     if promotion_code.present?
       if promotion.present?
         unless promotion.valid_amount?(amount)
-          promotion_code_error_message= "this promotion need to deposit at lest #{promotion.factor1}"
+          promotion_code_error_message= "活动需要至少充值#{promotion.factor1}元"
         end
       else
-        promotion_code_error_message= "promotion code doesn't exists"
+        promotion_code_error_message= "活动代码不存在"
       end
     end
     if promotion_code_error_message.present?
