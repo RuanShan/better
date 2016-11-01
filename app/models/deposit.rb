@@ -5,9 +5,9 @@ class Deposit < ApplicationRecord
   extend DisplayMoney
   money_methods :amount
 
-  extend FriendlyId
-  friendly_id :number, slug_column: :number, use: :slugged
-  include NumberGenerator.new(prefix: 'R')
+  #extend FriendlyId
+  #friendly_id :number, slug_column: :number, use: :slugged
+  include NumberGenerator.new(prefix: 'D0', length: 20, letters: true)
 
   belongs_to :payment_method, required: true
   belongs_to :user, required: true
