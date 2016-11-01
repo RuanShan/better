@@ -71,16 +71,15 @@ class User < ApplicationRecord
     current_password = pp_options.delete("current_password")
     if valid_password? current_password
       if pp_options['pp_question'].present?
-        errors.add(:pp_answer, "can not be blank") if pp_options['pp_answer'].blank?
+        errors.add(:pp_answer, "请输入密保问题") if pp_options['pp_answer'].blank?
       else
-        errors.add(:pp_question, "can not be blank")
+        errors.add(:pp_question, "请输入密保答案")
       end
       self.update_attributes(pp_options)
     else
-      errors.add(:current_password, "not right")
+      errors.add(:current_password, "当前密码不正确")
     end
   end
-
   def bind_name(send_code, name_options, session)
     @binding_name = true
     self.assign_attributes(name_options)
@@ -106,7 +105,7 @@ class User < ApplicationRecord
         session["validate_code"] = code
         session["validate_code_send_time"] = Time.now
       end
-      errors.add(:validate_code, "validate code sended to your phone, please input the code")
+      errors.add(:validate_code, "验证码已发送至您的手机，请输入")
     else
       validate_my_code(session)
       if session["validate_phone"] == phone
@@ -114,14 +113,14 @@ class User < ApplicationRecord
           error_code, result = Juhe::IdCard.search(id_number, real_name)
           if error_code.to_i == 0
             match = result["res"].to_i == 1 ? true : false
-            errors.add(:real_name, "real name and id number are not match") unless match
+            errors.add(:real_name, "真实姓名和身份证不匹配，请重新输入") unless match
           else
-            errors.add(:real_name, "verify failed : #{result}")
+            errors.add(:real_name, "验证失败 : #{result}")
           end
         end
         self.save if self.errors.empty?
       else
-        errors.add(:phone, "phone number must be the one send validate code!")
+        errors.add(:phone, "必须使用发送验证码的电话号码")
       end
     end
   end
@@ -134,13 +133,13 @@ class User < ApplicationRecord
       error_code, result = Juhe::Bank.verify_bank(new_user_bank.card_number, id_number, real_name, app_key:'5545c1865155bc88228d2520cc5c56d2')
       if error_code.to_i == 0
         match = result["res"].to_i == 1 ? true : false
-        new_user_bank.errors.add(:card_number, "real name and card number are not match") unless match
+        new_user_bank.errors.add(:card_number, "真实姓名和银行卡号不匹配，请重新输入") unless match
       else
-        new_user_bank.errors.add(:card_number, "verify failed : #{result}")
+        new_user_bank.errors.add(:card_number, "验证失败 : #{result}")
       end
       new_user_bank.save if new_user_bank.errors.empty?
     else
-      new_user_bank.errors.add(:current_money_password, "not right")
+      new_user_bank.errors.add(:current_money_password, "当前资金密码不正确")
     end
     new_user_bank
   end
@@ -240,18 +239,17 @@ class User < ApplicationRecord
     if session["validate_code"].present? && session["validate_code_send_time"].present?
       last_send_duration = Time.now - session["validate_code_send_time"].to_datetime
       if last_send_duration > 10*60
-        errors.add(:validate_code, "validate code timeout, please send again!")
+        errors.add(:validate_code, "验证码过期，请重新发送")
       else
         #logger.debug "++++++++++validate_code=#{validate_code},session['validate_code']=#{session['validate_code']}"
         unless validate_code.to_s == session["validate_code"].to_s
-          errors.add(:validate_code, "validate code not right!")
+          errors.add(:validate_code, "验证码不正确")
         end
       end
     else
-      errors.add(:validate_code, "please send validate code!")
+      errors.add(:validate_code, "请先发送验证码至手机，再输入")
     end
   end
-
   #error_respond={"error_response"=>{"code"=>15, "msg"=>"Remote service error", "sub_code"=>"isv.BUSINESS_LIMIT_CONTROL", "sub_msg"=>"触发业务流控", "request_id"=>"3b4kmfzkvbq7"}}
   #success_respond={"alibaba_aliqin_fc_sms_num_send_response"=>{"result"=>{"err_code"=>"0", "model"=>"104132741839^1105207555898", "success"=>true}, "request_id"=>"z24nkhmlp79h"}}
   def validate_alidayu_response(alidayu_response)
@@ -260,7 +258,7 @@ class User < ApplicationRecord
       case error_code
       when 15
       when 40
-        errors.add(:phone, "please input your phone number")
+        errors.add(:phone, "请输入手机号")
       else
         error_message = alidayu_response["error_response"]["msg"]+":"+alidayu_response["error_response"]["sub_msg"]
         errors.add(:validate_code, error_message)
@@ -268,7 +266,7 @@ class User < ApplicationRecord
     else
       rresponse = alidayu_response["alibaba_aliqin_fc_sms_num_send_response"]["result"]
       unless rresponse["success"] == true
-        errors.add(:validate_code, "send fail! please resend!")
+        errors.add(:validate_code, "发送失败，请重新发送")
       end
     end
   end
