@@ -49,6 +49,8 @@ gem 'alipay'
 # 货币及显示格式定义
 gem 'monetize'
 
+# 会员树形结构
+gem 'awesome_nested_set'
 #gem 'paranoid'
 
 #send sms

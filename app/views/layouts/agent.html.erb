@@ -2,9 +2,9 @@
 <html lang="<%= I18n.locale.to_s %>">
   <head>
     <meta charset="utf-8">
-		<title><%= t("admin_panel_for") + ' ' + Setting.first.try(:site_name) %></title>
+		<title><%= t("agent.site.name")  %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_link_tag "admin", :media => "all" %>
+    <%= stylesheet_link_tag "agent", :media => "all" %>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -18,67 +18,30 @@
 	</head>
 
 	<body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <%= link_to Setting.first.try(:site_name), root_path, class: "navbar-brand" %>
-        </div>
-        <ul class="nav navbar-nav">
-          <%= content_tag :li, link_to( 'blog', blog_path) unless Setting.first.disable_blog? %>
-        </ul>
-        <%= render 'shared/login_info_for_navbar' %>
-      </div>
-    </div>
+    <%= render 'agent/shared/header' %>
 
 		<div class="container">
-
-			<div class="row">
-        <div class="col-xs-12">
-          <h1><%= t 'admin_panel' %>
-            <p id="admin-logo"><%= link_to image_tag('admin/admin-logo.jpg'), root_path, id: 'admin-logo' %></p>
-          </h1>
-        </div>
-      </div>
-
       <div class="row">
         <div class="col-xs-12 col-sm-9 col-lg-10">
           <%= render 'shared/flash_messages' %>
           <%= yield %>
-        </div>
-
-        <div class="col-xs-12 col-sm-3 col-lg-2">
-          <%= render 'shared/language_switcher' %>
-          <%= yield :admin_sidebar %>
         </div>
       </div>
 
   		<div class="row">
         <footer class="col-xs-12">
           <hr>
-          <p><b>Ten Thousand Hours</b><br />
-            <%= link_to "http://tenthousandhours.eu", "http://tenthousandhours.eu" %><br />
-            <%= link_to "Contact TKH", "http://tenthousandhours.eu/pages/5-contact-form" %><br /><br />
-            <%= image_tag 'admin/tkh-logo.png', alt: 'Ten Thousand Hours logo' %><br />
+          <p><b>this is footer</b><br />
+
           </p>
         </footer>
       </div>
 
     </div> <!-- /container -->
 
-    <%= javascript_include_tag "admin" %>
+    <%= javascript_include_tag "agent" %>
 
-    <% # the twitter typeahead javascript library needs all typeahead form fields to be present in DOM. this is an ugly hack %>
-    <% # FIXME - refactor this mess %>
-    <% if controller.controller_name == 'pages' %>
-      <%= javascript_include_tag 'admin/pages' %>
-    <% elsif controller.controller_name == 'illustrations' %>
-      <%= javascript_include_tag 'admin/illustrations' %>
-    <% elsif controller.controller_name == 'menus' %>
-      <%= javascript_include_tag 'admin/menus' %>
-    <% elsif controller.controller_name == 'courses' %>
-      <%= javascript_include_tag 'admin/courses' %>
-    <% end %>
+
 
 	</body>
 </html>

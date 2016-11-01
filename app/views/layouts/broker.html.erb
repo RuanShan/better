@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Better" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Better" %>">
-    <%= stylesheet_link_tag 'my', media: 'all' %>
-    <%= javascript_include_tag 'my' %>
+    <%= stylesheet_link_tag 'agent', media: 'all' %>
+    <%= javascript_include_tag 'agent' %>
     <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
     <% # This line ensures javascript code can access the current locale from Rails %>
@@ -14,18 +14,19 @@
   </head>
   <body>
     <div >
-      <%= render 'layouts/navigation' %>
+      <%= render 'agent/shared/header' %>
     </div>
-    <main role="main">
+    <div class="container" role="main">
        <%= render 'layouts/messages' %>
-       <%= render partial: "my/account/profile" %>
        <div class="row">
-         <%= render partial: "shared/user_sidebar" %>
+         <div class="col-md-2  user-sidebar">
+           <%= render partial: "agent/shared/user_sidebar" %>
+         </div>
          <div class="col-md-10 user-content" >
            <%= yield %>
          </div>
        </div>
-    </main>
+    </div>
     <%= render 'layouts/footer' %>
     <%= render 'shared/dialog' %>
   </body>

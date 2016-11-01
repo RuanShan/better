@@ -3,4 +3,6 @@ class Broker < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  alias_attribute :name, :nickname
 end

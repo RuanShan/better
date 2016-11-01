@@ -5,3 +5,6 @@ zh-CN:
         number: "交易号码"
         mount: "金额(RMB)"
         createed_at: "日期/时间(GMT+8)"
+  agent:
+    site:
+      name: 代理平台

@@ -1,6 +1,15 @@
 class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
   def change
     create_table :brokers do |t|
+      ## awesome_nested_set
+      t.integer :parent_id, :null => true, :index => true
+      t.integer :lft, :null => false, :index => true
+      t.integer :rgt, :null => false, :index => true
+      # optional fields
+      t.integer :depth, :null => false, :default => 0
+      t.integer :children_count, :null => false, :default => 0
+
+
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -25,18 +34,21 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
       # t.datetime :confirmation_sent_at
       # t.string   :unconfirmed_email # Only if using reconfirmable
 
-      ## Lockable
-      # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
-      # t.string   :unlock_token # Only if unlock strategy is :email or :both
-      # t.datetime :locked_at
+      # Lockable
+       t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
+       t.string   :unlock_token # Only if unlock strategy is :email or :both
+       t.datetime :locked_at
 
-
+      t.string :nickname
       t.timestamps null: false
     end
 
     add_index :brokers, :email,                unique: true
     add_index :brokers, :reset_password_token, unique: true
     # add_index :brokers, :confirmation_token,   unique: true
-    # add_index :brokers, :unlock_token,         unique: true
+    add_index :brokers, :unlock_token,         unique: true
+
+    add_column :users, :broker_id, default: 0, null: false, index:true
+
   end
 end

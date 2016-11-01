@@ -1,5 +1,5 @@
 class Agent::SessionsController < Devise::SessionsController
-  layout "unauthorized"
+  layout "agent"
 # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

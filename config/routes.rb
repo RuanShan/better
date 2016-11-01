@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get '/', to: 'welcome#index', as: :root
   end
   namespace :agent do
+    resources :broker
     resources :deposits
     get '/', to: 'welcome#index', as: :root
   end
