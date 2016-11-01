@@ -34,7 +34,7 @@ module My
 
       respond_to do |format|
         if @deposit.errors.empty?
-          format.html { redirect_to @deposit, notice: 'Deposit was successfully created.' }
+          format.html { redirect_to my_deposits_url, notice: 'Deposit was successfully created.' }
           format.json { render :show, status: :created, location: @deposit }
           format.js { redirect_to action: 'index', status: 303 }
           #format.js{ render_dialog dialog_view: 'wait_gateway_response' }
