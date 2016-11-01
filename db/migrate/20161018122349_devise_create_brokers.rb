@@ -48,7 +48,7 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
     # add_index :brokers, :confirmation_token,   unique: true
     add_index :brokers, :unlock_token,         unique: true
 
-    add_column :users, :broker_id, default: 0, null: false, index:true
+    add_column :users, :broker_id, :integer, default: 0, null: false, index:true
 
   end
 end
