@@ -5,4 +5,7 @@ class Broker < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   alias_attribute :name, :nickname
+
+
+  # 
 end

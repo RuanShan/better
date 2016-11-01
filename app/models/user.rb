@@ -2,8 +2,6 @@ require "id_card.rb"
 class User < ApplicationRecord
   include WalletBlance
 
-  acts_as_nested_set
-
   has_many :user_messages
   has_many :user_banks
   has_many :deposits
