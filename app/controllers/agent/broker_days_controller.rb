@@ -1,5 +1,7 @@
 module Agent
   class BrokerDaysController < BaseController
+    layout "broker"
+    before_action :authenticate_broker!
     before_action :set_broker_day, only: [:show, :edit, :update, :destroy]
 
     # GET /broker_days

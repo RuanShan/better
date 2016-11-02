@@ -4,5 +4,7 @@ FactoryGirl.define do
     name "Test Broker"
     sequence(:email) { |n| "broker#{n}@example.com" }
     password "please123"
+    lft 0
+    rgt 1
   end
 end

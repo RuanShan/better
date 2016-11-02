@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :bids
   #用户每日信息统计
   has_many :user_days
-  has_one  :user_today, ->{  }, class_name: 'UserDay'
+  has_one  :user_today, ->{ today }, class_name: 'UserDay'
 
   enum role: [:user, :vip ]
   enum gender: [:secret, :male, :female ]
