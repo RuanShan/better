@@ -42,6 +42,31 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.index ["user_id"], name: "index_bids_on_user_id"
   end
 
+  create_table "broker_days", force: :cascade do |t|
+    t.integer  "broker_id"
+    t.date     "effective_on"
+    t.integer  "clink_visits",           default: 0, null: false
+    t.integer  "blink_visits",           default: 0, null: false
+    t.integer  "user_counter",           default: 0, null: false
+    t.integer  "valued_user_counter",    default: 0, null: false
+    t.integer  "energetic_user_counter", default: 0, null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["broker_id"], name: "index_broker_days_on_broker_id"
+  end
+
+  create_table "broker_months", force: :cascade do |t|
+    t.integer  "broker_id"
+    t.integer  "clink_visits",           default: 0, null: false
+    t.integer  "blink_visits",           default: 0, null: false
+    t.integer  "user_counter",           default: 0, null: false
+    t.integer  "valued_user_counter",    default: 0, null: false
+    t.integer  "energetic_user_counter", default: 0, null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["broker_id"], name: "index_broker_months_on_broker_id"
+  end
+
   create_table "brokers", force: :cascade do |t|
     t.integer  "parent_id"
     t.integer  "lft",                                 null: false
@@ -58,10 +83,14 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.integer  "failed_attempts",        default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "nickname"
+    t.string   "number",                              null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "invitation_token"
@@ -77,6 +106,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.index ["invitations_count"], name: "index_brokers_on_invitations_count"
     t.index ["invited_by_id"], name: "index_brokers_on_invited_by_id"
     t.index ["lft"], name: "index_brokers_on_lft"
+    t.index ["number"], name: "index_brokers_on_number"
     t.index ["parent_id"], name: "index_brokers_on_parent_id"
     t.index ["reset_password_token"], name: "index_brokers_on_reset_password_token", unique: true
     t.index ["rgt"], name: "index_brokers_on_rgt"
@@ -92,10 +122,12 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.string   "state",             limit: 12
     t.string   "memo"
     t.string   "promotion_code"
+    t.datetime "completed_at"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
-    t.index ["number"], name: "index_deposits_on_number", unique: true
+    t.index ["number"], name: "index_deposits_on_number"
     t.index ["payment_method_id"], name: "index_deposits_on_payment_method_id"
+    t.index ["user_id", "created_at"], name: "index_deposits_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_deposits_on_user_id"
   end
 
@@ -105,9 +137,11 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.string   "number"
     t.decimal  "amount"
     t.string   "state",        limit: 12
+    t.datetime "completed_at"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.index ["user_bank_id"], name: "index_drawings_on_user_bank_id"
+    t.index ["user_id", "created_at"], name: "index_drawings_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_drawings_on_user_id"
   end
 
@@ -250,6 +284,18 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.index ["user_id"], name: "index_user_banks_on_user_id"
   end
 
+  create_table "user_days", force: :cascade do |t|
+    t.integer  "user_id"
+    t.date     "effective_on"
+    t.decimal  "deposit_amount", default: "0.0", null: false
+    t.decimal  "drawing_amount", default: "0.0", null: false
+    t.decimal  "bid_amount",     default: "0.0", null: false
+    t.decimal  "bonus_amount",   default: "0.0", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["user_id"], name: "index_user_days_on_user_id"
+  end
+
   create_table "user_messages", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "message_id"
@@ -258,6 +304,18 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.datetime "updated_at",             null: false
     t.index ["message_id"], name: "index_user_messages_on_message_id"
     t.index ["user_id"], name: "index_user_messages_on_user_id"
+  end
+
+  create_table "user_months", force: :cascade do |t|
+    t.integer  "user_id"
+    t.date     "effective_on"
+    t.decimal  "deposit_amount", default: "0.0", null: false
+    t.decimal  "drawing_amount", default: "0.0", null: false
+    t.decimal  "bid_amount",     default: "0.0", null: false
+    t.decimal  "bonus_amount",   default: "0.0", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["user_id"], name: "index_user_months_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -300,6 +358,8 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.integer  "invited_by_id"
     t.integer  "invitations_count",        default: 0
     t.integer  "broker_id",                default: 0,  null: false
+    t.index ["broker_id", "created_at"], name: "index_users_on_broker_id_and_created_at"
+    t.index ["created_at"], name: "index_users_on_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"

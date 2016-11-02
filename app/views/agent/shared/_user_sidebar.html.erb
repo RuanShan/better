@@ -5,7 +5,9 @@
             <div class="top_tit">代理中心首页</div>
             <div class="title"><span class="btn"></span>数据概况</div>
             <ul class="nav nav-sidebar">
-                <li class="cur"><a href="/agent/agentcenter">数据概况</a></li>
+                <li class="cur">
+                  <%= build_nav_link "数据概况", { controller: 'agent/broker'}%>
+                </li>
             </ul>
 
             <div class="title"><span class="btn"></span>月综合报表</div>
@@ -17,7 +19,9 @@
 
             <div class="title"><span class="btn"></span>日明细报表</div>
             <ul class="nav nav-sidebar">
-                <li><a href="/agent/day_promotion">日推广效果表</a></li>
+                <li>
+                  <%= build_nav_link "日推广效果表", { controller: 'agent/broker_days'}%>
+                </li>
                 <li><a href="/agent/day_profit">日盈利表</a></li>
             </ul>
 

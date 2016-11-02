@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+
   resources :games
 
 
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
     get '/', to: 'welcome#index', as: :root
   end
   namespace :agent do
+    resources :broker_days
+    resources :user_days
     resources :broker
     resources :deposits
     get '/', to: 'welcome#index', as: :root

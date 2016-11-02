@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Broker Days</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Broker</th>
+      <th>Effective on</th>
+      <th>Clink visits</th>
+      <th>Blink visits</th>
+      <th>User count</th>
+      <th>Valued user counter</th>
+      <th>Engergetic user counter</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @broker_days.each do |broker_day| %>
+      <tr>
+        <td><%= broker_day.broker %></td>
+        <td><%= broker_day.effective_on %></td>
+        <td><%= broker_day.clink_visits %></td>
+        <td><%= broker_day.blink_visits %></td>
+        <td><%= broker_day.user_count %></td>
+        <td><%= broker_day.valued_user_counter %></td>
+        <td><%= broker_day.engergetic_user_counter %></td>
+        <td><%= link_to 'Show', broker_day %></td>
+        <td><%= link_to 'Edit', edit_broker_day_path(broker_day) %></td>
+        <td><%= link_to 'Destroy', broker_day, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Broker Day', new_agent_broker_day_path %>

@@ -1,0 +1,1 @@
+json.partial! "user_days/user_day", user_day: @user_day

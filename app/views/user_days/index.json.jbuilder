@@ -1,0 +1,1 @@
+json.array! @user_days, partial: 'user_days/user_day', as: :user_day

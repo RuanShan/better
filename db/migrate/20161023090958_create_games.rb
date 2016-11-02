@@ -13,6 +13,9 @@ class CreateGames < ActiveRecord::Migration[5.0]
       t.timestamps null: false
     end
 
+    #add_column :users, :deposit_counter, :decimal # 记录用户存款额
+    #add_column :users, :drawing_counter, :decimal # 记录用户提款额
+    #add_column :bids, :bid_counter, :decimal      # 记录用户投注额
 
 
     # 游戏定义

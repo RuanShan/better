@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_day.user %>
+</p>
+
+<p>
+  <strong>Effective on:</strong>
+  <%= @user_day.effective_on %>
+</p>
+
+<p>
+  <strong>Deposit amount:</strong>
+  <%= @user_day.deposit_amount %>
+</p>
+
+<p>
+  <strong>Drawing amount:</strong>
+  <%= @user_day.drawing_amount %>
+</p>
+
+<p>
+  <strong>Bid amount:</strong>
+  <%= @user_day.bid_amount %>
+</p>
+
+<p>
+  <strong>Bonus:</strong>
+  <%= @user_day.bonus %>
+</p>
+
+<%= link_to 'Edit', edit_user_day_path(@user_day) %> |
+<%= link_to 'Back', user_days_path %>
