@@ -34,14 +34,15 @@ module My
     end
 
     def change_password
+      @selected_password = params["selected_password"] ? params["selected_password"] : "login"
       if request.patch?
-        current_user.change_password(params["user"])
+        @selected_password = params["user"]["password"] ? "login" : "money"
+        user_params = @selected_password == "login" ? login_password_params : money_password_params
+        current_user.change_password(user_params)
         if current_user.errors.empty?
-          flash[:notice] = "Password changed!"
+          flash[:notice] = @selected_password == "login" ? t(:login_password_changed) : t(:money_password_changed)
         end
         render :change_password
-      else
-        @selected_password = params["selected_password"] ? params["selected_password"] : "login"
       end
     end
 
@@ -49,7 +50,7 @@ module My
       if request.patch?
         current_user.update_attributes(profile_params)
         if current_user.errors.empty?
-          flash[:notice] = "Profile updated!"
+          flash[:notice] = t(:profile_updated)
         end
         render :change_profile
       end
@@ -59,7 +60,7 @@ module My
       if request.patch?
         current_user.set_email(email_params)
         if current_user.errors.empty?
-          flash[:notice] = "we've send an email to you, please confirm it!"
+          flash[:notice] = t(:send_email_for_user_confirm_new_email)
           redirect_to security_center_my_account_path(current_user)
         else
           render :set_email
@@ -71,7 +72,7 @@ module My
       if request.patch?
         current_user.set_password_protection(pp_params)
         if current_user.errors.empty?
-          flash[:notice] = "password protection success!"
+          flash[:notice] = t(:password_protection_success)
           redirect_to security_center_my_account_path(current_user)
         else
           render :set_password_protection
@@ -84,7 +85,7 @@ module My
         send_code = params["send_code"].to_i
         current_user.bind_name(send_code, bind_name_params, session)
         if current_user.errors.empty?
-          flash[:notice] = "bind name success!"
+          flash[:notice] = t(:bind_name_success)
           redirect_to security_center_my_account_path(current_user)
         else
           render :bind_name
@@ -96,10 +97,9 @@ module My
       if request.post?
         @user_bank = current_user.bind_bank(bank_params)
         if @user_bank.errors.empty?
-          flash[:notice] = "bind bank success!"
+          flash[:notice] = t(:bind_bank_success)
           redirect_to security_center_my_account_path(current_user)
         else
-          logger.debug "@user_bank.errors=#{@user_bank.errors.inspect}"
           render :bind_bank
         end
       else
@@ -112,6 +112,14 @@ module My
 
     def secure_params
       params.require(:user).permit(:role)
+    end
+
+    def login_password_params
+      params.require(:user).permit(:current_password, :password, :password_confirmation)
+    end
+
+    def money_password_params
+      params.require(:user).permit(:current_money_password, :money_password, :money_password_confirmation)
     end
 
     def email_params

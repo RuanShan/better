@@ -1,0 +1,10 @@
+zh-CN:
+  login_password_changed: 登录密码修改成功
+  money_password_changed: 资金密码修改成功
+  profile_updated: 资料修改成功
+  send_email_for_user_confirm_new_email: 已经向您的新邮箱发送邮件，请点击邮件中的确认链接进行最后的设置
+  password_protection_success: 密码保护设置成功
+  bind_name_success: 实名绑定成功
+  bind_bank_success: 银行绑定成功
+  deposit_success: 充值成功
+  drawing_success: 提款操作成功，请等待银行确认

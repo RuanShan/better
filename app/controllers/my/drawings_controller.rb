@@ -31,11 +31,9 @@ module My
     def create
       @user_banks = current_user.user_banks.green
       @drawing = current_user.drawing(drawing_params.to_h)
-      logger.debug "@drawing=#{@drawing.inspect}"
-      logger.debug "@drawing.user_bank.errors=#{@drawing.user_bank.errors.inspect}"
       respond_to do |format|
         if @drawing.user_bank.errors.empty? && @drawing.errors.empty?
-          format.html { redirect_to my_drawings_url, notice: 'Drawing was successfully created.' }
+          format.html { redirect_to my_drawings_url, notice: t(:drawing_success) }
           format.json { render :show, status: :created, location: @drawing }
         else
           format.html { render :new }
