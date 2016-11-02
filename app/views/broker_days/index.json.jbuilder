@@ -1,0 +1,1 @@
+json.array! @broker_days, partial: 'broker_days/broker_day', as: :broker_day

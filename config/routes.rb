@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :broker_days
+  resources :user_days
   resources :games
 
 

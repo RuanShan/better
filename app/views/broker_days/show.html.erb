@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Broker:</strong>
+  <%= @broker_day.broker %>
+</p>
+
+<p>
+  <strong>Effective on:</strong>
+  <%= @broker_day.effective_on %>
+</p>
+
+<p>
+  <strong>Clink visits:</strong>
+  <%= @broker_day.clink_visits %>
+</p>
+
+<p>
+  <strong>Blink visits:</strong>
+  <%= @broker_day.blink_visits %>
+</p>
+
+<p>
+  <strong>User count:</strong>
+  <%= @broker_day.user_count %>
+</p>
+
+<p>
+  <strong>Valued user counter:</strong>
+  <%= @broker_day.valued_user_counter %>
+</p>
+
+<p>
+  <strong>Engergetic user counter:</strong>
+  <%= @broker_day.engergetic_user_counter %>
+</p>
+
+<%= link_to 'Edit', edit_broker_day_path(@broker_day) %> |
+<%= link_to 'Back', broker_days_path %>

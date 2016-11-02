@@ -27,9 +27,12 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.string :state, limit: 12
       t.string :memo
       t.string :promotion_code
+      t.datetime :completed_at
       t.timestamps null: false
     end
-    add_index :deposits, [:number], unique: true
+    add_index :deposits, [:number]
+    add_index :deposits, [:user_id, :created_at]
+
 
     create_table :user_banks do |t|
       t.references :user, foreign_key: true
@@ -53,8 +56,11 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.string :number  #serial number
       t.decimal :amount
       t.string :state, limit: 12
+      t.datetime :completed_at
       t.timestamps null: false
     end
+    add_index :drawings, [:user_id, :created_at]
+
 
     create_table :messages do |t|
       t.string :title, null: false

@@ -1,13 +1,23 @@
 require "id_card.rb"
+# 用户存款总额计算
+# 用户7日内的流水计算
+#  user.bids.week.sum(:amount)
+
 class User < ApplicationRecord
   include WalletBlance
+
+  extend BetterDateScope
+  better_date_time_scope created_at: [:today, :month]
 
   has_many :user_messages
   has_many :user_banks
   has_many :deposits
   has_many :drawings
-  has_many :transfers
+
   has_many :bids
+  #用户每日信息统计
+  has_many :user_days
+  has_one  :user_today, ->{  }, class_name: 'UserDay'
 
   enum role: [:user, :vip ]
   enum gender: [:secret, :male, :female ]
@@ -17,8 +27,10 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
+
   after_initialize :set_default_role, :if => :new_record?
   alias_attribute :name, :nickname
+
 
   attr_reader :money_password, :current_money_password
   attr_accessor :money_password_confirmation, :password_prefix, :setting_pp, :binding_name, :validate_code
