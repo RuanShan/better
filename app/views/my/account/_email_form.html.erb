@@ -2,8 +2,8 @@
   <%= better_form_for(current_user, :url=>{:action=>"set_email"}) do |f| %>
     <div class="form-inputs">
       <div class="form-group string optional user_email">
-        <%= f.label :current_email, "当前邮件", class: 'col-md-2', style: 'text-align:right;' %>
-        <div class="col-md-10">
+        <%= f.label :current_email, "当前邮件", class: 'col-sm-3', style: 'text-align:right;' %>
+        <div class="col-sm-9">
           <%=inline_text_span(current_user.email)%>
         </div>
       </div>

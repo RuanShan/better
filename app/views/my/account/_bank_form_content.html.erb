@@ -3,8 +3,8 @@
 <%disabled = bank_disable ? bank_disable : ((@user_bank && @user_bank.persisted?) ? true : false)%>
 <%password_display= pdisplay ? pdisplay : (disabled == true ? "display:none" : "display:block")%>
 <div class="form-group string optional" style="display:block;margin:10px 0;">
-  <%= label_tag :real_name, "户名", class: 'col-md-2', style: 'text-align:right;' %>
-  <div class="col-md-10">
+  <%=bank_form.label :real_name, "户名", class: 'col-sm-3', style: 'text-align:right;' %>
+  <div class="col-sm-9">
     <%= inline_text_span(current_user.real_name)%>
   </div>
 </div>

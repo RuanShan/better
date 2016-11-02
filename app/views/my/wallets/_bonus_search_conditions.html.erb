@@ -3,9 +3,19 @@
 @end_date ||= ""
 %>
 <div class="clearfix" >
-  <%=form_tag search_bonuses_my_wallets_path do%>
-    <%=text_span "起始日期"%><%=calendar "start_date", @start_date%><%=text_span "到"%><%=calendar "end_date", @end_date%>
-    <%=content_tag(:div, submit_tag("查询",  class:"form-control"), style:'width:100px;float:left;margin:5px;')%>
+  <%=form_tag search_bonuses_my_wallets_path, class:"form-inline", role:"form" do%>
+    <div class="form-group">
+      <label for="start_date">起始日期</label>
+      <%=calendar "start_date", @start_date%>
+    </div>
+    <div class="form-group">
+      <label for="end_date">到</label>
+      <%=calendar "end_date", @end_date%>
+    </div>
+    <div class="form-group">
+      <%=submit_tag "查询",  class:"form-control"%>
+    </div>
+
   <%end%>
 </div>
 <div id="bonus_records" >

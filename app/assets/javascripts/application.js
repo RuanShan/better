@@ -15,6 +15,7 @@
 //= require tether.min
 //= require bootstrap-sprockets
 //= require moment
+//= require moment/zh-cn
 //= require bootstrap-datetimepicker
 //= require select2
 //= require base
