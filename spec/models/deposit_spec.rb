@@ -28,8 +28,8 @@ RSpec.describe Deposit, type: :model do
 
     context "deposit with promotion code, rule 1" do
       before(:each){create :promotion, code:"123456"}
-      let( :deposit_10000_invalid_pcode ){ build :deposit, promotion_code:'654321', amount: 10000, user: user, payment_method: payment_method }
-      let( :deposit_10000_valid_pcode ){ build :deposit, promotion_code:'123456', amount: 10000, user: user, payment_method: payment_method }
+      let( :deposit_10000_invalid_pcode ){ build :deposit, promotion_number:'654321', amount: 10000, user: user, payment_method: payment_method }
+      let( :deposit_10000_valid_pcode ){ build :deposit, promotion_number:'123456', amount: 10000, user: user, payment_method: payment_method }
 
       it "promotion code in valid" do
         deposit_10000_invalid_pcode.do_with_promotion

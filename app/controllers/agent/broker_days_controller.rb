@@ -6,10 +6,31 @@ module Agent
 
     # GET /broker_days
     # GET /broker_days.json
+    # 日盈利表
     def index
-      @broker_days = BrokerDay.all
+      # 缺省查询日期
+      to_date = DateTime.current.to_date
+      from_date = to_date.advance( days: -10 )
+      # 由于broker_day 和 日期不是一一对应， 所以需要按日期分页再查找。
+      search_params = permitted_search_params
+      if search_params.present?
+        # 按选择日期分页
+        to_date = DateTime.parse( search_params[:to_date] ).to_date
+        from_date = DateTime.parse( search_params[:from_date] ).to_date
+        #if to_date < from_date
+      end
+      @dates = (to_date - from_date).to_i.times.map{|i|
+          to_date.advance( days: -i )
+      }
+      @dates = @dates.paginate(:page => params["page"])
+
+      @broker_days = current_broker.broker_days.where( effective_on: @dates ).order( effective_on: :desc )
     end
 
+    def profit
+      fields = "count(*) as count_all, sum(deposit_amount) as deposit_amount,sum(drawing_amount) as drawing_amount,sum(bid_amount) as bid_amount,sum(bonus_amount) as bonus_amount"
+      current_broker.user_days.select( fields ).group(:broker_id, :effective_on)
+    end
     # GET /broker_days/1
     # GET /broker_days/1.json
     def show
@@ -73,6 +94,10 @@ module Agent
       # Never trust parameters from the scary internet, only allow the white list through.
       def broker_day_params
         params.require(:broker_day).permit(:broker_id, :effective_on, :clink_visits, :blink_visits, :user_count, :valued_user_counter, :engergetic_user_counter)
+      end
+
+      def permitted_search_params
+        params.permit(:start_date, :end_date)
       end
   end
 end

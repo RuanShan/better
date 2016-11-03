@@ -18,7 +18,7 @@
           <%= render partial: "payment_methods/method_alipay_bank" %>
           <div class="form-inputs">
             <%= f.input :amount, label: "充值全额", as:"string" %>
-            <%= f.input :promotion_code, label: "活动代码", as:"string" %>
+            <%= f.input :promotion_number, label: "活动代码", as:"string" %>
           </div>
           <div class="form-actions">
             <%= f.submit "下一步", class:"btn"  %>
@@ -31,7 +31,7 @@
           <%= render partial: "payment_methods/method_bank_transfer" %>
           <div class="form-inputs">
             <%= f.input :amount, label: "充值全额", as:"string" %>
-            <%= f.input :promotion_code, label: "活动代码", as:"string" %>
+            <%= f.input :promotion_number, label: "活动代码", as:"string" %>
           </div>
           <div class="form-actions">
             <%= f.submit "下一步", class:"btn"  %>
@@ -44,7 +44,7 @@
           <%= render partial: "payment_methods/method_weixin" %>
           <div class="form-inputs">
             <%= f.input :amount, label: "充值全额", as:"string" %>
-            <%= f.input :promotion_code, label: "活动代码", as:"string" %>
+            <%= f.input :promotion_number, label: "活动代码", as:"string" %>
           </div>
           <div class="form-actions">
             <%= f.submit "下一步", class:"btn"  %>

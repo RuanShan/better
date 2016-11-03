@@ -89,7 +89,7 @@ module My
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def deposit_params
-        params.require(:deposit).permit(:payment_method_id, :user_id, :amount, :promotion_code)
+        params.require(:deposit).permit(:payment_method_id, :user_id, :amount, :promotion_number)
       end
 
       def search_params

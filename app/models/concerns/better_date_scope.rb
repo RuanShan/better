@@ -28,11 +28,14 @@ module BetterDateScope
       dates = [dates] unless dates.is_a? Array
       class_eval do
         scope :on_date, ->(date){ where( field_name => date )}
+        scope :between_dates, ->(from_date, to_date){ where( ["#{field_name}>=? AND #{field_name}<=?", from_date, to_date] )}
 
         dates.each{|some_date|
           case some_date
           when :today
             scope :today, ->{ on_date( DateTime.current.to_date ) }
+          when :ten_days
+            scope :ten_days, ->{ between_dates(  DateTime.current.advance(days: -10).to_date, DateTime.current.to_date ) }
           end
         }
       end

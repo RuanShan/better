@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     get '/', to: 'welcome#index', as: :root
   end
   namespace :agent do
-    resources :broker_days
+    resources :broker_days do
+      get :profit, on: :collection
+    end
     resources :user_days
     resources :broker
     resources :deposits

@@ -37,7 +37,7 @@ gem 'high_voltage'
 #https://github.com/plataformatec/simple_form
 gem 'simple_form'
 #https://github.com/activerecord-hackery/ransack
-gem 'ransack'
+#gem 'ransack'
 gem 'friendly_id', '~> 5.1.0'
 
 # 分页
@@ -56,9 +56,6 @@ gem 'awesome_nested_set'
 
 #send sms
 gem 'alidayu-ruby', require: 'alidayu'
-
-#generate uuid
-
 
 group :development do
   gem 'better_errors'

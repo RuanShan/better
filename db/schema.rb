@@ -48,15 +48,17 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.integer  "clink_visits",           default: 0, null: false
     t.integer  "blink_visits",           default: 0, null: false
     t.integer  "user_counter",           default: 0, null: false
-    t.integer  "valued_user_counter",    default: 0, null: false
+    t.integer  "valuable_user_counter",  default: 0, null: false
     t.integer  "energetic_user_counter", default: 0, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.index ["broker_id", "effective_on"], name: "index_broker_days_on_broker_id_and_effective_on"
     t.index ["broker_id"], name: "index_broker_days_on_broker_id"
   end
 
   create_table "broker_months", force: :cascade do |t|
     t.integer  "broker_id"
+    t.date     "effective_on"
     t.integer  "clink_visits",           default: 0, null: false
     t.integer  "blink_visits",           default: 0, null: false
     t.integer  "user_counter",           default: 0, null: false
@@ -64,6 +66,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.integer  "energetic_user_counter", default: 0, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.index ["broker_id", "effective_on"], name: "index_broker_months_on_broker_id_and_effective_on"
     t.index ["broker_id"], name: "index_broker_months_on_broker_id"
   end
 
@@ -86,6 +89,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.integer  "failed_attempts",        default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
@@ -121,7 +125,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.decimal  "amount",                       default: "0.0", null: false
     t.string   "state",             limit: 12
     t.string   "memo"
-    t.string   "promotion_code"
+    t.string   "promotion_number"
     t.datetime "completed_at"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
@@ -224,7 +228,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
   create_table "promotions", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "code"
+    t.string   "number"
     t.integer  "rule",        default: 0,     null: false
     t.decimal  "factor1",     default: "0.0", null: false
     t.decimal  "factor2",     default: "0.0", null: false
@@ -286,6 +290,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
 
   create_table "user_days", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "broker_id"
     t.date     "effective_on"
     t.decimal  "deposit_amount", default: "0.0", null: false
     t.decimal  "drawing_amount", default: "0.0", null: false
@@ -293,6 +298,8 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.decimal  "bonus_amount",   default: "0.0", null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.index ["broker_id"], name: "index_user_days_on_broker_id"
+    t.index ["user_id", "effective_on"], name: "index_user_days_on_user_id_and_effective_on"
     t.index ["user_id"], name: "index_user_days_on_user_id"
   end
 
@@ -315,6 +322,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.decimal  "bonus_amount",   default: "0.0", null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.index ["user_id", "effective_on"], name: "index_user_months_on_user_id_and_effective_on"
     t.index ["user_id"], name: "index_user_months_on_user_id"
   end
 
@@ -357,8 +365,9 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.string   "invited_by_type"
     t.integer  "invited_by_id"
     t.integer  "invitations_count",        default: 0
-    t.integer  "broker_id",                default: 0,  null: false
+    t.integer  "broker_id"
     t.index ["broker_id", "created_at"], name: "index_users_on_broker_id_and_created_at"
+    t.index ["broker_id"], name: "index_users_on_broker_id"
     t.index ["created_at"], name: "index_users_on_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true

@@ -15,7 +15,7 @@ module ApplicationHelper
 
   def calendar(text_id, value)
     calendar_text = text_field_tag(text_id, value, class:'form-control', size:10)
-    calendar_span = content_tag(:span, content_tag(:span, "", class:'glyphicon glyphicon-calendar'), class:'input-group-addon')
+    calendar_span = content_tag(:span, content_tag(:span, "", class:'fa fa-calendar'), class:'input-group-addon')
     content_tag(:div, calendar_text+calendar_span, class:'calendar input-group date')
   end
 

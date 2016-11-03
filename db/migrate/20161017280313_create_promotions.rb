@@ -3,7 +3,7 @@ class CreatePromotions < ActiveRecord::Migration[5.0]
     create_table :promotions do |t|
       t.string :name
       t.string :description
-      t.string :code    # 促销码
+      t.string :number    # 促销码
       t.integer :rule, null: false, default: 0
       # 促销活动的规则， 0. 充值满factor1，送factor2
       t.decimal :factor1, null:false, default:0 #

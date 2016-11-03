@@ -22,7 +22,9 @@
                 <li>
                   <%= build_nav_link "日推广效果表", { controller: 'agent/broker_days'}%>
                 </li>
-                <li><a href="/agent/day_profit">日盈利表</a></li>
+                <li>
+                  <%= build_nav_link "日盈利表", { controller: 'agent/broker_days', action: 'profit'}%>
+                </li>
             </ul>
 
 			<div class="title"><span class="btn"></span>会员明细表</div>

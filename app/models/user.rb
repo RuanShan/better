@@ -13,11 +13,13 @@ class User < ApplicationRecord
   has_many :user_banks
   has_many :deposits
   has_many :drawings
-
   has_many :bids
+
+  belongs_to :broker, optional: true
   #用户每日信息统计
   has_many :user_days
   has_one  :user_today, ->{ today }, class_name: 'UserDay'
+
 
   enum role: [:user, :vip ]
   enum gender: [:secret, :male, :female ]
@@ -29,6 +31,8 @@ class User < ApplicationRecord
 
 
   after_initialize :set_default_role, :if => :new_record?
+  after_create :adjust_broker_day, if: :broker
+
   alias_attribute :name, :nickname
 
 
@@ -90,6 +94,7 @@ class User < ApplicationRecord
       errors.add(:current_password, "当前密码不正确")
     end
   end
+
   def bind_name(send_code, name_options, session)
     @binding_name = true
     self.assign_attributes(name_options)
@@ -306,5 +311,10 @@ class User < ApplicationRecord
     end
   end
 
+  def adjust_broker_day
+    day = broker.broker_today || broker.build_broker_today
+    day.user_counter+=1
+    day.save!
+  end
 
 end

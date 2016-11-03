@@ -7,13 +7,8 @@ class Wallet < ApplicationRecord
   belongs_to :user, required: true
 
   scope :bonuses, -> { where(is_bonus: true) }
-  #enum originator_type: { deposit:0, drawing: 1, transfer:2, bid:3 }
 
-  def self.add_wallet(originator)
-    wallet_params = get_params(originator)
-    user = originator.user
-    wallet_params.each{|wallet_param| new_wallet = user.wallets.create(wallet_param)}
-  end
+  after_create :adjust_user_day
 
   def self.search_bonuses(search_params)
     self.bonuses.where("created_at>? and created_at<?",(search_params["start_date"]+" 00:00:00").to_datetime,
@@ -22,28 +17,25 @@ class Wallet < ApplicationRecord
 
   private
 
-  def self.get_params(originator)
-    originator_type = originator.class.name.downcase
-    wallet_param = { amount: originator.amount, memo: "", originator_id: originator.id, originator_type: originator_type, is_bonus: false}
-    wallet_params =[]
-    if originator.instance_of? Deposit
-      wallet_params << wallet_param
-      if originator.bonus>0
-        bonus_param = wallet_param.dup
-        bonus_param[:amount] = originator.bonus
-        bonus_param[:is_bonus]=true
-        wallet_params << bonus_param
+  def adjust_user_day
+    day = user.user_today || user.build_user_today( broker: user.broker )
+    if amount > 0
+      if is_bonus #红利
+        day.bonus_amount += amount
+      else        #存款
+        # 今日注册用户且存款， 更新代理今日统计
+        if user.created_at.today? && day.deposit_amount == 0
+          if user.broker
+            user.broker.broker_today.valued_user_counter += 1
+            user.broker.broker_today.save!
+          end
+        end
+        day.deposit_amount += amount
       end
-    elsif originator.instance_of? Drawing
-      wallet_param[:amount] = -wallet_param[:amount]
-      wallet_params << wallet_param
-
-    elsif originator.instance_of? Bid
-      wallet_param[:amount] = originator.win_lose_amount
-      wallet_param[:is_bonus]=true if originator.win_lose_amount > 0
-      wallet_params << wallet_param
-    else
+    else          #提款
+      day.drawing_amount -= amount
     end
-    wallet_params
+    day.save!
   end
+
 end

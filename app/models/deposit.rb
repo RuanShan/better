@@ -13,6 +13,7 @@ class Deposit < ApplicationRecord
 
   belongs_to :payment_method, required: true
   belongs_to :user, required: true
+  belongs_to :promotion, primary_key: :number, foreign_key: :promotion_number, optional: true
   has_many :wallets, as: :originator # 一条充值记录可能有1个或两个钱包记录。 如：促销活动
 
   delegate :name, to: :payment_method, prefix: true
@@ -25,7 +26,7 @@ class Deposit < ApplicationRecord
     # pending: 等待处理
     # success: 充值成功
     # failure: 充值失败
-    after_transition to: :success, do: :adjust_wallet
+    after_transition to: :success, do: [ :adjust_wallet ]
 
     event :process do
       transition pending: :success, if: ->(deposit) { deposit.valid_to_process? }
@@ -34,17 +35,17 @@ class Deposit < ApplicationRecord
   end
 
   def do_with_promotion
-    if promotion_code.present?
+    if promotion_number.present?
       if promotion.present?
         unless promotion.valid_amount?(amount)
-          promotion_code_error_message= "活动需要至少充值#{promotion.factor1}元"
+          promotion_number_error_message= "活动需要至少充值#{promotion.factor1}元"
         end
       else
-        promotion_code_error_message= "活动代码不存在"
+        promotion_number_error_message= "活动代码不存在"
       end
     end
-    if promotion_code_error_message.present?
-      errors.add(:promotion_code, promotion_code_error_message)
+    if promotion_number_error_message.present?
+      errors.add(:promotion_number, promotion_number_error_message)
     else
       self.save
     end
@@ -55,9 +56,9 @@ class Deposit < ApplicationRecord
     (search_params["end_date"]+" 23:59:59").to_datetime,search_params["state"]).order("created_at desc").all
   end
 
-  def promotion
-    Promotion.find_by_code(promotion_code)
-  end
+  #def promotion
+  #  Promotion.find_by_number(promotion_number)
+  #end
 
   def valid_to_process?
     #TODO
@@ -66,14 +67,12 @@ class Deposit < ApplicationRecord
   end
 
   def adjust_wallet
+    # add wallet
     wallets.create!( user: user, amount: self.amount, is_bonus: false )
     if promotion.present?
-      logger.debug "promotion=#{promotion.inspect}"
       bonus = promotion.compute_bonus(amount)
-      logger.debug "bonus=#{bonus.inspect}"
       wallets.create!( user: user, amount: bonus, is_bonus: true )
     end
-
   end
 
 end

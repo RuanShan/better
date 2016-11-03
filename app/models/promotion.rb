@@ -4,7 +4,12 @@
 #   factor1 <= 充值 <= factor2,  送  充值*factor3
 #
 class Promotion < ApplicationRecord
+  extend FriendlyId
+  friendly_id :number, slug_column: :number, use: :slugged
+  include NumberGenerator.new(prefix: 'P')
 
+  enum rule: { deposit_amount_percent: 1 }
+  
   def valid_amount?(amount)
     case rule
     when 1
