@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.integer  "clink_visits",           default: 0, null: false
     t.integer  "blink_visits",           default: 0, null: false
     t.integer  "user_counter",           default: 0, null: false
-    t.integer  "valuable_user_counter",    default: 0, null: false
+    t.integer  "valuable_user_counter",  default: 0, null: false
     t.integer  "energetic_user_counter", default: 0, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
@@ -334,6 +334,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
 
   create_table "user_months", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "broker_id"
     t.date     "effective_on"
     t.decimal  "deposit_amount", default: "0.0", null: false
     t.decimal  "drawing_amount", default: "0.0", null: false
@@ -342,8 +343,9 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.decimal  "balance",        default: "0.0", null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.index ["broker_id"], name: "index_user_months_on_broker_id"
+    t.index ["user_id", "broker_id", "effective_on"], name: "index_user_months_on_user_id_and_broker_id_and_effective_on"
     t.index ["user_id", "effective_on"], name: "index_user_months_on_user_id_and_effective_on"
-    t.index ["user_id", nil, "effective_on"], name: "index_user_months_on_user_id_and_broker_id_and_effective_on"
     t.index ["user_id"], name: "index_user_months_on_user_id"
   end
 

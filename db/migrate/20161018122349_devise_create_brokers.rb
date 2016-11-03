@@ -42,6 +42,7 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
       t.string :number, null: false, index: true
       t.timestamps null: false
     end
+    add_belongs_to :users, :broker
 
     add_index :brokers, :email,                unique: true
     add_index :brokers, :reset_password_token, unique: true
@@ -49,7 +50,6 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
     add_index :brokers, :unlock_token,         unique: true
     add_index :users, [:broker_id, :created_at]
 
-    add_belongs_to :users, :broker
 
     create_table :broker_days do |t|
       t.references :broker
@@ -96,6 +96,7 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
     #每一月结束时计划任务更新
     create_table :user_months do |t|
       t.references :user
+      t.references :broker # 便于查询 代理的日统计
       t.date :effective_on  # 每个月的1号
       t.decimal :deposit_amount, default: 0, null: false  # 月存款额
       t.decimal :drawing_amount, default: 0, null: false  # 月提款额
