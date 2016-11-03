@@ -4,7 +4,7 @@
 @state ||= "1"
 %>
 <div class="">
-  <%=form_tag search_my_drawings_path, class:"form-inline", role:"form" do%>
+  <div class="form-inline">
 
     <div class="form-group">
       <label for="start_date">起始日期</label>
@@ -19,10 +19,10 @@
       <%=drawing_state_select "state", @state%>
     </div>
     <div class="form-group">
-      <%=submit_tag "查询",  class:"form-control"%>
+      <a class="btn form-control" href="#" onclick="set_my_search_url('drawings');">查询</a>
     </div>
 
-  <%end%>
+  </div>
 </div>
 <div id="drawing_records" style="padding-top:20px;">
   <%= render partial: "records" %>

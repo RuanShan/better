@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     end
 
     resources :deposits do
-      post 'search', on: :collection
+      get 'search', on: :collection
     end
 
     resources :messages do
@@ -56,15 +56,15 @@ Rails.application.routes.draw do
     end
 
     resources :bids do
-      post 'search', on: :collection
+      get 'search', on: :collection
     end
     resources :wallets do
       get 'bonuses', on: :collection
-      post 'search_bonuses', on: :collection
+      get 'search_bonuses', on: :collection
     end
 
     resources :drawings do
-      post 'search', on: :collection
+      get 'search', on: :collection
     end
 
   end

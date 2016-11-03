@@ -4,25 +4,23 @@
 @state ||= "1"
 %>
 <div class="">
-  <%=form_tag search_my_deposits_path, class:"form-inline", role:"form" do%>
-  <div class="form-group">
-    <label for="start_date">起始日期</label>
-    <%=calendar "start_date", @start_date%>
+  <div class="form-inline">
+    <div class="form-group">
+      <label for="start_date">起始日期</label>
+      <%=calendar "start_date", @start_date%>
+    </div>
+    <div class="form-group">
+      <label for="end_date">到</label>
+      <%=calendar "end_date", @end_date%>
+    </div>
+    <div class="form-group">
+      <label for="state">状态</label>
+      <%=deposit_state_select "state", @state%>
+    </div>
+    <div class="form-group">
+      <a class="btn form-control" href="#" onclick="set_my_search_url('deposits');">查询</a>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="end_date">到</label>
-    <%=calendar "end_date", @end_date%>
-  </div>
-  <div class="form-group">
-    <label for="state">状态</label>
-    <%=deposit_state_select "state", @state%>
-  </div>
-  <div class="form-group">
-    <%=submit_tag "查询",  class:"form-control"%>
-  </div>
-
-
-  <%end%>
 </div>
 <div id="deposit_records" style="padding-top:20px;">
   <%= render partial: "records" %>
