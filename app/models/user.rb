@@ -19,7 +19,7 @@ class User < ApplicationRecord
   #用户每日信息统计
   has_many :user_days
   has_one  :user_today, ->{ today }, class_name: 'UserDay'
-
+  has_one  :user_life
 
   enum role: [:user, :vip ]
   enum gender: [:secret, :male, :female ]
@@ -318,6 +318,6 @@ class User < ApplicationRecord
   end
 
   def add_user_life
-    UserLift.create!( user: self, broker: broker, effective_on: DateTime.current )
+    UserLife.create!( user: self, broker: broker, effective_on: DateTime.current )
   end
 end

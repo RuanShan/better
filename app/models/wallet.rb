@@ -18,7 +18,7 @@ class Wallet < ApplicationRecord
   private
 
   def adjust_user_day
-    day = user.user_today || user.build_user_today( broker: user.broker )
+    day = user.user_today || user.build_user_today( broker: user.broker, balance: user.user_life.balance )
     if amount > 0
       if is_bonus #红利
         day.bonus_amount += amount
@@ -35,6 +35,7 @@ class Wallet < ApplicationRecord
     else          #提款
       day.drawing_amount -= amount
     end
+    day.balance += amount
     day.save!
   end
 

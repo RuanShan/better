@@ -296,7 +296,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.decimal  "drawing_amount", default: "0.0", null: false
     t.decimal  "bid_amount",     default: "0.0", null: false
     t.decimal  "bonus_amount",   default: "0.0", null: false
-    t.decimal  "blance",         default: "0.0", null: false
+    t.decimal  "balance",        default: "0.0", null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.index ["broker_id"], name: "index_user_days_on_broker_id"
@@ -313,7 +313,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.decimal  "drawing_amount", default: "0.0", null: false
     t.decimal  "bonus_amount",   default: "0.0", null: false
     t.decimal  "bid_amount",     default: "0.0", null: false
-    t.decimal  "blance",         default: "0.0", null: false
+    t.decimal  "balance",        default: "0.0", null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.index ["broker_id"], name: "index_user_lives_on_broker_id"
@@ -339,7 +339,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.decimal  "drawing_amount", default: "0.0", null: false
     t.decimal  "bid_amount",     default: "0.0", null: false
     t.decimal  "bonus_amount",   default: "0.0", null: false
-    t.decimal  "blance",         default: "0.0", null: false
+    t.decimal  "balance",        default: "0.0", null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.index ["user_id", "effective_on"], name: "index_user_months_on_user_id_and_effective_on"
