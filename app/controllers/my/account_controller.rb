@@ -83,7 +83,9 @@ module My
     def bind_name
       if request.patch?
         send_code = params["send_code"].to_i
-        current_user.bind_name(send_code, bind_name_params, session)
+        code_options = get_code_options
+        current_user.bind_name(send_code, bind_name_params, code_options)
+        set_code_options(code_options)
         if current_user.errors.empty?
           flash[:notice] = t(:bind_name_success)
           redirect_to security_center_my_account_path(current_user)
@@ -140,6 +142,22 @@ module My
 
     def bank_params
       params.require(:user_bank).permit(:name, :card_number, :branch_name, :address, :current_money_password)
+    end
+
+    def get_code_options
+      code_options = {}
+      if session["validate_phone"].present?
+        code_options["validate_phone"] = session["validate_phone"]
+        code_options["validate_code"] = session["validate_code"]
+        code_options["validate_code_send_time"] = session["validate_code_send_time"]
+      end
+      code_options
+    end
+
+    def set_code_options(code_options)
+      session["validate_phone"] = code_options["validate_phone"]
+      session["validate_code"] = code_options["validate_code"]
+      session["validate_code_send_time"] = code_options["validate_code_send_time"]
     end
 
   end

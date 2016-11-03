@@ -95,7 +95,7 @@ class User < ApplicationRecord
     end
   end
 
-  def bind_name(send_code, name_options, session)
+  def bind_name(send_code, name_options, code_options)
     @binding_name = true
     self.assign_attributes(name_options)
 
@@ -116,16 +116,15 @@ class User < ApplicationRecord
       validate_alidayu_response(alidayu_respond)
 =end
       if errors.empty?
-        session["validate_phone"] = phone
-        session["validate_code"] = code
-        session["validate_code_send_time"] = Time.now
+        code_options["validate_phone"] = phone
+        code_options["validate_code"] = code
+        code_options["validate_code_send_time"] = Time.now
       end
       errors.add(:validate_code, "验证码已发送至您的手机，请输入")
     else
-      validate_my_code(session)
-      if session["validate_phone"] == phone
+      validate_my_code(code_options)
+      if code_options["validate_phone"] == phone
         if id_type == "id_card"
-          logger.debug "++++++++++++id_number=#{id_number}"
           error_code, result = Juhe::IdCard.search(id_number, real_name)
           if error_code.to_i == 0
             match = result["res"].to_i == 1 ? true : false
@@ -145,11 +144,8 @@ class User < ApplicationRecord
     @password_prefix="money_"
     current_money_password = bank_options["current_money_password"]
     new_user_bank = user_banks.build(bank_options)
-    logger.debug "==========================bank_options=#{bank_options.inspect}"
-    logger.debug "==========================new_user_bank=#{new_user_bank.inspect}"
     if new_user_bank.id.present? && user_banks.pluck(:id).include?(new_user_bank.id.to_i)
       new_user_bank = UserBank.find(new_user_bank.id)
-      logger.debug "==========================new_user_bank exists, is =#{new_user_bank.inspect}"
     end
     if valid_password? current_money_password
       unless new_user_bank.persisted?
@@ -275,14 +271,14 @@ class User < ApplicationRecord
     save
   end
 
-  def validate_my_code(session)
-    if session["validate_code"].present? && session["validate_code_send_time"].present?
-      last_send_duration = Time.now - session["validate_code_send_time"].to_datetime
+  def validate_my_code(code_options)
+    if code_options["validate_code"].present? && code_options["validate_code_send_time"].present?
+      last_send_duration = Time.now - code_options["validate_code_send_time"].to_datetime
       if last_send_duration > 10*60
         errors.add(:validate_code, "验证码过期，请重新发送")
       else
-        #logger.debug "++++++++++validate_code=#{validate_code},session['validate_code']=#{session['validate_code']}"
-        unless validate_code.to_s == session["validate_code"].to_s
+        #logger.debug "++++++++++validate_code=#{validate_code},code_options['validate_code']=#{code_options['validate_code']}"
+        unless validate_code.to_s == code_options["validate_code"].to_s
           errors.add(:validate_code, "验证码不正确")
         end
       end
