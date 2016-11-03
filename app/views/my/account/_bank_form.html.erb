@@ -14,22 +14,3 @@
     </div>
   <% end %>
 </div>
-
-<script>
-  function select_bank(bank_id, user_bank_json){
-    var user_bank = $.parseJSON(user_bank_json);
-    var disable = true;
-    if(bank_id==""){
-      disable = false;
-      $("#password_div").show();
-      $("#submit_div").show();
-    }else{
-      $("#password_div").hide();
-      $("#submit_div").hide();
-    }
-    $("#user_bank_name").val(user_bank.name).attr("disabled",disable);
-    $("#user_bank_card_number").val(user_bank.card_number).attr("disabled",disable);
-    $("#user_bank_branch_name").val(user_bank.branch_name).attr("disabled",disable);
-    $("#user_bank_address").val(user_bank.address).attr("disabled",disable);
-  }
-</script>
