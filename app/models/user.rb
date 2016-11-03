@@ -32,7 +32,7 @@ class User < ApplicationRecord
 
   after_initialize :set_default_role, :if => :new_record?
   after_create :adjust_broker_day, if: :broker
-
+  after_create :add_user_life
   alias_attribute :name, :nickname
 
 
@@ -317,4 +317,7 @@ class User < ApplicationRecord
     day.save!
   end
 
+  def add_user_life
+    UserLift.create!( user: self, broker: broker, effective_on: DateTime.current )
+  end
 end

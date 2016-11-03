@@ -6,13 +6,27 @@
   <thead>
     <tr>
       <th>日期</th>
-      <th>活跃人数</th>
+      <th>活跃人数?</th>
       <th>存款(人数)</th>
       <th>提款(人数)</th>
       <th>投注</th>
-      <th>输赢</th>
+      <th>输赢?</th>
       <th>红利</th>
       <th>盈利</th>
     </tr>
   </thead>
+
+  <tbody>
+    <% @dates.each do |date| daily_profit  = @daily_profits.select{|day| day.effective_on == date}.first || Summary::BrokerDailyProfit.new( date ) %>
+      <tr>
+        <td><%= daily_profit.effective_on %></td>
+        <td><%= 0 %></td>
+        <td><%= daily_profit.deposit_amount %>(<%= daily_profit.deposit_member_count %>)</td>
+        <td><%= daily_profit.drawing_amount %>(<%= daily_profit.drawing_member_count %>)</td>
+        <td><%= daily_profit.bid_amount %></td>
+        <td><%= daily_profit.bid_amount %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
 </table>
