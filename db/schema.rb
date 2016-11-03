@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.integer  "clink_visits",           default: 0, null: false
     t.integer  "blink_visits",           default: 0, null: false
     t.integer  "user_counter",           default: 0, null: false
-    t.integer  "valued_user_counter",    default: 0, null: false
+    t.integer  "valuable_user_counter",    default: 0, null: false
     t.integer  "energetic_user_counter", default: 0, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false

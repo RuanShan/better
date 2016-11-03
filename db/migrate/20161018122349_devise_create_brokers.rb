@@ -69,7 +69,7 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
       t.integer :clink_visits, default: 0, null: false    #客户推广链接点击数
       t.integer :blink_visits, default: 0, null: false    #下级代理推广链接点击数
       t.integer :user_counter, default: 0, null: false  # 日注册人数
-      t.integer :valued_user_counter, default: 0, null: false #新注册并存款
+      t.integer :valuable_user_counter, default: 0, null: false #新注册并存款
       t.integer :energetic_user_counter, default: 0, null: false #活跃用户
       t.timestamps null: false
       t.index [:broker_id, :effective_on]
