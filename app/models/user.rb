@@ -6,6 +6,9 @@ require "id_card.rb"
 class User < ApplicationRecord
   include WalletBlance
 
+  extend  DisplayDateTime
+  date_time_methods :created_at
+
   extend BetterDateScope
   better_date_time_scope created_at: [:today, :month]
 
@@ -48,6 +51,14 @@ class User < ApplicationRecord
 
   def set_default_role
     self.role ||= :user
+  end
+
+  def type
+    "用户"
+  end
+
+  def state
+    "正常"
   end
 
   def password_prefix
