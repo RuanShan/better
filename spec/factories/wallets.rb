@@ -1,8 +1,13 @@
 FactoryGirl.define do
   factory :wallet do
     user nil
-    amount "9.99"
+    amount 100
     memo "MyString"
-    deleted_at "2016-10-22 23:02:20"
+
+    trait :bonus do
+      is_bonus true
+    end
+
+    factory :bonus_wallet, traits: [:bonus]
   end
 end

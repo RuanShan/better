@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.date     "effective_on"
     t.integer  "clink_visits",           default: 0, null: false
     t.integer  "blink_visits",           default: 0, null: false
-    t.integer  "user_counter",           default: 0, null: false
-    t.integer  "valuable_user_counter",  default: 0, null: false
-    t.integer  "energetic_user_counter", default: 0, null: false
+    t.integer  "member_count",           default: 0, null: false
+    t.integer  "valuable_member_count",  default: 0, null: false
+    t.integer  "energetic_member_count", default: 0, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.index ["broker_id", "effective_on"], name: "index_broker_days_on_broker_id_and_effective_on"
@@ -61,9 +61,9 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.date     "effective_on"
     t.integer  "clink_visits",           default: 0, null: false
     t.integer  "blink_visits",           default: 0, null: false
-    t.integer  "user_counter",           default: 0, null: false
-    t.integer  "valuable_user_counter",  default: 0, null: false
-    t.integer  "energetic_user_counter", default: 0, null: false
+    t.integer  "member_count",           default: 0, null: false
+    t.integer  "valuable_member_count",  default: 0, null: false
+    t.integer  "energetic_member_count", default: 0, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.index ["broker_id", "effective_on"], name: "index_broker_months_on_broker_id_and_effective_on"

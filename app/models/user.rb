@@ -19,6 +19,7 @@ class User < ApplicationRecord
   #用户每日信息统计
   has_many :user_days
   has_one  :user_today, ->{ today }, class_name: 'UserDay'
+  has_one  :user_month, ->{}, class_name: 'UserDay'
   has_one  :user_life
 
   enum role: [:user, :vip ]
@@ -309,7 +310,7 @@ class User < ApplicationRecord
 
   def adjust_broker_day
     day = broker.broker_today || broker.build_broker_today
-    day.user_counter+=1
+    day.member_count+=1
     day.save!
   end
 

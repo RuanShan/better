@@ -42,6 +42,24 @@ module BetterDateScope
     end
   end
 
+  def better_month_scope( args = {})
+    args.each_pair do |field_name, dates|
+      dates = [dates] unless dates.is_a? Array
+      class_eval do
+        scope :in_month, ->(date){ where( field_name => date )}
+        scope :between_months, ->(from_date, to_date){ where( ["#{field_name}>=? AND #{field_name}<=?", from_date, to_date] )}
+
+        dates.each{|some_date|
+          case some_date
+          when :current_month
+            scope :current_month, ->{ in_month( beginning_of_month( DateTime.current )) }
+          end
+        }
+      end
+    end
+  end
+
+
   def beginning_of_month( datetime )
     DateTime.civil_from_format :local, datetime.year, datetime.month, 1
   end

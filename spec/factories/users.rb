@@ -10,5 +10,10 @@ FactoryGirl.define do
       role 'vip'
     end
 
+    trait :broker do
+      broker
+    end
+
+    factory :user_and_broker, traits: [:broker]
   end
 end

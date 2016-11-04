@@ -1,2 +1,2 @@
-json.extract! broker_day, :id, :broker_id, :effective_on, :clink_visits, :blink_visits, :user_count, :valuable_user_counter, :engergetic_user_counter, :created_at, :updated_at
+json.extract! broker_day, :id, :broker_id, :effective_on, :clink_visits, :blink_visits, :user_count, :valuable_member_count, :engergetic_member_count, :created_at, :updated_at
 json.url broker_day_url(broker_day, format: :json)

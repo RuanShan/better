@@ -56,21 +56,23 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
       t.date :effective_on
       t.integer :clink_visits, default: 0, null: false  #客户推广链接点击数
       t.integer :blink_visits, default: 0, null: false  #下级代理推广链接点击数
-      t.integer :user_counter, default: 0, null: false  # 日注册人数
-      t.integer :valuable_user_counter, default: 0, null: false #新注册并存款
-      t.integer :energetic_user_counter, default: 0, null: false #活跃用户
+      t.integer :member_count, default: 0, null: false  # 日注册人数
+      t.integer :valuable_member_count, default: 0, null: false #新注册并存款
+      t.integer :energetic_member_count, default: 0, null: false
+      #活跃用户, 这个是累计的，表示到现在这个时间，本月达到活跃指标的人数
       t.timestamps null: false
       t.index [:broker_id, :effective_on]
     end
 
+    #每一天结束时计划任务更新
     create_table :broker_months do |t|
       t.references :broker
       t.date :effective_on
       t.integer :clink_visits, default: 0, null: false    #客户推广链接点击数
       t.integer :blink_visits, default: 0, null: false    #下级代理推广链接点击数
-      t.integer :user_counter, default: 0, null: false  # 日注册人数
-      t.integer :valuable_user_counter, default: 0, null: false #新注册并存款
-      t.integer :energetic_user_counter, default: 0, null: false #活跃用户
+      t.integer :member_count, default: 0, null: false  # 日注册人数
+      t.integer :valuable_member_count, default: 0, null: false #新注册并存款
+      t.integer :energetic_member_count, default: 0, null: false #活跃用户
       t.timestamps null: false
       t.index [:broker_id, :effective_on]
     end
@@ -93,7 +95,7 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
       t.index [:user_id, :broker_id, :effective_on]
     end
 
-    #每一月结束时计划任务更新
+    #每一天结束时计划任务更新
     create_table :user_months do |t|
       t.references :user
       t.references :broker # 便于查询 代理的日统计

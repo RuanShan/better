@@ -83,7 +83,7 @@ module Agent
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def broker_day_params
-        params.require(:broker_day).permit(:broker_id, :effective_on, :clink_visits, :blink_visits, :user_count, :valuable_user_counter, :engergetic_user_counter)
+        params.require(:broker_day).permit(:broker_id, :effective_on, :clink_visits, :blink_visits, :user_count, :valuable_member_count, :engergetic_member_count)
       end
 
       def permitted_search_params

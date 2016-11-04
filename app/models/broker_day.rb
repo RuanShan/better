@@ -6,6 +6,6 @@ class BrokerDay < ApplicationRecord
   belongs_to :broker
 
   def valuable_rate
-     valuable_user_counter == 0 ? 0 : ( valuable_user_counter/ user_counter.to_f ).round(2)
+     valuable_member_count == 0 ? 0 : ( valuable_member_count/ member_count.to_f ).round(2)
   end
 end
