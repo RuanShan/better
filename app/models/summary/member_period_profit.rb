@@ -1,7 +1,7 @@
 module Summary
   #会员明细表
   #特定时间区间内的数据, 如：2015-6-11 ~ 2015-9-2
-  class MemberPeroidProfit
+  class MemberPeriodProfit < ProfitBase
     attr_accessor :user, :user_days, :from_date, :to_date
 
     def initialize( user, user_days, from_date, to_date )

@@ -1,5 +1,7 @@
 <div> <h2 class="page-header">下线会员明细查询  <small>显示各下线会员在时间段内的投注及输赢 </small> </h2></div>
 <p id="notice"><%= notice %></p>
+<%= render partial: "agent/shared/date_filters", locals: {filter_path: profit_agent_members_path} %>
+
 <table class="table">
   <thead>
     <tr>
@@ -31,3 +33,5 @@
 
   </thead>
 </table>
+
+<%= will_paginate @users %>

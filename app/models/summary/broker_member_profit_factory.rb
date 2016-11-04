@@ -16,7 +16,7 @@ module Summary
       user_ids = users.pluck(:id)
       user_days = UserDay.between_dates( from_date, to_date ).where( user_id: user_ids )
       users.map{|user|
-        MemberPeriodProfit.new( user, user_days.select{|day| day.user_id == user.id } )
+        MemberPeriodProfit.new( user, user_days.select{|day| day.user_id == user.id }, from_date,  to_date )
       }
 
     end

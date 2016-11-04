@@ -8,15 +8,13 @@ module Agent
     # GET /broker_days.json
     # 日盈利表
     def index
-
-      @dates = get_paginated_dates
-
+      @start_date, @end_date, @dates = get_paginated_dates
       @broker_days = current_broker.broker_days.where( effective_on: @dates ).order( effective_on: :desc )
     end
 
     def profit
       #fields = "effective_on, count(*) as group_count, sum(deposit_amount) as deposit_amount,sum(drawing_amount) as drawing_amount,sum(bid_amount) as bid_amount,sum(bonus) as bonus"
-      @dates = get_paginated_dates
+      @start_date, @end_date, @dates = get_paginated_dates
       user_days = current_broker.user_days.where(effective_on: @dates )
       @daily_profits = Summary::BrokerDailyProfitFactory.create( user_days )
       #@grouped_user_days = current_broker.user_days.select( fields ).where(effective_on: @dates ).group(:broker_id, :effective_on)
@@ -93,19 +91,23 @@ module Agent
       def get_paginated_dates
         # 缺省查询日期
         to_date = DateTime.current.to_date
-        from_date = to_date.advance( days: -10 )
+        from_date = to_date.advance( days: -9 )
         # 由于broker_day/user_day 和 日期不是一一对应， 所以需要按日期分页再查找。
         search_params = permitted_search_params
         if search_params.present?
           # 按选择日期分页
-          to_date = DateTime.parse( search_params[:to_date] ).to_date
-          from_date = DateTime.parse( search_params[:from_date] ).to_date
+          begin
+          to_date = DateTime.parse( search_params[:end_date] ).to_date
+          from_date = DateTime.parse( search_params[:start_date] ).to_date
+          rescue ArgumentError
+          end
           #if to_date < from_date
         end
-        dates = (to_date - from_date).to_i.times.map{|i|
+        dates = (to_date - from_date + 1).to_i.times.map{|i|
             to_date.advance( days: -i )
         }
         dates = dates.paginate(:page => params["page"])
+        [from_date.to_s, to_date.to_s, dates]
       end
   end
 end

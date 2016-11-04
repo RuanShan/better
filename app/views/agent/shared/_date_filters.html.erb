@@ -1,4 +1,4 @@
-<%=form_tag agent_broker_days_path, class:"form-inline", role:"form", method: :get do%>
+<%=form_tag filter_path, class:"form-inline", role:"form", method: :get do%>
   <div class="form-group">
     <label for="start_date">起始日期</label>
     <%=calendar "start_date", @start_date%>

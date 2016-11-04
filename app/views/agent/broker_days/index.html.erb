@@ -1,6 +1,6 @@
 <div> <h2 class="page-header">日推广效果表  <small>显示您每日的推广注册效果 </small> </h2></div>
 <p id="notice"><%= notice %></p>
-<%= render partial: "agent/shared/broker_day_filters" %>
+<%= render partial: "agent/shared/date_filters", locals: {filter_path: agent_broker_days_path} %>
 
 <table class="table">
   <thead>
@@ -26,6 +26,4 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Broker Day', new_agent_broker_day_path %>
+<%= will_paginate @dates %>
