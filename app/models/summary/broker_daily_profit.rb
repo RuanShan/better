@@ -1,4 +1,5 @@
 module Summary
+  #
   class BrokerDailyProfit
     attr_accessor :user_days, :effective_on
     #活跃人数	        存款(人数)	     提款(人数)	       投注	       账户余额    红利	    盈利

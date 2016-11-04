@@ -29,8 +29,12 @@
 
 			<div class="title"><span class="btn"></span>会员明细表</div>
 			<ul class="nav nav-sidebar">
-                <li><a href="/agent/users">用户列表</a></li>
-                <li><a href="/agent/offline">会员明细表</a></li>
+                <li>
+                  <%= build_nav_link "用户列表", { controller: 'agent/members', action: 'index'}%>
+                </li>
+                <li>
+                  <%= build_nav_link "会员明细表", { controller: 'agent/members', action: 'profit'}%>
+                </li>
             </ul>
 
 

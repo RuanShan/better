@@ -29,6 +29,7 @@ module BetterDateScope
       class_eval do
         scope :on_date, ->(date){ where( field_name => date )}
         scope :between_dates, ->(from_date, to_date){ where( ["#{field_name}>=? AND #{field_name}<=?", from_date, to_date] )}
+        scope :before_date, ->(date){ where(["#{field_name}<=?",date])}
 
         dates.each{|some_date|
           case some_date

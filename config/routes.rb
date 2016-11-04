@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-
-
   resources :games
-
-
   resources :payment_methods
 
   devise_for :users              #会员
@@ -19,6 +15,9 @@ Rails.application.routes.draw do
   end
   namespace :agent do
     resources :broker_days do
+      get :profit, on: :collection
+    end
+    resources :members do
       get :profit, on: :collection
     end
     resources :user_days
