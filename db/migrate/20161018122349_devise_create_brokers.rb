@@ -85,7 +85,8 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
       t.decimal :deposit_amount, default: 0, null: false  # 日存款额
       t.decimal :drawing_amount, default: 0, null: false  # 日提款额
       t.decimal :bid_amount, default: 0, null: false      # 日流水额
-      t.decimal :bonus_amount, default: 0, null: false    # 日红利额
+      t.decimal :bonus, default: 0, null: false    # 日红利额
+      t.decimal :profit, default: 0, null: false          # 游戏收益
       t.decimal :balance, default: 0, null: false         # 账户余额
       #输赢补差， 投注补差
       #t.integer :regists, default: 0, null: false #注册数 	新注册并存款
@@ -103,7 +104,8 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
       t.decimal :deposit_amount, default: 0, null: false  # 月存款额
       t.decimal :drawing_amount, default: 0, null: false  # 月提款额
       t.decimal :bid_amount, default: 0, null: false      # 月流水额
-      t.decimal :bonus_amount, default: 0, null: false    # 月红利额
+      t.decimal :bonus, default: 0, null: false    # 月红利额
+      t.decimal :profit, default: 0, null: false          # 月游戏收益
       t.decimal :balance, default: 0, null: false         # 账户余额
       t.timestamps null: false
       t.index [:user_id, :effective_on]
@@ -118,8 +120,9 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
       t.date :effective_on # 最后统计日期
       t.decimal :deposit_amount, default: 0, null: false  # 存款额
       t.decimal :drawing_amount, default: 0, null: false  # 提款额
-      t.decimal :bonus_amount, default: 0, null: false    # 红利额
+      t.decimal :bonus, default: 0, null: false    # 红利额
       t.decimal :bid_amount, default: 0, null: false      # 流水额
+      t.decimal :profit, default: 0, null: false          # 游戏收益
       t.decimal :balance, default: 0, null: false         # 账户余额
       #输赢补差， 投注补差
       #t.integer :regists, default: 0, null: false #注册数 	新注册并存款

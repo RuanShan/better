@@ -8,4 +8,9 @@ class BrokerDay < ApplicationRecord
   def valuable_rate
      valuable_member_count == 0 ? 0 : ( valuable_member_count/ member_count.to_f ).round(2)
   end
+
+  def display_valuable_rate
+    "%i%" % (valuable_rate*100)
+  end
+
 end

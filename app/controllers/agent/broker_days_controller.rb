@@ -15,7 +15,7 @@ module Agent
     end
 
     def profit
-      #fields = "effective_on, count(*) as group_count, sum(deposit_amount) as deposit_amount,sum(drawing_amount) as drawing_amount,sum(bid_amount) as bid_amount,sum(bonus_amount) as bonus_amount"
+      #fields = "effective_on, count(*) as group_count, sum(deposit_amount) as deposit_amount,sum(drawing_amount) as drawing_amount,sum(bid_amount) as bid_amount,sum(bonus) as bonus"
       @dates = get_paginated_dates
       user_days = current_broker.user_days.where(effective_on: @dates )
       @daily_profits = Summary::BrokerDailyProfitFactory.create( user_days )

@@ -1,3 +1,11 @@
+# 存钱/投注/红利/盈利 都会发生钱包的变化
+#
+# type      deposit  deposit_bonus  bid   bid_principal  bid_bonus
+# amount      +         +           -        +              +
+# is_bonus   false    true         false    false          true
+#
+#
+
 class Wallet < ApplicationRecord
   extend DisplayMoney
   money_methods :amount
@@ -5,6 +13,7 @@ class Wallet < ApplicationRecord
   date_time_methods :created_at
 
   belongs_to :user, required: true
+  belongs_to :originator, polymorphic: true
 
   scope :bonuses, -> { where(is_bonus: true) }
 

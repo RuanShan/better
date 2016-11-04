@@ -10,7 +10,6 @@
       <th>注册数</th>
       <th>新注册并存款</th>
       <th>注册存款转化率</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -21,7 +20,7 @@
         <td><%= broker_day.clink_visits %></td>
         <td><%= broker_day.member_count %></td>
         <td><%= broker_day.valuable_member_count %></td>
-        <td><%= broker_day.energetic_member_count %></td>
+        <td><%= broker_day.display_valuable_rate %></td>
       </tr>
     <% end %>
   </tbody>

@@ -295,7 +295,8 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.decimal  "deposit_amount", default: "0.0", null: false
     t.decimal  "drawing_amount", default: "0.0", null: false
     t.decimal  "bid_amount",     default: "0.0", null: false
-    t.decimal  "bonus_amount",   default: "0.0", null: false
+    t.decimal  "bonus",          default: "0.0", null: false
+    t.decimal  "profit",         default: "0.0", null: false
     t.decimal  "balance",        default: "0.0", null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -311,8 +312,9 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.date     "effective_on"
     t.decimal  "deposit_amount", default: "0.0", null: false
     t.decimal  "drawing_amount", default: "0.0", null: false
-    t.decimal  "bonus_amount",   default: "0.0", null: false
+    t.decimal  "bonus",          default: "0.0", null: false
     t.decimal  "bid_amount",     default: "0.0", null: false
+    t.decimal  "profit",         default: "0.0", null: false
     t.decimal  "balance",        default: "0.0", null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -339,7 +341,8 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.decimal  "deposit_amount", default: "0.0", null: false
     t.decimal  "drawing_amount", default: "0.0", null: false
     t.decimal  "bid_amount",     default: "0.0", null: false
-    t.decimal  "bonus_amount",   default: "0.0", null: false
+    t.decimal  "bonus",          default: "0.0", null: false
+    t.decimal  "profit",         default: "0.0", null: false
     t.decimal  "balance",        default: "0.0", null: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
