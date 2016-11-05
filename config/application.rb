@@ -1,5 +1,7 @@
 require_relative 'boot'
 
+require 'csv'
+
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -28,6 +30,6 @@ module Better
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
 
     config.i18n.default_locale = :"zh-CN"
-    
+
   end
 end

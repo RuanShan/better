@@ -49,6 +49,17 @@ class User < ApplicationRecord
   validates :phone, length: { in: 7..11 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(user) { user.phone.present? or user.binding_name }
   validates :qq, length: { in: 5..10 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(user) { user.qq.present? }
 
+  #for broker list members
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << ["用户名/ID", "注册时间", "用户类型", "状态"]
+      all.each do |user|
+        values = [user.nickname, user.display_created_at, user.type, user.state]
+        csv << values
+      end
+    end
+  end
+
   def set_default_role
     self.role ||= :user
   end
