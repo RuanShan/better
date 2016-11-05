@@ -63,7 +63,7 @@ class DayUpdater
 
   def update_broker_day
     return unless broker
-    day = broker.broker_today || broker.build_broker_today( balance: user.user_life.balance )
+    day = broker.broker_today || broker.build_broker_today
     # 今日注册用户且存款， 更新代理今日统计
     if is_first_deposit_today && user.created_at.today?
       day.valuable_member_count += 1
