@@ -4,12 +4,19 @@ module Agent
     before_action :authenticate_broker!
 
     def index
-      @users = current_broker.members.paginate( page: params[:page] )
-      excel_file_name = "member_list"
+      @member_type = params["user_type"].present? ? params["user_type"] : "all"
+      @member_state = params["user_state"].present? ? params["user_state"] : "all"
+      if @member_state == "all"
+        state_condition = ""
+      else
+        state_condition = @member_state == "normal" ? "locked_at is NULL" : "locked_at is not NULL"
+      end
+      @users = current_broker.members.where(state_condition).paginate( page: params[:page] )
       respond_to do |format|
         format.html
         format.xls do
-          headers["Content-disposition"] = 'inline;  filename="'+excel_file_name+'.xls"'
+          excel_file_name = "#{t @member_type.to_sym}#{t :member}#{t :state}#{t @member_state.to_sym}.xls"
+          send_data @users.to_csv(col_sep: "\t"), filename: excel_file_name
         end
       end
     end
@@ -28,17 +35,6 @@ module Agent
         end
       end
       @member_profit_summaries = Summary::BrokerMemberProfitFactory.create(@users, @start_date, @end_date )
-    end
-
-    def export_excel
-      @users = current_broker.members.paginate( page: params[:page] )
-      excel_file_name = "member_list"
-      respond_to do |format|
-        format.xls do
-          headers["Content-disposition"] = 'inline;  filename="#{excel_file_name}.xls"'
-        end
-      end
-
     end
 
     def permitted_search_params

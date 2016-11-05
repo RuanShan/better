@@ -5,12 +5,13 @@ module UsersHelper
   end
 
   def user_type_select(selected_type="all")
+    #options=[["全部","all"],["下级代理","broker"],["下级用户","member"]]
     options=[["全部","all"]]
     select_tag "user_type", options_for_select(options, selected_type), class:"form-control"
   end
 
   def user_state_select(selected_state="all")
-    options=[["全部","all"]]
+    options=[["全部","all"],["正常","normal"],["冻结","frozen"]]
     select_tag "user_state", options_for_select(options, selected_state), class:"form-control"
   end
 

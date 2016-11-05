@@ -5,6 +5,14 @@ zh-CN:
         number: "交易号码"
         mount: "金额(RMB)"
         createed_at: "日期/时间(GMT+8)"
+      user:
+
   agent:
     site:
       name: 代理平台
+      
+  member: 会员
+  state: 状态
+  all: 全部
+  normal: 正常
+  frozen: 冻结

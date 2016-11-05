@@ -1,17 +1,17 @@
 <div> <h2 class="page-header">用户列表  <small>显示下级代理和下线会员列表 </small> </h2></div>
 <p id="notice"><%= notice %></p>
-<%@selected_type ||= "all"%>
-<%@selected_state ||= "all"%>
+<%@member_type ||= "all"%>
+<%@member_state ||= "all"%>
 <div class="row">
   <div class="col-md-10">
     <%=form_tag agent_members_path, class:"form-inline", role:"form", method: :get do%>
       <div class="form-group">
         <label for="user_type">用户类型</label>
-        <%=user_type_select @selected_type%>
+        <%=user_type_select @member_type%>
       </div>
       <div class="form-group">
         <label for="user_state">用户状态</label>
-        <%=user_state_select @selected_state%>
+        <%=user_state_select @member_state%>
       </div>
       <div class="form-group">
         <%=submit_tag "查询",  class:"form-control"%>
@@ -30,7 +30,6 @@
       <th>注册时间</th>
       <th>用户类型</th>
       <th>状态</th>
-
     </tr>
     <tbody>
       <% @users.each do |user| %>
