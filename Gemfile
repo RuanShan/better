@@ -37,7 +37,7 @@ gem 'high_voltage'
 #https://github.com/plataformatec/simple_form
 gem 'simple_form'
 #https://github.com/activerecord-hackery/ransack
-#gem 'ransack'
+
 gem 'friendly_id', '~> 5.1.0'
 
 # 分页
@@ -45,8 +45,10 @@ gem 'will_paginate', '~> 3.1.0'
 
 # 状态机功能
 gem 'state_machines-activerecord'
+
 # 支付宝接口
 gem 'alipay'
+
 # 货币及显示格式定义
 gem 'monetize'
 
@@ -54,8 +56,11 @@ gem 'monetize'
 gem 'awesome_nested_set'
 #gem 'paranoid'
 
-#send sms
+# send sms
 gem 'alidayu-ruby', require: 'alidayu'
+
+# 计划任务定义
+gem 'whenever', :require => false
 
 group :development do
   gem 'better_errors'

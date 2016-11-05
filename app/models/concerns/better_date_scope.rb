@@ -35,6 +35,8 @@ module BetterDateScope
           case some_date
           when :today
             scope :today, ->{ on_date( DateTime.current.to_date ) }
+          when :yesterday
+            scope :yesterday, ->{ on_date( DateTime.current.yesterday.to_date ) }
           when :ten_days
             scope :ten_days, ->{ between_dates(  DateTime.current.advance(days: -10).to_date, DateTime.current.to_date ) }
           end
@@ -54,6 +56,8 @@ module BetterDateScope
           case some_date
           when :current_month
             scope :current_month, ->{ in_month( beginning_of_month( DateTime.current )) }
+          when :last_month
+            scope :last_month, ->{ in_month( beginning_of_month( DateTime.current.advance(months: -1) )) }
           end
         }
       end
@@ -62,7 +66,7 @@ module BetterDateScope
 
 
   def beginning_of_month( datetime )
-    DateTime.civil_from_format :local, datetime.year, datetime.month, 1
+    DateTime.civil_from_format( :local, datetime.year, datetime.month, 1 ).to_date
   end
 
   def end_of_month( datetime )
