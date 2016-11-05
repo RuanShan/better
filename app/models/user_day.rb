@@ -2,7 +2,7 @@
 #[#<UserDay:0x000000061b1e98 id: nil, deposit_amount: #<BigDecimal:61c30f8,'0.0',9(27)>>]
 class UserDay < ApplicationRecord
   extend BetterDateScope
-  better_date_scope effective_on: [:today]
+  better_date_scope effective_on: [:today, :yesterday]
 
   belongs_to :user
   belongs_to :broker, optional: true
