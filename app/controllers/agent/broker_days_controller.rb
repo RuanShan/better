@@ -10,6 +10,13 @@ module Agent
     def index
       @start_date, @end_date, @dates = get_paginated_dates
       @broker_days = current_broker.broker_days.where( effective_on: @dates ).order( effective_on: :desc )
+      respond_to do |format|
+        format.html
+        format.xls do
+          excel_file_name = "#{t :daily_promotional_effectiveness_table}#{@start_date}~#{@end_date}.xls"
+          send_data @broker_days.to_csv(col_sep: "\t"), filename: excel_file_name
+        end
+      end
     end
 
     def profit
@@ -18,6 +25,13 @@ module Agent
       user_days = current_broker.user_days.where(effective_on: @dates )
       @daily_profits = Summary::BrokerDailyProfitFactory.create( user_days )
       #@grouped_user_days = current_broker.user_days.select( fields ).where(effective_on: @dates ).group(:broker_id, :effective_on)
+      respond_to do |format|
+        format.html
+        format.xls do
+          excel_file_name = "#{t :daily_profit_table}#{@start_date}~#{@end_date}.xls"
+          send_data Summary::BrokerDailyProfit.generate_csv(@daily_profits, col_sep: "\t"), filename: excel_file_name
+        end
+      end
     end
     # GET /broker_days/1
     # GET /broker_days/1.json

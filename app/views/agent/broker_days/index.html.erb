@@ -1,6 +1,6 @@
 <div> <h2 class="page-header">日推广效果表  <small>显示您每日的推广注册效果 </small> </h2></div>
 <p id="notice"><%= notice %></p>
-<%= render partial: "agent/shared/date_filters", locals: {filter_path: agent_broker_days_path} %>
+<%= render partial: "agent/shared/date_filter_and_export_excel", locals: {thispath: agent_broker_days_path} %>
 
 <table class="table">
   <thead>

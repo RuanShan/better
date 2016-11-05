@@ -17,6 +17,8 @@ class Broker < ApplicationRecord
   # 代理的下级成员
   has_many :members, class_name: 'User'
   has_many :user_days, through: :members
+  
+  has_many :user_months, through: :members
   #
   has_many :members_registed_today, ->{ today }, class_name: 'User'
 
@@ -24,6 +26,7 @@ class Broker < ApplicationRecord
   has_many :broker_days
   has_one  :broker_today, ->{ today }, class_name: 'BrokerDay'
 
+  has_many :broker_months
 
   alias_attribute :name, :nickname
 

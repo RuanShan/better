@@ -51,8 +51,7 @@ class Drawing < ApplicationRecord
 
   def valid_to_process?
     #TODO
-    # available money to transfer
-    true
+    # available money to transfer    true
   end
 
   def adjust_wallet

@@ -21,4 +21,11 @@ class UserMonth < ApplicationRecord
     balance = user.user_life.balance
   end
 
+  def bid_difference
+    0
+  end
+
+  def net_difference
+    0
+  end
 end

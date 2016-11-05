@@ -35,6 +35,13 @@ module Agent
         end
       end
       @member_profit_summaries = Summary::BrokerMemberProfitFactory.create(@users, @start_date, @end_date )
+      respond_to do |format|
+        format.html
+        format.xls do
+          excel_file_name = "#{t :members_detail_table}#{@start_date}~#{@end_date}.xls"
+          send_data Summary::MemberProfit.generate_csv(@member_profit_summaries, col_sep: "\t"), filename: excel_file_name
+        end
+      end
     end
 
     def permitted_search_params

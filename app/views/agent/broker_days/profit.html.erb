@@ -1,6 +1,6 @@
 <div> <h2 class="page-header">日盈利表  <small>显示每日下线会员所创造的盈利 </small> </h2></div>
 <p id="notice"><%= notice %></p>
-<%= render partial: "agent/shared/date_filters", locals: {filter_path: profit_agent_broker_days_path} %>
+<%= render partial: "agent/shared/date_filter_and_export_excel", locals: {thispath: profit_agent_broker_days_path} %>
 
 <table class="table">
   <thead>

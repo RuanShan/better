@@ -71,7 +71,7 @@ class User < ApplicationRecord
   end
 
   def state
-    "正常"
+    locked_at.nil? ? "normal" : "frozen"
   end
 
   def password_prefix

@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-md-10">
+    <%= render partial: "agent/shared/date_filters", locals: {filter_path: thispath} %>
+  </div>
+  <div class="col-md-2">
+    <%=link_to "导出EXCEL", thispath+".xls", class:"btn btn-primary"%>
+  </div>
+</div>

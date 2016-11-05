@@ -2,7 +2,8 @@
 class DayUpdater
   EnergeticMemberMinDeposit = 500
   EnergeticMemberMinBid = 1000
-
+  PlatformChargeRate = 0.1
+  BankChargeRate = 0.005
   attr_accessor :wallet, :user
   attr_accessor :is_first_deposit_today, :is_energetic_member
 
@@ -32,11 +33,13 @@ class DayUpdater
         self.is_first_deposit_today = true if day.deposit_amount == 0
         day.deposit_amount += amount
       end
-    elsif is_drawing?           #提款
+    elsif is_drawing?           #提款提款提款
       day.drawing_amount -= amount
+      day.bank_charges += amount * BankChargeRate
     elsif is_bid?
       if amount < 0             #投注
         day.bid_amount -= amount
+        day.platform_charges += amount * PlatformChargeRate
       else
         if is_bonus?            #投注收益
           day.profit += amount

@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     resources :broker_days do
       get :profit, on: :collection
     end
+    resources :broker_months do
+      get :profit, on: :collection
+      get :balance, on: :collection
+    end
     resources :members do
       get :profit, on: :collection
     end

@@ -10,9 +10,16 @@ zh-CN:
   agent:
     site:
       name: 代理平台
-      
+
   member: 会员
   state: 状态
   all: 全部
   normal: 正常
   frozen: 冻结
+
+  monthly_promotional_effectiveness_table: 月推广效果表
+  monthly_profit_table: 月盈利表
+  monthly_balance_table: 月结余表
+  daily_promotional_effectiveness_table: 日推广效果表
+  daily_profit_table: 日盈利表
+  members_detail_table: 下线会员明细表

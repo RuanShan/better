@@ -1,0 +1,39 @@
+<div> <h2 class="page-header">月盈利表  <small>显示每月下线会员所创造的盈利 </small> </h2></div>
+<p id="notice"><%= notice %></p>
+<%= render partial: "agent/shared/date_filter_and_export_excel", locals: {thispath: profit_agent_broker_months_path} %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>月份</th>
+      <th>活跃人数</th>
+      <th>存款(人数)</th>
+      <th>提款(人数)</th>
+      <th>投注</th>
+      <th>投注补差</th>
+      <th>输赢</th>
+      <th>输赢补差</th>
+      <th>红利</th>
+      <th>盈利</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dates.each do |date| monthly_profit  = @monthly_profits.select{|month| month.effective_on == date}.first || Summary::BrokerMonthlyProfit.new( date ) %>
+      <tr>
+        <td><%= monthly_profit.effective_on.to_s(:year_month)  %></td>
+        <td><%= 0 %></td>
+        <td><%= monthly_profit.deposit_amount %>(<%= monthly_profit.deposit_member_count %>)</td>
+        <td><%= monthly_profit.drawing_amount %>(<%= monthly_profit.drawing_member_count %>)</td>
+        <td><%= monthly_profit.bid_amount %></td>
+        <td><%= monthly_profit.bid_difference %></td>
+        <td><%= monthly_profit.net %></td>
+        <td><%= monthly_profit.net_difference %></td>
+        <td><%= monthly_profit.bonus %></td>
+        <td><%= monthly_profit.profit %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<%= will_paginate @dates %>

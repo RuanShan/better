@@ -292,14 +292,16 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.integer  "user_id"
     t.integer  "broker_id"
     t.date     "effective_on"
-    t.decimal  "deposit_amount", default: "0.0", null: false
-    t.decimal  "drawing_amount", default: "0.0", null: false
-    t.decimal  "bid_amount",     default: "0.0", null: false
-    t.decimal  "bonus",          default: "0.0", null: false
-    t.decimal  "profit",         default: "0.0", null: false
-    t.decimal  "balance",        default: "0.0", null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.decimal  "deposit_amount",   default: "0.0", null: false
+    t.decimal  "drawing_amount",   default: "0.0", null: false
+    t.decimal  "bid_amount",       default: "0.0", null: false
+    t.decimal  "bonus",            default: "0.0", null: false
+    t.decimal  "profit",           default: "0.0", null: false
+    t.decimal  "balance",          default: "0.0", null: false
+    t.decimal  "bank_charges",     default: "0.0", null: false
+    t.decimal  "platform_charges", default: "0.0", null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.index ["broker_id"], name: "index_user_days_on_broker_id"
     t.index ["user_id", "broker_id", "effective_on"], name: "index_user_days_on_user_id_and_broker_id_and_effective_on"
     t.index ["user_id", "effective_on"], name: "index_user_days_on_user_id_and_effective_on"
@@ -338,14 +340,16 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.integer  "user_id"
     t.integer  "broker_id"
     t.date     "effective_on"
-    t.decimal  "deposit_amount", default: "0.0", null: false
-    t.decimal  "drawing_amount", default: "0.0", null: false
-    t.decimal  "bid_amount",     default: "0.0", null: false
-    t.decimal  "bonus",          default: "0.0", null: false
-    t.decimal  "profit",         default: "0.0", null: false
-    t.decimal  "balance",        default: "0.0", null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.decimal  "deposit_amount",   default: "0.0", null: false
+    t.decimal  "drawing_amount",   default: "0.0", null: false
+    t.decimal  "bid_amount",       default: "0.0", null: false
+    t.decimal  "bonus",            default: "0.0", null: false
+    t.decimal  "profit",           default: "0.0", null: false
+    t.decimal  "balance",          default: "0.0", null: false
+    t.decimal  "bank_charges",     default: "0.0", null: false
+    t.decimal  "platform_charges", default: "0.0", null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.index ["broker_id"], name: "index_user_months_on_broker_id"
     t.index ["user_id", "broker_id", "effective_on"], name: "index_user_months_on_user_id_and_broker_id_and_effective_on"
     t.index ["user_id", "effective_on"], name: "index_user_months_on_user_id_and_effective_on"

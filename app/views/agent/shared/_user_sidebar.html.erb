@@ -12,9 +12,15 @@
 
             <div class="title"><span class="btn"></span>月综合报表</div>
             <ul class="nav nav-sidebar">
-                <li><a href="/agent/resultdata">月推广效果表</a></li>
-                <li><a href="/agent/month_profit">月盈利表</a></li>
-                <li><a href="/agent/month_balance">月结余表</a></li>
+                <li>
+                  <%= build_nav_link "月推广效果表", { controller: 'agent/broker_months'}%>
+                </li>
+                <li>
+                  <%= build_nav_link "月盈利表", { controller: 'agent/broker_months', action: 'profit'}%>
+                </li>
+                <li>
+                  <%= build_nav_link "月结余表", { controller: 'agent/broker_months', action: 'balance'}%>
+                </li>
             </ul>
 
             <div class="title"><span class="btn"></span>日明细报表</div>
