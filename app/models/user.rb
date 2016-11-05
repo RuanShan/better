@@ -23,9 +23,7 @@ class User < ApplicationRecord
   has_many :user_days
   has_many :user_months
   has_one  :user_today, ->{ today }, class_name: 'UserDay'
-  has_one  :user_yesterday, ->{ yesterday }, class_name: 'UserDay'
   has_one  :user_month, ->{ current_month }, class_name: 'UserMonth'
-  has_one  :user_last_month, ->{ last_month }, class_name: 'UserMonth'
   has_one  :user_life
 
   enum role: [:user, :vip ]

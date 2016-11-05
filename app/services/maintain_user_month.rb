@@ -2,8 +2,8 @@
 class MaintainUserMonth
   attr_accessor :specified_date
 
-  def initialize( specified_date = nil)
-    self.specified_date = specified_date || DateTime.current.to_date.yesterday
+  def initialize( date = nil)
+    specified_date = date || DateTime.current.to_date.yesterday
   end
 
   def run
@@ -12,7 +12,7 @@ class MaintainUserMonth
     User.has_one :specified_date, ->{ where( effective_on: date )}, class_name: "UserDay"
     User.has_one :month_of_specifed_date, ->{ where( effective_on: first_day_of_month )}, class_name: "UserMonth"
 
-    #TODO User 超过 1万 需要分页处理
+    #TODO User 超过 10万 需要分页处理
     users = User.includes(:specified_date, :month_of_specifed_date).all
 
     users.each{|user|

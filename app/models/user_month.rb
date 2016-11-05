@@ -1,6 +1,6 @@
 class UserMonth < ApplicationRecord
   extend BetterDateScope
-  better_month_scope effective_on: [:current_month, :last_month]
+  better_month_scope effective_on: [:current_month]
 
   belongs_to :user, required: true
   belongs_to :broker, optional: true
