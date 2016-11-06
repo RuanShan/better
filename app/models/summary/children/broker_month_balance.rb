@@ -2,7 +2,7 @@ module Summary
   module Children
     class BrokerMonthBalance < ChildrenBase
       attr_accessor :user_months
-      
+
       attr_accessor :profit, :bid_amount
       attr_accessor :bank_charges, :platform_charges, :net_profit
       attr_accessor :last_month_negative_balance, :this_month_balance
@@ -10,9 +10,9 @@ module Summary
 
       def initialize( children_broker, user_months =[] )
         super(children_broker)
-        monthly_profit  = BrokerMonthlyProfit.new( nil, user_months)
-        logger.debug "self.attributes=#{self.attributes.inspect}"
-        self.attributes = monthly_profit.attributes
+        monthly_balance  = BrokerMonthlyBalance.new( nil, user_months)
+        attrs = [:profit, :bid_amount, :bank_charges, :platform_charges, :net_profit, :last_month_negative_balance, :this_month_balance]
+        attrs.each{|attr|self.send("#{attr.to_s}=", monthly_balance.send("#{attr.to_s}"))}
       end
 
       def self.generate_csv(month_balances, options = {})

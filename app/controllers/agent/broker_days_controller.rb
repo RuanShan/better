@@ -37,7 +37,7 @@ module Agent
 
     def children
       @start_date, @end_date, @dates = get_paginated_dates
-      @broker_days = Summary::Children::BrokerDayFactory.create("effection", @children_brokers, @dates )
+      @broker_days = Summary::Children::BrokerDayFactory.create("effection", @children_brokers, @start_date, @end_date )
       respond_to do |format|
         format.html
         format.xls do
@@ -49,11 +49,14 @@ module Agent
 
     def children_profit
       @start_date, @end_date, @dates = get_paginated_dates
-      @day_profits = Summary::Children::BrokerDayFactory.create("profit", @children_brokers, @dates )
+      @day_profits = Summary::Children::BrokerDayFactory.create("profit", @children_brokers, @start_date, @end_date )
+      Rails.logger.debug "in children_profit , @day_profits=#{@day_profits.inspect}"
+
       respond_to do |format|
         format.html
         format.xls do
           excel_file_name = "#{t :daily_profit_table}#{@start_date}~#{@end_date}.xls"
+          Rails.logger.debug "in children_profit , before send xls, @day_profits=#{@day_profits.inspect}"
           send_data Summary::Children::BrokerDayProfit.generate_csv(@day_profits, col_sep: "\t"), filename: excel_file_name
         end
       end
@@ -120,13 +123,14 @@ module Agent
       end
 
       def set_children
+        @page = params["page"]
         @member_state = params["member_state"]
         if @member_state == "all"
           state_condition = ""
         else
           state_condition = @member_state == "normal" ? "and locked_at is NULL" : "and locked_at is not NULL"
         end
-        @children_brokers = current_broker.filtered_children(state_condition)
+        @children_brokers = current_broker.filtered_children(state_condition).paginate(:page => @page)
       end
       # Never trust parameters from the scary internet, only allow the white list through.
       def broker_day_params

@@ -8,7 +8,8 @@ class Broker < ApplicationRecord
   # 添加 日注册，月注册 scope
   extend BetterDateScope
   better_date_time_scope created_at: [:today, :month]
-
+  extend  DisplayDateTime
+  date_time_methods :created_at
   # 产生推广码
   extend FriendlyId
   friendly_id :number, slug_column: :number, use: :slugged
@@ -29,6 +30,10 @@ class Broker < ApplicationRecord
   has_many :broker_months
 
   alias_attribute :name, :nickname
+
+  def state
+    locked_at.nil? ? "normal" : "frozen"
+  end
 
   def change_password(password_options)
     if valid_password? password_options["current_password"]

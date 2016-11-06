@@ -6,5 +6,7 @@ FactoryGirl.define do
     drawing_amount "9.99"
     bid_amount "9.99"
     bonus "9.99"
+    bank_charges "0.1"
+    platform_charges "1"
   end
 end

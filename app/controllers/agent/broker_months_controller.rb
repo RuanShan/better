@@ -17,7 +17,7 @@ class Agent::BrokerMonthsController < ApplicationController
 
   def profit
     @start_date, @end_date, @dates = get_paginated_dates
-    user_months = current_broker.user_months.where(effective_on: @dates )
+    user_months = current_broker.user_months.where(effective_on: @dates ).unscoped
     @monthly_profits = Summary::BrokerMonthlyFactory.create("profit", user_months )
     respond_to do |format|
       format.html
@@ -30,7 +30,7 @@ class Agent::BrokerMonthsController < ApplicationController
 
   def balance
     @start_date, @end_date, @dates = get_paginated_dates
-    user_months = current_broker.user_months.where(effective_on: @dates+[DateTime.parse(@start_date).to_date.advance( months: -1 )] )
+    user_months = current_broker.user_months.where(effective_on: @dates+[DateTime.parse(@start_date).to_date.advance( months: -1 )] ).unscoped
     @monthly_balances = Summary::BrokerMonthlyFactory.create("balance", user_months, @dates )
     respond_to do |format|
       format.html
@@ -43,7 +43,7 @@ class Agent::BrokerMonthsController < ApplicationController
 
   def children
     @start_date, @end_date, @dates = get_paginated_dates
-    @broker_months = Summary::Children::BrokerMonthFactory.create("effection", @children_brokers, @dates )
+    @broker_months = Summary::Children::BrokerMonthFactory.create("effection", @children_brokers, @start_date, @end_date )
     respond_to do |format|
       format.html
       format.xls do
@@ -55,7 +55,7 @@ class Agent::BrokerMonthsController < ApplicationController
 
   def children_profit
     @start_date, @end_date, @dates = get_paginated_dates
-    @month_profits = Summary::Children::BrokerMonthFactory.create("profit", @children_brokers, @dates )
+    @month_profits = Summary::Children::BrokerMonthFactory.create("profit", @children_brokers, @start_date, @end_date )
     respond_to do |format|
       format.html
       format.xls do
@@ -67,7 +67,7 @@ class Agent::BrokerMonthsController < ApplicationController
 
   def children_balance
     @start_date, @end_date, @dates = get_paginated_dates
-    @month_balances = Summary::Children::BrokerMonthFactory.create("balance", @children_brokers, @dates )
+    @month_balances = Summary::Children::BrokerMonthFactory.create("balance", @children_brokers, @start_date, @end_date )
     respond_to do |format|
       format.html
       format.xls do
@@ -89,13 +89,14 @@ class Agent::BrokerMonthsController < ApplicationController
     end
 
     def set_children
+      @page = params["page"]
       @member_state = params["member_state"]
       if @member_state == "all"
         state_condition = ""
       else
         state_condition = @member_state == "normal" ? "and locked_at is NULL" : "and locked_at is not NULL"
       end
-      @children_brokers = current_broker.filtered_children(state_condition)
+      @children_brokers = current_broker.filtered_children(state_condition).paginate(:page => @page)
     end
 
     def permitted_search_params
@@ -118,10 +119,10 @@ class Agent::BrokerMonthsController < ApplicationController
         #if to_date < from_date
       end
       dates = ((to_date.year * 12 + to_date.month) - (from_date.year * 12 + from_date.month)+1).to_i.times.map{|i|
-          to_date.advance( months: -i )
+          to_date.advance( months: -i ).beginning_of_month
       }
       dates = dates.paginate(:page => params["page"])
-      [from_date.to_s, to_date.to_s, dates]
+      [from_date.beginning_of_month.to_s, to_date.beginning_of_month.to_s, dates]
     end
 
 end
