@@ -36,11 +36,9 @@ module Agent
       if request.patch?
         current_broker.change_password(params["broker"])
         if current_broker.errors.empty?
-          flash[:notice] = "Password changed!"
-        else
-          flash[:error] = current_broker.errors.full_messages[0]
+          flash[:notice] = t :password_changed
         end
-        redirect_to change_password_broker_path(current_broker)
+        render :change_password
       end
     end
   end

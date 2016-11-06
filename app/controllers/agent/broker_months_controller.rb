@@ -1,6 +1,7 @@
 class Agent::BrokerMonthsController < ApplicationController
   layout "broker"
   before_action :authenticate_broker!
+  before_action :set_children, only: [:children, :children_profit, :children_balance]
 
   def index
     @start_date, @end_date, @dates = get_paginated_dates
@@ -40,6 +41,42 @@ class Agent::BrokerMonthsController < ApplicationController
     end
   end
 
+  def children
+    @start_date, @end_date, @dates = get_paginated_dates
+    @broker_months = Summary::Children::BrokerMonthFactory.create("effection", @children_brokers, @dates )
+    respond_to do |format|
+      format.html
+      format.xls do
+        excel_file_name = "#{t :monthly_promotional_effectiveness_table}#{@start_date}~#{@end_date}.xls"
+        send_data Summary::Children::BrokerMonth.generate_csv(@broker_months, col_sep: "\t"), filename: excel_file_name
+      end
+    end
+  end
+
+  def children_profit
+    @start_date, @end_date, @dates = get_paginated_dates
+    @month_profits = Summary::Children::BrokerMonthFactory.create("profit", @children_brokers, @dates )
+    respond_to do |format|
+      format.html
+      format.xls do
+        excel_file_name = "#{t :monthly_profit_table}#{@start_date}~#{@end_date}.xls"
+        send_data Summary::Children::BrokerMonthProfit.generate_csv(@month_profits, col_sep: "\t"), filename: excel_file_name
+      end
+    end
+  end
+
+  def children_balance
+    @start_date, @end_date, @dates = get_paginated_dates
+    @month_balances = Summary::Children::BrokerMonthFactory.create("balance", @children_brokers, @dates )
+    respond_to do |format|
+      format.html
+      format.xls do
+        excel_file_name = "#{t :monthly_balance_table}#{@start_date}~#{@end_date}.xls"
+        send_data Summary::Children::BrokerMonthBalance.generate_csv(@month_balances, col_sep: "\t"), filename: excel_file_name
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_broker_day
@@ -49,6 +86,16 @@ class Agent::BrokerMonthsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def broker_day_params
       params.require(:broker_day).permit(:broker_id, :effective_on, :clink_visits, :blink_visits, :user_count, :valuable_member_count, :engergetic_member_count)
+    end
+
+    def set_children
+      @member_state = params["member_state"]
+      if @member_state == "all"
+        state_condition = ""
+      else
+        state_condition = @member_state == "normal" ? "and locked_at is NULL" : "and locked_at is not NULL"
+      end
+      @children_brokers = current_broker.filtered_children(state_condition)
     end
 
     def permitted_search_params

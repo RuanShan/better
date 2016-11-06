@@ -13,10 +13,10 @@ module ApplicationHelper
     content_tag :span, text, style:'margin:5px;'
   end
 
-  def calendar(text_id, value)
+  def calendar(text_id, value, calendar_class="calendar")
     calendar_text = text_field_tag(text_id, value, class:'form-control', size:10)
     calendar_span = content_tag(:span, content_tag(:span, "", class:'fa fa-calendar'), class:'input-group-addon')
-    content_tag(:div, calendar_text+calendar_span, class:'calendar input-group date')
+    content_tag(:div, calendar_text+calendar_span, class:"#{calendar_class} input-group date")
   end
 
   def display_money(amount)

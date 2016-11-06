@@ -1,11 +1,12 @@
+<%calendar_class = (filter_path.include? "month") ? "mcalendar" : "calendar"%>
 <%=form_tag filter_path, class:"form-inline", role:"form", method: :get do%>
   <div class="form-group">
     <label for="start_date">起始日期</label>
-    <%=calendar "start_date", @start_date%>
+    <%=calendar "start_date", @start_date, calendar_class%>
   </div>
   <div class="form-group">
     <label for="end_date">到</label>
-    <%=calendar "end_date", @end_date%>
+    <%=calendar "end_date", @end_date, calendar_class%>
   </div>
   <div class="form-group">
     <%=submit_tag "查询",  class:"form-control"%>

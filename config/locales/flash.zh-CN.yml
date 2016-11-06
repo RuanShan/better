@@ -8,3 +8,4 @@ zh-CN:
   bind_bank_success: 银行绑定成功
   deposit_success: 充值成功
   drawing_success: 提款操作成功，请等待银行确认
+  password_changed: 密码修改成功

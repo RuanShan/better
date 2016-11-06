@@ -17,7 +17,7 @@ class Broker < ApplicationRecord
   # 代理的下级成员
   has_many :members, class_name: 'User'
   has_many :user_days, through: :members
-  
+
   has_many :user_months, through: :members
   #
   has_many :members_registed_today, ->{ today }, class_name: 'User'
@@ -30,6 +30,16 @@ class Broker < ApplicationRecord
 
   alias_attribute :name, :nickname
 
+  def change_password(password_options)
+    if valid_password? password_options["current_password"]
+      reset_password(password_options["password"],password_options["password_confirmation"] )
+    else
+      errors.add(:current_password, "当前密码不正确")
+    end
+  end
 
+  def filtered_children(filter_condition)
+    self.class.where("parent_id=? #{filter_condition}", self.id).all
+  end
   #
 end

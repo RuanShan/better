@@ -1,0 +1,32 @@
+<div> <h2 class="page-header">月推广效果表  <small>显示各代理的月度推广注册效果 </small> </h2></div>
+<p id="notice"><%= notice %></p>
+<%= render partial: "agent/shared/subbroker_filter_and_export_excel", locals: {thispath: children_agent_broker_months_path} %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>会员</th>
+      <th>注册时间</th>
+      <th>状态</th>
+      <th>点击数</th>
+      <th>注册数</th>
+      <th>新注册并存款</th>
+      <th>注册存款转化率</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @broker_months.each do |broker_month|%>
+      <tr>
+        <td><%= broker_month.broker_name %></td>
+        <td><%= broker_month.sign_up_time %></td>
+        <td><%= broker_month.state %></td>
+        <td><%= broker_month.clink_visits %></td>
+        <td><%= broker_month.member_count %></td>
+        <td><%= broker_month.valuable_member_count %></td>
+        <td><%= broker_month.display_valuable_rate %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @children_brokers  if @children_brokers.respond_to? :total_pages %>

@@ -16,16 +16,23 @@ Rails.application.routes.draw do
   namespace :agent do
     resources :broker_days do
       get :profit, on: :collection
+      get :children, on: :collection
+      get :children_profit, on: :collection
     end
     resources :broker_months do
       get :profit, on: :collection
       get :balance, on: :collection
+      get :children, on: :collection
+      get :children_profit, on: :collection
+      get :children_balance, on: :collection
     end
     resources :members do
       get :profit, on: :collection
     end
     resources :user_days
-    resources :broker
+    resources :broker do
+      match 'change_password', via: [:get, :patch]
+    end
     resources :deposits
     get '/', to: 'welcome#index', as: :root
   end

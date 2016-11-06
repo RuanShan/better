@@ -1,0 +1,38 @@
+<div> <h2 class="page-header">月结余表  <small>显示各代理月度盈利扣除费用后的结余 </small> </h2></div>
+<p id="notice"><%= notice %></p>
+<%= render partial: "agent/shared/subbroker_filter_and_export_excel", locals: {thispath: children_balance_agent_broker_months_path} %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>会员</th>
+      <th>注册时间</th>
+      <th>状态</th>
+      <th>活跃人数</th>
+      <th>盈利</th>
+      <th>银行手续费</th>
+      <th>平台手续费</th>
+      <th>净盈利</th>
+      <th>上月负结余</th>
+      <th>本月结余</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @month_balances.each do |month_balance| %>
+      <tr>
+        <td><%= month_balance.broker_name %></td>
+        <td><%= month_balance.sign_up_time %></td>
+        <td><%= month_balance.state %></td>
+        <td><%= 0 %></td>
+        <td><%= month_balance.profit %></td>
+        <td><%= month_balance.bank_charges %></td>
+        <td><%= month_balance.platform_charges %></td>
+        <td><%= month_balance.net_profit %></td>
+        <td><%= month_balance.last_month_negative_balance %></td>
+        <td><%= month_balance.this_month_balance %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @children_brokers  if @children_brokers.respond_to? :total_pages %>

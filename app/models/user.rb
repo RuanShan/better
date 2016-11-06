@@ -87,11 +87,10 @@ class User < ApplicationRecord
 
   def change_password(password_options)
     @password_prefix = password_options["money_password"] ? "money_" : ""
-    logger.debug "@password_prefix =#{@password_prefix }"
     if valid_password? password_options["current_#{@password_prefix}password"]
       reset_password(password_options["#{@password_prefix}password"],password_options["#{@password_prefix}password_confirmation"] )
     else
-      errors.add(:current_password, "not right")
+      errors.add(:current_password, "当前密码不正确")
     end
   end
 
@@ -100,7 +99,7 @@ class User < ApplicationRecord
       self.email = email_options["email"]
       save
     else
-      errors.add(:current_password, "not right")
+      errors.add(:current_password, "当前密码不正确")
     end
   end
 

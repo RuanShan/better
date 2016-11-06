@@ -3,6 +3,7 @@ module Agent
     layout "broker"
     before_action :authenticate_broker!
     before_action :set_broker_day, only: [:show, :edit, :update, :destroy]
+    before_action :set_children, only: [:children, :children_profit]
 
     # GET /broker_days
     # GET /broker_days.json
@@ -33,6 +34,31 @@ module Agent
         end
       end
     end
+
+    def children
+      @start_date, @end_date, @dates = get_paginated_dates
+      @broker_days = Summary::Children::BrokerDayFactory.create("effection", @children_brokers, @dates )
+      respond_to do |format|
+        format.html
+        format.xls do
+          excel_file_name = "#{t :daily_promotional_effectiveness_table}#{@start_date}~#{@end_date}.xls"
+          send_data Summary::Children::BrokerDay.generate_csv(@broker_days, col_sep: "\t"), filename: excel_file_name
+        end
+      end
+    end
+
+    def children_profit
+      @start_date, @end_date, @dates = get_paginated_dates
+      @day_profits = Summary::Children::BrokerDayFactory.create("profit", @children_brokers, @dates )
+      respond_to do |format|
+        format.html
+        format.xls do
+          excel_file_name = "#{t :daily_profit_table}#{@start_date}~#{@end_date}.xls"
+          send_data Summary::Children::BrokerDayProfit.generate_csv(@day_profits, col_sep: "\t"), filename: excel_file_name
+        end
+      end
+    end
+
     # GET /broker_days/1
     # GET /broker_days/1.json
     def show
@@ -93,6 +119,15 @@ module Agent
         @broker_day = BrokerDay.find(params[:id])
       end
 
+      def set_children
+        @member_state = params["member_state"]
+        if @member_state == "all"
+          state_condition = ""
+        else
+          state_condition = @member_state == "normal" ? "and locked_at is NULL" : "and locked_at is not NULL"
+        end
+        @children_brokers = current_broker.filtered_children(state_condition)
+      end
       # Never trust parameters from the scary internet, only allow the white list through.
       def broker_day_params
         params.require(:broker_day).permit(:broker_id, :effective_on, :clink_visits, :blink_visits, :user_count, :valuable_member_count, :engergetic_member_count)

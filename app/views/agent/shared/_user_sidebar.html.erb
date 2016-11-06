@@ -57,17 +57,19 @@
 
             <div class="title"><span class="btn"></span>直属下级代理推广状况</div>
 			<ul class="nav nav-sidebar">
-            <li><a href="/agent/child_promotion">月推广效果</a></li>
-            <li><a href="/agent/child_profit">月盈利表</a></li>
-            <li><a href="/agent/child_balance">月结余表</a></li>
-            <li><a href="/agent/child_day_promotion">日推广效果</a></li>
-            <li><a href="/agent/child_day_profit">日盈利表</a></li>
+            <li><%= build_nav_link "月推广效果表", { controller: 'agent/broker_months', action: 'children'}%></li>
+            <li><%= build_nav_link "月盈利表", { controller: 'agent/broker_months', action: 'children_profit'}%></li>
+            <li><%= build_nav_link "月结余表", { controller: 'agent/broker_months', action: 'children_balance'}%></li>
+            <li><%= build_nav_link "日推广效果表", { controller: 'agent/broker_days', action: 'children'}%></li>
+            <li><%= build_nav_link "日盈利表", { controller: 'agent/broker_days', action: 'children_profit'}%></li>
 
             </ul>
 
             <div class="title"><span class="btn"></span>代理信息</div>
             <ul class="nav nav-sidebar">
-                <li><a href="/mc/user/password">更改密码</a></li>
+                <li>
+                  <%= build_nav_link "更改密码", { controller: 'agent/broker', action: 'change_password', broker_id: current_broker.id}%>
+                </li>
             </ul>
 
 

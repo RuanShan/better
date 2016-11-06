@@ -1,0 +1,27 @@
+<%@member_state ||= "all"%>
+<div class="row">
+  <div class="col-md-10">
+    <%calendar_class = (thispath.include? "month") ? "mcalendar" : "calendar"%>
+    <%=form_tag thispath, class:"form-inline", role:"form", method: :get do%>
+      <div class="form-group">
+        <label for="start_date">起始日期</label>
+        <%=calendar "start_date", @start_date, calendar_class%>
+      </div>
+      <div class="form-group">
+        <label for="end_date">到</label>
+        <%=calendar "end_date", @end_date, calendar_class%>
+      </div>
+
+      <div class="form-group">
+        <%=member_state_select @member_state %>
+      </div>
+
+      <div class="form-group">
+        <%=submit_tag "查询",  class:"form-control"%>
+      </div>
+    <%end%>
+  </div>
+  <div class="col-md-2">
+    <%=link_to "导出EXCEL", thispath+".xls", class:"btn btn-primary"%>
+  </div>
+</div>
