@@ -13,7 +13,8 @@ puts "create user months for user:#{@user.id}-#{@user.name}"
   platform_charges = bid_amount*0.1
   puts "create user months effective_on:#{effective_on} "
   FactoryGirl.create(:user_month, effective_on: effective_on, deposit_amount: deposit_amount, drawing_amount: drawing_amount,
-    bid_amount: bid_amount, bonus: bonus, bank_charges: bank_charges, platform_charges: platform_charges, user: @user, broker: @user.broker)
+    bid_amount: bid_amount, bonus: bonus, profit: profit, balance: balance, bank_charges: bank_charges,
+    platform_charges: platform_charges, user: @user, broker: @user.broker)
 end
 
 @broker_users.each{|broker_user|
@@ -31,6 +32,7 @@ end
     platform_charges = bid_amount*0.1
     puts "create user months effective_on:#{effective_on} "
     FactoryGirl.create(:user_month, effective_on: effective_on, deposit_amount: deposit_amount, drawing_amount: drawing_amount,
-      bid_amount: bid_amount, bonus: bonus, bank_charges: bank_charges, platform_charges: platform_charges, user: broker_user, broker: broker_user.broker)
+      bid_amount: bid_amount, bonus: bonus, profit: profit, balance: balance, bank_charges: bank_charges,
+      platform_charges: platform_charges, user: broker_user, broker: broker_user.broker)
   end
 }

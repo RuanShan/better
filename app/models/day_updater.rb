@@ -55,7 +55,7 @@ class DayUpdater
     # 判断用户本月是否活跃
     # 存款不低于500元，投注流水不低于1000元
     # 如果用户当天注册， user_month 为空
-    month = user.user_month || user.create_user_month!( broker: user.broker, balance: user.user_life.balance )
+    month = user.user_cmonth || user.create_user_cmonth!( broker: user.broker, balance: user.user_life.balance )
     if month.deposit_amount < EnergeticMemberMinDeposit && month.deposit_amount+ day.deposit_amount >= EnergeticMemberMinDeposit
       is_energetic_member = true if month.bid_amount+ day.bid_amount >= EnergeticMemberMinBid
     end

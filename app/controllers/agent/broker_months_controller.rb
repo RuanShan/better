@@ -43,8 +43,6 @@ class Agent::BrokerMonthsController < ApplicationController
 
   def children
     @start_date, @end_date, @dates = get_paginated_dates
-    logger.debug "@start_date=#{@start_date}, @end_date=#{@end_date}"
-    logger.debug "@children_brokers=#{@children_brokers.inspect}"
     @broker_months = Summary::Children::BrokerMonthFactory.create("effection", @children_brokers, @start_date, @end_date )
     respond_to do |format|
       format.html
@@ -114,8 +112,8 @@ class Agent::BrokerMonthsController < ApplicationController
       if search_params.present?
         # 按选择日期分页
         begin
-        to_date = DateTime.parse( search_params[:end_date] ).to_date
-        from_date = DateTime.parse( search_params[:start_date] ).to_date
+        to_date = DateTime.parse( search_params[:end_date]+"-1" ).to_date
+        from_date = DateTime.parse( search_params[:start_date]+"-1" ).to_date
         rescue ArgumentError
         end
         #if to_date < from_date
