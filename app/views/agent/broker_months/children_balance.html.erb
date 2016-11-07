@@ -22,14 +22,14 @@
       <tr>
         <td><%= month_balance.broker_name %></td>
         <td><%= month_balance.sign_up_time %></td>
-        <td><%= month_balance.state %></td>
+        <td><%= t month_balance.state.to_sym %></td>
         <td><%= 0 %></td>
-        <td><%= month_balance.profit %></td>
-        <td><%= month_balance.bank_charges %></td>
-        <td><%= month_balance.platform_charges %></td>
-        <td><%= month_balance.net_profit %></td>
-        <td><%= month_balance.last_month_negative_balance %></td>
-        <td><%= month_balance.this_month_balance %></td>
+        <td><%= month_balance.display_profit %></td>
+        <td><%= month_balance.display_bank_charges %></td>
+        <td><%= month_balance.display_platform_charges %></td>
+        <td><%= month_balance.display_net_profit %></td>
+        <td><%= month_balance.display_last_month_negative_balance %></td>
+        <td><%= month_balance.display_this_month_balance %></td>
       </tr>
     <% end %>
   </tbody>

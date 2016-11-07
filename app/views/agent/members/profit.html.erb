@@ -19,14 +19,14 @@
       <% @member_profit_summaries.each do |member_profit| %>
         <tr>
           <td><%= member_profit.user.nickname %></td>
-          <td><%= member_profit.user.created_at %></td>
-          <td><%= 'xyz' %></td>
-          <td><%= member_profit.deposit_amount %></td>
-          <td><%= member_profit.drawing_amount %></td>
-          <td><%= member_profit.bonus %></td>
-          <td><%= member_profit.bid_amount %></td>
-          <td><%= member_profit.net %></td>
-          <td><%= member_profit.profit %></td>
+          <td><%= member_profit.user.display_created_at %></td>
+          <td><%= t member_profit.user.state.to_sym %></td>
+          <td><%= member_profit.display_deposit_amount %></td>
+          <td><%= member_profit.display_drawing_amount %></td>
+          <td><%= member_profit.display_bonus %></td>
+          <td><%= member_profit.display_bid_amount %></td>
+          <td><%= member_profit.display_net %></td>
+          <td><%= member_profit.display_profit %></td>
         </tr>
       <% end %>
     </tbody>

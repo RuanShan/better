@@ -19,7 +19,7 @@
       <tr>
         <td><%= broker_month.broker_name %></td>
         <td><%= broker_month.sign_up_time %></td>
-        <td><%= broker_month.state %></td>
+        <td><%= t broker_month.state.to_sym %></td>
         <td><%= broker_month.clink_visits %></td>
         <td><%= broker_month.member_count %></td>
         <td><%= broker_month.valuable_member_count %></td>

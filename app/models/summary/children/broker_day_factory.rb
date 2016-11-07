@@ -7,7 +7,7 @@ module Summary
         if type == "effection"
           children_brokers.map{|children_broker|
             broker_days = children_broker.broker_days.where( "effective_on>=? and effective_on<=? ", from_date, to_date )
-            BrokerDay.new( children_broker, broker_days)
+            BrokerDayEffection.new( children_broker, broker_days)
           }
         else
           children_brokers.map{|children_broker|

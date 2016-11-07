@@ -22,14 +22,14 @@
       <tr>
         <td><%= monthly_profit.effective_on.to_s(:year_month)  %></td>
         <td><%= 0 %></td>
-        <td><%= monthly_profit.deposit_amount %>(<%= monthly_profit.deposit_member_count %>)</td>
-        <td><%= monthly_profit.drawing_amount %>(<%= monthly_profit.drawing_member_count %>)</td>
-        <td><%= monthly_profit.bid_amount %></td>
-        <td><%= monthly_profit.bid_difference %></td>
-        <td><%= monthly_profit.net %></td>
-        <td><%= monthly_profit.net_difference %></td>
-        <td><%= monthly_profit.bonus %></td>
-        <td><%= monthly_profit.profit %></td>
+        <td><%= monthly_profit.display_deposit_amount %>(<%= monthly_profit.deposit_member_count %>)</td>
+        <td><%= monthly_profit.display_drawing_amount %>(<%= monthly_profit.drawing_member_count %>)</td>
+        <td><%= monthly_profit.display_bid_amount %></td>
+        <td><%= monthly_profit.display_bid_difference %></td>
+        <td><%= monthly_profit.display_net %></td>
+        <td><%= monthly_profit.display_net_difference %></td>
+        <td><%= monthly_profit.display_bonus %></td>
+        <td><%= monthly_profit.display_profit %></td>
       </tr>
     <% end %>
   </tbody>

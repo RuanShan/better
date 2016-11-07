@@ -43,12 +43,14 @@ class Agent::BrokerMonthsController < ApplicationController
 
   def children
     @start_date, @end_date, @dates = get_paginated_dates
+    logger.debug "@start_date=#{@start_date}, @end_date=#{@end_date}"
+    logger.debug "@children_brokers=#{@children_brokers.inspect}"
     @broker_months = Summary::Children::BrokerMonthFactory.create("effection", @children_brokers, @start_date, @end_date )
     respond_to do |format|
       format.html
       format.xls do
         excel_file_name = "#{t :monthly_promotional_effectiveness_table}#{@start_date}~#{@end_date}.xls"
-        send_data Summary::Children::BrokerMonth.generate_csv(@broker_months, col_sep: "\t"), filename: excel_file_name
+        send_data Summary::Children::BrokerMonthEffection.generate_csv(@broker_months, col_sep: "\t"), filename: excel_file_name
       end
     end
   end
@@ -90,7 +92,7 @@ class Agent::BrokerMonthsController < ApplicationController
 
     def set_children
       @page = params["page"]
-      @member_state = params["member_state"]
+      @member_state = params["member_state"] || "all"
       if @member_state == "all"
         state_condition = ""
       else

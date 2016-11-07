@@ -37,7 +37,7 @@ module Summary
       CSV.generate(options) do |csv|
         csv << ["用户名", "注册时间", "状态", "存款", "提款", "红利", "投注", "输赢", "派奖"]
         member_profits.each do |member_profit|
-          csv << [member_profit.user.nickname, member_profit.user.created_at, 'xyz', member_profit.deposit_amount,
+          csv << [member_profit.user.nickname, member_profit.user.created_at, member_profit.user.state, member_profit.deposit_amount,
             member_profit.drawing_amount, member_profit.bonus, member_profit.bid_amount, member_profit.net,
             member_profit.profit]
         end

@@ -23,14 +23,14 @@
       <tr>
         <td><%= day_profit.broker_name %></td>
         <td><%= day_profit.sign_up_time %></td>
-        <td><%= day_profit.state %></td>
+        <td><%= t day_profit.state.to_sym %></td>
         <td><%= 0 %></td>
-        <td><%= day_profit.deposit_amount %>(<%= day_profit.deposit_member_count %>)</td>
-        <td><%= day_profit.drawing_amount %>(<%= day_profit.drawing_member_count %>)</td>
-        <td><%= day_profit.bid_amount %></td>
-        <td><%= day_profit.net %></td>
-        <td><%= day_profit.bonus %></td>
-        <td><%= day_profit.profit %></td>
+        <td><%= day_profit.display_deposit_amount %>(<%= day_profit.deposit_member_count %>)</td>
+        <td><%= day_profit.display_drawing_amount %>(<%= day_profit.drawing_member_count %>)</td>
+        <td><%= day_profit.display_bid_amount %></td>
+        <td><%= day_profit.display_net %></td>
+        <td><%= day_profit.display_bonus %></td>
+        <td><%= day_profit.display_profit %></td>
       </tr>
     <% end %>
   </tbody>

@@ -42,7 +42,7 @@ module Agent
         format.html
         format.xls do
           excel_file_name = "#{t :daily_promotional_effectiveness_table}#{@start_date}~#{@end_date}.xls"
-          send_data Summary::Children::BrokerDay.generate_csv(@broker_days, col_sep: "\t"), filename: excel_file_name
+          send_data Summary::Children::BrokerDayEffection.generate_csv(@broker_days, col_sep: "\t"), filename: excel_file_name
         end
       end
     end
@@ -124,7 +124,7 @@ module Agent
 
       def set_children
         @page = params["page"]
-        @member_state = params["member_state"]
+        @member_state = params["member_state"] || "all"
         if @member_state == "all"
           state_condition = ""
         else

@@ -24,16 +24,16 @@
       <tr>
         <td><%= month_profit.broker_name %></td>
         <td><%= month_profit.sign_up_time %></td>
-        <td><%= month_profit.state %></td>
+        <td><%= t month_profit.state.to_sym %></td>
         <td><%= 0 %></td>
-        <td><%= month_profit.deposit_amount %>(<%= month_profit.deposit_member_count %>)</td>
-        <td><%= month_profit.drawing_amount %>(<%= month_profit.drawing_member_count %>)</td>
-        <td><%= month_profit.bid_amount %></td>
-        <td><%= month_profit.bid_difference %></td>
-        <td><%= month_profit.net %></td>
-        <td><%= month_profit.net_difference %></td>
-        <td><%= month_profit.bonus %></td>
-        <td><%= month_profit.profit %></td>
+        <td><%= month_profit.display_deposit_amount %>(<%= month_profit.deposit_member_count %>)</td>
+        <td><%= month_profit.display_drawing_amount %>(<%= month_profit.drawing_member_count %>)</td>
+        <td><%= month_profit.display_bid_amount %></td>
+        <td><%= month_profit.display_bid_difference %></td>
+        <td><%= month_profit.display_net %></td>
+        <td><%= month_profit.display_net_difference %></td>
+        <td><%= month_profit.display_bonus %></td>
+        <td><%= month_profit.display_profit %></td>
       </tr>
     <% end %>
   </tbody>

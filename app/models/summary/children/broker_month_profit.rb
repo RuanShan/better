@@ -1,6 +1,9 @@
 module Summary
   module Children
     class BrokerMonthProfit < ChildrenBase
+      extend DisplayMoney
+      money_methods :deposit_amount, :drawing_amount, :bid_amount, :balance, :bonus, :profit, :bid_difference, :net, :net_difference
+
       attr_accessor :user_months
       #活跃人数	        存款(人数)	     提款(人数)	       投注	       账户余额    红利	    盈利
       attr_accessor :deposit_amount, :drawing_amount, :bid_amount, :balance, :bonus, :profit, :bid_difference

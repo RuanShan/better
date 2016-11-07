@@ -7,7 +7,7 @@ module Summary
         if type == "effection"
           children_brokers.map{|children_broker|
             broker_months = children_broker.broker_months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date ).unscoped
-            BrokerMonth.new( children_broker, broker_months)
+            BrokerMonthEffection.new( children_broker, broker_months)
           }
         elsif type == "profit"
           children_brokers.map{|children_broker|

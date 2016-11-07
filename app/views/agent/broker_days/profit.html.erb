@@ -21,12 +21,12 @@
       <tr>
         <td><%= daily_profit.effective_on %></td>
         <td><%= 0 %></td>
-        <td><%= daily_profit.deposit_amount %>(<%= daily_profit.deposit_member_count %>)</td>
-        <td><%= daily_profit.drawing_amount %>(<%= daily_profit.drawing_member_count %>)</td>
-        <td><%= daily_profit.bid_amount %></td>
-        <td><%= daily_profit.net %></td>
-        <td><%= daily_profit.bonus %></td>
-        <td><%= daily_profit.profit %></td>
+        <td><%= daily_profit.display_deposit_amount %>(<%= daily_profit.deposit_member_count %>)</td>
+        <td><%= daily_profit.display_drawing_amount %>(<%= daily_profit.drawing_member_count %>)</td>
+        <td><%= daily_profit.display_bid_amount %></td>
+        <td><%= daily_profit.display_net %></td>
+        <td><%= daily_profit.display_bonus %></td>
+        <td><%= daily_profit.display_profit %></td>
       </tr>
     <% end %>
   </tbody>

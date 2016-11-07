@@ -1,7 +1,7 @@
 module Summary
   module Children
 
-    class BrokerDay < ChildrenBase
+    class BrokerDayEffection < ChildrenBase
       attr_accessor :broker_days
             	    # 推广链接点击数	  注册数	         新注册并存款              注册存款转化率
       attr_accessor :clink_visits, :member_count, :valuable_member_count, :valuable_rate

@@ -1,6 +1,9 @@
 module Summary
   #
   class BrokerMonthlyBalance
+    extend DisplayMoney
+    money_methods :profit, :bid_amount, :bank_charges, :platform_charges, :net_profit, :last_month_negative_balance, :this_month_balance
+
     attr_accessor :user_months, :effective_on
     attr_accessor :profit, :bid_amount
     attr_accessor :bank_charges, :platform_charges, :net_profit

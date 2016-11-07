@@ -1,6 +1,9 @@
 module Summary
   module Children
     class BrokerMonthBalance < ChildrenBase
+      extend DisplayMoney
+      money_methods :profit, :bid_amount, :bank_charges, :platform_charges, :net_profit, :last_month_negative_balance, :this_month_balance
+
       attr_accessor :user_months
 
       attr_accessor :profit, :bid_amount

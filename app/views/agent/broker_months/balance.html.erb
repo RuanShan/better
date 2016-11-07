@@ -20,12 +20,12 @@
       <tr>
         <td><%= broker_balance.effective_on.to_s(:year_month) %></td>
         <td><%= 0 %></td>
-        <td><%= broker_balance.profit %></td>
-        <td><%= broker_balance.bank_charges %></td>
-        <td><%= broker_balance.platform_charges %></td>
-        <td><%= broker_balance.net_profit %></td>
-        <td><%= broker_balance.last_month_negative_balance %></td>
-        <td><%= broker_balance.this_month_balance %></td>
+        <td><%= broker_balance.display_profit %></td>
+        <td><%= broker_balance.display_bank_charges %></td>
+        <td><%= broker_balance.display_platform_charges %></td>
+        <td><%= broker_balance.display_net_profit %></td>
+        <td><%= broker_balance.display_last_month_negative_balance %></td>
+        <td><%= broker_balance.display_this_month_balance %></td>
       </tr>
     <% end %>
   </tbody>
