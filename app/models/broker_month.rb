@@ -1,7 +1,7 @@
 class BrokerMonth < ApplicationRecord
   # 添加 日注册，月注册 scope
   extend BetterDateScope
-  better_date_scope effective_on: [:current_month]
+  better_month_scope effective_on: [:current_month]
 
   belongs_to :broker
 
@@ -11,6 +11,10 @@ class BrokerMonth < ApplicationRecord
 
   def display_valuable_rate
     "%i%" % (valuable_rate*100)
+  end
+
+  def net
+    drawing_amount + balance - deposit_amount
   end
 
   def self.to_csv(options = {})

@@ -5,6 +5,9 @@ module Agent
 
     def index
       @broker = current_broker
+      @broker_today = current_broker.broker_today
+      @broker_month = current_broker.broker_cmonth
+      @user_month = Summary::BrokerMonthlyFactory.create("profit", current_broker.user_cmonths ).first
     end
 
 

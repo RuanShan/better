@@ -28,6 +28,8 @@ class Broker < ApplicationRecord
   has_one  :broker_today, ->{ today }, class_name: 'BrokerDay'
 
   has_many :broker_months
+  has_one  :broker_cmonth, ->{ current_month }, class_name: 'BrokerMonth'
+  has_many :user_cmonths, ->{ current_month }, class_name: 'UserMonth'
 
   alias_attribute :name, :nickname
 

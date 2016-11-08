@@ -4,51 +4,51 @@
   <ul class="nav summary_by_month clearfix">
      <li >
                   <%= fa_icon "group" , class: "fa-5x"%>
-                  <p class="num">2</p>
+                  <p class="num"><%=@broker.members.size%></p>
                   <p>总人数</p>
                 </li>
                 <li >
                   <%= fa_icon "user" , class: "fa-5x"%>
-                  <p class="num"> 0 </p>
+                  <p class="num"><%=@broker_month.energetic_member_count%></p>
                   <p>活跃人数</p>
                 </li>
                 <li >
                   <%= fa_icon "desktop" , class: "fa-5x"%>
-                  <p class="num"> 0 </p>
+                  <p class="num"> <%=@broker_month.clink_visits%> </p>
                   <p>点击数</p>
                 </li>
 
                  <li >
                    <%= fa_icon "exchange" , class: "fa-5x"%>
-                  <p class="num"></p>
+                  <p class="num"><%=@user_month.drawing_amount%></p>
                   <p>提款额</p>
                 </li>
                  <li style="" class="last">
                    <%= fa_icon "credit-card" , class: "fa-5x"%>
-                  <p class="num">0 </p>
+                  <p class="num"><%=@user_month.drawing_member_count%></p>
                   <p>提款人数</p>
                 </li>
 
 
                 <li style="">
                   <%= fa_icon "signal" , class: "fa-5x"%>
-                  <p class="num"> 0 </p>
+                  <p class="num"> <%=@user_month.bid_amount%> </p>
                   <p>平台投注</p>
                 </li>
                 <li style="">
                   <%= fa_icon "bar-chart" , class: "fa-5x"%>
-                  <p class="num"> 0 </p>
+                  <p class="num"> <%=@user_month.net%> </p>
                   <p>平台输赢</p>
                 </li>
                 <li style="">
                   <%= fa_icon "gift" , class: "fa-5x"%>
-                  <p class="num"> 0 </p>
+                  <p class="num"> <%=@user_month.bonus%> </p>
                   <p>红利</p>
                 </li>
 
                  <li style="" class="last">
                    <%= fa_icon "list-alt" , class: "fa-5x"%>
-                  <p class="num"> 0 </p>
+                  <p class="num"> <%=@broker_month.member_count%> </p>
                   <p>注册数</p>
                 </li>
 
