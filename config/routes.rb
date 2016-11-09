@@ -11,6 +11,9 @@ Rails.application.routes.draw do
              #代理
   namespace :admin do
     resources :deposits
+    resources :users do
+      get :search, on: :collection
+    end
     get '/', to: 'welcome#index', as: :root
   end
   namespace :agent do

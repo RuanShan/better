@@ -1,0 +1,33 @@
+<div class="leftnav">
+  <div class="time">
+  		<p class="d"><%= DateTime.current.to_date.to_s %></p>
+  </div>
+  <div class="top_tit">后台管理首页</div>
+  <div class="title"><span class="btn"></span>用户管理</div>
+  <ul class="nav nav-sidebar">
+		<li class="cur">
+			<%= build_nav_link "添加用户", new_admin_user_path%>
+		</li>
+		<li class="cur">
+			<%= build_nav_link "修改删除用户", admin_users_path%>
+		</li>
+  </ul>
+
+  <div class="title"><span class="btn"></span>安全中心</div>
+  <ul class="nav nav-sidebar">
+      <li>
+        <%= build_nav_link "重置密码", { controller: 'admin/users', action: 'search'}%>
+      </li>
+      <li>
+        <%= build_nav_link "修改资金密码", { controller: 'admin/users', action: 'search'}%>
+      </li>
+			<li>
+        <%= build_nav_link "恢复密保问题", { controller: 'admin/users', action: 'search'}%>
+      </li>
+			<li>
+        <%= build_nav_link "银行卡管理", { controller: 'admin/users', action: 'search'}%>
+      </li>
+  </ul>
+
+
+</div>

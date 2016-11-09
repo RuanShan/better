@@ -1,0 +1,14 @@
+<div> <h2 class="page-header">编辑用户 </h2>
+</div>
+<div>
+  <%= better_form_for(@user, url: {:action=>"update"} ) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :nickname %>
+      <%= f.input :email %>
+      <%= f.input :phone %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "编辑用户" %>
+    </div>
+  <% end %>
+</div>

@@ -18,20 +18,6 @@ module My
       @deposits = @user.deposits.order("created_at desc").limit(10)
     end
 
-    def update
-      @user = User.find(params[:id])
-      if @user.update_attributes(secure_params)
-        redirect_to users_path, :notice => "User updated."
-      else
-        redirect_to users_path, :alert => "Unable to update user."
-      end
-    end
-
-    def destroy
-      user = User.find(params[:id])
-      user.destroy
-      redirect_to users_path, :notice => "User deleted."
-    end
 
     def change_password
       @selected_password = params["selected_password"] ? params["selected_password"] : "login"

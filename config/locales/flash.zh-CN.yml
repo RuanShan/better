@@ -9,3 +9,7 @@ zh-CN:
   deposit_success: 充值成功
   drawing_success: 提款操作成功，请等待银行确认
   password_changed: 密码修改成功
+
+  user_created: 添加用户成功
+  user_updated: 修改用户成功
+  user_deleted: 删除用户成功

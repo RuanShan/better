@@ -44,40 +44,17 @@
           </div>
         </nav>
 
-
-		<div class="container-fluid">
-
-			<div class="row">
-        <div class="col-xs-12">
-          <h1><%= t 'admin_panel' %>
-            <p id="admin-logo"><%= link_to image_tag('admin/admin-logo.jpg'), root_path, id: 'admin-logo' %></p>
-          </h1>
+        <div class="container" role="main">
+           <%= render 'shared/flash_messages' %>
+           <div class="row">
+             <div class="col-md-2  user-sidebar">
+               <%= render partial: "admin/shared/admin_sidebar" %>
+             </div>
+             <div class="col-md-10 user-content" >
+               <%= yield %>
+             </div>
+           </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <%= render 'shared/flash_messages' %>
-          <%= yield %>
-        </div>
-
-        <div class="col-sm-3 col-md-2 sidebar">
-          <%= yield :admin_sidebar %>
-        </div>
-      </div>
-
-  		<div class="row">
-        <footer class="col-xs-12">
-          <hr>
-          <p><b>Ten Thousand Hours</b><br />
-            <%= link_to "http://tenthousandhours.eu", "http://tenthousandhours.eu" %><br />
-            <%= link_to "Contact TKH", "http://tenthousandhours.eu/pages/5-contact-form" %><br /><br />
-            <%= image_tag 'admin/tkh-logo.png', alt: 'Ten Thousand Hours logo' %><br />
-          </p>
-        </footer>
-      </div>
-
-    </div> <!-- /container -->
 
     <%= javascript_include_tag "admin" %>
 
