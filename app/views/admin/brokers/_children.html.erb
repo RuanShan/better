@@ -1,0 +1,25 @@
+<% brokers.each do |broker| %>
+  <% show = (display == 'tree' && broker.depth > 0) ? "display:none;" : ""%>
+  <% name = broker.parent.present? ? broker.parent.number : ""%>
+  <tr class="<%= name %>" style="<%= show %>">
+    <td <%if display == 'tree'%>style="padding-left:<%=broker.depth*20%>px"<% end %>>
+      <%if broker.children.present?%>
+        <%= link_to nil, href: "#", onclick: "$('.#{broker.number}').toggle();" do%>
+          <span class="<%=broker.number%>">+</span>
+          <span class="<%=broker.number%>" style="display:none">-</span>
+        <% end %>
+      <% end %>
+      <%= broker.nickname %>
+    </td>
+    <td><%= broker.display_created_at %></td>
+    <td><%= broker.email %></td>
+    <td><%= broker.parent_name %></td>
+    <td><%= link_to "查看", admin_broker_path(broker), method: 'get' %></td>
+    <td><%= link_to "编辑", edit_admin_broker_path(broker) %></td>
+    <td>
+      <%= link_to "删除", admin_broker_path(broker), method: 'delete' %>
+      <%= check_box_tag "selected_brokers[]", broker.number, false %>
+    </td>
+  </tr>
+  <%= render(partial: "children", locals: { display: display, brokers: broker.children }) if broker.children.present? %>
+<% end %>

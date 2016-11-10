@@ -1,0 +1,29 @@
+<%=form_tag delete_admin_brokers_path, method: :delete do%>
+  <table class="table <%if @display == 'list'%>table-striped<% end %>">
+    <thead>
+      <tr>
+        <th>代理名</th>
+        <th>注册时间</th>
+        <th>电子邮箱</th>
+        <th>上级代理</th>
+        <th colspan="3">
+          <%=link_to "添加代理", new_admin_broker_path, class: "btn btn-primary"%>
+          <%=submit_tag "批量删除", class: "btn btn-primary"%>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if @brokers.empty? %>
+        <tr>
+          <td colspan="6">暂无代理</td>
+        <tr>
+      <% else %>
+        <%= render partial: "children", locals: { display: @display, brokers: @brokers } %>
+      <% end %>
+
+    </tbody>
+  </table>
+<% end %>
+
+<%= will_paginate @brokers if @brokers.respond_to? :total_pages%>

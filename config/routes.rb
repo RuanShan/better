@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     resources :deposits
     resources :users do
       get :search, on: :collection
+      delete :delete, on: :collection
+    end
+    resources :brokers do
+      get :search, on: :collection
+      delete :delete, on: :collection
     end
     get '/', to: 'welcome#index', as: :root
   end

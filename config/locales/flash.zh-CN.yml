@@ -13,3 +13,11 @@ zh-CN:
   user_created: 添加用户成功
   user_updated: 修改用户成功
   user_deleted: 删除用户成功
+  multi_user_deleted: 批量删除用户成功
+  no_selected_users: 请选择要删除的用户
+
+  broker_created: 添加代理成功
+  broker_updated: 修改代理成功
+  broker_deleted: 删除代理成功
+  multi_broker_deleted: 批量删除代理成功
+  no_selected_brokers: 请选择要删除的代理

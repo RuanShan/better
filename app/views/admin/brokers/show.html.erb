@@ -1,0 +1,20 @@
+<div> <h2 class="page-header">代理详情 </h2>
+</div>
+<div>
+  <p>
+    <strong>代理名:</strong>
+    <%= @broker.nickname %>
+  </p>
+  <p>
+    <strong>注册时间:</strong>
+    <%= @broker.display_created_at %>
+  </p>
+  <p>
+    <strong>电子邮箱:</strong>
+    <%= @broker.email %>
+  </p>
+  <p>
+    <strong>上级代理:</strong>
+    <%= @broker.parent_name %>
+  </p>
+</div>

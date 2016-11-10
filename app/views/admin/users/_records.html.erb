@@ -1,33 +1,42 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>用户名</th>
-      <th>注册时间</th>
-      <th>电子邮箱</th>
-      <th>电话号码</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if @users.empty? %>
+<%=form_tag delete_admin_users_path, method: :delete do%>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td colspan="6">暂无用户</td>
-      <tr>
-    <% else %>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.nickname %></td>
-        <td><%= user.display_created_at %></td>
-        <td><%= user.email %></td>
-        <td><%= user.phone %></td>
-        <td><%= link_to "编辑", edit_admin_user_path(user) %></td>
-        <td><%= link_to "删除", admin_user_path(user), method: 'delete' %></td>
+        <th>会员名</th>
+        <th>注册时间</th>
+        <th>电子邮箱</th>
+        <th>电话号码</th>
+        <th colspan="3">
+          <%=link_to "添加会员", new_admin_user_path, class: "btn btn-primary"%>
+          <%=submit_tag "批量删除", class: "btn btn-primary"%>
+        </th>
       </tr>
-    <% end %>
-  <% end %>
+    </thead>
 
-  </tbody>
-</table>
+    <tbody>
+      <% if @users.empty? %>
+        <tr>
+          <td colspan="6">暂无会员</td>
+        <tr>
+      <% else %>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.nickname %></td>
+          <td><%= user.display_created_at %></td>
+          <td><%= user.email %></td>
+          <td><%= user.phone %></td>
+          <td><%= link_to "查看", admin_user_path(user), method: 'get' %></td>
+          <td><%= link_to "编辑", edit_admin_user_path(user) %></td>
+          <td>
+            <%= link_to "删除", admin_user_path(user), method: 'delete' %>
+            <%= check_box_tag "selected_users[]", user.id, false %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+
+    </tbody>
+  </table>
+<% end %>
+
 <%= will_paginate @users if @users.respond_to? :total_pages%>

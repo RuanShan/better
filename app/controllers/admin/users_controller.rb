@@ -10,8 +10,14 @@ class Admin::UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.errors.empty?
       flash[:notice] = t(:user_created)
+      redirect_to admin_users_path
+    else
+      render :new
     end
-    render :new
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -21,16 +27,29 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(secure_params)
-      redirect_to admin_users_path, :notice => t :user_updated
+      flash[:notice] = t(:user_updated)
+      redirect_to admin_users_path
     else
       render :edit
     end
   end
 
+  def delete
+    user_ids = params["selected_users"]
+    if user_ids.blank?
+      flash[:error] = t(:no_selected_users)
+    else
+      User.destroy(user_ids)
+      flash[:notice] = t(:multi_user_deleted)
+    end
+    redirect_to admin_users_path
+  end
+
   def destroy
     user = User.find(params[:id])
     user.destroy
-    redirect_to admin_users_path, :notice => t :user_deleted
+    flash[:notice] = t(:user_deleted)
+    redirect_to admin_users_path
   end
 
   def index

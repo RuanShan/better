@@ -45,6 +45,10 @@ class Broker < ApplicationRecord
     end
   end
 
+  def parent_name
+    parent.present? ? parent.name : "无"
+  end
+
   def filtered_children(filter_condition)
     self.class.where("parent_id=? #{filter_condition}", self.id).all
   end
