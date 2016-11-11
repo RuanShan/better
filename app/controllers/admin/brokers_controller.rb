@@ -1,6 +1,4 @@
-class Admin::BrokersController < ApplicationController
-  before_action :authenticate_administrator!
-  layout "admin"
+class Admin::BrokersController < Admin::BaseController
 
   def index
     @page = params['page']

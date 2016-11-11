@@ -1,0 +1,16 @@
+<div> <h2 class="page-header">编辑通知 </h2>
+</div>
+<div>
+  <%= better_form_for(@message, url: {:action=>"update"} ) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :title %>
+      <%= f.input :content %>
+      <%= f.input :message_type do%>
+        <%= f.collection_radio_buttons :message_type, [['system', '系统'], ['user', '会员'], ['broker', '代理']], :first, :last %>
+      <% end %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "编辑通知" %>
+    </div>
+  <% end %>
+</div>

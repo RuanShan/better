@@ -19,6 +19,12 @@ Rails.application.routes.draw do
       get :search, on: :collection
       delete :delete, on: :collection
     end
+    resources :messages do
+      get :search, on: :collection
+      put :delete, on: :collection
+      put :batch_send, on: :collection
+      put :one_send, on: :member
+    end
     get '/', to: 'welcome#index', as: :root
   end
   namespace :agent do

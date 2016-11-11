@@ -65,8 +65,9 @@ class CreatePayments < ActiveRecord::Migration[5.0]
     create_table :messages do |t|
       t.string :title, null: false
       t.text :content, null: false
-      t.references :user
-      t.integer :state
+      t.references :administrator
+      t.integer :message_type, null:false, default: 0
+      t.integer :state, null:false, default: 0
       t.timestamps null: false
     end
 

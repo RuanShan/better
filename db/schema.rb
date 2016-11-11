@@ -201,13 +201,14 @@ ActiveRecord::Schema.define(version: 20161023090958) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.string   "title",      null: false
-    t.text     "content",    null: false
-    t.integer  "user_id"
-    t.integer  "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_messages_on_user_id"
+    t.string   "title",                        null: false
+    t.text     "content",                      null: false
+    t.integer  "administrator_id"
+    t.integer  "message_type",     default: 0, null: false
+    t.integer  "state",            default: 0, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["administrator_id"], name: "index_messages_on_administrator_id"
   end
 
   create_table "payment_methods", force: :cascade do |t|

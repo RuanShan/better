@@ -1,6 +1,4 @@
-class Admin::UsersController < ApplicationController
-  before_action :authenticate_administrator!
-  layout "admin"
+class Admin::UsersController < Admin::BaseController
 
   def new
     @user = User.new

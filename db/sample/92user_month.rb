@@ -1,4 +1,4 @@
-
+=begin
 puts "create user months for user:#{@user.id}-#{@user.name}"
 (6..10).each do |month|
   day = rand(1..30)
@@ -36,3 +36,4 @@ end
       platform_charges: platform_charges, user: broker_user, broker: broker_user.broker)
   end
 }
+=end
