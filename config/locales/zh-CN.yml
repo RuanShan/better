@@ -7,6 +7,9 @@ zh-CN:
         createed_at: "日期/时间(GMT+8)"
       user:
 
+  admin:
+    site:
+      name: 管理平台
   agent:
     site:
       name: 代理平台
