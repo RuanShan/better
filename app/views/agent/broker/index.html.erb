@@ -9,12 +9,12 @@
                 </li>
                 <li >
                   <%= fa_icon "user" , class: "fa-5x"%>
-                  <p class="num"><%=@broker_month.energetic_member_count%></p>
+                  <p class="num"><%=@broker.energetic_member_count || 0%></p>
                   <p>活跃人数</p>
                 </li>
                 <li >
                   <%= fa_icon "desktop" , class: "fa-5x"%>
-                  <p class="num"> <%=@broker_month.clink_visits%> </p>
+                  <p class="num"> <%=@broker.clink_visits || 0%> </p>
                   <p>点击数</p>
                 </li>
 
@@ -48,19 +48,24 @@
 
                  <li style="" class="last">
                    <%= fa_icon "list-alt" , class: "fa-5x"%>
-                  <p class="num"> <%=@broker_month.member_count%> </p>
+                  <p class="num"> <%=@broker.member_count || 0%> </p>
                   <p>注册数</p>
                 </li>
 
               </ul>
 </div>
-
+<div>
+链接都具有相同的推广功能，您可以选择任意一个进行推广。当某些浏览器或地区对某些特定链接产生阻碍的时候，
+您可以更换其他链接推广。会针对市场反馈不定时更新链接以方便您的推广。
+</div>
 <div class="section">
   <h3> 引导客户去注册</h3>
-
+  <span id="member_link"><%=@broker.member_link%></span>
+  <%=link_to "复制", nil, class: "btn btn-primary", href:"javascript:void(0);", onclick: "copyToClipboard('#member_link');" %>
 </div>
 
 <div class="section">
-  <h3> 引导客户去注册</h3>
-
+  <h3> 下级代理注册链接</h3>
+  <span id="broker_link"><%=@broker.broker_link%></span>
+  <%=link_to "复制", nil, class: "btn btn-primary", href:"javascript:void(0);", onclick: "copyToClipboard('#broker_link');" %>
 </div>

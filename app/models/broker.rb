@@ -1,5 +1,6 @@
 class Broker < ApplicationRecord
   acts_as_nested_set
+  include Rails.application.routes.url_helpers
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -31,6 +32,8 @@ class Broker < ApplicationRecord
   has_one  :broker_cmonth, ->{ current_month }, class_name: 'BrokerMonth'
   has_many :user_cmonths, ->{ current_month }, class_name: 'UserMonth'
 
+  delegate :energetic_member_count, :clink_visits, :member_count, to: :broker_cmonth, allow_nil: true
+  
   alias_attribute :name, :nickname
 
   def state
@@ -51,6 +54,14 @@ class Broker < ApplicationRecord
 
   def filtered_children(filter_condition)
     self.class.where("parent_id=? #{filter_condition}", self.id).all
+  end
+
+  def member_link
+    "http://localhost:3000"+root_path+"#{number}"
+  end
+
+  def broker_link
+    "http://localhost:3000"+agent_root_path+"/#{number}"
   end
   #
 end

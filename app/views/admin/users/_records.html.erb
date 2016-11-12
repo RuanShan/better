@@ -10,6 +10,7 @@
           <%=link_to "添加会员", new_admin_user_path, class: "btn btn-primary"%>
           <%=submit_tag "批量删除", class: "btn btn-primary"%>
         </th>
+        <th><%= check_box_tag "selectall", 1, false %></th>
       </tr>
     </thead>
 
@@ -27,10 +28,8 @@
           <td><%= user.phone %></td>
           <td><%= link_to "查看", admin_user_path(user), method: 'get' %></td>
           <td><%= link_to "编辑", edit_admin_user_path(user) %></td>
-          <td>
-            <%= link_to "删除", admin_user_path(user), method: 'delete' %>
-            <%= check_box_tag "selected_users[]", user.id, false %>
-          </td>
+          <td><%= link_to "删除", admin_user_path(user), method: 'delete' %></td>
+          <td><%= check_box_tag "selected_users[]", user.id, false, class: "selectedId" %></td>
         </tr>
       <% end %>
     <% end %>

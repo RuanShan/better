@@ -48,7 +48,7 @@ Rails.application.routes.draw do
       match 'change_password', via: [:get, :patch]
     end
     resources :deposits
-    get '/', to: 'welcome#index', as: :root
+    get '/(:number)', to: 'welcome#index', as: :root
   end
 
   namespace :my do
@@ -93,6 +93,7 @@ Rails.application.routes.draw do
 
   end
 
-  root to: 'visitors#index'
+  #root to: 'visitors#index'
+  get '/(:number)', to: 'visitors#index', as: :root
 
 end

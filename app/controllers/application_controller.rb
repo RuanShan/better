@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   around_action :set_current_user
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, :config_broker, if: :devise_controller?
 
 
   protected
@@ -15,8 +15,22 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    sign_up_keys = [:name]
+    sign_up_keys << :parent_id if params["broker"].present?
+    sign_up_keys << :broker_id if params["user"].present?
+    devise_parameter_sanitizer.permit(:sign_up, keys: sign_up_keys)
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+  end
+
+  def config_broker
+    if params["controller"]== "devise_invitable/registrations" && params["action"] == "create"
+      broker_number = session["broker_number"]
+      if broker_number.present?
+        broker = Broker.find_by_number(broker_number)
+        params["broker"]["parent_id"] = broker.id if params["broker"].present?
+        params["user"]["broker_id"] = broker.id if params["user"].present?
+      end
+    end
   end
 
   def after_sign_in_path_for(resource)

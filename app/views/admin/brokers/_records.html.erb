@@ -10,6 +10,7 @@
           <%=link_to "添加代理", new_admin_broker_path, class: "btn btn-primary"%>
           <%=submit_tag "批量删除", class: "btn btn-primary"%>
         </th>
+        <th><%= check_box_tag "selectall", 1, false %></th>
       </tr>
     </thead>
 

@@ -6,11 +6,12 @@
         <th>创建时间</th>
         <th>通知类型</th>
         <th>发送状态</th>
-        <th colspan="5">
+        <th colspan="4">
           <%=link_to "添加通知", new_admin_message_path, class: "btn btn-primary"%>
           <%=submit_tag "批量删除", class: "btn btn-primary"%>
           <%=submit_tag "批量发送", class: "btn btn-primary", formaction: batch_send_admin_messages_path%>
         </th>
+        <th><%= check_box_tag "selectall", 1, false %></th>
       </tr>
     </thead>
 
@@ -29,9 +30,8 @@
           <td><%= link_to "查看", admin_message_path(message), method: 'get' %></td>
           <td><%= link_to "编辑", edit_admin_message_path(message) %></td>
           <td><%= link_to "删除", admin_message_path(message), method: 'delete' %></td>
-          <%logger.debug "message.state=#{message.state}"%>
           <td><%if message.state == 'unsend'%><%= link_to "发送", one_send_admin_message_path(message), method: 'put' %><% end %></td>
-          <td><%= check_box_tag "selected_messages[]", message.id, false %></td>
+          <td><%= check_box_tag "selected_messages[]", message.id, false, class: "selectedId" %></td>
         </tr>
       <% end %>
     <% end %>
