@@ -1,210 +1,238 @@
-body {
-  margin-top: 45px;
-  // @include hyphens;
+.page-sidebar .sidebar-menu {
+	margin: 0;
+	margin-left: 5px;
+	padding: 0;
+	list-style: none;
 }
 
-textarea {
-  width: 450px;
+.page-sidebar .sidebar-menu a {
+	z-index: 123;
+	display: block;
+	margin: 0;
+	padding: 0 16px 0 7px;
+	height: 38px;
+	color: #737373;
+	text-decoration: none;
+	text-shadow: none !important;
+	font-size: 13px;
+	line-height: 36px;
+	-webkit-text-shadow: none !important;
 }
 
-h1, h2 {
-  text-align: center;
+.page-sidebar .sidebar-menu a:hover {
+	color: #262626;
 }
 
-h2 {
-  &:first-of-type { margin-top: 0; }
+.page-sidebar .sidebar-menu a:hover:before {
+	display: block;
 }
 
-td {
-  font-size: 1.25rem;
+.page-sidebar .sidebar-menu a .menu-icon {
+	display: inline-block;
+	margin-top: -3px;
+	min-width: 30px;
+	vertical-align: middle;
+	text-align: center;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 14px;
 }
 
-form {
-  margin: 2em .5em;
+.page-sidebar .sidebar-menu a .menu-expand {
+	position: absolute;
+	top: 15px;
+	right: 12px;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	width: 10px;
+	height: 10px;
+	color: #666;
+	text-align: center;
+	text-shadow: none;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 13px;
+	font-family: 'FontAwesome';
+	line-height: 10px;
+	-webkit-transition: all 300ms ease-in-out;
+	-moz-transition: all 300ms ease-in-out;
+	-o-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out;
+	-webkit-text-shadow: none;
 }
 
-label {
-  display: block;
+.page-sidebar .sidebar-menu a .menu-expand:before {
+	content: "";
 }
 
-input[type="button"], input[type="submit"] {
-  width: auto;
-}
-// input, textarea { width: auto; }
-// // .textarea-test { width: auto; height: auto; }
-
-.form-group { margin: 0 0 3rem; }
-.form-control {
-  width: auto;
-  height: auto;
+.page-sidebar .sidebar-menu li {
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 0;
+	border: 0;
 }
 
-.help-block { color: #999; }
-
-// .form-horizontal input + .help-block, .form-horizontal select + .help-block, .form-horizontal textarea + .help-block, .form-horizontal .uneditable-input + .help-block, .form-horizontal .input-prepend + .help-block, .form-horizontal .input-append + .help-block {
-//   margin-top: 3px;
-// }
-
-.navbar {
-  font-family: opensanscondlight, $font-family-sans-serif;
-  font-size: 18px;
+.page-sidebar .sidebar-menu li:before {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -4px;
+	display: none;
+	overflow: hidden;
+	width: 4px;
+	max-width: 4px;
+	background-color: #2dc3e8;
+	content: "";
 }
 
-#admin-logo {
-  margin: 1.5rem 0 0;
+.page-sidebar .sidebar-menu li.open {
+	background-color: #fff;
 }
 
-.navbar-login-info { padding-right: 1.5em; }
-
-.nav li.active a {
-  background-color: $purple;
-  color: #fff;
-  a {
-    color: #fff;
-    font-family: opensanssemibold, $font-family-sans-serif;
-  }
+.page-sidebar .sidebar-menu li.open>a {
+	color: #262626;
 }
 
-.list-group {
-  h3 {
-  color: darken(#fff, 25%);
-  font-size: 1.75em;
-  }
-}
-.list-group-item {
-  font-size: 0.9em;
-  padding: 5px 7px;
-}
-a.list-group-item { color: $orange; }
-
-footer {
-  margin: 2em 1em .5em;
-  text-align: center;
+.page-sidebar .sidebar-menu li.open>a .menu-expand {
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
 }
 
-.glyphicon-ok { color: $brand-success; }
-.glyphicon-remove { color: $brand-danger; }
-
-.twitter-typeahead .tt-query,
-.twitter-typeahead .tt-hint {
-margin-bottom: 0;
-}
-.tt-hint {
-display: block;
-width: 100%;
-height: 38px;
-padding: 8px 12px;
-font-size: 14px;
-line-height: 1.428571429;
-color: transparent; // This may render this whole section moot!?
-vertical-align: middle;
-background-color: #ffffff;
-border: 1px solid #cccccc;
-border-radius: 4px;
--webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
--webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-}
-.tt-dropdown-menu {
-  color: #dd4814;
-min-width: 160px;
-margin-top: 2px;
-padding: 5px 0;
-background-color: #ffffff;
-border: 1px solid #cccccc;
-border: 1px solid rgba(0, 0, 0, 0.15);
-border-radius: 4px;
--webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-background-clip: padding-box;
-
-}
-.tt-suggestion {
-display: block;
-padding: 3px 20px;
-}
-.tt-suggestion.tt-is-under-cursor {
-color: #fff;
-background-color: #428bca;
-}
-.tt-suggestion.tt-is-under-cursor a {
-color: #fff;
-}
-.tt-suggestion p {
-margin: 0;
+.page-sidebar .sidebar-menu li.open>.submenu {
+	display: block !important;
 }
 
-.pagination {
-  display: block;
-  padding: 0.2em;
-  text-align: center;
-  margin: 1.5rem 0;
-  a { padding: 0 0.15em; }
-  .current { font-style: normal; }
-  .previous_page {
-    padding-right: 1.5em;
-  }
-  .next_page {
-    padding-left: 1.5em;
-  }
+.page-sidebar .sidebar-menu li.active:not(.open):before {
+	display: block;
 }
 
-.thumbnail-gallery {
-  // Where we assign random pics to specific records
-  li {
-    display: inline;
-    float: left;
-    margin: 0.5em;
-  }
+.page-sidebar .sidebar-menu li.active>a {
+	display: block;
+	background-color: #f5f5f5;
+	color: #262626;
+	content: "";
 }
 
-.draggable {
-  list-style-type: none;
-  margin: 2rem 0 2rem 1rem;
-  li {
-    cursor: move;
-    margin: 0.5rem 0;
-  }
+.page-sidebar .sidebar-menu li:not(.open):hover:before {
+	display: block;
+	background-color: #fb6e52;
 }
 
-.comment-body {
-  // fix this for Chrome. It work in FF
-  overflow-wrap: break-word;
-  word-wrap: break-word;
+.page-sidebar .sidebar-menu>li>a {
+	border-top: 1px solid #f3f3f3;
 }
 
-#search-form {
-  margin-bottom: 5em;
-  text-align: center;
+.page-sidebar .sidebar-menu>li>a:hover {
+	border-color: #f3f3f3;
+	background-color: #fbfbfb;
 }
 
-.inline-form { display: inline; }
-
-// boostrap 3 and simple_form don't play too well together yet
-.alert-error {
-  @extend .alert-danger;
-}
-.help-inline {
-  @extend .label;
-  @extend .label-danger;
-  margin: 1em;
+.page-sidebar .sidebar-menu>li:last-child>a {
+	border-bottom: 1px solid #f3f3f3;
 }
 
-.admin-comment-body {
-  font-size: 2.5rem;
+.page-sidebar .sidebar-menu>li>.submenu {
+	background-color: #fbfbfb;
+	-webkit-box-shadow: inset 0 4px 4px -2px rgba(0,0,0,.15),inset 0 -4px 4px -2px rgba(0,0,0,.15);
+	-moz-box-shadow: inset 0 4px 4px -2px rgba(0,0,0,.15),inset 0 -4px 4px -2px rgba(0,0,0,.15);
+	box-shadow: inset 0 4px 4px -2px rgba(0,0,0,.15),inset 0 -4px 4px -2px rgba(0,0,0,.15);
 }
 
-.badge {
-  font-family: opensanslight, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: normal;
+.page-sidebar .sidebar-menu>li>.submenu:before {
+	position: absolute;
+	top: 0;
+	bottom: 19px;
+	left: 23px;
+	z-index: 1;
+	display: block;
+	border-left: 1px solid #e2e2e2;
+	content: "";
 }
 
-
-#admin-menu-tab {
-  margin-bottom: 3em;
+.page-sidebar .sidebar-menu>li>.submenu>li>a:before {
+	position: absolute;
+	top: 17px;
+	left: 21px;
+	z-index: 2;
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	border: 1px solid #e2e2e2;
+	background-color: #fff;
+	content: "";
 }
 
-.nav-tabs > li > a {
-    border-radius: 12px 12px 0 0;
-  }
+.page-sidebar .sidebar-menu>li>.submenu>li.active>a:before {
+	background-color: #e2e2e2;
+}
+
+.page-sidebar .sidebar-menu>li>.submenu>li.active:first-child>a {
+	-webkit-box-shadow: inset 0 4px 4px -2px rgba(0,0,0,.15);
+	-moz-box-shadow: inset 0 4px 4px -2px rgba(0,0,0,.15);
+	box-shadow: inset 0 4px 4px -2px rgba(0,0,0,.15);
+}
+
+.page-sidebar .sidebar-menu>li>.submenu>li.active:last-child a {
+	-webkit-box-shadow: inset 0 -4px 4px -2px rgba(0,0,0,.15);
+	-moz-box-shadow: inset 0 -4px 4px -2px rgba(0,0,0,.15);
+	box-shadow: inset 0 -4px 4px -2px rgba(0,0,0,.15);
+}
+
+.page-sidebar .sidebar-menu>li.open>a {
+	background-color: #fff;
+}
+
+.page-sidebar .sidebar-menu .submenu {
+	position: relative;
+	z-index: 123;
+	display: none;
+	margin: 0;
+	padding: 0;
+	border-top: 0;
+	background-color: #fbfbfb;
+	list-style: none;
+}
+
+.page-sidebar .sidebar-menu .submenu li {
+	position: relative;
+	margin-left: 0;
+}
+
+.page-sidebar .sidebar-menu .submenu li.open:before {
+	display: none;
+}
+
+.page-sidebar .sidebar-menu .submenu li.active>a {
+	background-color: #f5f5f5;
+	color: #262626;
+}
+
+.page-sidebar .sidebar-menu .submenu li.active>.submenu {
+	display: block;
+}
+
+.page-sidebar .sidebar-menu .submenu>li>a {
+	padding-left: 40px;
+}
+
+.page-sidebar .sidebar-menu .submenu>li.open>a {
+	background-color: #fbfbfb;
+}
+
+.page-sidebar .sidebar-menu .submenu>li .submenu {
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+
+.page-sidebar .sidebar-menu .submenu>li .submenu>li>a {
+	padding-left: 50px;
+}
+
+.page-sidebar .sidebar-menu .submenu>li .submenu>li .submenu>li>a {
+	padding-left: 70px;
+}

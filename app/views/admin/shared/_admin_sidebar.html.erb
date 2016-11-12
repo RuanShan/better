@@ -1,53 +1,60 @@
-<div class="leftnav">
-  <div class="time">
-  		<p class="d"><%= DateTime.current.to_date.to_s %></p>
-  </div>
-  <ul class="nav nav-sidebar">
-    <li>基本概况 </li>
-  </ul>
-  <ul class="nav nav-sidebar">
-    <li>平台报表 </li>
-    <li>日明细报表</li>
-    <li>月综合报表</li>
 
-  </ul>
+<ul class="nav sidebar-menu">
+  <li><a>基本概况 </a></li>
+  <li><a class="menu-dropdown" href="#">
+      <i class="menu-icon fa fa-desktop"></i>
+      <span class="menu-text"> 平台报表 </span>
+      <i class="menu-expand"></i>
+      </a>
+      <ul class="submenu">
+        <li><a>日明细报表</a></li>
+        <li><a>月综合报表</a></li>
+      </ul>
+    </li>
 
-  <ul class="nav nav-sidebar">
-    <li>充值管理 </li>
-  </ul>
-  <ul class="nav nav-sidebar">
-    <li>提现管理 </li>
-  </ul>
-  <ul class="nav nav-sidebar">
-    <li>提现管理 </li>
-  </ul>
 
-  <ul class="nav nav-sidebar">
-    <li>活动管理 </li>
-  </ul>
 
-  <div class="title"><span class="btn"></span>用户管理</div>
-  <ul class="nav nav-sidebar">
-		<li class="cur">
-			<%= build_nav_link "会员管理", admin_users_path%>
-		</li>
-		<li class="cur">
-			<%= build_nav_link "代理管理", admin_brokers_path%>
-		</li>
-  </ul>
+    <li><a>充值管理</a> </li>
+    <li><a>提现管理</a> </li>
+    <li><a>提现管理</a> </li>
 
-  <ul class="nav nav-sidebar">
-    <li>部门管理 </li>
-  </ul>
+    <li><a>活动管理</a> </li>
 
-  <div class="title"><span class="btn"></span>系统管理</div>
-  <ul class="nav nav-sidebar">
-		<li class="cur">
-			<%= build_nav_link "系统通知", admin_messages_path%>
-		</li>
-  </ul>
-  <div class="title"><span class="btn"></span>安全中心</div>
-  <ul class="nav nav-sidebar">
+  <li class="title">
+    <a class="menu-dropdown" href="#">
+                            <i class="menu-icon fa fa-desktop"></i>
+                            <span class="menu-text"> 用户管理 </span>
+                            <i class="menu-expand"></i>
+    </a>
+    <ul class="submenu">
+  		<li class="cur">
+  			<%= build_nav_link "会员管理", admin_users_path%>
+  		</li>
+  		<li class="cur">
+  			<%= build_nav_link "代理管理", admin_brokers_path%>
+  		</li>
+    </ul>
+  </li>
+  <li> <a> 部门管理 </a></li>
+
+	<li class="cur">
+    <a class="menu-dropdown" href="#">
+                            <i class="menu-icon fa fa-desktop"></i>
+                            <span class="menu-text"> 系统管理 </span>
+                            <i class="menu-expand"></i>
+    </a>
+    <ul class="submenu">
+      <li><%= build_nav_link "系统通知", admin_messages_path%> </li>
+    </ul>
+	</li>
+
+  <li>
+    <a class="menu-dropdown" href="#">
+                            <i class="menu-icon fa fa-desktop"></i>
+                            <span class="menu-text"> 安全中心 </span>
+                            <i class="menu-expand"></i>
+    </a>
+    <ul class="submenu">
       <li>
         <%= build_nav_link "重置密码", { controller: 'admin/users', action: 'search'}%>
       </li>
@@ -60,7 +67,6 @@
 			<li>
         <%= build_nav_link "银行卡管理", { controller: 'admin/users', action: 'search'}%>
       </li>
-  </ul>
-
-
-</div>
+    </ul>
+  </li>
+</ul>

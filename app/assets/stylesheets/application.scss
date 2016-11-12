@@ -9,12 +9,10 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *
- *= require 1st_load_framework
- *= require_self
- *= require select2
- *= require select2-bootstrap
  */
+@import "1st_load_framework";
+@import "select2";
+@import "select2-bootstrap";
 
 .masthead
 {

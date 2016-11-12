@@ -7,4 +7,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require admin/custom
+//= require admin/custom2
