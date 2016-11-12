@@ -1,0 +1,43 @@
+<%=form_tag delete_admin_messages_path, method: :put do%>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>主题</th>
+        <th>创建时间</th>
+        <th>通知类型</th>
+        <th>发送状态</th>
+        <th colspan="5">
+          <%=link_to "添加通知", new_admin_message_path, class: "btn btn-primary"%>
+          <%=submit_tag "批量删除", class: "btn btn-primary"%>
+          <%=submit_tag "批量发送", class: "btn btn-primary", formaction: batch_send_admin_messages_path%>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if @messages.empty? %>
+        <tr>
+          <td colspan="9">暂无通知</td>
+        <tr>
+      <% else %>
+      <% @messages.each do |message| %>
+        <tr>
+          <td><%= message.title %></td>
+          <td><%= message.display_created_at %></td>
+          <td><%= t message.message_type %></td>
+          <td><%= t message.state %></td>
+          <td><%= link_to "查看", admin_message_path(message), method: 'get' %></td>
+          <td><%= link_to "编辑", edit_admin_message_path(message) %></td>
+          <td><%= link_to "删除", admin_message_path(message), method: 'delete' %></td>
+          <%logger.debug "message.state=#{message.state}"%>
+          <td><%if message.state == 'unsend'%><%= link_to "发送", one_send_admin_message_path(message), method: 'put' %><% end %></td>
+          <td><%= check_box_tag "selected_messages[]", message.id, false %></td>
+        </tr>
+      <% end %>
+    <% end %>
+
+    </tbody>
+  </table>
+<% end %>
+
+<%= will_paginate @messages if @messages.respond_to? :total_pages%>
