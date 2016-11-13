@@ -7,6 +7,7 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Better" %>">
     <%= stylesheet_link_tag 'my', media: 'all' %>
     <%= javascript_include_tag 'my' %>
+    <%= javascript_include_tag 'jquery.qrcode.min' %>
     <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
     <% # This line ensures javascript code can access the current locale from Rails %>

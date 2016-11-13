@@ -72,6 +72,11 @@ class User < ApplicationRecord
     locked_at.nil? ? "normal" : "frozen"
   end
 
+  def invite_link
+    sign_up_path = "/users/sign_up"
+    "http://localhost:3000"+sign_up_path+"?inviter_id=#{id}"
+  end
+
   def password_prefix
     "" unless @password_prefix
   end

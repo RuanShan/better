@@ -7,28 +7,45 @@
   </div>
 </div>
 
-    <div class="panel">
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
+<div class="panel">
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
 
-        <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab"> 红利记录</a></li>
-        <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">投注记录</a></li>
-        <li role="presentation"><a href="#messages" role="tab" data-toggle="tab">充值记录</a></li>
-        <li role="presentation"><a href="#settings" role="tab" data-toggle="tab">提款记录</a></li>
-      </ul>
+    <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab"> 红利记录</a></li>
+    <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">投注记录</a></li>
+    <li role="presentation"><a href="#messages" role="tab" data-toggle="tab">充值记录</a></li>
+    <li role="presentation"><a href="#settings" role="tab" data-toggle="tab">提款记录</a></li>
+  </ul>
 
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="home">
-          <%= render partial: "my/wallets/bonus_records" %>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="profile">
-          <%= render partial: "my/bids/records" %>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="messages">
-          <%= render partial: "my/deposits/records" %>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="settings">
-          <%= render partial: "my/drawings/records" %>
-        </div>
-      </div>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+      <%= render partial: "my/wallets/bonus_records" %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+      <%= render partial: "my/bids/records" %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="messages">
+      <%= render partial: "my/deposits/records" %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="settings">
+      <%= render partial: "my/drawings/records" %>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <h3> 我的邀请链接</h3>
+  <span id="invite_link"><%=current_user.invite_link%></span>
+  <%=link_to "复制", nil, class: "btn btn-primary", href:"javascript:void(0);", onclick: "copyToClipboard('#invite_link');" %>
+  <h3> 我的邀请二维码</h3>
+  <div id="invite_qrcode"></div>
+</div>
+<script type="text/javascript">
+  jQuery('#invite_qrcode').qrcode({
+    text: "<%=current_user.invite_link%>",
+    width: 256,
+    height: 256,
+    background: "#ffffff",
+    foreground: "#000000"
+  });
+</script>

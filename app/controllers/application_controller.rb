@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   around_action :set_current_user
-  before_action :configure_permitted_parameters, :config_broker, if: :devise_controller?
+  before_action :configure_permitted_parameters, :config_inviter, if: :devise_controller?
+  after_action :clear_inviter, if: :devise_controller?
 
 
   protected
@@ -17,18 +18,51 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     sign_up_keys = [:name]
     sign_up_keys << :parent_id if params["broker"].present?
-    sign_up_keys << :broker_id if params["user"].present?
+    if params["user"].present?
+      sign_up_keys << :broker_id
+      sign_up_keys << :invited_by_id if session["inviter_id"].present?
+    end
     devise_parameter_sanitizer.permit(:sign_up, keys: sign_up_keys)
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
-  def config_broker
+  def config_inviter
+    if params["controller"]== "devise_invitable/registrations"
+      if params["action"] == "new"
+        if params["inviter_id"].present?
+          session["inviter_id"] = params["inviter_id"]
+        end
+      end
+      if params["action"] == "create"
+        broker_number = session["broker_number"]
+        user_id = session["inviter_id"]
+        if broker_number.present?
+          broker = Broker.find_by_number(broker_number)
+          if broker.present?
+            params["broker"]["parent_id"] = broker.id if params["broker"].present?
+            params["user"]["broker_id"] = broker.id if params["user"].present?
+          end
+        end
+        if user_id.present?
+          user = User.find(user_id)
+          if user.present?
+            if params["user"].present?
+              params["user"]["invited_by_id"] = user.id
+              params["user"]["broker_id"] = user.broker_id
+            end
+          end
+        end
+      end
+    end
+  end
+
+  def clear_inviter
     if params["controller"]== "devise_invitable/registrations" && params["action"] == "create"
-      broker_number = session["broker_number"]
-      if broker_number.present?
-        broker = Broker.find_by_number(broker_number)
-        params["broker"]["parent_id"] = broker.id if params["broker"].present?
-        params["user"]["broker_id"] = broker.id if params["user"].present?
+      if session["broker_number"].present?
+        session.delete("broker_number")
+      end
+      if session["inviter_id"].present?
+        session.delete("inviter_id")
       end
     end
   end
