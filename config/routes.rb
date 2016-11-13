@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   devise_for :brokers, controllers: {
         sessions: 'agent/sessions'
       }
-             #代理
+
+  # 管理
   namespace :admin do
     resources :deposits
     resources :users do
@@ -92,6 +93,9 @@ Rails.application.routes.draw do
     end
 
   end
+
+  get '/ecpss_status/done/' => 'ecpss_status#done', :as => :ecpss_done
+  post '/ecpss_status/notify/' => 'ecpss_status#notify', :as => :ecpss_notify
 
   #root to: 'visitors#index'
   get '/(:number)', to: 'visitors#index', as: :root
