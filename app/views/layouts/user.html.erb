@@ -15,16 +15,14 @@
   </head>
   <body>
     <div >
-      <%= render 'layouts/navigation' %>
+      <%= render 'layouts/new_navigation' %>
     </div>
     <main role="main">
        <%= render 'shared/flash_messages' %>
-       <%= render partial: "my/account/profile" %>
-       <div class="row">
-         <%= render partial: "shared/user_sidebar" %>
-         <div class="col-md-10 user-content" >
-           <%= yield %>
-         </div>
+       <%= render partial: "my/account/member_profile" %>
+       <%= render partial: "shared/user_menu" %>
+       <div class="hybody_down">
+         <%= yield %>
        </div>
     </main>
     <%= render 'layouts/footer' %>

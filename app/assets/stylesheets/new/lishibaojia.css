@@ -1,0 +1,94 @@
+.lishibaojiabody{
+	width: 100%;
+	background: #777;
+}
+.lishibodynei{
+	width: 1100px;
+	margin: auto;
+	background: #333;
+	padding: 50px;
+}
+.lishichaxun{
+	background:#292929;
+	background-size:50px; 
+	height: 50px;
+	width: 100%;
+	padding: 5px 50px;
+	margin-bottom: 50px;
+}
+.lishichaxun li{
+	float: left;
+	color: #fff;
+	margin-left: 20px;
+	font-size: 12px;
+	font-weight: bold;
+
+}
+.lishichaxun span{
+	line-height: 20px;
+}
+.cxx{
+	width: 80px;
+	background: #e4db98;
+}
+.lishichaxun input{
+	height: 30px;
+	margin-top: 5px;
+	color: #333;
+	border-radius: 5px;
+
+}
+.lsnei_tou{
+	background: #444;
+	height: 36px;
+	width: 100%;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	text-align:center;
+}
+.lsnei_tou span{
+	float: left;
+	padding: 5px 42px; 
+	font-size: 14px;
+	color: #d1b15e;
+	font-weight: bold;
+	width: 20%;
+}
+.lsnei_body table{
+	width: 100%;
+	
+}
+.black{
+	background: #000;
+	height: 36px;
+}
+.blue{
+	background: #28313a;
+	height: 36px;
+}
+
+.black td{
+	text-align: center;
+	color: #aaa;
+	width: 20%;
+}
+.blue td{
+	text-align: center;
+	color: #aaa;
+	width: 20%;
+
+}
+.fanye{
+	width: 100%;
+	overflow: hidden;
+}
+.fanye li{
+	float: left;
+	padding: 5px;
+	border:1px solid #000;
+	    margin-left: 10px;
+    background: #fff;
+    height: 28px;
+        line-height: 18px;
+        margin-top: 30px;
+}

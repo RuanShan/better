@@ -1,0 +1,39 @@
+<div class="hybody_zhong">
+  <ul>
+    <li>
+      <a>我的账户</a>
+      <div class="erxian">
+        <p><%= build_user_nav_link "充值", {controller: 'my/deposits', action: 'new'} %></p>
+        <p><%= build_user_nav_link "提现", {controller: 'my/drawings', action: 'new'} %></p>
+        <p><a href="/huiyuanzhongxin_zhuanzhang.html">转账</a></p>
+      </div>
+    </li>
+    <li><a href="">交易量活动</a></li>
+    <li>
+      <a>账户明细</a>
+      <div class="erxian">
+        <p><%= build_user_nav_link "红利记录", {controller: 'my/wallets', action: 'bonuses'} %></p>
+        <p><%= build_user_nav_link "投注记录", {controller: 'my/bids'} %></p>
+        <p><%= build_user_nav_link "充值记录", {controller: 'my/deposits'} %></p>
+        <p><%= build_user_nav_link "提款记录", {controller: 'my/drawings'} %></p>
+        <p><a href="/huiyuanzhongxin_zhuanzhangjilu.html">转账记录</a></p>
+      </div>
+    </li>
+    <li>
+      <a>账户安全</a>
+      <div class="erxian">
+        <p><%= build_user_nav_link "个人资料", {controller: 'my/account', action: 'change_profile', id: current_user} %></p>
+        <p><%= build_user_nav_link "修改密码", {controller: 'my/account', action: 'change_password', id: current_user} %></p>
+        <p><%= build_user_nav_link "安全中心", {controller: 'my/account', action: 'security_center', id: current_user} %></p>
+      </div>
+    </li>
+    <li><a href="/huiyuanzhongxin_shangchuan.html">社区设置</a></li>
+    <li><a href="">交易历史</a></li>
+    <li><a href="">推荐奖励</a></li>
+    <li><a>我的消息</a>
+      <div class="erxian">
+        <p><%= build_user_nav_link "系统通知", {controller: 'my/messages'} %></p>
+      </div>
+    </li>
+  </ul>
+</div>

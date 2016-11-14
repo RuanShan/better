@@ -1,4 +1,18 @@
-<div class="my-sub-title"> 安全中心 </div>
-<div class="panel">
-  <%= render partial: "security_info"%>
+<div class="down_nei">
+  <div class="anquan_img">
+    <%=image_tag "new/noimages/anquanzhongxin_03.gif"%><hr>
+  </div>
+  <div class="zhishu">
+    <span>安全指数</span>
+    <div class="zhishu_tiao">
+      <div id="page-wrap">
+        <div class="meter"><span style="width: <%=current_user.security_score%>%"></span></div>
+      </div>
+      <h2><%=current_user.security_score%>分</h2><hr>
+    </div>
+  </div>
+
+  <div class="anquan_down">
+    <%= render partial: "security_info"%>
+  </div>
 </div>

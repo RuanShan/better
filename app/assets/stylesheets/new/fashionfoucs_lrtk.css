@@ -1,0 +1,31 @@
+﻿@charset "UTF-8";
+.wrapper { width: 986px; margin: 0 auto; position: relative; }
+#banner { width: 100%; height: 600px; background: #000; overflow: hidden; position: relative; }
+#banner_img { display: block; position: relative; }
+    #banner_img li { position: absolute; top: 0; left: 0; width: 100%; height: 600px; background-position: center; background-size: cover; display: none; }
+        /*幻灯片开始*/
+        #banner_img li.item5 { background-image: url(../images/v122.png); }
+        #banner_img li.item4 { background-image: url(../images/banner_tj1.jpg); }
+        #banner_img li.item1 { background-image: url(../images/banner_gqhd.jpg); }
+        #banner_img li.item2 { background-image: url(../images/bg_bn_31.jpg);display: block;  }
+        #banner_img li.item3 { background-image: url(../images/banner_wx_ey.png); }
+        
+        
+       /* #banner_img li.item4 { background-image: url(../images/banner_bg_2015111101.jpg); }
+        #banner_img li.item5 { background-image: url(../images/bannerwo.jpg); }
+		#banner_img li.item1 a,#banner_img li.item3 a,#banner_img li.item4 a,#banner_img li.item5 a{line-height:530px;height:530px;display:block;}*/
+        #banner_img li.item1 a,#banner_img li.item2 a,#banner_img li.item3 a,#banner_img li.item4,#banner_img li.item5 a{line-height:530px;height:530px;display:block;}
+    /*幻灯片结束*/
+    #banner_img .ad_img { position: absolute; right: 10px; top: 80px; width: 506px; height: 404px; }
+    #banner_img .ad_txt { position: absolute; left: 10px; top: 150px; color: #fff; text-shadow: 1px 1px rgba(51,51,51,0.3); }
+        #banner_img .ad_txt h2 { font: bold 36px/60px Microsoft YaHei; }
+        #banner_img .ad_txt a { display: block; width: 100px; height: 25px; line-height: 25px; text-align: center; margin-top: 10px; background: #fff; color: #666; text-decoration: none; text-shadow: none; }
+#banner_ctr { position: absolute; width: 960px; height: 40px; margin-left: -480px; left: 50%; bottom: 70px; z-index: 1; }
+    #banner_ctr ul { width: 960px; height: 60px; background: url(../images/serv_ico.png) center no-repeat; font-size: 0; line-height: 0; position: relative; }
+    #banner_ctr li { display: block; float: left; width: 20px; height: 80px; cursor: pointer; }
+#drag_ctr { position: absolute; top:23px; left:0; width:15px; height:15px; bottom: 170px; background:url(../images/hover.png) no-repeat; z-index:9999;}
+
+
+
+.banner_btn{width:100%; background:url(../images/banner_btn.png) repeat; height:70px; text-align:center; position:absolute; bottom:0; z-index:999;}
+.banner_btn a{line-height:40px; padding:0 50px; margin:0 15px; margin-top:15px; font-size:18px;}

@@ -1,55 +1,68 @@
-为了增强您的账户安全，请提交详细信息，便于工作人员审核
-<table class="table">
-  <thead>
-    <tr>
-      <td>icon</td>
-      <td>安全指数</td>
-      <td colspan="2"><%=score_bar(current_user.security_score,400)%></td>
-      <td><%=current_user.security_score%>分</td>
-    </tr>
-  </thead>
+<table>
   <tbody>
     <tr>
-      <td>icon</td>
-      <td>登录密码</td>
-      <td>+30</td>
-      <td>强度高的密码更安全</td>
-      <td><%=link_to "修改密码", change_password_my_account_path(current_user), class:"btn btn-primary"%></td>
+      <td><span>登录密码</span></td>
+      <td><b>+30分</b></td>
+      <td class="llong">强度高的密码更安全</td>
+      <td class="iimg">
+        <%=link_to change_password_my_account_path(current_user) do %>
+          <%=image_tag "new/noimages/anquanzhongxin_07.gif"%>
+        <%end%>
+      </td>
     </tr>
     <tr>
-      <td>icon</td>
-      <td>绑定实名</td>
-      <td>+15</td>
-      <td>个人真实身份信息， 用户提款和确认身份</td>
-      <td><%=link_to current_user.bind_name? ? "立即查看" : "立即绑定", bind_name_my_account_path(current_user), class:"btn btn-primary"%></td>
+      <td><span>绑定实名</span></td>
+      <td><b>+15分</b></td>
+      <td class="llong">个人真实身份信息， 用户提款和确认身份</td>
+      <td class="iimg">
+        <%=link_to bind_name_my_account_path(current_user) do%>
+          <%image_no = current_user.bind_name? ? "10" : "14"%>
+          <%=image_tag "new/noimages/anquanzhongxin_#{image_no}.gif"%>
+        <%end%>
+      </td>
     </tr>
     <tr>
-      <td>icon</td>
-      <td>资金密码</td>
-      <td>+15</td>
-      <td>非常重要！ 用于提款或转账时验证身份</td>
-      <td><%=link_to "修改密码", change_password_my_account_path(current_user), class:"btn btn-primary"%></td>
+      <td><span>资金密码</span></td>
+      <td><b>+15分</b></td>
+      <td class="llong">非常重要！ 用于提款或转账时验证身份</td>
+      <td class="iimg">
+        <%=link_to change_password_my_account_path(current_user) do%>
+          <%=image_tag "new/noimages/anquanzhongxin_07.gif"%>
+        <%end%>
+      </td>
     </tr>
     <tr>
-      <td>icon</td>
-      <td>绑定银行卡</td>
-      <td>+20</td>
-      <td>提款银行卡，绑定后账户资金更加安全</td>
-      <td><%=link_to current_user.bind_bank? ? "立即查看" : "立即绑定", bind_bank_my_account_path(current_user), class:"btn btn-primary"%></td>
+      <td><span>绑定银行卡</span></td>
+      <td><b>+20分</b></td>
+      <td class="llong">提款银行卡，绑定后账户资金更加安全</td>
+      <td class="iimg">
+        <%=link_to bind_bank_my_account_path(current_user) do%>
+          <%image_no = current_user.bind_bank? ? "10" : "14"%>
+          <%=image_tag "new/noimages/anquanzhongxin_#{image_no}.gif"%>
+        <%end%>
+      </td>
     </tr>
     <tr>
-      <td>icon</td>
-      <td>绑定邮箱</td>
-      <td>+10</td>
-      <td>用于保护账户安全和找回密码</td>
-      <td><%=link_to current_user.bind_email? ? "立即查看" : "立即绑定", set_email_my_account_path(current_user), class:"btn btn-primary"%></td>
+      <td><span>绑定邮箱</span></td>
+      <td><b>+10分</b></td>
+      <td class="llong">用于保护账户安全和找回密码</td>
+      <td class="iimg">
+        <%=link_to set_email_my_account_path(current_user) do%>
+          <%image_no = current_user.bind_email? ? "10" : "14"%>
+          <%=image_tag "new/noimages/anquanzhongxin_#{image_no}.gif"%>
+        <%end%>
+      </td>
     </tr>
     <tr>
-      <td>icon</td>
-      <td>密保问题</td>
-      <td>+10</td>
-      <td>用户找回密码、修改账户资料时验证身份</td>
-      <td><%=link_to current_user.set_password_protection? ? "立即查看" : "立即设置", set_password_protection_my_account_path(current_user), class:"btn btn-primary"%></td>
+      <td><span>密保问题</span></td>
+      <td><b>+10分</b></td>
+      <td class="llong">用户找回密码、修改账户资料时验证身份</td>
+      <td class="iimg">
+        <%=link_to set_password_protection_my_account_path(current_user) do%>
+          <%image_no = current_user.set_password_protection? ? "10" : "12"%>
+          <%=image_tag "new/noimages/anquanzhongxin_#{image_no}.gif"%>
+        <%end%>
+      </td>
     </tr>
 
   </tbody>

@@ -1,0 +1,30 @@
+﻿.grid2-left-box2{ float:left; background: url("../images/img_abou_01.jpg") no-repeat; width: 720px; height: 323px;}
+.grid2-left-box2 p { width: 359px; font-size: 13px; color:#919191; margin:160px 0 0 65px}
+.h5{ color:#fff; font-size:14px; font-family: '宋体'; background: #214b58; padding: 3px 0 3px 30px;}
+.p3{ margin: 15px 0 0 30px; color:#fff; padding-right: 10px;}
+.span1{ color:#1bb8e9;}
+.span2{ color:#ff3232; font-size: 18px; font-weight: bold; font-family: '微软雅黑'}
+.new-show{width: 90%; margin: 0 auto;}
+.new-show .new-show-div1{width: 100%;}
+.new-show h3{ color:#65d8fb; font-size: 20px;  text-align: center;}
+.new-show .new-show-div1-box1{ float: left; margin-top: 20px; display: inline; width: 100%; border-bottom: #807373 solid 1px; padding-bottom: 10px;}
+.new-show .new-show-div1-box1 ul{ float: left;}
+.new-show .new-show-div1-box1 ul li{ float: left; color:#fff; font-size: 14px;}
+.new-show .new-show-div1-box1 .new-show-tuijian { display: inline-block; height: 22px; background: url("../images/img_tuijian_1.png") no-repeat;}
+.new-show .new-show-div1-box1 .li-left30{ margin-left: 35px; display: inline;}
+.new-show .new-show-contect{ float: left; width: 100%; overflow: hidden; padding-bottom: 80px; margin-top: 20px; display: inline; color:#bdbdbd
+; font-size: 14px; font-family: 微软雅黑; text-indent: 2em;line-height:36px}
+.new-show .new-show-contect a:link{color:#bdbdbd}
+.new-show .new-show-contect a:hover{color:#bdbdbd}
+.new-show .new-show-contect a:visited{color:#bdbdbd}
+.grid5-left-box4{ float:left; width:100%; margin-top: 20px;  padding-bottom: 10px; display: inline; border-top: #807373 solid 1px; }
+.grid5-left-box4 .ul-1{ float:left; width:307px; margin-top:20px; font-family: 宋体; }
+.grid5-left-box4 .ul-1 li{ padding-top: 0px;!important; margin-top: 3px;overflow: hidden;  text-overflow: ellipsis;  white-space: nowrap; color:#747474}
+.grid5-left-box4 .ul-1 li a{ color: #fff; font-size: 13px;}
+.grid5-left-box4 .ul-2{ float:right; width:280px; height:262px; margin-top:10px; margin-right:10px; background: url("../images/img_newtj_bg.jpg") no-repeat;}
+.grid5-left-box4 .ul-2 li{ text-align: center; margin-top:5px;}
+.grid5-left-box4 .ul-2 li p{ color:#ddebf5; text-align: left;}
+.grid5-left-box4 .ul-2 li p a{color:#ddebf5; text-decoration: none;}
+.grid5-left-box4 .ul-2 li .p-gg{ font-size: 20px; font-weight: bold;}
+.grid5-left-box4 .ul-2 li .p-tj { font-size: 30px;  padding-left: 10px; overflow: hidden;  text-overflow: ellipsis;  white-space: nowrap;}
+.grid5-left-box4 .ul-2 li .p-js{ font-size: 15px; font-weight: bold; padding-left: 10px; overflow: hidden;  text-overflow: ellipsis;  white-space: nowrap;}

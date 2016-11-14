@@ -1,0 +1,107 @@
+﻿@charset "utf-8";
+
+.logo {float:left; height:104px; width:283px; margin:0;}
+.login_before {width:418px; background:#3b3b3b; float:right; margin-top:0px; padding-bottom: 5px; border-radius:2px;}
+.login_before .left {width:340px; height:50px; margin-top:6px; float:left; border-right:1px solid #4c4c4c;}
+.login_before .in01 {width:154px; height:22px;border-radius:2px; background:#e8e8e8; float:left; margin-left:10px; padding-left:6px;}
+.login_before a {width:85px; line-height:30px; float:left; margin-left:0px; display:block; color:#fff4a7;}
+.login_before a:hover {text-decoration:underline;}
+.login_before .btn01 {width:160px; height:23px; text-align:center; border:0px;line-height:23px; color:#fff; background:url(../images/btn-bg01.png) repeat; font-size:15px; margin-top:5px; margin-right:8px;float:right; border-radius:2px;transition: all .5s;}
+.login_before .btn02 {width:63px; height:50px; text-align:center; line-height:20px; color:#fff; background:url(../images/btn-bg03.png) repeat; font-size:15px; margin-top:6px; margin-left:10px; border-radius:2px; text-decoration:none; padding-top:5px; letter-spacing:1px;transition: all .5s;}
+.login_before .btn01:hover {background:url(../images/btn-bg01-h.png) repeat;}
+.login_before .btn02:hover {background:url(../images/btn-bg02.png) repeat;}
+.login_before .login-msg {line-height: 1.6em; color: red;margin-left: 10px;}
+
+.login_after {width:443px; height:73px; background:#3b3b3b; float:right; margin-top:20px; border-radius:2px;}
+.login_after .left {width:370px; float:left; font-size:14px; color:#fff; line-height:36px; margin-left:5px;}
+.login_after .left span {color:#ffc85c;}
+.login_after .left .v { background:url(../images/vip-icon.png) no-repeat left; width:40px; display:block; float:right; padding-left:28px; margin-right:80px;}
+.login_after .left a {display:block; width:65px; height:30px; padding-left:26px; color:#fff; line-height:30px; float:left; margin-right:1px; text-align:left; transition: all .5s; }
+.login_after .left .rj {background:#242d36 url(../images/after-icon01.png) no-repeat left; background-position:7px center;}
+.login_after .left .cj {background:#242d36 url(../images/after-icon02.png) no-repeat left; background-position:7px center;}
+.login_after .left .zx {background:#242d36 url(../images/after-icon03.png) no-repeat left; background-position:7px center;}
+.login_after .left .out {background:#242d36 url(../images/after-icon04.png) no-repeat left; background-position:15px center;padding-left:41px;width:50px;}
+.login_after .left .rj:hover {background:#1a2027 url(../images/after-icon05.png) no-repeat left; background-position:7px center; color:#ffd770}
+.login_after .left .cj:hover {background:#1a2027 url(../images/after-icon06.png) no-repeat left; background-position:7px center;color:#ffd770}
+.login_after .left .zx:hover {background:#1a2027 url(../images/after-icon07.png) no-repeat left; background-position:7px center;color:#ffd770}
+.login_after .left .out:hover {background:#1a2027 url(../images/after-icon08.png) no-repeat left; background-position:15px center;padding-left:41px;width:50px;color:#ffd770}
+.login_after img {border:1px solid #fff; float:right; margin-top:6px; margin-right:6px; width:60px;height:60px;}
+
+.nav {width:100%; height:40px; background:#29333d; border-bottom:1px solid #404040;border-top:1px solid #404040; line-height:40px;}
+.nav span {color:#88929e; font-size:15px; float:left;}
+.nav ul {width:645px; float:right; height:40px;}
+.nav ul li{float:left; width:84px; font-size:16px; color:#fff; line-height:40px; padding-left:45px;}
+.nav ul .pt {background:url(../images/nav-icon01.png)  no-repeat left; background-position:20px 13px; }
+.nav ul .gj {background:url(../images/nav-icon02.png)  no-repeat left; background-position:20px 13px; }
+.nav ul .zn {background:url(../images/nav-icon03.png)  no-repeat left; background-position:20px 13px; }
+.nav ul .bz {background:url(../images/nav-icon04.png)  no-repeat left; background-position:20px 13px; }
+.nav ul .sc {background:url(../images/nav-icon05.png)  no-repeat left; background-position:20px 13px; }
+.nav ul li a {color:#fff;}
+.nav ul li img { margin-left:18px; margin-right:10px; float:left; margin-top:13px;}
+.nav ul li:hover {border-bottom:2px solid #ffd770; height:38px; color:#ffd770}
+.nav ul .list {display:none;}
+.nav ul .pt:hover {background:url(../images/nav-icon06.png)  no-repeat left; background-position:20px 13px; }
+.nav ul .gj:hover {background:url(../images/nav-icon07.png)  no-repeat left; background-position:20px 13px; }
+.nav ul .zn:hover {background:url(../images/nav-icon08.png)  no-repeat left; background-position:20px 13px; }
+.nav ul .bz:hover {background:url(../images/nav-icon09.png)  no-repeat left; background-position:20px 13px; }
+.nav ul .sc:hover {background:url(../images/nav-icon10.png)  no-repeat left; background-position:20px 13px; }
+.nav ul:hover .list {display:block; width:645px; height:319px; position:absolute; z-index:50; background:url(../images/nav-bg.png) repeat; margin-top:40px; padding:5px 0;}
+.nav ul:hover .list ul {width:645px; float:right; height:319px; font-family:"宋体";}
+.nav ul:hover .list ul li{float:left; width:129px; font-size:16px; color:#fff; height:319px; padding:0;}
+.nav ul:hover .list ul li:hover{ border:0;}
+.nav ul:hover .list ul li a {line-height:40px; width:129px; font-size:15px; display:block; text-align:center;}
+.nav ul:hover .list ul li a:hover {background:#29333d; color:#ffd770; text-decoration:none;}
+
+/*底部*/
+.foot { width:100%; background:#161616; padding-bottom:40px;overflow: hidden;}
+.foot .Cup { margin:22px 58px;}
+.foot .nav2 {height:420px; border-bottom:1px solid #393939; border-top:1px solid #393939; width:100%;width: 1100px;margin: auto;}
+.foot .nav2 li {width:85px; float:left; margin-top:23px; margin-left:20px;}
+.foot .nav2 .lord { font-size:14px; color:#ffd770; width:100%; display:block; margin-bottom:10px;}
+.foot .nav2 .second {font-size:13px; color:#fff; width:100%; display:block; line-height:25px;}
+.foot .nav2 a:hover {text-decoration:underline;}
+.foot .warning{font-size:12px; color:#a4a4a4; width:768px; float:left; margin-top:27px; line-height:20px;}
+.foot .warning p {line-height:64px; font-size:14px; color:#fff;}
+.foot .Icon {width:170px; margin-top:25px; margin-left:90px; float:left;}
+.foot .Icon img {float:left; margin-right:9px; margin-bottom:5px;}
+.foot .Icon .lit {margin-right:8px;}
+.foot .Icon .imgno {margin-right:0;}
+.foot .QR {margin-top:81px; margin-left:25px;}
+
+/*底部浮动*/
+.bottom {width:100%; height:40px; background:#29333d; position:fixed; bottom:0; z-index:109; border-top:1px solid #8b8b8b;}
+.bottom a {width:132px; height:40px; display:block; float:left; font-size:14px; color:#fff; text-decoration:none}
+.bottom a .center {width:130px; border-left:1px solid #454545; border-right:1px solid #454545; height:20px; margin-top:10px;}
+.bottom a .pd {width:130px; border-right:1px solid #454545; height:20px; margin-top:10px;}
+.bottom a .center img {float:left; margin-left:25px; margin-right:8px; margin-top:3px;}
+.bottom a .pd img {float:left; margin-left:25px; margin-right:15px; margin-top:3px;}
+.bottom a:hover {background:#ff9913; color:#fff; text-decoration:none;}
+.bottom a:hover .center {border:none;}
+.bottom a:hover .pd {border:none;}
+.bottom span {line-height:40px; float:right; color:#747d88; font-size:14px;}
+.bottom .stime { float:left; margin-right:5px;}
+
+
+/*下滑浮动*/
+.nav3{width:100%; position:fixed; left:0; top:0; z-index:110; background:#29333d;border-bottom:1px solid #8b8b8b; }
+.nav3 .sc {display:block; width:184px; height:0px; background:#545c64; float:left; margin:auto 0; font-size:13px; color:#fff; text-align:center; line-height:20px;}
+.nav3 .nav_box {width:525px; float:right}
+.nav3 .nav_box .s01 {width:148px; height:0px; background:#fff; padding-left:8px; line-height:22px; border-radius:4px; margin-right:5px; float:left;}
+.nav3 .nav_box .s02 {width:122px; height:0px; background:#fff; padding-left:8px; line-height:22px; border-radius:4px; margin-right:5px; float:left;}
+.nav3 .nav_box .s03 {width:100px; height:0px; background:url(../images/FooterNew/btn-bg01.png) repeat-x center; text-align:center; line-height:20px; font-size:14px; color:#fff; float:left; border-radius:4px;}
+.nav3 .nav_box .s04 {width:100px; height:0px; background:url(../images/FooterNew/btn-bg03.png) repeat-x center; text-align:center; line-height:20px; font-size:14px; color:#fff; float:left; border-radius:4px; background-size:30%}
+.nav3 .nav_box  .h {color:#636363; background:none; width:25px; float:left; font-size:18px; margin-top:0px; display:block; height:0px; text-align:center;}
+.nav3 .main .login-msg {float:right; ;margin-right:1em; color:red;}
+.nav3 .main .user-info {float:right; margin-right: 1em;}
+.nav3 span { width:680px; float:right; font-size:14px;color:#fff; display:block; height:0px; line-height:45px;}
+.nav3 span em {color:#ffc85c; font-style:normal;}
+.nav3 span img {position:relative; top: 4px;}
+.nav3 span a {display:block; width:62px; height:25px; padding-left:26px; color:#fff; line-height:25px; float:left;text-align:left; transition: all .5s; float:right; margin-top:8px; border:1px solid #242424;}
+.nav3 span .rj {background:#242d36 url(../images/FooterNew/after-icon01.png) no-repeat left; background-position:7px center;}
+.nav3 span .cj {background:#242d36 url(../images/FooterNew/after-icon02.png) no-repeat left; background-position:7px center; border-left:none;}
+.nav3 span .zx {background:#242d36 url(../images/FooterNew/after-icon03.png) no-repeat left; background-position:7px center; border-left:none;}
+.nav3 span .out {background:#242d36 url(../images/FooterNew/after-icon04.png) no-repeat left; background-position:15px center;padding-left:41px;width:50px; border-left:none;}
+.nav3 span .rj:hover {background:#1a2027 url(../images/FooterNew/after-icon05.png) no-repeat left; background-position:7px center; color:#ffd770}
+.nav3 span .cj:hover {background:#1a2027 url(../images/FooterNew/after-icon06.png) no-repeat left; background-position:7px center;color:#ffd770}
+.nav3 span .zx:hover {background:#1a2027 url(../images/FooterNew/after-icon07.png) no-repeat left; background-position:7px center;color:#ffd770}
+.nav3 span .out:hover {background:#1a2027 url(../images/FooterNew/after-icon08.png) no-repeat left; background-position:15px center;padding-left:41px;width:50px;color:#ffd770}
