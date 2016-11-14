@@ -11,6 +11,10 @@
       <%= f.email_field :email, class: 'form-control' %>
     </div>
     <div class="form-group">
+      <%= f.label :country_code %>
+      <%= f.country_select( "country_code", ["China"], locale: I18n.locale, class:'form-control') %>
+    </div>
+    <div class="form-group">
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
     </div>

@@ -40,9 +40,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :pp_question, null: false, default: ""
       t.string :pp_answer, null: false, default: ""
       #real name validation
+      t.string :firstname
+      t.string :lastname
       t.string :real_name
       t.integer :id_type, null: false, default: 0
       t.string :id_number
+      t.string :country_code
       t.timestamps null: false
     end
     add_index :users, :created_at

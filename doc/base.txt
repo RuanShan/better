@@ -7,3 +7,7 @@ http://meumobi.github.io/stocks%20apis/2016/03/13/get-realtime-stock-quotes-yaho
 #Retrieve currency exchange rates from Yahoo! Finance.
 
 https://github.com/scottjbarr/yahoo_currency
+
+
+#http://blog.2baxb.me/archives/827
+php与ruby共享session实现单点登录

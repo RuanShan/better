@@ -10,9 +10,13 @@ module Gateway::Ecpss
 
     end
 
+
     # request prams order by [MerNo,BillNo,Amount,OrderTime,ReturnURL,AdviceURL]
     # notify prams order by [MerNo,BillNo,OrderNo,Amount,Succeed]
+    ORDERED_REQUEST_PARAMS = %w( MerNo,BillNo,Amount,OrderTime,ReturnURL,AdviceURL )
+    ORDERED_NOTIFY_PARAMS = %w( MerNo,BillNo,OrderNo,Amount,Succeed )
     def self.params_to_string(params)
+
       params.sort.map { |item| item.join('=') }.join('&')
     end
 

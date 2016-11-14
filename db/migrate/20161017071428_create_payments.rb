@@ -28,6 +28,8 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.string :memo
       t.string :promotion_number
       t.datetime :completed_at
+      t.string :payment_no      #支付接口成功后返回的支付订单号
+      t.string :payment_result  #支付接口订单详情信息-暂时未用
       t.timestamps null: false
     end
     add_index :deposits, [:number]

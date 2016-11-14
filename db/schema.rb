@@ -127,6 +127,8 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.string   "memo"
     t.string   "promotion_number"
     t.datetime "completed_at"
+    t.string   "payment_no"
+    t.string   "payment_result"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.index ["number"], name: "index_deposits_on_number"
@@ -378,9 +380,12 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.string   "qq",                       default: "", null: false
     t.string   "pp_question",              default: "", null: false
     t.string   "pp_answer",                default: "", null: false
+    t.string   "firstname"
+    t.string   "lastname"
     t.string   "real_name"
     t.integer  "id_type",                  default: 0,  null: false
     t.string   "id_number"
+    t.string   "country_code"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.string   "confirmation_token"
