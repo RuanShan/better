@@ -10,7 +10,7 @@ module Gateway::Ecpss
 
   class << self
     attr_accessor :mer_no, :key, :sign_type, :debug_mode
-    attr_accessor :return_url :advice_url
+    attr_accessor :return_url, :advice_url
     def debug_mode?
       !!@debug_mode
     end
