@@ -62,8 +62,7 @@ gem 'alidayu-ruby', require: 'alidayu'
 # 计划任务定义
 gem 'whenever', :require => false
 
-gem 'countries', '~> 2.0.0.rc'
-gem 'country_select'
+gem 'country_select', path: "./country_select"
 
 group :development do
   gem 'better_errors'

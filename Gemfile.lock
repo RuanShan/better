@@ -1,5 +1,12 @@
+PATH
+  remote: ./country_select
+  specs:
+    country_select (2.5.2)
+      countries (~> 2.0.0.rc)
+      sort_alphabetical
+
 GEM
-  remote: https://rubygems.org/
+  remote: https://gems.ruby-china.org/
   specs:
     actioncable (5.0.0.1)
       actionpack (= 5.0.0.1)
@@ -98,7 +105,6 @@ GEM
       i18n_data (~> 0.7.0)
       money (~> 6.0)
       unicode_utils (~> 1.4)
-    country_select (1.2.0)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     devise (4.2.0)
@@ -262,6 +268,8 @@ GEM
       activemodel (> 4, < 5.1)
     sixarm_ruby_unaccent (1.1.1)
     slop (3.6.0)
+    sort_alphabetical (1.0.2)
+      unicode_utils (>= 1.2.2)
     spring (2.0.0)
       activesupport (>= 4.2)
     spring-commands-rspec (1.0.4)
@@ -334,8 +342,7 @@ DEPENDENCIES
   capistrano-rvm (~> 0.1.1)
   capybara
   coffee-rails (~> 4.2)
-  countries (~> 2.0.0.rc)
-  country_select
+  country_select!
   database_cleaner
   devise
   devise_invitable
