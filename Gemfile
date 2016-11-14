@@ -52,7 +52,7 @@ gem 'alipay'
 # 货币及显示格式定义
 gem 'monetize'
 
-# 会员树形结构
+# 代理树形结构
 gem 'awesome_nested_set'
 #gem 'paranoid'
 
@@ -61,6 +61,9 @@ gem 'alidayu-ruby', require: 'alidayu'
 
 # 计划任务定义
 gem 'whenever', :require => false
+
+gem 'countries', '~> 2.0.0.rc'
+gem 'country_select'
 
 group :development do
   gem 'better_errors'
