@@ -76,8 +76,10 @@ group :development do
   gem 'rails_layout'
   gem 'spring-commands-rspec'
 end
+
+# for staging 
+gem 'factory_girl_rails'
 group :development, :test do
-  gem 'factory_girl_rails'
   gem 'faker'
   gem 'pry-rails'
   gem 'pry-rescue'
