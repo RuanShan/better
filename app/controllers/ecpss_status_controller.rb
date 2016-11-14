@@ -38,7 +38,7 @@ class EcpssStatusController < ApplicationController
   end
 
   def complete_deposit( bill_no )
-    bill_no = notify_params['BillNo']);
+    bill_no = notify_params['BillNo']
     order_no = notify_params['OrderNo']
     money = notify_params['Amount']
 
