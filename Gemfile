@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://gems.ruby-china.org/'
 ruby '2.2.4'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'sqlite3'
