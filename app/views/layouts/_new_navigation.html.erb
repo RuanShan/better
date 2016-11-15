@@ -33,14 +33,30 @@
         <div class="login_after1">
           <div class="after_left">
             <div class="after_top">
-            <p>Hi、<span>名字-姓</span> 用户积分：<span>5000</span></p>
+            <p>Hi、<span><%= current_user.nickname %></span> 用户积分：<span>5000</span></p>
             </div>
             <div class="after_down">
             <ul>
-              <li><a href=""><%=image_tag "new/noimages/afteryu_03.gif"%><span>立即入金</span></a></li>
-              <li><a href=""><%=image_tag "new/noimages/afteryu_05.gif"%><span>签到抽奖</span></a></li>
-              <li><a href=""><%=image_tag "new/noimages/afteryu_07.gif"%><span>个人中心</span></a></li>
-              <li><a href=""><%=image_tag "new/noimages/afteryu_09.gif"%><span>退出</span></a></li>
+              <li>
+                <%=link_to new_my_deposit_path do%>
+                  <%=image_tag "new/noimages/afteryu_03.gif"%><span>立即入金</span>
+                <%end%>
+              </li>
+              <li>
+                <%=link_to "" do%>
+                  <%=image_tag "new/noimages/afteryu_05.gif"%><span>签到抽奖</span>
+                <%end%>
+              </li>
+              <li>
+                <%=link_to my_account_index_path do%>
+                  <%=image_tag "new/noimages/afteryu_07.gif"%><span>个人中心</span>
+                <%end%>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, :method=>'delete' do %>
+                  <%=image_tag "new/noimages/afteryu_09.gif"%><span>退出</span>
+                <%end%>
+              </li>
             </ul>
             </div>
           </div>

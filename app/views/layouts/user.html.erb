@@ -14,17 +14,13 @@
 		<script type="text/javascript">var tkh_locale = '<%= I18n.locale.to_s %>';</script>
   </head>
   <body>
-    <div >
-      <%= render 'layouts/new_navigation' %>
+    <%= render 'layouts/new_navigation' %>
+    <%= render 'shared/flash_messages' %>
+    <%= render partial: "my/account/member_profile" %>
+    <%= render partial: "shared/user_menu" %>
+    <div class="hybody_down">
+      <%= yield %>
     </div>
-    <main role="main">
-       <%= render 'shared/flash_messages' %>
-       <%= render partial: "my/account/member_profile" %>
-       <%= render partial: "shared/user_menu" %>
-       <div class="hybody_down">
-         <%= yield %>
-       </div>
-    </main>
     <%= render 'layouts/footer' %>
     <%= render 'shared/dialog' %>
   </body>

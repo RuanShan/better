@@ -1,24 +1,24 @@
-<table class="table table-striped">
+<table>
   <thead>
-    <tr>
-      <th>ID</th>
-      <th>日期/时间(GMT+8)</th>
-      <th>交易号码</th>
-      <th>存款方式</th>
-      <th>全额(RMB)</th>
-      <th>状态</th>
+    <tr class="xsjg1">
+      <th><p>ID</p></th>
+      <th><p>日期/时间(GMT+8)</p></th>
+      <th><p>交易号码</p></th>
+      <th><p>存款方式</p></th>
+      <th><p>全额(RMB)</p></th>
+      <th><p>状态</p></th>
     </tr>
   </thead>
 
   <tbody>
     <%total_amount=0%>
     <% if @deposits.empty? %>
-      <tr>
+      <tr class="xsjg2">
         <td colspan="6">暂无记录</td>
       <tr>
     <% else %>
     <% @deposits.each do |deposit| %>
-      <tr>
+      <tr class="xsjg2">
         <td><%= deposit.created_at.to_i %></td>
         <td><%= deposit.display_created_at %></td>
         <td><%= deposit.number %></td>
@@ -29,9 +29,7 @@
       <%total_amount += deposit.amount%>
     <% end %>
   <% end %>
-  <tr>
-    <td colspan="6"><%=content_tag :span, "充值记录总额:#{display_money(total_amount)}", style: 'float:right;'%></td>
-  <tr>
   </tbody>
 </table>
+<p class="czjlll">充值记录总额：<b><%=display_money(total_amount)%></b></p>
 <%= will_paginate @deposits if @deposits.respond_to? :total_pages%>

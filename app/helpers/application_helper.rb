@@ -28,7 +28,7 @@ module ApplicationHelper
   end
 
   def better_country_select
-    
+
   end
 end
 

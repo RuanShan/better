@@ -1,0 +1,94 @@
+.zxzhifu{
+	width: 850px;
+}
+.zxzhifu span{
+	font-size:18px;
+	color: #000;
+	font-weight: bold;
+	font-family: 微软雅黑;
+	margin: 20px 0px 20px 0;
+
+}
+.zxzhifu label{
+	font-size:18px;
+	color: #000;
+	font-weight: bold;
+	font-family: 微软雅黑;
+	margin: 0px 0px 20px 0;
+  float:left;
+}
+.zxzhifu ul{
+	width: 100%;
+	overflow: hidden;
+	padding: 0px;
+
+}
+.zxzhifu li{
+	height: 70px;
+	width: 24%;
+	text-decoration: none;
+	list-style: none;
+	float: left;
+
+}
+.zxzhifu input{
+	vertical-align: middle;
+	float:left;
+}
+.zxzhifu img{
+	vertical-align: middle;
+}
+.txan{
+	margin-top: 30px!important;
+    float: right!important;
+    margin-right: 62px!important;
+    width: 90px!important;
+    height: 30px!important;
+    background: #b31313!important;
+    color: #fff!important;
+    border: 1px solid #941a1a!important;
+    padding: 0px!important;
+}
+.zhifuzuo{
+	width: 50%;
+	clear: both;
+	height: 50px;
+	float: left;
+	margin-top: 40px;
+}
+.zhifuzuo input{
+	width: 297px;
+	background: #aaa;
+	height: 30px;
+	border: 0px;
+	margin-left: 35px;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	color: #666;
+	padding-left: 10px;
+}
+.zhifuyou{
+	width: 50%;
+	float: right;
+	margin-top: 40px;
+}
+.zhifuyou input{
+	width: 297px;
+	background: #aaa;
+	height: 30px;
+	border: 0px;
+	margin-left: 35px;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	color: #666;
+	padding-left: 10px;
+}
+.zxzhifu hr{
+	clear: both;
+	border-bottom: 2px solid #000;
+}
+.yonghu{
+	margin: 80px 0 80px 0;
+}

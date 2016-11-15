@@ -1,8 +1,5 @@
-<div class="recharge-tips">
-			<span ng-bind="'recharge-payment-tips1' | i18n" class="ng-binding">说明：支付最低限额：RMB</span>
-			<span class="boma-color-red ng-binding" ng-bind="_payments.min_save | currency: '' :2">50.00</span>
-			<span ng-bind="'recharge-payment-tips2' | i18n" class="ng-binding">元，支付最高限额：RMB</span>
-			<span class="boma-color-red ng-binding" ng-bind="_payments.max_save | currency: '' :2">50,000.00</span>
-			<span ng-bind="'common-currencyunit' | i18n" class="ng-binding">元</span>
-			<div>bank_transfer</div>
-</div>
+<ul>
+	<li><input type="radio" name="zz_bank"><%=image_tag "new/banks/zhaoshang.gif" %></li>
+	<li><input type="radio" name="zz_bank"><%=image_tag "new/banks/gongshang.gif" %></li>
+
+</ul>

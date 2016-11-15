@@ -1,12 +1,12 @@
 .huiyuanbody{
 	width: 100%;
-	background-image:url(../images/noimages/hybg_02.gif); 
+	background-image:url(../images/noimages/hybg_02.gif);
 	background-repeat: no-repeat;
 	overflow: hidden;
 }
 .hybody_top{
 	width: 1100px;
-	
+
 	margin:auto;
 	    overflow: hidden;
     background: #232323;
@@ -17,13 +17,13 @@
 	float: left;
 	height: 300px;
 	text-align: center;
-	
+
 }
 .hbtop_left img{
 	width: 130px;
 	height: 135px;
 	border: 2px solid #fff;
-	
+
 	margin-top: 40px;
 }
 .hbtop_left h2{
@@ -179,7 +179,7 @@
     text-align: center;
     background: url(../images/dh_xian.jpg) no-repeat right 15px;
     position: relative;
-	
+
 }
 .hybody_zhong li:hover{
 	background:#f3d34c;
@@ -189,7 +189,7 @@
 	padding: 20px;
 }
 .hybody_zhong a:hover{
-	
+
 
 }
 .hybody_zhong a{
@@ -209,7 +209,15 @@
 .shortt{
 	    padding-left: 30px;
 }
-.down_nei{
+.down_nei_chongzhi {
+	padding:50px;
+	background:#dbdadb;
+	 overflow: hidden;
+	text-align: center;
+	border-bottom: 5px solid #a51919;
+}
+
+.down_nei {
 	padding:50px;
 	background:#dbdadb;
 	 overflow: hidden;
@@ -229,6 +237,12 @@
 	font-size: 15px;
 	font-weight: bold;
 }
+
+.down_nei label{
+	font-size: 15px;
+	font-weight: bold;
+}
+
 .down_nei1{
 	padding:50px;
 	background:#dbdadb;
@@ -259,14 +273,14 @@
 	height: 40px;
 	padding-left: 15px;
 	font-size: 15px;
-	font-weight: bold; 
+	font-weight: bold;
 }
 .lo1{
 	width: 500px;
 	height: 40px;
 	padding-left: 15px;
 	font-size: 15px;
-	font-weight: bold; 
+	font-weight: bold;
 }
 .lo2{
 	background: #fff;
@@ -305,7 +319,7 @@
 .so2{
 	width: 500px;
     height: 40px;
-    
+
     font-size: 15px;
     font-weight: bold;
 }
@@ -321,7 +335,7 @@
 }
 .ggtj1{
 	    margin-top: 30px;
-    
+
     margin-right: 440px;
     width: 90px;
     height: 30px;
@@ -382,32 +396,32 @@
 	height: 50px;
 	border: 1px solid #fff;
 }
-.black_overlay{ 
-            display: none; 
-            position: absolute; 
-            top: 0%; 
-            left: 0%; 
-            width: 100%; 
-            
-            background-color: black; 
-            z-index:1001; 
-            -moz-opacity: 0.8; 
-            opacity:.80; 
-            filter: alpha(opacity=88); 
-        } 
-        .white_content { 
-            display: none; 
-            position: absolute; 
-            top: 70%; 
-            left: 25%; 
-            width: 750px; 
-           	height: 700px;
-            padding: 5px 10px; 
+.black_overlay{
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
 
-            background-color: white; 
-            z-index:1002; 
-            overflow: auto; 
-        } 
+            background-color: black;
+            z-index:1001;
+            -moz-opacity: 0.8;
+            opacity:.80;
+            filter: alpha(opacity=88);
+        }
+        .white_content {
+            display: none;
+            position: absolute;
+            top: 70%;
+            left: 25%;
+            width: 750px;
+           	height: 700px;
+            padding: 5px 10px;
+
+            background-color: white;
+            z-index:1002;
+            overflow: auto;
+        }
 
 .erxian{
 	width: 180px;
@@ -443,7 +457,7 @@
 	.zongrenshu{
 		width: 725px;
 		height: 92px;
-		background-image:url(../images/noimages/qiandao_03.gif); 
+		background-image:url(../images/noimages/qiandao_03.gif);
 	}
 	.zongrenshu p{
 		font-size: 16px;
@@ -509,7 +523,7 @@
     	width: 100%;
     	height: 100px;
     	background: #ddd;
-    	
+
     }
 
     .mingdan{
@@ -521,7 +535,7 @@
     	width: 100%;
     	height: 100px;
     	background: #ddd;
-    	
+
     }
       .mingdan h3{
     	color: red;
@@ -650,7 +664,7 @@
 	letter-spacing: 2px;
 }
 .ddyu{
-	width: 260px!important;	
+	width: 260px!important;
 }
 .tixian_down b{
 	width: 40px;
@@ -720,16 +734,17 @@
 }
 .riqi{
 	margin-bottom: 50px;
+	color: #000;
 }
 .riqi input{
-	height: 20px;
+	/*	height: 20px;*/
     color: #fff;
     background: #bbb;
     margin-left: 10px;
     font-weight: bold;
 }
 .riqi select{
-	height: 20px;
+/*	height: 20px;*/
     color: #fff;
     background: #bbb;
     margin-left: 10px;
@@ -748,6 +763,7 @@
 .xianshijieguo{
 	width: 100%;
 	overflow: hidden;
+	margin-top:20px;
 }
 .xianshijieguo table{
 	width: 100%;
@@ -758,15 +774,15 @@
 }
 .xianshijieguo hr{
 	border: 1px solid #000;
-	
+
 }
 .xsjg1{
 	background: #f1f1f1;
 
 }
 
-.xsjg1 td{
-	
+.xsjg1 th{
+  text-align: center;
 
 }
 .xsjg1 p{
@@ -783,7 +799,7 @@
 	margin-top: 50px;
 	font-weight: bold;
 	font-size: 16px;
-	
+
 	width: 100%;
 	background: #f1f1f1;
 	text-align: left;

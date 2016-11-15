@@ -1,8 +1,22 @@
-<div class="recharge-tips">
-			<span ng-bind="'recharge-payment-tips1' | i18n" class="ng-binding">说明：支付最低限额：RMB</span>
-			<span class="boma-color-red ng-binding" ng-bind="_payments.min_save | currency: '' :2">50.00</span>
-			<span ng-bind="'recharge-payment-tips2' | i18n" class="ng-binding">元，支付最高限额：RMB</span>
-			<span class="boma-color-red ng-binding" ng-bind="_payments.max_save | currency: '' :2">50,000.00</span>
-			<span ng-bind="'common-currencyunit' | i18n" class="ng-binding">元</span>
-			<div>alipay_bank</div>
-</div>
+<ul>
+	<li><input type="radio" name="zx_bank"><%=image_tag "new/banks/zhongguo.gif" %></li>
+	<li><input type="radio" name="zx_bank"><%=image_tag "new/banks/gongshang.gif" %></li>
+	<li><input type="radio" name="zx_bank"><%=image_tag "new/banks/nongye.gif" %></li>
+	<li><input type="radio" name="zx_bank"><%=image_tag "new/banks/jianshe.gif" %></li>
+</ul>
+<ul>
+	<li><input type="radio" name="zx_bank"><%=image_tag "new/banks/jiaotong.gif" %></li>
+	<li><input type="radio" name="zx_bank"><%=image_tag "new/banks/zhaoshang.gif" %></li>
+	<li><input type="radio" name="zx_bank"><%=image_tag "new/banks/shanghai.gif" %></li>
+	<li><input type="radio" name="zx_bank"><%=image_tag "new/banks/shenzhen.gif" %></li>
+</ul>
+<ul>
+	<li><input type="radio" name="zx_bank"><%=image_tag "new/banks/guangda.gif" %></li>
+	<li><input type="radio" name="zx_bank"><%=image_tag "new/banks/minsheng.gif" %></li>
+	<li><input type="radio" name="zx_bank"><%=image_tag "new/banks/huaxia.gif" %></li>
+	<li><input type="radio" name="zx_bank"><%=image_tag "new/banks/fazhan.gif" %></li>
+</ul>
+<ul>
+	<li><input type="radio" name="zx_bank"><%=image_tag "new/banks/shiye.gif" %></li>
+	<li><input type="radio" name="zx_bank"><%=image_tag "new/banks/nongchun.gif" %></li>
+</ul>

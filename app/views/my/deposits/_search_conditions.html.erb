@@ -3,25 +3,25 @@
 @end_date ||= ""
 @state ||= "1"
 %>
-<div class="">
-  <%=form_tag search_my_deposits_path, method:"get", class:"form-inline", role:"form" do%>
-    <div class="form-group">
-      <label for="start_date">起始日期</label>
-      <%=calendar "start_date", @start_date%>
-    </div>
-    <div class="form-group">
-      <label for="end_date">到</label>
-      <%=calendar "end_date", @end_date%>
-    </div>
-    <div class="form-group">
-      <label for="state">状态</label>
-      <%=deposit_state_select "state", @state%>
-    </div>
-    <div class="form-group">
-      <%=submit_tag "查询",  class:"form-control"%>
-    </div>
-  <%end%>
-</div>
-<div id="deposit_records" style="padding-top:20px;">
+
+<%=form_tag search_my_deposits_path, method:"get", class:"form-inline", role:"form" do%>
+  <div class="form-group">
+    <label for="start_date">起始日期</label>
+    <%=calendar "start_date", @start_date%>
+  </div>
+  <div class="form-group">
+    <label for="end_date">到</label>
+    <%=calendar "end_date", @end_date%>
+  </div>
+  <div class="form-group">
+    <label for="state">状态</label>
+    <%=deposit_state_select "state", @state%>
+  </div>
+  <div class="form-group">
+    <%=submit_tag "查询", class:"form-control richa", src:"new/noimages/tbqw_07.gif" %>
+  </div>
+<%end%>
+
+<div class="xianshijieguo">
   <%= render partial: "records" %>
 </div>

@@ -2,11 +2,11 @@
   <div class="hybody_top">
     <div class="hbtop_left">
       <%=image_tag "new/noimages/toux_04.gif"%>
-      <h2>某某某</h2>
+      <h2><%= current_user.nickname %></h2>
       <div class="dengji"></div>
     </div>
     <div class="hbtop_right">
-      <div class="yuanbg"><%=image_tag "new/noimages/gerentu_03.gif"%><b>余额：</b><span>$0</span></div>
+      <div class="yuanbg"><%=image_tag "new/noimages/gerentu_03.gif"%><b>余额：</b><span><%=display_money(current_user.center_wallet_balance)%></span></div>
       <div class="yuanbg"><%=image_tag "new/noimages/gerentu_06.gif"%><b>以投资：</b><span>$0</span></div>
       <div class="yuanbg"><%=image_tag "new/noimages/gerentu_08.gif"%><b>待付奖金：</b><span>$0</span></div>
       <hr>
@@ -26,7 +26,7 @@
   <div class="qiandao">
   <div class="zongrenshu"><p>签到人数：今日您是第<span>39966</span>个签到的用户</p></div>
     <div class="qdcs"><h1>累计每签到5天，可获得抽奖机会一次！</h1>
-    <p>我的积分：50</p><a href=""><img src="images/noimages/qiandao_10.gif"></a><h6>累计签到五天</h6>
+    <p>我的积分：50</p><a href=""><%=image_tag "new/noimages/qiandao_10.gif"%></a><h6>累计签到五天</h6>
     </div>
     <iframe src="qiandao.html" scrolling="no" width="360px" height="360px" style="float:left;" frameborder="no"></iframe>
   <iframe src="choujiang.html" scrolling="no" width="360px" height="360px" style="float:right;" frameborder="no"></iframe>
