@@ -69,10 +69,10 @@
 .foot .QR {margin-top:81px; margin-left:25px;}
 
 /*底部浮动*/
-.bottom {width:100%; height:40px; background:#29333d; position:fixed; bottom:0; z-index:109; border-top:1px solid #8b8b8b;}
-.bottom a {width:132px; height:40px; display:block; float:left; font-size:14px; color:#fff; text-decoration:none}
-.bottom a .center {width:130px; border-left:1px solid #454545; border-right:1px solid #454545; height:20px; margin-top:10px;}
-.bottom a .pd {width:130px; border-right:1px solid #454545; height:20px; margin-top:10px;}
+.tbottom {width:100%; height:40px; background:#29333d; position:fixed; bottom:0; z-index:109; border-top:1px solid #8b8b8b;}
+.tbottom a {width:132px; height:40px; display:block; float:left; font-size:14px; color:#fff; text-decoration:none}
+.tbottom a .center {width:130px; border-left:1px solid #454545; border-right:1px solid #454545; height:20px; margin-top:10px;}
+.tbottom a .pd {width:130px; border-right:1px solid #454545; height:20px; margin-top:10px;}
 .bottom a .center img {float:left; margin-left:25px; margin-right:8px; margin-top:3px;}
 .bottom a .pd img {float:left; margin-left:25px; margin-right:15px; margin-top:3px;}
 .bottom a:hover {background:#ff9913; color:#fff; text-decoration:none;}

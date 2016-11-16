@@ -1,6 +1,6 @@
 .huiyuanbody{
 	width: 100%;
-	background-image:url(../images/noimages/hybg_02.gif);
+	background-image:url("new/noimages/hybg_02.gif");
 	background-repeat: no-repeat;
 	overflow: hidden;
 }
@@ -177,7 +177,7 @@
     width:12%;
     height: 40px;
     text-align: center;
-    background: url(../images/dh_xian.jpg) no-repeat right 15px;
+    background: url("new/dh_xian.jpg") no-repeat right 15px;
     position: relative;
 
 }
@@ -212,7 +212,7 @@
 .down_nei_chongzhi {
 	padding:50px;
 	background:#dbdadb;
-	 overflow: hidden;
+	 overflow: fixed;
 	text-align: center;
 	border-bottom: 5px solid #a51919;
 }
@@ -426,7 +426,7 @@
 .erxian{
 	width: 180px;
     position: absolute;
-    background: url(../images/nav_bg.png) repeat;
+    background: url("new/nav_bg.png") repeat;
     left: -25px;
     top: 42px;
     display: none;
@@ -740,7 +740,7 @@
 	/*	height: 20px;*/
     color: #fff;
     background: #bbb;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
     font-weight: bold;
 }
 .riqi select{

@@ -84,14 +84,14 @@
 }
 .dailibody{
 	width: 100%;
-	background-image:url(../images/noimages/hybg_02.gif);
+	background-image:url("new/noimages/hybg_02.gif");
 	background-repeat: no-repeat;
-	background-size: 100%; 
+	background-size: 100%;
 	overflow: hidden;
 }
 .dailizhongxin{
 	width: 1100px;
-	
+
 	background: #dbdadb;
 	margin: auto;
 	    margin-bottom: 30px;
@@ -114,7 +114,7 @@
 	overflow: hidden;
 	padding-top: 30px;
 	padding-bottom: 20px;
-	border-bottom: 1px solid #000; 
+	border-bottom: 1px solid #000;
 }
 .dailileft{
 	width: 260px;
@@ -286,7 +286,7 @@
     width: 38px;
     height: 24px;
     overflow: hidden;
-	
+
 }
 .dailiright_down h4{
 	clear: both;
@@ -302,7 +302,7 @@
 .dailifoot{
 	width: 100%;
 	background: #333;
-	
+
 }
 .dailifootnei {
 	width: 1100px;
@@ -376,9 +376,9 @@
 	text-align: center;
 }
 .qianjingnei1 li{
-	background-image:url(../images/dailiimg/qianjing_05.gif); 
+	background-image:url(../images/dailiimg/qianjing_05.gif);
 	background-repeat:no-repeat;
-	background-size: 267px 110px; 
+	background-size: 267px 110px;
 	width: 267px;
 	height: 110px;
 	float: left;
@@ -396,10 +396,10 @@
 	font-size: 16px;
 	margin-left: 40px;
 	font-weight: bold;
-	margin-top:20px; 
+	margin-top:20px;
 }
 .btbt1{
-	
+
 	margin-top: 10px;
 }
 .qianjingnei2 li{
@@ -438,7 +438,7 @@
 	background-repeat:no-repeat;
 	background-size: 306px 483px;
 	width: 306px;
-	height: 483px; 
+	height: 483px;
 }
 .chanpin h1{
 	font-size: 30px;
@@ -460,7 +460,7 @@
 	background-repeat:no-repeat;
 	background-size: 306px 483px;
 	width: 306px;
-	height: 483px; 
+	height: 483px;
 }
 
 .chanpin3{
@@ -468,28 +468,28 @@
 	background-repeat:no-repeat;
 	background-size: 306px 483px;
 	width: 306px;
-	height: 483px; 
+	height: 483px;
 }
 .chanpin4{
 	background-image:url(../images/dailiimg/chanpin_05.gif);
 	background-repeat:no-repeat;
 	background-size: 306px 483px;
 	width: 306px;
-	height: 483px; 
+	height: 483px;
 }
 .chanpin5{
 	background-image:url(../images/dailiimg/chanpin_16.gif);
 	background-repeat:no-repeat;
 	background-size: 306px 483px;
 	width: 306px;
-	height: 483px; 
+	height: 483px;
 }
 .chanpin6{
 	background-image:url(../images/dailiimg/chanpin_03.gif);
 	background-repeat:no-repeat;
 	background-size: 306px 483px;
 	width: 306px;
-	height: 483px; 
+	height: 483px;
 }
 .chuantongbody{
 	width: 100%;
@@ -499,7 +499,7 @@
 	width: 1100px;
 	background: #191919;
 	overflow: hidden;
-	
+
 	margin: auto;
 	text-align: center;
 }
@@ -542,7 +542,7 @@
 	margin-top: 30px;
 	color: #fff;
 	font-size: 18px;
-	
+
 	font-family: 微软雅黑;
 }
 .ctnei2 {
@@ -561,10 +561,10 @@
 }
 .ctnei2 h2{
 	text-align: left;
-	
+
 	color: #000;
 	font-size: 18px;
-	
+
 	font-family: 微软雅黑;
 	line-height: 30px;
 }
@@ -584,11 +584,11 @@
 	padding: 20px 0px 20px 0px;
 }
 .ctti{
-	
+
 	border: 1px solid #000;
 	color: #000;
 	font-size: 18px;
-	
+
 	letter-spacing: 2px;
 	padding: 20px 0px 20px 0px;
 }
@@ -609,7 +609,7 @@
 	line-height: 40px;
 	color: #fff;
 	font-size: 18px;
-	
+
 	font-family: 微软雅黑;
 }
 .fangkuai{
@@ -638,7 +638,7 @@
 	line-height: 40px;
 	color: #000;
 	font-size: 18px;
-	
+
 	font-family: 微软雅黑;
 }
 .fangkuai4{
@@ -666,7 +666,7 @@
 	line-height: 40px;
 	color: #fff;
 	font-size: 18px;
-	
+
 	font-family: 微软雅黑;
 }
 .ctnei6{
@@ -686,45 +686,45 @@
 	line-height: 40px;
 	color: #fff;
 	font-size: 18px;
-	
+
 	font-family: 微软雅黑;
 }
 .tiaokuannei{
 	width: 1100px;
-	
+
 	overflow: hidden;
-	
+
 	margin: auto;
 	text-align: center;
 }
 
-#menu { 
+#menu {
 
-    width: 1100px; 
+    width: 1100px;
     text-align: left;
-    margin: auto; 
+    margin: auto;
 
-} 
+}
 
-  
 
-#menu h1 { 
+
+#menu h1 {
     height: 42px;
     cursor: pointer;
     color: #444;
     font-size: 20px;
     margin: 20px 0;
-   
-    
+
+
     background-color: #ddd;
     line-height: 42px;
 
-} 
+}
 
 
-  
 
-#menu h2 { 
+
+#menu h2 {
 
         height: 42px;
     cursor: pointer;
@@ -734,38 +734,38 @@
     background-color: #ddd;
     line-height: 42px;
 
-} 
+}
 
-  
 
-#menu ul { 
 
-    padding-left: 15px; 
+#menu ul {
 
-    
+    padding-left: 15px;
+
+
 	color: #fff;
 
-    border-top: none; 
+    border-top: none;
 
-    overflow: auto; 
+    overflow: auto;
 
-} 
+}
 
-  
 
-#menu ul li { 
 
-    padding: 5px 0 3px 10px; 
+#menu ul li {
 
-} 
+    padding: 5px 0 3px 10px;
 
-  
+}
 
-.no { 
 
-    display: none; 
 
-} 
+.no {
+
+    display: none;
+
+}
 .toushuzi{
 	background: #f3d34c;
 	width: 42px;

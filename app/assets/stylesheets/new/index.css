@@ -750,7 +750,7 @@ border-radius: 10px; border-top-right-radius: 10px; border-top-left-radius: 10px
 }
 .tybody{
       width: 100%;
-    background: url(../images/bg_02.gif);
+    background: url("new/bg_02.gif");
 
 }
 .hezuo{
@@ -759,7 +759,7 @@ border-radius: 10px; border-top-right-radius: 10px; border-top-left-radius: 10px
   background: #000;
 }
 .hzdh{
-      background: url(../images/hzdh_bg.jpg) repeat-x;
+      background: url("new/hzdh_bg.jpg") repeat-x;
     height: 42px;
     width: 100%!important;
 }
@@ -767,7 +767,7 @@ border-radius: 10px; border-top-right-radius: 10px; border-top-left-radius: 10px
       float: left;
     width: 155px!important;
     text-align: center;
-    background: url(../images/dh_xian.jpg) no-repeat right 15px;
+    background: url("new/dh_xian.jpg") no-repeat right 15px;
     position: relative;
 }
 .hzdh a{
