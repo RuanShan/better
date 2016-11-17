@@ -1,4 +1,4 @@
-*{margin:0;padding:0;font:14px/1.8 "Helvetica Neue","microsoft yahei";}
+*{margin:0;padding:0;}
 	ul,li{list-style:none;}
 	body{background: #fff; }
 	.checkin{margin-top:10px;}
@@ -25,4 +25,3 @@
 	.title_h2 span{font-size: 36px;color: #b25d06;}
 	.trf{visibility: visible;}
 	.trf .modal{transform: translateY(0);}
-	
