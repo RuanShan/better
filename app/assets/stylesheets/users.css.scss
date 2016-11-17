@@ -24,6 +24,13 @@ display: block;
 border-bottom: 1px solid #e7eff2;
 padding-bottom: 12px;
 }
+.my-navs-item
+{
+  padding: 20px;
+  
+  line-height: 40px;
+
+}
 
 div.my-navs{
   /*min-height: 1020px;*/
@@ -46,27 +53,4 @@ div.my-sub-title{
   font-size: 16px;
   font-weight: 600;
   background-color: lightgreen;
-}
-.my-navs-item{
-  display:block;
-  height: 40px;
-  line-height: 40px;
-  margin: 10px 0px;
-  padding: 0px 20px;
-  border-left: 4px solid transparent;
-
-}
-div.my-navs-item-parent{
-  height: 40px;
-  line-height: 40px;
-  margin: 10px 0px;
-  padding: 0px 20px;
-}
-.my-navs-item:hover{
-  background-color: #d2cdd4;
-  border-left: 4px solid #db1829;
-}
-.my-navs-item-active{
-  background-color: #d2cdd4;
-  border-left: 4px solid #db1829;
 }

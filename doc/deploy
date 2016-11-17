@@ -1,0 +1,7 @@
+1. install redis
+http://redis.io/topics/quickstart
+
+
+2. install node yum install npm
+
+   sudo npm install forever -g
