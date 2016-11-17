@@ -1,76 +1,52 @@
-<div class="leftnav">
-            <div class="time">
-            		<p class="d"><%= DateTime.current.to_date.to_s %></p>
-            </div>
-            <div class="top_tit">代理中心首页</div>
-            <div class="title"><span class="btn"></span>数据概况</div>
-            <ul class="nav nav-sidebar">
-                <li class="cur">
-                  <%= build_nav_link "数据概况", { controller: 'agent/broker'}%>
-                </li>
-            </ul>
+<div class="dailileft_top">
+  <%=image_tag "new/dailiimg/biaoge_18.gif", class: "topimg"%>
+  <div class="toptime">
+    <h1><%= DateTime.current.to_date.to_s %></h1><h1>星期四</h1>
+  </div>
+</div>
+<div class="dailileft_down">
+  <h2>代理中心首页</h2>
+  <ul>
+    <li>
+      <h4>-</h4><h3>数据概况</h3>
+      <p><%= build_nav_link "数据概况", { controller: 'agent/broker'}%></p>
+    </li>
+    <li>
+      <h4>-</h4><h3>月综合报表</h3>
+      <p><%= build_nav_link "月推广效果表", { controller: 'agent/broker_months'}%></p>
+      <p><%= build_nav_link "月盈利表", { controller: 'agent/broker_months', action: 'profit'}%></p>
+      <p><%= build_nav_link "月结余表", { controller: 'agent/broker_months', action: 'balance'}%></p>
+    </li>
+    <li>
+      <h4>-</h4><h3>日明细报表</h3>
+      <p><%= build_nav_link "日推广效果表", { controller: 'agent/broker_days'}%></p>
+      <p><%= build_nav_link "日盈利表", { controller: 'agent/broker_days', action: 'profit'}%></p>
+    </li>
+    <li>
+      <h4>-</h4><h3>会员明细表</h3>
+      <p><%= build_nav_link "用户列表", { controller: 'agent/members', action: 'index'}%></p>
+      <p><%= build_nav_link "会员明细表", { controller: 'agent/members', action: 'profit'}%></p>
+    </li>
+    <li>
+      <h4>-</h4><h3>平台输赢细表</h3>
+      <p>平台输赢细表</p>
+    </li>
+    <li>
+      <h4>-</h4><h3>投注记录遗漏表</h3>
+      <p>投注记录遗漏表</p>
+    </li>
+    <li>
+      <h4>-</h4><h3>直属下级代理推广状况</h3>
+      <p><%= build_nav_link "月推广效果表", { controller: 'agent/broker_months', action: 'children'}%></p>
+      <p><%= build_nav_link "月盈利表", { controller: 'agent/broker_months', action: 'children_profit'}%></p>
+      <p><%= build_nav_link "月结余表", { controller: 'agent/broker_months', action: 'children_balance'}%></p>
+      <p><%= build_nav_link "日推广效果表", { controller: 'agent/broker_days', action: 'children'}%></p>
+      <p><%= build_nav_link "日盈利表", { controller: 'agent/broker_days', action: 'children_profit'}%></p>
+    </li>
+    <li>
+      <h4>-</h4><h3>代理信息</h3>
+      <p><%= build_nav_link "更改密码", { controller: 'agent/broker', action: 'change_password', broker_id: current_broker.id}%></p>
+    </li>
 
-            <div class="title"><span class="btn"></span>月综合报表</div>
-            <ul class="nav nav-sidebar">
-                <li>
-                  <%= build_nav_link "月推广效果表", { controller: 'agent/broker_months'}%>
-                </li>
-                <li>
-                  <%= build_nav_link "月盈利表", { controller: 'agent/broker_months', action: 'profit'}%>
-                </li>
-                <li>
-                  <%= build_nav_link "月结余表", { controller: 'agent/broker_months', action: 'balance'}%>
-                </li>
-            </ul>
-
-            <div class="title"><span class="btn"></span>日明细报表</div>
-            <ul class="nav nav-sidebar">
-                <li>
-                  <%= build_nav_link "日推广效果表", { controller: 'agent/broker_days'}%>
-                </li>
-                <li>
-                  <%= build_nav_link "日盈利表", { controller: 'agent/broker_days', action: 'profit'}%>
-                </li>
-            </ul>
-
-			<div class="title"><span class="btn"></span>会员明细表</div>
-			<ul class="nav nav-sidebar">
-                <li>
-                  <%= build_nav_link "用户列表", { controller: 'agent/members', action: 'index'}%>
-                </li>
-                <li>
-                  <%= build_nav_link "会员明细表", { controller: 'agent/members', action: 'profit'}%>
-                </li>
-            </ul>
-
-
-            <div class="title"><span class="btn"></span>平台输赢明细</div>
-			<ul class="nav nav-sidebar">
-                <li><a href="/agent/winlose">平台输赢明细</a></li>
-            </ul>
-
-
-            <div class="title"><span class="btn"></span>投注记录遗漏表</div>
-			<ul class="nav nav-sidebar">
-                <li><a href="/agent/betfix">投注记录遗漏表</a></li>
-            </ul>
-
-            <div class="title"><span class="btn"></span>直属下级代理推广状况</div>
-			<ul class="nav nav-sidebar">
-            <li><%= build_nav_link "月推广效果表", { controller: 'agent/broker_months', action: 'children'}%></li>
-            <li><%= build_nav_link "月盈利表", { controller: 'agent/broker_months', action: 'children_profit'}%></li>
-            <li><%= build_nav_link "月结余表", { controller: 'agent/broker_months', action: 'children_balance'}%></li>
-            <li><%= build_nav_link "日推广效果表", { controller: 'agent/broker_days', action: 'children'}%></li>
-            <li><%= build_nav_link "日盈利表", { controller: 'agent/broker_days', action: 'children_profit'}%></li>
-
-            </ul>
-
-            <div class="title"><span class="btn"></span>代理信息</div>
-            <ul class="nav nav-sidebar">
-                <li>
-                  <%= build_nav_link "更改密码", { controller: 'agent/broker', action: 'change_password', broker_id: current_broker.id}%>
-                </li>
-            </ul>
-
-
+  </ul>
 </div>

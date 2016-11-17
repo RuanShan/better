@@ -1,37 +1,44 @@
-<div> <h2 class="page-header">下线会员明细查询  <small>显示各下线会员在时间段内的投注及输赢 </small> </h2></div>
-<p id="notice"><%= notice %></p>
-<%= render partial: "agent/shared/date_filter_and_export_excel", locals: {thispath: profit_agent_members_path} %>
+<div class="dailiright_top">
+  <%=image_tag "new/dailiimg/biaoge_21.gif", class: "biaoimg"%>
+  <div class="biaotou">
+    <h1>下线会员明细查询</h1>
+    <p>显示各下线会员在时间段内的投注及输赢</p>
+  </div>
+</div>
+<div class="dailiright_down">
+  <%= render partial: "agent/shared/date_filter_and_export_excel", locals: {thispath: profit_agent_members_path} %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>用户名</th>
-      <th>注册时间</th>
-      <th>状态</th>
-      <th>存款</th>
-      <th>提款</th>
-      <th>红利</th>
-      <th>投注</th>
-      <th>输赢</th>
-      <th>派奖</th>
-    </tr>
-    <tbody>
-      <% @member_profit_summaries.each do |member_profit| %>
-        <tr>
-          <td><%= member_profit.user.nickname %></td>
-          <td><%= member_profit.user.display_created_at %></td>
-          <td><%= t member_profit.user.state.to_sym %></td>
-          <td><%= member_profit.display_deposit_amount %></td>
-          <td><%= member_profit.display_drawing_amount %></td>
-          <td><%= member_profit.display_bonus %></td>
-          <td><%= member_profit.display_bid_amount %></td>
-          <td><%= member_profit.display_net %></td>
-          <td><%= member_profit.display_profit %></td>
-        </tr>
-      <% end %>
-    </tbody>
+  <table class="biaoge">
+    <thead>
+      <tr>
+        <th class="biaoti">用户名/ID</th>
+        <th class="biaoti">注册时间</th>
+        <th class="biaoti">状态</th>
+        <th class="biaoti">存款</th>
+        <th class="biaoti">提款</th>
+        <th class="biaoti">红利</th>
+        <th class="biaoti">投注</th>
+        <th class="biaoti">输赢</th>
+        <th class="biaoti">派奖</th>
+      </tr>
+      <tbody>
+        <% @member_profit_summaries.each do |member_profit| %>
+          <tr>
+            <td class="biaoti1"><%= member_profit.user.nickname %></td>
+            <td class="biaoti1"><%= member_profit.user.display_created_at %></td>
+            <td class="biaoti1"><%= t member_profit.user.state.to_sym %></td>
+            <td class="biaoti1"><%= member_profit.display_deposit_amount %></td>
+            <td class="biaoti1"><%= member_profit.display_drawing_amount %></td>
+            <td class="biaoti1"><%= member_profit.display_bonus %></td>
+            <td class="biaoti1"><%= member_profit.display_bid_amount %></td>
+            <td class="biaoti1"><%= member_profit.display_net %></td>
+            <td class="biaoti1"><%= member_profit.display_profit %></td>
+          </tr>
+        <% end %>
+      </tbody>
 
-  </thead>
-</table>
+    </thead>
+  </table>
 
-<%= will_paginate @users %>
+  <%= will_paginate @users %>
+</div>

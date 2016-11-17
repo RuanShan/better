@@ -13,6 +13,12 @@
  *= require application
  *= require agent/broker
  */
+
+ @import "new/base";
+ @import "new/fashionfoucs_lrtk";
+ @import "new/index";
+ @import "new/daili";
+
 .user-sidebar
 {
   background-color: lightgray;

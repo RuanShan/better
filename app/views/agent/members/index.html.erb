@@ -1,48 +1,57 @@
-<div> <h2 class="page-header">用户列表  <small>显示下级代理和下线会员列表 </small> </h2></div>
-<p id="notice"><%= notice %></p>
-<%@member_type ||= "all"%>
-<%@member_state ||= "all"%>
-<div class="row">
-  <div class="col-md-10">
-    <%=form_tag agent_members_path, class:"form-inline", role:"form", method: :get do%>
-      <div class="form-group">
-        <label for="user_type">用户类型</label>
-        <%=user_type_select @member_type%>
-      </div>
-      <div class="form-group">
-        <label for="user_state">用户状态</label>
-        <%=user_state_select @member_state%>
-      </div>
-      <div class="form-group">
-        <%=submit_tag "查询",  class:"form-control"%>
-      </div>
-    <%end%>
-  </div>
-  <div class="col-md-2">
-    <%=link_to "导出EXCEL", agent_members_path(format: "xls"), class:"btn btn-primary"%>
+<div class="dailiright_top">
+  <%=image_tag "new/dailiimg/biaoge_21.gif", class:"biaoimg" %>
+  <div class="biaotou">
+    <h1>用户列表</h1>
+    <p>显示下级代理和下线会员列表</p>
   </div>
 </div>
+<div class="dailiright_down">
+  <%@member_type ||= "all"%>
+  <%@member_state ||= "all"%>
+  <div class="row">
+    <div class="col-md-10">
+      <%=form_tag agent_members_path, class:"form-inline", role:"form", method: :get do%>
+        <div class="form-group">
+          <label for="user_type">用户类型</label>
+          <%=user_type_select @member_type%>
+        </div>
+        <div class="form-group">
+          <label for="user_state">用户状态</label>
+          <%=user_state_select @member_state%>
+        </div>
+        <div class="form-group">
+          <%=submit_tag "查询",  class:"form-control dairicha"%>
+        </div>
+      <%end%>
+    </div>
+    <div class="col-md-2">
+      <div style="padding:30px 0;">
+        <%=link_to "导出EXCEL", agent_members_path(format: "xls"), class:"dairicha"%>
+      </div>
+    </div>
+  </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>用户名/ID</th>
-      <th>注册时间</th>
-      <th>用户类型</th>
-      <th>状态</th>
-    </tr>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.nickname %></td>
-          <td><%= user.display_created_at %></td>
-          <td><%= user.type %></td>
-          <td><%= t user.state %></td>
-        </tr>
-      <% end %>
-    </tbody>
+  <table class="biaoge">
+    <thead>
+      <tr>
+        <th>用户名/ID</th>
+        <th>注册时间</th>
+        <th>用户类型</th>
+        <th>状态</th>
+      </tr>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.nickname %></td>
+            <td><%= user.display_created_at %></td>
+            <td><%= user.type %></td>
+            <td><%= t user.state %></td>
+          </tr>
+        <% end %>
+      </tbody>
 
-  </thead>
-</table>
+    </thead>
+  </table>
 
-<%= will_paginate @users %>
+  <%= will_paginate @users %>
+</div>

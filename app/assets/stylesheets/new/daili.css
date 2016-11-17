@@ -212,6 +212,17 @@
 	text-align: center;
 
 }
+.biaoge th{
+	background: #333;
+	color: #fff;
+	font-weight: bold;
+	border: 1px solid #333;
+
+}
+.biaoge td{
+	color: #333;
+	border: 1px solid #333;
+}
 .biaoti{
 
 	background: #333;
@@ -287,6 +298,9 @@
     height: 24px;
     overflow: hidden;
 
+}
+.dailiright_down h3 a{
+	color: #fff;
 }
 .dailiright_down h4{
 	clear: both;

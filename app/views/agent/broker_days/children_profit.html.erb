@@ -1,40 +1,47 @@
-<div> <h2 class="page-header">日盈利表  <small>显示各代理下线会员创造的日度盈利 </small> </h2></div>
-<p id="notice"><%= notice %></p>
-<%= render partial: "agent/shared/subbroker_filter_and_export_excel", locals: {thispath: children_profit_agent_broker_days_path} %>
+<div class="dailiright_top">
+  <%=image_tag "new/dailiimg/biaoge_21.gif", class:"biaoimg" %>
+  <div class="biaotou">
+    <h1>日盈利表</h1>
+    <p>显示每日下线会员所创造的盈利</p>
+  </div>
+</div>
+<div class="dailiright_down">
+  <%= render partial: "agent/shared/subbroker_filter_and_export_excel", locals: {thispath: children_profit_agent_broker_days_path} %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>会员</th>
-      <th>注册时间</th>
-      <th>状态</th>
-      <th>活跃人数</th>
-      <th>存款(人数)</th>
-      <th>提款(人数)</th>
-      <th>投注</th>
-      <th>输赢</th>
-      <th>红利</th>
-      <th>盈利</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @day_profits.each do |day_profit| %>
+  <table class="biaoge">
+    <thead>
       <tr>
-        <td><%= day_profit.broker_name %></td>
-        <td><%= day_profit.sign_up_time %></td>
-        <td><%= t day_profit.state.to_sym %></td>
-        <td><%= 0 %></td>
-        <td><%= day_profit.display_deposit_amount %>(<%= day_profit.deposit_member_count %>)</td>
-        <td><%= day_profit.display_drawing_amount %>(<%= day_profit.drawing_member_count %>)</td>
-        <td><%= day_profit.display_bid_amount %></td>
-        <td><%= day_profit.display_net %></td>
-        <td><%= day_profit.display_bonus %></td>
-        <td><%= day_profit.display_profit %></td>
+        <th>会员</th>
+        <th>注册时间</th>
+        <th>状态</th>
+        <th>活跃人数</th>
+        <th>存款(人数)</th>
+        <th>提款(人数)</th>
+        <th>投注</th>
+        <th>输赢</th>
+        <th>红利</th>
+        <th>盈利</th>
       </tr>
-    <% end %>
-  </tbody>
+    </thead>
 
-</table>
+    <tbody>
+      <% @day_profits.each do |day_profit| %>
+        <tr>
+          <td><%= day_profit.broker_name %></td>
+          <td><%= day_profit.sign_up_time %></td>
+          <td><%= t day_profit.state.to_sym %></td>
+          <td><%= 0 %></td>
+          <td><%= day_profit.display_deposit_amount %>(<%= day_profit.deposit_member_count %>)</td>
+          <td><%= day_profit.display_drawing_amount %>(<%= day_profit.drawing_member_count %>)</td>
+          <td><%= day_profit.display_bid_amount %></td>
+          <td><%= day_profit.display_net %></td>
+          <td><%= day_profit.display_bonus %></td>
+          <td><%= day_profit.display_profit %></td>
+        </tr>
+      <% end %>
+    </tbody>
 
-<%= will_paginate @children_brokers  if @children_brokers.respond_to? :total_pages %>
+  </table>
+
+  <%= will_paginate @children_brokers  if @children_brokers.respond_to? :total_pages %>
+</div>

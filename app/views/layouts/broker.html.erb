@@ -13,21 +13,19 @@
 		<script type="text/javascript">var tkh_locale = '<%= I18n.locale.to_s %>';</script>
   </head>
   <body>
-    <div >
-      <%= render 'agent/shared/header' %>
-    </div>
-    <div class="container" role="main">
+    <%= render 'agent/shared/header' %>
+    <div class="dailibody">
        <%= render 'shared/flash_messages' %>
-       <div class="row">
-         <div class="col-md-2  user-sidebar">
+       <div class="dailizhongxin">
+         <div class="dailileft">
            <%= render partial: "agent/shared/user_sidebar" %>
          </div>
-         <div class="col-md-10 user-content" >
+         <div class="dailiright">
            <%= yield %>
          </div>
        </div>
     </div>
-    <%= render 'layouts/footer' %>
+    <%= render 'agent/shared/footer' %>
     <%= render 'shared/dialog' %>
   </body>
 </html>

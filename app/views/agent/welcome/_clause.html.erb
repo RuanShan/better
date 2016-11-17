@@ -1,0 +1,218 @@
+<div class="chuantongbody">
+  <%=image_tag "new/dailiimg/qianjing_02.gif", class:"dailibanner" %>
+  <div class="tiaokuannei">
+        <script language="JavaScript">
+
+        function ShowMenu(obj, noid) {
+
+            var block = document.getElementById(noid);
+
+            var n = noid.substr(noid.length - 1);
+
+            if (noid.length == 4) {
+
+                var ul = document.getElementById(noid.substring(0, 3))
+
+                .getElementsByTagName("ul");
+
+                var h2 = document.getElementById(noid.substring(0, 3))
+
+                .getElementsByTagName("h2");
+
+                for (var i = 0; i < h2.length; i++) {
+
+                    h2[i].innerHTML = h2[i].innerHTML.replace("+", "-");
+
+                    h2[i].style.color = "";
+
+                }
+
+                obj.style.color = "#444";
+
+                for (var i = 0; i < ul.length; i++) {
+
+                    if (i != n) {
+
+                        ul[i].className = "no";
+
+                    }
+
+                }
+
+            } else {
+
+                var span = document.getElementById("menu")
+
+                .getElementsByTagName("span");
+
+                var h1 = document.getElementById("menu")
+
+                .getElementsByTagName("h1");
+
+                for (var i = 0; i < h1.length; i++) {
+
+                    h1[i].innerHTML = h1[i].innerHTML.replace("+", "-");
+
+                    h1[i].style.color = "";
+
+                }
+
+                obj.style.color = "#444";
+
+                for (var i = 0; i < span.length; i++) {
+
+                    if (i != n) {
+
+                        span[i].className = "no";
+
+                    }
+
+                }
+
+            }
+
+            if (block.className == "no") {
+
+                block.className = "";
+
+                obj.innerHTML = obj.innerHTML.replace("-", "+");
+
+            } else {
+
+                block.className = "no";
+
+                obj.style.color = "";
+
+            }
+
+        }
+
+    </script>
+     <div id="menu">
+
+        <h1 onClick="javascript:ShowMenu(this,'NO0')"> <b class="toushuzi">一</b>合作伙伴的权利与义务<b class="jiajin">+</b></h1>
+
+<span id="NO0" class="no">
+
+  <h2 onClick="javascript:ShowMenu(this,'NO00')"><b class="toushuzi1">1</b>对合作伙伴的权利与义务<b class="jiajin">+</b></h2>
+
+  <ul id="NO00" class="no">
+
+   <li>我们帮助您的客户注册并跟进他们的存款。同时遵循我们设立的条件，我们将在必要的情况下保留拒绝客户（或关闭他们的帐户）的权利。一旦在我们这里开设账户， 他们将成为我们的客户并需要遵循我们的规则与条款。</li>
+
+  </ul>
+
+  <h2 onClick="javascript:ShowMenu(this,'NO01')"><b class="toushuzi1">2</b>跟踪合营客户的投注<b class="jiajin">+</b></h2>
+
+  <ul id="NO01" class="no">
+
+   <li>我们将跟踪您客户的投注和游戏，同时您也可以通过后台管理查看您的客户活动交易记录。</li>
+
+  </ul>
+
+
+</span>
+
+        <h1 onClick="javascript:ShowMenu(this,'NO1')"> <b class="toushuzi">二</b>合作伙伴对本公司的权利及义务<b class="jiajin">+</b></h1>
+
+<span id="NO1" class="no">
+
+  <h2 onClick="javascript:ShowMenu(this,'NO10')"> <b class="toushuzi1">1</b>链接到我们的网站<b class="jiajin">+</b></h2>
+
+  <ul id="NO10" class="no">
+
+   <li>同意参与此合营项目，您被视为同意创建和保持独特的网站被链接到本公司网站。您可以通过我们的广告图片、电子邮件、文章或文字链接连接到我们的网站。</li>
+
+
+  </ul>
+
+  <h2 onClick="javascript:ShowMenu(this,'NO11')">  <b class="toushuzi1">2</b>最低推荐要求<b class="jiajin">+</b></h2>
+
+  <ul id="NO11" class="no">
+
+   <li>所有合营伙伴需要在加入后，最少推荐5个活跃会员才能成为有效代理（当月至少有一笔投注的会员）。如果连续三个月达不到该要求，您的代理资格将被取消。</li>
+
+  </ul>
+  <h2 onClick="javascript:ShowMenu(this,'NO12')">  <b class="toushuzi1">3</b>网站原有会员保护条款<b class="jiajin">+</b></h2>
+
+  <ul id="NO12" class="no">
+
+   <li>本公司合作伙伴不可拓展本网站原有会员，如经发现，违规会员下所带来的盈利业绩将不做计算，情节严重者，本公司有权终止合作。</li>
+
+  </ul>
+  <h2 onClick="javascript:ShowMenu(this,'NO13')">  <b class="toushuzi1">4</b>诚信<b class="jiajin">+</b></h2>
+
+  <ul id="NO13" class="no">
+
+   <li>出于诚信，无论实际上是否会使我们造成损失，您都不可以蓄意从已知的或涉嫌的交易中获利。您必须遵守此协议，否则如果我们有合理的理由相信此交易已经被您蓄意造成，我们将保留扣留所有款项的权利。尽管如果您没有存心造成这类交易，我们仍然保留扣留有关此交易的中介佣金的权利。 我们保留暂停向合营伙伴付款的权力，和/或冻结或关闭任何篡改或滥用本公司优惠政策和促销活动的合营伙伴的帐户，不论您知道或不知道。</li>
+
+  </ul>
+  <h2 onClick="javascript:ShowMenu(this,'NO14')">  <b class="toushuzi1">5</b>支付佣金<b class="jiajin">+</b></h2>
+
+  <ul id="NO14" class="no">
+
+   <li>每月必须最少有5个活跃会员您的分成条件才能成立我们将支付您纯利润30% - 45％的佣金＂。（纯利润的定义：净盈利=下线有效活跃玩家总输赢-下线有效活跃玩家总红利-1%存取款手续费）。</li>
+   <li>
+     <table>
+       <tr>
+         <td class="tiaobiao">(I) 您的佣金来自会员每月的净损失 (每月第一天到最后一天) (美金或者等值货币)</td>
+         <td class="tiaobiao">每月的活动会员数 (当月在体育游戏, 娱乐城最少有一笔投注会员数)</td>
+         <td class="tiaobiao">佣金比率</td>
+       </tr>
+       <tr>
+         <td class="tiaobiao1">0-50,000 RMB</td>
+         <td class="tiaobiao1">≥5</td>
+         <td class="tiaobiao1">30%</td>
+       </tr>
+       <tr>
+         <td class="tiaobiao1">50,000 –350,000 RMB</td>
+         <td class="tiaobiao1">≥10</td>
+         <td class="tiaobiao1">35%</td>
+       </tr>
+       <tr>
+         <td class="tiaobiao1">350,000 RMB及以上</td>
+         <td class="tiaobiao1">≥30</td>
+         <td class="tiaobiao1">40%</td>
+       </tr>
+       <tr>
+         <td class="tiaobiao1">钻石级合营（官方邀请）</td>
+         <td class="tiaobiao1">需要官方特别考核</td>
+         <td class="tiaobiao1">45%</td>
+       </tr>
+     </table>
+   </li>
+
+  </ul>
+  <h2 onClick="javascript:ShowMenu(this,'NO15')">  <b class="toushuzi1">6</b>持续宣传<b class="jiajin">+</b></h2>
+
+  <ul id="NO15" class="no">
+
+   <li>您必须将纳入我们提供给您的最新的链接，并且持续和显著地以我们允许的方式和位置在您网站所有的页面上展示。未经我们书面同意，你不得改变形式、位置或链接。您的中介佣金基于您持续推广宣传本公司的网站及产品。如果您减弱您吸引新的合作客户的宣传力度，我们将保留降低您的中介佣金利润的权利。如果您减弱或暂停对我们网站的宣传， 我们将视其为您想要终止此协议。</li>
+
+  </ul>
+  <h2 onClick="javascript:ShowMenu(this,'NO16')">  <b class="toushuzi1">7</b>免责声明<b class="jiajin">+</b></h2>
+
+  <ul id="NO16" class="no">
+
+   <li>有关于合作项目、我们自己和中介佣金的付款安排（包括：无限制性、机能、适合的担保、适销性、合法性和无侵害行为），我们没有任何明指的或暗指的陈述或保证，也不明指和暗指任何一个产生于履行、涉及和贸易用途过程的担保。另外，我们不发表任何关于我们网站运作将会无干扰和无错误的声明，因而即便一旦出现问题我们也将对此不负任何责任</li>
+  </ul>
+   <h2 onClick="javascript:ShowMenu(this,'NO17')">  <b class="toushuzi1">8</b>特别约定<b class="jiajin">+</b></h2>
+
+  <ul id="NO17" class="no">
+
+   <li>为防堵不肖业者滥用本公司所提供的合营优惠制度，我们将严格审核每位合作伙伴申请注册时所提供的个人资料。若经审核发现代合作伙伴有任何不良营利企图，或与其他合作伙伴、会员进行合谋套利等行为，本公司将关闭该游戏帐户、扣除帐户中的本金，并收回该合作伙伴的所有佣金与优惠。 同一IP/同一姓名的会员只能是一个加盟合作伙伴的下线玩家，合作伙伴本身不能成为自身及其他合作伙伴的下线会员。 同一IP/同一姓名只能申请一个合作伙伴账号。 如果正式成为本公司的代理合作伙伴后，连续三个月都未能达到第一级推广要求，我们将取消您的代理资格。</li>
+  </ul>
+   <h2 onClick="javascript:ShowMenu(this,'NO18')">  <b class="toushuzi1">9</b>责任范围<b class="jiajin">+</b></h2>
+
+  <ul id="NO18" class="no">
+
+   <li>本公司将不为与此协议和合作项目相关所产生的非直接的、特殊的和重大的危害（如收入的损失、利益和数据等）承担债务，即使本公司已考虑过此类危害的可能性。另外，我们由此协议和合作项目所产生的债务总和将不超越您在此协议下已经收到的或应得到的中介佣金费用总和。此协议不应被理解为提供任何权利、补偿和利益给此协议合约人之外的任何人或任何实体。我们在此协议下的债务并不构成我们公司管理者、雇员、和股东的个人债务。任何在此协议下产生的债务应只能从所产生的中介佣金中得到满足，并仅限制于直接的损失。</li>
+  </ul>
+
+</span>
+
+
+    </div>
+
+  </div>
+</div>

@@ -3,7 +3,6 @@
 
 $(function () {
   $('.calendar').datetimepicker({format: "YYYY-MM-DD"});
-  $('.bootstrap-datetimepicker-widget').attr('style','display:block');
 });
 
 function select_bank(bank_id, user_bank_json){
