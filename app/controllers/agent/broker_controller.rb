@@ -6,6 +6,7 @@ module Agent
     def index
       @broker = current_broker
       @user_month = Summary::BrokerMonthlyFactory.create("profit", current_broker.user_cmonths ).first || Summary::BrokerMonthlyProfit.new(DateTime.current.to_date)
+      @user_day = Summary::BrokerDailyProfitFactory.create( current_broker.user_todays ).first || Summary::BrokerDailyProfit.new(DateTime.current.to_date)
     end
 
 

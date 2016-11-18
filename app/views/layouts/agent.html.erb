@@ -2,44 +2,20 @@
 <html lang="<%= I18n.locale.to_s %>">
   <head>
     <meta charset="utf-8">
-		<title><%= t("agent.site.name")  %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_link_tag "agent", :media => "all" %>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+    <title><%= content_for?(:title) ? yield(:title) : "Better" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Better" %>">
+    <%= stylesheet_link_tag 'agent', media: 'all' %>
+    <%= javascript_include_tag 'agent' %>
     <%= favicon_link_tag %>
-    <%= csrf_meta_tag %>
-		<% # This line ensures javascript code can access the current locale from Rails %>
+    <%= csrf_meta_tags %>
+    <% # This line ensures javascript code can access the current locale from Rails %>
 		<script type="text/javascript">var tkh_locale = '<%= I18n.locale.to_s %>';</script>
-	</head>
-
-	<body>
+  </head>
+  <body>
     <%= render 'agent/shared/header' %>
-		<div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-9 col-lg-10">
-          <%= render 'shared/flash_messages' %>
-          <%= yield %>
-        </div>
-      </div>
-  		<div class="row">
-        <footer class="col-xs-12">
-          <hr>
-          <p><b>this is footer</b><br />
-
-          </p>
-        </footer>
-      </div>
-
-    </div> <!-- /container -->
-
-    <%= javascript_include_tag "agent" %>
-
-
-
-	</body>
+    <%= yield %>
+    <%= render 'agent/shared/footer' %>
+    <%= render 'shared/dialog' %>
+  </body>
 </html>

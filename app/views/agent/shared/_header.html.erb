@@ -50,10 +50,10 @@
   <div class="container clearfix">
     <div id="nav" class="left">
        <ul>
-        <li><a href="http://www.qooptions.com/">优势前景</a></li>
-        <li><a href="http://www.qooptions.com/">我们的产品</a></li>
-        <li><a href="http://www.qooptions.com/">佣金计划</a></li>
-        <li><a href="http://www.qooptions.com/">合作条款</a></li>
+         <li><%=link_to "优势前景", {controller: "welcome", action: "future"} %></li>
+         <li><%=link_to "我们的产品", {controller: "welcome", action: "product"} %></li>
+         <li><%=link_to "佣金计划", {controller: "welcome", action: "commission"} %></li>
+         <li><%=link_to "合作条款", {controller: "welcome", action: "clause"} %></li>
       </ul>
     </div>
     <div id="search" class="right">

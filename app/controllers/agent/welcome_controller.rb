@@ -1,4 +1,6 @@
 class Agent::WelcomeController < Agent::BaseController
+  layout "agent"
+  
   def index
     if params["number"]
       broker = Broker.find_by_number(params["number"])
@@ -7,4 +9,5 @@ class Agent::WelcomeController < Agent::BaseController
       end
     end
   end
+
 end

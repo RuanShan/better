@@ -23,7 +23,7 @@
       </td>
       <td class="shujubiao1">
         <%=image_tag "new/dailiimg/shujutu_09.gif" %>
-        <h5><%=@user_month.drawing_amount%></h5><h6>提款额</h6>
+        <h5><%=@user_month.display_drawing_amount%></h5><h6>提款额</h6>
       </td>
       <td class="shujubiao1">
         <%=image_tag "new/dailiimg/shujutu_11.gif" %>
@@ -33,15 +33,15 @@
     <tr>
       <td class="shujubiao1">
         <%=image_tag "new/dailiimg/shujutu_22.gif" %>
-        <h5><%=@user_month.bid_amount%></h5><h6>平台投注</h6>
+        <h5><%=@user_month.display_bid_amount%></h5><h6>平台投注</h6>
       </td>
       <td class="shujubiao1">
         <%=image_tag "new/dailiimg/shujutu_18.gif" %>
-        <h5><%=@user_month.net%></h5><h6>平台输赢</h6>
+        <h5><%=@user_month.display_net%></h5><h6>平台输赢</h6>
       </td>
       <td class="shujubiao1">
         <%=image_tag "new/dailiimg/shujutu_19.gif" %>
-        <h5><%=@user_month.bonus%></h5><h6>红利</h6>
+        <h5><%=@user_month.display_bonus%></h5><h6>红利</h6>
       </td>
       <td class="shujubiao1">
         <%=image_tag "new/dailiimg/shujutu_20.gif" %>
@@ -49,7 +49,7 @@
       </td>
       <td class="shujubiao1">
         <%=image_tag "new/dailiimg/shujutu_21.gif" %>
-        <h5>0.00</h5><h6>日盈利</h6>
+        <h5><%=@user_day.display_profit %></h5><h6>日盈利</h6>
       </td>
     </tr>
   </table>

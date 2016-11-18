@@ -31,9 +31,10 @@ class Broker < ApplicationRecord
   has_many :broker_months
   has_one  :broker_cmonth, ->{ current_month }, class_name: 'BrokerMonth'
   has_many :user_cmonths, ->{ current_month }, class_name: 'UserMonth'
+  has_many :user_todays, ->{ today }, class_name: 'UserDay'
 
   delegate :energetic_member_count, :clink_visits, :member_count, to: :broker_cmonth, allow_nil: true
-  
+
   alias_attribute :name, :nickname
 
   def state
