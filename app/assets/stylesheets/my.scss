@@ -42,7 +42,39 @@
 .hybody_down
 {
   color: #000000;
+  .p-down_nei {
+    background: #dbdadb none repeat scroll 0 0;
+    border-bottom: 5px solid #a51919;
+    overflow: hidden;
+    padding: 50px;
+    text-align: center;
+
+    .two_cols_form{
+        li{
+      	width: 450px;
+      	height: 70px;
+      	float: left;
+      }
+      ul{
+      	overflow: hidden;
+      }
+      span{
+      	font-size: 15px;
+      	font-weight: bold;
+      }
+
+      label{
+      	font-size: 15px;
+      	font-weight: bold;
+      }
+    }
+
+
+
+  }
+
   .panel{
       border-radius: 0;
   }
+
 }
