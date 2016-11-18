@@ -19,7 +19,9 @@
     <%= render partial: "my/account/member_profile" %>
     <%= render partial: "shared/user_menu" %>
     <div class="hybody_down">
-      <%= yield %>
+      <div class="down_nei">
+        <%= yield %>
+      </div>
     </div>
     <%= render 'layouts/footer' %>
     <%= render 'shared/dialog' %>

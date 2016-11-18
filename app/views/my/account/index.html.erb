@@ -1,69 +1,29 @@
+<form>
+        <ul>
+          <li><span class="shortt">名字：</span><input type="text" value="某某" class="lo" id="name"></li>
+          <li><span class="shortt">姓氏：</span><input type="text" class="lo" id="xing"></li>
+          <li><span>电子邮箱：</span><input type="text" class="lo" id="email"></li>
+          <li><span>您的电话：</span><input type="text" class="lo" id="phone"></li>
+          <li><span>QQ/号码：</span><input type="text" class="lo" id="qq"></li>
+          <li><span>身份正号：</span><input type="text" class="lo" id="card"></li>
+          <li><span class="select">出生日期：
+          </span>
+          <select class="so" id="year">
+            <option>年</option>
+          </select>
+          <select class="so1" id="month">
+            <option>月</option>
+          </select>
+          <select class="so1" id="day">
+            <option>日</option>
+          </select></li>
+          <li><span>详细地址：</span><input type="text" class="lo" id="dress"></li>
+          <li><span class="shortt">城市：</span><input type="text" class="lo" id="city"></li>
+          <li><span class="shortt">省份：</span><input type="text" class="lo" id="provice"></li>
+          <li><span class="shortt">国家：</span><input type="text" class="lo" id="contry"></li>
+          <li><span class="shortt">邮编：</span><input type="text" class="lo" id="xiaobian"></li>
+        </ul>
+        <input type="submit" class="ggtj" value="提交">
+      </form>
 
-<div class="my-sub-title">
-  <span> 中心钱包 </span>
-  <div class="pull-right">
-    <%=link_to "充值", {controller: 'my/deposits', action: 'new'}, class:"btn btn-primary"%>
-    <%=link_to "提款", {controller: 'my/drawings', action: 'new'}, class:"btn btn-primary"%>
-  </div>
-</div>
-
-<div class="panel">
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-
-    <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab"> 红利记录</a></li>
-    <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">投注记录</a></li>
-    <li role="presentation"><a href="#messages" role="tab" data-toggle="tab">充值记录</a></li>
-    <li role="presentation"><a href="#settings" role="tab" data-toggle="tab">提款记录</a></li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">
-      <%= render partial: "my/wallets/bonus_records" %>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="profile">
-      <%= render partial: "my/bids/records" %>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="messages">
-      <%= render partial: "my/deposits/records" %>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="settings">
-      <%= render partial: "my/drawings/records" %>
-    </div>
-  </div>
-</div>
-<div class="section">
-  <h3> 我的邀请链接</h3>
-  <span id="invite_link"><%=current_user.invite_link%></span>
-  <%=link_to "复制", nil, class: "btn btn-primary", href:"javascript:void(0);", onclick: "copyToClipboard('#invite_link');" %>
-  <h3> 我的邀请二维码</h3>
-  <%= image_tag "my/better.png", id: "code_img", style: "display:none" %>
-  <div id="invite_qrcode"></div>
-</div>
-<script type="text/javascript">
-  jQuery('#invite_qrcode').empty().qrcode({
-    text: "<%=current_user.invite_link%>",
-    minVersion: 5,
-    //error correction level: must be 'H', or we can't scan
-    ecLevel: 'H',
-    //empty space
-    quiet: 2,
-    radius: 0.5,
-    size: 300,
-    //add background, color or image
-    background: document.getElementById("code_img"),
-    //add label, ecLevel: 'H', minVersion: 5+ work, label too large may not work
-    mode: 2,
-    label: 'better',
-    fontname: 'sans',
-    fontcolor: '#FF9818',
-    //add image
-    //mode: 4,
-    //image: document.getElementById("code_img"),
-    //label or img size, position
-    mSize: 0.1,
-    mPosX: 0.5,
-    mPosY: 0.5
-  });
-</script>
+      

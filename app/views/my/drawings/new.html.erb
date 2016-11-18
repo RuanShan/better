@@ -1,4 +1,22 @@
-<div class="my-sub-title">提现</div>
-<div class="panel">
-  <%= render 'form', drawing: @drawing%>
-</div>
+  <div class="anquan_img">
+    <%= image_tag "new/noimages/tixian_03.gif" %>
+  </div>
+  <hr>
+
+  <div class="tixian_top">
+          <table>
+            <tbody><tr>
+              <td class="duan"><span>每笔最少提款：</span></td><td><h1>50.00</h1></td>
+              <td class="duan"><span>每笔最多提款：</span></td><td><h1>50,000.00</h1></td>
+            </tr>
+            <tr>
+              <td class="duan"><span>每天最多提款：</span></td><td><h1>200.000.00</h1></td>
+              <td class="duan"><span>每天提款次数：</span></td><td><h1>50</h1></td>
+            </tr>
+          </tbody></table>
+          <a href=""><h2>查看详情</h2></a><hr>
+  </div>
+
+  <div class="panel">
+    <%= render 'form', drawing: @drawing%>
+  </div>
