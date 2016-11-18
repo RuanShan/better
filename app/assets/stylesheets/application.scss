@@ -10,9 +10,8 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  */
-@import "1st_load_framework";
-@import "select2";
-@import "select2-bootstrap";
+@import "base";
+@import "new/all";
 
 .masthead
 {
