@@ -49,6 +49,10 @@ Rails.application.routes.draw do
       match 'change_password', via: [:get, :patch]
     end
     resources :deposits
+    get '/future', to: 'welcome#future'
+    get '/product', to: 'welcome#product'
+    get '/commission', to: 'welcome#commission'
+    get '/clause', to: 'welcome#clause'
     get '/(:number)', to: 'welcome#index', as: :root
   end
 
