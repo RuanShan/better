@@ -11,6 +11,7 @@ class DeviseInvitableAddToUsers < ActiveRecord::Migration
       t.index      :invitations_count
       t.index      :invitation_token, unique: true # for invitable
       t.index      :invited_by_id
+
     end
   end
 
