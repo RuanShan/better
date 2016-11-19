@@ -1,17 +1,17 @@
-<div>
+<div class="zxzhifu">
   <%= better_form_for(current_user, :url=>{:action=>"change_profile"}) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :nickname, label: '用户名', as:"string", disabled: true %>
+      <%= f.input :nickname, label: '用户名', as:"string", placeholder: "请输入用户名", disabled: true %>
       <%= f.input :role, label: '性别' do %>
         <%= f.collection_radio_buttons :gender,[['male', '男'] ,['female', '女'],['secret', '保密']], :first, :last%>
       <% end %>
-      <%= f.input :phone, label: '联系电话', as:"string" %>
-      <%= f.input :qq, label: 'QQ号', as:"string" %>
+      <%= f.input :phone, label: '联系电话', as:"string", placeholder: "请输入联系电话" %>
+      <%= f.input :qq, label: 'QQ号', as:"string", placeholder: "请输入QQ号" %>
     </div>
     <div class="form-actions">
-      <%= f.button :submit, "更新资料" %>
+      <%= f.button :submit, "更新资料", class:"ggtj1" %>
     </div>
   <% end %>
 </div>

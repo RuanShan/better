@@ -1,7 +1,7 @@
 
-<table class="table table-striped">
+<table>
   <thead>
-    <tr>
+    <tr class="xsjg1">
       <th>ID</th>
       <th>日期/时间(GMT+8)</th>
       <th>交易号码</th>
@@ -13,12 +13,12 @@
   <tbody>
     <%total_amount=0%>
     <% if @bonuses.empty? %>
-      <tr>
+      <tr class="xsjg2">
         <td colspan="5">暂无记录</td>
       <tr>
     <% else %>
       <% @bonuses.each do |bonus| %>
-        <tr>
+        <tr class="xsjg2">
           <td><%= bonus.created_at.to_i %></td>
           <td><%= bonus.display_created_at %></td>
           <td><%= bonus.number %></td>
@@ -28,9 +28,7 @@
         <%total_amount += transfer.amount%>
       <% end %>
     <% end %>
-    <tr>
-      <td colspan="5"><%=content_tag :span, "红利记录总额:#{display_money(total_amount)}", style: 'float:right;'%></td>
-    <tr>
   </tbody>
 </table>
+<p class="czjlll">红利记录总额<b><%=display_money(total_amount)%></b></p>
 <%= will_paginate @bonuses if @bonuses.respond_to? :total_pages%>

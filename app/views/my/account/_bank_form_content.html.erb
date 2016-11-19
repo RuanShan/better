@@ -8,10 +8,10 @@
     <%= inline_text_span(current_user.real_name)%>
   </div>
 </div>
-<%= bank_form.input :name, label: '银行名称', as:"string", disabled: disabled %>
-<%= bank_form.input :card_number, label: '银行卡号', as:"string", disabled: disabled  %>
-<%= bank_form.input :branch_name, label: '分支名称', as:"string", disabled: disabled  %>
-<%= bank_form.input :address, label: '地址', as:"string", disabled: disabled  %>
+<%= bank_form.input :name, label: '银行名称', as:"string", placeholder: "请输入银行名称", disabled: disabled %>
+<%= bank_form.input :card_number, label: '银行卡号', placeholder: "请输入银行卡号", as:"string", disabled: disabled  %>
+<%= bank_form.input :branch_name, label: '分支名称', placeholder: "请输入分支名称", as:"string", disabled: disabled  %>
+<%= bank_form.input :address, label: '地址', placeholder: "请输入地址", as:"string", disabled: disabled  %>
 <div id="password_div" style="<%=password_display%>">
-  <%= bank_form.input :current_money_password, label: '资金密码', class:"required" %>
+  <%= bank_form.input :current_money_password, label: '资金密码', class:"required", placeholder: "请输入资金密码" %>
 </div>

@@ -1,6 +1,6 @@
-<table class="table table-striped">
+<table>
   <thead>
-    <tr>
+    <tr class="xsjg1">
       <th>ID</th>
       <th>日期/时间(GMT+8)</th>
       <th>交易号码</th>
@@ -13,12 +13,12 @@
   <tbody>
     <%total_amount=0%>
     <% if @drawings.empty? %>
-      <tr>
+      <tr class="xsjg2">
         <td colspan="6">暂无记录</td>
       <tr>
     <% else %>
       <% @drawings.each do |drawing| %>
-        <tr>
+        <tr class="xsjg2">
           <td><%= drawing.created_at.to_i %></td>
           <td><%= drawing.display_created_at %></td>
           <td><%= drawing.number %></td>
@@ -29,9 +29,9 @@
         <%total_amount += drawing.amount%>
       <% end %>
     <% end %>
-    <tr>
-      <td colspan="6"><%=content_tag :span, "提款记录总额:#{display_money(total_amount)}", style: 'float:right;'%></td>
-    <tr>
+
   </tbody>
 </table>
+<p class="czjlll">提款记录总额：<b><%=display_money(total_amount)%></b></p>
+
 <%= will_paginate @drawings if @drawings.respond_to? :total_pages%>

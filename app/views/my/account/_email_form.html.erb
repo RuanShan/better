@@ -1,4 +1,4 @@
-<div>
+<div class="zxzhifu">
   <%= better_form_for(current_user, :url=>{:action=>"set_email"}) do |f| %>
     <div class="form-inputs">
       <div class="form-group string optional user_email">
@@ -7,11 +7,11 @@
           <%=inline_text_span(current_user.email)%>
         </div>
       </div>
-      <%= f.input :current_password  %>
-      <%= f.input :email %>
+      <%= f.input :current_password, label: '当前密码', placeholder: "请输入当前密码"  %>
+      <%= f.input :email, label: '邮件名称', placeholder: "请输入邮件名称" %>
     </div>
     <div class="form-actions">
-      <%= f.button :submit, "更新邮件", class: 'col-md-offset-2'  %>
+      <%= f.button :submit, "更新邮件", class: 'col-md-offset-2 ggtj1'  %>
     </div>
   <% end %>
 </div>

@@ -1,15 +1,15 @@
 <%if @messages.present?%>
 <table class="table">
   <thead>
-    <tr>
-      <td>日期/时间</td>
-      <td><div style="width:40%;float:left;">主题</div><div style="width:60%;text-align:right;float:left;"><%=link_to '全部标记为空', read_my_messages_path, :method=>:put%></div></td>
-      <td><%=link_to "清空", delete_my_messages_path(), :method=>:put %></td>
+    <tr class="xsjg1">
+      <td><p>日期/时间</p></td>
+      <td><p>主题<%=link_to '全部标记为空', read_my_messages_path, :method=>:put, style:"margin-left:30px;color:red;"%></p></td>
+      <td><p style="color:red"><%=link_to "清空", delete_my_messages_path(), :method=>:put, style:"color:red;" %></p></td>
     </tr>
   </thead>
   <tbody>
     <% @messages.each do |message| %>
-    <tr>
+    <tr class="xsjg2">
       <td><%= message.created_at.to_s(:db) %></td>
       <td>
         <span id="mspan<%=message.id%>" <%unless current_user.read? message.id %>style="font-weight:bold;"<%end%> >

@@ -1,16 +1,19 @@
-<div >
-  <%current_user.user_banks.green.each{|user_bank| %>
-    <%=link_to user_bank.name, nil, href:'javascript:void(0)', class:"btn btn-primary", onclick:"select_bank('#{user_bank.id}', '#{user_bank.to_json}');"%>
-  <%}%>
-  <%=link_to "添加新卡", nil, href:'javascript:void(0)', class:"btn btn-default", onclick:"select_bank('#{UserBank.new.id}', '#{UserBank.new.to_json}');"%><br />
-  <br>
+<div class="zxzhifu">
+  <div class="chongzhi_top">
+    <%current_user.user_banks.green.each{|user_bank| %>
+      <span><%=link_to user_bank.name, nil, href:'javascript:void(0)', onclick:"select_bank('#{user_bank.id}', '#{user_bank.to_json}');"%></span>
+    <%}%>
+    <span><%=link_to "添加新卡", nil, href:'javascript:void(0)', onclick:"select_bank('#{UserBank.new.id}', '#{UserBank.new.to_json}');"%></span>
+    <hr>
+  </div>
+
   <%= better_form_for(@user_bank, :url=>{ :action=>"bind_bank"}, :method=>"post") do |f| %>
     <div class="form-inputs">
       <%=render 'my/account/bank_form_content', bank_form: f%>
     </div>
     <%submit_display=(@user_bank && @user_bank.persisted?) ? "display:none" : "display:block"%>
     <div class="form-actions" id="submit_div" style="<%=submit_display%>">
-      <%= f.submit "绑定银行", class:" col-md-offset-2 btn btn-default" %>
+      <%= f.submit "绑定银行", class:" col-md-offset-2 ggtj1" %>
     </div>
   <% end %>
 </div>

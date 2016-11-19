@@ -625,7 +625,7 @@
 }
 .tixian_down{
 	width: 100%;
-	overflow: hidden;
+	overflow: fixed;
 }
 .tixian_down table{
 	width: 100%;

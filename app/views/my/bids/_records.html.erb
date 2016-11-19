@@ -1,6 +1,6 @@
-<table class="table table-striped">
+<table>
   <thead>
-    <tr>
+    <tr class="xsjg1">
       <th>ID</th>
       <th>日期/时间(GMT+8)</th>
       <th>平台</th>
@@ -13,28 +13,24 @@
     <%total_amount=0%>
     <%total_win_lose_amount=0%>
     <% if @bids.empty? %>
-      <tr>
+      <tr class="xsjg2">
         <td colspan="5">暂无记录</td>
       <tr>
     <% else %>
-    <% @bids.each do |bid| %>
-      <tr>
-        <td><%= bid.created_at.to_i %></td>
-        <td><%= bid.display_created_at %></td>
-        <td><%= bid.platform %></td>
-        <td><%= bid.display_amount %></td>
-        <td><%= bid.display_win_lose_amount %></td>
-      </tr>
-      <%total_amount += bid.amount%>
-      <%total_win_lose_amount += bid.win_lose_amount%>
+      <% @bids.each do |bid| %>
+        <tr class="xsjg2">
+          <td><%= bid.created_at.to_i %></td>
+          <td><%= bid.display_created_at %></td>
+          <td><%= bid.platform %></td>
+          <td><%= bid.display_amount %></td>
+          <td><%= bid.display_win_lose_amount %></td>
+        </tr>
+        <%total_amount += bid.amount%>
+        <%total_win_lose_amount += bid.win_lose_amount%>
+      <% end %>
     <% end %>
-  <% end %>
-  <tr>
-    <td colspan="5">
-      <%=content_tag :span, "输赢记录总额:#{display_money(total_win_lose_amount)}", style: 'float:right;'%>
-      <%=content_tag :span, "投注记录总额:#{display_money(total_amount)}", style: 'float:right;margin-right:20px;'%>
-    </td>
-  <tr>
+
   </tbody>
 </table>
+<p class="czjlll">投注记录总额：<b><%=display_money(total_amount)%></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp输赢记录总额：<b><%=display_money(total_win_lose_amount)%></b></p>
 <%= will_paginate @bids if @bids.respond_to? :total_pages %>

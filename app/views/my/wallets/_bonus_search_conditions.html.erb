@@ -2,21 +2,21 @@
 @start_date ||= ""
 @end_date ||= ""
 %>
-<div class="clearfix" >
-  <%=form_tag search_bonuses_my_wallets_path, method:"get", class:"form-inline", role:"form" do%>
-    <div class="form-group">
-      <label for="start_date">起始日期</label>
-      <%=calendar "start_date", @start_date%>
-    </div>
-    <div class="form-group">
-      <label for="end_date">到</label>
-      <%=calendar "end_date", @end_date%>
-    </div>
-    <div class="form-group">
-      <%=submit_tag "查询",  class:"form-control"%>
-    </div>
-  <%end%>
-</div>
-<div id="bonus_records" >
+
+<%=form_tag search_bonuses_my_wallets_path, method:"get", class:"form-inline", role:"form" do%>
+  <div class="form-group">
+    <label for="start_date">起始日期</label>
+    <%=calendar "start_date", @start_date%>
+  </div>
+  <div class="form-group">
+    <label for="end_date">到</label>
+    <%=calendar "end_date", @end_date%>
+  </div>
+  <div class="form-group">
+    <%=submit_tag "查询",  class:"form-control richa", src:"new/noimages/tbqw_07.gif"%>
+  </div>
+<%end%>
+
+<div class="xianshijieguo" >
   <%=render partial: "bonus_records"%>
 </div>
