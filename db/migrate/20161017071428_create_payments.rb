@@ -42,6 +42,10 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.string :card_number, null:false, default: ""
       t.string :branch_name, null:false, default: ""
       t.string :address, null:false, default: ""
+      #payment info
+      t.string :payment_method, null:false, default: ""
+      t.string :payee, null:false, default: ""
+      t.string :pay_memo, null:false, default: ""
 
       t.integer :state, null:false, default: 0 # 银行卡是否验证。
       t.datetime :deleted_at

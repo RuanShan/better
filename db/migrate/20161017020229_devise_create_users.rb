@@ -1,15 +1,17 @@
 class DeviseCreateUsers < ActiveRecord::Migration[5.0]
   def change
     create_table :users do |t|
+      #user or broker
+      t.integer :user_type, :null => false, :default => 0
+      t.integer :role, :null => false, :default => 0
       ## awesome_nested_set
-      #t.integer :parent_id, :null => true, :index => true
-      # use invited_by_id
+      t.integer :parent_id, :null => true, :index => true
       t.integer :lft, :null => false,  :index => true
       t.integer :rgt, :null => false,  :index => true
       # optional fields
       t.integer :depth, :null => false, :default => 0
       t.integer :children_count, :null => false, :default => 0
-      
+
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -30,30 +32,37 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string   :last_sign_in_ip
 
       ## Confirmable
-      # t.string   :confirmation_token
-      # t.datetime :confirmed_at
-      # t.datetime :confirmation_sent_at
-      # t.string   :unconfirmed_email # Only if using reconfirmable
+      t.string   :confirmation_token
+      t.datetime :confirmed_at
+      t.datetime :confirmation_sent_at
+      t.string   :unconfirmed_email # Only if using reconfirmable
 
       # Lockable
        t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
        t.string   :unlock_token # Only if unlock strategy is :email or :both
        t.datetime :locked_at
-
+      #profile info
       t.string :nickname
+      t.string :number, null: false, index: true
       t.integer :gender, null: false, default: 0
       t.string :phone, null: false, default: ""
       t.string :qq, null: false, default: ""
-      #password protection
-      t.string :pp_question, null: false, default: ""
-      t.string :pp_answer, null: false, default: ""
       #real name validation
       t.string :firstname
       t.string :lastname
-      t.string :real_name
+      t.string :birthday
       t.integer :id_type, null: false, default: 0
       t.string :id_number
+      #location
       t.string :country_code
+      t.string :province
+      t.string :city
+      t.string :address
+      t.string :lang
+      t.string :website
+      #password protection
+      t.string :pp_question, null: false, default: ""
+      t.string :pp_answer, null: false, default: ""
 
       t.timestamps null: false
     end

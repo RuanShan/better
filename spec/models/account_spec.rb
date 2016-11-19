@@ -51,10 +51,10 @@ RSpec.describe User, type: :model do
     expect( user.real_name).to eq nil
     expect( user.id_type).to eq "id_card"
     expect( user.id_number).to eq nil
-    user.bind_name(0,{"real_name"=> 'David', "id_type"=>'passport', "id_number"=>'123456', "phone"=> '13212345678', "validate_code"=>'123456'},
-    {"validate_phone" => '13212345678', "validate_code" => '123456', "validate_code_send_time" => current_time})
+    user.bind_name(0,{"first_name"=> 'David', "last_name"=> 'Zhang', "id_type"=>'passport', "id_number"=>'123456', "phone"=> '13212345678', "validate_code"=>'123456'},
+    {"validate_phone" => '13212345678', "validate_code" => '123456', "country_code"=>"cn", "validate_code_send_time" => current_time})
     expect( user.phone).to eq "13212345678"
-    expect( user.real_name).to eq "David"
+    expect( user.real_name).to eq "zhangDavid"
     expect( user.id_type).to eq "passport"
     expect( user.id_number).to eq "123456"
   end

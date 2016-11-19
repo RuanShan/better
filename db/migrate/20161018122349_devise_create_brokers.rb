@@ -1,56 +1,5 @@
 class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
   def change
-    create_table :brokers do |t|
-      ## awesome_nested_set
-      t.integer :parent_id, :null => true, :index => true
-      t.integer :lft, :null => false, :index => true
-      t.integer :rgt, :null => false, :index => true
-      # optional fields
-      t.integer :depth, :null => false, :default => 0
-      t.integer :children_count, :null => false, :default => 0
-
-      ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
-
-      ## Recoverable
-      t.string   :reset_password_token
-      t.datetime :reset_password_sent_at
-
-      ## Rememberable
-      t.datetime :remember_created_at
-
-      ## Trackable
-      t.integer  :sign_in_count, default: 0, null: false
-      t.datetime :current_sign_in_at
-      t.datetime :last_sign_in_at
-      t.string   :current_sign_in_ip
-      t.string   :last_sign_in_ip
-
-      ## Confirmable
-      t.string   :confirmation_token
-      t.datetime :confirmed_at
-      t.datetime :confirmation_sent_at
-      t.string   :unconfirmed_email # Only if using reconfirmable
-
-      # Lockable
-      t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
-      t.string   :unlock_token # Only if unlock strategy is :email or :both
-      t.datetime :locked_at
-
-      t.string :nickname
-      t.string :number, null: false, index: true
-      t.timestamps null: false
-    end
-    add_belongs_to :users, :broker
-
-    add_index :brokers, :email,                unique: true
-    add_index :brokers, :reset_password_token, unique: true
-    # add_index :brokers, :confirmation_token,   unique: true
-    add_index :brokers, :unlock_token,         unique: true
-    add_index :users, [:broker_id, :created_at]
-
-
     create_table :broker_days do |t|
       t.references :broker
       t.date :effective_on
@@ -110,7 +59,7 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
       t.decimal :profit, default: 0, null: false          # 月游戏收益
       t.decimal :balance, default: 0, null: false         # 账户余额(累计)
       t.decimal :bank_charges, default: 0, null: false
-      t.decimal :platform_charges, default: 0, null: false         
+      t.decimal :platform_charges, default: 0, null: false
       t.timestamps null: false
       t.index [:user_id, :effective_on]
       t.index [:user_id, :broker_id, :effective_on]

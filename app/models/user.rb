@@ -46,7 +46,8 @@ class User < ApplicationRecord
   attr_accessor :money_password_confirmation, :password_prefix, :setting_pp, :binding_name, :validate_code
   validates :money_password, confirmation: true
   validates :pp_question, :pp_answer, presence: true, if: :setting_pp
-  validates :real_name, :id_number, presence: true, if: :binding_name
+  validates :first_name, :last_name, :id_number, presence: true
+  validates :email, :id_number, uniqueness: true
   validates :phone, length: { in: 7..11 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(user) { user.phone.present? or user.binding_name }
   validates :qq, length: { in: 5..10 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(user) { user.qq.present? }
 
@@ -59,6 +60,10 @@ class User < ApplicationRecord
         csv << values
       end
     end
+  end
+
+  def real_name
+    country_code == "cn" ? "#{last_name}#{first_name}" : "#{first_name}#{last_name}"
   end
 
   def set_default_role
@@ -157,9 +162,9 @@ class User < ApplicationRecord
           error_code, result = Juhe::IdCard.search(id_number, real_name)
           if error_code.to_i == 0
             match = result["res"].to_i == 1 ? true : false
-            errors.add(:real_name, "真实姓名和身份证不匹配，请重新输入") unless match
+            errors.add(:first_name, "真实姓名和身份证不匹配，请重新输入") unless match
           else
-            errors.add(:real_name, "验证失败 : #{result}")
+            errors.add(:first_name, "验证失败 : #{result}")
           end
         end
         self.save if self.errors.empty?

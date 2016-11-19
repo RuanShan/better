@@ -123,7 +123,7 @@ module My
     end
 
     def bind_name_params
-      params.require(:user).permit(:real_name, :id_type, :id_number, :phone, :validate_code)
+      params.require(:user).permit(:first_name, :last_name, :id_type, :id_number, :phone, :validate_code)
     end
 
     def bank_params

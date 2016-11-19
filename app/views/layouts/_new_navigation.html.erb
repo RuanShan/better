@@ -20,15 +20,20 @@
         <% unless current_user %>
           <div class="login_before">
             <div class="left">
-              <form class="login-form" action="" onsubmit="return validateForm(this);" method="POST">
+              <%=form_for new_user_session_path, class:"login-form" do%>
                 <input type="text" class="in01 email" name="email" placeholder="邮箱">
                 <input type="password" class="in01 password" name="password" placeholder="密码">
                 <input type="hidden" class="lang" value="zh-cn">
                 <a href="">忘记密码?</a>
-                <input type="submit" class="btn btn-primary  btn-sm" value="登录" name="">
-              </form>
+                <%= submit_tag '登录', class: 'btn01' %>
+              <% end %>
             </div>
-            <a class="btn02" href="/plus/list.php?tid=99" target="_blank">免费<br>开户</a>
+            <%= link_to new_user_registration_path, target:"_blank", class: 'btn02' do%>
+              免费<br>开户
+            <% end %>
+            <%= link_to new_broker_registration_path, target:"_blank", class: 'btn03' do%>
+              申请<br>代理
+            <% end %>
             <div class="login-msg"></div>
           </div>
           <% else %>

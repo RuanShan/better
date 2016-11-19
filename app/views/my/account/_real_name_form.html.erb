@@ -4,7 +4,8 @@
   <%= better_form_for(current_user, :url=>{:controller=>"my/account",:action=>"bind_name"}) do |f| %>
     <%= f.error_notification %>
     <div class="form-inputs">
-      <%= f.input :real_name, label: '真实姓名', disabled: disabled%>
+      <%= f.input :first_name, label: '名', disabled: disabled%>
+      <%= f.input :last_name, label: '姓', disabled: disabled%>
       <%= f.input :id_type, label: '证件类型' do %>
         <%= f.collection_radio_buttons :id_type, [['id_card', '身份证'] ,['passport', '护照']], :first, :last, disabled: disabled %>
       <% end %>
