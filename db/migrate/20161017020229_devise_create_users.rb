@@ -2,7 +2,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
   def change
     create_table :users do |t|
       #user or broker
-      t.integer :user_type, :null => false, :default => 0
+      t.string :type, :null => false
+      t.index [:id, :type] # where id=? and type="Broker"
+      t.references :broker
+
       t.integer :role, :null => false, :default => 0
       ## awesome_nested_set
       t.integer :parent_id, :null => true, :index => true
@@ -41,6 +44,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
        t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
        t.string   :unlock_token # Only if unlock strategy is :email or :both
        t.datetime :locked_at
+
       #profile info
       t.string :nickname
       t.string :number, null: false, index: true
@@ -48,8 +52,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :phone, null: false, default: ""
       t.string :qq, null: false, default: ""
       #real name validation
-      t.string :firstname
-      t.string :lastname
+      t.string :first_name
+      t.string :last_name
       t.string :birthday
       t.integer :id_type, null: false, default: 0
       t.string :id_number

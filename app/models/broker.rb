@@ -1,4 +1,4 @@
-class Broker < ApplicationRecord
+class Broker < User
   acts_as_nested_set
   include Rails.application.routes.url_helpers
   # Include default devise modules. Others available are:
@@ -11,10 +11,7 @@ class Broker < ApplicationRecord
   better_date_time_scope created_at: [:today, :month]
   extend  DisplayDateTime
   date_time_methods :created_at
-  # 产生推广码
-  extend FriendlyId
-  friendly_id :number, slug_column: :number, use: :slugged
-  include NumberGenerator.new( prefix: 'B', length: 10, letters: true )
+
 
   # 代理的下级成员
   has_many :members, class_name: 'User'

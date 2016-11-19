@@ -14,6 +14,11 @@ class User < ApplicationRecord
   extend BetterDateScope
   better_date_time_scope created_at: [:today, :month]
 
+  # 产生推广码
+  extend FriendlyId
+  friendly_id :number, slug_column: :number, use: :slugged
+  include NumberGenerator.new( prefix: 'B', length: 10, letters: true )
+
   has_many :user_messages
   has_many :user_banks
   has_many :deposits
@@ -46,8 +51,9 @@ class User < ApplicationRecord
   attr_accessor :money_password_confirmation, :password_prefix, :setting_pp, :binding_name, :validate_code
   validates :money_password, confirmation: true
   validates :pp_question, :pp_answer, presence: true, if: :setting_pp
-  validates :first_name, :last_name, :id_number, presence: true
-  validates :email, :id_number, uniqueness: true
+  #validates :first_name, :last_name, :id_number, presence: true
+  validates :email, uniqueness: true
+  validates :id_number, uniqueness: true, allow_blank: true
   validates :phone, length: { in: 7..11 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(user) { user.phone.present? or user.binding_name }
   validates :qq, length: { in: 5..10 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(user) { user.qq.present? }
 
@@ -56,7 +62,7 @@ class User < ApplicationRecord
     CSV.generate(options) do |csv|
       csv << ["用户名/ID", "注册时间", "用户类型", "状态"]
       all.each do |user|
-        values = [user.nickname, user.display_created_at, user.type, user.state]
+        values = [user.nickname, user.display_created_at, user.role, user.state]
         csv << values
       end
     end
@@ -70,9 +76,9 @@ class User < ApplicationRecord
     self.role ||= :user
   end
 
-  def type
-    "用户"
-  end
+  #def type
+  #  "用户"
+  #end
 
   def state
     locked_at.nil? ? "normal" : "frozen"

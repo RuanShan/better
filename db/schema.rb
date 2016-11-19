@@ -70,53 +70,6 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.index ["broker_id"], name: "index_broker_months_on_broker_id"
   end
 
-  create_table "brokers", force: :cascade do |t|
-    t.integer  "parent_id"
-    t.integer  "lft",                                 null: false
-    t.integer  "rgt",                                 null: false
-    t.integer  "depth",                  default: 0,  null: false
-    t.integer  "children_count",         default: 0,  null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        default: 0,  null: false
-    t.string   "unlock_token"
-    t.datetime "locked_at"
-    t.string   "nickname"
-    t.string   "number",                              null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "invitation_token"
-    t.datetime "invitation_created_at"
-    t.datetime "invitation_sent_at"
-    t.datetime "invitation_accepted_at"
-    t.integer  "invitation_limit"
-    t.string   "invited_by_type"
-    t.integer  "invited_by_id"
-    t.integer  "invitations_count",      default: 0
-    t.index ["email"], name: "index_brokers_on_email", unique: true
-    t.index ["invitation_token"], name: "index_brokers_on_invitation_token", unique: true
-    t.index ["invitations_count"], name: "index_brokers_on_invitations_count"
-    t.index ["invited_by_id"], name: "index_brokers_on_invited_by_id"
-    t.index ["lft"], name: "index_brokers_on_lft"
-    t.index ["number"], name: "index_brokers_on_number"
-    t.index ["parent_id"], name: "index_brokers_on_parent_id"
-    t.index ["reset_password_token"], name: "index_brokers_on_reset_password_token", unique: true
-    t.index ["rgt"], name: "index_brokers_on_rgt"
-    t.index ["unlock_token"], name: "index_brokers_on_unlock_token", unique: true
-  end
-
   create_table "deposits", force: :cascade do |t|
     t.integer  "payment_method_id"
     t.integer  "user_id"
@@ -279,14 +232,17 @@ ActiveRecord::Schema.define(version: 20161023090958) do
 
   create_table "user_banks", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "name",        default: "", null: false
-    t.string   "card_number", default: "", null: false
-    t.string   "branch_name", default: "", null: false
-    t.string   "address",     default: "", null: false
-    t.integer  "state",       default: 0,  null: false
+    t.string   "name",           default: "", null: false
+    t.string   "card_number",    default: "", null: false
+    t.string   "branch_name",    default: "", null: false
+    t.string   "address",        default: "", null: false
+    t.string   "payment_method", default: "", null: false
+    t.string   "payee",          default: "", null: false
+    t.string   "pay_memo",       default: "", null: false
+    t.integer  "state",          default: 0,  null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["deleted_at"], name: "index_user_banks_on_deleted_at"
     t.index ["user_id"], name: "index_user_banks_on_user_id"
   end
@@ -360,6 +316,10 @@ ActiveRecord::Schema.define(version: 20161023090958) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "type",                                  null: false
+    t.integer  "broker_id"
+    t.integer  "role",                     default: 0,  null: false
+    t.integer  "parent_id"
     t.integer  "lft",                                   null: false
     t.integer  "rgt",                                   null: false
     t.integer  "depth",                    default: 0,  null: false
@@ -375,28 +335,33 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "failed_attempts",          default: 0,  null: false
-    t.string   "unlock_token"
-    t.datetime "locked_at"
-    t.string   "nickname"
-    t.integer  "gender",                   default: 0,  null: false
-    t.string   "phone",                    default: "", null: false
-    t.string   "qq",                       default: "", null: false
-    t.string   "pp_question",              default: "", null: false
-    t.string   "pp_answer",                default: "", null: false
-    t.string   "firstname"
-    t.string   "lastname"
-    t.string   "real_name"
-    t.integer  "id_type",                  default: 0,  null: false
-    t.string   "id_number"
-    t.string   "country_code"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "role"
+    t.integer  "failed_attempts",          default: 0,  null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.string   "nickname"
+    t.string   "number",                                null: false
+    t.integer  "gender",                   default: 0,  null: false
+    t.string   "phone",                    default: "", null: false
+    t.string   "qq",                       default: "", null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "birthday"
+    t.integer  "id_type",                  default: 0,  null: false
+    t.string   "id_number"
+    t.string   "country_code"
+    t.string   "province"
+    t.string   "city"
+    t.string   "address"
+    t.string   "lang"
+    t.string   "website"
+    t.string   "pp_question",              default: "", null: false
+    t.string   "pp_answer",                default: "", null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -405,15 +370,16 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.string   "invited_by_type"
     t.integer  "invited_by_id"
     t.integer  "invitations_count",        default: 0
-    t.integer  "broker_id"
-    t.index ["broker_id", "created_at"], name: "index_users_on_broker_id_and_created_at"
     t.index ["broker_id"], name: "index_users_on_broker_id"
     t.index ["created_at"], name: "index_users_on_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["id", "type"], name: "index_users_on_id_and_type"
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["lft"], name: "index_users_on_lft"
+    t.index ["number"], name: "index_users_on_number"
+    t.index ["parent_id"], name: "index_users_on_parent_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["rgt"], name: "index_users_on_rgt"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
