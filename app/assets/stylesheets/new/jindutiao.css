@@ -4,7 +4,6 @@ menu, nav, section { display: block; }
 
 #page-wrap { width: 642px; margin: 0px auto; float: left;margin-left: 40px;}
 
-body { background: #333; text-align: center; color: #eee; font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
 /*h1 { font-size:30px; font-weight: 600; margin: 0 0 30px 0; }*/
 footer p{line-height: 2}
 header a,footer a{color: #fff;}

@@ -17,19 +17,21 @@
       </div>
       <div class="header_r02 pt10">
         <!--新加代码开始-->
-          <!--<div class="login_before">
-          <div class="left">
-            <form class="login-form" action="" onsubmit="return validateForm(this);" method="POST">
-              <input type="text" class="in01 email" name="email" placeholder="邮箱">
-              <input type="password" class="in01 password" name="password" placeholder="密码">
-              <input type="hidden" class="lang" value="zh-cn">
-              <a href="">忘记密码?</a>
-              <input type="submit" class="btn01" value="登录" name="">
-            </form>
+        <% unless current_user %>
+          <div class="login_before">
+            <div class="left">
+              <form class="login-form" action="" onsubmit="return validateForm(this);" method="POST">
+                <input type="text" class="in01 email" name="email" placeholder="邮箱">
+                <input type="password" class="in01 password" name="password" placeholder="密码">
+                <input type="hidden" class="lang" value="zh-cn">
+                <a href="">忘记密码?</a>
+                <input type="submit" class="btn01" value="登录" name="">
+              </form>
+            </div>
+            <a class="btn02" href="/plus/list.php?tid=99" target="_blank">免费<br>开户</a>
+            <div class="login-msg"></div>
           </div>
-          <a class="btn02" href="/plus/list.php?tid=99" target="_blank">免费<br>开户</a>
-          <div class="login-msg"></div>
-        </div>-->
+          <% else %>
         <div class="login_after1">
           <div class="after_left">
             <div class="after_top">
@@ -64,7 +66,7 @@
             <%=image_tag "new/noimages/toux_04.gif"%>
           </div>
         </div>
-
+          <% end %>
            <!--新加代码结束-->
 
         </span>
