@@ -47,7 +47,7 @@ class User < ApplicationRecord
   alias_attribute :name, :nickname
 
 
-  attr_reader :money_password, :current_money_password
+  attr_reader :money_password, :current_money_password, :broker_number
   attr_accessor :money_password_confirmation, :password_prefix, :setting_pp, :binding_name, :validate_code
   validates :money_password, confirmation: true
   validates :pp_question, :pp_answer, presence: true, if: :setting_pp
