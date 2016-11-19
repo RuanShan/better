@@ -12,7 +12,7 @@ module Agent::BaseHelper
     "http://localhost:3000"+root_path+"#{broker.number}"
   end
 
-  def broker_link
+  def broker_link(broker)
     "http://localhost:3000"+agent_root_path+"/#{broker.number}"
   end
 
