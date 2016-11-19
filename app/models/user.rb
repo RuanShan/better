@@ -41,13 +41,13 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  after_initialize :set_default_role, :set_broker, :if => :new_record?
+  after_initialize :set_default_role, :if => :new_record?
   after_create :adjust_broker_day, if: :broker
   after_create :add_user_life
   alias_attribute :name, :nickname
 
 
-  attr_reader :money_password, :current_money_password, :broker_number
+  attr_reader :money_password, :current_money_password
   attr_accessor :money_password_confirmation, :password_prefix, :setting_pp, :binding_name, :validate_code
   validates :money_password, confirmation: true
   validates :pp_question, :pp_answer, presence: true, if: :setting_pp
@@ -70,19 +70,12 @@ class User < ApplicationRecord
   end
 
   def real_name
-    country_code == "cn" ? "#{last_name}#{first_name}" : "#{first_name}#{last_name}"
+    country_code == "cn" ? "#{last_name}#{first_name}" : "#{first_name} #{last_name}"
   end
 
   def set_default_role
     self.role ||= :user
   end
-
-  def set_broker
-    self.broker = Broker.find_by_number(broker_number) if broker_number.present?
-  end
-  #def type
-  #  "用户"
-  #end
 
   def state
     locked_at.nil? ? "normal" : "frozen"
