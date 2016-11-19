@@ -57,14 +57,14 @@
   <p class="dailiwenzi">链接都具有相同的推广功能，您可以选择任意一个进行推广。当某些浏览器或地区对某些特定链接产生阻碍的时候，您可以更换其他的链接推广。我们会根据针对市场的反馈不定时更新链接，以便方便您的推广。</p>
   <div class="diyi">
     <h1>引导客户去注册</h1>
-    <h2><%=@broker.member_link%></h2>
+    <h2><%=member_link(@broker) %></h2>
     <h3><%=link_to "复制", nil, href:"javascript:void(0);", onclick: "copyToClipboard('#member_link');" %></h3>
-    <h4><a href="<%=@broker.member_link%>" target="_blank"><xmp><a href="<%=@broker.member_link%>" target="_blank"><%=@broker.member_link%></a></xmp></a></h4>
+    <h4><a href="<%=@broker.member_link%>" target="_blank"><xmp><a href="<%=@broker.member_link%>" target="_blank"><%=member_link(@broker) %></a></xmp></a></h4>
   </div>
   <div class="diyi">
     <h1>下级代理注册连接</h1>
-    <h2><%=@broker.broker_link%></h2>
+    <h2><%=broker_link(@broker) %></h2>
     <h3><%=link_to "复制", nil, href:"javascript:void(0);", onclick: "copyToClipboard('#broker_link');" %></h3>
-    <h4><a href="<%=@broker.broker_link%>" target="_blank"><xmp><a href="<%=@broker.broker_link%>" target="_blank"><%=@broker.broker_link%></a></xmp></a></h4>
+    <h4><a href="<%=@broker.broker_link%>" target="_blank"><xmp><a href="<%=@broker.broker_link%>" target="_blank"><%=broker_link(@broker) %></a></xmp></a></h4>
   </div>
 </div>

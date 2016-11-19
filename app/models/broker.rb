@@ -1,6 +1,4 @@
 class Broker < User
-  acts_as_nested_set
-  include Rails.application.routes.url_helpers
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -54,12 +52,4 @@ class Broker < User
     self.class.where("parent_id=? #{filter_condition}", self.id).all
   end
 
-  def member_link
-    "http://localhost:3000"+root_path+"#{number}"
-  end
-
-  def broker_link
-    "http://localhost:3000"+agent_root_path+"/#{number}"
-  end
-  #
 end

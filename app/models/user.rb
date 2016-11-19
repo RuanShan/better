@@ -6,7 +6,7 @@ require "id_card.rb"
 class User < ApplicationRecord
   include WalletBlance
   #支持多级会员系统
-  acts_as_nested_set parent_column: :invited_by_id
+  acts_as_nested_set scope: [:type]
 
   extend  DisplayDateTime
   date_time_methods :created_at
@@ -82,11 +82,6 @@ class User < ApplicationRecord
 
   def state
     locked_at.nil? ? "normal" : "frozen"
-  end
-
-  def invite_link
-    sign_up_path = "/users/sign_up"
-    "http://localhost:3000"+sign_up_path+"?inviter_id=#{id}"
   end
 
   def password_prefix
