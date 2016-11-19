@@ -5,6 +5,8 @@ require "id_card.rb"
 
 class User < ApplicationRecord
   include WalletBlance
+  #支持多级会员系统
+  acts_as_nested_set parent_column: :invited_by_id
 
   extend  DisplayDateTime
   date_time_methods :created_at
@@ -33,7 +35,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-
 
   after_initialize :set_default_role, :if => :new_record?
   after_create :adjust_broker_day, if: :broker
@@ -297,7 +298,7 @@ class User < ApplicationRecord
     country = ISO3166::Country[country_code]
     country.translations[I18n.locale.to_s] || country.name
   end
-  
+
   private
 
   def reset_password(new_password, new_password_confirmation)
@@ -351,4 +352,6 @@ class User < ApplicationRecord
   def add_user_life
     UserLife.create!( user: self, broker: broker, effective_on: DateTime.current )
   end
+
+
 end

@@ -360,6 +360,10 @@ ActiveRecord::Schema.define(version: 20161023090958) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.integer  "lft",                                   null: false
+    t.integer  "rgt",                                   null: false
+    t.integer  "depth",                    default: 0,  null: false
+    t.integer  "children_count",           default: 0,  null: false
     t.string   "email",                    default: "", null: false
     t.string   "encrypted_password",       default: "", null: false
     t.string   "encrypted_money_password", default: "", null: false
@@ -409,7 +413,9 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
+    t.index ["lft"], name: "index_users_on_lft"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["rgt"], name: "index_users_on_rgt"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 

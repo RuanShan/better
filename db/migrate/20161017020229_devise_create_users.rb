@@ -1,7 +1,15 @@
 class DeviseCreateUsers < ActiveRecord::Migration[5.0]
   def change
     create_table :users do |t|
-
+      ## awesome_nested_set
+      #t.integer :parent_id, :null => true, :index => true
+      # use invited_by_id
+      t.integer :lft, :null => false,  :index => true
+      t.integer :rgt, :null => false,  :index => true
+      # optional fields
+      t.integer :depth, :null => false, :default => 0
+      t.integer :children_count, :null => false, :default => 0
+      
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -46,6 +54,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.integer :id_type, null: false, default: 0
       t.string :id_number
       t.string :country_code
+
       t.timestamps null: false
     end
     add_index :users, :created_at

@@ -1,7 +1,7 @@
 module NumberFormatting
   extend ActiveSupport::Concern
 
-   class_methods do
+  class_methods do
     def last_digits(number)
       number.to_s.length <= 4 ? number : number.to_s.slice(-4..-1)
     end
