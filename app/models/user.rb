@@ -41,17 +41,18 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  after_initialize :set_default_role, :if => :new_record?
+  after_initialize :set_default_role, :set_broker, :if => :new_record?
   after_create :adjust_broker_day, if: :broker
   after_create :add_user_life
   alias_attribute :name, :nickname
 
 
-  attr_reader :money_password, :current_money_password
+  attr_reader :money_password, :current_money_password, :broker_number
   attr_accessor :money_password_confirmation, :password_prefix, :setting_pp, :binding_name, :validate_code
   validates :money_password, confirmation: true
   validates :pp_question, :pp_answer, presence: true, if: :setting_pp
-  #validates :first_name, :last_name, :id_number, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true, if: :binding_name
   validates :email, uniqueness: true
   validates :id_number, uniqueness: true, allow_blank: true
   validates :phone, length: { in: 7..11 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(user) { user.phone.present? or user.binding_name }
@@ -76,6 +77,9 @@ class User < ApplicationRecord
     self.role ||= :user
   end
 
+  def set_broker
+    self.broker = Broker.find_by_number(broker_number) if broker_number.present?
+  end
   #def type
   #  "用户"
   #end
@@ -226,7 +230,7 @@ class User < ApplicationRecord
   end
 
   def bind_name?
-    real_name.present?
+    first_name.present? && last_name.present? && id_number.present?
   end
 
   def bind_bank?

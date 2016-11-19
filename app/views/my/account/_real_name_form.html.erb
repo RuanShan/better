@@ -1,5 +1,5 @@
 <%db_user = User.find(current_user.id)%>
-<%disabled = db_user.real_name.present? ? true : false%>
+<%disabled = db_user.bind_name? ? true : false%>
 <div class="zxzhifu">
   <%= better_form_for(current_user, :url=>{:controller=>"my/account",:action=>"bind_name"}) do |f| %>
     <%= f.error_notification %>

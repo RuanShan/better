@@ -3,7 +3,7 @@
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <%= f.input :nickname, label: '用户名', as:"string", placeholder: "请输入用户名", disabled: true %>
+      <%= f.input :nickname, label: '用户名', as:"string", placeholder: "请输入用户名" %>
       <%= f.input :role, label: '性别' do %>
         <%= f.collection_radio_buttons :gender,[['male', '男'] ,['female', '女'],['secret', '保密']], :first, :last%>
       <% end %>

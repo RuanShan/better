@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   around_action :set_current_user
-  before_action :configure_permitted_parameters, :config_inviter, if: :devise_controller?
+  before_action :config_params, :configure_permitted_parameters, if: :devise_controller?
   after_action :clear_inviter, if: :devise_controller?
 
 
@@ -16,26 +16,36 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    sign_up_keys = [:name]
-    sign_up_keys << :parent_id if params["broker"].present?
+    sign_up_keys = [:type, :last_name, :first_name, :country_code, :qq, :phone]
+    if params["broker"].present?
+      sign_up_keys += [:province, :city, :address, :id_number, :lang, :website]
+      sign_up_keys << :parent_id if session["broker_number"].present?
+    end
     if params["user"].present?
-      sign_up_keys << :broker_id
-      sign_up_keys << :invited_by_id if session["inviter_id"].present?
+      sign_up_keys << :birthday
+      sign_up_keys << :broker_id if session["broker_number"].present? || params["user"]["broker_number"]
+      sign_up_keys << :parent_id if session["inviter_number"].present?
+      params["user"].delete("broker_number") if params["user"]["broker_number"].present?
     end
     devise_parameter_sanitizer.permit(:sign_up, keys: sign_up_keys)
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+    #devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
-  def config_inviter
+  def config_params
     if params["controller"]== "devise_invitable/registrations"
       if params["action"] == "new"
-        if params["inviter_id"].present?
-          session["inviter_id"] = params["inviter_id"]
+        if params["inviter_number"].present?
+          session["inviter_number"] = params["inviter_number"]
         end
       end
       if params["action"] == "create"
-        broker_number = session["broker_number"]
-        user_id = session["inviter_id"]
+        if params["user"].present?
+          params["user"]["type"] = "User"
+        elsif params["broker"].present?
+          params["broker"]["type"] = "Broker"
+        end
+        broker_number = params["user"]["broker_number"].present? ? params["user"]["broker_number"] : session["broker_number"]
+        user_number = session["inviter_number"]
         if broker_number.present?
           broker = Broker.find_by_number(broker_number)
           if broker.present?
@@ -43,11 +53,13 @@ class ApplicationController < ActionController::Base
             params["user"]["broker_id"] = broker.id if params["user"].present?
           end
         end
-        if user_id.present?
-          user = User.find(user_id)
+
+        if user_number.present?
+          user = User.find_by_number(user_number)
           if user.present?
-            if params["user"].present?
-              params["user"]["invited_by_id"] = user.id
+            #if user's session already have broker number, it will ignore user invite
+            if params["user"].present? && params["user"]["broker_id"].blank?
+              params["user"]["parent_id"] = user.id
               params["user"]["broker_id"] = user.broker_id
             end
           end
