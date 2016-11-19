@@ -4,11 +4,20 @@ namespace :better do
     load File.join(Rails.root,'db/sample/seeds.rb')
   end
 
+  desc "Integrate migration, load seed, load sample tasks"
+  task :load => :environment do
+    Rake::Task['db:environment:set'].invoke
+    Rake::Task['db:migrate'].invoke
+    Rake::Task['db:seed'].invoke
+    Rake::Task['better:load_sample'].invoke
+  end
+
   desc "Integrate reset migration, load seed, load sample tasks"
   task :reload => :environment do
-    Rake::Task['db:environment:set'].invoke 
+    Rake::Task['db:environment:set'].invoke
     Rake::Task['db:migrate:reset'].invoke
     Rake::Task['db:seed'].invoke
     Rake::Task['better:load_sample'].invoke
   end
+
 end

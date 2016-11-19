@@ -42,8 +42,8 @@ module Summary
       CSV.generate(options) do |csv|
         csv << ["月份", "活跃人数", "存款(人数)", "提款(人数)", "投注", "投注补差", "输赢", "输赢补差", "红利", "盈利"]
         monthly_profits.each do |monthly_profit|
-          csv << [monthly_profit.effective_on.to_s(:year_month), 0, monthly_profit.deposit_amount.to_s+"(#{broker_month.deposit_member_count})",
-            monthly_profit.drawing_amount.to_s+"(#{broker_month.drawing_member_count})", monthly_profit.bid_amount, monthly_profit.bid_difference,
+          csv << [monthly_profit.effective_on.to_s(:year_month), 0, monthly_profit.deposit_amount.to_s+"(#{monthly_profit.deposit_member_count})",
+            monthly_profit.drawing_amount.to_s+"(#{monthly_profit.drawing_member_count})", monthly_profit.bid_amount, monthly_profit.bid_difference,
             monthly_profit.net, monthly_profit.net_difference, monthly_profit.bonus, monthly_profit.profit]
         end
       end

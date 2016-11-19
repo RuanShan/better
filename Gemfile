@@ -1,5 +1,9 @@
 source 'https://gems.ruby-china.org/'
-ruby '2.2.4'
+if Gem.win_platform?
+  ruby '2.3.1'
+else
+  ruby '2.2.4'
+end
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'sqlite3'
 gem 'puma', '~> 3.0'
@@ -9,6 +13,12 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+
+if Gem.win_platform?
+  gem 'coffee-script-source', '1.8.0'
+  gem 'wdm', '>= 0.1.0'
+  gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
+end
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -77,7 +87,7 @@ group :development do
   gem 'spring-commands-rspec'
 end
 
-# for staging 
+# for staging
 gem 'factory_girl_rails'
 group :development, :test do
   gem 'faker'

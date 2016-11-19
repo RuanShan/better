@@ -24,7 +24,7 @@
             <div class="daili_top">
               <div class="dailitop_left">
                 <%=image_tag "new/meiimg_08.gif"%><%=image_tag "new/dailiimg/biaoge_03.gif"%>
-                <p><%=current_broker.email%></p>
+                <p><%=current_broker ? current_broker.email : ""%></p>
               </div>
               <%=image_tag "new/dailiimg/biaoge_06.gif", class: "dailitop_right"%>
             </div>
