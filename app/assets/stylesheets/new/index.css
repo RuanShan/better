@@ -994,7 +994,7 @@ border-radius: 10px; border-top-right-radius: 10px; border-top-left-radius: 10px
 }
 .beijingtu{
   margin-left: 20px;
-  background-image:url(../images/shangbg_03.gif);
+  background-image:url("new/shangbg_03.gif");
   background-repeat: no-repeat;
   width: 388px;
   height: 233px;

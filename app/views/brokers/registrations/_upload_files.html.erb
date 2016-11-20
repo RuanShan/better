@@ -1,0 +1,41 @@
+<div id="msg_2" style="display:none;">
+  <h2>代理账户</h2>
+    <div class="zuobg">
+      <h3>身份照正面</h3>
+      <h4>须与交易账号名一致，格式：JPG,PNG,大小600K以内。</h4>
+      <%=f.input "id_front", label: false, as: "file", input_html: {class: "shangchuan", onchange:"previewImage(this, 'id_front_div')"} %>
+      <div id="id_front_div" class="beijingtu">
+      <!--上传证件-->
+      </div>
+    </div>
+
+    <div class="zuobg">
+      <h3>身份照反面</h3>
+      <h4>须与交易账号名一致，格式：JPG,PNG,大小600K以内。</h4>
+      <%=f.input "id_back", label: false, as: "file", input_html: {class: "shangchuan", onchange:"previewImage(this, 'id_back_div')"}  %>
+      <div id="id_back_div" class="beijingtu">
+      <!--上传证件-->
+      </div>
+    </div>
+
+    <div class="zuobg">
+      <h3>银行卡正面</h3>
+      <h4>须格式：JPG,PNG,大小600K以内。</h4>
+      <%=bf.input "card_front", label: false, as: "file", input_html: {class: "shangchuan", onchange:"previewImage(this, 'card_front_div')"}  %>
+      <div id="card_front_div" class="beijingtu">
+      <!--上传证件-->
+      </div>
+    </div>
+
+    <div class="zuobg">
+      <h3>银行卡反面</h3>
+      <h4>格式：JPG,PNG,大小600K以内。</h4>
+      <%=bf.input "card_back", label: false, as: "file", input_html: {class: "shangchuan", onchange:"previewImage(this, 'card_back_div')"}  %>
+      <div id="card_back_div" class="beijingtu">
+        <!--上传证件-->
+      </div>
+    </div>
+    <%= f.button :submit, "提交", class:"xia" %>
+  <%end%>
+  <input value="上一步" class="shang" id="" onclick="$('#msg_1').show();$('#msg_2').hide();" type="button">
+</div>

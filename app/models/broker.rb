@@ -10,6 +10,8 @@ class Broker < User
   extend  DisplayDateTime
   date_time_methods :created_at
 
+  has_many :user_banks, foreign_key: :user_id
+  accepts_nested_attributes_for :user_banks
 
   # 代理的下级成员
   has_many :members, class_name: 'User'

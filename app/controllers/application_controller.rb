@@ -18,8 +18,10 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     sign_up_keys = [:type, :last_name, :first_name, :country_code, :qq, :phone]
     if params["broker"].present?
-      sign_up_keys += [:province, :city, :address, :id_number, :lang, :website]
+      sign_up_keys += [:province, :city, :address, :id_number, :lang, :website, :id_front, :id_back,
+        user_banks_attributes:[:payment_method_id, :name, :card_number, :address, :payee, :pay_memo, :card_front, :card_back]]
       sign_up_keys << :parent_id if session["broker_number"].present?
+      logger.debug "sign_up_keys=#{sign_up_keys}"
     end
     if params["user"].present?
       sign_up_keys << :birthday
@@ -44,7 +46,7 @@ class ApplicationController < ActionController::Base
         elsif params["broker"].present?
           params["broker"]["type"] = "Broker"
         end
-        broker_number = params["user"]["broker_number"].present? ? params["user"]["broker_number"] : session["broker_number"]
+        broker_number = params["user"].present? && params["user"]["broker_number"].present? ? params["user"]["broker_number"] : session["broker_number"]
         user_number = session["inviter_number"]
         if broker_number.present?
           broker = Broker.find_by_number(broker_number)
@@ -73,8 +75,8 @@ class ApplicationController < ActionController::Base
       if session["broker_number"].present?
         session.delete("broker_number")
       end
-      if session["inviter_id"].present?
-        session.delete("inviter_id")
+      if session["inviter_number"].present?
+        session.delete("inviter_number")
       end
     end
   end

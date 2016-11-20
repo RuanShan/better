@@ -23,7 +23,7 @@
 }
 .login_before .btn01:hover {background:url("new/btn-bg01-h.png") repeat;}
 .login_before .btn02:hover {background:url("new/btn-bg02.png") repeat;}
-.login_before .login-msg {line-height: 1.6em; color: red;margin-left: 10px;}
+.login_before .login-msg {line-height: 1.6em; color: red;margin-left: 10px;text-align:left;}
 
 .login_after {width:443px; height:73px; background:#3b3b3b; float:right; margin-top:20px; border-radius:2px;}
 .login_after .left {width:370px; float:left; font-size:14px; color:#fff; line-height:36px; margin-left:5px;}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023090958) do
+ActiveRecord::Schema.define(version: 20161120070500) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -232,17 +232,25 @@ ActiveRecord::Schema.define(version: 20161023090958) do
 
   create_table "user_banks", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "name",           default: "", null: false
-    t.string   "card_number",    default: "", null: false
-    t.string   "branch_name",    default: "", null: false
-    t.string   "address",        default: "", null: false
-    t.string   "payment_method", default: "", null: false
-    t.string   "payee",          default: "", null: false
-    t.string   "pay_memo",       default: "", null: false
-    t.integer  "state",          default: 0,  null: false
+    t.string   "name",                    default: "", null: false
+    t.string   "card_number",             default: "", null: false
+    t.string   "branch_name",             default: "", null: false
+    t.string   "address",                 default: "", null: false
+    t.integer  "payment_method_id"
+    t.string   "payee",                   default: "", null: false
+    t.string   "pay_memo",                default: "", null: false
+    t.integer  "state",                   default: 0,  null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "card_front_file_name"
+    t.string   "card_front_content_type"
+    t.integer  "card_front_file_size"
+    t.datetime "card_front_updated_at"
+    t.string   "card_back_file_name"
+    t.string   "card_back_content_type"
+    t.integer  "card_back_file_size"
+    t.datetime "card_back_updated_at"
     t.index ["deleted_at"], name: "index_user_banks_on_deleted_at"
     t.index ["user_id"], name: "index_user_banks_on_user_id"
   end
@@ -370,6 +378,18 @@ ActiveRecord::Schema.define(version: 20161023090958) do
     t.string   "invited_by_type"
     t.integer  "invited_by_id"
     t.integer  "invitations_count",        default: 0
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "id_front_file_name"
+    t.string   "id_front_content_type"
+    t.integer  "id_front_file_size"
+    t.datetime "id_front_updated_at"
+    t.string   "id_back_file_name"
+    t.string   "id_back_content_type"
+    t.integer  "id_back_file_size"
+    t.datetime "id_back_updated_at"
     t.index ["broker_id"], name: "index_users_on_broker_id"
     t.index ["created_at"], name: "index_users_on_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true

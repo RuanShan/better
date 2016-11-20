@@ -5,8 +5,15 @@ class UserBank < ApplicationRecord
   enum state:{ pending: 0, green: 1, red: 4}
   belongs_to :user
   has_many :drawings
-  validates :name, :card_number, :branch_name, :address, presence: true
+
+  has_attached_file :card_front, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :card_back, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :card_front, :card_back, content_type: /\Aimage\/.*\z/
+
+  validates :name, :card_number, :address, presence: true
+
   attr_accessor :current_money_password
+
 
   # Returns a display-friendly version of the card number.
   #

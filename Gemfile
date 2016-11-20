@@ -32,6 +32,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
+# 文件处理
+gem "paperclip", "~> 5.0.0"
 
 # 时间js
 gem 'momentjs-rails', '>= 2.9.0'

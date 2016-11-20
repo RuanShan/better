@@ -1,0 +1,170 @@
+<%=render partial: "register_top"%>
+<div class="gerenbody">
+  <div class="gerennei">
+    <h1>个人代理加盟</h1>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), class:"geren", defaults:{ wrapper:false}) do |f| %>
+      <div id="msg_1" style="display:block;">
+        <div class="topye">
+          <div class="dailizhanghu">
+            <h2>代理账户</h2>
+            <div class="shuru">
+              <label for="email" class="shuru1">
+                电子邮箱<span>*</span>
+                <%=f.input "email", label: false, placeholder: "请输入电子邮箱", input_html: {class: "long"}  %>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              </label>
+              <label for="email" class="shuru1">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码<span>*</span>
+                <%=f.input "password", label: false, placeholder: "请输入密码", input_html: {class: "long"}  %>
+                <p>*密码必须为6至8个字母数字组合</p>
+              </label>
+              <label for="email" class="shuru1">
+                确认密码<span>*</span>
+                <%=f.input "password_confirmation", label: false, placeholder: "请再次输入您的密码", input_html: {class: "long"}  %>
+                <p>*密码必须为6至8个字母数字组合</p>
+              </label>
+            </div>
+          </div>
+
+          <div class="gerenxinxi">
+            <h2>个人信息</h2>
+            <div class="shuru">
+              <label for="xing" class="shuru1">
+                <div style="width:30px;height:60px;margin-left:25px;float:left">姓<span>*</span></div>
+
+                <%=f.input "last_name", label: false, placeholder: "您的姓氏", input_html: {class: "short", style:"float:left;"}  %>
+              </label>
+              <label for="ming" class="shuru2">
+                <div style="width:30px;height:60px;margin-left:25px;float:left;">名<span>*</span></div>
+
+                <%=f.input "first_name", label: false, placeholder: "您的名字", input_html: {class: "short", style:"float:left;"}  %>
+              </label>
+              <label class="shuru1">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;国家<span>*</span>
+                <%=f.country_select( "country_code", ["CN"], locale: I18n.locale, class:'form-control select2 long') %>
+              </label>
+              <div style="clear:both"></div>
+              <label for="ming" class="shuru1">
+                <div style="width:30px;height:60px;margin-left:25px;float:left">省<span>*</span></div>
+                <%=f.input "province", label: false, placeholder: "您的省份", input_html: {class: "short", style:"float:left;"}  %>
+              </label>
+              <label for="xing" class="shuru2">
+                <div style="width:30px;height:60px;margin-left:25px;float:left">市<span>*</span></div>
+                <%=f.input "city", label: false, placeholder: "您的城市", input_html: {class: "short", style:"float:left;"}  %>
+              </label>
+              <label class="shuru1">
+                <div style="width:10px;height:60px;margin-left:10px;float:left"></div>
+                地址<span>*</span>
+                <%=f.input "address", label: false, placeholder: "请输入您的地址", input_html: {class: "long"}  %>
+              </label>
+              <div style="clear:both"></div>
+              <label class="shuru1">
+                身份证号<span>*</span>
+                <%=f.input "id_number", label: false, placeholder: "请输入您的身份证号", input_html: {class: "long"}  %>
+              </label>
+              <label class="shuru1">
+                联系电话<span>*</span>
+                <%=f.input "phone", label: false, placeholder: "请输入您的联系电话", input_html: {class: "long"}  %>
+              </label>
+              <label class="shuru1">
+                <div style="width:10px;height:60px;margin-left:-2px;float:left"></div>
+                QQ/FBI<span>.</span>
+                <%=f.input "qq", label: false, placeholder: "请输入您的QQ/FBI号码", input_html: {class: "long"}  %>
+              </label>
+              <label class="shuru1">
+                <div style="width:10px;height:60px;margin-left:16px;float:left"></div>
+                语言<span>.</span>
+                <%=f.select( "lang", [["中文", "CN"], ["English", "EN"]], class:'form-control select2 long') %>
+              </label>
+              <label class="shuru1">
+                <div style="width:10px;height:60px;margin-left:16px;float:left"></div>
+                网站<span>.</span>
+                <%=f.input "website", label: false, placeholder: "请输入您的网站地址", input_html: {class: "long"}  %>
+              </label>
+            </div>
+          </div>
+          <%logger.debug "resource=#{resource.inspect}"%>
+          <%logger.debug "errors=#{resource.errors.inspect}"%>
+          <%resource.user_banks.build if resource.user_banks.blank?%>
+          <%= f.fields_for :user_banks, class:"geren", defaults:{ wrapper:false} do |bf| %>
+            <div class="dailizhanghu">
+              <h2>佣金支付方式</h2>
+              <div class="shuru">
+                <label for="fangshi" class="shuru1">
+                  支付方式<span>*</span>
+                  <%=bf.select( "payment_method_id", PaymentMethod.all.map {|payment_method| [payment_method.name,payment_method.id]}, class:'form-control select2 long') %>
+                </label>
+                <label for="mingcheng" class="shuru1">
+                  银行名称<span>*</span>
+                  <%=bf.input "name", label: false, placeholder: "请输入您的银行名称", input_html: {class: "long"}  %>
+                </label>
+                <label for="zhanghao" class="shuru1">
+                  银行帐号<span>*</span>
+                  <%=bf.input "card_number", label: false, placeholder: "请输入您的银行帐号", input_html: {class: "long"}  %>
+                </label>
+                <label for="kaihu" class="shuru1">
+                  开户地址<span>*</span>
+                  <%=bf.input "address", label: false, placeholder: "请输入您的开户地址", input_html: {class: "long"}  %>
+                </label>
+                <label for="danwei" class="shuru1">
+                  收款单位<span>*</span>
+                  <%=bf.input "payee", label: false, placeholder: "请输入您的收款单位", input_html: {class: "long"}  %>
+                </label>
+                <label for="beizhu" class="shuru1">
+                  支付备注<span>.</span>
+                  <%=bf.input "pay_memo", label: false, placeholder: "请输入您的支付备注", input_html: {class: "long"}  %>
+                </label>
+              </div>
+            </div>
+
+        </div>
+        <input value="下一步" class="xia" id="photoTitle" type="button" onclick="$('#msg_2').show();$('#msg_1').hide();">
+      </div>
+      <!--上传证件-->
+      <%#=render partial: "upload_files", locals:{f: f}%>
+
+      <div id="msg_2" style="display:none;">
+        <h2>代理账户</h2>
+          <div class="zuobg">
+            <h3>身份照正面</h3>
+            <h4>须与交易账号名一致，格式：JPG,PNG,大小600K以内。</h4>
+            <%=f.input "id_front", label: false, as: "file", input_html: {class: "shangchuan", onchange:"previewImage(this, 'id_front_div')"} %>
+            <div id="id_front_div" class="beijingtu">
+            <!--上传证件-->
+            </div>
+          </div>
+
+          <div class="zuobg">
+            <h3>身份照反面</h3>
+            <h4>须与交易账号名一致，格式：JPG,PNG,大小600K以内。</h4>
+            <%=f.input "id_back", label: false, as: "file", input_html: {class: "shangchuan", onchange:"previewImage(this, 'id_back_div')"}  %>
+            <div id="id_back_div" class="beijingtu">
+            <!--上传证件-->
+            </div>
+          </div>
+
+          <div class="zuobg">
+            <h3>银行卡正面</h3>
+            <h4>须格式：JPG,PNG,大小600K以内。</h4>
+            <%=bf.input "card_front", label: false, as: "file", input_html: {class: "shangchuan", onchange:"previewImage(this, 'card_front_div')"}  %>
+            <div id="card_front_div" class="beijingtu">
+            <!--上传证件-->
+            </div>
+          </div>
+
+          <div class="zuobg">
+            <h3>银行卡反面</h3>
+            <h4>格式：JPG,PNG,大小600K以内。</h4>
+            <%=bf.input "card_back", label: false, as: "file", input_html: {class: "shangchuan", onchange:"previewImage(this, 'card_back_div')"}  %>
+            <div id="card_back_div" class="beijingtu">
+              <!--上传证件-->
+            </div>
+          </div>
+          <%= f.button :submit, "提交", class:"xia" %>
+        <input value="上一步" class="shang" id="" onclick="$('#msg_1').show();$('#msg_2').hide();" type="button">
+      </div>
+      <%end%>
+
+    <%end%>
+  </div>
+</div>
