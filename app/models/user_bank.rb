@@ -6,8 +6,8 @@ class UserBank < ApplicationRecord
   belongs_to :user
   has_many :drawings
 
-  has_attached_file :card_front, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-  has_attached_file :card_back, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :card_front, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
+  has_attached_file :card_back, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :card_front, :card_back, content_type: /\Aimage\/.*\z/
 
   validates :name, :card_number, :address, presence: true
