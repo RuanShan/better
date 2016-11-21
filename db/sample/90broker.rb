@@ -5,4 +5,7 @@
 @brokers.each{|broker|
   @broker_users << FactoryGirl.create(:user, email: "test#{broker.id}@example.com", broker: broker)
 }
+
+FactoryGirl.create :broker_7level_tree, parent: @broker
+
 #puts "create users for 20 brokers "
