@@ -1,6 +1,6 @@
 .huiyuanbody{
 	width: 100%;
-	background-image:url("new/noimages/hybg_02.gif");
+	background-image: image_url("new/noimages/hybg_02.gif");
 	background-repeat: no-repeat;
 	overflow: hidden;
 }
@@ -177,7 +177,7 @@
     width:12%;
     height: 40px;
     text-align: center;
-    background: url("new/dh_xian.jpg") no-repeat right 15px;
+    background:  image_url("new/dh_xian.jpg") no-repeat right 15px;
     position: relative;
 
 }
@@ -285,7 +285,7 @@
 
 }
 .scbg{
-	background-image:url("new/noimages/scbg.jpg");
+	background-image: image_url("new/noimages/scbg.jpg");
 	width: 500px;
 	height: 40px;
 	    overflow: hidden;
@@ -420,7 +420,7 @@
 .erxian{
 	width: 180px;
     position: absolute;
-    background: url("new/nav_bg.png") repeat;
+    background:  image_url("new/nav_bg.png") repeat;
     left: -25px;
     top: 42px;
     display: none;
@@ -451,7 +451,7 @@
 	.zongrenshu{
 		width: 725px;
 		height: 92px;
-		background-image:url("new/noimages/qiandao_03.gif");
+		background-image: image_url("new/noimages/qiandao_03.gif");
 	}
 	.zongrenshu p{
 		font-size: 16px;
