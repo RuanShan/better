@@ -46,6 +46,10 @@ class User < ApplicationRecord
   has_attached_file :id_back, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :avatar, :id_front, :id_back, content_type: /\Aimage\/.*\z/
 
+  # it it for filter
+  scope :unlocked, ->{ where( locked_at: nil )}
+  scope :locked, ->{ where.not( locked_at: nil )}
+
 
   after_initialize :set_default_role, :if => :new_record?
   after_create :adjust_broker_day, if: :broker

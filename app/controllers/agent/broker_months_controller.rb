@@ -90,13 +90,18 @@ class Agent::BrokerMonthsController < ApplicationController
 
     def set_children
       @page = params["page"]
+      @member_level = params["member_level"].to_i
+      @member_level = 1 if @member_level>6 || @member_level<1
       @member_state = params["member_state"] || "all"
-      if @member_state == "all"
-        state_condition = ""
-      else
-        state_condition = @member_state == "normal" ? "and locked_at is NULL" : "and locked_at is not NULL"
+      level = current_broker.depth + @member_level
+
+      q = current_broker.descendants.includes(:parent).where(depth: level)
+      if @member_state != "all"
+        q = q.unlocked if @member_state == "normal"
+        q = q.locked if @member_state == "normal"
       end
-      @children_brokers = current_broker.filtered_children(state_condition).paginate(:page => @page)
+
+      @children_brokers = q.paginate(:page => @page)
     end
 
     def permitted_search_params

@@ -5,10 +5,10 @@ class Broker < User
          :recoverable, :rememberable, :trackable, :validatable
 
   # 添加 日注册，月注册 scope
-  extend BetterDateScope
-  better_date_time_scope created_at: [:today, :month]
-  extend  DisplayDateTime
-  date_time_methods :created_at
+  #extend BetterDateScope
+  #better_date_time_scope created_at: [:today, :month]
+  #extend  DisplayDateTime
+  #date_time_methods :created_at
 
   has_many :user_banks, foreign_key: :user_id
   accepts_nested_attributes_for :user_banks
@@ -32,7 +32,7 @@ class Broker < User
 
   delegate :energetic_member_count, :clink_visits, :member_count, to: :broker_cmonth, allow_nil: true
 
-  alias_attribute :name, :nickname
+  alias_attribute :nickname, :real_name
 
   def state
     locked_at.nil? ? "normal" : "frozen"
@@ -53,5 +53,6 @@ class Broker < User
   def filtered_children(filter_condition)
     self.class.where("parent_id=? #{filter_condition}", self.id).all
   end
+
 
 end

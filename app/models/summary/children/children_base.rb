@@ -4,6 +4,7 @@ module Summary
       attr_accessor :children_broker
                   # 会员           注册时间        状态
       attr_accessor :broker_name, :sign_up_time, :state
+      delegate :parent_name, to: :children_broker
 
       def initialize( children_broker)
         self.children_broker = children_broker

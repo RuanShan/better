@@ -11,6 +11,7 @@
     <thead>
       <tr>
         <th>会员</th>
+        <th>上级</th>
         <th>注册时间</th>
         <th>状态</th>
         <th>点击数</th>
@@ -24,6 +25,7 @@
       <% @broker_months.each do |broker_month|%>
         <tr>
           <td><%= broker_month.broker_name %></td>
+          <td><%= broker_month.parent_name %></td>
           <td><%= broker_month.sign_up_time %></td>
           <td><%= t broker_month.state.to_sym %></td>
           <td><%= broker_month.clink_visits %></td>
