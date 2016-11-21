@@ -16,12 +16,8 @@
     <div class="header">
       <%= render 'layouts/new_navigation' %>
     </div>
-    <div class="page-content-wrapper" role="main">
-       <%= render 'shared/flash_messages' %>
-      <div class="page-content container">
-       <%= yield %>
-      </div>
-    </div>
+    <%= render 'shared/flash_messages' %>
+    <%= yield %>
     <%= render 'layouts/footer' %>
 
     <%= render 'shared/dialog' %>

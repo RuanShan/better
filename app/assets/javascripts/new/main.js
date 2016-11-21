@@ -269,20 +269,20 @@ var liebaoBrowser = {
 $(function(){
     var domEle = {
 		navhover: $('.nav-main a'), detBtn: $('.details'),
-		maxImg: $('.news-img'), fnLi: $('.ft-list li'), 
-		aniMation: isCSS('animation'), watchLb: $('#watch-lb'), 
-		code: $('.watch-code'), 
-		downBtn: $('.beta-info a'), 
-		downlaodMain: $('.downlaod-main'), 
-		windowMain: $(window), 
-		bodyEle: $('body'), 
-		stopAnimte: $('.slide,.prev,.next,.item'), 
-		prev: $('.prev'),
-		next: $('.next'), 
-		slide: $('.slide'), 
+		maxImg: $('.news-img'), fnLi: $('.ft-list li'),
+		aniMation: isCSS('animation'), watchLb: $('#watch-lb'),
+		code: $('.watch-code'),
+		downBtn: $('.beta-info a'),
+		downlaodMain: $('.downlaod-main'),
+		windowMain: $(window),
+		bodyEle: $('body'),
+		stopAnimte: $('.slide,.bprev,.bnext,.item'),
+		prev: $('.bprev'),
+		next: $('.bnext'),
+		slide: $('.slide'),
 		slideCur: $('.item a'),
 		phoneImg: $('.phone-img'),
-		codeImg: $('.code-img') 
+		codeImg: $('.code-img')
 	};
 	domEle.downlaodMain.show();
 	liebaoBrowser.init(domEle);

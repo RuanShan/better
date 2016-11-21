@@ -20,7 +20,7 @@
 	margin-bottom: 25px;
 }
 .imgScroll {
-	background: url(../images/img_scroll.gif) no-repeat;
+	background: url("new/img_scroll.gif") no-repeat;
 	height: 100px;
 	width: 14px;
 	background-color: transparent;

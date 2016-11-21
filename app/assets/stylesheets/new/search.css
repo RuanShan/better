@@ -2,11 +2,11 @@
  *	DedeCMS v5.3 Style (grass green)
  *	dedecms.com  Author pigz  2008-11-17 17:35
  **/
- 
+
 /*---------- base ---------*/
 *{
 	padding:0px;
-	margin:0px; 
+	margin:0px;
 }
 html{
 	background:#FFF;
@@ -65,7 +65,7 @@ input,select,button{
 	font-size:0px;
 	text-indent:-200px;
 	overflow:hidden;
-	background:url(../images/top-logo.gif) center center no-repeat;
+	background:url("new/top-logo.gif") center center no-repeat;
 }
 .header .searchform{
 	float:left;
@@ -143,7 +143,7 @@ input,select,button{
 	text-decoration:underline;
 }
 .item h3 .title:hover{
-	text-decoration:none;	
+	text-decoration:none;
 }
 .item{
 	margin-top:16px;
@@ -179,7 +179,7 @@ input,select,button{
 }
 .advancedsearch input{
 	font-size:12px;
-	padding:3px;	
+	padding:3px;
 }
 .advancedsearch .f1{
 	width:500px;
@@ -254,7 +254,7 @@ input,select,button{
 	color:#F93;
 }
 .footer .powered a:hover{
-	text-decoration:none;	
+	text-decoration:none;
 }
 .dede_pages{
 	height:33px;

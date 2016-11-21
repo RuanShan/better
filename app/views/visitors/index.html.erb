@@ -1,2 +1,233 @@
-<h3>Welcome</h3>
-<p> <%= User.count %> registered</p>
+<%= javascript_include_tag 'new/main' %>
+<%= javascript_include_tag 'new/photo-info' %>
+
+<div class="slide-main" id="touchMain">
+  <a class="bprev" href="javascript:;" stat="prev1001"><%=image_tag "new/l-btn.png" %></a>
+  <div class="slide-box" id="slideContent">
+    <div class="slide" id="bgstylec" style="display: none; opacity: 0.5; z-index: 0;">
+      <a stat="sslink-3" href="" target="_blank">
+        <div class="obj-e"><%=image_tag "new/baomi-t-1.png" %></div>
+        <div class="obj-f"><%=image_tag "new/baomi-kl.png" %></div>
+      </a>
+    </div>
+    <div class="slide" id="bgstylea" style="display: none; opacity: 0.5; z-index: 0;">
+      <a stat="sslink-1" href="" target="_blank">
+        <div class="obj-a"><%=image_tag "new/bao.png" %></div>
+        <div class="obj-b"><%=image_tag "new/nt-1.png" %></div>
+      </a>
+    </div>
+    <div class="slide banAnimate" id="bgstyleb" style="display: block; opacity: 1; z-index: 0;">
+      <a stat="sslink-2" href="" target="_blank">
+        <div class="obj-c"><%=image_tag "new/bao-2.png" %></div>
+        <div class="obj-d"><%=image_tag "new/st-2.png" %><p>全新chrome内核，内存占用最低，轻巧炫酷皮肤</p></div>
+      </a>
+    </div>
+  </div>
+  <a class="bnext" href="javascript:;" stat="next1002"><%=image_tag "new/r-btn.png" %></a>
+  <div class="item">
+    <a class="" stat="item1001" href="javascript:;"></a><a href="javascript:;" stat="item1002" class=""></a><a href="javascript:;" stat="item1003" class="cur"></a>
+  </div>
+</div>
+
+<div class="ggao">
+  <div class="ggaonei">
+      <%=image_tag "" %>
+      <ul>
+        <li><span>最新公告</span></li>
+        <li><span>关于关闭EURCHF的1分钟和5分钟的二元期权的通知</span></li>
+        <li><span>2016-09-29</span></li>
+        <li class="gg_right"><span>历史公告</span></li>
+      </ul>
+
+  </div>
+</div>
+
+<div class="bodyer">
+  <div class="bodyernei">
+    <div class="bodyernei_top">
+      <dt>二元期权交易终端</dt>
+      <dd>同一个交易· 不同的魅力 同一个账户，共同的财富梦想，来自您的选择 </dd>
+      <div class="sp">
+        <div class="videobox">
+  <div class="video-img">
+    <embed id="js_videoCon_1" class="js_videoCon" src="http://player.youku.com/player.php/sid/XNTMyNzE2ODk2/v.swf" allowfullscreen="true" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" width="716" align="middle" height="400">
+    <embed id="js_videoCon_2" class="js_videoCon" style="display:none" src="http://player.youku.com/player.php/sid/XNTMyNzM4MzA4/v.swf" allowfullscreen="true" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" width="716" align="middle" height="400">
+    <embed id="js_videoCon_3" class="js_videoCon" style="display:none" src="http://player.youku.com/player.php/sid/XNTMyNzQ1MjQw/v.swf" allowfullscreen="true" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" width="716" align="middle" height="400">
+    <embed id="js_videoCon_4" class="js_videoCon" style="display:none" src="http://player.youku.com/player.php/sid/XNTMyODE3NTU2/v.swf" allowfullscreen="true" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" width="716" align="middle" height="400">
+  </div>
+
+</div>
+
+<script type="text/javascript" src="templets/default/js/jquery-1.4.2.min.js"></script>
+
+<div class="spqh">
+  <div class="video-list">
+    <ul>
+      <li class="now" id="http://player.youku.com/player.php/sid/XNTMyNzE2ODk2/v.swf" video="1" vid="1">
+        <%=image_tag "new/tp_10.gif", class:"tbiao" %>
+        <p>平台操作指南<br>轻轻松松学会交易</p>
+        <%=image_tag "new/video_1.jpg", width:"142", height:"82" %>
+        <%=image_tag "new/icon-video.png", class:"icon-video" %>
+      </li>
+      <li id="http://player.youku.com/player.php/sid/XNTMyNzM4MzA4/v.swf" video="2" vid="2">
+        <%=image_tag "new/tp_10.gif", class:"tbiao" %>
+        <p>平台操作指南<br>轻轻松松学会交易</p>
+        <%=image_tag "new/video_2.jpg", width:"142", height:"82" %>
+        <%=image_tag "new/icon-video.png", class:"icon-video" %>
+      </li>
+      <li id="http://player.youku.com/player.php/sid/XNTMyNzQ1MjQw/v.swf" video="3" vid="3">
+        <%=image_tag "new/tp_10.gif", class:"tbiao" %>
+        <p>平台操作指南<br>轻轻松松学会交易</p>
+        <%=image_tag "new/video_3.jpg", width:"142", height:"82" %>
+        <%=image_tag "new/icon-video.png", class:"icon-video" %>
+      </li>
+
+    </ul>
+  </div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bodyernei_hdong">
+
+        <div id="container" class="banner">
+  <ol>
+
+
+  <li style="margin-top: 0px;">
+    <a href="#" target="_blank">
+    <%=image_tag "new/tp_15.gif" %>
+    </a>
+  </li>
+  <li style="margin-top: 0px;">
+    <a href="#" target="_blank"><%=image_tag "new/tp_16.gif" %></a></li></ol>
+    <div class="mouse_direction">
+        <div class="mouse_top"></div>
+        <div class="mouse_bottom"></div>
+    </div>
+</div>
+
+
+</div>
+      <div class="denglu">
+      <a href=""><%=image_tag "new/zc_03.gif" %></a>
+      <a href=""><%=image_tag "new/zc_05.gif" %></a>
+      </div>
+      <div style="text-align:left;clear:both"><br></div>
+    </div>
+    <div class="bodyernei_zhong">
+      <%=render :partial=>"/devise/registrations/sign_up"%>
+    </div>
+    <div class="bodyernei_jiaoyi">
+    <div class="box2">
+    <div class="simulation">
+      <h3>「 模拟交易 &amp; 交易信号 」<span>- 免费模拟，1分钟轻松入门 -</span></h3>
+      <div class="tradding" style="height: 328px; widht:685px; margin-left:13px;">
+        <iframe src="http://widgets.ggbinary.com/widget/gamebox-demo?walkthrough=1&amp;redirectUrl=http://www.ggbinary.com/Trading/?showLogin=1" style="border: none;" scrolling="no" id="demo_trading" width="685" height="328"></iframe>
+      </div>
+    </div>
+    <div class="single">
+      <iframe src="http://bo.autochartist.com/boV3/?b=464&amp;u=Demo&amp;logintoken=ab0afa4a5de8de894519eb18686083ca&amp;delay=y&amp;locale=zh_cn&amp;rowLimit=5&amp;css=http://www.ggbinary.com/Yourphp/Tpl/Home/Default/Public_zh-cn/css/autochartist/gg_14.css?20160301" style="border:none; margin-top:26px;" width="430" height="290px"></iframe>
+      <a href="/SignalClassic" target="blank">
+        <input name="input" value="免费信号获取" class="btn03" type="button">
+      </a>
+      <a href="/SignalRss" target="blank">
+        <input name="input" value="免费行情订阅" class="btn04" type="button">
+      </a>
+    </div>
+
+  </div>
+  </div>
+  <div class="bodyernei_jy">
+
+<div class="wp">
+ <ul id="slider" class="slider" style="top: 0px;"><li style="opacity: 0.64;"><p class="slider1">刘会</p><p>蓝</p><p class="slider2">期权上涨</p><p class="slider3">2016-06-06</p><p class="slider4">2016-08-08</p></li><li style="opacity: 1;"><p class="slider1">曾虑</p><p>&nbsp;&nbsp;&nbsp;</p><p class="slider2">期权上涨</p><p class="slider3">2016-06-06</p><p class="slider4">2016-08-08</p></li><li style="opacity: 1;"><p class="slider1">王建</p><p>鹏</p><p class="slider2">期权上涨</p><p class="slider3">2016-06-06</p><p class="slider4">2016-08-08</p></li><li style="opacity: 1;"><p class="slider1">李亚</p><p>&nbsp;&nbsp;&nbsp;</p><p class="slider2">期权下涨</p><p class="slider3">2016-06-06</p><p class="slider4">2016-08-08</p></li><li style="opacity: 1;"><p class="slider1">赵志</p><p>&nbsp;&nbsp;&nbsp;</p><p class="slider2">期权下涨</p><p class="slider3">2016-06-06</p><p class="slider4">2016-08-08</p></li>
+
+
+
+
+
+ </ul>
+</div>
+<script type="text/javascript">
+new slider({id:'slider'})
+</script>
+
+  </div>
+  <div class="jingguo">
+    <p>二元期权体验更多</p>
+      <!-- 代码 开始 -->
+<div class="frame">
+<div class="wrap">
+  <%=image_tag "new/yjjg_03.gif", alt:"" %>
+  <div>
+    <b></b>
+    <span>
+    <h1>代理扶持</h1>
+    <p>全天候一对一个性化支持实时查看发展客户的情况稳定快速的佣金结算周期</p>
+
+    </span>
+  </div>
+</div> <!-- end wrap -->
+</div>
+
+<div class="frame">
+<div class="wrap">
+  <%=image_tag "new/yjjg_04.gif", alt:"" %>
+  <div>
+    <b></b>
+    <span>
+    <h1>存取快捷</h1>
+    <p>存款5-10分钟即可入账取款1 - 2小时达到账户5 X 24 小时财务支持</p>
+
+    </span>
+  </div>
+</div> <!-- end wrap -->
+</div>
+
+
+<div class="frame">
+<div class="wrap">
+  <%=image_tag "new/yjjg_05.gif", alt:"" %>
+  <div>
+    <b></b>
+    <span>
+    <h1>资金安全</h1>
+    <p>客户资金由第三方托管与公司运营资金进行剥离世界级银行提供安全保障</p>
+
+    </span>
+  </div>
+</div> <!-- end wrap -->
+</div>
+
+<div class="frame">
+<div class="wrap">
+  <%=image_tag "new/yjjg_06.gif", alt:"" %>
+  <div>
+    <b></b>
+    <span>
+    <h1>风险保障</h1>
+    <p>客户经理一对一贴心跟进金融分析师犀利分析推送每天在线研讨会行情喊单</p>
+
+    </span>
+  </div>
+</div>
+
+<!-- 代码 结束 -->
+  </div>
+  <div style="clear:both;padding-top:30px;"></div>
+  <div class="zsgg">
+    <%=image_tag "new/zsgg_03.gif" %>
+    <%=image_tag "new/zsgg_03.gif" %>
+    <%=image_tag "new/zsgg_03.gif" %>
+  </div>
+  <div style="clear:both;padding-top:30px;"></div>
+  <div class="zsgg1">
+    <a href=""><p class="zsggnei">加盟代理</p></a>
+    <a href=""><p>招商QQ</p></a>
+  </div>
+  <div style="clear:both;padding-top:30px;"></div>
+
+  </div>
+</div>

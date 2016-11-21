@@ -285,7 +285,7 @@
 
 }
 .scbg{
-	background-image:url(../images/noimages/scbg.jpg);
+	background-image:url("new/noimages/scbg.jpg");
 	width: 500px;
 	height: 40px;
 	    overflow: hidden;
@@ -451,7 +451,7 @@
 	.zongrenshu{
 		width: 725px;
 		height: 92px;
-		background-image:url(../images/noimages/qiandao_03.gif);
+		background-image:url("new/noimages/qiandao_03.gif");
 	}
 	.zongrenshu p{
 		font-size: 16px;

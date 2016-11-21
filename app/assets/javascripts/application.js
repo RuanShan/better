@@ -21,6 +21,10 @@
 //= require base
 //= require cable
 
+$(function(){
+  setInterval(update, 1000);
+})
+
 function copyToClipboard(element) {
   var copy_text = $(element).text();
   var $temp = $("<input>");
@@ -33,4 +37,8 @@ function copyToClipboard(element) {
     $temp.remove();
     window.prompt("您的浏览器不支持一键复制,请使用Ctrl+C来复制链接", copy_text);
   }
+}
+
+function update() {
+  $('#clock').html(moment().format('北京时间：YYYY年MM月D日 H:mm:ss'));
 }

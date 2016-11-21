@@ -2,7 +2,7 @@
  *	DedeCMS v5.6 Style (Default Style)
  *	dedecms.com  Author Networker  2010.02.05
  **/
- 
+
 /*---------- import ---------*/
 @import url("layout.css");
 @import url("page.css");
@@ -95,7 +95,7 @@ input,select,button{
 	width:56px;
 	height:24px;
 	border:none;
-	background:url(../images/comm-bt.gif) no-repeat;
+	background:url("new/comm-bt.gif") no-repeat;
 	line-height:25px;
 	letter-spacing:1px;
 	cursor:pointer;
@@ -106,7 +106,7 @@ input,select,button{
 	width:70px;
 	height:25px;
 	border:none;
-	background:url(../images/btn-bg2.gif) left top no-repeat;
+	background:url("new/btn-bg2.gif") left top no-repeat;
 	line-height:25px;
 	overflow:hidden;
 	color:#444;
@@ -128,16 +128,16 @@ input,select,button{
 	border-bottom:1px solid #DBDBDB;
 	color:#676767;
 	overflow:hidden;
-    background:url("../images/green_skin.png") repeat-x scroll 0 -188px transparent;
+    background:url("new/green_skin.png") repeat-x scroll 0 -188px transparent;
 	}
 .header_top .time{
 	float:left;
-	padding-left:10px;	
+	padding-left:10px;
 	}
 .header_top a.rss{
-    
+
 	}
-.header_top .toplinks{	
+.header_top .toplinks{
 	float:right;
 	text-align:right;
 }
@@ -208,7 +208,7 @@ input,select,button{
 	color:#999;
 }
 .header .welcome a{
-	margin:0px 3px;	
+	margin:0px 3px;
 }
 
 /*----- 新版导航菜单位置的样式 -------*/
@@ -237,7 +237,7 @@ input,select,button{
 	font-weight:bold;
 }
 .module .top span {
-	
+
 }
 .module .top strong {
 	cursor:pointer;
@@ -257,7 +257,7 @@ input,select,button{
 	padding-top: 8px;/*padding-bottom: 10px;*/
 }
 .module .top, .module .top .t_l, .module .top .t_r, .module .bottom, .module .bottom .b_l, .module .bottom .b_r {
-	background-image: url("../images/green_skin.png");
+	background-image: url("new/green_skin.png");
 }
 /*------ 主色 -------*/
 .blue .top {
@@ -293,7 +293,7 @@ input,select,button{
 }
 #navMenu ul li {
     font:14px/1.5 "Microsoft YaHei","微软雅黑","Microsoft JhengHei","宋体";
-	float:left;	
+	float:left;
 	height: 22px;
 	margin-right: 10px;
 	margin-left: -3px;
@@ -313,7 +313,7 @@ input,select,button{
 	display: inline-block;
 	position: relative;
 }
-    
+
 #navMenu ul li span {
 	cursor:pointer;
 	display:inline-block;
@@ -372,7 +372,7 @@ input,select,button{
 	border: 1px solid #93E1EB;
 	border-top: 0px solid #3CA2DC;
 	background-color: #FFF;
-	background:url(../images/mmenubg.gif);
+	background:url("new/mmenubg.gif");
 	padding-top:6px;
 	padding-bottom:6px;
 }
@@ -413,7 +413,7 @@ input,select,button{
 	font-size:0px;
 	color:#fafafa;
 	border:0px;
-	background:url(../images/search-bt.gif) no-repeat;
+	background:url("new/search-bt.gif") no-repeat;
 }
 .search-option {
 	margin-left:3px;
@@ -466,7 +466,7 @@ input,select,button{
 	float:left;
 	color:#256DB1;
 }
-.channel-nav .sonnav span {	
+.channel-nav .sonnav span {
 	margin-right:10px;
 	float:left;
 }
@@ -475,7 +475,7 @@ input,select,button{
 	border:1px solid #BADAA1;
 	height:22px;
 	line-height:21px;
-	background:url(../images/channel_bg.png) repeat-x;
+	background:url("new/channel_bg.png") repeat-x;
 	display:inline-block;
 	}
 .channel-nav .sonnav span a.thisclass{
@@ -497,8 +497,8 @@ input,select,button{
 	padding-left:20px;
 	letter-spacing:2px;
 	float:right;
-	background:url(../images/ico-home.gif) 4px 10px no-repeat;
-} 
+	background:url("new/ico-home.gif") 4px 10px no-repeat;
+}
 .channel-nav .back a{
 	color:#397CBE;
 }
@@ -516,7 +516,7 @@ input,select,button{
 }
 
 .infiniteCarousel .wrapper {
-  width: 640px; 
+  width: 640px;
   overflow: auto;
   height: 170px;
   margin: 0 30px;
@@ -530,7 +530,7 @@ input,select,button{
   display:block;
 }
 .infiniteCarousel .wrapper ul {
-  width: 625px; 
+  width: 625px;
   list-style-image:none;
   list-style-position:outside;
   list-style-type:none;
@@ -573,11 +573,11 @@ input,select,button{
   outline: 0;
 }
 .infiniteCarousel .forward {
-  background:url(../images/green_skin.png) 0 -256px no-repeat;
+  background:url("new/green_skin.png") 0 -256px no-repeat;
   right: 0;
 }
 .infiniteCarousel .back {
-  background:url(../images/green_skin.png) 0 -222px no-repeat;
+  background:url("new/green_skin.png") 0 -222px no-repeat;
   left: 0;
 }
 /*----------dedeinfolink  ---------*/
@@ -586,7 +586,7 @@ input,select,button{
 	}
 #dedeinfolink tr td div {
 	padding:0 5px;
-	background:url(../images/white_bg.gif) repeat-x;
+	background:url("new/white_bg.gif") repeat-x;
 	margin-right:8px;
 	}
 #dedeinfolink tr td {
@@ -674,7 +674,7 @@ input,select,button{
 .resultbar{
 	height:32px;
 	line-height:32px;
-	background:transparent url(../images/search-top-bg.gif) repeat-x scroll;
+	background:transparent url("new/search-top-bg.gif") repeat-x scroll;
 	text-indent:12px;
 	color:#428C5B;
 	border-bottom: 1px solid #E4E4E4;
@@ -701,7 +701,7 @@ input,select,button{
  }
 .sidebar  ul li{
   line-height:24px;
-  background:url(../images/ico-3.gif) 4px 9px no-repeat;
+  background:url("new/ico-3.gif") 4px 9px no-repeat;
  }
 .resultlist{
   overflow:hidden;

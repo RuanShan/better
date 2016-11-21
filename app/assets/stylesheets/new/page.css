@@ -12,7 +12,7 @@
 	width:712px;
 	height:24px;
 	line-height:24px;
-	background:transparent url(../images/green_skin.png) repeat-x scroll 0 -188px;
+	background:transparent url("new/green_skin.png") repeat-x scroll 0 -188px;
 	border-top:1px solid #BADAA1;
 	border-bottom:1px solid #BADAA1;
 	text-indent:12px;
@@ -39,7 +39,7 @@
 	height:20px;
 	*height:24px;
 	overflow:hidden;
-	background:url(../images/ico-3.gif) 2px 8px no-repeat;
+	background:url("new/ico-3.gif") 2px 8px no-repeat;
 	font-size:0px;
 }
 .place{
@@ -47,7 +47,7 @@
 	line-height:24px;
 	text-indent:18px;
 	color:#999;
-	background:transparent url(../images/green_skin.png) repeat-x scroll 0 -188px;
+	background:transparent url("new/green_skin.png") repeat-x scroll 0 -188px;
 	border-top:1px solid #BADAA1;
 	border-bottom:1px solid #BADAA1;
 	overflow:hidden;
@@ -146,7 +146,7 @@
 
 .index .bignews div.newarticle{
 	height:24px;
-	background:url(../images/new-article.gif) 8px 3px no-repeat;
+	background:url("new/new-article.gif") 8px 3px no-repeat;
 	font-size:0px;
 	color:#fff;
 }
@@ -166,7 +166,7 @@
 	overflow:hidden;
 }
 .index .bignews div.d1arc a {
-	
+
 }
 .index .bignews ul.c2{
 	width:416px;
@@ -257,7 +257,7 @@
 	margin-left:7px;
 }
 .index .userinfo{
-	
+
 }
 .index .userinfo .welcome{
 	width:220px;
@@ -309,7 +309,7 @@
 	text-indent:12px;
 }
 .index .userinfo .mylink ul li a{
-	color:#555;	
+	color:#555;
 }
 .index .userinfo .uclink{
 	height:31px;
@@ -516,7 +516,7 @@
 }
 .viewbox .labeltitle{
 	height:23px;
-	background:url(../images/view-labeltitle-bg.gif) left 10px repeat-x;
+	background:url("new/view-labeltitle-bg.gif") left 10px repeat-x;
 	clear:both;
 	overflow:hidden;
 	margin:0px auto 0px;
@@ -531,7 +531,7 @@
 	letter-spacing:1px;
 	display:block;
 	float:left;
-	background:url(../images/view-labeltitle-bg.gif) left -44px no-repeat;
+	background:url("new/view-labeltitle-bg.gif") left -44px no-repeat;
 	overflow:hidden;
 }
 
@@ -563,7 +563,7 @@
 	height:10px;
 	overflow:hidden;
 	clear:both;
-	background:url(../images/boxoff.gif) left 15px repeat-x;
+	background:url("new/boxoff.gif") left 15px repeat-x;
 	margin:4px auto;
 	padding-top:10px;
 }
@@ -574,7 +574,7 @@
 	overflow:hidden;
 	font-size:0px;
 	line-height:100px;
-	background:url(../images/boxoff.gif) right -10px no-repeat;
+	background:url("new/boxoff.gif") right -10px no-repeat;
 	float:left;
 }
 .viewbox .newdigg{
@@ -634,19 +634,19 @@
 	background:#000;
 }
 .viewbox .newdigg .digg_good{
-	background:url(../images/newdigg-bg.png) left top no-repeat;
+	background:url("new/newdigg-bg.png") left top no-repeat;
 }
 .viewbox .newdigg .digg_bad{
-	background:url(../images/newdigg-bg.png) right top no-repeat;
+	background:url("new/newdigg-bg.png") right top no-repeat;
 }
 .viewbox .newdigg .digg_good .digg_act{
-	color:#C30;	
+	color:#C30;
 }
 .viewbox .newdigg .digg_good .digg_num{
 	color:#C63;
 }
 .viewbox .newdigg .digg_bad .digg_act{
-	color:#36C;	
+	color:#36C;
 }
 .viewbox .newdigg .digg_bad .digg_num{
 	color:#39C;
@@ -669,7 +669,7 @@
 	width:59px;
 	height:59px;
 	float:left;
-	background:url(../images/digg-bg.gif) no-repeat;
+	background:url("new/digg-bg.gif") no-repeat;
 	margin-right:12px;
 }
 .viewbox .handle .digg .digg_num{
@@ -709,7 +709,7 @@
 .viewbox .actbox ul li{
 	display:inline;
 	padding-left:22px;
-	background-image:url(../images/actbox-ico.gif);
+	background-image:url("new/actbox-ico.gif");
 	background-repeat:no-repeat;
 	margin-right:10px;
 }
@@ -732,11 +732,11 @@
 	width:100%;
 	clear:both;
 	overflow:hidden;
-	
+
 }
 .viewbox .downurllist li{
 	height:27px;
-	background:url(../images/downurl-bg.gif) right top no-repeat;
+	background:url("new/downurl-bg.gif") right top no-repeat;
 	padding-right:4px;
 	float:left;
 	margin-right:10px;
@@ -745,7 +745,7 @@
 }
 .viewbox .downurllist li a{
 	height:27px;
-	background:url(../images/downurl-bg.gif) left top no-repeat;
+	background:url("new/downurl-bg.gif") left top no-repeat;
 	display:block;
 	font-size:12px;
 	color:#555;
@@ -892,7 +892,7 @@
 	margin-top:8px;
 }
 .infos_search dd select{
-	font-size:14px;	
+	font-size:14px;
 }
 .tags_list dd{
 	padding:4px 12px;
@@ -916,12 +916,12 @@
 	padding:0px 12px;
 	border-top:1px solid #EAEAEA;
 	border-bottom:1px solid #EAEAEA;
-	background:#f3fbea url(../images/search-top-bg.gif) repeat-x scroll;
+	background:#f3fbea url("new/search-top-bg.gif") repeat-x scroll;
 	margin-bottom:8px;
 }
 .sp-title h2{
 	font-size:14px;
-	line-height:27px;	
+	line-height:27px;
 }
 .sp-title h2 a{
 	margin-left:6px;
@@ -941,7 +941,7 @@
 	color:#693;
 }
 .buycar{
-	
+
 }
 .buycar h2{
 	font-size:14px;
@@ -1019,7 +1019,7 @@
 	clear:both;
 }
 .decmt-box2 span.fr{
-	float:right;	
+	float:right;
 	}
 .decmt-box2 span.title{
 	float:left;
@@ -1058,8 +1058,8 @@
 .decmt-box2 .comment_act a{
 	color:#aeaeae;
 	}
-    
-    
+
+
 .decmt-box{
 	width:98%;
 	padding:6px 5px;
@@ -1068,7 +1068,7 @@
 	clear:both;
 }
 .decmt-box span.fr{
-	float:right;	
+	float:right;
 	}
 .decmt-box span.title{
 	float:left;
@@ -1107,7 +1107,7 @@
 .decmt-box .comment_act a{
 	color:#aeaeae;
 	}
-	
+
 .decmt-box1{
 	width:98%;
 	padding:6px 5px;
@@ -1116,7 +1116,7 @@
 	clear:both;
 }
 .decmt-box1 span.fr{
-	float:right;	
+	float:right;
 	}
 .decmt-box1 span.title{
 	float:left;
@@ -1209,7 +1209,7 @@
 	clear:both;
 	width:99%;
 	margin:2px auto 0px;
-/*	background:url(../images/ico-comment-quote.gif) 0px 4px no-repeat;
+/*	background:url("new/ico-comment-quote.gif) 0px 4px no-repeat;
 	text-indent:18px;*/
 }
 .dede_comment .decmt-box .decmt-content img{
@@ -1309,7 +1309,7 @@
 	height:35px;
 	overflow:hidden;
 	clear:both;
-	color:#444;	
+	color:#444;
 	padding:5px 0 10px 0;
 }
 .dcmp-post .dcmp-userinfo{
@@ -1336,7 +1336,7 @@
 	width:70px;
 	height:25px;
 	border:none;
-	background:url(../images/btn-bg2.gif) no-repeat;
+	background:url("new/btn-bg2.gif") no-repeat;
 	line-height:25px;
 	letter-spacing:1px;
 	overflow:hidden;

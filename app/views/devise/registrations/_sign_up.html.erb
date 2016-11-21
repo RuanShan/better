@@ -1,0 +1,39 @@
+<div class="sign">
+ <form class="sign_box" id="reg-form" action="https://trading.ggbinary.com/index/sign-up?redirectUrl=http://www.ggbinary.com/Recharge" method="POST">
+   <input class="in01" name="firstName" id="reg-first-name" placeholder="名" type="text">
+   <input class="in01" name="lastName" id="reg-last-name" placeholder="姓" style="margin-right:30px;" type="text">
+   <input name="email" id="reg-email" placeholder="电子邮箱" class="in02" type="text">
+   <input name="qq" id="reg-qq" placeholder="QQ" class="in04" type="text">
+
+   <input name="countryDialCode" value="+86" id="reg-area-code" class="in05" type="text">
+   <input name="phone" id="reg-phone" placeholder=" 电话" class="in06" type="text">
+
+   <input name="password" id="reg-password" placeholder="密码" class="in03" type="password">
+   <input name="verifyCode" id="reg-verify-code" placeholder="验证码" class="in07" type="text">
+
+   <input id="landing" name="landing" value="" readonly="readonly" type="hidden">
+   <input value="获取验证码" class="btn01 obtainVerifyCode" type="button">
+         </form>
+
+
+ <div class="ce">
+   <div class="ce1">
+   <span>
+     <%=image_tag "new/sign-icon04.png" %>经纪人:
+   </span>
+   <label class="cho">
+     <input name="affiliate" class="ch" value="1" type="radio">
+     有
+   </label>
+   <label class="cho">
+     <input name="affiliate" checked="checked" class="ch" value="0" type="radio">
+     无
+   </label>
+   <input class="in11" name="firstName" id="reg-first-name" placeholder="经纪人编码" type="text">
+   </div>
+
+   <input name="reg-agreement" checked="checked" class="bo" id="reg-agreement" type="checkbox">
+   我已阅读并同意 <a href="http://www.ggbinary.com/zh-cn/TermsOfAgreement/" target="_blank">服务条款</a> 和 <a href="http://www.ggbinary.com/zh-cn/PrivacyPolicy/" target="_blank">隐私政策</a>
+ </div>
+ <input name="input2" value="免费创建账户" class="btn02" id="reg-submit" type="button">
+</div>

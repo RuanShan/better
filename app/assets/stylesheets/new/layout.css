@@ -12,7 +12,7 @@
 	margin:0 0 8px 0;
 	border-bottom:1px solid #DADADA;
 	overflow:hidden;
-	background:url(../images/green_skin.png) 0 -294px repeat-x;
+	background:url("new/green_skin.png") 0 -294px repeat-x;
 }
 .tbox dt{
 	height:24px;
@@ -125,7 +125,7 @@
 	height:24px;
 	border:1px solid #DADADA;
 	overflow:hidden;
-	background:url(../images/green_skin.png) 0 -188px repeat-x;
+	background:url("new/green_skin.png") 0 -188px repeat-x;
 	clear:both;
 }
 .light dd{
@@ -140,16 +140,16 @@ dt.light strong{
 /*--------------------------------------------------
  box layout (prefix space:a,b)
  ---------------------------------------------*/
- 
+
 /*---------- a : 文本列表块 ---------*/
 
 /*---------- b : 图文混排块 ---------*/
 
 
-/*-------------------------------------------------- 
+/*--------------------------------------------------
  list layout (prefix space:c,d,e,f)
  ---------------------------------------------*/
- 
+
 /*---------- c : 纯文本列表 ---------*/
 .c1{/* 纯文本链接列表 */
 	padding:4px 0px;
@@ -160,7 +160,7 @@ dt.light strong{
 	line-height:27px;
 	overflow:hidden;
 	padding-left:16px;
-	background:url(../images/ico-2.gif) 7px 11px no-repeat;
+	background:url("new/ico-2.gif") 7px 11px no-repeat;
 }
 .c1 a{
 	color:#585858;
@@ -180,7 +180,7 @@ dt.light strong{
 	line-height:27px;
 	overflow:hidden;
 	padding-left:16px;
-	background:url(../images/ico-2.gif) 7px 11px no-repeat;
+	background:url("new/ico-2.gif") 7px 11px no-repeat;
 }
 
 /*---------- d : 附加信息列表 ---------*/
@@ -198,7 +198,7 @@ dt.light strong{
 	float:left;
 }
 .d1 li a{
-	
+
 }
 .d2{/* 后置时间日期的小列表 */
 	padding:4px 0px;
@@ -229,7 +229,7 @@ dt.light strong{
 	line-height:23px;
 	overflow:hidden;
 	text-indent:14px;
-	background:url(../images/ico-3.gif) 4px 9px no-repeat;
+	background:url("new/ico-3.gif") 4px 9px no-repeat;
 }
 .d4 li p{
 	color:#888;
@@ -244,7 +244,7 @@ dt.light strong{
 .d5 li{
 	height:41px;
 	line-height:41px;
-	background:url(../images/ico-2.gif) 2px 17px no-repeat;
+	background:url("new/ico-2.gif") 2px 17px no-repeat;
 	padding-left:16px;
 }
 .d5 li a{
@@ -268,7 +268,7 @@ dt.light strong{
 	padding-left:12px;
 	float:left;
 	text-align:center;
-	
+
 }
 .e1 li a{
 	display:block;
@@ -291,10 +291,10 @@ dt.light strong{
 	padding-top:6px;
 }
 .e1 li span{
-	
+
 }
 .e2{
-	
+
 }
 .e2 li{
 	width:100%;
@@ -353,7 +353,7 @@ dt.light strong{
 	padding-left:10px;
 	padding-right:10px;
 }
-.e3{/* 图文混排小列表 */	
+.e3{/* 图文混排小列表 */
 	clear:both;
 	overflow:hidden;
 }
@@ -478,7 +478,7 @@ dt.light strong{
 	width:160px;
 	height:120px;
 	display:block;
-	background:url(../images/picbox-listbg.gif) no-repeat;
+	background:url("new/picbox-listbg.gif") no-repeat;
 	text-align:left;
 	overflow:hidden;
 }
@@ -538,7 +538,7 @@ dt.light strong{
 }
 /*---------- f : 特殊列表 ---------*/
 .f1{/* 带数字ICO的排行榜列表 */
-	background:url(../images/number-range.gif) 5px 5px no-repeat;
+	background:url("new/number-range.gif") 5px 5px no-repeat;
 	overflow:hidden;
 }
 .f1 li{
@@ -599,7 +599,7 @@ dt.light strong{
 	line-height:21px;
 	color:#888;
 	text-indent:17px;
-	background:url(../images/ico-comment-quote.gif) 0px 4px no-repeat;
+	background:url("new/ico-comment-quote.gif") 0px 4px no-repeat;
 }
 
 .f4{/*友情链接(图片)专用*/
@@ -680,29 +680,29 @@ dt.light strong{
 	height:26px;
 	line-height:26px;
 	display:block;
-	background:url(../images/green_skin.png) -42px -222px no-repeat;
+	background:url("new/green_skin.png") -42px -222px no-repeat;
 	color:#316301;
 	}
 .d6 li a:hover{
 	text-decoration:none;
-	}	
-.d6 li a.thisclass{
-	background:url(../images/green_skin.png) -42px -249px no-repeat;
 	}
-/*-------------------------------------------------- 
+.d6 li a.thisclass{
+	background:url("new/green_skin.png") -42px -249px no-repeat;
+	}
+/*--------------------------------------------------
  list icon
  ---------------------------------------------*/
 .ico1 li{
 	padding-left:16px;
-	background:url(../images/ico-1.gif) 7px 11px no-repeat;
+	background:url("new/ico-1.gif") 7px 11px no-repeat;
 }
 .ico2 li{
 	padding-left:16px;
-	background:url(../images/ico-2.gif) 6px 11px no-repeat;
+	background:url("new/ico-2.gif") 6px 11px no-repeat;
 }
 .ico3 li{
 	padding-left:16px;
-	background:url(../images/ico-3.gif) 7px 11px no-repeat;
+	background:url("new/ico-3.gif") 7px 11px no-repeat;
 }
 
 li.dotline {
@@ -718,7 +718,7 @@ li.dotline {
 	}
 .c_page a{
 	text-align:center;
-	background:url(../images/page_bg.gif) #FBFBFB no-repeat;
+	background:url("new/page_bg.gif") #FBFBFB no-repeat;
 	width:16px;
 	height:15px;
 	line-height:15px;

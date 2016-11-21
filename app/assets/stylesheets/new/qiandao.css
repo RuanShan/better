@@ -11,7 +11,7 @@
 	.checkin li{background: #ddd; float: left;padding: 5px;text-align: center;}
 
 	li.able-qiandao{background: #e84444; }
-	li.checked{background:#de0a0a url(../images/noimages/qdtb.png) no-repeat center;}
+	li.checked{background:#de0a0a url("new/noimages/qdtb.png") no-repeat center;}
 	.mask{ width: 50%;height: 510px;position: absolute;top: 0;left: 0;visibility: hidden;transition: all 0.25s ease}
 	.modal{background:#fff;width: 360px;height: 270px;border-radius: 10px;position: absolute;margin-top: -200px;margin-left:-91px;left: 50%;top: 50%;border:5px solid #42941a;box-sizing:border-box;overflow: hidden;transform: translateY(-200%);transition: all 0.25s ease}
 	a.closeBtn{display: block;position: absolute;right: 10px;top: 5px;font-family: 'simsun';font-size: 18px;text-decoration: none;font-weight: bolder;color: #333}

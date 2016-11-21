@@ -1,4 +1,4 @@
-/* -------------------------------- 
+/* --------------------------------
 
 Primary style
 
@@ -8,9 +8,9 @@ img {
   max-width: 100%;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main Components 
+Main Components
 
 -------------------------------- */
 .cd-header {
@@ -119,7 +119,7 @@ Main Components
   }
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
 Slider
 
@@ -181,13 +181,13 @@ Slider
   }
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
 Single slide style
 
 -------------------------------- */
-.cd-hero-slider li {background:url(../images/bg01.jpg) repeat-x;}
-.cd-hero-slider li:first-of-type {background:url(../images/bg01.jpg) repeat-x;}
+.cd-hero-slider li {background:url("new/bg01.jpg") repeat-x;}
+.cd-hero-slider li:first-of-type {background:url("new/bg01.jpg") repeat-x;}
 .cd-hero-slider .cd-full-width,
 .cd-hero-slider .cd-half-width {
   position: absolute;
@@ -281,7 +281,7 @@ Single slide style
   }
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
 Single slide animation
 
@@ -312,7 +312,7 @@ Single slide animation
     transform: translateX(0);
   }
   .cd-hero-slider .is-moving .cd-half-width {
-    /* this is the slide moving outside the viewport 
+    /* this is the slide moving outside the viewport
     wait for the end of the transition on the <li> parent before set opacity to 0 and translate to 40px/-40px */
     -webkit-transition: opacity 0s 0.5s, -webkit-transform 0s 0.5s;
     -moz-transition: opacity 0s 0.5s, -moz-transform 0s 0.5s;
@@ -362,7 +362,7 @@ Single slide animation
   }
   .cd-hero-slider li.is-moving .cd-full-width h2,
   .cd-hero-slider li.is-moving .cd-full-width p {
-    /* this is the slide moving outside the viewport 
+    /* this is the slide moving outside the viewport
     wait for the end of the transition on the li parent before set opacity to 0 and translate to 100px/-100px */
     -webkit-transition: opacity 0s 0.5s, -webkit-transform 0s 0.5s;
     -moz-transition: opacity 0s 0.5s, -moz-transform 0s 0.5s;
@@ -379,7 +379,7 @@ Single slide animation
     transition: opacity 0.4s 0.3s, transform 0.5s 0.3s;
   }
 }
-/* -------------------------------- 
+/* --------------------------------
 
 Slider navigation
 
@@ -403,7 +403,7 @@ Slider navigation
   width: 60px;
   height: 100%;
   color: #d44457;
-  background:url(../images/bg02.jpg) no-repeat center;
+  background:url("new/bg02.jpg") no-repeat center;
   -webkit-transition: -webkit-transform 0.2s, box-shadow 0.2s;
   -moz-transition: -moz-transform 0.2s, box-shadow 0.2s;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -459,7 +459,7 @@ Slider navigation
   font-size: 1rem;
   font-weight: 700;
   color: #9e9e9e;
-  background:url(../images/bg04.jpg) no-repeat right;
+  background:url("new/bg04.jpg") no-repeat right;
   -webkit-transition: background-color 0.2s;
   -moz-transition: background-color 0.2s;
   transition: background-color 0.2s;
@@ -531,7 +531,7 @@ Slider navigation
   }
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
 Main content
 
@@ -557,7 +557,7 @@ Main content
   }
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
 Javascript disabled
 
