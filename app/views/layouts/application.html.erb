@@ -16,7 +16,11 @@
     <div class="header">
       <%= render 'layouts/new_navigation' %>
     </div>
-    <%= yield %>
+    <div class="page-content-wrapper rebody">
+      <div class="page-content">
+        <%= yield %>
+      </div>
+    </div>
     <%= render 'layouts/footer' %>
 
     <%= render 'shared/dialog' %>

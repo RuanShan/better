@@ -1,10 +1,11 @@
+<% user = current_user %>
 <form class="two_cols_form">
         <ul>
-          <li><span class="shortt">名字：</span><input type="text" value="某某" class="lo" id="name"></li>
-          <li><span class="shortt">姓氏：</span><input type="text" class="lo" id="xing"></li>
-          <li><span>电子邮箱：</span><input type="text" class="lo" id="email"></li>
-          <li><span>您的电话：</span><input type="text" class="lo" id="phone"></li>
-          <li><span>QQ/号码：</span><input type="text" class="lo" id="qq"></li>
+          <li><span class="shortt">名字：</span><input type="text" value="<%=user.first_name %>" class="lo" id="name"></li>
+          <li><span class="shortt">姓氏：</span><input type="text" value="<%=user.last_name %>"class="lo" id="xing"></li>
+          <li><span>电子邮箱：</span><input type="text" value="<%=user.email %>" class="lo" id="email"></li>
+          <li><span>您的电话：</span><input type="text" value="<%=user.phone %>" class="lo" id="phone"></li>
+          <li><span>QQ/号码：</span><input type="text" value="<%=user.qq %>" class="lo" id="qq"></li>
           <li><span>身份正号：</span><input type="text" class="lo" id="card"></li>
           <li><span class="select">出生日期：
           </span>
