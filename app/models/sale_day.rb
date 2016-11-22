@@ -3,7 +3,7 @@ class SaleDay < ApplicationRecord
   extend BetterDateScope
   better_date_scope effective_on: [:today]
 
-  belongs_to :broker
+  belongs_to :seller, class_name: "User"
 
   def valuable_rate
      valuable_member_count == 0 ? 0 : ( valuable_member_count/ member_count.to_f ).round(2)

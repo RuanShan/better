@@ -13,25 +13,24 @@ class Broker < User
   has_many :user_banks, foreign_key: :user_id
   accepts_nested_attributes_for :user_banks
 
-  # 代理的下级成员
+  # 代理的下级会员
   has_many :members, class_name: 'User'
-  has_many :user_days, through: :members
-
-  has_many :user_months, through: :members
+  has_many :member_days, through: :members, source: :user_days
+  has_many :member_months, through: :members, source: :user_months
   #
   has_many :members_registed_today, ->{ today }, class_name: 'User'
 
   # 代理的日统计
-  has_many :sale_days, foreign_key: :saler_id
-  has_one  :sale_today, ->{ today }, foreign_key: :saler_id, class_name: 'SaleDay'
+  #has_many :sale_days, foreign_key: :seller_id
+  #has_one  :sale_today, ->{ today }, foreign_key: :seller_id, class_name: 'SaleDay'
+  # 代理的月统计
+  #has_many :sale_months, foreign_key: :seller_id
+  #has_one  :sale_cmonth, ->{ current_month }, foreign_key: :seller_id, class_name: 'SaleMonth'
 
-  has_many :sale_months, foreign_key: :saler_id
-  has_one  :broker_cmonth, ->{ current_month }, foreign_key: :saler_id, class_name: 'SaleMonth'
-  
-  has_many :user_cmonths, ->{ current_month }, class_name: 'UserMonth'
-  has_many :user_todays, ->{ today }, class_name: 'UserDay'
+  has_many :member_cmonths, ->{ current_month }, class_name: 'UserMonth'
+  has_many :member_todays, ->{ today }, class_name: 'UserDay'
 
-  delegate :energetic_member_count, :clink_visits, :member_count, to: :broker_cmonth, allow_nil: true
+  delegate :energetic_member_count, :clink_visits, :member_count, to: :sale_cmonth, allow_nil: true
 
   alias_attribute :nickname, :real_name
 

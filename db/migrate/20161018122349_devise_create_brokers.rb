@@ -1,7 +1,7 @@
 class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
   def change
     create_table :sale_days do |t|
-      t.references :saler, polymorphic: true
+      t.references :seller, polymorphic: true
       t.date :effective_on
       t.integer :clink_visits, default: 0, null: false  #客户推广链接点击数
       t.integer :blink_visits, default: 0, null: false  #下级代理推广链接点击数
@@ -15,7 +15,7 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
 
     #每一天结束时计划任务更新
     create_table :sale_months do |t|
-      t.references :saler, polymorphic: true
+      t.references :seller, polymorphic: true
       t.date :effective_on
       t.integer :clink_visits, default: 0, null: false    #客户推广链接点击数
       t.integer :blink_visits, default: 0, null: false    #下级代理推广链接点击数

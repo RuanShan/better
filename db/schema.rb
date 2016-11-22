@@ -167,8 +167,8 @@ ActiveRecord::Schema.define(version: 20161120070500) do
   end
 
   create_table "sale_days", force: :cascade do |t|
-    t.string   "saler_type"
-    t.integer  "saler_id"
+    t.string   "seller_type"
+    t.integer  "seller_id"
     t.date     "effective_on"
     t.integer  "clink_visits",           default: 0, null: false
     t.integer  "blink_visits",           default: 0, null: false
@@ -177,13 +177,13 @@ ActiveRecord::Schema.define(version: 20161120070500) do
     t.integer  "energetic_member_count", default: 0, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.index ["saler_id", "effective_on"], name: "index_sale_days_on_saler_id_and_effective_on"
-    t.index ["saler_type", "saler_id"], name: "index_sale_days_on_saler_type_and_saler_id"
+    t.index ["seller_type", "seller_id"], name: "index_sale_days_on_seller_type_and_seller_id"
+    t.index [nil, "effective_on"], name: "index_sale_days_on_saler_id_and_effective_on"
   end
 
   create_table "sale_months", force: :cascade do |t|
-    t.string   "saler_type"
-    t.integer  "saler_id"
+    t.string   "seller_type"
+    t.integer  "seller_id"
     t.date     "effective_on"
     t.integer  "clink_visits",           default: 0, null: false
     t.integer  "blink_visits",           default: 0, null: false
@@ -192,8 +192,8 @@ ActiveRecord::Schema.define(version: 20161120070500) do
     t.integer  "energetic_member_count", default: 0, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.index ["saler_id", "effective_on"], name: "index_sale_months_on_saler_id_and_effective_on"
-    t.index ["saler_type", "saler_id"], name: "index_sale_months_on_saler_type_and_saler_id"
+    t.index ["seller_type", "seller_id"], name: "index_sale_months_on_seller_type_and_seller_id"
+    t.index [nil, "effective_on"], name: "index_sale_months_on_saler_id_and_effective_on"
   end
 
   create_table "settings", force: :cascade do |t|

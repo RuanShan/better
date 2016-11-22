@@ -11,8 +11,8 @@ module Summary
           }
         else
           children_brokers.map{|children_broker|
-            user_days = children_broker.user_days.where( "effective_on>=? and effective_on<=? ", from_date, to_date )
-            SaleDayProfit.new( children_broker, user_days)
+            member_days = children_broker.member_days.where( "effective_on>=? and effective_on<=? ", from_date, to_date )
+            SaleDayProfit.new( children_broker, member_days)
           }
         end
 

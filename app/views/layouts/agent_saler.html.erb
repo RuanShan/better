@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale.to_s %>">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Better" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Better" %>">
+    <%= stylesheet_link_tag 'agent', media: 'all' %>
+    <%= javascript_include_tag 'agent' %>
+    <%= favicon_link_tag %>
+    <%= csrf_meta_tags %>
+    <% # This line ensures javascript code can access the current locale from Rails %>
+		<script type="text/javascript">var tkh_locale = '<%= I18n.locale.to_s %>';</script>
+  </head>
+  <body>
+    <%= render 'agent/shared/header' %>
+    <div class="dailibody">
+       <%= render 'shared/flash_messages' %>
+       <div class="dailizhongxin">
+         <div class="dailileft">
+           <%= render 'agent/shared/broker_sidebar' if current_broker %>
+           <%= render 'agent/shared/user_sidebar' if current_user %>
+         </div>
+         <div class="dailiright">
+           <%= yield %>
+         </div>
+       </div>
+    </div>
+    <%= render 'agent/shared/footer' %>
+    <%= render 'shared/dialog' %>
+  </body>
+</html>
