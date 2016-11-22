@@ -182,7 +182,7 @@ width: 310px;
 }
 .sign_box .in08 {width:218px; height:30px; padding-left:12px; font-size:13px; line-height:30px; float:left; margin-bottom:10px; margin-left:22px;}
 .sign_box .btn01 {width:100px; height:30px; text-align:center; font-size:13px; line-height:28px; color:#fff; background:#2785f0; float:left; border-radius:2px; transition: all .5s;}
-.sign_box .btn01:hover{ background:#69c6e1;}
+.sign_box .btn01:hover{ background-color:#69c6e1;}
 .sign_box .cho {height:30px; display:block; margin-bottom:10px; float:left; margin-left:15px; color:#fff; line-height:30px;}
 .sign_box .ch {float:left; margin-top:10px; margin-right:8px;}
 .sign_box span {display:block; line-height:30px; float:left; color:#fff; margin-left:15px; margin-right:10px;}
