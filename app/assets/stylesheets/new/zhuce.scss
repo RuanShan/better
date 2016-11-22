@@ -209,7 +209,7 @@ width: 310px;
 .box3 {width:1160px; margin:40px auto 0; height:400px; background:#1a1a1a;}
 .box3 ul {width:870px; height:400px; float:left;}
 .box3 ul li {width:290px; float:left; height:400px; text-align:center; overflow-y:hidden;}
-.box3 .mr {background:url("new/mrjp-bg01.jpg") no-repeat center;  transition: all .5s; }
+.box3 .mr {background:image_url("new/mrjp-bg01.jpg") no-repeat center;  transition: all .5s; }
 .box3 .mr img {margin-top:90px; margin-bottom:27px;  transition: all .5s; }
 .box3 .mr .line {width:17px; height:1px; margin:0 auto; background:#fff;  transition: all .8s; }
 .box3 .mr h4 {font-size:30px; color:#ffd770; line-height:70px; letter-spacing:2px; font-weight:500;  transition: all .5s; }
@@ -231,7 +231,7 @@ width: 310px;
 .box3 .mr:hover p .btn05 {width:170px; height:30px; border:1px solid #44899d; color:#44899d; text-align:center; line-height:28px; font-size:14px; background:none; transition: all .5s;}
 .box3 .mr:hover p .btn05:hover {background:#44899d; color:#fff;}
 
-.box3 .suc {background:url("new/Success-bg01.jpg") no-repeat center;  transition: all .5s; }
+.box3 .suc {background:image_url("new/Success-bg01.jpg") no-repeat center;  transition: all .5s; }
 .box3 .suc img {margin-top:90px; margin-bottom:27px;  transition: all .5s; }
 .box3 .suc .line {width:17px; height:1px; margin:0 auto; background:#fff;  transition: all .8s; }
 .box3 .suc h4 {font-size:30px; color:#ffd770; line-height:70px; letter-spacing:2px; font-weight:500;  transition: all .5s; }
