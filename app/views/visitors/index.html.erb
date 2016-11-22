@@ -114,9 +114,12 @@
       </div>
       <div style="text-align:left;clear:both"><br></div>
     </div>
-    <div class="bodyernei_zhong">
-      <%=render :partial=>"/devise/registrations/sign_up"%>
-    </div>
+    <%unless current_user%>
+      <%= render 'shared/flash_messages' %>
+      <div id="sign_up_block" class="bodyernei_zhong" style="height:300px;">
+        <%=render :partial=>"/devise/registrations/sign_up"%>
+      </div>
+    <%end%>
     <div class="bodyernei_jiaoyi">
     <div class="box2">
     <div class="simulation">

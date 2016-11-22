@@ -25,9 +25,13 @@ class ApplicationController < ActionController::Base
     end
     if params["user"].present?
       sign_up_keys << :birthday
-      sign_up_keys << :broker_id if session["broker_number"].present? || params["user"]["broker_number"]
+      if params["user"] && params["affiliate"] == "1"
+        broker_number = params["user"]["broker_number"]
+        broker = Broker.find_by_number(broker_number)
+      end
+      sign_up_keys << :broker_id if session["broker_number"].present? || broker
       sign_up_keys << :parent_id if session["inviter_number"].present?
-      params["user"].delete("broker_number") if params["user"]["broker_number"].present?
+      params["user"].delete("broker_number")
     end
     devise_parameter_sanitizer.permit(:sign_up, keys: sign_up_keys)
     #devise_parameter_sanitizer.permit(:account_update, keys: [:name])

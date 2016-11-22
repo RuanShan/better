@@ -140,9 +140,8 @@ class User < ApplicationRecord
     end
   end
 
-  def bind_name(send_code, name_options, code_options)
-    @binding_name = true
-    self.assign_attributes(name_options)
+  def save_with_validate_code(send_code, attr_options, code_options)
+    self.assign_attributes(attr_options)
 
     if send_code == 1
       code=123456
@@ -169,13 +168,15 @@ class User < ApplicationRecord
     else
       validate_my_code(code_options)
       if code_options["validate_phone"] == phone
-        if id_type == "id_card"
-          error_code, result = Juhe::IdCard.search(id_number, real_name)
-          if error_code.to_i == 0
-            match = result["res"].to_i == 1 ? true : false
-            errors.add(:first_name, "真实姓名和身份证不匹配，请重新输入") unless match
-          else
-            errors.add(:first_name, "验证失败 : #{result}")
+        if @binding_name == true
+          if id_type == "id_card"
+            error_code, result = Juhe::IdCard.search(id_number, real_name)
+            if error_code.to_i == 0
+              match = result["res"].to_i == 1 ? true : false
+              errors.add(:first_name, "真实姓名和身份证不匹配，请重新输入") unless match
+            else
+              errors.add(:first_name, "验证失败 : #{result}")
+            end
           end
         end
         self.save if self.errors.empty?
@@ -183,6 +184,11 @@ class User < ApplicationRecord
         errors.add(:phone, "必须使用发送验证码的电话号码")
       end
     end
+  end
+
+  def bind_name(send_code, name_options, code_options)
+    @binding_name = true
+    save_with_validate_code(send_code, attr_options, code_options)
   end
 
   def bind_bank(bank_options)
