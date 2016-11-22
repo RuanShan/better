@@ -11,13 +11,13 @@ module Summary
           }
         elsif type == "profit"
           children_brokers.map{|children_broker|
-            user_months = children_broker.user_months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date )
-            SaleMonthProfit.new( children_broker, user_months)
+            member_months = children_broker.member_months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date )
+            SaleMonthProfit.new( children_broker, member_months)
           }
         else
           children_brokers.map{|children_broker|
-            user_months = children_broker.user_months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date )
-            SaleMonthBalance.new( children_broker, user_months)
+            member_months = children_broker.member_months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date )
+            SaleMonthBalance.new( children_broker, member_months)
           }
         end
 

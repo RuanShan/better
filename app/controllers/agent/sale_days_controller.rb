@@ -1,7 +1,7 @@
 module Agent
   class SaleDaysController < BaseController
     layout "agent_broker"
-    before_action :authenticate_broker!
+    before_action :authenticate_saler!
     before_action :set_sale_day, only: [:show, :edit, :update, :destroy]
     before_action :set_children, only: [:children, :children_profit]
 
@@ -10,7 +10,7 @@ module Agent
     # 日盈利表
     def index
       @start_date, @end_date, @dates = get_paginated_dates
-      @sale_days = current_broker.sale_days.where( effective_on: @dates ).order( effective_on: :desc )
+      @sale_days = current_saler.sale_days.where( effective_on: @dates ).order( effective_on: :desc )
       respond_to do |format|
         format.html
         format.xls do
@@ -23,9 +23,9 @@ module Agent
     def profit
       #fields = "effective_on, count(*) as group_count, sum(deposit_amount) as deposit_amount,sum(drawing_amount) as drawing_amount,sum(bid_amount) as bid_amount,sum(bonus) as bonus"
       @start_date, @end_date, @dates = get_paginated_dates
-      user_days = current_broker.user_days.where(effective_on: @dates )
-      @daily_profits = Summary::BrokerDailyProfitFactory.create( user_days )
-      #@grouped_user_days = current_broker.user_days.select( fields ).where(effective_on: @dates ).group(:broker_id, :effective_on)
+      member_days = current_saler.member_days.where(effective_on: @dates )
+      @daily_profits = Summary::BrokerDailyProfitFactory.create( member_days )
+
       respond_to do |format|
         format.html
         format.xls do

@@ -33,8 +33,21 @@ class User < ApplicationRecord
   has_one  :user_cmonth, ->{ current_month }, class_name: 'UserMonth'
   has_one  :user_life
 
-  has_many :sale_days, class_name: 'SaleDay'
-  has_one  :sale_today, ->{ today }, class_name: 'SaleDay'
+  # 销售的日统计
+  has_many :sale_days, foreign_key: :seller_id, class_name: 'SaleDay'
+  has_one  :sale_today, ->{ today }, foreign_key: :seller_id, class_name: 'SaleDay'
+
+  # 销售的月统计
+  has_many :sale_months, foreign_key: :seller_id
+  has_one  :sale_cmonth, ->{ current_month }, foreign_key: :seller_id, class_name: 'SaleMonth'
+
+  delegate :energetic_member_count, :clink_visits, :member_count, to: :sale_cmonth, allow_nil: true
+
+  # 對於一般用戶，下级会员 就是 children
+  has_many :child_days, through: :children, source: :user_days
+  has_many :child_months, through: :children, source: :user_months
+  has_many :child_todays, ->{ today }, through: :children, source: :user_days
+  has_many :child_cmonths, ->{ current_month },through: :children, source: :user_months
 
   enum role: [:user, :vip ]
   enum gender: [:secret, :male, :female ]
@@ -49,7 +62,7 @@ class User < ApplicationRecord
   has_attached_file :id_back, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :avatar, :id_front, :id_back, content_type: /\Aimage\/.*\z/
 
-  # it it for filter
+  # it is for filter
   scope :unlocked, ->{ where( locked_at: nil )}
   scope :locked, ->{ where.not( locked_at: nil )}
 

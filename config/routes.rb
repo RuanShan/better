@@ -48,6 +48,8 @@ Rails.application.routes.draw do
     resources :broker do
       match 'change_password', via: [:get, :patch]
     end
+    resources :user, only: [:index]
+
     resources :deposits
     get '/future', to: 'welcome#future'
     get '/product', to: 'welcome#product'

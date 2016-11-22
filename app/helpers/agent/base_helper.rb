@@ -13,12 +13,12 @@ module Agent::BaseHelper
   end
 
   def broker_link(broker)
-    "#{request.protocol}#{request.host_with_port}#{agent_root_path}#{broker.number}"
+    "#{request.protocol}#{request.host_with_port}#{agent_root_path}/#{broker.number}"
   end
-
 
   def member_level_select(selected_level="1")
     options=[["第一级","1"],["第二级","2"],["第三级","3"],["第四级","4"],["第五级","5"],["第六级","6"]]
     select_tag "member_level", options_for_select(options, selected_level), class:"form-control"
   end
+  
 end
