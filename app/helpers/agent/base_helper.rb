@@ -9,11 +9,11 @@ module Agent::BaseHelper
   end
 
   def member_link(broker)
-    "http://localhost:3000"+root_path+"#{broker.number}"
+    "#{request.protocol}#{request.host_with_port}#{root_path}#{broker.number}"
   end
 
   def broker_link(broker)
-    "http://localhost:3000"+agent_root_path+"/#{broker.number}"
+    "#{request.protocol}#{request.host_with_port}#{agent_root_path}#{broker.number}"
   end
 
 
