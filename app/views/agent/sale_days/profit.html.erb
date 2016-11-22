@@ -1,0 +1,43 @@
+<div class="dailiright_top">
+  <%=image_tag "new/dailiimg/biaoge_21.gif", class:"biaoimg" %>
+  <div class="biaotou">
+    <h1>日盈利表</h1>
+    <p>显示每日下线会员所创造的盈利</p>
+  </div>
+</div>
+<div class="dailiright_down">
+  <%= render partial: "agent/shared/date_filter_and_export_excel", locals: {thispath: profit_agent_sale_days_path} %>
+
+  <table class="biaoge">
+    <thead>
+      <tr>
+        <th>日期</th>
+        <th>活跃人数</th>
+        <th>存款(人数)</th>
+        <th>提款(人数)</th>
+        <th>投注</th>
+        <th>输赢</th>
+        <th>红利</th>
+        <th>盈利</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @dates.each do |date| daily_profit  = @daily_profits.select{|day| day.effective_on == date}.first || Summary::BrokerDailyProfit.new( date ) %>
+        <tr>
+          <td><%= daily_profit.effective_on %></td>
+          <td><%= 0 %></td>
+          <td><%= daily_profit.display_deposit_amount %>(<%= daily_profit.deposit_member_count %>)</td>
+          <td><%= daily_profit.display_drawing_amount %>(<%= daily_profit.drawing_member_count %>)</td>
+          <td><%= daily_profit.display_bid_amount %></td>
+          <td><%= daily_profit.display_net %></td>
+          <td><%= daily_profit.display_bonus %></td>
+          <td><%= daily_profit.display_profit %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+
+  <%= will_paginate @dates %>
+</div>

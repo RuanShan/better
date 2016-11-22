@@ -1,0 +1,35 @@
+<div class="dailiright_top">
+  <%=image_tag "new/dailiimg/biaoge_21.gif", class:"biaoimg" %>
+  <div class="biaotou">
+    <h1>月推广效果表</h1>
+    <p>显示您各月份的推广注册效果</p>
+  </div>
+</div>
+<div class="dailiright_down">
+  <%= render partial: "agent/shared/date_filter_and_export_excel", locals: {thispath: agent_sale_months_path} %>
+  <table class="biaoge">
+    <thead>
+      <tr>
+        <th>月份</th>
+        <th>点击数</th>
+        <th>注册数</th>
+        <th>新注册并存款</th>
+        <th>注册存款转化率</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @dates.each do |date| sale_month  = @sale_months.select{|month| month.effective_on == date}.first || SaleMonth.new( effective_on: date ) %>
+        <tr>
+          <td><%= sale_month.effective_on.to_s(:year_month) %></td>
+          <td><%= sale_month.clink_visits %></td>
+          <td><%= sale_month.member_count %></td>
+          <td><%= sale_month.valuable_member_count %></td>
+          <td><%= sale_month.display_valuable_rate %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @dates %>
+</div>

@@ -1,0 +1,1 @@
+json.partial! "sale_days/sale_day", sale_day: @sale_day

@@ -42,34 +42,6 @@ ActiveRecord::Schema.define(version: 20161120070500) do
     t.index ["user_id"], name: "index_bids_on_user_id"
   end
 
-  create_table "broker_days", force: :cascade do |t|
-    t.integer  "broker_id"
-    t.date     "effective_on"
-    t.integer  "clink_visits",           default: 0, null: false
-    t.integer  "blink_visits",           default: 0, null: false
-    t.integer  "member_count",           default: 0, null: false
-    t.integer  "valuable_member_count",  default: 0, null: false
-    t.integer  "energetic_member_count", default: 0, null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.index ["broker_id", "effective_on"], name: "index_broker_days_on_broker_id_and_effective_on"
-    t.index ["broker_id"], name: "index_broker_days_on_broker_id"
-  end
-
-  create_table "broker_months", force: :cascade do |t|
-    t.integer  "broker_id"
-    t.date     "effective_on"
-    t.integer  "clink_visits",           default: 0, null: false
-    t.integer  "blink_visits",           default: 0, null: false
-    t.integer  "member_count",           default: 0, null: false
-    t.integer  "valuable_member_count",  default: 0, null: false
-    t.integer  "energetic_member_count", default: 0, null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.index ["broker_id", "effective_on"], name: "index_broker_months_on_broker_id_and_effective_on"
-    t.index ["broker_id"], name: "index_broker_months_on_broker_id"
-  end
-
   create_table "deposits", force: :cascade do |t|
     t.integer  "payment_method_id"
     t.integer  "user_id"
@@ -192,6 +164,36 @@ ActiveRecord::Schema.define(version: 20161120070500) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.index ["name"], name: "index_promotions_on_name", unique: true
+  end
+
+  create_table "sale_days", force: :cascade do |t|
+    t.string   "saler_type"
+    t.integer  "saler_id"
+    t.date     "effective_on"
+    t.integer  "clink_visits",           default: 0, null: false
+    t.integer  "blink_visits",           default: 0, null: false
+    t.integer  "member_count",           default: 0, null: false
+    t.integer  "valuable_member_count",  default: 0, null: false
+    t.integer  "energetic_member_count", default: 0, null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["saler_id", "effective_on"], name: "index_sale_days_on_saler_id_and_effective_on"
+    t.index ["saler_type", "saler_id"], name: "index_sale_days_on_saler_type_and_saler_id"
+  end
+
+  create_table "sale_months", force: :cascade do |t|
+    t.string   "saler_type"
+    t.integer  "saler_id"
+    t.date     "effective_on"
+    t.integer  "clink_visits",           default: 0, null: false
+    t.integer  "blink_visits",           default: 0, null: false
+    t.integer  "member_count",           default: 0, null: false
+    t.integer  "valuable_member_count",  default: 0, null: false
+    t.integer  "energetic_member_count", default: 0, null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["saler_id", "effective_on"], name: "index_sale_months_on_saler_id_and_effective_on"
+    t.index ["saler_type", "saler_id"], name: "index_sale_months_on_saler_type_and_saler_id"
   end
 
   create_table "settings", force: :cascade do |t|

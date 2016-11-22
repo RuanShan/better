@@ -1,0 +1,41 @@
+<div class="dailiright_top">
+  <%=image_tag "new/dailiimg/biaoge_21.gif", class:"biaoimg" %>
+  <div class="biaotou">
+    <h1>月结余表</h1>
+    <p>显示各月份盈利扣除费用后的结余</p>
+  </div>
+</div>
+<div class="dailiright_down">
+  <%= render partial: "agent/shared/date_filter_and_export_excel", locals: {thispath: balance_agent_sale_months_path} %>
+  <table class="biaoge">
+    <thead>
+      <tr>
+        <th>月份/日期</th>
+        <th>活跃人数</th>
+        <th>盈利</th>
+        <th>银行手续费</th>
+        <th>平台手续费</th>
+        <th>净盈利</th>
+        <th>上月负结余</th>
+        <th>本月结余</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @dates.each do |date| broker_balance  = @monthly_balances.select{|balance| balance.effective_on == date}.first || Summary::SaleMonthlyBalance.new( date ) %>
+        <tr>
+          <td><%= broker_balance.effective_on.to_s(:year_month) %></td>
+          <td><%= 0 %></td>
+          <td><%= broker_balance.display_profit %></td>
+          <td><%= broker_balance.display_bank_charges %></td>
+          <td><%= broker_balance.display_platform_charges %></td>
+          <td><%= broker_balance.display_net_profit %></td>
+          <td><%= broker_balance.display_last_month_negative_balance %></td>
+          <td><%= broker_balance.display_this_month_balance %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @dates %>
+</div>

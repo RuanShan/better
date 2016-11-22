@@ -1,0 +1,17 @@
+<%= simple_form_for(@sale_day) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :broker %>
+    <%= f.input :effective_on %>
+    <%= f.input :clink_visits %>
+    <%= f.input :blink_visits %>
+    <%= f.input :user_count %>
+    <%= f.input :valuable_member_count %>
+    <%= f.input :engergetic_member_count %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

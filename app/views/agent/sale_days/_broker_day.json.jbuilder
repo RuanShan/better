@@ -1,0 +1,2 @@
+json.extract! sale_day, :id, :broker_id, :effective_on, :clink_visits, :blink_visits, :user_count, :valuable_member_count, :engergetic_member_count, :created_at, :updated_at
+json.url sale_day_url(sale_day, format: :json)

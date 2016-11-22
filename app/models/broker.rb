@@ -22,11 +22,12 @@ class Broker < User
   has_many :members_registed_today, ->{ today }, class_name: 'User'
 
   # 代理的日统计
-  has_many :broker_days
-  has_one  :broker_today, ->{ today }, class_name: 'BrokerDay'
+  has_many :sale_days, foreign_key: :saler_id
+  has_one  :sale_today, ->{ today }, foreign_key: :saler_id, class_name: 'SaleDay'
 
-  has_many :broker_months
-  has_one  :broker_cmonth, ->{ current_month }, class_name: 'BrokerMonth'
+  has_many :sale_months, foreign_key: :saler_id
+  has_one  :broker_cmonth, ->{ current_month }, foreign_key: :saler_id, class_name: 'SaleMonth'
+  
   has_many :user_cmonths, ->{ current_month }, class_name: 'UserMonth'
   has_many :user_todays, ->{ today }, class_name: 'UserDay'
 

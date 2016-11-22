@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :administrators      #管理员
   devise_for :brokers, controllers: {
         sessions: 'agent/sessions'
-      }
+  }
 
   # 管理
   namespace :admin do
@@ -29,12 +29,12 @@ Rails.application.routes.draw do
     get '/', to: 'welcome#index', as: :root
   end
   namespace :agent do
-    resources :broker_days do
+    resources :sale_days do
       get :profit, on: :collection
       get :children, on: :collection
       get :children_profit, on: :collection
     end
-    resources :broker_months do
+    resources :sale_months do
       get :profit, on: :collection
       get :balance, on: :collection
       get :children, on: :collection

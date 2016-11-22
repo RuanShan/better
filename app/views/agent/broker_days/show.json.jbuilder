@@ -1,1 +1,0 @@
-json.partial! "broker_days/broker_day", broker_day: @broker_day

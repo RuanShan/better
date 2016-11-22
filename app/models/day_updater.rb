@@ -1,4 +1,4 @@
-#处理 UserDay, BrokerDay 更新逻辑
+#处理 UserDay, SaleDay 更新逻辑
 class DayUpdater
   EnergeticMemberMinDeposit = 500
   EnergeticMemberMinBid = 1000
@@ -19,7 +19,7 @@ class DayUpdater
 
   def process!
     update_user_day
-    update_broker_day
+    update_sale_day
   end
 
   def update_user_day
@@ -61,9 +61,9 @@ class DayUpdater
     end
   end
 
-  def update_broker_day
+  def update_sale_day
     return unless broker
-    day = broker.broker_today || broker.build_broker_today
+    day = broker.sale_today || broker.build_sale_today
     # 今日注册用户且存款， 更新代理今日统计
     if is_first_deposit_today && user.created_at.today?
       day.valuable_member_count += 1

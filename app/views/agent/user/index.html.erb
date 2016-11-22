@@ -1,0 +1,70 @@
+<div class="dailiright_top">
+  <%=image_tag "new/dailiimg/shushu_03.gif", class:"biaoimg" %>
+  <div class="biaotou">
+    <h1>数据概况</h1>
+    <p>显示您当月业绩达成状况</p>
+  </div>
+</div>
+<div class="dailiright_down">
+
+  <table class="shujubiao">
+    <tr>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_03.gif" %>
+        <h5><%=@broker.members.size%></h5><h6>总人数</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_05.gif" %>
+        <h5><%=@broker.energetic_member_count || 0%></h5><h6>活跃人数</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_07.gif" %>
+        <h5><%=@broker.clink_visits || 0%></h5><h6>点击数</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_09.gif" %>
+        <h5><%=@user_month.display_drawing_amount%></h5><h6>提款额</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_11.gif" %>
+        <h5><%=@user_month.drawing_member_count%></h5><h6>提款人数</h6>
+      </td>
+    </tr>
+    <tr>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_22.gif" %>
+        <h5><%=@user_month.display_bid_amount%></h5><h6>平台投注</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_18.gif" %>
+        <h5><%=@user_month.display_net%></h5><h6>平台输赢</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_19.gif" %>
+        <h5><%=@user_month.display_bonus%></h5><h6>红利</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_20.gif" %>
+        <h5><%=@broker.member_count || 0%></h5><h6>注册数</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_21.gif" %>
+        <h5><%=@user_day.display_profit %></h5><h6>日盈利</h6>
+      </td>
+    </tr>
+  </table>
+
+  <p class="dailiwenzi">链接都具有相同的推广功能，您可以选择任意一个进行推广。当某些浏览器或地区对某些特定链接产生阻碍的时候，您可以更换其他的链接推广。我们会根据针对市场的反馈不定时更新链接，以便方便您的推广。</p>
+  <div class="diyi">
+    <h1>引导客户去注册</h1>
+    <h2><%=member_link(@broker) %></h2>
+    <h3><%=link_to "复制", nil, href:"javascript:void(0);", onclick: "copyToClipboard('#member_link');" %></h3>
+    <h4><a href="<%=member_link(@broker)%>" target="_blank"><xmp><a href="<%=member_link(@broker)%>" target="_blank"><%=member_link(@broker) %></a></xmp></a></h4>
+  </div>
+  <div class="diyi">
+    <h1>下级代理注册连接</h1>
+    <h2><%=broker_link(@broker) %></h2>
+    <h3><%=link_to "复制", nil, href:"javascript:void(0);", onclick: "copyToClipboard('#broker_link');" %></h3>
+    <h4><a href="<%=broker_link(@broker)%>" target="_blank"><xmp><a href="<%=broker_link(@broker)%>" target="_blank"><%=broker_link(@broker) %></a></xmp></a></h4>
+  </div>
+</div>

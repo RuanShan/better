@@ -17,12 +17,12 @@ RSpec.describe DayUpdater, type: :model do
   end
 
   it "broker day after deposit 100 " do
-    expect { wallet.save!}.to change { BrokerDay.count }.by( 1 )
+    expect { wallet.save!}.to change { SaleDay.count }.by( 1 )
   end
 
   it "broker energetic_member_count +1 after deposit 100 " do
     saved_wallet =  create( :wallet, amount: 100, user: user )
-    day = saved_wallet.user.broker.broker_today
+    day = saved_wallet.user.broker.sale_today
 
     expect( day.valuable_member_count).to eq( 1 )
   end

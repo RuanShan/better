@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :broker_month do
+  factory :sale_month do
     broker nil
     effective_on "2016-11-02"
     clink_visits 10

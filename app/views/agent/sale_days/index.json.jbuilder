@@ -1,0 +1,1 @@
+json.array! @sale_days, partial: 'sale_days/sale_day', as: :sale_day

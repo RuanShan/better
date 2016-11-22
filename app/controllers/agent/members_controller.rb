@@ -1,6 +1,6 @@
 module Agent
   class MembersController < BaseController
-    layout "broker"
+    layout "agent_broker"
     before_action :authenticate_broker!
 
     def index

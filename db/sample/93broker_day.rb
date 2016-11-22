@@ -10,7 +10,7 @@ puts "create broker days for broker:#{@broker.id}-#{@broker.name}"
     valuable_member_count = rand(0..member_count)
     energetic_member_count = rand(0..valuable_member_count)
     puts "create broker days effective_on:#{effective_on} "
-    FactoryGirl.create(:broker_day, effective_on: effective_on, clink_visits: clink_visits, blink_visits: blink_visits,
+    FactoryGirl.create(:sale_day, effective_on: effective_on, clink_visits: clink_visits, blink_visits: blink_visits,
       member_count: member_count, valuable_member_count: valuable_member_count, energetic_member_count: energetic_member_count, broker: @broker)
   end
 end
@@ -26,7 +26,7 @@ end
       valuable_member_count = rand(0..member_count)
       energetic_member_count = rand(0..valuable_member_count)
       puts "create broker days effective_on:#{effective_on} "
-      FactoryGirl.create(:broker_day, effective_on: effective_on, clink_visits: clink_visits, blink_visits: blink_visits,
+      FactoryGirl.create(:sale_day, effective_on: effective_on, clink_visits: clink_visits, blink_visits: blink_visits,
         member_count: member_count, valuable_member_count: valuable_member_count, energetic_member_count: energetic_member_count, broker: broker)
     end
   end

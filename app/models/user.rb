@@ -33,6 +33,9 @@ class User < ApplicationRecord
   has_one  :user_cmonth, ->{ current_month }, class_name: 'UserMonth'
   has_one  :user_life
 
+  has_many :sale_days, class_name: 'SaleDay'
+  has_one  :sale_today, ->{ today }, class_name: 'SaleDay'
+
   enum role: [:user, :vip ]
   enum gender: [:secret, :male, :female ]
   enum id_type: [:id_card, :passport]
@@ -52,7 +55,7 @@ class User < ApplicationRecord
 
 
   after_initialize :set_default_role, :if => :new_record?
-  after_create :adjust_broker_day, if: :broker
+  after_create :adjust_sale_day, if: :broker
   after_create :add_user_life
   alias_attribute :name, :nickname
 
@@ -356,8 +359,8 @@ class User < ApplicationRecord
     end
   end
 
-  def adjust_broker_day
-    day = broker.broker_today || broker.build_broker_today
+  def adjust_sale_day
+    day = broker.sale_today || broker.build_sale_today
     day.member_count+=1
     day.save!
   end

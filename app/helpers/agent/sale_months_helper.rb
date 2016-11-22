@@ -1,0 +1,2 @@
+module Agent::SaleMonthsHelper
+end

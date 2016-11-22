@@ -1,0 +1,41 @@
+<div class="dailiright_top">
+  <%=image_tag "new/dailiimg/biaoge_21.gif", class:"biaoimg" %>
+  <div class="biaotou">
+    <h1>日推广效果表</h1>
+    <p>显示各代理的日度推广注册效果</p>
+  </div>
+</div>
+<div class="dailiright_down">
+
+  <%= render partial: "agent/shared/subbroker_filter_and_export_excel", locals: {thispath: children_agent_sale_days_path} %>
+
+  <table class="biaoge">
+    <thead>
+      <tr>
+        <th>会员</th>
+        <th>注册时间</th>
+        <th>状态</th>
+        <th>推广链接点击数</th>
+        <th>注册数</th>
+        <th>新注册并存款</th>
+        <th>注册存款转化率</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @sale_days.each do |sale_day|%>
+        <tr>
+          <td><%= sale_day.broker_name %></td>
+          <td><%= sale_day.sign_up_time %></td>
+          <td><%= t sale_day.state.to_sym %></td>
+          <td><%= sale_day.clink_visits %></td>
+          <td><%= sale_day.member_count %></td>
+          <td><%= sale_day.valuable_member_count %></td>
+          <td><%= sale_day.display_valuable_rate %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @children_brokers  if @children_brokers.respond_to? :total_pages%>
+</div>
