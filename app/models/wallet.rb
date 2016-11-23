@@ -20,8 +20,8 @@ class Wallet < ApplicationRecord
   after_create :adjust_days
 
   def self.search_bonuses(search_params)
-    self.bonuses.where("created_at>? and created_at<?",(search_params["start_date"]+" 00:00:00").to_datetime,
-    (search_params["end_date"]+" 23:59:59").to_datetime).order("created_at desc").all
+    self.bonuses.where("created_at>? and created_at<?",(search_params["start_date"]+" 00:00:00").to_time(:utc),
+    (search_params["end_date"]+" 23:59:59").to_time(:utc)).order("created_at desc").all
   end
 
   private

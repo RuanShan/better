@@ -93,7 +93,7 @@ module My
       end
 
       def search_params
-        params.permit(:start_date, :end_date)
+        params.permit(:start_date, :end_date, :state)
       end
   end
 end

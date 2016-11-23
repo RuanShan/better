@@ -359,13 +359,14 @@ ActiveRecord::Schema.define(version: 20161120070500) do
     t.string   "qq",                       default: "", null: false
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "birthday"
+    t.date     "birthday"
     t.integer  "id_type",                  default: 0,  null: false
     t.string   "id_number"
     t.string   "country_code"
     t.string   "province"
     t.string   "city"
     t.string   "address"
+    t.string   "postcode"
     t.string   "lang"
     t.string   "website"
     t.string   "pp_question",              default: "", null: false

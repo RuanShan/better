@@ -54,7 +54,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       #real name validation
       t.string :first_name
       t.string :last_name
-      t.string :birthday
+      t.date :birthday
       t.integer :id_type, null: false, default: 0
       t.string :id_number
       #location
@@ -62,6 +62,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :province
       t.string :city
       t.string :address
+      t.string :postcode
       t.string :lang
       t.string :website
       #password protection

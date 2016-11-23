@@ -24,7 +24,7 @@ class Deposit < ApplicationRecord
   validates :amount, numericality: { greater_than_or_equal_to: 50, less_than_or_equal_to: 50000}
 
   # 缺省状态是等待处理， 即 pending: 0
-  state_machine :state, initial: :pending do
+  state_machine :state, initial: :success do
     # pending: 等待处理
     # success: 充值成功
     # failure: 充值失败
@@ -54,8 +54,8 @@ class Deposit < ApplicationRecord
   end
 
   def self.search(search_params)
-    self.where("created_at>? and created_at<? and state=?",(search_params["start_date"]+" 00:00:00").to_datetime,
-    (search_params["end_date"]+" 23:59:59").to_datetime,search_params["state"]).order("created_at desc").all
+    self.where("created_at>? and created_at<? and state=?",(search_params["start_date"]+" 00:00:00").to_time(:utc),
+    (search_params["end_date"]+" 23:59:59").to_time(:utc),search_params["state"]).order("created_at desc").all
   end
 
   #def promotion

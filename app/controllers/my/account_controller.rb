@@ -42,6 +42,16 @@ module My
       end
     end
 
+    def update_profile
+      if request.patch?
+        current_user.update_attributes(center_profile_params)
+        if current_user.errors.empty?
+          flash[:notice] = t(:profile_updated)
+        end
+        render :index
+      end
+    end
+
     def set_email
       if request.patch?
         current_user.set_email(email_params)
@@ -115,7 +125,11 @@ module My
     end
 
     def profile_params
-      params.require(:user).permit(:gender, :phone, :qq)
+      params.require(:user).permit(:first_name, :last_name, :gender, :phone, :qq)
+    end
+
+    def center_profile_params
+      params.require(:user).permit(:first_name, :last_name, :email, :phone, :qq, :id_number, :birthday, :address, :city, :province, :country_code, :postcode)
     end
 
     def pp_params
