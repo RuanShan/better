@@ -1,7 +1,7 @@
 module Agent
   class MembersController < BaseController
-    layout "agent_broker"
-    before_action :authenticate_broker!
+    layout "agent_seller"
+    before_action :authenticate_seller!
 
     def index
       @member_type = params["user_type"].present? ? params["user_type"] : "all"
@@ -11,7 +11,7 @@ module Agent
       else
         state_condition = @member_state == "normal" ? "locked_at is NULL" : "locked_at is not NULL"
       end
-      @users = current_broker.members.where(state_condition).paginate( page: params[:page] )
+      @users = current_seller.members.where(state_condition).paginate( page: params[:page] )
       respond_to do |format|
         format.html
         format.xls do
@@ -22,7 +22,7 @@ module Agent
     end
 
     def profit
-      @users = current_broker.members.includes( :user_today, :user_life).paginate( page: params[:page] )
+      @users = current_seller.members.includes( :user_today, :user_life).paginate( page: params[:page] )
       @start_date = nil
       @end_date = DateTime.current.to_date
 
