@@ -21,7 +21,6 @@ class ApplicationController < ActionController::Base
       sign_up_keys += [:province, :city, :address, :id_number, :lang, :website, :id_front, :id_back,
         user_banks_attributes:[:payment_method_id, :name, :card_number, :address, :payee, :pay_memo, :card_front, :card_back]]
       sign_up_keys << :parent_id if session["broker_number"].present?
-      logger.debug "sign_up_keys=#{sign_up_keys}"
     end
     if params["user"].present?
       sign_up_keys << :birthday
@@ -29,6 +28,7 @@ class ApplicationController < ActionController::Base
         broker_number = params["user"]["broker_number"]
         broker = Broker.find_by_number(broker_number)
       end
+      logger.debug "=================in application========broker=#{broker}"
       sign_up_keys << :broker_id if session["broker_number"].present? || broker
       sign_up_keys << :parent_id if session["inviter_number"].present?
       params["user"].delete("broker_number")
@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def config_params
-    if params["controller"]== "devise_invitable/registrations"
+    if params["controller"].split("/")[1] == "registrations"
       if params["action"] == "new"
         if params["inviter_number"].present?
           session["inviter_number"] = params["inviter_number"]

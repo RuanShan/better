@@ -177,8 +177,8 @@ ActiveRecord::Schema.define(version: 20161120070500) do
     t.integer  "energetic_member_count", default: 0, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.index ["seller_id", "effective_on"], name: "index_sale_days_on_seller_id_and_effective_on"
     t.index ["seller_type", "seller_id"], name: "index_sale_days_on_seller_type_and_seller_id"
-    t.index [nil, "effective_on"], name: "index_sale_days_on_saler_id_and_effective_on"
   end
 
   create_table "sale_months", force: :cascade do |t|
@@ -192,8 +192,8 @@ ActiveRecord::Schema.define(version: 20161120070500) do
     t.integer  "energetic_member_count", default: 0, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.index ["seller_id", "effective_on"], name: "index_sale_months_on_seller_id_and_effective_on"
     t.index ["seller_type", "seller_id"], name: "index_sale_months_on_seller_type_and_seller_id"
-    t.index [nil, "effective_on"], name: "index_sale_months_on_saler_id_and_effective_on"
   end
 
   create_table "settings", force: :cascade do |t|
