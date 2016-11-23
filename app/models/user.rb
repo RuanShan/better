@@ -379,9 +379,17 @@ class User < ApplicationRecord
   end
 
   def adjust_sale_day
-    day = broker.sale_today || broker.build_sale_today
-    day.member_count+=1
-    day.save!
+    if broker
+      day = broker.sale_today || broker.build_sale_today
+      day.member_count+=1
+      day.save!
+    end
+
+    if parent
+      day = parent.sale_today || parent.build_sale_today
+      day.member_count+=1
+      day.save!
+    end
   end
 
   def add_user_life

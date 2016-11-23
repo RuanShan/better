@@ -7,7 +7,7 @@ class DayUpdater
   attr_accessor :wallet, :user
   attr_accessor :is_first_deposit_today, :is_energetic_member
 
-  delegate :broker, to: :user
+  delegate :broker, :parent,  to: :user
   delegate :is_bonus?, to: :wallet
 
   def initialize( wallet )
@@ -62,16 +62,29 @@ class DayUpdater
   end
 
   def update_sale_day
-    return unless broker
-    day = broker.sale_today || broker.build_sale_today
-    # 今日注册用户且存款， 更新代理今日统计
-    if is_first_deposit_today && user.created_at.today?
-      day.valuable_member_count += 1
+    if broker
+      day = broker.sale_today || broker.build_sale_today
+      # 今日注册用户且存款， 更新代理今日统计
+      if is_first_deposit_today && user.created_at.today?
+        day.valuable_member_count += 1
+      end
+      if is_energetic_member
+        day.energetic_member_count += 1
+      end
+      day.save!
     end
-    if is_energetic_member
-      day.energetic_member_count += 1
+
+    if parent
+      day = parent.sale_today || parent.build_sale_today
+      # 今日注册用户且存款， 更新代理今日统计
+      if is_first_deposit_today && user.created_at.today?
+        day.valuable_member_count += 1
+      end
+      if is_energetic_member
+        day.energetic_member_count += 1
+      end
+      day.save!
     end
-    day.save!
   end
 
   def is_deposit?

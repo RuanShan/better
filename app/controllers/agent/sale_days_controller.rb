@@ -1,7 +1,7 @@
 module Agent
   class SaleDaysController < BaseController
-    layout "agent_broker"
-    before_action :authenticate_saler!
+    layout "agent_seller"
+    before_action :authenticate_seller!
     before_action :set_sale_day, only: [:show, :edit, :update, :destroy]
     before_action :set_children, only: [:children, :children_profit]
 
@@ -10,7 +10,7 @@ module Agent
     # 日盈利表
     def index
       @start_date, @end_date, @dates = get_paginated_dates
-      @sale_days = current_saler.sale_days.where( effective_on: @dates ).order( effective_on: :desc )
+      @sale_days = current_seller.sale_days.where( effective_on: @dates ).order( effective_on: :desc )
       respond_to do |format|
         format.html
         format.xls do
@@ -23,7 +23,7 @@ module Agent
     def profit
       #fields = "effective_on, count(*) as group_count, sum(deposit_amount) as deposit_amount,sum(drawing_amount) as drawing_amount,sum(bid_amount) as bid_amount,sum(bonus) as bonus"
       @start_date, @end_date, @dates = get_paginated_dates
-      member_days = current_saler.member_days.where(effective_on: @dates )
+      member_days = current_seller.member_days.where(effective_on: @dates )
       @daily_profits = Summary::BrokerDailyProfitFactory.create( member_days )
 
       respond_to do |format|
@@ -124,13 +124,18 @@ module Agent
 
       def set_children
         @page = params["page"]
+        @member_level = params["member_level"].to_i
+        @member_level = 1 if @member_level>6 || @member_level<1
         @member_state = params["member_state"] || "all"
-        if @member_state == "all"
-          state_condition = ""
-        else
-          state_condition = @member_state == "normal" ? "and locked_at is NULL" : "and locked_at is not NULL"
+        level = current_seller.depth + @member_level
+
+        q = current_seller.descendants.includes(:parent).where(depth: level)
+        if @member_state != "all"
+          q = q.unlocked if @member_state == "normal"
+          q = q.locked if @member_state == "frozen"
         end
-        @children_brokers = current_broker.filtered_children(state_condition).paginate(:page => @page)
+
+        @children_brokers = q.paginate(:page => @page)
       end
       # Never trust parameters from the scary internet, only allow the white list through.
       def sale_day_params
