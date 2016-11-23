@@ -10,7 +10,7 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
       t.integer :energetic_member_count, default: 0, null: false
       #活跃用户, 这个是累计的，表示到现在这个时间，本月达到活跃指标的人数
       t.timestamps null: false
-      t.index [:saler_id, :effective_on]
+      t.index [:seller_id, :effective_on]
     end
 
     #每一天结束时计划任务更新
@@ -23,7 +23,7 @@ class DeviseCreateBrokers < ActiveRecord::Migration[5.0]
       t.integer :valuable_member_count, default: 0, null: false #新注册并存款
       t.integer :energetic_member_count, default: 0, null: false #活跃用户
       t.timestamps null: false
-      t.index [:saler_id, :effective_on]
+      t.index [:seller_id, :effective_on]
     end
 
     #实时统计每一天
