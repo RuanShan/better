@@ -1,54 +1,94 @@
-<% user = current_user %>
-<%= simple_form_for(user, :url => update_profile_my_account_path(user), method: :patch, :html => {:role => 'form', :class=>"two_cols_form"}, defaults: {wrapper:false, input_html: {style: "display:inline;"}}) do |f| %>
-  <ul>
-    <li>
-      <span class="shortt">名字：</span>
-      <%=f.input "first_name", label: false, input_html: {class: "lo"} %>
-    </li>
-    <li>
-      <span class="shortt">姓氏：</span>
-      <%=f.input "last_name", label: false, input_html: {class: "lo"} %>
-    </li>
-    <li>
-      <span>电子邮箱：</span>
-      <input type="text" value="<%=user.email %>" class="lo" id="email">
-    </li>
-    <li>
-      <span>您的电话：</span>
-      <%=f.input "phone", label: false, input_html: {class: "lo"} %>
-    </li>
-    <li>
-      <span>QQ/号码：</span>
-      <%=f.input "qq", label: false, input_html: {class: "lo"} %>
-    </li>
-    <li>
-      <span>身份正号：</span>
-      <%=f.input "id_number", label: false, input_html: {class: "lo"} %>
-    </li>
-    <li>
-      <span class="select">出生日期：</span>
-      <%=f.input "birthday", label: false, input_html: {class: "so"} %>
-    </li>
-    <li>
-      <span>详细地址：</span>
-      <%=f.input "address", label: false, input_html: {class: "lo"} %>
-    </li>
-    <li>
-      <span class="shortt">城市：</span>
-      <%=f.input "city", label: false, input_html: {class: "lo"} %>
-    </li>
-    <li>
-      <span class="shortt">省份：</span>
-      <%=f.input "province", label: false, input_html: {class: "lo"} %>
-    </li>
-    <li>
-      <span class="shortt">国家：</span>
-      <%=f.input "country_code", label: false, input_html: {class: "lo"} %>
-    </li>
-    <li>
-      <span class="shortt">邮编：</span>
-      <%=f.input "postcode", label: false, input_html: {class: "lo"} %>
-    </li>
-  </ul>
-  <input type="submit" class="ggtj" value="提交">
-<%end%>
+<div class="dailiright_top">
+  <%=image_tag "new/dailiimg/shushu_03.gif", class:"biaoimg" %>
+  <div class="biaotou">
+    <h1>数据概况</h1>
+    <p>显示您当月业绩达成状况</p>
+  </div>
+</div>
+<div class="dailiright_down">
+
+  <table class="shujubiao">
+    <tr>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_03.gif" %>
+        <h5><%=current_user.children.size%></h5><h6>总人数</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_05.gif" %>
+        <h5><%=@user.energetic_member_count || 0%></h5><h6>活跃人数</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_07.gif" %>
+        <h5><%=@user.clink_visits || 0%></h5><h6>点击数</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_09.gif" %>
+        <h5><%=@user_month.display_drawing_amount%></h5><h6>提款额</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_11.gif" %>
+        <h5><%=@user_month.drawing_member_count%></h5><h6>提款人数</h6>
+      </td>
+    </tr>
+    <tr>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_22.gif" %>
+        <h5><%=@user_month.display_bid_amount%></h5><h6>平台投注</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_18.gif" %>
+        <h5><%=@user_month.display_net%></h5><h6>平台输赢</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_19.gif" %>
+        <h5><%=@user_month.display_bonus%></h5><h6>红利</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_20.gif" %>
+        <h5><%=@user.member_count || 0%></h5><h6>注册数</h6>
+      </td>
+      <td class="shujubiao1">
+        <%=image_tag "new/dailiimg/shujutu_21.gif" %>
+        <h5><%=@user_day.display_profit %></h5><h6>日盈利</h6>
+      </td>
+    </tr>
+  </table>
+
+  <p class="dailiwenzi">链接都具有相同的推广功能，您可以选择任意一个进行推广。当某些浏览器或地区对某些特定链接产生阻碍的时候，您可以更换其他的链接推广。我们会根据针对市场的反馈不定时更新链接，以便方便您的推广。</p>
+  <div class="diyi">
+    <h1>客户注册链接</h1>
+    <h2 id="invite_link"><%=invite_link(@user) %></h2>
+    <h3><%=link_to "复制", nil, href:"javascript:void(0);", onclick: "copyToClipboard('#invite_link');" %></h3>
+    <h4><a href="<%=invite_link(@user)%>" target="_blank"><xmp><a href="<%=invite_link(@user)%>" target="_blank"><%=invite_link(@user) %></a></xmp></a></h4>
+  </div>
+  <%= image_tag "my/better.png", id: "code_img", style: "display:none" %>
+  <div id="invite_qrcode" class="qrcode"></div>
+
+  <script type="text/javascript">
+    jQuery('#invite_qrcode').empty().qrcode({
+      text: "<%=invite_link(@user)%>",
+      minVersion: 5,
+      //error correction level: must be 'H', or we can't scan
+      ecLevel: 'H',
+      //empty space
+      quiet: 2,
+      radius: 0.5,
+      size: 150,
+      //add background, color or image
+      background: document.getElementById("code_img"),
+      //add label, ecLevel: 'H', minVersion: 5+ work, label too large may not work
+      mode: 2,
+      label: 'better',
+      fontname: 'sans',
+      fontcolor: '#FF9818',
+      //add image
+      //mode: 4,
+      //image: document.getElementById("code_img"),
+      //label or img size, position
+      mSize: 0.1,
+      mPosX: 0.5,
+      mPosY: 0.5
+    });
+  </script>
+
+</div>

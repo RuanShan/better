@@ -9,7 +9,6 @@ module My::BaseHelper
   end
 
   def invite_link(user)
-    sign_up_path = "/users/sign_up"
-    "http://localhost:3000"+sign_up_path+"?inviter_id=#{user.id}"
+    "#{request.protocol}#{request.host_with_port}#{root_path}#{user.number}"
   end
 end

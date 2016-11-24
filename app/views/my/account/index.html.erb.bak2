@@ -1,0 +1,54 @@
+<% user = current_user %>
+<%= simple_form_for(user, :url => update_profile_my_account_path(user), method: :patch, :html => {:role => 'form', :class=>"two_cols_form"}, defaults: {wrapper:false, input_html: {style: "display:inline;"}}) do |f| %>
+  <ul>
+    <li>
+      <span class="shortt">名字：</span>
+      <%=f.input "first_name", label: false, input_html: {class: "lo"} %>
+    </li>
+    <li>
+      <span class="shortt">姓氏：</span>
+      <%=f.input "last_name", label: false, input_html: {class: "lo"} %>
+    </li>
+    <li>
+      <span>电子邮箱：</span>
+      <input type="text" value="<%=user.email %>" class="lo" id="email">
+    </li>
+    <li>
+      <span>您的电话：</span>
+      <%=f.input "phone", label: false, input_html: {class: "lo"} %>
+    </li>
+    <li>
+      <span>QQ/号码：</span>
+      <%=f.input "qq", label: false, input_html: {class: "lo"} %>
+    </li>
+    <li>
+      <span>身份正号：</span>
+      <%=f.input "id_number", label: false, input_html: {class: "lo"} %>
+    </li>
+    <li>
+      <span class="select">出生日期：</span>
+      <%=f.input "birthday", label: false, input_html: {class: "so"} %>
+    </li>
+    <li>
+      <span>详细地址：</span>
+      <%=f.input "address", label: false, input_html: {class: "lo"} %>
+    </li>
+    <li>
+      <span class="shortt">城市：</span>
+      <%=f.input "city", label: false, input_html: {class: "lo"} %>
+    </li>
+    <li>
+      <span class="shortt">省份：</span>
+      <%=f.input "province", label: false, input_html: {class: "lo"} %>
+    </li>
+    <li>
+      <span class="shortt">国家：</span>
+      <%=f.input "country_code", label: false, input_html: {class: "lo"} %>
+    </li>
+    <li>
+      <span class="shortt">邮编：</span>
+      <%=f.input "postcode", label: false, input_html: {class: "lo"} %>
+    </li>
+  </ul>
+  <input type="submit" class="ggtj" value="提交">
+<%end%>

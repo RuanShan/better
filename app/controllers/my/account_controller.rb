@@ -2,11 +2,13 @@ module My
   class AccountController < BaseController
 
     def index
-      @user = current_user
-      @bonuses = @user.wallets.bonuses.includes(:originator).order("created_at desc").limit(10)
-      @bids = @user.bids.order("created_at desc").limit(10)
-      @deposits = @user.deposits.order("created_at desc").limit(10)
-      @drawings = @user.drawings.order("created_at desc").limit(10)
+      @user = current_seller
+      @user_month = Summary::SaleMonthlyFactory.create("profit", @user.member_cmonths ).first || Summary::SaleMonthlyProfit.new(DateTime.current.to_date)
+      @user_day = Summary::BrokerDailyProfitFactory.create( @user.member_todays ).first || Summary::BrokerDailyProfit.new(DateTime.current.to_date)
+      #@bonuses = @user.wallets.bonuses.includes(:originator).order("created_at desc").limit(10)
+      #@bids = @user.bids.order("created_at desc").limit(10)
+      #@deposits = @user.deposits.order("created_at desc").limit(10)
+      #@drawings = @user.drawings.order("created_at desc").limit(10)
     end
 
     def deposit
