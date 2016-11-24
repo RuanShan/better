@@ -43,7 +43,7 @@ class Broker < User
   end
 
   def parent_name
-    parent.present? ? parent.name : "无"
+    parent.present? ? parent.nickname : "无"
   end
 
   def filtered_children(filter_condition)

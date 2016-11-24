@@ -7,8 +7,8 @@ module Summary
       attr_accessor :clink_visits, :member_count, :valuable_member_count, :valuable_rate
 
       def initialize( children_broker, sale_months=[] )
-        Rails.logger.debug "children_broker id=#{children_broker.id}, name=#{children_broker.name}"
-        Rails.logger.debug "sale_months=#{sale_months.first.inspect}"
+        #Rails.logger.debug "children_broker id=#{children_broker.id}, name=#{children_broker.name}"
+        #Rails.logger.debug "sale_months=#{sale_months.first.inspect}"
         super(children_broker)
         self.sale_months = sale_months
 
