@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     end
     resources :members do
       get :profit, on: :collection
+      get :brokers, on: :collection
     end
     resources :user_days
     resources :broker do

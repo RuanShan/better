@@ -18,8 +18,11 @@
        <%= render 'shared/flash_messages' %>
        <div class="dailizhongxin">
          <div class="dailileft">
-           <%= render 'agent/shared/broker_sidebar' if current_broker %>
-           <%= render 'agent/shared/user_sidebar' if current_user %>
+           <% if current_broker %>
+           <%= render 'agent/shared/broker_sidebar'  %>
+           <% elsif current_user %>
+           <%= render 'agent/shared/user_sidebar'  %>
+           <% end %>
          </div>
          <div class="dailiright">
            <%= yield %>

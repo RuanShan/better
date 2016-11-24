@@ -30,9 +30,6 @@ class Broker < User
   has_many :member_cmonths, ->{ current_month }, class_name: 'UserMonth'
   has_many :member_todays, ->{ today }, class_name: 'UserDay'
 
-
-  alias_attribute :nickname, :real_name
-
   def state
     locked_at.nil? ? "normal" : "frozen"
   end

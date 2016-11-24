@@ -70,7 +70,8 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
   after_create :adjust_sale_day, if: :broker
   after_create :add_user_life
-  alias_attribute :name, :nickname
+
+  alias_attribute :nickname, :real_name
 
 
   attr_reader :money_password, :current_money_password, :broker_number

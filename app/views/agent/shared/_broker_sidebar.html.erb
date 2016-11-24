@@ -24,6 +24,7 @@
     </li>
     <li>
       <h4>-</h4><h3>会员明细表</h3>
+      <p><%= build_nav_link "代理列表", { controller: 'agent/members', action: 'brokers'}%></p>
       <p><%= build_nav_link "用户列表", { controller: 'agent/members', action: 'index'}%></p>
       <p><%= build_nav_link "会员明细表", { controller: 'agent/members', action: 'profit'}%></p>
     </li>
@@ -36,7 +37,7 @@
       <p>投注记录遗漏表</p>
     </li>
     <li>
-      <h4>-</h4><h3>直属下级代理推广状况</h3>
+      <h4>-</h4><h3>六级代理推广状况</h3>
       <p><%= build_nav_link "月推广效果表", { controller: 'agent/sale_months', action: 'children'}%></p>
       <p><%= build_nav_link "月盈利表", { controller: 'agent/sale_months', action: 'children_profit'}%></p>
       <p><%= build_nav_link "月结余表", { controller: 'agent/sale_months', action: 'children_balance'}%></p>
