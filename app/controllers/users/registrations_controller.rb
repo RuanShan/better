@@ -3,7 +3,7 @@ class Users::RegistrationsController < DeviseInvitable::RegistrationsController
     if params["reg-agreement"] && params["reg-agreement"] == "on"
       @user = User.new
       if params["affiliate"] == "1" && sign_up_params["broker_id"].nil?
-        @user.errors.add(:broker_number, "请填写正确的经纪人编码")
+        @user.errors.add(:broker_number, "经纪人编码错误")
         render 'shared/partials', locals:{ partial_hash: {"#sign_up_block"=>"sign_up"} }
       else
         send_code = params["send_code"].to_i
