@@ -110,12 +110,17 @@ class Users::RegistrationsController < DeviseInvitable::RegistrationsController
     permitted_params = sign_up_params
     serialized_sms = session[:sign_up_sms]
     # sms serialized as json in session, it is string key hash here
-    sms = Sms.new( phone: serialized_sms['phone'], code: serialized_sms['code'], send_at: serialized_sms['send_at'])
+    sms = Sms.new( phone: serialized_sms['phone'], code: serialized_sms['code'], send_at: serialized_sms['send_at']) if serialized_sms.present?
 Rails.logger.debug " sms = #{sms.inspect}, serialized_sms=#{serialized_sms.inspect}"
     if sms
       sms.verify_sign_up_sms( permitted_params[:phone],permitted_params[:code])
     else
-      redirect_to root_path
+      flash[:notice] = "验证码错误"
+      if request.xhr?
+        render :js => "window.location = '#{root_path}';"
+      else
+        redirect_to root_path
+      end
     end
   end
 
