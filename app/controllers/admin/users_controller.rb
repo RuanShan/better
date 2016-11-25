@@ -62,6 +62,18 @@ class Admin::UsersController < Admin::BaseController
     render :index
   end
 
+  def record
+    @record_for = params['record_for']
+    @page = params["page"]
+    @user = current_user
+    if @record_for == "bonus"
+      @bonuses = Wallet.bonuses.order("created_at desc").all.paginate(:page => @page)
+    else
+      records = @record_for.camelize.constantize.order("created_at desc").all.paginate(:page => @page)
+      instance_variable_set("@#{@record_for}s", records)
+    end
+  end
+
   private
 
   def user_params

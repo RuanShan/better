@@ -1,6 +1,11 @@
-<table>
+<% platform ||= "my"%>
+<% th_class = platform == "my" ? "xsjg1" : ""%>
+<% tr_class = platform == "my" ? "xsjg2" : ""%>
+<% p_class = platform == "my" ? "czjlll" : ""%>
+<% t_class = platform == "my" ? "" : "table table-striped"%>
+<table class="<%=t_class%>">
   <thead>
-    <tr class="xsjg1">
+    <tr class="<%=th_class%>">
       <th>ID</th>
       <th>日期/时间(GMT+8)</th>
       <th>平台</th>
@@ -13,12 +18,12 @@
     <%total_amount=0%>
     <%total_win_lose_amount=0%>
     <% if @bids.empty? %>
-      <tr class="xsjg2">
+      <tr class="<%=tr_class%>">
         <td colspan="5">暂无记录</td>
       <tr>
     <% else %>
       <% @bids.each do |bid| %>
-        <tr class="xsjg2">
+        <tr class="<%=tr_class%>">
           <td><%= bid.created_at.to_i %></td>
           <td><%= bid.display_created_at %></td>
           <td><%= bid.platform %></td>
@@ -32,5 +37,5 @@
 
   </tbody>
 </table>
-<p class="czjlll">投注记录总额：<b><%=display_money(total_amount)%></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp输赢记录总额：<b><%=display_money(total_win_lose_amount)%></b></p>
+<p class="<%=p_class%>">投注记录总额：<b><%=display_money(total_amount)%></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp输赢记录总额：<b><%=display_money(total_win_lose_amount)%></b></p>
 <%= will_paginate @bids if @bids.respond_to? :total_pages %>

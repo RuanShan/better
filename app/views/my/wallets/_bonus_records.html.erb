@@ -1,7 +1,11 @@
-
-<table>
+<% platform ||= "my"%>
+<% th_class = platform == "my" ? "xsjg1" : ""%>
+<% tr_class = platform == "my" ? "xsjg2" : ""%>
+<% p_class = platform == "my" ? "czjlll" : ""%>
+<% t_class = platform == "my" ? "" : "table table-striped"%>
+<table class="<%=t_class%>">
   <thead>
-    <tr class="xsjg1">
+    <tr class="<%=th_class%>">
       <th>ID</th>
       <th>日期/时间(GMT+8)</th>
       <th>交易号码</th>
@@ -13,12 +17,12 @@
   <tbody>
     <%total_amount=0%>
     <% if @bonuses.empty? %>
-      <tr class="xsjg2">
+      <tr class="<%=tr_class%>">
         <td colspan="5">暂无记录</td>
       <tr>
     <% else %>
       <% @bonuses.each do |bonus| %>
-        <tr class="xsjg2">
+        <tr class="<%=tr_class%>">
           <td><%= bonus.created_at.to_i %></td>
           <td><%= bonus.display_created_at %></td>
           <td><%= bonus.number %></td>
@@ -30,5 +34,5 @@
     <% end %>
   </tbody>
 </table>
-<p class="czjlll">红利记录总额<b><%=display_money(total_amount)%></b></p>
+<p class="<%=p_class%>">红利记录总额<b><%=display_money(total_amount)%></b></p>
 <%= will_paginate @bonuses if @bonuses.respond_to? :total_pages%>

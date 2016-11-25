@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :deposits
     resources :users do
       get :search, on: :collection
+      get :record, on: :member
       delete :delete, on: :collection
     end
     resources :brokers do

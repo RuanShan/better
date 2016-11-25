@@ -1,37 +1,66 @@
 <% content_for :page_title do %>
-  <%= link_to "users", admin_users_url %> /
+  <%= link_to "会员管理", admin_users_url %> /
    会员详情
 <% end %>
 
-<%= render 'admin/shared/user_tabs', current: :profile %>
+<%= render 'admin/shared/user_tabs', current: "profile" %>
 
 <div>
-<p>
-  <strong>会员名:</strong>
-  <%= @user.nickname %>
-</p>
-<p>
-  <strong>注册时间:</strong>
-  <%= @user.display_created_at %>
-</p>
-<p>
-  <strong>电子邮箱:</strong>
-  <%= @user.email %>
-</p>
-<p>
-  <strong>电话号码:</strong>
-  <%= @user.phone %>
-</p>
-<p>
-  <strong>性别:</strong>
-  <%= @user.gender %>
-</p>
-<p>
-  <strong>QQ号:</strong>
-  <%= @user.qq %>
-</p>
-<p>
-  <strong>真实姓名:</strong>
-  <%= @user.real_name %>
-</p>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <td>会员名</td>
+        <td><%= @user.real_name %></td>
+      </tr>
+      <tr>
+        <td>注册时间</td>
+        <td><%= @user.display_created_at %></td>
+      </tr>
+      <tr>
+        <td>电子邮箱</td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td>电话号码</td>
+        <td><%= @user.phone %></td>
+      </tr>
+      <tr>
+        <td>性别</td>
+        <td><%= @user.gender %></td>
+      </tr>
+      <tr>
+        <td>生日</td>
+        <td><%= @user.birthday %></td>
+      </tr>
+      <tr>
+        <td>QQ号</td>
+        <td><%= @user.qq %></td>
+      </tr>
+      <tr>
+        <td>身份证号</td>
+        <td><%= @user.id_number %></td>
+      </tr>
+      <tr>
+        <td>国家</td>
+        <td><%= @user.country_code %></td>
+      </tr>
+      <tr>
+        <td>省</td>
+        <td><%= @user.province %></td>
+      </tr>
+      <tr>
+        <td>市</td>
+        <td><%= @user.city %></td>
+      </tr>
+      <tr>
+        <td>地址</td>
+        <td><%= @user.address %></td>
+      </tr>
+      <tr>
+        <td>邮编</td>
+        <td><%= @user.postcode %></td>
+      </tr>
+    </tbody>
+  </table>
+
 </div>

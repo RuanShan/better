@@ -1,6 +1,19 @@
 <% content_for :sidebar do %>
-  <ul class="nav nav-pills nav-stacked" data-hook="admin_product_tabs">
-      <li>this is user side bar</li>
-      <li>link 2 </li>
+  <ul role="tablist" class="nav nav-pills nav-stacked" data-hook="admin_product_tabs">
+      <li role="presentation" <%if current == "profile"%>class="active"<%end%>>
+        <%=link_to "个人资料", admin_user_path(@user) %>
+      </li>
+      <li role="presentation" <%if current == "deposit"%>class="active"<%end%>>
+        <%=link_to "充值记录", record_admin_user_path(@user, record_for: 'deposit') %>
+      </li>
+      <li role="presentation" <%if current == "drawing"%>class="active"<%end%>>
+        <%=link_to "提款记录", record_admin_user_path(@user, record_for: 'drawing') %>
+      </li>
+      <li role="presentation" <%if current == "bid"%>class="active"<%end%>>
+        <%=link_to "投注记录", record_admin_user_path(@user, record_for: 'bid') %>
+      </li>
+      <li role="presentation" <%if current == "bonus"%>class="active"<%end%>>
+        <%=link_to "红利记录", record_admin_user_path(@user, record_for: 'bonus') %>
+      </li>
   </ul>
 <% end %>
