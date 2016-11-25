@@ -15,8 +15,8 @@ class User < ApplicationRecord
   better_date_time_scope created_at: [:today, :month]
 
   # 产生推广码
-  extend FriendlyId
-  friendly_id :number, slug_column: :number, use: :slugged
+  #extend FriendlyId
+  #friendly_id :number, slug_column: :number, use: :slugged
   include NumberGenerator.new( prefix: 'B', length: 10, letters: true )
 
   has_many :user_messages
@@ -338,7 +338,7 @@ class User < ApplicationRecord
   def as_seller
     CurrentSeller.new( self )
   end
-  
+
   private
 
   def reset_password(new_password, new_password_confirmation)

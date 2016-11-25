@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  around_action :set_current_user
+  #around_action :set_current_user
   before_action :config_params, :configure_permitted_parameters, if: :devise_controller?
   #注册失败时，不应删除邀请码，注册成功，session更新，
   #after_action :clear_inviter, if: :devise_controller?
