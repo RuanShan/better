@@ -1,4 +1,5 @@
 class Users::RegistrationsController < DeviseInvitable::RegistrationsController
+  before_action :verify_sign_up_sms, only: [:create]
 
   def new
     if params["inviter_number"].present?
@@ -8,66 +9,77 @@ class Users::RegistrationsController < DeviseInvitable::RegistrationsController
   end
 
   def create
-    @user = User.new
-    if check_agreement? && (params["affiliate"] == "0" || my_broker.present?)
-      send_code = params["send_code"].to_i
-      code_options = get_code_options
-      @user.save_with_validate_code(send_code, sign_up_params, code_options)
-      set_code_options(code_options)
-      if @user.errors.empty?
-        flash[:notice] = "注册成功"
-        if session["inviter_number"].present?
-          session.delete("inviter_number")
-        end
-        if request.xhr?
-          render :js => "window.location = '#{new_user_session_path}';"
-        else
-          redirect_to new_user_session_path
-        end
-      else
-        if request.xhr?
-          render 'shared/partials', locals:{ partial_hash: {"#sign_up_block"=>"sign_up"} }
-        else
-          render "new"
-        end
-      end
-    else
-      flash[:notice] = "请阅读并同意服务条款和隐私政策" unless check_agreement?
-      @user.errors.add(:broker_number, "经纪人编码错误") if my_broker.blank?
-      if request.xhr?
-        render 'shared/partials', locals:{ partial_hash: {"#sign_up_block"=>"sign_up"} }
-      else
-        render "new"
-      end
-    end
+    #@user = User.new
+    @broker = get_broker_by_broker_number
+    @parent = get_parent_by_inviter_number
+
+      permitted_params = sign_up_params
+      permitted_params[:broker] = @broker
+      permitted_params[:parent] = @parent
+      permitted_params[:type] = "User"
+      build_resource(permitted_params)
+
+          resource.save
+          yield resource if block_given?
+          if resource.persisted?
+            if resource.active_for_authentication?
+              set_flash_message! :notice, :signed_up
+              sign_up(resource_name, resource)
+              respond_with resource, location: after_sign_up_path_for(resource)
+            else
+              set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+              expire_data_after_sign_in!
+              respond_with resource, location: after_inactive_sign_up_path_for(resource)
+            end
+          else
+            clean_up_passwords resource
+            set_minimum_password_length
+            respond_with resource
+          end
+
+#      send_code = params["send_code"].to_i
+#      code_options = get_code_options
+#      @user.save_with_validate_code(send_code, sign_up_params, code_options)
+#      set_code_options(code_options)
+#      if @user.errors.empty?
+#        flash[:notice] = "注册成功"
+#        #if session["inviter_number"].present?
+#        #  session.delete("inviter_number")
+#        #end
+#        if request.xhr?
+#          render :js => "window.location = '#{new_user_session_path}';"
+#        else
+#          redirect_to new_user_session_path
+#        end
+#      else
+#        if request.xhr?
+#          render 'shared/partials', locals:{ partial_hash: {"#sign_up_block"=>"sign_up"} }
+#        else
+#          render "new"
+#        end
+#      end
+#    else
+#      flash[:notice] = "请阅读并同意服务条款和隐私政策" unless check_agreement?
+#      @user.errors.add(:broker_number, "经纪人编码错误") if my_broker.blank?
+#      if request.xhr?
+#        render 'shared/partials', locals:{ partial_hash: {"#sign_up_block"=>"sign_up"} }
+#      else
+#        render "new"
+#      end
+#    end
   end
 
   private
 
   def sign_up_params
-    params["user"]["type"] = "User"
-    extra_params = []
-    if my_broker.present?
-      params["user"]["broker_id"] = my_broker.id
-      extra_params << :broker_id
-    elsif session["broker_number"]
-      broker = Broker.find_by_number(session["broker_number"])
-      params["user"]["broker_id"] = broker.id if broker.present?
-      extra_params << :broker_id
-    elsif session["inviter_number"]
-      user = User.find_by_number(session["inviter_number"])
-      if user.present?
-        params["user"]["parent_id"] = user.id
-        params["user"]["broker_id"] = user.broker_id
-        extra_params += [:parent_id, :broker_id]
-      end
-    end
+    #params["user"]["type"] = "User"
+
     if request.xhr?
       permitted_params = [:type, :first_name, :last_name, :email, :qq, :phone, :password, :validate_code]
     else
       permitted_params = [:type, :last_name, :first_name, :email, :qq, :phone, :birthday, :country_code, :qq, :phone, :password, :password_confirmation, :validate_code]
     end
-    params.require(:user).permit(extra_params+permitted_params).to_h
+    params.require(:user).permit(*permitted_params)
   end
 
   def check_agreement?
@@ -80,6 +92,31 @@ class Users::RegistrationsController < DeviseInvitable::RegistrationsController
 
   def my_broker
     Broker.find_by_number(params["user"]["broker_number"])
+  end
+
+
+  private
+  def get_parent_by_inviter_number
+    User.find_by_number(session["inviter_number"])
+  end
+
+  def get_broker_by_broker_number
+    broker_number = params.try(:user).try(:broker_number)
+    broker_number ||= session["broker_number"]
+    Broker.find_by_number(broker_number) if broker_number
+  end
+
+  def verify_sign_up_sms
+    permitted_params = sign_up_params
+    serialized_sms = session[:sign_up_sms]
+    # sms serialized as json in session, it is string key hash here
+    sms = Sms.new( phone: serialized_sms['phone'], code: serialized_sms['code'], send_at: serialized_sms['send_at'])
+Rails.logger.debug " sms = #{sms.inspect}, serialized_sms=#{serialized_sms.inspect}"
+    if sms
+      sms.verify_sign_up_sms( permitted_params[:phone],permitted_params[:code])
+    else
+      redirect_to root_path
+    end
   end
 
   def get_code_options

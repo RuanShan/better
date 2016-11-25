@@ -102,6 +102,8 @@ Rails.application.routes.draw do
 
   end
 
+  post '/sms/create_verify_code', to: 'sms#create_verify_code'
+
   get '/ecpss_status/done/' => 'ecpss_status#done', :as => :ecpss_done
   post '/ecpss_status/notify/' => 'ecpss_status#notify', :as => :ecpss_notify
 

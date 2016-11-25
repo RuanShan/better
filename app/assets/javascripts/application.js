@@ -23,6 +23,16 @@
 
 $(function(){
   setInterval(update, 1000);
+
+  $("#obtainVerifyCode").click(function(){
+    $('#send_code').val('1');
+    $.ajax({url:'/sms/create_verify_code',
+      type:'POST',
+      data:{
+        phone:$("#phone").val()
+      }
+    })
+  })
 })
 
 function copyToClipboard(element) {
