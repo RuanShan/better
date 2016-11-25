@@ -1,5 +1,10 @@
-<div> <h2 class="page-header">会员详情 </h2>
-</div>
+<% content_for :page_title do %>
+  <%= link_to "users", admin_users_url %> /
+   会员详情
+<% end %>
+
+<%= render 'admin/shared/user_tabs', current: :profile %>
+
 <div>
 <p>
   <strong>会员名:</strong>

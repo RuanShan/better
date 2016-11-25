@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   resources :payment_methods
 
   devise_for :users, controllers: { registrations: 'users/registrations' }            #会员
-  devise_for :administrators      #管理员
   devise_for :brokers, controllers: {
         sessions: 'agent/sessions'
   }
+  devise_for :administrators , controllers: {
+        sessions: 'admin/sessions'
+  }     #管理员
 
   # 管理
   namespace :admin do
