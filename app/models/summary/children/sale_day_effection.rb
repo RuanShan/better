@@ -1,7 +1,7 @@
 module Summary
   module Children
 
-    class SaleDayEffection < ChildrenBase
+    class SaleDayEffection < SaleBase
       attr_accessor :sale_days
             	    # 推广链接点击数	  注册数	         新注册并存款              注册存款转化率
       attr_accessor :clink_visits, :member_count, :valuable_member_count, :valuable_rate
@@ -33,7 +33,7 @@ module Summary
         CSV.generate(options) do |csv|
           csv << ["会员", "注册时间", "状态", "推广链接点击数", "注册数", "新注册并存款", "注册存款转化率"]
           sale_days.each do |sale_day|
-            csv << [sale_day.broker_name, sale_day.sign_up_time, sale_day.state,
+            csv << [sale_day.seller_name, sale_day.sign_up_time, sale_day.state,
               sale_day.clink_visits, sale_day.member_count,
               sale_day.valuable_member_count, sale_day.display_valuable_rate]
           end

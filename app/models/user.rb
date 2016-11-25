@@ -335,6 +335,10 @@ class User < ApplicationRecord
     country.translations[I18n.locale.to_s] || country.name
   end
 
+  def as_seller
+    CurrentSeller.new( self )
+  end
+  
   private
 
   def reset_password(new_password, new_password_confirmation)

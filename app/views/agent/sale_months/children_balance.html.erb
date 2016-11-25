@@ -26,7 +26,7 @@
     <tbody>
       <% @month_balances.each do |month_balance| %>
         <tr>
-          <td><%= month_balance.broker_name %></td>
+          <td><%= month_balance.seller_name %></td>
           <td><%= month_balance.sign_up_time %></td>
           <td><%= t month_balance.state.to_sym %></td>
           <td><%= 0 %></td>

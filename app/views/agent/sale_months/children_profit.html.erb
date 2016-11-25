@@ -28,7 +28,7 @@
     <tbody>
       <% @month_profits.each do |month_profit| %>
         <tr>
-          <td><%= month_profit.broker_name %></td>
+          <td><%= month_profit.seller_name %></td>
           <td><%= month_profit.sign_up_time %></td>
           <td><%= t month_profit.state.to_sym %></td>
           <td><%= 0 %></td>

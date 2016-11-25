@@ -1,6 +1,6 @@
 module Summary
   module Children
-    class SaleMonthProfit < ChildrenBase
+    class SaleMonthProfit < SaleBase
       extend DisplayMoney
       money_methods :deposit_amount, :drawing_amount, :bid_amount, :balance, :bonus, :profit, :bid_difference, :net, :net_difference
 
@@ -21,7 +21,7 @@ module Summary
         CSV.generate(options) do |csv|
           csv << ["会员", "注册时间", "状态", "活跃人数", "存款(人数)", "提款(人数)", "投注", "输赢", "红利", "盈利"]
           month_profits.each do |month_profit|
-            csv << [month_profit.broker_name, month_profit.sign_up_time, month_profit.state, 0,
+            csv << [month_profit.seller_name, month_profit.sign_up_time, month_profit.state, 0,
               month_profit.deposit_amount.to_s+"(#{month_profit.deposit_member_count})",
               month_profit.drawing_amount.to_s+"(#{month_profit.drawing_member_count})", month_profit.bid_amount,
               month_profit.net, month_profit.bonus, month_profit.profit]

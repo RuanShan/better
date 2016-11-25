@@ -3,21 +3,24 @@ module Summary
 
     class SaleMonthFactory
 
-      def self.create( type, children_brokers, from_date, to_date )
+      def self.create( type, children, from_date, to_date )
         if type == "effection"
-          children_brokers.map{|children_broker|
-            sale_months = children_broker.sale_months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date )
-            SaleMonthEffection.new( children_broker, sale_months)
+          children.map{|child|
+            sale_months = child.sale_months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date )
+            SaleMonthEffection.new( child, sale_months)
           }
         elsif type == "profit"
-          children_brokers.map{|children_broker|
-            member_months = children_broker.member_months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date )
-            SaleMonthProfit.new( children_broker, member_months)
+          children.map{|child|
+            seller = child.as_seller
+
+            member_months = seller.member_months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date )
+            SaleMonthProfit.new( seller, member_months)
           }
         else
-          children_brokers.map{|children_broker|
-            member_months = children_broker.member_months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date )
-            SaleMonthBalance.new( children_broker, member_months)
+          children.map{|child|
+            seller = child.as_seller
+            member_months = seller.member_months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date )
+            SaleMonthBalance.new( seller, member_months)
           }
         end
 

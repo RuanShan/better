@@ -24,8 +24,8 @@
     <tbody>
       <% @sale_months.each do |sale_month|%>
         <tr>
-          <td><%= sale_month.broker_name %></td>
-          <td><%= sale_month.parent_name %></td>
+          <td><%= sale_month.seller_name %></td>
+          <td><%= sale_month.seller_parent_name %></td>
           <td><%= sale_month.sign_up_time %></td>
           <td><%= t sale_month.state.to_sym %></td>
           <td><%= sale_month.clink_visits %></td>

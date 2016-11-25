@@ -2,8 +2,8 @@
 class CurrentSeller
   attr_accessor :seller, :is_user
 
-  delegate :sale_days, :sale_months, :present?, :number,:depth, :descendants, to: :seller
-  delegate :energetic_member_count, :clink_visits, :member_count, to: :seller
+  delegate :real_name, :present?, :number,:depth, :state, :display_created_at, to: :seller
+  delegate :descendants,:sale_days, :sale_months, :energetic_member_count, :clink_visits, :member_count, to: :seller
 
   def initialize( seller)
     self.seller = seller
