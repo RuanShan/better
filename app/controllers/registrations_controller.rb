@@ -1,4 +1,4 @@
-class Users::RegistrationsController < DeviseInvitable::RegistrationsController
+class RegistrationsController < DeviseInvitable::RegistrationsController
   before_action :verify_sign_up_sms, only: [:create]
 
   def new
