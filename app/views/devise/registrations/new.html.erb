@@ -1,7 +1,8 @@
 <div class="reg-wrapper clearfix">
   <div class="reg">
     <h2>开设实盘交易账户<br></h2>
-    <%= simple_form_for(resource, :url => registration_path(resource), :html => { :role => 'form', :class=>"reg_box"}) do |f| %>
+    <%@user||=User.new%>
+    <%= simple_form_for(@user, :url => user_registration_path, :html => { :id=>'sign_up_form', :role => 'form', :class=>"reg_box"}) do |f| %>
       <div class="rebody_left">
         <div class="rem">姓：</div>
         <%=f.input "last_name", label: false, placeholder: "请输入您的姓氏", input_html: {class: "s-in01"}, wrapper_html: {style: "margin-bottom:0"} %>
@@ -10,7 +11,7 @@
         <p class="tx"> *名字和姓氏必须与身份证一致</p>
 
         <div class="rem">出生日期：</div>
-        <%=f.input "birthday", label: false, placeholder: "请输入您的生日日期，如：19901230", input_html: {class: "s-in02"}  %>
+        <%=f.input "birthday", label: false, as: 'string', placeholder: "请输入您的生日日期，如：19901230", input_html: {class: "s-in02"}  %>
         <p class="tx"> *出生日期必须与身份证一致</p>
 
         <div class="rem">电子邮箱：</div>
@@ -49,18 +50,17 @@
         <p class="tx"> *请填写正确的电话号码以便接受验证码</p>
 
         <div class="rem notx">验证码：</div>
-        <input type="text" name="certification" id="verifyCode" class="s-in04 notx" placeholder="验证码">
+        <%= f.input :validate_code, label: false, placeholder: "验证码", input_html: {class: "s-in04 notx"} %>
         <input type="hidden" name="certification" id="certification" value="468514">
-        <a href="#">
-          <input type="button" name="" id="obtainVerifyCode" class="s-btn01 notx" value="获取验证码">
-        </a>
+          <input type="button" name="" id="obtainVerifyCode" class="s-btn01 notx" value="获取验证码" onclick="$('#send_code').val('1');$('#sign_up_form').submit();return false;">
+          <%=hidden_field_tag :send_code, "0" %>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         <br>
 
         <div class="rem notx">经纪人：</div>
         <div class="jingjiren">
-            <input type="radio" name="affiliate-existing" class="s-check notx" value="1" onclick="$('.affillia-wrapper').show()">有经纪人
-            <input type="radio" name="affiliate-existing" class="s-check notx" checked="checked" value="0" onclick="$('.affillia-wrapper').hide()">无经纪人
+            <input type="radio" name="affiliate" class="s-check notx" value="1" onclick="$('.affillia-wrapper').show()">有经纪人
+            <input type="radio" name="affiliate" class="s-check notx" checked="checked" value="0" onclick="$('.affillia-wrapper').hide()">无经纪人
             <input type="hidden" id="landing" name="landing" value="" readonly="readonly">
         </div>
         <div class="affillia-wrapper" style="display:none;">
