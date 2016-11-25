@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :games
   resources :payment_methods
 
-  devise_for :users, controllers: { registrations: 'users/registrations' }            #会员
+  devise_for :users, controllers: {
+    registrations: 'registrations'
+  }            #会员
   devise_for :brokers, controllers: {
         sessions: 'agent/sessions'
   }

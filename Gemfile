@@ -45,6 +45,7 @@ gem "select2-rails"
 #https://github.com/plataformatec/devise
 gem 'devise'
 gem 'devise_invitable'
+#gem 'devise-i18n'
 gem 'high_voltage'
 #https://github.com/plataformatec/simple_form
 gem 'simple_form'
