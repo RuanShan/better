@@ -17,6 +17,26 @@
         <td><%= @user.display_created_at %></td>
       </tr>
       <tr>
+        <td>代理</td>
+        <td>
+          <% if @user.broker.present? %>
+            <%=link_to @user.broker.real_name, admin_broker_path(@user.broker)  %>
+          <% else %>
+            无
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>邀请人</td>
+        <td>
+          <% if @user.parent.present? %>
+            <%=link_to @user.parent.real_name, admin_user_path(@user.parent)  %>
+          <% else %>
+            无
+          <% end %>
+        </td>
+      </tr>
+      <tr>
         <td>电子邮箱</td>
         <td><%= @user.email %></td>
       </tr>
@@ -42,7 +62,7 @@
       </tr>
       <tr>
         <td>国家</td>
-        <td><%= @user.country_code %></td>
+        <td><%=t(@user.country_code) if @user.country_code.present? %></td>
       </tr>
       <tr>
         <td>省</td>

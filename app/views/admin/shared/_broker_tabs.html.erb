@@ -1,0 +1,10 @@
+<% content_for :sidebar do %>
+  <ul role="tablist" class="nav nav-pills nav-stacked" data-hook="admin_product_tabs">
+      <li role="presentation" <%if current == "profile"%>class="active"<%end%>>
+        <%=link_to "代理资料", admin_broker_path(@broker) %>
+      </li>
+      <li role="presentation" <%if current == "data"%>class="active"<%end%>>
+        <%=link_to "本月业绩", data_admin_broker_path(@broker) %>
+      </li>
+  </ul>
+<% end %>

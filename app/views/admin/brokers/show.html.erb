@@ -1,20 +1,89 @@
-<div> <h2 class="page-header">代理详情 </h2>
-</div>
+<% content_for :page_title do %>
+  <%= link_to "代理管理", admin_brokers_url %> /
+   代理详情
+<% end %>
+
+<%= render 'admin/shared/broker_tabs', current: "profile" %>
+
 <div>
-  <p>
-    <strong>代理名:</strong>
-    <%= @broker.nickname %>
-  </p>
-  <p>
-    <strong>注册时间:</strong>
-    <%= @broker.display_created_at %>
-  </p>
-  <p>
-    <strong>电子邮箱:</strong>
-    <%= @broker.email %>
-  </p>
-  <p>
-    <strong>上级代理:</strong>
-    <%= @broker.parent_name %>
-  </p>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <td>代理姓名</td>
+        <td><%= @broker.real_name %></td>
+      </tr>
+      <tr>
+        <td>注册时间</td>
+        <td><%= @broker.display_created_at %></td>
+      </tr>
+      <tr>
+        <td>上级代理</td>
+        <td>
+          <%if @broker.parent.present?%>
+            <%=link_to @broker.parent_name, admin_broker_path(@broker.parent) %>
+          <%else%>
+            <%=@broker.parent_name %>
+          <%end%>
+        </td>
+      </tr>
+      <tr>
+        <td>电子邮箱</td>
+        <td><%= @broker.email %></td>
+      </tr>
+      <tr>
+        <td>电话号码</td>
+        <td><%= @broker.phone %></td>
+      </tr>
+      <tr>
+        <td>性别</td>
+        <td><%= @broker.gender %></td>
+      </tr>
+      <tr>
+        <td>生日</td>
+        <td><%= @broker.birthday %></td>
+      </tr>
+      <tr>
+        <td>QQ号</td>
+        <td><%= @broker.qq %></td>
+      </tr>
+      <tr>
+        <td>身份证号</td>
+        <td><%= @broker.id_number %></td>
+      </tr>
+      <tr>
+        <td>国家</td>
+        <td><%=t(@broker.country_code) if @broker.country_code.present? %></td>
+      </tr>
+      <tr>
+        <td>省</td>
+        <td><%= @broker.province %></td>
+      </tr>
+      <tr>
+        <td>市</td>
+        <td><%= @broker.city %></td>
+      </tr>
+      <tr>
+        <td>地址</td>
+        <td><%= @broker.address %></td>
+      </tr>
+      <tr>
+        <td>邮编</td>
+        <td><%= @broker.postcode %></td>
+      </tr>
+      <tr>
+        <td>语言</td>
+        <td><%= @broker.lang %></td>
+      </tr>
+      <tr>
+        <td>网站</td>
+        <td>
+          <%if @broker.website.present?%>
+            <%=link_to @broker.website_url, @broker.website_url %>
+          <%else%>
+            <%=@broker.website_url %>
+          <%end%>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

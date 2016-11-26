@@ -2,7 +2,7 @@ class Broker < User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   # 添加 日注册，月注册 scope
   #extend BetterDateScope
@@ -30,6 +30,8 @@ class Broker < User
   has_many :member_cmonths, ->{ current_month }, class_name: 'UserMonth'
   has_many :member_todays, ->{ today }, class_name: 'UserDay'
 
+  default_scope ->{ where( type: 'Broker' )}
+
   def state
     locked_at.nil? ? "normal" : "frozen"
   end
@@ -43,12 +45,15 @@ class Broker < User
   end
 
   def parent_name
-    parent.present? ? parent.nickname : "无"
+    parent.present? ? parent.real_name : "无"
   end
 
   def filtered_children(filter_condition)
     self.class.where("parent_id=? #{filter_condition}", self.id).all
   end
 
+  def website_url
+    website.present? ? (website[0,7] == "http://" ? website : "http://"+website) : "无"
+  end
 
 end

@@ -1,0 +1,46 @@
+<% content_for :page_title do %>
+  <%= link_to "会员管理", admin_users_url %> /
+   会员详情
+<% end %>
+
+<%= render 'admin/shared/user_tabs', current: "data" %>
+<div>
+  <table class="table table-striped">
+    <tr>
+      <td>总人数</td>
+      <td><%=@user.children.size%></td>
+    </tr>
+    <tr>
+      <td>活跃人数</td>
+      <td><%=@user_seller.energetic_member_count || 0%></td>
+    </tr>
+    <tr>
+      <td>点击数</td>
+      <td><%=@user_seller.clink_visits || 0%></td>
+    </tr>
+    <tr>
+      <td>提款额</td>
+      <td><%=@user_month.display_drawing_amount%></td>
+    </tr>
+    <tr>
+      <td>提款人数</td>
+      <td><%=@user_month.drawing_member_count%></td>
+    </tr>
+    <tr>
+      <td>平台投注</td>
+      <td><%=@user_month.display_bid_amount%></td>
+    </tr>
+    <tr>
+      <td>平台输赢</td>
+      <td><%=@user_month.display_net%></td>
+    </tr>
+    <tr>
+      <td>红利</td>
+      <td><%=@user_month.display_bonus%></td>
+    </tr>
+    <tr>
+      <td>注册数</td>
+      <td><%=@user_seller.member_count || 0%></td>
+    </tr>
+  </table>
+</div>

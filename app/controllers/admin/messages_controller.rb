@@ -37,7 +37,7 @@ class Admin::MessagesController < Admin::BaseController
     end
   end
 
-  def delete
+  def batch_delete
     message_ids = params["selected_messages"]
     if message_ids.blank?
       flash[:error] = t(:no_selected_messages)

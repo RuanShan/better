@@ -1,5 +1,13 @@
 module ApplicationHelper
 
+  def self.member_link(broker)
+    "http://w.aslbj.com/#{broker.number}"
+  end
+
+  def self.broker_link(broker)
+    "http://w.aslbj.com/#{broker.number}"
+  end
+
   def better_form_for(object, *args, &block)
     options = args.extract_options!
     simple_form_for(object, *(args << options.merge(wrapper: "horizontal_form", builder: BetterFormBuilder, :html => {:class => 'form-horizontal' })), &block)
@@ -30,6 +38,8 @@ module ApplicationHelper
   def better_country_select
 
   end
+
+
 end
 
 class BetterFormBuilder < SimpleForm::FormBuilder

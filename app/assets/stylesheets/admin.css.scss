@@ -1,3 +1,7 @@
 @import 'base';
 @import 'admin/custom';
 @import 'admin/dashboard';
+
+.btn_xs{
+  border-radius: 3px;font-size: 12px;line-height: 1.5;padding: 1px 5px;
+}

@@ -13,6 +13,13 @@
     <%end%>
   </div>
   <div style="padding-top:20px;">
-    <%= render partial: "records" %>
+    <span>显示方式</span>
+    <% tree_active = @user_display == "tree" ? "active" : ""%>
+    <% list_active = @user_display == "list" ? "active" : ""%>
+    <%= link_to "树形", admin_users_path(user_display: 'tree'), class:"btn btn-default #{tree_active}" %>
+    <%= link_to "列表", admin_users_path(user_display: 'list'), class:"btn btn-default #{list_active}" %>
+  </div>
+  <div style="padding-top:20px;">
+    <%= render partial: "records", locals: {display: @user_display} %>
   </div>
 </div>

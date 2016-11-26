@@ -32,3 +32,5 @@ zh-CN:
   system: 系统
   user: 会员
   broker: 代理
+  lock: 封号
+  unlock: 解封

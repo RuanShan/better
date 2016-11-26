@@ -13,18 +13,21 @@ zh-CN:
   user_created: 添加用户成功
   user_updated: 修改用户成功
   user_deleted: 删除用户成功
-  multi_user_deleted: 批量删除用户成功
   no_selected_users: 请至少选择一个用户
+  multi_user_deleted: 批量删除用户成功
+  multi_user_locked: 批量封号/解封用户成功
 
   broker_created: 添加代理成功
   broker_updated: 修改代理成功
   broker_deleted: 删除代理成功
-  multi_broker_deleted: 批量删除代理成功
   no_selected_brokers: 请至少选择一个代理
+  multi_broker_deleted: 批量删除代理成功
+  multi_broker_confirmed: 批量通过代理成功
+  multi_broker_locked: 批量封号/解封代理成功
 
   message_created: 添加通知成功
   message_updated: 修改通知成功
   message_deleted: 删除通知成功
-  multi_message_deleted: 批量删除通知成功
   no_selected_messages: 请至少选择一个通知
+  multi_message_deleted: 批量删除通知成功
   multi_message_send: 批量发送通知成功

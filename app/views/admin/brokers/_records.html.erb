@@ -1,4 +1,4 @@
-<%=form_tag delete_admin_brokers_path, method: :delete do%>
+<%=form_tag batch_delete_admin_brokers_path, method: :put do%>
   <table class="table <%if @display == 'list'%>table-striped<% end %>">
     <thead>
       <tr>
@@ -6,19 +6,19 @@
         <th>注册时间</th>
         <th>电子邮箱</th>
         <th>上级代理</th>
-        <th colspan="3">
-          <%=link_to "添加代理", new_admin_broker_path, class: "btn btn-primary"%>
-          <%=submit_tag "批量删除", class: "btn btn-primary"%>
+        <th colspan="2">
+          <%=link_to "添加代理", new_admin_broker_path, class: "btn btn-primary btn_xs"%>
         </th>
+        <th><%=submit_tag "删除", class: "btn btn-primary btn_xs"%></th>
+        <th><%=submit_tag "通过", class: "btn btn-primary btn_xs", formaction: batch_confirm_admin_brokers_path(page: @page) %></th>
+        <th><%=submit_tag "封号/解封", class: "btn btn-primary btn_xs", formaction: batch_lock_admin_brokers_path(page: @page) %></th>
         <th><%= check_box_tag "selectall", 1, false %></th>
       </tr>
     </thead>
 
     <tbody>
       <% if @brokers.empty? %>
-        <tr>
-          <td colspan="6">暂无代理</td>
-        <tr>
+        <tr><td colspan="9">暂无代理</td><tr>
       <% else %>
         <%= render partial: "children", locals: { display: @display, brokers: @brokers } %>
       <% end %>

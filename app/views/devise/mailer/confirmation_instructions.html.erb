@@ -3,3 +3,10 @@
 
 <p><%= t('.instruction') %></p>
 <p><%= link_to t('.action'), confirmation_url(@resource, confirmation_token: (Devise::VERSION.start_with?('3.') ? @token : @resource.confirmation_token)) %></p>
+
+<% if @resource.depth < 5 %>
+  <p><%= t('.broker_link') %></p>
+  <p><%= link_to ApplicationHelper.broker_link(@resource), ApplicationHelper.broker_link(@resource) %></p>
+  <p><%= t('.member_Link') %></p>
+  <p><%= link_to ApplicationHelper.member_link(@resource), ApplicationHelper.member_link(@resource) %></p>
+<% end %>

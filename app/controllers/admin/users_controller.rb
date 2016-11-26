@@ -1,5 +1,20 @@
 class Admin::UsersController < Admin::BaseController
 
+  def index
+    @page = params['page'] || 1
+    if params['user_display'].present?
+      session[:user_display] = params['user_display'] == 'tree' ? 'tree' : 'list'
+    else
+      session[:user_display] = session[:user_display].present? ? session[:user_display] : 'list'
+    end
+    @user_display = session[:user_display]
+    if @user_display == 'tree'
+      @users = User.roots.order("created_at desc").all.paginate(:page => @page)
+    else
+      @users = User.order("created_at desc").all.paginate(:page => @page)
+    end
+  end
+
   def new
     @user = User.new
   end
@@ -32,7 +47,7 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
-  def delete
+  def batch_delete
     user_ids = params["selected_users"]
     if user_ids.blank?
       flash[:error] = t(:no_selected_users)
@@ -50,14 +65,8 @@ class Admin::UsersController < Admin::BaseController
     redirect_to admin_users_path
   end
 
-  def index
-    @page = params['page']
-    @users = User.order("created_at desc").all.paginate(:page => @page)
-  end
-
   def search
     @page = params['page']
-    logger.debug "params['nickname']=#{params['nickname']}"
     @users = User.where("nickname=?", params['nickname']).order("created_at desc").all.paginate(:page => @page)
     render :index
   end
@@ -65,13 +74,20 @@ class Admin::UsersController < Admin::BaseController
   def record
     @record_for = params['record_for']
     @page = params["page"]
-    @user = current_user
+    @user = User.find(params[:id])
     if @record_for == "bonus"
       @bonuses = Wallet.bonuses.order("created_at desc").all.paginate(:page => @page)
     else
       records = @record_for.camelize.constantize.order("created_at desc").all.paginate(:page => @page)
       instance_variable_set("@#{@record_for}s", records)
     end
+  end
+
+  def data
+    @user = User.find(params[:id])
+    @user_seller = CurrentSeller.new( @user )
+    @user_month = Summary::SaleMonthlyFactory.create("profit", @user_seller.member_cmonths ).first || Summary::SaleMonthlyProfit.new(DateTime.current.to_date)
+    @user_day = Summary::BrokerDailyProfitFactory.create( @user_seller.member_todays ).first || Summary::BrokerDailyProfit.new(DateTime.current.to_date)
   end
 
   private

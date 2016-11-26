@@ -17,17 +17,34 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :deposits
     resources :users do
-      get :search, on: :collection
-      get :record, on: :member
-      delete :delete, on: :collection
+      collection do
+        get :search
+        put :batch_delete
+        put :batch_lock
+      end
+      member do
+        get :record
+        get :data
+        put :lock
+      end
     end
     resources :brokers do
-      get :search, on: :collection
-      delete :delete, on: :collection
+      collection do
+        get :search
+        put :batch_delete
+        put :batch_confirm
+        put :batch_lock
+      end
+      member do
+        get :data
+        get :report
+        put :confirm
+        put :lock
+      end
     end
     resources :messages do
       get :search, on: :collection
-      put :delete, on: :collection
+      put :batch_delete, on: :collection
       put :batch_send, on: :collection
       put :one_send, on: :member
     end

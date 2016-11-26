@@ -55,13 +55,14 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   has_attached_file :avatar, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
   has_attached_file :id_front, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
   has_attached_file :id_back, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :avatar, :id_front, :id_back, content_type: /\Aimage\/.*\z/
 
+  default_scope ->{ where( type: 'User' )}
   # it is for filter
   scope :unlocked, ->{ where( locked_at: nil )}
   scope :locked, ->{ where.not( locked_at: nil )}

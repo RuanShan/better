@@ -7,8 +7,8 @@ zh-CN:
         password: "密码"
         password_confirmation: "密码确认"
         remember_me: "记住登录信息"
-        reset_password_token: 
-        unlock_token: 
+        reset_password_token:
+        unlock_token:
     models:
       user: "用户"
   devise:
@@ -34,10 +34,12 @@ zh-CN:
         greeting: "欢迎 %{recipient}!"
         instruction: "您可以通过下面的链接确认您的帐户的电子邮件:"
         subject: "确认信息"
+        broker_link: "您的代理邀请链接，通过此链接您可以邀请其他人成为您的子代理"
+        member_link: "您的客户邀请链接，通过此链接您可以邀请其他人成为您的客户"
       password_change:
-        greeting: 
-        message: 
-        subject: 
+        greeting:
+        message:
+        subject:
       reset_password_instructions:
         action: "更改我的密码"
         greeting: "你好 %{recipient}!"

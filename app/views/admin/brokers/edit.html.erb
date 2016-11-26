@@ -3,7 +3,8 @@
 <div>
   <%= better_form_for(@broker, url: {:action=>"update"} ) do |f| %>
     <div class="form-inputs">
-      <%= f.input :nickname %>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
       <%= f.input :email %>
     </div>
     <div class="form-actions">

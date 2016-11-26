@@ -15,5 +15,8 @@
       <li role="presentation" <%if current == "bonus"%>class="active"<%end%>>
         <%=link_to "红利记录", record_admin_user_path(@user, record_for: 'bonus') %>
       </li>
+      <li role="presentation" <%if current == "data"%>class="active"<%end%>>
+        <%=link_to "本月业绩", data_admin_user_path(@user) %>
+      </li>
   </ul>
 <% end %>
