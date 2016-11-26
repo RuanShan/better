@@ -11,13 +11,8 @@
  * file per style scope.
  *
  */
-@import  'application';
-@import  'signin';
-@import  'users';
-
-@import "new/all";
-@import 'bootstrap-datetimepicker';
-@import 'bootstrap-datetimepicker-standalone';
+ @import 'base';
+ @import "new/shouji1";
 
 .masthead
 {
@@ -38,41 +33,13 @@
       color: #cdddeb;
     }
 }
-.hybody_down
-{
-  color: #000000;
-  .p-down_nei {
-    background: #dbdadb none repeat scroll 0 0;
-    border-bottom: 5px solid #a51919;
-    overflow: hidden;
-    padding: 50px;
+.page-title {
+    background: #444444 none repeat scroll 0 0;
+    color: white;
+}
+.page-body{
+  padding: 8px 0;
+  .row{
     text-align: center;
-
-    .two_cols_form{
-        li{
-      	width: 450px;
-      	height: 70px;
-      	float: left;
-      }
-      ul{
-      	overflow: hidden;
-      }
-      span{
-      	font-size: 15px;
-      	font-weight: bold;
-      }
-
-      label{
-      	font-size: 15px;
-      	font-weight: bold;
-      }
-    }
-
-
   }
-
-  .panel{
-      border-radius: 0;
-  }
-
 }

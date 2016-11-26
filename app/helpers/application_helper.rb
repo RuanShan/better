@@ -35,11 +35,6 @@ module ApplicationHelper
     {:success=>"成功", :failure=>"失败", :pending=>"待处理"}[state.to_sym]
   end
 
-  def better_country_select
-
-  end
-
-
 end
 
 class BetterFormBuilder < SimpleForm::FormBuilder

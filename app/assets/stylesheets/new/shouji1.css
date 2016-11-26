@@ -1,0 +1,922 @@
+/**
+* Demo Stuff
+*/
+
+
+
+/**
+* iPhone
+* Credits: Flat, Scaleable CSS iPhone Illustration by Tom Hergenreter
+* http://codepen.io/TomHergenreter/details/qDywF/
+*/
+
+body,div,h1,h2,h3,h4,h5,h6,p,dt,dd,dl,b,i,span,ul,li,ol{
+  margin: 0;
+  padding: 0;
+
+}
+
+li{list-style: none}
+.iphone {
+  width: 16.06em;
+  
+  position: relative;
+  display: inline-block;
+  background: #fff;
+}
+.iphone__item {
+  width: 16.06em;
+  height: 1em;
+  position: absolute;
+  bottom: -2em;
+  color: #158f76;
+  text-align: center;
+}
+.iphone__power-btn {
+  width: 2.188em;
+  height: .188em;
+  background: #e0e0e0;
+  position: absolute;
+  right: 2.5em;
+  top: -0.188em;
+}
+.iphone__left-btn {
+  width: .188em;
+  height: 1.250em;
+  top: 3.250em;
+  left: -0.188em;
+  position: absolute;
+  background: #e0e0e0;
+}
+.iphone__left-btn:before {
+  content: '';
+  width: .188em;
+  height: .875em;
+  position: absolute;
+  top: 3em;
+  background: #e0e0e0;
+}
+.iphone__left-btn:after {
+  content: '';
+  width: .188em;
+  height: .875em;
+  position: absolute;
+  top: 5.5em;
+  background: #e0e0e0;
+}
+.iphone__details {
+  width: .438em;
+  height: .438em;
+  border-radius: 100%;
+  position: relative;
+  top: 1.313em;
+  left: 8em;
+  background: #7c7c7c;
+}
+.iphone__details:before {
+  content: '';
+  width: 2.5em;
+  height: .25em;
+  border-radius: .25em;
+  position: absolute;
+  top: 1em;
+  left: -1em;
+  background: #7c7c7c;
+}
+.iphone__home-btn {
+  width: 2.25em;
+  height: 2.25em;
+  border-radius: 100%;
+  position: absolute;
+  bottom: 1em;
+  right: 6.75em;
+  background: #f7f7f7;
+}
+.iphone__home-btn:before {
+  content: '';
+  width: .813em;
+  height: .813em;
+  border: .15em solid #a8a8a8;
+  border-radius: .2em;
+  position: absolute;
+  top: .6em;
+ 
+}
+.iphone__screen {
+width: 100%;
+    
+    position: absolute;
+    max-width: 480px;
+    background: #ddd;
+}
+.iphone__content {
+  position: relative;
+  background-color: #D2527F;
+  width: 100%;
+  height: 100%;
+}
+/**
+* Navigation Defaults
+*/
+.nav1 {
+  position: absolute;
+  z-index: 100;
+  opacity: 0;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 300ms;
+          transition-duration: 300ms;
+}
+.nav--active .nav1 {
+
+
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+
+}
+.nav__list {
+  margin: 0;
+  padding: 0px;
+}
+.nav__item {
+  list-style-type: none;
+  text-align: left;
+  background: #383838;
+  height: 50px;
+  border-bottom: 1px solid #f1f1f1;
+  
+}
+.nav__item span{
+      line-height: 42px;
+      margin-left: 10px;
+}
+.nav__item img{
+  width: 20px;
+  height: 20px;
+      float: left;
+    line-height: 50px;
+    margin-left: 20px;
+    margin-top: 11px;
+}
+.nav__link {
+  font-size: 1.3em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #FFFFFF;
+  opacity: 1;
+  -webkit-transition: opacity 300ms ease-in-out;
+  transition: opacity 300ms ease-in-out;
+}
+/* Default navigation icon */
+.nav__trigger {
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 25px;
+      right: 0.8em;
+  top: 27px;
+  z-index: 200;
+}
+.nav--active .nav__trigger {
+  opacity: 0.5;
+}
+.nav__icon {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 5px;
+  background-color: #000;
+  -webkit-transition-property: background-color, -webkit-transform;
+  transition-property: background-color, -webkit-transform;
+  transition-property: background-color, transform;
+  transition-property: background-color, transform, -webkit-transform;
+  -webkit-transition-duration: 300ms;
+          transition-duration: 300ms;
+}
+.nav__icon:before,
+.nav__icon:after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 5px;
+  position: absolute;
+  background: #000;
+  -webkit-transition-property: margin, -webkit-transform;
+  transition-property: margin, -webkit-transform;
+  transition-property: margin, transform;
+  transition-property: margin, transform, -webkit-transform;
+  -webkit-transition-duration: 300ms;
+          transition-duration: 300ms;
+}
+.nav__icon:before {
+  margin-top: -10px;
+}
+.nav__icon:after {
+  margin-top: 10px;
+}
+
+/**
+* Style #4
+*/
+.style-4 .nav1 {
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+.style-4 .nav--active .nav {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+.style-4 .nav--active .nav__icon {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+.style-4 .nav__link {
+  opacity: 0;
+  -webkit-transition-delay: 500ms;
+          transition-delay: 500ms;
+}
+.style-4 .nav--active .nav__link {
+  opacity: 1;
+}
+@media(max-width:480px){
+  #iphone__screen{display: block;}
+}
+.nav__trigger{
+  
+}
+#mingcheng{
+  margin-top:10px; 
+      padding: 0 0.4em;
+  height: 60px;
+}
+#iphone_h{
+  height: 60px;
+     
+  background: #444;
+}
+#iphone_h p {
+    color: #fff;
+    float: left;
+    font-weight: bold;
+    font-size: 28px;
+    
+        margin-top: 10;
+}
+#iphone_h p {
+    color: #fff;
+    float: left;
+    font-weight: bold;
+    font-size: 28px;
+}
+#iphone_h img {
+
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin-top: 10px;
+}
+.leibie{
+ margin-left: 30%;
+  text-align: center;
+}
+.iphone_f{
+ 
+ 
+}
+.iphone_f li{
+  float: left;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-family: 微软雅黑;
+    font-size: 1.0em;
+
+    padding: 10px 0px;
+}
+.iphone_f{
+  background: #000;
+  overflow: hidden;
+}
+.iphone_b{
+  overflow: hidden;
+
+}
+
+
+
+/**个人中心begin**/
+section{margin:4em 0;}
+.toolbar{
+  top:0;left:0;
+  right:0;
+  background-color:transparent;
+  line-height:68px;
+  
+  height: 60px;
+  background: #dadada;
+  margin: 0px;
+      width: 100%;
+}
+.menu-button{position:relative;margin:5px;height:36px;width:36px;cursor:pointer;}
+.menu-button:before{content:"";position:absolute;top:5px;right:3px;border-bottom:17px double #b0120a;border-top:6px solid #b0120a;width:30px;height:5px;}
+.menu-left{float:left;margin-right:1.5em;}
+.sidebar{margin:0;padding-top:1em;color:white;background-color:#555;}
+.sidebar h6{
+ margin: 0;
+    padding: 0px 1em;
+    font-weight: 300;
+    height: 3em;
+    border-bottom: 0.1em solid #000;
+    line-height: 3em;
+    font-weight: bold;
+}
+.sidebar li{margin:.5em 0;padding:0 1em;line-height:1.9em;}
+.sidebar a{color:#fff;text-decoration: none;font-weight: bold;font-size: 0.8em;}
+.sidebar li:hover{}
+.sidebar hr{margin:2em auto;border:0;padding:0;width:80%;height:1px;background-color:white;}
+/*主要样式*/
+.subNav{cursor:pointer;}
+.navContent{display:none;color:#999;}
+.lefthang img{
+  width: 1.8em;
+  height: 1.8em;
+  padding: 0.8em 0 0 0.8em;
+}
+.righthang img{
+  width: 1.8em;
+  height: 1.8em;
+  padding: 0.8em 0.8em 0 0;
+}
+.lefthang{
+  width: 3em;
+    float: left;
+  position: relative;
+    left: 0px;
+    top: 0px;
+}
+.righthang{
+ width: 3em;
+    float: right;
+  position: relative;
+    right: 0px;
+    top: 0px;
+        margin-top: -60px;
+}
+
+.toolbar h1{
+      font-size: 1.6em;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+.touxiang{
+  width: 2em;
+  height: 2em;
+  border-radius: 1em;
+
+  margin-left: 0.8em;
+}
+.huiyuanxinxi{
+  overflow: hidden;
+  padding: 1em 0 0.5em 0;
+}
+.huiyuanxinxi h5{
+   float: left;
+
+}
+.xinxi_right{
+     overflow: hidden;
+    clear: both;
+    width: 8em;
+    float: right;
+    text-align: left;
+
+}
+.xinxi_right p{
+  clear: both;
+  line-height: 1.6em;
+  font-size:0.8em;
+  font-weight: bold;
+  color: #fff;
+}
+.biaoti{
+  height: 4em;
+  background: #444;
+  width: 100%;
+}
+.fanhui{
+  color: #ddd;
+  font-size: 2.0em;
+  font-weight: bold;
+ margin: 0 0.4em;
+  line-height: 2em;
+  float: left;
+}
+.iphonelan{
+      line-height: 3em;
+    color: #ddd;
+    font-size: 1.4em;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+.hiushouye{
+      position: absolute;
+    top: 5.5em;
+    right: 0.8em;
+}
+#footer{
+ 
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  
+  text-align: center;
+
+}
+#footer_top{
+  
+  background: #ddd;
+  padding: 20px 0 20px 0;
+  overflow: hidden;
+
+}
+#footer_top span,p{
+  line-height: 1.6em;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+}
+#footer_down{
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+#footer_down p{
+  float: left;
+  color: #ddd;
+  width: 5em;
+  margin:auto;
+  width: 33%;
+  font-size: 1.2em;
+  padding: 1em 0;
+}
+#shougerentong{
+ overflow:hidden;
+  background: #272727;
+  padding: 1.4em;
+  
+}
+#shougerentong1{
+ overflow:hidden;
+  background: #272727;
+  padding: 1.4em;
+  text-align: center;
+  
+}
+#shougerentong2{
+ overflow:hidden;
+  background:url(../images/shouji/kaishe1_02.gif) no-repeat;
+  background-size: 100% 850px;
+  width: 100%;
+  height: 850px;
+
+  text-align: center;
+  
+}
+.kai12{
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+#shougerentong h1{
+  color: #ddd;
+  margin-top: 1em;
+  font-weight: bold;
+  font-family: 微软雅黑;
+  float: left;
+}
+#shougerentong p{
+  margin-top: 3em;
+
+  width: 6em;
+  height: 2em;
+  background: #ff8000;
+   overflow: hidden;
+   float: right;
+   border-radius: 0.5em;
+   text-align: center;
+   line-height: 2em;
+   color: #fff;
+}
+.shou_top{
+  padding-bottom: 0.6em;
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
+}
+.shou_top1{
+  padding-bottom: 0.6em;
+  overflow: hidden;
+}
+.shou_top2{
+  padding-bottom: 0.6em;
+  overflow: hidden;
+}
+.shou_top2 ul{
+  width: 100%;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  
+}
+.shou_top2 li{
+  margin: 0.4em 0;
+}
+.biduan{
+    width: 25%;
+    font-size: 12px;
+    color: #ddd;
+    font-weight: bold;
+    height: 30px;
+    float: left;
+    line-height: 33px;
+    padding-top: 3.2px;
+    text-align: left;
+}
+.ipjinshi{
+  color: red;
+  text-align: center;
+  margin-top: 1em;
+  letter-spacing: 2px;
+}
+.zhucejiaoyi{
+  background: url(../images/shouji/fukuan_05.gif) no-repeat;
+  border:0px;
+  width: 100%;
+  height: 3em;
+  background-size:100% 3em; 
+  margin-top: 1em;
+
+}
+.tixianti{
+   background: url(../images/shouji/tixianti_03.gif) no-repeat;
+  border:0px;
+  width: 100%;
+  height: 3em;
+  background-size:100% 3em; 
+  margin-top: 1em;
+}
+.bichang{
+  width: 75%;
+   float: right;
+   height: 30px;
+}
+.bichang select{
+  
+   /* the width and the height of your image */
+    width: 90%;
+    height: 30px;
+    overflow: hidden;
+    margin:auto;
+
+
+
+}
+.bichang select{
+
+ -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    background:transparent;
+    border:none;
+    padding-left:10px;
+    width: 100%;
+    height:100%;  
+        color: #ddd;  
+        background: url('../images/shouji/chaxun_03.gif')no-repeat; 
+        background-size: 100% 30px;
+    color: #000;
+    border-radius: 5px;
+
+}
+.bichang input{
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  border: 0px;
+      padding-left:10px;
+}
+#shougerenb{
+
+  overflow:hidden;
+  background: #272727;
+  padding: 1.4em;
+  /*height: 35em;*/
+}
+#shougerenb h1{
+  color: #ddd;
+  margin-top: 1em;
+  font-weight: bold;
+  font-family: 微软雅黑;
+}
+#shougerenb h4{
+  color: #ddd;
+  margin-top: 0.5em;
+  font-weight: bold;
+  font-family: 微软雅黑;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #ddd;
+  letter-spacing: 1px;
+}
+#shougerenb table{
+  margin-top: 1em;
+  width: 100%;
+  border:0px;
+  border:  1px solid #ddd;
+}
+#shougerenb td{
+  border-left: 0px;
+  border-right: 0px;
+  height: 2em;
+  font-size: 0.6em;
+  padding-left: 0.3em;
+}
+.ipming{
+  background: #ddd;
+  color: #000;
+  border-bottom: 1px solid #333;
+}
+.ipnei{
+  background: #333;
+  color: #ddd;
+  border-bottom: 1px solid #ddd;
+
+}
+.shou_down table{
+  width: 100%;
+  margin-top: 1em;
+}
+.shou_down td{
+  padding: 0.8em 0;
+  font-weight: bold;
+  font-size: 1em;
+  color: #ddd;
+}
+.shou_down{
+  padding-bottom: 1em;
+  border-bottom: 1px solid #ddd;
+}
+.shou_down1 table{
+  width: 100%;
+  margin-top: 1em;
+}
+.shou_down1 td{
+  padding: 0.8em 0;
+  font-weight: bold;
+  font-size: 1em;
+  color: #ddd;
+  border: 1px solid #ddd;
+  padding-left: 0.3em;
+}
+.shou_down1{
+  padding-bottom: 1em;
+
+}
+.shou_down1 h4{
+  margin-top: 3em;
+  color: #ddd;
+}
+.shou_down1 ul{
+  margin-top: 1em;
+}
+.shou_down1 li{
+  border: 1px solid #ddd;
+  float: left;
+  width: 19%;
+  text-align: center;
+  color: #ddd;
+  font-weight: bold;
+  font-size: 0.6em;
+  padding: 0.4em 0;
+}
+.shou_down1 a{
+  color: #ddd;
+  text-decoration: none;
+}
+.ipchaxun{
+  background: #383838;
+  text-align: center;
+}
+#ipnian{
+  
+   /* the width and the height of your image */
+    width: 90%;
+    height: 30px;
+    overflow: hidden;
+    margin:auto;
+        margin-top: 0.4em;
+
+
+}
+
+#ipnian select{
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    background:transparent;
+    border:none;
+    padding-left:10px;
+    width: 100%;
+    height:100%;  
+        color: #ddd;  
+        background: url('../images/shouji/chaxun_03.gif')no-repeat; 
+        background-size: 100% 30px;
+    color: #000;
+
+}
+.ipchongzhi{
+  width: 90%;
+  height: 30px;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  border:0px;
+  margin: auto;
+  margin-top: 0.5em;
+
+}
+.dizhitubiao{
+  float: right;
+  width: 6em;
+  height: 4em;
+
+}
+.ipchaxun hr{
+  clear: both;
+  margin-bottom: 1em;
+}
+.ipzhanxian{
+   width: 90%;
+  height: 50px;
+  border-radius: 8px;
+  background: #1f7d00;
+  color: #fff;
+  border:0px;
+  margin: auto;
+  margin-top: 0.5em;
+  margin-bottom: 2em;
+}
+.fukuan_02{
+
+  width: 100%;
+}
+.xingmi1{
+    width: 36%;
+    float: left;
+    height: 40px;
+    border: 0px;
+    background: url(../images/shouji/kaishe_03.gif) no-repeat;
+    background-size: 100% 40px;
+    color: #777;
+    padding-left: 11%;
+
+}
+.xingmi2{
+width: 36%;
+    float: right;
+    height: 40px;
+    border: 0px;
+    background: url(../images/shouji/kaishe_05.gif) no-repeat;
+    background-size: 100% 40px;
+    color: #777;
+    padding-left: 11%;
+
+}
+.ipemail{
+  width: 88%;
+  clear: both;
+  height: 40px;
+  margin-top: 1em;
+  border: 0px;
+  background: url(../images/shouji/kaishe_09.gif) no-repeat;
+  background-size: 100% 40px;
+  color: #777;
+    padding-left: 11%;
+}
+.iphaoma{
+  width: 88%;
+  clear: both;
+  height: 40px;
+  margin-top: 1em;
+  border: 0px;
+    background: url(../images/shouji/kaishe_11.gif) no-repeat;
+  background-size: 100% 40px;
+  color: #777;
+    padding-left: 11%;
+}
+.ipyan{
+  width: 36%;
+  float: left;
+  height: 40px;
+  margin-top: 1em;
+  border: 0px;
+    background: url(../images/shouji/kaishe_13.gif) no-repeat;
+  background-size: 100% 40px;
+  color: #777;
+    padding-left: 11%;
+}
+.ipyanzheng{
+  width: 48%;
+  float: right;
+  height: 40px;
+  margin-top: 1em;
+  background: #860000;
+  border: 0px;
+  color: #fff;
+}
+.iptiaokuan{
+  clear: both;
+  color: #fff;
+  font-size: 0.4em;
+  padding-top: 1em;
+  width: 90%;
+  text-align: center;
+  margin: auto;
+}
+.iptiaokuan input{
+  line-height: 2em;
+}
+.iptiaokuan span{
+  color: #1ab2fd;
+}
+.chuangjiankaihu{
+  margin-top: 3em;
+  width: 100%;
+  height: 40px;
+  background: url(../images/shouji/kaishe_17.gif) no-repeat;
+  background-size: 100% 40px;
+  border: 0px;
+}
+.xingbiao{
+  width:2.5em;
+  height:2.5em;
+
+}
+#shougerenb1{
+
+  overflow:hidden;
+  background: #272727;
+  padding: 1.4em;
+  /*height: 35em;*/
+  color: #ddd;
+
+}
+#shougerenb1 table{
+  width: 100%;
+}
+#shougerenb1 h1{
+  color: #ddd;
+  margin-top: 1em;
+  font-weight: bold;
+  font-family: 微软雅黑;
+}
+#shougerenb1 td{
+    padding-left: 0.4em;
+}
+.huobishu{
+  padding: 1em 0;
+}
+.huobishou img{
+  
+}
+#shougerenb2{
+width: 100%;
+height: 100%;
+  overflow:hidden;
+  background:url(../images/shouji/mabg.gif) no-repeat;
+  background-size: 100% 100%;
+
+  /*height: 35em;*/
+  color: #ddd;
+
+}
+#shougerenb2 h4{
+  color: #ddd;
+  margin-top: 0.5em;
+  font-weight: bold;
+  font-family: 微软雅黑;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #ddd;
+  letter-spacing: 1px;
+  margin-bottom: 2em;
+}
+.wodeerwe{
+  width: 60%;
+  height: 60%;
+
+position: relative;
+left:23%;
+margin-bottom: 2em;
+}
