@@ -7,7 +7,8 @@ class CurrentSeller
 
   def initialize( seller)
     self.seller = seller
-    self.is_user = ( seller.type == 'User' )
+    # seller may be nil
+    self.is_user = ( seller.try(:type) == 'User' )
   end
 
   def members

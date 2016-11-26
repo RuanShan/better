@@ -21,7 +21,6 @@
 .footer
 {
   background-color: silver;
-
 }
 .account-nav-item {
     position: relative;
@@ -37,7 +36,7 @@
   margin: auto;
   width:1180px;
   /*注册页*/
-  .reg-wrapper{ background: #aaa;   
+  .reg-wrapper{ background: #aaa;
      }
   .reg-wrapper .reg{width:100%; background:#dbdadb; float:left;  }
   .reg-wrapper .reg h2 {    float: left;margin-left: 50px;font-weight: bold;color:#000; text-align:center;  font-size:42px; line-height:35px; letter-spacing:3px; margin-top:50px; margin-bottom:50px;}
@@ -89,5 +88,4 @@
   .help-block{
     line-height: normal;
   }
-
 }

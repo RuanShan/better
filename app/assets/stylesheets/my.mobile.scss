@@ -11,13 +11,8 @@
  * file per style scope.
  *
  */
-@import  'application';
-@import  'signin';
-@import  'users';
-
-@import "new/all";
-@import 'bootstrap-datetimepicker';
-@import 'bootstrap-datetimepicker-standalone';
+ @import 'base';
+ @import "new/shouji1";
 
 .masthead
 {
