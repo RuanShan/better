@@ -6,6 +6,26 @@ zh-CN:
         mount: "金额(RMB)"
         createed_at: "日期/时间(GMT+8)"
       user:
+        first_name: 名
+        last_name: 姓
+        real_name: 真实姓名
+        password: 密码
+        password_confirmation: 密码确认
+        money_password: 资金密码
+        money_password_confirmation: 资金密码确认
+        email: 电子邮箱
+        gender: 性别
+        phone: 电话号码
+        birthday: 生日
+        id_number: 身份证号
+        qq: QQ号码
+        country_code: 国家
+        province: 省
+        city: 市
+        address: 地址
+        postcode: 邮编
+        lang: 语言
+        website: 网站
 
   admin:
     site:
@@ -34,3 +54,6 @@ zh-CN:
   broker: 代理
   lock: 封号
   unlock: 解封
+  female: 女
+  male: 男
+  secret: 保密

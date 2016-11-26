@@ -93,11 +93,11 @@ class Admin::UsersController < Admin::BaseController
   private
 
   def user_params
-    params.require(:user).permit(:nickname, :email, :phone, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :password, :password_confirmation, :email, :phone, :gender, 'birthday(1i)', 'birthday(2i)', 'birthday(3i)', :id_number, :qq, :country_code, :province, :city, :address, :postcode, :lang)
   end
 
   def secure_params
-    params.require(:user).permit(:nickname, :email, :phone)
+    params.require(:user).permit(:first_name, :last_name, :email, :phone, :gender, 'birthday(1i)', 'birthday(2i)', 'birthday(3i)', :id_number, :qq, :country_code, :province, :city, :address, :postcode, :lang)
   end
 
 end

@@ -130,11 +130,11 @@ class Admin::BrokersController < Admin::BaseController
   private
 
   def broker_params
-    params.require(:broker).permit(:nickname, :email, :phone, :password, :password_confirmation)
+    params.require(:broker).permit(:first_name, :last_name, :password, :password_confirmation, :email, :phone, :gender, 'birthday(1i)', 'birthday(2i)', 'birthday(3i)', :id_number, :qq, :country_code, :province, :city, :address, :postcode, :lang, :website)
   end
 
   def secure_params
-    params.require(:broker).permit(:nickname, :email, :phone)
+    params.require(:broker).permit(:first_name, :last_name, :email, :phone, :gender, 'birthday(1i)', 'birthday(2i)', 'birthday(3i)', :id_number, :qq, :country_code, :province, :city, :address, :postcode, :lang, :website)
   end
 
 end

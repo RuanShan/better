@@ -1,13 +1,29 @@
-<div> <h2 class="page-header">添加代理  </h2>
-</div>
+<% content_for :page_title do %>
+  <%= link_to "代理管理", admin_brokers_url %> /
+   添加代理
+<% end %>
 <div>
   <%= better_form_for(@broker, url: {:action=>"create"} ) do |f| %>
     <div class="form-inputs">
-      <%= f.input :nickname %>
-      <%= f.input :email %>
-      <%#= f.input :phone %>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
       <%= f.input :password %>
       <%= f.input :password_confirmation %>
+      <%= f.input :email %>
+      <%= f.input :phone %>
+      <%= f.input :role, label: '性别' do %>
+        <%= f.collection_radio_buttons :gender,[['male', '男'] ,['female', '女'],['secret', '保密']], :first, :last%>
+      <% end %>
+      <%= f.input :birthday, prompt: { day: '选择日', month: '选择月', year: '选择年' }, start_year: Date.today.year - 100, end_year: Date.today.year - 18, label_html: {class: "col-sm-3", style: "margin-right:15px;"} %>
+      <%= f.input :id_number %>
+      <%= f.input :qq %>
+      <%= f.input :country_code, selected: [ "CN" ] %>
+      <%= f.input :province %>
+      <%= f.input :city %>
+      <%= f.input :address %>
+      <%= f.input :postcode %>
+      <%= f.input :lang, selected: [ "CN" ], collection: [["中文", "CN"], ["English", "EN"]] %>
+      <%= f.input :website %>
     </div>
     <div class="form-actions">
       <%= f.button :submit, "添加代理" %>

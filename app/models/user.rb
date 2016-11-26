@@ -98,7 +98,7 @@ class User < ApplicationRecord
   end
 
   def real_name
-    country_code == "cn" ? "#{last_name}#{first_name}" : "#{first_name} #{last_name}"
+    country_code == "CN" ? "#{last_name}#{first_name}" : "#{first_name} #{last_name}"
   end
 
   def set_default_role
