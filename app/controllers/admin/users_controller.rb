@@ -67,7 +67,7 @@ class Admin::UsersController < Admin::BaseController
 
   def search
     @page = params['page']
-    @users = User.where("nickname=?", params['nickname']).order("created_at desc").all.paginate(:page => @page)
+    @users = User.where("email=?", params['email']).order("created_at desc").all.paginate(:page => @page)
     render :index
   end
 
