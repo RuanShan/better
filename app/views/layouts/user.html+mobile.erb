@@ -2,7 +2,7 @@
 <html lang="<%= I18n.locale.to_s %>">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title><%= content_for?(:title) ? yield(:title) : "Better" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Better" %>">
     <%= stylesheet_link_tag 'my.mobile', media: 'all' %>
@@ -16,8 +16,9 @@
   <body>
     <%= render 'layouts/header' %>
     <%= render "shared/user_menu" %>
-    <div class="">
-      <div class="">
+    <div class="page">
+      <div class="page-title"> <%= yield :page_title %> </div>
+      <div class="page-body">
         <%= yield %>
       </div>
     </div>
