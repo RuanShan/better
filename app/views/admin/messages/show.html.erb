@@ -1,20 +1,30 @@
-<div> <h2 class="page-header">通知详情 </h2>
-</div>
+<% content_for :page_title do %>
+  <%= link_to "系统通知", admin_messages_url %> /
+   通知详情
+<% end %>
 <div>
-<p>
-  <strong>主题:</strong>
-  <%= @message.title %>
-</p>
-<p>
-  <strong>创建时间:</strong>
-  <%= @message.display_created_at %>
-</p>
-<p>
-  <strong>内容:</strong>
-  <%= @message.content %>
-</p>
-<p>
-  <strong>通知类型:</strong>
-  <%= @message.message_type %>
-</p>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <td>主题</td>
+        <td><%= @message.title %></td>
+      </tr>
+      <tr>
+        <td>创建时间</td>
+        <td><%= @message.display_created_at %></td>
+      </tr>
+      <tr>
+        <td>内容</td>
+        <td><%= @message.content %></td>
+      </tr>
+      <tr>
+        <td>通知类型</td>
+        <td><%=t @message.message_type %></td>
+      </tr>
+      <tr>
+        <td>发送状态</td>
+        <td><%=t @message.state %></td>
+      </tr>
+    </tbody>
+  </table>
 </div>

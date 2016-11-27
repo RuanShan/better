@@ -1,0 +1,41 @@
+<%=form_tag batch_delete_admin_promotions_path, method: :put do%>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>活动名称</th>
+        <th>活动创建时间</th>
+        <th>规则</th>
+        <th>活动代码</th>
+        <th colspan="2">
+          <%=link_to "添加活动", new_admin_promotion_path, class: "btn btn-primary btn_xs"%>
+        </th>
+        <th><%=submit_tag "删除", class: "btn btn-primary btn_xs"%></th>
+        <th><%= check_box_tag "selectall", 1, false %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if @promotions.empty? %>
+        <tr>
+          <td colspan="8">暂无活动</td>
+        <tr>
+      <% else %>
+      <% @promotions.each do |promotion| %>
+        <tr>
+          <td><%= promotion.name %></td>
+          <td><%= promotion.display_created_at %></td>
+          <td><%= t promotion.rule %></td>
+          <td><%= promotion.number %></td>
+          <td><%= link_to "查看", admin_promotion_path(promotion), method: 'get' %></td>
+          <td><%= link_to "编辑", edit_admin_promotion_path(promotion) %></td>
+          <td><%= link_to "删除", admin_promotion_path(promotion), method: 'delete' %></td>
+          <td><%= check_box_tag "selected_promotions[]", promotion.id, false, class: "selectedId" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+
+    </tbody>
+  </table>
+<% end %>
+
+<%= will_paginate @promotions if @promotions.respond_to? :total_pages%>

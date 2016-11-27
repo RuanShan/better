@@ -1,0 +1,18 @@
+<div> <h2 class="page-header">活动管理 </h2>
+</div>
+<div>
+  <div class="">
+    <%=form_tag search_admin_promotions_path, method:"get", class:"form-inline", role:"form" do%>
+      <div class="form-group">
+        <label for="rule">规则</label>
+        <%=select_tag :rule, options_for_select(Promotion.rules.map{ |rule| [t(rule.first.to_sym), rule.first] }, @rule), prompt: "所有规则", class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <%=submit_tag "查询",  class:"form-control"%>
+      </div>
+    <%end%>
+  </div>
+  <div style="padding-top:20px;">
+    <%= render partial: "records" %>
+  </div>
+</div>

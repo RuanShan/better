@@ -37,3 +37,9 @@ zh-CN:
   no_selected_messages: 请至少选择一个通知
   multi_message_deleted: 批量删除通知成功
   multi_message_send: 批量发送通知成功
+
+  promotion_created: 添加活动成功
+  promotion_updated: 修改活动成功
+  promotion_deleted: 删除活动成功
+  no_selected_promotions: 请至少选择一个活动
+  multi_promotions_deleted: 批量删除活动成功

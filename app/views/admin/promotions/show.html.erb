@@ -1,0 +1,31 @@
+<% content_for :page_title do %>
+  <%= link_to "所有活动", admin_promotions_url %> /
+   查看活动
+<% end %>
+
+<div>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <td>活动名称</td>
+        <td><%= @promotion.name %></td>
+      </tr>
+      <tr>
+        <td>活动创建时间</td>
+        <td><%= @promotion.display_created_at %></td>
+      </tr>
+      <tr>
+        <td>活动详情</td>
+        <td><%= @promotion.description %></td>
+      </tr>
+      <tr>
+        <td>活动代码</td>
+        <td><%= @promotion.number %></td>
+      </tr>
+      <tr>
+        <td>活动规则</td>
+        <td><%=t @promotion.rule %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

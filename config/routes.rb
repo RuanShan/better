@@ -27,6 +27,12 @@ Rails.application.routes.draw do
         put :deny
       end
     end
+    resources :promotions do
+      collection do
+        get :search
+        put :batch_delete
+      end
+    end
     resources :users do
       collection do
         get :search
