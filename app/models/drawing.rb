@@ -17,6 +17,7 @@ class Drawing < ApplicationRecord
   delegate :user, to: :user_bank
   delegate :name, to: :user_bank, prefix: true
 
+  scope :pending, ->{ where( state: 'pending' ) }
   scope :on_date, ->(datetime){ where( ["created_at>? and created_at<=?",  datetime.beginning_of_day, datetime.end_of_day] )}
   scope :today, ->{ on_date( DateTime.current ) }
   #每笔最少提款：50.00
@@ -37,21 +38,37 @@ class Drawing < ApplicationRecord
     # success: 提款成功
     # failure: 提款失败
     after_transition to: :success, do: :adjust_wallet
-
+    after_transition to: :checked, do: :drawing_money
+    event :pass do
+      transition pending: :checked
+    end
+    event :deny do
+      transition pending: :failure
+    end
     event :process do
-      transition pending: :success, if: ->(drawing) { drawing.valid_to_process? }
-      transition pending: :failure, if: ->(drawing) { !drawing.valid_to_process? }
+      transition checked: :success, if: ->(drawing) { drawing.valid_to_process? }
+      transition checked: :failure, if: ->(drawing) { !drawing.valid_to_process? }
     end
   end
 
-  def self.search(search_params)
-    self.where("created_at>? and created_at<? and state=?",(search_params["start_date"]+" 00:00:00").to_time(:utc),
-    (search_params["end_date"]+" 23:59:59").to_time(:utc),search_params["state"]).order("created_at desc").all
+  def self.search(search_params, user_id=nil)
+    search_conditions = "created_at>? and created_at<? and state=?"
+    search_cvalues = [(search_params["start_date"]+" 00:00:00").to_time(:utc),
+    (search_params["end_date"]+" 23:59:59").to_time(:utc),search_params["state"]]
+    unless user_id.nil?
+      search_conditions += " and user_id=?"
+      search_cvalues << user_id
+    end
+    self.where([search_conditions,search_cvalues].flatten).order("created_at desc").all
   end
 
   def valid_to_process?
     #TODO
     # available money to transfer    true
+  end
+
+  def drawing_money
+    #self.process!
   end
 
   def adjust_wallet
@@ -60,7 +77,7 @@ class Drawing < ApplicationRecord
 
   def validate_amount
     message = ""
-    if amount > user.wallet_balance
+    if amount*(1+DayUpdater::BankChargeRate) > user.wallet_balance
       message = "amount greater than balance"
     end
     if user.drawings_count_today == 50

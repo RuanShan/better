@@ -57,3 +57,7 @@ zh-CN:
   female: 女
   male: 男
   secret: 保密
+  failure: 失败
+  pending: 待审
+  checked: 已审
+  success: 成功

@@ -30,7 +30,7 @@
         <td><%= deposit.number %></td>
         <td><%= deposit.payment_method.name %></td>
         <td><%= deposit.display_amount %></td>
-        <td><%= display_state(deposit.state) %></td>
+        <td><%= t(deposit.state) %></td>
       </tr>
       <%total_amount += deposit.amount%>
     <% end %>

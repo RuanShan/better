@@ -7,7 +7,7 @@ zh-CN:
   bind_name_success: 实名绑定成功
   bind_bank_success: 银行绑定成功
   deposit_success: 充值成功
-  drawing_success: 提款操作成功，请等待银行确认
+  drawing_success: 提款操作成功，请等待管理员审核
   password_changed: 密码修改成功
 
   user_created: 添加用户成功
@@ -24,6 +24,12 @@ zh-CN:
   multi_broker_deleted: 批量删除代理成功
   multi_broker_confirmed: 批量通过代理成功
   multi_broker_locked: 批量封号/解封代理成功
+
+  drawing_passed: 提款审核通过
+  drawing_denied: 提款审核已被拒绝
+  no_selected_drawings: 请至少选择一个提款记录
+  multi_drawings_passed: 批量审核提款成功
+  multi_drawings_denied: 批量拒绝提款成功
 
   message_created: 添加通知成功
   message_updated: 修改通知成功

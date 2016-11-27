@@ -31,10 +31,6 @@ module ApplicationHelper
     BetterMoney.new(amount).to_s
   end
 
-  def display_state(state)
-    {:success=>"成功", :failure=>"失败", :pending=>"待处理"}[state.to_sym]
-  end
-
 end
 
 class BetterFormBuilder < SimpleForm::FormBuilder

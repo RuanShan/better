@@ -1,0 +1,63 @@
+<% content_for :page_title do %>
+  <%= link_to "提现审核", admin_drawings_url(check: 1) %> /
+   提现详情
+<% end %>
+
+<div>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <td>提现人</td>
+        <td><%= @drawing.user.real_name %></td>
+      </tr>
+      <tr>
+        <td>提现时间</td>
+        <td><%= @drawing.display_created_at %></td>
+      </tr>
+      <tr>
+        <td>交易号码</td>
+        <td><%= @drawing.number %></td>
+      </tr>
+      <tr>
+        <td>提款方式</td>
+        <td><%= @drawing.user_bank_name %></td>
+      </tr>
+      <tr>
+        <td>提现全额(RMB)</td>
+        <td><%= @drawing.display_amount %></td>
+      </tr>
+      <tr>
+        <td>提款前资产总额</td>
+        <td><%= @drawing.user.balance %></td>
+      </tr>
+      <tr>
+        <td>提款后资产总额</td>
+        <td><%= @drawing.user.balance - @drawing.amount*(1+DayUpdater::BankChargeRate)  %></td>
+      </tr>
+      <tr>
+        <td>充值总额</td>
+        <td><%= @drawing.user.deposit_sum %></td>
+      </tr>
+      <tr>
+        <td>提款总额</td>
+        <td><%= @drawing.user.drawing_sum %></td>
+      </tr>
+      <tr>
+        <td>红利总额</td>
+        <td><%= @drawing.user.bonus_sum %></td>
+      </tr>
+      <tr>
+        <td>投注总额</td>
+        <td><%= @drawing.user.bid_sum %></td>
+      </tr>
+      <tr>
+        <td>盈利总额</td>
+        <td><%= @drawing.user.profit_sum %></td>
+      </tr>
+      <tr>
+        <td>输赢总额</td>
+        <td><%= @drawing.user.net_sum %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -71,7 +71,7 @@ module My
       @start_date = search_params[:start_date]
       @end_date = search_params[:end_date]
       @state = search_params[:state]
-      @drawings = Drawing.search(search_params).paginate(:page => @page)
+      @drawings = Drawing.search(search_params, current_user.id).paginate(:page => @page)
       render :index
     end
 

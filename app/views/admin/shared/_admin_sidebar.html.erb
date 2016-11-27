@@ -17,8 +17,16 @@
 
 
     <li><a>充值管理</a> </li>
-    <li><a>提现管理</a> </li>
-    <li><a>提现管理</a> </li>
+    <li><a class="menu-dropdown" href="#">
+        <i class="menu-icon fa fa-tachometer"></i>
+        <span class="menu-text"> 提现管理 </span>
+        <i class="menu-expand"></i>
+        </a>
+        <ul class="submenu">
+          <li><%= build_nav_link "提现审核", admin_drawings_path(check: 1)%></li>
+          <li><%= build_nav_link "提现统计", admin_drawings_path%></li>
+        </ul>
+      </li>
 
     <li><a>活动管理</a> </li>
 
