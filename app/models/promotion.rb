@@ -4,12 +4,23 @@
 #   factor1 <= 充值 <= factor2,  送  充值*factor3
 #
 class Promotion < ApplicationRecord
+  extend  DisplayDateTime
+  date_time_methods :created_at, :updated_at
   extend FriendlyId
   friendly_id :number, slug_column: :number, use: :slugged
   include NumberGenerator.new(prefix: 'P')
 
   enum rule: { deposit_amount_percent: 1 }
-  
+
+  def self.search(search_params)
+    rule = search_params["rule"]
+    if rule.present?
+      self.where(rule: rule).order("created_at desc").all
+    else
+      self.order("created_at desc").all
+    end
+  end
+
   def valid_amount?(amount)
     case rule
     when 1
@@ -24,4 +35,6 @@ class Promotion < ApplicationRecord
       factor3
     end
   end
+
+
 end

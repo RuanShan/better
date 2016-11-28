@@ -6,11 +6,11 @@
         <th>创建时间</th>
         <th>通知类型</th>
         <th>发送状态</th>
-        <th colspan="4">
-          <%=link_to "添加通知", new_admin_message_path, class: "btn btn-primary"%>
-          <%=submit_tag "批量删除", class: "btn btn-primary"%>
-          <%=submit_tag "批量发送", class: "btn btn-primary", formaction: batch_send_admin_messages_path%>
+        <th colspan="2">
+          <%=link_to "添加通知", new_admin_message_path, class: "btn btn-primary btn_xs"%>
         </th>
+        <th><%=submit_tag "删除", class: "btn btn-primary btn_xs"%></th>
+        <th><%=submit_tag "发送", class: "btn btn-primary btn_xs", formaction: batch_send_admin_messages_path%></th>
         <th><%= check_box_tag "selectall", 1, false %></th>
       </tr>
     </thead>

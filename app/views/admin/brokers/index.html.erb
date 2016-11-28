@@ -4,8 +4,8 @@
   <div class="">
     <%=form_tag search_admin_brokers_path, method:"get", class:"form-inline", role:"form" do%>
       <div class="form-group">
-        <label for="start_date">代理名</label>
-        <%=text_field_tag "nickname", '', class:"form-control"%>
+        <label for="start_date">代理邮箱</label>
+        <%=text_field_tag "email", '', class:"form-control"%>
       </div>
       <div class="form-group">
         <%=submit_tag "查询",  class:"form-control"%>

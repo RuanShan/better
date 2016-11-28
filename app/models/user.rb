@@ -289,6 +289,7 @@ class User < ApplicationRecord
   def drawings_sum_today
     drawings_today.pluck(:amount).sum
   end
+
 #============================messages===========================================
   def private_messages
     Message.where("state=?",id).all

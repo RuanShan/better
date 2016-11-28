@@ -68,7 +68,7 @@ class Admin::BrokersController < Admin::BaseController
 
   def search
     @page = params['page']
-    @brokers = Broker.where("nickname=?", params['nickname']).order("created_at desc").all.paginate(:page => @page)
+    @brokers = Broker.where("email=?", params['email']).order("created_at desc").all.paginate(:page => @page)
     render :index
   end
 

@@ -1,0 +1,29 @@
+<% content_for :page_title do %>提现统计<% end %>
+<div>
+  <div class="">
+    <%=form_tag search_admin_drawings_path, method:"get", class:"form-inline", role:"form" do%>
+      <div class="form-group">
+        <label for="start_date">提现会员邮箱</label>
+        <%=text_field_tag "email", @email, class:"form-control"%>
+      </div>
+      <div class="form-group">
+        <label for="start_date">起始日期</label>
+        <%=calendar "start_date", @start_date%>
+      </div>
+      <div class="form-group">
+        <label for="end_date">到</label>
+        <%=calendar "end_date", @end_date%>
+      </div>
+      <div class="form-group">
+        <label for="state">状态</label>
+        <%=drawing_state_select "state", @state%>
+      </div>
+      <div class="form-group">
+        <%=submit_tag "查询",  class:"form-control"%>
+      </div>
+    <%end%>
+  </div>
+  <div style="padding-top:20px;">
+    <%= render partial: "records", locals:{check: false} %>
+  </div>
+</div>

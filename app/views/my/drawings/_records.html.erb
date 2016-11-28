@@ -30,7 +30,7 @@
           <td><%= drawing.number %></td>
           <td><%= drawing.user_bank_name %></td>
           <td><%= drawing.display_amount %></td>
-          <td><%= display_state(drawing.state) %></td>
+          <td><%= t(drawing.state) %></td>
         </tr>
         <%total_amount += drawing.amount%>
       <% end %>

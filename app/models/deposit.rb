@@ -24,7 +24,7 @@ class Deposit < ApplicationRecord
   validates :amount, numericality: { greater_than_or_equal_to: 50, less_than_or_equal_to: 50000}
 
   # 缺省状态是等待处理， 即 pending: 0
-  state_machine :state, initial: :success do
+  state_machine :state, initial: :pending do
     # pending: 等待处理
     # success: 充值成功
     # failure: 充值失败
@@ -50,6 +50,8 @@ class Deposit < ApplicationRecord
       errors.add(:promotion_number, promotion_number_error_message)
     else
       self.save
+      #TODO remove process in prodution 
+      self.process!
     end
   end
 

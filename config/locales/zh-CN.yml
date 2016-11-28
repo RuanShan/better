@@ -26,7 +26,15 @@ zh-CN:
         postcode: 邮编
         lang: 语言
         website: 网站
-
+      promotion:
+        name: 活动名称
+        description: 活动详情
+        number: 活动代码
+        rule: 活动规则
+      message:
+        title: 主题
+        content: 内容
+        message_type: 消息类型
   admin:
     site:
       name: 管理平台
@@ -57,3 +65,8 @@ zh-CN:
   female: 女
   male: 男
   secret: 保密
+  failure: 失败
+  pending: 待审
+  checked: 已审
+  success: 成功
+  deposit_amount_percent: 充值满送百分比

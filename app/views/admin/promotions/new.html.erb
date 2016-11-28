@@ -1,0 +1,18 @@
+<% content_for :page_title do %>
+  <%= link_to "所有活动", admin_promotions_url %> / 添加活动
+<% end %>
+<div>
+  <%= better_form_for(@promotion, url: {:action=>"create"} ) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :rule, selected: "1", collection: Promotion.rules.map{ |rule| [t(rule.first.to_sym), rule.first] } %>
+      <%= f.input :factor1, label: "充值金额在"%>
+      <%= f.input :factor2, label: "和"%>
+      <%= f.input :factor3, label: "赠送"%>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "添加活动" %>
+    </div>
+  <% end %>
+</div>

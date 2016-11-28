@@ -8,6 +8,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require admin/custom2
+//= require application
 
 $(function () {
   $('#selectall').click(function () {
@@ -17,5 +18,9 @@ $(function () {
   $('.selectedId').change(function () {
       var check = ($('.selectedId').filter(":checked").length == $('.selectedId').length);
       $('#selectall').prop("checked", check);
+  });
+
+  $(function () {
+    $('.calendar').datetimepicker({format: "YYYY-MM-DD"});
   });
 });

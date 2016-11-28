@@ -16,6 +16,23 @@ Rails.application.routes.draw do
   # 管理
   namespace :admin do
     resources :deposits
+    resources :drawings do
+      collection do
+        get :search
+        put :batch_pass
+        put :batch_deny
+      end
+      member do
+        put :pass
+        put :deny
+      end
+    end
+    resources :promotions do
+      collection do
+        get :search
+        put :batch_delete
+      end
+    end
     resources :users do
       collection do
         get :search
