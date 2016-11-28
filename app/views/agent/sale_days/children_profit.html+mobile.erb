@@ -1,0 +1,40 @@
+<div class="dailiright_top">
+   <div class="biaotou">
+    <h3>日盈利表 <small>显示每日下线会员所创造的盈利 </small></h3>
+  </div>
+</div>
+<div class="dailiright_down">
+
+  <table class="biaoge  table">
+    <thead>
+      <tr>
+        <th>会员</th>
+         <th>活跃人数</th>
+        <th>存款(人数)</th>
+        <th>提款(人数)</th>
+        <th>投注</th>
+        <th>输赢</th>
+        <th>红利</th>
+        <th>盈利</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @day_profits.each do |day_profit| %>
+        <tr>
+          <td><%= day_profit.seller_name %></td>
+           <td><%= 0 %></td>
+          <td><%= day_profit.display_deposit_amount %>(<%= day_profit.deposit_member_count %>)</td>
+          <td><%= day_profit.display_drawing_amount %>(<%= day_profit.drawing_member_count %>)</td>
+          <td><%= day_profit.display_bid_amount %></td>
+          <td><%= day_profit.display_net %></td>
+          <td><%= day_profit.display_bonus %></td>
+          <td><%= day_profit.display_profit %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+
+  <%= will_paginate @children_brokers  if @children_brokers.respond_to? :total_pages %>
+</div>

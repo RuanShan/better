@@ -20,7 +20,6 @@ module My
       @deposits = @user.deposits.order("created_at desc").limit(10)
     end
 
-
     def change_password
       @selected_password = params["selected_password"] ? params["selected_password"] : "login"
       if request.patch?
@@ -32,6 +31,12 @@ module My
         end
         render :change_password
       end
+    end
+
+    def edit_login_password
+    end
+
+    def edit_cash_password
     end
 
     def change_profile

@@ -1,0 +1,24 @@
+<div >
+	<div class="shou_top">
+	   <h3>电子钱包</h3>
+	  <%= link_to '人金', new_my_deposit_path, class: "pull-right" %>
+	</div>
+	<div class="shou_down">
+		<table class="table">
+			<tbody><tr>
+				<td>余额</td><td> <%= @user_life.balance %></td>
+			</tr>
+			<tr>
+				<td>可用现金</td><td> <%= @user_life.net_cash  %> </td>
+			</tr>
+			<tr>
+				<td>可用赠金</td><td> <%= @user_life.net_bonus %> </td>
+			</tr>
+			<tr>
+				<td>已投资</td><td> <%= @user_life.bid_amount %> </td>
+			</tr>
+		</tbody>
+    </table>
+	</div>
+
+</div>

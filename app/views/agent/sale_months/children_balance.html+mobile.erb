@@ -1,0 +1,41 @@
+<div class="dailiright_top">
+  <div class="biaotou">
+    <h3>月结余表<small>显示各代理月度盈利扣除费用后的结余</small></h3>
+
+  </div>
+</div>
+<div class="dailiright_down">
+  <table class="biaoge table">
+    <thead>
+      <tr>
+        <th>会员</th>
+        <th>状态</th>
+        <th>活跃人数</th>
+        <th>盈利</th>
+        <th>银行手续费</th>
+        <th>平台手续费</th>
+        <th>净盈利</th>
+        <th>上月负结余</th>
+        <th>本月结余</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @month_balances.each do |month_balance| %>
+        <tr>
+          <td><%= month_balance.seller_name %></td>
+          <td><%= t month_balance.state.to_sym %></td>
+          <td><%= 0 %></td>
+          <td><%= month_balance.display_profit %></td>
+          <td><%= month_balance.display_bank_charges %></td>
+          <td><%= month_balance.display_platform_charges %></td>
+          <td><%= month_balance.display_net_profit %></td>
+          <td><%= month_balance.display_last_month_negative_balance %></td>
+          <td><%= month_balance.display_this_month_balance %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @children_brokers  if @children_brokers.respond_to? :total_pages %>
+</div>

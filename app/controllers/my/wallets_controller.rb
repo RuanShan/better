@@ -5,7 +5,8 @@ module My
     # GET /wallets
     # GET /wallets.json
     def index
-      @wallets = UserWallet.all
+      @wallets = Wallet.all
+      @user_life = current_seller.user_life
     end
 
     # GET /wallets/1
@@ -15,7 +16,7 @@ module My
 
     # GET /wallets/new
     def new
-      @wallet = UserWallet.new
+      @wallet = Wallet.new
     end
 
     # GET /wallets/1/edit
@@ -25,7 +26,7 @@ module My
     # POST /wallets
     # POST /wallets.json
     def create
-      @wallet = UserWallet.new(wallet_params)
+      @wallet = Wallet.new(wallet_params)
 
       respond_to do |format|
         if @wallet.save
@@ -78,7 +79,7 @@ module My
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_wallet
-        @wallet = UserWallet.find(params[:id])
+        @wallet = Wallet.find(params[:id])
       end
 
       # Never trust parameters from the scary internet, only allow the white list through.

@@ -30,7 +30,7 @@ class Broker < User
   has_many :member_cmonths, ->{ current_month }, class_name: 'UserMonth'
   has_many :member_todays, ->{ today }, class_name: 'UserDay'
 
-  default_scope ->{ where( type: 'Broker' )}
+  #default_scope ->{ where( type: 'Broker' )}
 
   def state
     locked_at.nil? ? "normal" : "frozen"

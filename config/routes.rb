@@ -105,6 +105,7 @@ Rails.application.routes.draw do
       get 'drawing', on: :collection
       get 'transfer', on: :collection
       member do
+
         match 'change_password', via: [:get, :patch]
         match 'change_profile', via: [:get, :patch]
         match 'update_profile', via: [:patch]
@@ -114,6 +115,10 @@ Rails.application.routes.draw do
         match 'bind_name', via: [:get, :patch]
         get 'send_validate_code'
         match 'bind_bank', via: [:get, :post]
+        #for mobile only
+        match 'edit_login_password', via: [:get, :patch]
+        match 'edit_cash_password', via: [:get, :patch]
+
       end
     end
 
@@ -149,4 +154,6 @@ Rails.application.routes.draw do
   #root to: 'visitors#index'
   get '/(:number)', to: 'visitors#index', as: :root
 
+  # config/routes.rb
+  get "/pages/*id" => 'pages#show', as: :page, format: false
 end

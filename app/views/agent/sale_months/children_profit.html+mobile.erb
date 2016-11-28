@@ -1,0 +1,43 @@
+<div class="dailiright_top">
+   <div class="biaotou">
+    <h3>月盈利表 <small>显示各代理下线会员创造的月度盈利</small></h3>
+  </div>
+</div>
+<div class="dailiright_down">
+   <table class="biaoge  table">
+    <thead>
+      <tr>
+        <th>会员</th>
+         <th>活跃人数</th>
+        <th>存款(人数)</th>
+        <th>提款(人数)</th>
+        <th>投注</th>
+        <th>投注补差</th>
+        <th>输赢</th>
+        <th>输赢补差</th>
+        <th>红利</th>
+        <th>盈利</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @month_profits.each do |month_profit| %>
+        <tr>
+          <td><%= month_profit.seller_name %></td>
+           <td><%= 0 %></td>
+          <td><%= month_profit.display_deposit_amount %>(<%= month_profit.deposit_member_count %>)</td>
+          <td><%= month_profit.display_drawing_amount %>(<%= month_profit.drawing_member_count %>)</td>
+          <td><%= month_profit.display_bid_amount %></td>
+          <td><%= month_profit.display_bid_difference %></td>
+          <td><%= month_profit.display_net %></td>
+          <td><%= month_profit.display_net_difference %></td>
+          <td><%= month_profit.display_bonus %></td>
+          <td><%= month_profit.display_profit %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+
+  <%= will_paginate @children_brokers  if @children_brokers.respond_to? :total_pages %>
+</div>

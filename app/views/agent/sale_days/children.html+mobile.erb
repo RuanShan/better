@@ -1,0 +1,33 @@
+<div class="dailiright_top">
+   <div class="biaotou">
+    <h3>日推广效果表<small>显示各代理的日度推广注册效果</small></h3>
+   </div>
+</div>
+<div class="dailiright_down">
+
+  <table class="biaoge table">
+    <thead>
+      <tr>
+        <th>会员</th>
+         <th>推广链接点击数</th>
+        <th>注册数</th>
+        <th>新注册并存款</th>
+        <th>注册存款转化率</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @sale_days.each do |sale_day|%>
+        <tr>
+          <td><%= sale_day.seller_name %></td>
+          <td><%= sale_day.clink_visits %></td>
+          <td><%= sale_day.member_count %></td>
+          <td><%= sale_day.valuable_member_count %></td>
+          <td><%= sale_day.display_valuable_rate %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @children_brokers  if @children_brokers.respond_to? :total_pages%>
+</div>
