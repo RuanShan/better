@@ -20,6 +20,7 @@ class RegistrationsController < DeviseInvitable::RegistrationsController
       build_resource(permitted_params)
 
           resource.save
+          logger.debug "resource1 = #{resource.errors.inspect}"
           yield resource if block_given?
           if resource.persisted?
             if resource.active_for_authentication?
@@ -31,6 +32,7 @@ class RegistrationsController < DeviseInvitable::RegistrationsController
                 respond_with resource, location: after_sign_up_path_for(resource)
               end
             else
+              logger.debug "resource = #{resource.inspect}"
               set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
               expire_data_after_sign_in!
               if request.xhr?
@@ -85,11 +87,13 @@ class RegistrationsController < DeviseInvitable::RegistrationsController
 
   def sign_up_params
     #params["user"]["type"] = "User"
-
-    if request.xhr?
-      permitted_params = [:type, :first_name, :last_name, :email, :qq, :phone, :password, :validate_code]
+    if request.variant.first == :mobile
+      permitted_params = [:type, :first_name, :last_name, :email, :phone, :password, :validate_code]
     else
-      permitted_params = [:type, :last_name, :first_name, :email, :qq, :phone, :birthday, :country_code, :qq, :phone, :password, :password_confirmation, :validate_code]
+      if request.xhr?
+      else
+        permitted_params = [:type, :last_name, :first_name, :email, :qq, :phone, :birthday, :country_code, :qq, :phone, :password, :password_confirmation, :validate_code]
+      end
     end
     params.require(:user).permit(*permitted_params)
   end

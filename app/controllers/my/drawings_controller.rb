@@ -19,7 +19,11 @@ module My
     def new
       @user_banks = current_user.user_banks.green
       @drawing = Drawing.new
-      @drawing.user_bank = @user_banks.present? ? @user_banks.first : UserBank.new
+      if params[:bank].present?
+        user_bank = params[:bank] == "0" ? UserBank.new : UserBank.find(params[:bank])
+      end
+      selected_bank = user_bank ? user_bank : (@user_banks.present? ? @user_banks.first : UserBank.new)
+      @drawing.user_bank = selected_bank
     end
 
     # GET /drawings/1/edit

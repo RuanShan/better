@@ -11,7 +11,9 @@
 		</div>
 	</div>
 
-	<div class="subNav" style="clear:both"><h6>个人中心</h6></div>
+	<div class="subNav" style="clear:both">
+		<h6>个人中心   <%= link_to "退出", destroy_user_session_path, :method=>'delete' %></h6>
+	</div>
 	<div class="subNav"><h6>二级客户推广状况</h6></div>
 	<ul class="navContent">
 		<li><%= build_nav_link "月推广效果表", { controller: 'agent/sale_months', action: 'children', member_level: 2}%></li>
@@ -73,7 +75,7 @@
 	<ul class="navContent">
 		<li><a href="#">上传文件</a></li>
 		<li><%= build_nav_link "设置登录密码", { controller: 'my/account', action: 'edit_login_password', id: current_user.id}%></li>
-		<li><%= build_nav_link "设置资金密码", { controller: 'my/account', action: 'edit_cash_password', id: current_user.id}%></li>
+		<li><%= build_nav_link "设置资金密码", { controller: 'my/account', action: 'edit_money_password', id: current_user.id}%></li>
 	</ul>
 	<div class="subNav"><h6>报告</h6></div>
 	<ul class="navContent">

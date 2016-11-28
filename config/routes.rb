@@ -117,7 +117,7 @@ Rails.application.routes.draw do
         match 'bind_bank', via: [:get, :post]
         #for mobile only
         match 'edit_login_password', via: [:get, :patch]
-        match 'edit_cash_password', via: [:get, :patch]
+        match 'edit_money_password', via: [:get, :patch]
 
       end
     end

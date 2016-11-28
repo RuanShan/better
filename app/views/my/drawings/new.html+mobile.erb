@@ -1,20 +1,29 @@
+<div class="biaoti">
+	<p class="fanhui">&lt;</p>
+	<p class="iphonelan">提现</p>
+</div>
 <div id="shougerentong1">
-
+	<%@user_bank= @drawing.user_bank || @user_banks.first%>
 	<div class="shou_top2">
-		<form>
-			<ul>
-				<li class="biduan">常用卡</li><li class="bichang"><select><option>中国建设银行（3355）</option></select></li>
-				<li class="biduan">银行名称</li><li class="bichang"><select><option>中国建设银行</option></select></li>
-				<li class="biduan">分支银行</li><li class="bichang"><input type="text" value="请输入分支银行"></li>
-				<li class="biduan">银行地址</li><li class="bichang"><input type="text" value="请输入银行所在地址"></li>
-				<li class="biduan">户名</li><li class="bichang"><input type="text" value="某**"></li>
-				<li class="biduan">银行卡号</li><li class="bichang"><input type="text" value="请输入银行卡号"></li>
-				<li class="biduan"><hr></li><li class="bichang"><hr></li>
-				<li class="biduan">提款金额</li><li class="bichang"><input type="text" value="请输入提款金额"></li>
-				<li class="biduan">资金密码</li><li class="bichang"><input type="text" value="请输入资金密码"></li>
-			</ul>
-			<button class="tixianti"></button>
-		</form>
+		<%if @user_banks.present?%>
+		  <li class="biduan">常用卡</li>
+			<li class="bichang">
+				<%=select_tag "used_card", options_for_select(@user_banks.map{|user_bank| [user_bank.name, user_bank.id]}, @drawing.user_bank.id), prompt: "请选择常用卡", onchange:"window.location.href='#{new_my_drawing_url}?bank='+$('#used_card').val();"%>
+			</li>
+		<% end %>
+		<li class="biduan"></li>
+		<li class="bichang">
+			<%=link_to "添加新卡", new_my_drawing_path(bank: 0), class:"btn btn-default" %>
+		</li>
+		<%= better_form_for(@drawing, url: my_drawings_path) do |f| %>
+			<div class="form-inputs">
+				<%= f.fields_for :user_bank do |user_banks_form| %>
+					<%=render 'my/account/bank_form_content', :bank_form => user_banks_form, :bank_disable=>@drawing.user_bank.persisted?, :pdisplay=>"display:block;"%>
+				<% end %>
+				<%= f.input :amount, label: "提现全额", as: 'string', placeholder: "请输入提现金额" %>
+			</div>
+			<button class="tixianti">提交</button>
+		<% end %>
 	</div>
 
 </div>

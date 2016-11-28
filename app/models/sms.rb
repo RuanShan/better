@@ -39,12 +39,12 @@ class Sms
   end
 
   def send_at_validation
-
-      last_send_duration = Time.now - self.send_at.to_time # 
+    if self.send_at
+      last_send_duration = Time.now - self.send_at.to_time #
       if last_send_duration > 10*60
         errors.add(:send_at, "验证码过期，请重新发送")
       end
-
+    end
   end
   #error_respond={"error_response"=>{"code"=>15, "msg"=>"Remote service error", "sub_code"=>"isv.BUSINESS_LIMIT_CONTROL", "sub_msg"=>"触发业务流控", "request_id"=>"3b4kmfzkvbq7"}}
   #success_respond={"alibaba_aliqin_fc_sms_num_send_response"=>{"result"=>{"err_code"=>"0", "model"=>"104132741839^1105207555898", "success"=>true}, "request_id"=>"z24nkhmlp79h"}}
