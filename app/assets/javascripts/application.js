@@ -20,6 +20,7 @@
 //= require select2
 //= require base
 //= require cable
+//= require better
 
 $(function(){
   setInterval(update, 1000);

@@ -41,7 +41,9 @@ zh-CN:
   agent:
     site:
       name: 代理平台
-
+  my:
+    site:
+      name: 个人中心
   member: 会员
   state: 状态
   all: 全部
