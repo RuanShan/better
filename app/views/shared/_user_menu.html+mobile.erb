@@ -1,17 +1,24 @@
 <section class="sidebar">
 	<div class="subNav">
 		<div class="huiyuanxinxi">
-			<img src="" class="touxiang">
-			<div class="xinxi_right">
-			<h5>名字</h5><h5 style="margin-left:0.2em">姓</h5>
+			<div class="pull-left">
+				<%= fa_icon "user 4x" %>
+			</div>
+			<div class="pull-left" style="margin-left:1.2em;">
+			<p style="margin-left:0.2em"><%= current_user.real_name%></p>
 			<p>USD 账户</p>
-			<p style=margin-top:1.2em;"">余额<i>$0</i></p>
-			<p>已投资<i>$0</i></p>
+			<p style="margin-top:1.2em;">余额<i><%= current_user.user_life.balance %></i></p>
+			<p>已投资<i><%= current_user.user_life.bid_amount %></i></p>
 			</div>
 		</div>
 	</div>
 
 	<div class="subNav" style="clear:both"><h6>个人中心</h6></div>
+	<ul class="navContent">
+		<li><%= build_nav_link "个人信息", { controller: 'my/account', action: 'index' }%></li>
+		<li><%= build_nav_link "我的二维码", { controller: 'my/account', action: 'invitable_qrcode'}%></li>
+	</ul>
+
 	<div class="subNav"><h6>二级客户推广状况</h6></div>
 	<ul class="navContent">
 		<li><%= build_nav_link "月推广效果表", { controller: 'agent/sale_months', action: 'children', member_level: 2}%></li>

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'registrations'
   }            #会员
+  get 'users/sign_up/:inviter_number', to: 'registrations#new', as: :invitable_user_sign_up
+
   devise_for :brokers, controllers: {
         sessions: 'agent/sessions'
   }
@@ -101,9 +103,12 @@ Rails.application.routes.draw do
   namespace :my do
 
     resources :account do
-      get 'deposit', on: :collection
-      get 'drawing', on: :collection
-      get 'transfer', on: :collection
+      collection do
+        get 'deposit'
+        get 'drawing'
+        get 'transfer'
+        get 'invitable_qrcode'
+      end
       member do
 
         match 'change_password', via: [:get, :patch]
@@ -118,7 +123,6 @@ Rails.application.routes.draw do
         #for mobile only
         match 'edit_login_password', via: [:get, :patch]
         match 'edit_cash_password', via: [:get, :patch]
-
       end
     end
 

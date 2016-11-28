@@ -14,6 +14,9 @@ module My
     def deposit
       @user = current_user
     end
+    
+    def invitable_qrcode
+    end
 
     def show
       @user = current_user
