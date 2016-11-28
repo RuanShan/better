@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   resources :games
   resources :payment_methods
 
-  devise_for :users, controllers: {
-    registrations: 'registrations'
-  }            #会员
-  get 'users/sign_up/:inviter_number', to: 'registrations#new', as: :invitable_user_sign_up
+  #会员
+  devise_for :users, controllers: {  registrations: 'registrations' }
+
+  devise_scope :user do
+    get 'invitable_sign_up/:inviter_number', to: 'registrations#new', as: :invitable_sign_up
+  end
 
   devise_for :brokers, controllers: {
         sessions: 'agent/sessions'

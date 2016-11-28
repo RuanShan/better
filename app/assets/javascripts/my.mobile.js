@@ -7,7 +7,7 @@ $( document ).ready(function() {
 	if( $('#invite_qrcode').is('*'))
   {
 		jQuery('#invite_qrcode').empty().qrcode({
-	    text: Better.routes.invitable_user_sign_up(),
+	    text: Better.routes.invitable_sign_up(),
 	    minVersion: 5,
 	    //error correction level: must be 'H', or we can't scan
 	    ecLevel: 'H',

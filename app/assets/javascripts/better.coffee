@@ -45,8 +45,8 @@ class window.Better
 
   @routes:
     my_account: @pathFor('/my/account')
-    invitable_user_sign_up: (user_number) ->
-      Better.pathFor("/users/sign_up/#{Better.user_number}")
+    invitable_sign_up: (user_number) ->
+      Better.pathFor("/invitable_sign_up/#{Better.user_number}")
 
   @url_params:
     {}
