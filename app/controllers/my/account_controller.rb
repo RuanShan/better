@@ -32,14 +32,19 @@ module My
         if current_user.errors.empty?
           flash[:notice] = @selected_password == "login" ? t(:login_password_changed) : t(:money_password_changed)
         end
-        render :change_password
+        if request.variant.first == :mobile
+          rview = "edit_#{@selected_password}_password"
+          render rview
+        else
+          render :change_password
+        end
       end
     end
 
     def edit_login_password
     end
 
-    def edit_cash_password
+    def edit_money_password
     end
 
     def change_profile

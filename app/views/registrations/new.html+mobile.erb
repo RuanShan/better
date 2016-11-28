@@ -1,103 +1,27 @@
-<div class="reg-wrapper clearfix">
-  <div class="reg">
-    <h2>开设实盘交易账户<br></h2>
+<div class="biaoti">
+	<p class="fanhui">&lt;</p>
+	<p class="iphonelan">开设账户</p>
+</div>
+
+<div id="shougerentong2">
+	<div class="kai12">
     <%@user||=User.new%>
-    <%= simple_form_for(@user, :url => user_registration_path, :html => { :id=>'sign_up_form', :role => 'form', :class=>"reg_box"}) do |f| %>
-      <div class="rebody_left">
-        <div class="rem">姓：</div>
-        <%=f.input "last_name", label: false, placeholder: "请输入您的姓氏", input_html: {class: "s-in01"}, wrapper_html: {style: "margin-bottom:0"} %>
-        <div class="rem" style="width:70px;">名：</div>
-        <%=f.input "first_name", label: false, placeholder: "请输入您的名字", input_html: {class: "s-in01"}, wrapper_html: {style: "margin-bottom:0"} %>
-        <p class="tx"> *名字和姓氏必须与身份证一致</p>
-
-        <div class="rem">出生日期：</div>
-        <%=f.input "birthday", label: false, as: 'string', placeholder: "请输入您的生日日期，如：19901230", input_html: {class: "s-in02"}  %>
-        <p class="tx"> *出生日期必须与身份证一致</p>
-
-        <div class="rem">电子邮箱：</div>
-        <%=f.input "email", label: false, placeholder: "请输入Email地址", input_html: {class: "s-in02"}  %>
-        <p class="tx"> *请填写正确的邮箱</p>
-
-        <div class="rem">密码：</div>
-        <%=f.input "password", label: false, placeholder: "请输入您的密码", input_html: {class: "s-in02"}  %>
-        <p class="tx"> *至少8个字符(字母、数字、符号)</p>
-
-        <div class="rem">确认密码：</div>
-        <%=f.input "password_confirmation", label: false, placeholder: "请再次输入您的密码", input_html: {class: "s-in02"}  %>
-        <p class="tx"> *至少8个字符(字母、数字、符号)</p>
-
-        <div class="rem notx">国家：</div>
-        <%=f.country_select( "country_code", ["CN"], locale: I18n.locale, class:'form-control select2 s-in02 notx') %>
-        <p class="tx"> &nbsp;</p>
-
-        <div class="rem notx">QQ号码：</div>
-        <%=f.input "qq", label: false, placeholder: "请填写您的号码", input_html: {class: "s-in02  notx"}  %>
-        <p class="tx"> *请填写正确的QQ号码</p>
-        <br>
-        <div class="rem notx">建议资金：</div>
-        <select name="level" id="level" class="s-in02 notx">
-          <option value="4">最低$200</option>
-          <option value="0" selected="selected">最佳$1000</option>
-          <option value="1">白领$5000</option>
-          <option value="2">经理$10000</option>
-          <option value="3">金尊$100000</option>
-        </select>
-      </div>
-
-      <div class="rebody_right">
-        <div class="rem">电话号码：</div>
-        <%=f.input "phone", label: false, placeholder: "请输入电话号码", input_html: {id:'phone',class: "s-in02  notx"}  %>
-        <p class="tx"> *请填写正确的电话号码以便接受验证码</p>
-
-        <div class="rem notx">验证码：</div>
-        <%= f.input :validate_code, label: false, placeholder: "验证码", input_html: {class: "s-in04 notx"} %>
+    <%@user.password = rand(999999).to_s%>
+    <%= simple_form_for(@user, :url => user_registration_path, :html => { :id=>'sign_up_form', :role => 'form', :class=>""}) do |f| %>
+        <%=f.input "last_name", label: false, placeholder: "姓", input_html: {class: "xingmi1", style: "width:36%;float:left;"}, wrapper_html: {} %>
+        <%=f.input "first_name", label: false, placeholder: "名", input_html: {class: "xingmi2", style: "width:36%;float:left;"}, wrapper_html: {} %>
+        <%=f.input "email", label: false, placeholder: "电子邮箱", input_html: {class: "ipemail"}  %>
+        <%=f.input "phone", label: false, placeholder: "手机号码", input_html: {id:'phone',class: "iphaoma"}  %>
+        <%=f.input "password", label: false, as: "hidden" %>
+        <%= f.input :validate_code, label: false, placeholder: "验证码", input_html: {class: "ipyan"} %>
         <input type="hidden" name="certification" id="certification" value="468514">
-          <input type="button" name="" id="obtainVerifyCode" class="s-btn01 notx" value="获取验证码" >
-          <%=hidden_field_tag :send_code, "0" %>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        <br>
+        <input type="button" name="" id="obtainVerifyCode" class="ipyanzheng" value="获取验证码" >
+        <%=hidden_field_tag :send_code, "0" %>
 
-        <div class="rem notx">经纪人：</div>
-        <div class="jingjiren">
-            <input type="radio" name="affiliate" class="s-check notx" value="1" onclick="$('.affillia-wrapper').show()">有经纪人
-            <input type="radio" name="affiliate" class="s-check notx" checked="checked" value="0" onclick="$('.affillia-wrapper').hide()">无经纪人
-            <input type="hidden" id="landing" name="landing" value="" readonly="readonly">
-        </div>
-        <div class="affillia-wrapper" style="display:none;">
-          <div class="rem notx">经纪编号：</div>
-          <%=f.input "broker_number", label: false, placeholder: "请填写您的经纪人编号(无经纪人可不填)", input_html: {class: "s-in02 notx"}  %>
-        </div>
-        <br><br>
-        <p class="terms">
-        <input type="checkbox" checked="checked" name="age" id="age" class="s-check2">我已年满18岁,能理性的投资理财。<br>
-        <input type="checkbox" checked="checked" name="provideinformation" id="provideinformation" class="s-check2">需要一切投资内容的提供信息。<br>
-        <input type="checkbox" checked="checked" name="terms" id="terms" class="s-check2">我已阅读并同意 <a href="#">《服务条款》</a> 和 <a href="#">《隐私政策》</a>。<br></p>
-        <a href="#">
-          <input type="submit" name="" class="s-btn02" value="确认开户">
-        </a>
-        <%=image_tag "new/kfbg_03.gif", style:"margin-top:0" %>
+        <p class="iptiaokuan"><input type="radio" name="reg-agreement">我已阅读并同意<span>《服务条款》</span>和<span>《隐私政策》</span></p>
+
+        <input type="submit" name="" class="chuangjiankaihu" value="确认开户">
       </div>
     <% end %>
-
-      <!--<p class="note">
-        <span>帐号注意事项：</span>
-        金盛期权账户管理条款中明确规定，禁止同一个人<br>
-        拥有多个实盘帐户用于交易，同时注册时候所有信息必须真实有效。
-      </p>-->
-  </div>
-  <div class="reg1">
-    <div class="reg1nei">
-      <h2>官方交易概要</h2>
-      <p>交易时间 短期30秒、60秒, 长期大至一周甚至一个月的交易</p>
-      <p>交易时间 短期30秒、60秒, 长期大至一周甚至一个月的交易</p>
-      <p>交易时间 短期30秒、60秒, 长期大至一周甚至一个月的交易</p>
-      <p>交易时间 短期30秒、60秒, 长期大至一周甚至一个月的交易</p>
-      <p>交易时间 短期30秒、60秒, 长期大至一周甚至一个月的交易</p>
-      <p>交易时间 短期30秒、60秒, 长期大至一周甚至一个月的交易</p>
-      <p>交易时间 短期30秒、60秒, 长期大至一周甚至一个月的交易</p>
-      <h2>您的投资评估</h2>
-      <h4>投资有风险，金盛期权独家推出投资计划及风险评估，助您在投资中谋而后动， 带您成功走向二元期权投资理财</h4>
-      <hr>
-    </div>
   </div>
 </div>
