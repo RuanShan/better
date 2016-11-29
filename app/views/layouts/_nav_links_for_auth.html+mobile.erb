@@ -3,8 +3,8 @@
   <li class='account-nav-item'><%= link_to 'Account', my_account_index_path, class: 'nav-link' %></li>
   <li class='account-nav-item'><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete', class: 'nav-link' %></li>
 <% else %>
-  <li class='account-nav-item'><%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %></li>
-  <li class='account-nav-item'><%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %></li>
+  <li class='account-nav-item'><%= link_to t('devise.shared.links.sign_in'), new_user_session_path, class: 'nav-link' %></li>
+  <li class='account-nav-item'><%= link_to t('devise.shared.links.sign_up'), new_user_registration_path, class: 'nav-link' %></li>
 <% end %>
 
 </nav>
