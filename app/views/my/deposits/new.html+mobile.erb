@@ -1,12 +1,12 @@
-<div class="biaoti">
-	<p class="fanhui">&lt;</p>
-	<p class="iphonelan">充值</p>
-</div>
+<% content_for :page_title  do %>
+  <p class="fanhui"> <%= fa_icon "angle-left" %></p>
+  <p class="iphonelan">充值</p>
+<% end %>
 
 <div id="shougerentong1">
 
 	<div class="shou_top2">
-		<%= simple_form_for(deposit, url: my_deposits_path ) do |f| %>
+		<%= simple_form_for(@deposit, url: my_deposits_path ) do |f| %>
 			<ul>
 				<li class="biduan">充值币种</li><li class="bichang"><select><option>美元(USD)</option></select></li>
 				<li class="biduan">充值金额</li><li class="bichang"><input type="text" value="请输入充值金额"></li>
