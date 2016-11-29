@@ -1,0 +1,6 @@
+<%if @error_message%>
+  $('.login-msg').html('<%=@error_message%>');
+  $('#nav-div').css("padding-top",0);
+<%else%>
+  window.location.href = '<%=agent_broker_index_url%>';
+<%end%>

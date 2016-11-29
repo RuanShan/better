@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :payment_methods
 
   #会员
-  devise_for :users, controllers: {  registrations: 'registrations' }
+  devise_for :users, controllers: {  sessions: 'sessions', registrations: 'registrations' }
 
   devise_scope :user do
     get 'invitable_sign_up/:inviter_number', to: 'registrations#new', as: :invitable_sign_up

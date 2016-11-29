@@ -22,7 +22,7 @@
           <div class="login_before">
             <div class="left">
               <%broker = Broker.new%>
-              <%= simple_form_for(broker, :url => broker_session_path, :html => { :role => 'form', :class=> 'login-form'}) do |f| %>
+              <%= simple_form_for(broker, :url => broker_session_path, :html => { :remote=>true, :role => 'form', :class=> 'login-form'}) do |f| %>
                 <%=f.input "email", label: false, placeholder: "邮箱", input_html: {class: "in01 email", style: "padding:0;"}, wrapper_html: {style: "margin-bottom:0"}  %>
                 <%=f.input "password", label: false, placeholder: "密码", input_html: {class: "in01 password", style: "padding:0;"}, wrapper_html: {style: "margin-bottom:0"}  %>
                 <%=f.input "lang", label: false, as: "hidden" %>
@@ -65,7 +65,7 @@
     </div>
   </div>
 
-  <div class="container clearfix">
+  <div id="nav-div" class="container clearfix" style="padding-top:21px;">
     <div id="nav" class="left">
        <ul>
          <li><%=link_to "优势前景", {controller: "welcome", action: "future"} %></li>
