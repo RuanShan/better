@@ -3,22 +3,21 @@
   <p class="iphonelan">充值</p>
 <% end %>
 
-<div id="shougerentong1">
+<div >
 
 	<div class="shou_top2">
-		<%= simple_form_for(@deposit, url: my_deposits_path ) do |f| %>
-			<ul>
-				<li class="biduan">充值币种</li><li class="bichang"><select><option>美元(USD)</option></select></li>
-				<li class="biduan">充值金额</li><li class="bichang"><input type="text" value="请输入充值金额"></li>
-				<li class="biduan">持卡人</li><li class="bichang"><input type="text" value="请输入持卡人姓名"></li>
-				<li class="biduan">卡类型</li><li class="bichang"><select><option>银行卡</option></select></li>
-				<li class="biduan">银行卡号</li><li class="bichang"><input type="text" value="请输入银行卡号"></li>
-				<li class="biduan">证件类型</li><li class="bichang"><select><option>身份证</option></select></li>
-				<li class="biduan">证件号码</li><li class="bichang"><input type="text" value="请输入办卡证件号码"></li>
-				<li class="biduan">预留手机</li><li class="bichang"><input type="text" value="请输入办卡预留手机号码"></li>
-			</ul>
-			<p class="ipjinshi">*支持已开通的网银银行卡</p>
-			<button class="zhucejiaoyi"></button>
+		<%= better_form_for(@deposit, url: my_deposits_path ) do |f| %>
+      <%= f.input :payment_method_id, label: "支付方式", as: 'select', collection: PaymentMethod.all.map {|payment_method| [payment_method.name,payment_method.id]}, input_html: { class: ' select2 fullwidth' }   %>
+      <%= f.input :amount, label: "充值全额", as:"string", placeholder: "请输入提现金额", wrapper_html: { class: 'zhifuzuo' }, input_html: { class: 'zijin' } %>
+      <%= f.input :promotion_number, label: "活动代码", as:"string", placeholder: "未参加活动不用填写", wrapper_html: { class: 'zhifuyou' }, input_html: { class: 'zijin' } %>
+      <div class="form-actions">
+        <div class="form-group">
+          <div class="col-sm-offset-3 col-sm-9">
+            <%= f.button :submit, "提交"  %>
+          </div>
+        </div>
+      </div>
+
 		<% end %>
 	</div>
 
