@@ -1,8 +1,9 @@
+<% content_for :page_title  do %>
+  <p class="fanhui"> <%= fa_icon "angle-left" %></p>
+  <p class="iphonelan">电子钱包</p>
+<% end %>
 <div >
-	<div class="shou_top">
-	   <h3>电子钱包</h3>
-	  <%= link_to '人金', new_my_deposit_path, class: "pull-right" %>
-	</div>
+	<%= link_to '人金', new_my_deposit_path, class: "btn btn-default pull-right" %>
 	<div class="shou_down">
 		<table class="table">
 			<tbody><tr>

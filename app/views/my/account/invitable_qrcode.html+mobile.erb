@@ -1,5 +1,8 @@
+<% content_for :page_title  do %>
+  <p class="fanhui"> <%= fa_icon "angle-left" %></p>
+  <p class="iphonelan">我的二维码</p>
+<% end %>
 <div style="">
-	<h3>我的二维码</h3>
   <%= image_tag "my/better.png", id: "code_img", style: "display:none" %>
   <div id="invite_qrcode" class="qrcode"></div>
 </div>

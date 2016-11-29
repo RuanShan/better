@@ -4,7 +4,7 @@
 
 <title>
   <% if content_for? :title %>
-    <%= yield :title %>
+    <%= yield :title %> :   <%= t('my.site.name') %>
   <% else %>
     <%= t(controller.controller_name, default: controller.controller_name.titleize) %>:
     <%= t('my.site.name') %>

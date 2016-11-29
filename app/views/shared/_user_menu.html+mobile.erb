@@ -14,7 +14,7 @@
 	</div>
 
 	<div class="subNav" style="clear:both">
-		<h6>个人中心   <%= link_to "退出", destroy_user_session_path, :method=>'delete' %></h6>
+		<h6>个人中心   <%= link_to "退出", destroy_user_session_path, :method=>'delete', class: 'pull-right' %></h6>
 	</div>
 	<ul class="navContent">
 		<li><%= build_nav_link "个人信息", { controller: 'my/account', action: 'index' }%></li>

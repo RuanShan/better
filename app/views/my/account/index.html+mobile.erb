@@ -1,7 +1,7 @@
+<% content_for :title  do %> 数据概况 <% end %>
 <% content_for :page_title  do %>
-  <div class="container">
-    	<h2>数据概况 <small>显示您当月业绩达成状况</small></h2>
-  </div>
+  <p class="fanhui"> <%= fa_icon "angle-left" %></p>
+  <p class="iphonelan">数据概况</p>
 <% end %>
 
 <div class="container ">
@@ -50,12 +50,4 @@
       </div>
 
   </div>
-</div>
-<div class="container">
-  <div class="diyi">
-    <h2>客户注册链接</h2>
-    <p id="invite_link"><%=invite_link(@user) %></p>
-    <p><%=link_to "复制", nil, href:"javascript:void(0);", oncdivck: "copyToCdivpboard('#invite_link');" %></p>
-  </div>
-
 </div>

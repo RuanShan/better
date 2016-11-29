@@ -34,8 +34,9 @@
     }
 }
 .page-title {
-    background: #444444 none repeat scroll 0 0;
-    color: white;
+  background: #444444 none repeat scroll 0 0;
+  height: 4em;
+  color: white;
 }
 .page-body{
   background: #272727 none repeat scroll 0 0;
@@ -61,7 +62,7 @@ body.mobile{
 
   .sign_up_wrapper {
     background: image_url("new/shouji/kaishe1_02.gif") no-repeat;
-    background-size: 100%;    
+    background-size: 100%;
     overflow: hidden;
     color: #ffffff;
     padding: 26px 0;
