@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "MobileBetter" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Better" %>">
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag 'my.mobile', media: 'all' %>
+    <%= javascript_include_tag 'my' %>
     <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
     <% # This line ensures javascript code can access the current locale from Rails %>
 		<script type="text/javascript">var tkh_locale = '<%= I18n.locale.to_s %>';</script>
   </head>
-  <body>
-    <div class="header">
+  <body class="mobile">
+    <div class="header ">
       <%= render 'layouts/nav_links_for_auth' %>
     </div>
     <div class="page-content-wrapper">

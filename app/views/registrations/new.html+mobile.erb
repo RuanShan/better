@@ -3,22 +3,35 @@
 	<p class="iphonelan">开设账户</p>
 </div>
 
-<div id="shougerentong2">
-	<div class="kai12">
+<div class="sign_up_wrapper">
+	<div class="container kai12">
     <%@user||=User.new%>
     <%@user.password = rand(999999).to_s%>
     <%= simple_form_for(@user, :url => user_registration_path, :html => { :id=>'sign_up_form', :role => 'form', :class=>""}) do |f| %>
-        <%=f.input "last_name", label: false, placeholder: "姓", input_html: {class: "xingmi1", style: "width:36%;float:left;"}, wrapper_html: {} %>
-        <%=f.input "first_name", label: false, placeholder: "名", input_html: {class: "xingmi2", style: "width:36%;float:left;"}, wrapper_html: {} %>
-        <%=f.input "email", label: false, placeholder: "电子邮箱", input_html: {class: "ipemail"}  %>
-        <%=f.input "phone", label: false, placeholder: "手机号码", input_html: {id:'phone',class: "iphaoma"}  %>
-        <%=f.input "password", label: false, as: "hidden" %>
-        <%= f.input :validate_code, label: false, placeholder: "验证码", input_html: {class: "ipyan"} %>
-        <input type="hidden" name="certification" id="certification" value="468514">
-        <input type="button" name="" id="obtainVerifyCode" class="ipyanzheng" value="获取验证码" >
-        <%=hidden_field_tag :send_code, "0" %>
+				<div style="width:50%; float:left;">
+        <%=f.input "last_name", label: false, placeholder: "姓", wrapper_html: {} %>
+				</div>
+				<div style="width:50%; float:left;">
+        <%=f.input "first_name", label: false, placeholder: "名", wrapper_html: {} %>
+   			</div>
 
-        <p class="iptiaokuan"><input type="radio" name="reg-agreement">我已阅读并同意<span>《服务条款》</span>和<span>《隐私政策》</span></p>
+        <%=f.input "email", label: false, placeholder: "电子邮箱", input_html: {}  %>
+				<%=f.input "password", label: false, placeholder: "登录密码" %>
+        <%=f.input "phone", label: false, placeholder: "手机号码", input_html: {id:'phone'}  %>
+				<div class="clearfix">
+	  			<div style="width:50%; float:left;">
+						<%=f.input :validate_code, label: false, placeholder: "验证码" %>
+	  			</div>
+					<div style="width:50%; float:left;">
+						<input type="button" name="somewhat" id="obtainVerifyCode" class="get_vercode btn" value="获取验证码" >
+	          <%=hidden_field_tag :send_code, "0" %>
+	  			</div>
+				</div>
+        <div class=" radio">
+					<label class="policy">
+					<input type="radio" name="reg-agreement">我已阅读并同意<span>《服务条款》</span>和<span>《隐私政策》</span>
+					</label>
+				</div>
 
         <input type="submit" name="" class="chuangjiankaihu" value="确认开户">
       </div>

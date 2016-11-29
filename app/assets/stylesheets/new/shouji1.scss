@@ -19,7 +19,7 @@ body,div,h1,h2,h3,h4,h5,h6,p,dt,dd,dl,b,i,span,ul,li,ol{
 li{list-style: none}
 .iphone {
   width: 16.06em;
-  
+
   position: relative;
   display: inline-block;
   background: #fff;
@@ -100,11 +100,11 @@ li{list-style: none}
   border-radius: .2em;
   position: absolute;
   top: .6em;
- 
+
 }
 .iphone__screen {
 width: 100%;
-    
+
     position: absolute;
     max-width: 480px;
     background: #ddd;
@@ -145,7 +145,7 @@ width: 100%;
   background: #383838;
   height: 50px;
   border-bottom: 1px solid #f1f1f1;
-  
+
 }
 .nav__item span{
       line-height: 42px;
@@ -245,16 +245,16 @@ width: 100%;
   #iphone__screen{display: block;}
 }
 .nav__trigger{
-  
+
 }
 #mingcheng{
-  margin-top:10px; 
+  margin-top:10px;
       padding: 0 0.4em;
   height: 60px;
 }
 #iphone_h{
   height: 60px;
-     
+
   background: #444;
 }
 #iphone_h p {
@@ -262,7 +262,7 @@ width: 100%;
     float: left;
     font-weight: bold;
     font-size: 28px;
-    
+
         margin-top: 10;
 }
 #iphone_h p {
@@ -283,8 +283,8 @@ width: 100%;
   text-align: center;
 }
 .iphone_f{
- 
- 
+
+
 }
 .iphone_f li{
   float: left;
@@ -313,7 +313,7 @@ section{margin:4em 0;}
   right:0;
   background-color:transparent;
   line-height:68px;
-  
+
   height: 60px;
   background: #dadada;
   margin: 0px;
@@ -428,16 +428,16 @@ section{margin:4em 0;}
     right: 0.8em;
 }
 #footer{
- 
+
   width: 100%;
   overflow: hidden;
   background: #000;
-  
+
   text-align: center;
 
 }
 #footer_top{
-  
+
   background: #ddd;
   padding: 20px 0 20px 0;
   overflow: hidden;
@@ -467,24 +467,24 @@ section{margin:4em 0;}
  overflow:hidden;
   background: #272727;
   padding: 1.4em;
-  
+
 }
 #shougerentong1{
  overflow:hidden;
   background: #272727;
   padding: 1.4em;
   text-align: center;
-  
+
 }
 #shougerentong2{
  overflow:hidden;
-  background:url(../images/shouji/kaishe1_02.gif) no-repeat;
+  background: image_url("new/shouji/kaishe1_02.gif") no-repeat;
   background-size: 100% 850px;
   width: 100%;
   height: 850px;
 
   text-align: center;
-  
+
 }
 .kai12{
   width: 80%;
@@ -529,7 +529,7 @@ section{margin:4em 0;}
   padding-bottom: 1em;
   border-bottom: 1px solid #ddd;
   overflow: hidden;
-  
+
 }
 .shou_top2 li{
   margin: 0.4em 0;
@@ -556,7 +556,7 @@ section{margin:4em 0;}
   border:0px;
   width: 100%;
   height: 3em;
-  background-size:100% 3em; 
+  background-size:100% 3em;
   margin-top: 1em;
 
 }
@@ -565,7 +565,7 @@ section{margin:4em 0;}
   border:0px;
   width: 100%;
   height: 3em;
-  background-size:100% 3em; 
+  background-size:100% 3em;
   margin-top: 1em;
 }
 .bichang{
@@ -574,7 +574,7 @@ section{margin:4em 0;}
    height: 30px;
 }
 .bichang select{
-  
+
    /* the width and the height of your image */
     width: 90%;
     height: 30px;
@@ -593,9 +593,9 @@ section{margin:4em 0;}
     border:none;
     padding-left:10px;
     width: 100%;
-    height:100%;  
-        color: #ddd;  
-        background: url('../images/shouji/chaxun_03.gif')no-repeat; 
+    height:100%;
+        color: #ddd;
+        background: url('../images/shouji/chaxun_03.gif')no-repeat;
         background-size: 100% 30px;
     color: #000;
     border-radius: 5px;
@@ -710,7 +710,7 @@ section{margin:4em 0;}
   text-align: center;
 }
 #ipnian{
-  
+
    /* the width and the height of your image */
     width: 90%;
     height: 30px;
@@ -729,9 +729,9 @@ section{margin:4em 0;}
     border:none;
     padding-left:10px;
     width: 100%;
-    height:100%;  
-        color: #ddd;  
-        background: url('../images/shouji/chaxun_03.gif')no-repeat; 
+    height:100%;
+        color: #ddd;
+        background: url('../images/shouji/chaxun_03.gif')no-repeat;
         background-size: 100% 30px;
     color: #000;
 
@@ -889,7 +889,7 @@ width: 36%;
   padding: 1em 0;
 }
 .huobishou img{
-  
+
 }
 #shougerenb2{
 width: 100%;

@@ -57,7 +57,5 @@
     <p id="invite_link"><%=invite_link(@user) %></p>
     <p><%=link_to "复制", nil, href:"javascript:void(0);", oncdivck: "copyToCdivpboard('#invite_link');" %></p>
   </div>
-  <%= image_tag "my/better.png", id: "code_img", style: "display:none" %>
-  <div id="invite_qrcode" class="qrcode"></div>
 
 </div>

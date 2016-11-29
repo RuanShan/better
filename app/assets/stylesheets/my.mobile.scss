@@ -55,3 +55,36 @@
 .qrcode{
   text-align: center;
 }
+
+
+body.mobile{
+
+  .sign_up_wrapper {
+    background: image_url("new/shouji/kaishe1_02.gif") no-repeat;
+    background-size: 100%;    
+    overflow: hidden;
+    color: #ffffff;
+    padding: 26px 0;
+    #sign_up_form
+    {
+      input{
+        background-color: #ffffff;
+      }
+
+      input.get_vercode {
+        background: #860000 none repeat scroll 0 0;
+        color: #ffffff;
+        margin-top: 0;
+
+      }
+      input.chuangjiankaihu {
+        background: #860000 none repeat scroll 0 0;
+          width: 100%;
+      }
+      .iptiaokuan {
+        input{ height: auto;}
+        font-size: 60%;
+      }
+    }
+  }
+}
