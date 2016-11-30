@@ -1,0 +1,11 @@
+<% content_for :page_title do %>
+  <%= link_to "会员管理", admin_users_url %> /
+   会员详情
+<% end %>
+
+<%= render 'admin/shared/user_tabs', current: @record_for %>
+
+<div>
+  <%=link_to "充值", new_admin_deposit_path(user_number: @user.number), class: "btn btn-primary"%>
+  <%=render "my/deposits/records", platform: "admin"%>
+</div>

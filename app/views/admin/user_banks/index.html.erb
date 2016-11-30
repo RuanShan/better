@@ -1,0 +1,34 @@
+<% content_for :page_title do %>
+  <%= link_to "会员管理", admin_users_url %> /
+   会员详情
+<% end %>
+
+<%= render 'admin/shared/user_tabs', current: "bank" %>
+<div>
+  <div style="padding-top:20px;">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>银行名称</th>
+          <th>添加时间</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if @user_banks.empty? %>
+          <tr><td colspan="3">暂无银行卡</td><tr>
+        <% else %>
+          <% @user_banks.each do |bank| %>
+            <tr>
+              <td><%=bank.name%></td>
+              <td><%=bank.display_created_at%></td>
+              <td><%= link_to "查看", admin_user_user_bank_path(@user, bank), method: 'get' %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>

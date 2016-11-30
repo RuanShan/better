@@ -1,0 +1,30 @@
+<div> <h2 class="page-header">会员管理 </h2>
+</div>
+<div>
+  <div style="padding-top:20px;">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>银行名称</th>
+          <th>添加时间时间</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if @user_banks.empty? %>
+          <tr><td colspan="3">暂无银行卡</td><tr>
+        <% else %>
+          <% @user_banks.each do |bank| %>
+            <tr>
+              <td><%=bank.name%></td>
+              <td><%=bank.display_created_at%></td>
+              <td><%= link_to "查看", bank_detail_admin_user_path(@user), method: 'get' %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
