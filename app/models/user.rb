@@ -54,7 +54,7 @@ class User < ApplicationRecord
   enum id_type: [:id_card, :passport]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :invitable, :database_authenticatable, :registerable, 
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   has_attached_file :avatar, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
