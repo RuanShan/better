@@ -1,29 +1,17 @@
 <% content_for :page_title do %>
-  <%= link_to "系统通知", admin_messages_url %> /
-   通知详情
+  <%= link_to "人员管理", admin_administrators_url %> /
+   查看人员
 <% end %>
 <div>
   <table class="table table-striped">
     <tbody>
       <tr>
-        <td>主题</td>
-        <td><%= @message.title %></td>
+        <td>电子邮箱</td>
+        <td><%= @administrator.email %></td>
       </tr>
       <tr>
         <td>创建时间</td>
-        <td><%= @message.display_created_at %></td>
-      </tr>
-      <tr>
-        <td>内容</td>
-        <td><%= @message.content %></td>
-      </tr>
-      <tr>
-        <td>通知类型</td>
-        <td><%=t @message.message_type %></td>
-      </tr>
-      <tr>
-        <td>发送状态</td>
-        <td><%=t @message.state %></td>
+        <td><%= @administrator.display_created_at %></td>
       </tr>
     </tbody>
   </table>
