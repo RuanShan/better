@@ -19,13 +19,13 @@
         <%=link_to "本月业绩", data_admin_user_path(@user) %>
       </li>
       <li role="presentation" <%if current == "lp"%>class="active"<%end%>>
-        <%=link_to "重置密码", lp_admin_user_path(@user) %>
+        <%=link_to "重置密码", change_login_password_admin_user_path(@user) %>
       </li>
       <li role="presentation" <%if current == "mp"%>class="active"<%end%>>
-        <%=link_to "修改资金密码", mp_admin_user_path(@user) %>
+        <%=link_to "修改资金密码", change_money_password_admin_user_path(@user) %>
       </li>
       <li role="presentation" <%if current == "pp"%>class="active"<%end%>>
-        <%=link_to "恢复密保问题", pp_admin_user_path(@user) %>
+        <%=link_to "恢复密保问题", password_protect_admin_user_path(@user) %>
       </li>
       <li role="presentation" <%if current == "bank"%>class="active"<%end%>>
         <%=link_to "银行卡管理", admin_user_user_banks_path(@user) %>

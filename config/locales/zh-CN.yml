@@ -13,6 +13,8 @@ zh-CN:
         password_confirmation: 密码确认
         money_password: 资金密码
         money_password_confirmation: 资金密码确认
+        pp_question: 密保问题
+        pp_answer: 密保答案
         email: 电子邮箱
         gender: 性别
         phone: 电话号码
@@ -35,6 +37,10 @@ zh-CN:
         title: 主题
         content: 内容
         message_type: 消息类型
+      administrator:
+        email: 电子邮箱
+        password: 密码
+        password_confirmation: 密码确认
   admin:
     site:
       name: 管理平台

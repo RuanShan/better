@@ -43,3 +43,10 @@ zh-CN:
   promotion_deleted: 删除活动成功
   no_selected_promotions: 请至少选择一个活动
   multi_promotions_deleted: 批量删除活动成功
+
+  administrator_created: 添加人员成功
+  administrator_updated: 修改人员成功
+  administrator_deleted: 删除人员成功
+  administrator_deleted_failed: 删除人员失败
+  no_selected_administrators: 请至少选择一个人员
+  multi_administrators_deleted: 批量删除人员成功

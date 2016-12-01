@@ -61,38 +61,26 @@
   		</li>
     </ul>
   </li>
-  <li> <a>   <i class="menu-icon fa fa-sitemap"></i>部门管理 </a></li>
+  <li>
+    <a class="menu-dropdown" href="#">
+    <i class="menu-icon fa fa-sitemap"></i>
+    <span class="menu-text"> 部门管理 </span>
+    <i class="menu-expand"></i>
+    </a>
+    <ul class="submenu">
+      <li><%= build_nav_link "人员管理", admin_administrators_path%> </li>
+    </ul>
+  </li>
 
 	<li class="cur">
     <a class="menu-dropdown" href="#">
-                            <i class="menu-icon fa fa-cogs"></i>
-                            <span class="menu-text"> 系统管理 </span>
-                            <i class="menu-expand"></i>
+    <i class="menu-icon fa fa-cogs"></i>
+    <span class="menu-text"> 系统管理 </span>
+    <i class="menu-expand"></i>
     </a>
     <ul class="submenu">
       <li><%= build_nav_link "系统通知", admin_messages_path%> </li>
     </ul>
 	</li>
 
-  <li>
-    <a class="menu-dropdown" href="#">
-                            <i class="menu-icon fa fa-lock"></i>
-                            <span class="menu-text"> 安全中心 </span>
-                            <i class="menu-expand"></i>
-    </a>
-    <ul class="submenu">
-      <li>
-        <%= build_nav_link "重置密码", { controller: 'admin/users', action: 'search'}%>
-      </li>
-      <li>
-        <%= build_nav_link "修改资金密码", { controller: 'admin/users', action: 'search'}%>
-      </li>
-			<li>
-        <%= build_nav_link "恢复密保问题", { controller: 'admin/users', action: 'search'}%>
-      </li>
-			<li>
-        <%= build_nav_link "银行卡管理", { controller: 'admin/users', action: 'search'}%>
-      </li>
-    </ul>
-  </li>
 </ul>

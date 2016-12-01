@@ -131,6 +131,11 @@ class User < ApplicationRecord
     end
   end
 
+  def admin_change_password(password_options)
+    @password_prefix = password_options["money_password"] ? "money_" : ""
+    reset_password(password_options["#{@password_prefix}password"],password_options["#{@password_prefix}password_confirmation"] )
+  end
+
   def set_email(email_options)
     if valid_password? email_options["current_password"]
       self.email = email_options["email"]
@@ -153,6 +158,16 @@ class User < ApplicationRecord
     else
       errors.add(:current_password, "当前密码不正确")
     end
+  end
+
+  def admin_set_password_protection(pp_options)
+    @setting_pp = true
+    if pp_options['pp_question'].present?
+      errors.add(:pp_answer, "请输入答案") if pp_options['pp_answer'].blank?
+    else
+      errors.add(:pp_question, "请输入密保问题")
+    end
+    self.update_attributes(pp_options)
   end
 
   def save_with_validate_code(send_code, attr_options, code_options)

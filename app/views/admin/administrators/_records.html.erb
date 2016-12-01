@@ -1,0 +1,45 @@
+<%=form_tag batch_delete_admin_administrators_path, method: :put do%>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>邮箱</th>
+        <th>创建时间</th>
+        <th colspan="2">
+          <%=link_to "添加人员", new_admin_administrator_path, class: "btn btn-primary btn_xs"%>
+        </th>
+        <th><%=submit_tag "删除", class: "btn btn-primary btn_xs"%></th>
+        <th><%= check_box_tag "selectall", 1, false %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if @administrators.empty? %>
+        <tr>
+          <td colspan="6">暂无人员</td>
+        <tr>
+      <% else %>
+      <% @administrators.each do |administrator| %>
+        <tr>
+          <td><%= administrator.email %></td>
+          <td><%= administrator.display_created_at %></td>
+          <td><%= link_to "查看", admin_administrator_path(administrator), method: 'get' %></td>
+          <td><%= link_to "编辑", edit_admin_administrator_path(administrator) %></td>
+          <td>
+            <%unless current_administrator.id == administrator.id%>
+              <%= link_to "删除", admin_administrator_path(administrator), method: 'delete' %>
+            <% end %>
+          </td>
+          <td>
+            <%unless current_administrator.id == administrator.id%>
+              <%= check_box_tag "selected_administrators[]", administrator.id, false, class: "selectedId" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+
+    </tbody>
+  </table>
+<% end %>
+
+<%= will_paginate @messages if @messages.respond_to? :total_pages%>

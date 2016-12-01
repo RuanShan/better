@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 
   # 管理
   namespace :admin do
+    resources :administrators do
+      put :batch_delete, on: :collection
+    end
     resources :deposits
     resources :drawings do
       collection do
@@ -47,10 +50,10 @@ Rails.application.routes.draw do
       member do
         get :record
         get :data
-        get :lp
-        get :mp
-        get :pp
         put :lock
+        match :change_login_password, via: [:get, :patch]
+        match :change_money_password, via: [:get, :patch]
+        match :password_protect, via: [:get, :patch]
       end
     end
     resources :brokers do

@@ -1,0 +1,16 @@
+<% content_for :page_title do %>
+  <%= link_to "人员管理", admin_administrators_url %> /
+   编辑人员
+<% end %>
+<div>
+  <%= better_form_for(@administrator, url: {:action=>"update"} ) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :email %>
+      <%= f.input :password %>
+      <%= f.input :password_confirmation%>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "编辑人员" %>
+    </div>
+  <% end %>
+</div>

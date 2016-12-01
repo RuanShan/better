@@ -47,6 +47,36 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
+  def change_login_password
+    @user = User.find(params[:id])
+    if request.patch?
+      @user.admin_change_password(login_password_params)
+      if @user.errors.empty?
+        flash[:notice] = t(:login_password_changed)
+      end
+    end
+  end
+
+  def change_money_password
+    @user = User.find(params[:id])
+    if request.patch?
+      @user.admin_change_password(money_password_params)
+      if @user.errors.empty?
+        flash[:notice] = t(:money_password_changed)
+      end
+    end
+  end
+
+  def password_protect
+    @user = User.find(params[:id])
+    if request.patch?
+      @user.admin_set_password_protection(pp_params)
+      if @user.errors.empty?
+        flash[:notice] = t(:password_protection_success)
+      end
+    end
+  end
+
   def batch_delete
     user_ids = params["selected_users"]
     if user_ids.blank?
@@ -99,6 +129,18 @@ class Admin::UsersController < Admin::BaseController
 
   def secure_params
     params.require(:user).permit(:first_name, :last_name, :email, :phone, :gender, 'birthday(1i)', 'birthday(2i)', 'birthday(3i)', :id_number, :qq, :country_code, :province, :city, :address, :postcode, :lang)
+  end
+
+  def login_password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
+
+  def money_password_params
+    params.require(:user).permit(:money_password, :money_password_confirmation)
+  end
+
+  def pp_params
+    params.require(:user).permit(:pp_question, :pp_answer)
   end
 
 end
