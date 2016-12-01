@@ -79,6 +79,7 @@ class Admin::UsersController < Admin::BaseController
       records = @record_for.camelize.constantize.order("created_at desc").all.paginate(:page => @page)
       instance_variable_set("@#{@record_for}s", records)
     end
+    render "#{@record_for}_record"
   end
 
   def data

@@ -1,0 +1,33 @@
+<% content_for :page_title do %>
+  <%= link_to "会员管理", admin_users_url %> /
+   会员详情
+<% end %>
+
+<%= render 'admin/shared/user_tabs', current: "bank" %>
+<div>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <td>银行名称</td>
+        <td><%= @user_bank.name %></td>
+      </tr>
+      <tr>
+        <td>添加时间</td>
+        <td><%= @user_bank.display_created_at %></td>
+      </tr>
+      <tr>
+        <td>银行卡号</td>
+        <td><%= @user_bank.card_number %></td>
+      </tr>
+      <tr>
+        <td>办卡分支</td>
+        <td><%= @user_bank.branch_name %></td>
+      </tr>
+      <tr>
+        <td>银行地址</td>
+        <td><%= @user_bank.address %></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

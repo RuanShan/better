@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       end
     end
     resources :users do
+      resources :user_banks
       collection do
         get :search
         put :batch_delete
@@ -46,6 +47,9 @@ Rails.application.routes.draw do
       member do
         get :record
         get :data
+        get :lp
+        get :mp
+        get :pp
         put :lock
       end
     end

@@ -6,9 +6,5 @@
 <%= render 'admin/shared/user_tabs', current: @record_for %>
 
 <div>
-  <%if @record_for == "bonus"%>
-    <%=render "my/wallets/bonus_records", platform: "admin"%>
-  <% else %>
-    <%=render "my/#{@record_for}s/records", platform: "admin"%>
-  <% end %>
+  <%=render "my/drawings/records", platform: "admin"%>
 </div>
