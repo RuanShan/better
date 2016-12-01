@@ -65,14 +65,14 @@ module My
 
     def bonuses
       @page = params["page"]
-      @bonuses = Wallet.bonuses.order("created_at desc").all.paginate(:page => @page)
+      @bonuses = Wallet.bonuses.where("user_id=?",current_user.id).order("created_at desc").all.paginate(:page => @page)
     end
 
     def search_bonuses
       @page = params["page"]
       @start_date = bonus_search_params[:start_date]
       @end_date = bonus_search_params[:end_date]
-      @bonuses = Wallet.search_bonuses(bonus_search_params).paginate(:page => @page)
+      @bonuses = Wallet.search_bonuses(bonus_search_params, current_user.id).paginate(:page => @page)
       render :bonuses
     end
 

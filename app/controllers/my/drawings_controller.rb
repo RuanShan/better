@@ -7,7 +7,7 @@ module My
     # GET /drawings.json
     def index
       @page = params["page"]
-      @drawings = Drawing.order("created_at desc").all.paginate(:page => @page)
+      @drawings = Drawing.where("user_id=?",current_user.id).order("created_at desc").all.paginate(:page => @page)
     end
 
     # GET /drawings/1

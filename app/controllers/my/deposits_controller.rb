@@ -7,7 +7,7 @@ module My
     def index
       @page = params["page"]
       @user = current_user
-      @deposits = Deposit.order("created_at desc").all.paginate(:page => @page)
+      @deposits = Deposit.where("user_id=?",current_user.id).order("created_at desc").all.paginate(:page => @page)
     end
 
     # GET /deposits/1
@@ -76,7 +76,7 @@ module My
       @start_date = search_params[:start_date]
       @end_date = search_params[:end_date]
       @state = search_params[:state]
-      @deposits = Deposit.search(search_params).paginate(:page => @page)
+      @deposits = Deposit.search(search_params, current_user.id).paginate(:page => @page)
       render :index
     end
 

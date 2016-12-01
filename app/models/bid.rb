@@ -19,9 +19,15 @@ class Bid < ApplicationRecord
     amount*rate
   end
 
-  def self.search(search_params)
-    self.includes(game_round: :game).where("bids.created_at>? and bids.created_at<? and games.id=?",(search_params["start_date"]+" 00:00:00").to_time(:utc),
-    (search_params["end_date"]+" 23:59:59").to_time(:utc),search_params["game_id"]).references(:game_rounds, :games).all
+  def self.search(search_params, user_id=nil)
+    search_conditions = "bids.created_at>? and bids.created_at<? and games.id=?"
+    search_cvalues = [(search_params["start_date"]+" 00:00:00").to_time(:utc),
+    (search_params["end_date"]+" 23:59:59").to_time(:utc),search_params["game_id"]]
+    unless user_id.nil?
+      search_conditions += " and bids.user_id=?"
+      search_cvalues << user_id
+    end
+    self.includes(game_round: :game).where([search_conditions,search_cvalues].flatten).order("bids.created_at desc").references(:game_rounds, :games).all
   end
 
 end

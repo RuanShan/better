@@ -6,7 +6,7 @@ module My
     # GET /bids.json
     def index
       @page = params["page"]
-      @bids = Bid.all.paginate(:page => @page)
+      @bids = Bid.where("user_id=?",current_user.id).all.paginate(:page => @page)
     end
 
     # GET /bids/1
@@ -68,7 +68,7 @@ module My
       @start_date = search_params[:start_date]
       @end_date = search_params[:end_date]
       @platform = search_params[:game_id]
-      @bids = Bid.search(search_params).paginate(:page => @page)
+      @bids = Bid.search(search_params, current_user.id).paginate(:page => @page)
       render :index
     end
 

@@ -50,14 +50,20 @@ class Deposit < ApplicationRecord
       errors.add(:promotion_number, promotion_number_error_message)
     else
       self.save
-      #TODO remove process in prodution 
+      #TODO remove process in prodution
       self.process!
     end
   end
 
-  def self.search(search_params)
-    self.where("created_at>? and created_at<? and state=?",(search_params["start_date"]+" 00:00:00").to_time(:utc),
-    (search_params["end_date"]+" 23:59:59").to_time(:utc),search_params["state"]).order("created_at desc").all
+  def self.search(search_params, user_id=nil)
+    search_conditions = "created_at>? and created_at<? and state=?"
+    search_cvalues = [(search_params["start_date"]+" 00:00:00").to_time(:utc),
+    (search_params["end_date"]+" 23:59:59").to_time(:utc),search_params["state"]]
+    unless user_id.nil?
+      search_conditions += " and user_id=?"
+      search_cvalues << user_id
+    end
+    self.where([search_conditions,search_cvalues].flatten).order("created_at desc").all
   end
 
   #def promotion
