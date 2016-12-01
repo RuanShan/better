@@ -5,6 +5,8 @@ class CurrentSeller
   delegate :real_name, :present?, :number,:depth, :state, :display_created_at, to: :seller
   delegate :user_life, :descendants,:sale_days, :sale_months, :energetic_member_count, :clink_visits, :member_count, to: :seller
 
+  delegate :full_members, to: :seller
+
   def initialize( seller)
     self.seller = seller
     # seller may be nil

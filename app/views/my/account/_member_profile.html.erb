@@ -1,20 +1,27 @@
 <div class="huiyuanbody">
   <div class="hybody_top">
     <div class="hbtop_left">
-      <%=image_tag "new/noimages/toux_04.gif"%>
+      <%=image_tag "new/noimages/toux_04.gif", class:"touxiangss"%>
       <h2><%= current_user.nickname %></h2>
+      <div><%=image_tag "new/noimages/jidui_11.gif", class:"dengjitiao"%> </div>
       <div class="dengji"></div>
     </div>
+
     <div class="hbtop_right">
-      <div class="yuanbg"><%=image_tag "new/noimages/gerentu_03.gif"%><b>余额：</b><span><%=display_money(current_user.center_wallet_balance)%></span></div>
-      <div class="yuanbg"><%=image_tag "new/noimages/gerentu_06.gif"%><b>以投资：</b><span>$0</span></div>
-      <div class="yuanbg"><%=image_tag "new/noimages/gerentu_08.gif"%><b>待付奖金：</b><span>$0</span>
-        <%= link_to "推广中心", agent_user_index_path, class: "btn btn-primary pull-right" %>
-      </div>
-      <hr>
-      <div class="yuanbg1"><b>总交易量：</b><span>$0</span></div>
-      <div class="yuanbg2"><b>积分：</b><span>50</span><a href=""><%=image_tag "new/noimages/gerentu_14.gif"%></a></div>
+          <div class="bton">
+            <div class="yuanbg"><%=image_tag "new/noimages/gerentu_03.gif"%><b>余额：</b><span><%=display_money(current_user.center_wallet_balance)%></span></div>
+            <div class="yuanbg"><%=image_tag "new/noimages/gerentu_06.gif"%><b>以投资：</b><span>$0</span></div>
+            <div class="yuanbg"><%=image_tag "new/noimages/gerentu_08.gif"%><b>待付奖金：</b><span>$0</span></div>
+          </div>
+          <div class="bton1">
+            <div class="yuanbg1"><b>总交易量：</b><span>$0</span></div>
+            <div class="yuanbg2"><b>积分：</b><span>50</span></div>
+            <a href="#" class=""><%=image_tag "new/noimages/jidui_06.gif"%> </a>
+            <%= link_to image_tag("new/noimages/jidui_08.gif"), agent_user_index_path, class: '' %>
+          </div>
     </div>
+
+
     <div class="right_right">
       <h1>-每日积分-</h1>
       <h2>签到随机获得<span>10-50</span>积分</h2>

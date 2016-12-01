@@ -15,16 +15,16 @@
 .hbtop_left{
 	width: 250px;
 	float: left;
-	height: 300px;
+	height:200px;
 	text-align: center;
 
 }
-.hbtop_left img{
-	width: 130px;
-	height: 135px;
+.touxiangss{
+	width: 100px;
+	height: 100px;
 	border: 2px solid #fff;
-
-	margin-top: 40px;
+	
+	margin-top: 20px;
 }
 .hbtop_left h2{
 	font-size: 18px;
@@ -34,17 +34,32 @@
 	color: #fff;
 }
 .hbtop_right{
-	width: 450px;
+	width: 550px;
 	overflow: hidden;
 	padding-top: 20px;
-	height: 300px;
+	
 	float: left;
 }
+.bton{
+	width: 275px;
+float: left;
+border-right: 1px solid #fff;
+}
+.dengjitiao{
+	    width: 180px;
+    height: 25px;
+    border: 0px;
+    margin: 0;
+}
+.bton1{
+	width: 275px;
+float: left;
+}
 .yuanbg{
-	width: 450px;
+	width: 320px;
     height: 45px;
 	overflow: hidden;
-    margin-top: 10px;
+    margin-top: 5px;
     text-align: left;
 	line-height: 40px;
 }
@@ -66,16 +81,17 @@
 	font-weight: bold;
 	font-family: 微软雅黑;
 	color:#dbdadb;
-	    margin-left: 26px;
+	    margin-left: 25px;
 }
 .yuanbg1{
-	width: 170px;
+	
+	width: 280px;
     height: 40px;
 	float: left;
     margin-top: 10px;
     text-align: left;
 	line-height: 40px;
-	border-right:1px solid #fff;
+	
 }
 .yuanbg1 img{
 	width: 85px;
@@ -86,16 +102,18 @@
 	font-size: 18px;
 	font-weight: bold;
 	font-family: 微软雅黑;
-	color: #fff;
+	color: #f3d34c;
 	padding-top: 20px;
 }
 .yuanbg1 b{
+	margin-left: 30px;
 	font-size: 18px;
 	font-weight: bold;
 	font-family: 微软雅黑;
-	color:#f3d34c;
+	color:#fff;
 }
 .yuanbg2{
+	   
 	width: 280px;
     height: 40px;
 	float: left;
@@ -114,22 +132,22 @@
 	font-size: 18px;
 	font-weight: bold;
 	font-family: 微软雅黑;
-	color: #fff;
+	color: #f3d34c;
 	padding-top: 20px;
 }
 .yuanbg2 b{
 	font-size: 18px;
 	font-weight: bold;
 	font-family: 微软雅黑;
-	color:#f3d34c;
+	color:#fff;
 	margin-left: 30px;
 }
 .right_right{
 	width: 300px;
-	height: 300px;
+	height: 200px;
 	background: #dbdadb;
 	float: right;
-	padding:60px 40px;
+	padding:20px 40px;
 	text-align: center;
 }
 .right_right h1{
@@ -146,7 +164,7 @@
 	color: #2c2d2d;
 	padding: 5px;
 	background: #f3d34c;
-	margin:25px 0;
+	margin:15px 0;
 }
 .right_right span{
 	color: #b90e0e;
@@ -161,7 +179,7 @@
 .right_right img{
 	width: 152px;
 	height: 47px;
-	margin-top: 30px;
+	margin-top: 15px;
 }
 .hybody_zhong{
 	width: 1100px;
