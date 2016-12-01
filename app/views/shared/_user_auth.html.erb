@@ -1,0 +1,58 @@
+<!--新加代码开始-->
+<% unless current_user %>
+  <div class="login_before">
+    <div class="left">
+      <%user = User.new%>
+      <%= simple_form_for(user, :url => user_session_path, :html => { :remote=>true, :role => 'form', :class=> 'login-form'}) do |f| %>
+        <%=f.input "email", label: false, placeholder: "邮箱", input_html: {class: "in01 email", style: "padding:0;"}, wrapper_html: {style: "margin-bottom:0"}  %>
+        <%=f.input "password", label: false, placeholder: "密码", input_html: {class: "in01 password", style: "padding:0;"}, wrapper_html: {style: "margin-bottom:0"}  %>
+        <%=f.input "lang", label: false, as: "hidden" %>
+        <%= link_to "忘记密码?", new_password_path(user) %>
+        <%= f.submit '登录', class: 'btn01' %>
+      <% end %>
+    </div>
+    <%= link_to new_user_registration_path, target:"_blank", class: 'btn02' do%>
+      免费<br>开户
+    <% end %>
+    <%= link_to new_broker_registration_path, target:"_blank", class: 'btn03' do%>
+      申请<br>代理
+    <% end %>
+    <div class="login-msg"></div>
+  </div>
+<% else %>
+    <div class="login_after1">
+      <div class="after_left">
+        <div class="after_top">
+        <p>Hi、<span><%= current_user.nickname %></span> 用户积分：<span>5000</span></p>
+        </div>
+        <div class="after_down">
+        <ul>
+          <li>
+            <%=link_to new_my_deposit_path do%>
+              <%=image_tag "new/noimages/afteryu_03.gif"%><span>立即入金</span>
+            <%end%>
+          </li>
+          <li>
+            <%=link_to "" do%>
+              <%=image_tag "new/noimages/afteryu_05.gif"%><span>签到抽奖</span>
+            <%end%>
+          </li>
+          <li>
+            <%=link_to my_account_index_path do%>
+              <%=image_tag "new/noimages/afteryu_07.gif"%><span>个人中心</span>
+            <%end%>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, :method=>'delete' do %>
+              <%=image_tag "new/noimages/afteryu_09.gif"%><span>退出</span>
+            <%end%>
+          </li>
+        </ul>
+        </div>
+      </div>
+      <div class="after_right">
+        <%=image_tag "new/noimages/toux_04.gif"%>
+      </div>
+    </div>
+<% end %>
+<!--新加代码结束-->

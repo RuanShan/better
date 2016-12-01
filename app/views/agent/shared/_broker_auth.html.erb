@@ -1,0 +1,41 @@
+
+<% unless current_broker %>
+  <div class="login_before">
+    <div class="left">
+      <%broker = Broker.new%>
+      <%= simple_form_for(broker, :url => broker_session_path, :html => { :remote=>true, :role => 'form', :class=> 'login-form'}) do |f| %>
+        <%=f.input "email", label: false, placeholder: "邮箱", input_html: {class: "in01 email", style: "padding:0;"}, wrapper_html: {style: "margin-bottom:0"}  %>
+        <%=f.input "password", label: false, placeholder: "密码", input_html: {class: "in01 password", style: "padding:0;"}, wrapper_html: {style: "margin-bottom:0"}  %>
+        <%=f.input "lang", label: false, as: "hidden" %>
+        <%= link_to "忘记密码?", new_password_path(broker) %>
+        <%= f.submit '登录', class: 'btn01' %>
+      <% end %>
+    </div>
+    <%= link_to new_broker_registration_path, target:"_blank", class: 'btn03' do%>
+      申请<br>代理
+    <% end %>
+    <div class="login-msg"></div>
+  </div>
+  <% else %>
+
+    <div class="daili_after1">
+      <div class="daili_left">
+        <div class="daili_top">
+          <div class="dailitop_left">
+            <%=image_tag "new/meiimg_08.gif"%><%=image_tag "new/dailiimg/biaoge_03.gif"%>
+            <p><%=current_broker ? current_broker.email : ""%></p>
+          </div>
+          <%=image_tag "new/dailiimg/biaoge_06.gif", class: "dailitop_right"%>
+        </div>
+        <div class="daili_down">
+        <ul>
+          <li><%= link_to agent_broker_index_path do %><%=image_tag "new/dailiimg/biaoge_11.gif"%><span>代理中心</span><%end%></li>
+          <li><%= link_to destroy_broker_session_path, :method=>'delete' do %><%=image_tag "new/dailiimg/biaoge_13.gif"%><span>退出</span><%end%></li>
+        </ul>
+        </div>
+      </div>
+      <div class="daili_right">
+        <%=image_tag "new/noimages/toux_04.gif"%>
+      </div>
+    </div>
+<% end %>

@@ -1,4 +1,5 @@
 class Admin::UsersController < Admin::BaseController
+  before_action :set_user, only: [:lock, :data, :show, :edit, :update, :destroy]
 
   def index
     @page = params['page'] || 1
@@ -30,15 +31,12 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(secure_params)
       flash[:notice] = t(:user_updated)
       redirect_to admin_users_path
@@ -90,7 +88,14 @@ class Admin::UsersController < Admin::BaseController
     @user_day = Summary::BrokerDailyProfitFactory.create( @user_seller.member_todays ).first || Summary::BrokerDailyProfit.new(DateTime.current.to_date)
   end
 
+  def lock
+    @user.lock_access!
+  end
+
   private
+  def set_user
+    @user =  User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :password, :password_confirmation, :email, :phone, :gender, 'birthday(1i)', 'birthday(2i)', 'birthday(3i)', :id_number, :qq, :country_code, :province, :city, :address, :postcode, :lang)

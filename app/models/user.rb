@@ -341,6 +341,10 @@ class User < ApplicationRecord
     CurrentSeller.new( self )
   end
 
+  def full_members
+    descendants.where(["depth>? AND depth<=?", self.depth, self.depth+6])
+  end
+
   private
 
   def reset_password(new_password, new_password_confirmation)
