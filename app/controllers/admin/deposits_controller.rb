@@ -8,6 +8,7 @@ class Admin::DepositsController < Admin::BaseController
   def create
     @deposit= Deposit.new(deposit_params)
     @deposit.payment_method = PaymentMethod.find_by_name("内部充值")
+    @deposit.administrator = current_administrator
     if @deposit.save
       redirect_to record_admin_user_path(@deposit.user, record_for: 'deposit')
     else

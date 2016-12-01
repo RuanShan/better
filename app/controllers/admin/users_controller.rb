@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :set_user, only: [:lock, :data, :show, :edit, :update, :destroy]
+  before_action :set_user, only: [:lock, :data, :show, :edit, :update, :destroy, :record, :change_login_password, :change_money_password, :password_protect]
 
   def index
     @page = params['page'] || 1
@@ -46,9 +46,8 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def change_login_password
-    @user = User.find(params[:id])
     if request.patch?
-      @user.admin_change_password(login_password_params)
+      @user.admin_change_password(login_password_params, current_administrator.id)
       if @user.errors.empty?
         flash[:notice] = t(:login_password_changed)
       end
@@ -56,9 +55,8 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def change_money_password
-    @user = User.find(params[:id])
     if request.patch?
-      @user.admin_change_password(money_password_params)
+      @user.admin_change_password(money_password_params, current_administrator.id)
       if @user.errors.empty?
         flash[:notice] = t(:money_password_changed)
       end
@@ -66,9 +64,8 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def password_protect
-    @user = User.find(params[:id])
     if request.patch?
-      @user.admin_set_password_protection(pp_params)
+      @user.admin_set_password_protection(pp_params, current_administrator.id)
       if @user.errors.empty?
         flash[:notice] = t(:password_protection_success)
       end
@@ -102,7 +99,6 @@ class Admin::UsersController < Admin::BaseController
   def record
     @record_for = params['record_for']
     @page = params["page"]
-    @user = User.find(params[:id])
     if @record_for == "bonus"
       @bonuses = Wallet.bonuses.order("created_at desc").all.paginate(:page => @page)
     else
@@ -113,7 +109,6 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def data
-    @user = User.find(params[:id])
     @user_seller = CurrentSeller.new( @user )
     @user_month = Summary::SaleMonthlyFactory.create("profit", @user_seller.member_cmonths ).first || Summary::SaleMonthlyProfit.new(DateTime.current.to_date)
     @user_day = Summary::BrokerDailyProfitFactory.create( @user_seller.member_todays ).first || Summary::BrokerDailyProfit.new(DateTime.current.to_date)

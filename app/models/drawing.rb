@@ -13,6 +13,7 @@ class Drawing < ApplicationRecord
 
   has_one :wallet, as: :originator
   belongs_to :user_bank, required: true
+  belongs_to :administrator
   accepts_nested_attributes_for :user_bank
   delegate :user, to: :user_bank
   delegate :name, to: :user_bank, prefix: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120070500) do
+ActiveRecord::Schema.define(version: 20161201151012) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 20161120070500) do
     t.string   "payment_result"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+    t.integer  "administrator_id"
+    t.index ["administrator_id"], name: "index_deposits_on_administrator_id"
     t.index ["number"], name: "index_deposits_on_number"
     t.index ["payment_method_id"], name: "index_deposits_on_payment_method_id"
     t.index ["user_id", "created_at"], name: "index_deposits_on_user_id_and_created_at"
@@ -67,10 +69,12 @@ ActiveRecord::Schema.define(version: 20161120070500) do
     t.integer  "user_bank_id"
     t.string   "number"
     t.decimal  "amount"
-    t.string   "state",        limit: 12
+    t.string   "state",            limit: 12
     t.datetime "completed_at"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "administrator_id"
+    t.index ["administrator_id"], name: "index_drawings_on_administrator_id"
     t.index ["user_bank_id"], name: "index_drawings_on_user_bank_id"
     t.index ["user_id", "created_at"], name: "index_drawings_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_drawings_on_user_id"
@@ -157,12 +161,14 @@ ActiveRecord::Schema.define(version: 20161120070500) do
     t.string   "name"
     t.string   "description"
     t.string   "number"
-    t.integer  "rule",        default: 0,     null: false
-    t.decimal  "factor1",     default: "0.0", null: false
-    t.decimal  "factor2",     default: "0.0", null: false
-    t.decimal  "factor3",     default: "0.0", null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "rule",             default: 0,     null: false
+    t.decimal  "factor1",          default: "0.0", null: false
+    t.decimal  "factor2",          default: "0.0", null: false
+    t.decimal  "factor3",          default: "0.0", null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "administrator_id"
+    t.index ["administrator_id"], name: "index_promotions_on_administrator_id"
     t.index ["name"], name: "index_promotions_on_name", unique: true
   end
 
@@ -393,6 +399,8 @@ ActiveRecord::Schema.define(version: 20161120070500) do
     t.string   "id_back_content_type"
     t.integer  "id_back_file_size"
     t.datetime "id_back_updated_at"
+    t.integer  "administrator_id"
+    t.index ["administrator_id"], name: "index_users_on_administrator_id"
     t.index ["broker_id"], name: "index_users_on_broker_id"
     t.index ["created_at"], name: "index_users_on_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true

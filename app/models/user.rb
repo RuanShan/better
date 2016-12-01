@@ -131,7 +131,8 @@ class User < ApplicationRecord
     end
   end
 
-  def admin_change_password(password_options)
+  def admin_change_password(password_options, administrator_id)
+    self.administrator_id = administrator_id
     @password_prefix = password_options["money_password"] ? "money_" : ""
     reset_password(password_options["#{@password_prefix}password"],password_options["#{@password_prefix}password_confirmation"] )
   end
@@ -160,13 +161,14 @@ class User < ApplicationRecord
     end
   end
 
-  def admin_set_password_protection(pp_options)
+  def admin_set_password_protection(pp_options, administrator_id)
     @setting_pp = true
     if pp_options['pp_question'].present?
       errors.add(:pp_answer, "请输入答案") if pp_options['pp_answer'].blank?
     else
       errors.add(:pp_question, "请输入密保问题")
     end
+    self.administrator_id = administrator_id
     self.update_attributes(pp_options)
   end
 

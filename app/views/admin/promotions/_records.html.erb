@@ -4,6 +4,7 @@
       <tr>
         <th>活动名称</th>
         <th>活动创建时间</th>
+        <th>创建人</th>
         <th>规则</th>
         <th>活动代码</th>
         <th colspan="2">
@@ -17,13 +18,14 @@
     <tbody>
       <% if @promotions.empty? %>
         <tr>
-          <td colspan="8">暂无活动</td>
+          <td colspan="9">暂无活动</td>
         <tr>
       <% else %>
       <% @promotions.each do |promotion| %>
         <tr>
           <td><%= promotion.name %></td>
           <td><%= promotion.display_created_at %></td>
+          <td><%= promotion.administrator.name if promotion.administrator.present?%></td>
           <td><%= t promotion.rule %></td>
           <td><%= promotion.number %></td>
           <td><%= link_to "查看", admin_promotion_path(promotion), method: 'get' %></td>

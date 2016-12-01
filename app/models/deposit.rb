@@ -15,6 +15,7 @@ class Deposit < ApplicationRecord
 
   belongs_to :payment_method, required: true
   belongs_to :user, required: true
+  belongs_to :administrator
   belongs_to :promotion, primary_key: :number, foreign_key: :promotion_number, optional: true
   has_many :wallets, as: :originator # 一条充值记录可能有1个或两个钱包记录。 如：促销活动
 

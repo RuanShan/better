@@ -14,6 +14,7 @@
         <th><%= check_box_tag "selectall", 1, false %></th>
       <% else %>
         <th>提现状态</th>
+        <th>审核人</th>
       <% end %>
     </tr>
   </thead>
@@ -39,7 +40,8 @@
             <td><%= link_to "拒绝", deny_admin_drawing_path(drawing.id, page: @page), method: :put %></td>
             <td><%= check_box_tag "selected_drawings[]", drawing.id, false, class: "selectedId" %></td>
           <% else %>
-              <td><%=t drawing.state %></td>
+            <td><%=t drawing.state %></td>
+            <td><%= drawing.administrator.name if drawing.administrator.present? %></td>
           <% end %>
         </tr>
         <%total_amount += drawing.amount%>

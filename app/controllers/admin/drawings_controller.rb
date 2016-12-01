@@ -34,7 +34,10 @@ class Admin::DrawingsController < Admin::BaseController
       flash[:error] = t(:no_selected_drawings)
     else
       drawings = Drawing.find(drawing_ids)
-      drawings.each{|drawing| drawing.pass!}
+      drawings.each{|drawing|
+        drawing.administrator = current_administrator
+        drawing.pass!
+      }
       flash[:notice] = t(:multi_drawings_passed)
     end
     redirect_to admin_drawings_path+"?check=1&page=#{@page}"
@@ -43,6 +46,7 @@ class Admin::DrawingsController < Admin::BaseController
   def pass
     @page = params['page']
     drawing = Drawing.find_by_id(params[:id])
+    drawing.administrator = current_administrator
     drawing.pass!
     flash[:notice] = t(:drawing_passed)
     redirect_to admin_drawings_path+"?check=1&page=#{@page}"
@@ -55,7 +59,10 @@ class Admin::DrawingsController < Admin::BaseController
       flash[:error] = t(:no_selected_drawings)
     else
       drawings = Drawing.find(drawing_ids)
-      drawings.each{|drawing| drawing.deny!}
+      drawings.each{|drawing|
+        drawing.administrator = current_administrator
+        drawing.deny!
+      }
       flash[:notice] = t(:multi_drawings_denied)
     end
     redirect_to admin_drawings_path+"?check=1&page=#{@page}"
@@ -64,6 +71,7 @@ class Admin::DrawingsController < Admin::BaseController
   def deny
     @page = params['page']
     drawing = Drawing.find_by_id(params[:id])
+    drawing.administrator = current_administrator
     drawing.deny!
     flash[:notice] = t(:drawing_denied)
     redirect_to admin_drawings_path+"?check=1&page=#{@page}"

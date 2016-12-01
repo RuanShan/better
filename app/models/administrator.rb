@@ -8,4 +8,8 @@ class Administrator < ApplicationRecord
 
   validates :email, uniqueness: true
 
+  def name
+    email.split("@")[0]
+  end
+
 end

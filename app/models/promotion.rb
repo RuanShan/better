@@ -10,6 +10,8 @@ class Promotion < ApplicationRecord
   friendly_id :number, slug_column: :number, use: :slugged
   include NumberGenerator.new(prefix: 'P')
 
+  belongs_to :administrator
+
   enum rule: { deposit_amount_percent: 1 }
 
   def self.search(search_params)

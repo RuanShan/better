@@ -16,6 +16,8 @@ class Admin::PromotionsController < Admin::BaseController
   def create
     @promotion = Promotion.create(promotion_params)
     if @promotion.errors.empty?
+      @promotion.administrator = current_administrator
+      @promotion.save
       flash[:notice] = t(:promotion_created)
       redirect_to admin_promotions_path
     else
