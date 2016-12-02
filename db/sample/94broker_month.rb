@@ -1,4 +1,4 @@
-
+=begin
 puts "create broker months for broker:#{@broker.id}-#{@broker.real_name}"
 (6..12).each do |month|
   effective_on = "2016-#{month}-1"
@@ -26,3 +26,4 @@ FactoryGirl.create(:sale_month, broker: @broker)
       member_count: member_count, valuable_member_count: valuable_member_count, energetic_member_count: energetic_member_count, user: broker)
   end
 }
+=end

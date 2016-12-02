@@ -90,7 +90,6 @@ Rails.application.routes.draw do
       get :children, on: :collection
       get :children_profit, on: :collection
       get :children_balance, on: :collection
-      get :profit_detail, on: :member
     end
     resources :members do
       get :profit, on: :collection

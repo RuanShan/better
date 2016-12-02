@@ -1,4 +1,4 @@
-
+=begin
 puts "create user days for user:#{@user.id}-#{@user.real_name}"
 (6..10).each do |month|
   (1..10).each do |day|
@@ -39,3 +39,4 @@ end
   end
 
 }
+=end

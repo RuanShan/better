@@ -1,4 +1,4 @@
-
+=begin
 puts "create broker days for broker:#{@broker.id}-#{@broker.real_name}"
 (1..12).each do |month|
   (1..10).each do |day|
@@ -31,3 +31,4 @@ end
     end
   end
  }
+=end
