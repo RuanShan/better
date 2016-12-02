@@ -11,5 +11,9 @@ module Agent
     def authenticate_seller!
       redirect_to root_path unless current_seller.present?
     end
+
+    def select_layout_by_current_seller
+      current_seller.is_user ? "agent_user" : "agent_broker"
+    end
   end
 end

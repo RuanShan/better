@@ -1,6 +1,7 @@
 module Agent
   class MembersController < BaseController
-    layout "agent_seller"
+    layout :select_layout_by_current_seller
+
     before_action :authenticate_seller!
 
     def brokers
