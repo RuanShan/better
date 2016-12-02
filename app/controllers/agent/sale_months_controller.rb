@@ -1,6 +1,7 @@
 module Agent
   class SaleMonthsController < BaseController
-    layout "agent_seller"
+    layout :select_layout_by_current_seller
+    
     before_action :authenticate_seller!
     before_action :set_children, only: [:children, :children_profit, :children_balance]
 

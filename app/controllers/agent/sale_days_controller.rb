@@ -1,6 +1,7 @@
 module Agent
   class SaleDaysController < BaseController
-    layout "agent_seller"
+    layout :select_layout_by_current_seller
+
     before_action :authenticate_seller!
     before_action :set_sale_day, only: [:show, :edit, :update, :destroy]
     before_action :set_children, only: [:children, :children_profit]
@@ -136,7 +137,7 @@ module Agent
         end
 
         @children_brokers = q.paginate(:page => @page)
-        
+
       end
       # Never trust parameters from the scary internet, only allow the white list through.
       def sale_day_params

@@ -3,21 +3,8 @@ require "id_card.rb"
 # 用户7日内的流水计算
 #  user.bids.week.sum(:amount)
 
-class User < ApplicationRecord
+class User < MemberBase
   include WalletBlance
-  #支持多级会员系统
-  acts_as_nested_set scope: [:type]
-
-  extend  DisplayDateTime
-  date_time_methods :created_at
-
-  extend BetterDateScope
-  better_date_time_scope created_at: [:today, :month]
-
-  # 产生推广码
-  #extend FriendlyId
-  #friendly_id :number, slug_column: :number, use: :slugged
-  include NumberGenerator.new( prefix: 'B', length: 10, letters: true )
 
   has_many :user_messages
   has_many :user_banks
@@ -26,28 +13,7 @@ class User < ApplicationRecord
   has_many :bids
 
   belongs_to :broker, optional: true
-  #用户每日信息统计
-  has_many :user_days
-  has_many :user_months
-  has_one  :user_today, ->{ today }, class_name: 'UserDay'
-  has_one  :user_cmonth, ->{ current_month }, class_name: 'UserMonth'
-  has_one  :user_life
 
-  # 销售的日统计
-  has_many :sale_days, foreign_key: :seller_id, class_name: 'SaleDay'
-  has_one  :sale_today, ->{ today }, foreign_key: :seller_id, class_name: 'SaleDay'
-
-  # 销售的月统计
-  has_many :sale_months, foreign_key: :seller_id
-  has_one  :sale_cmonth, ->{ current_month }, foreign_key: :seller_id, class_name: 'SaleMonth'
-
-  delegate :energetic_member_count, :clink_visits, :member_count, to: :sale_cmonth, allow_nil: true
-
-  # 對於一般用戶，下级会员 就是 children
-  has_many :child_days, through: :children, source: :user_days
-  has_many :child_months, through: :children, source: :user_months
-  has_many :child_todays, ->{ today }, through: :children, source: :user_days
-  has_many :child_cmonths, ->{ current_month },through: :children, source: :user_months
 
   enum role: [:user, :vip ]
   enum gender: [:secret, :male, :female ]
