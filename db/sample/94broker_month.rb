@@ -1,5 +1,5 @@
-=begin
-puts "create broker months for broker:#{@broker.id}-#{@broker.name}"
+
+puts "create broker months for broker:#{@broker.id}-#{@broker.real_name}"
 (6..12).each do |month|
   effective_on = "2016-#{month}-1"
   clink_visits = rand(0..200)
@@ -9,7 +9,7 @@ puts "create broker months for broker:#{@broker.id}-#{@broker.name}"
   energetic_member_count = rand(0..valuable_member_count)
   puts "create broker months effective_on:#{effective_on} "
   FactoryGirl.create(:sale_month, effective_on: effective_on, clink_visits: clink_visits, blink_visits: blink_visits,
-    member_count: member_count, valuable_member_count: valuable_member_count, energetic_member_count: energetic_member_count, broker: @broker)
+    member_count: member_count, valuable_member_count: valuable_member_count, energetic_member_count: energetic_member_count, user: @broker)
 end
 
 FactoryGirl.create(:sale_month, broker: @broker)
@@ -23,7 +23,6 @@ FactoryGirl.create(:sale_month, broker: @broker)
     energetic_member_count = rand(0..valuable_member_count)
     puts "create broker months effective_on:#{effective_on} "
     FactoryGirl.create(:sale_month, effective_on: effective_on, clink_visits: clink_visits, blink_visits: blink_visits,
-      member_count: member_count, valuable_member_count: valuable_member_count, energetic_member_count: energetic_member_count, broker: broker)
+      member_count: member_count, valuable_member_count: valuable_member_count, energetic_member_count: energetic_member_count, user: broker)
   end
 }
-=end

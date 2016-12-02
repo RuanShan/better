@@ -1,5 +1,5 @@
-=begin
-puts "create user months for user:#{@user.id}-#{@user.name}"
+
+puts "create user months for user:#{@user.id}-#{@user.real_name}"
 (6..10).each do |month|
   day = rand(1..30)
   effective_on = "2016-#{month}-1"
@@ -18,7 +18,7 @@ puts "create user months for user:#{@user.id}-#{@user.name}"
 end
 
 @broker_users.each{|broker_user|
-  puts "create user months for user:#{broker_user.id}-#{broker_user.name}"
+  puts "create user months for user:#{broker_user.id}-#{broker_user.real_name}"
   (6..10).each do |month|
     day = rand(1..30)
     effective_on = "2016-#{month}-1"
@@ -36,4 +36,3 @@ end
       platform_charges: platform_charges, user: broker_user, broker: broker_user.broker)
   end
 }
-=end

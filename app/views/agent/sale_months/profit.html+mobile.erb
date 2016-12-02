@@ -22,12 +22,13 @@
         <th>输赢补差</th>
         <th>红利</th>
         <th>盈利</th>
+        <th>放大</th>
       </tr>
     </thead>
 
     <tbody>
       <% @dates.each do |date| monthly_profit  = @monthly_profits.select{|month| month.effective_on == date}.first || Summary::SaleMonthlyProfit.new( date ) %>
-        <tr>
+        <tr id="<%= monthly_profit.effective_on.to_s(:year_month) %>">
           <td><%= monthly_profit.effective_on.to_s(:year_month)  %></td>
           <td><%= 0 %></td>
           <td><%= monthly_profit.display_deposit_amount %>(<%= monthly_profit.deposit_member_count %>)</td>
@@ -38,6 +39,7 @@
           <td><%= monthly_profit.display_net_difference %></td>
           <td><%= monthly_profit.display_bonus %></td>
           <td><%= monthly_profit.display_profit %></td>
+          <td><%=link_to "放大", nil, href:"#", onclick: "bigger('#{monthly_profit.effective_on.to_s(:year_month)}');" %></td>
         </tr>
       <% end %>
     </tbody>
@@ -45,4 +47,19 @@
   </table>
 
   <%= will_paginate @dates %>
+</div>
+
+<div id="shougerenb" style="display:none;">
+	<table border="0" cellpadding="0" cellspacing="0">
+    <tr><td class="ipming">月份</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">活跃人数</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">存款(人数)</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">提款(人数)</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">投注</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">投注补差</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">输赢</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">输赢补差</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">红利</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">盈利</td><td class="ipnei"></td></tr>
+	</table>
 </div>

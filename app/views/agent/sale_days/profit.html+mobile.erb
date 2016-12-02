@@ -1,0 +1,58 @@
+<% content_for :page_title  do %>
+  <p class="fanhui"> <%= fa_icon "angle-left" %></p>
+  <p class="iphonelan">日盈利表</p>
+<% end %>
+
+<div class="dailiright_top">
+  <div class="biaotou">
+    <small>显示每日下线会员所创造的盈利</small>
+  </div>
+</div>
+<div class="dailiright_down">
+  <table class="biaoge table">
+    <thead>
+      <tr>
+        <th>日期</th>
+        <th>活跃人数</th>
+        <th>存款(人数)</th>
+        <th>提款(人数)</th>
+        <th>投注</th>
+        <th>输赢</th>
+        <th>红利</th>
+        <th>盈利</th>
+        <th>放大</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @dates.each do |date| daily_profit  = @daily_profits.select{|day| day.effective_on == date}.first || Summary::BrokerDailyProfit.new( date ) %>
+        <tr id="<%= daily_profit.effective_on %>">
+          <td><%= daily_profit.effective_on %></td>
+          <td><%= 0 %></td>
+          <td><%= daily_profit.display_deposit_amount %>(<%= daily_profit.deposit_member_count %>)</td>
+          <td><%= daily_profit.display_drawing_amount %>(<%= daily_profit.drawing_member_count %>)</td>
+          <td><%= daily_profit.display_bid_amount %></td>
+          <td><%= daily_profit.display_net %></td>
+          <td><%= daily_profit.display_bonus %></td>
+          <td><%= daily_profit.display_profit %></td>
+          <td><%=link_to "放大", nil, href:"#", onclick: "bigger('#{daily_profit.effective_on}');" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+
+  <%= will_paginate @dates %>
+</div>
+<div id="shougerenb" style="display:none;">
+	<table border="0" cellpadding="0" cellspacing="0">
+    <tr><td class="ipming">日期</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">活跃人数</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">存款(人数)</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">提款(人数)</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">投注</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">输赢</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">红利</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">盈利</td><td class="ipnei"></td></tr>
+	</table>
+</div>

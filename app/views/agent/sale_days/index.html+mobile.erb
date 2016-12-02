@@ -3,12 +3,16 @@
   <p class="iphonelan">日推广效果表</p>
 <% end %>
 
+<div class="dailiright_top">
+  <div class="biaotou">
+    <small>显示您每日的推广注册效果</small>
+  </div>
+</div>
 <div class="dailiright_down">
-
   <table class="biaoge table">
     <thead>
       <tr>
-        <th>会员</th>
+        <th>日期</th>
         <th>推广链接点击数</th>
         <th>注册数</th>
         <th>新注册并存款</th>
@@ -18,24 +22,24 @@
     </thead>
 
     <tbody>
-      <% @sale_days.each do |sale_day|%>
-        <tr id="<%= sale_day.seller_name %>">
-          <td><%= sale_day.seller_name %></td>
+      <% @dates.each do |date| sale_day  = @sale_days.select{|day| day.effective_on == date}.first || SaleDay.new( effective_on: date ) %>
+        <tr id="<%= sale_day.effective_on %>">
+          <td><%= sale_day.effective_on %></td>
           <td><%= sale_day.clink_visits %></td>
           <td><%= sale_day.member_count %></td>
           <td><%= sale_day.valuable_member_count %></td>
           <td><%= sale_day.display_valuable_rate %></td>
-          <td><%=link_to "放大", nil, href:"#", onclick: "bigger('#{sale_day.seller_name}');" %></td>
+          <td><%=link_to "放大", nil, href:"#", onclick: "bigger('#{sale_day.effective_on}');" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <%= will_paginate @children_brokers  if @children_brokers.respond_to? :total_pages%>
+  <%= will_paginate @dates %>
 </div>
 <div id="shougerenb" style="display:none;">
   <table border="0" cellpadding="0" cellspacing="0">
-    <tr><td class="ipming">会员</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">日期</td><td class="ipnei"></td></tr>
     <tr><td class="ipming">推广链接点击数</td><td class="ipnei"></td></tr>
     <tr><td class="ipming">注册数</td><td class="ipnei"></td></tr>
     <tr><td class="ipming">新注册并存款</td><td class="ipnei"></td></tr>

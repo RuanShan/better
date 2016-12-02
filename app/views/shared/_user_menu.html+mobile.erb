@@ -20,6 +20,15 @@
 		<li><%= build_nav_link "个人信息", { controller: 'my/account', action: 'index' }%></li>
 		<li><%= build_nav_link "我的二维码", { controller: 'my/account', action: 'invitable_qrcode'}%></li>
 	</ul>
+	<div class="subNav"><h6>一级客户推广状况</h6></div>
+	<ul class="navContent">
+		<li><%= build_nav_link "月推广效果表", { controller: 'agent/sale_months', action: 'index'}%></li>
+		<li><%= build_nav_link "月盈利表", { controller: 'agent/sale_months', action: 'profit'}%></li>
+		<li><%= build_nav_link "月结余表", { controller: 'agent/sale_months', action: 'balance'}%></li>
+		<li><%= build_nav_link "日推广效果表", { controller: 'agent/sale_days', action: 'index'}%></li>
+		<li><%= build_nav_link "日盈利表", { controller: 'agent/sale_days', action: 'profit'}%></li>
+	</ul>
+
 	<div class="subNav"><h6>二级客户推广状况</h6></div>
 	<ul class="navContent">
 		<li><%= build_nav_link "月推广效果表", { controller: 'agent/sale_months', action: 'children', member_level: 2}%></li>

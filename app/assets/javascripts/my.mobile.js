@@ -53,3 +53,16 @@ $( document ).ready(function() {
   			$(this).next(".navContent").slideToggle(500);
   });
 });
+
+function bigger(one){
+	$('.dailiright_down').hide();
+  $('#shougerenb').find("table").find("tr").each(function(index){
+		var index_content = $("#"+one).find("td").eq(index).html();
+    $(this).find("td").eq(1).html(index_content);
+  });
+	$('#shougerenb').show();
+	$('.fanhui').click(function(){
+  	$('#shougerenb').hide();
+		$('.dailiright_down').show();
+  });
+}

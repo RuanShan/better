@@ -15,12 +15,13 @@
         <th>净盈利</th>
         <th>上月负结余</th>
         <th>本月结余</th>
+        <th>放大</th>
       </tr>
     </thead>
 
     <tbody>
       <% @dates.each do |date| broker_balance  = @monthly_balances.select{|balance| balance.effective_on == date}.first || Summary::SaleMonthlyBalance.new( date ) %>
-        <tr>
+        <tr id="<%= broker_balance.effective_on.to_s(:year_month) %>">
           <td><%= broker_balance.effective_on.to_s(:year_month) %></td>
           <td><%= 0 %></td>
           <td><%= broker_balance.display_profit %></td>
@@ -29,10 +30,23 @@
           <td><%= broker_balance.display_net_profit %></td>
           <td><%= broker_balance.display_last_month_negative_balance %></td>
           <td><%= broker_balance.display_this_month_balance %></td>
+          <td><%=link_to "放大", nil, href:"#", onclick: "bigger('#{broker_balance.effective_on.to_s(:year_month)}');" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
   <%= will_paginate @dates %>
+</div>
+<div id="shougerenb" style="display:none;">
+	<table border="0" cellpadding="0" cellspacing="0">
+    <tr><td class="ipming">月份/日期</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">活跃人数</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">盈利</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">银行手续费</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">平台手续费</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">净盈利</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">上月负结余</td><td class="ipnei"></td></tr>
+    <tr><td class="ipming">本月结余</td><td class="ipnei"></td></tr>
+	</table>
 </div>

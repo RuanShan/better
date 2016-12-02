@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale.to_s %>">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title><%= content_for?(:title) ? yield(:title) : "Better" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Better" %>">
+    <%= stylesheet_link_tag 'my.mobile', media: 'all' %>
+    <%= javascript_include_tag 'my.mobile' %>
+    <%= javascript_include_tag 'jquery.qrcode.min' %>
+    <%= favicon_link_tag %>
+    <%= csrf_meta_tags %>
+    <% # This line ensures javascript code can access the current locale from Rails %>
+		<script type="text/javascript">var tkh_locale = '<%= I18n.locale.to_s %>';</script>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>
+    <%= render "shared/user_menu" %>
+    <div class="page">
+      <div class="page-title">
+        <div class="container">  <%= yield :page_title %> 
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="container">
+        <%= yield %>
+        </div>
+      </div>
+    </div>
+    <%= render 'layouts/footer' %>
+  </body>
+</html>

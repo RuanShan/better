@@ -1,5 +1,5 @@
-=begin
-puts "create broker days for broker:#{@broker.id}-#{@broker.name}"
+
+puts "create broker days for broker:#{@broker.id}-#{@broker.real_name}"
 (1..12).each do |month|
   (1..10).each do |day|
     day = month == 2 ? rand(1..28) : rand(1..30)
@@ -11,7 +11,7 @@ puts "create broker days for broker:#{@broker.id}-#{@broker.name}"
     energetic_member_count = rand(0..valuable_member_count)
     puts "create broker days effective_on:#{effective_on} "
     FactoryGirl.create(:sale_day, effective_on: effective_on, clink_visits: clink_visits, blink_visits: blink_visits,
-      member_count: member_count, valuable_member_count: valuable_member_count, energetic_member_count: energetic_member_count, broker: @broker)
+      member_count: member_count, valuable_member_count: valuable_member_count, energetic_member_count: energetic_member_count, user: @broker)
   end
 end
 
@@ -27,8 +27,7 @@ end
       energetic_member_count = rand(0..valuable_member_count)
       puts "create broker days effective_on:#{effective_on} "
       FactoryGirl.create(:sale_day, effective_on: effective_on, clink_visits: clink_visits, blink_visits: blink_visits,
-        member_count: member_count, valuable_member_count: valuable_member_count, energetic_member_count: energetic_member_count, broker: broker)
+        member_count: member_count, valuable_member_count: valuable_member_count, energetic_member_count: energetic_member_count, user: broker)
     end
   end
  }
-=end

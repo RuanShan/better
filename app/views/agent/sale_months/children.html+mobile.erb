@@ -14,22 +14,35 @@
           <th>注册数</th>
           <th>新注册并存款</th>
           <th>注册存款转化率</th>
+          <th>放大</th>
         </tr>
       </thead>
 
       <tbody>
         <% @sale_months.each do |sale_month|%>
-          <tr>
+          <tr id="<%= sale_month.seller_name %>">
             <td><%= sale_month.seller_name %></td>
             <td><%= sale_month.seller_parent_name %></td>
             <td><%= sale_month.clink_visits %></td>
             <td><%= sale_month.member_count %></td>
             <td><%= sale_month.valuable_member_count %></td>
             <td><%= sale_month.display_valuable_rate %></td>
+            <td><%=link_to "放大", nil, href:"#", onclick: "bigger('#{sale_month.seller_name}');" %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
 
     <%= will_paginate @children_brokers  if @children_brokers.respond_to? :total_pages %>
+  </div>
+
+  <div id="shougerenb" style="display:none;">
+  	<table border="0" cellpadding="0" cellspacing="0">
+      <tr><td class="ipming">会员</td><td class="ipnei"></td></tr>
+      <tr><td class="ipming">上级</td><td class="ipnei"></td></tr>
+      <tr><td class="ipming">点击数</td><td class="ipnei"></td></tr>
+      <tr><td class="ipming">注册数</td><td class="ipnei"></td></tr>
+      <tr><td class="ipming">新注册并存款</td><td class="ipnei"></td></tr>
+      <tr><td class="ipming">注册存款转化率</td><td class="ipnei"></td></tr>
+  	</table>
   </div>
