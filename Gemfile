@@ -77,6 +77,8 @@ gem 'whenever', :require => false
 
 gem 'country_select', path: "./country_select"
 
+gem 'mysql2'
+
 group :development do
   gem 'better_errors'
   gem 'capistrano', '~> 3.0.1'
