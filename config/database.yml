@@ -26,6 +26,6 @@ production:
   reconnect: false
   database: better_production
   pool: 5
-  username: root
-  password:
+  username: <%= ENV["BETTER_PRODUCTION_DB_USER"] %>
+  password: <%= ENV["BETTER_PRODUCTION_DB_PASS"] %>
   socket: /var/lib/mysql/mysql.sock
