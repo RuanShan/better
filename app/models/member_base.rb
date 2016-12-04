@@ -28,14 +28,18 @@ class MemberBase < ApplicationRecord
   has_many :child_todays, ->{ today }, through: :children, source: :user_days
   has_many :child_cmonths, ->{ current_month },through: :children, source: :user_months
 
-    # 销售的日统计
-    has_many :sale_days, foreign_key: :seller_id, class_name: 'SaleDay'
-    has_one  :sale_today, ->{ today }, foreign_key: :seller_id, class_name: 'SaleDay'
+  # 销售的日统计
+  has_many :sale_days, foreign_key: :seller_id, class_name: 'SaleDay'
+  has_one  :sale_today, ->{ today }, foreign_key: :seller_id, class_name: 'SaleDay'
 
-    # 销售的月统计
-    has_many :sale_months, foreign_key: :seller_id
-    has_one  :sale_cmonth, ->{ current_month }, foreign_key: :seller_id, class_name: 'SaleMonth'
+  # 销售的月统计
+  has_many :sale_months, foreign_key: :seller_id
+  has_one  :sale_cmonth, ->{ current_month }, foreign_key: :seller_id, class_name: 'SaleMonth'
 
-    delegate :energetic_member_count, :clink_visits, :member_count, to: :sale_cmonth, allow_nil: true
+  delegate :energetic_member_count, :clink_visits, :member_count, to: :sale_cmonth, allow_nil: true
 
+
+  def real_name
+    country_code == "CN" ? "#{last_name}#{first_name}" : "#{first_name} #{last_name}"
+  end
 end

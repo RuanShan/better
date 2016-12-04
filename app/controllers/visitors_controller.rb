@@ -13,4 +13,8 @@ class VisitorsController < ApplicationController
       end
     end
   end
+
+  def show
+     render :json => current_user
+  end
 end

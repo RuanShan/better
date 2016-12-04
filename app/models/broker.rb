@@ -31,6 +31,7 @@ class Broker < MemberBase
   has_many :member_todays, ->{ today }, class_name: 'UserDay'
 
   #default_scope ->{ where( type: 'Broker' )}
+  alias_attribute :nickname, :real_name
 
   def state
     locked_at.nil? ? "normal" : "frozen"

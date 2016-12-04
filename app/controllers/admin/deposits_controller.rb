@@ -1,24 +1,88 @@
-class Admin::DepositsController < Admin::BaseController
+module Admin
+  class DepositsController < BaseController
+    before_action :set_deposit, only: [:show, :edit, :update, :destroy]
 
-  def new
-    user = User.find_by_number(params["user_number"])
-    @deposit = user.deposits.build
-  end
+    # GET /deposits
+    # GET /deposits.json
+    def index
+      @drawings = Drawing.order(created_at: :desc).all.paginate(:page => params[:page])
 
-  def create
-    @deposit= Deposit.new(deposit_params)
-    @deposit.payment_method = PaymentMethod.find_by_name("内部充值")
-    @deposit.administrator = current_administrator
-    if @deposit.save
-      redirect_to record_admin_user_path(@deposit.user, record_for: 'deposit')
-    else
-      render :new
     end
-  end
 
-  private
+    # GET /deposits/1
+    # GET /deposits/1.json
+    def show
+    end
 
-  def deposit_params
-    params.require(:deposit).permit(:amount, :memo, :user_id)
+    # GET /deposits/new
+    def new
+      user = User.find_by_number(params["user_number"])
+      @deposit = user.deposits.build
+    end
+
+    # GET /deposits/1/edit
+    def edit
+    end
+
+    # POST /deposits
+    # POST /deposits.json
+    def create
+      @deposit = Deposit.new(deposit_params)
+      @deposit.payment_method = PaymentMethod.find_by_name("内部充值")
+      @deposit.administrator = current_administrator
+
+      respond_to do |format|
+        if @deposit.save
+          format.html {
+            redirect_to record_admin_user_path(@deposit.user, record_for: 'deposit')
+            #redirect_to @deposit, notice: 'Deposit was successfully created.'
+          }
+          format.json { render :show, status: :created, location: @deposit }
+        else
+          format.html { render :new }
+          format.json { render json: @deposit.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
+    # PATCH/PUT /deposits/1
+    # PATCH/PUT /deposits/1.json
+    def update
+      respond_to do |format|
+        if @deposit.update(deposit_params)
+          format.html { redirect_to @deposit, notice: 'Deposit was successfully updated.' }
+          format.json { render :show, status: :ok, location: @deposit }
+        else
+          format.html { render :edit }
+          format.json { render json: @deposit.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
+    # DELETE /deposits/1
+    # DELETE /deposits/1.json
+    def destroy
+      @deposit.destroy
+      respond_to do |format|
+        format.html { redirect_to deposits_url, notice: 'Deposit was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    end
+
+    private
+      # Use callbacks to share common setup or constraints between actions.
+      def set_deposit
+        @deposit = Deposit.find(params[:id])
+      end
+
+      def build_depoist
+
+      end
+
+      # Never trust parameters from the scary internet, only allow the white list through.
+      def deposit_params
+        params.require(:deposit).permit(:payment_method_id, :user_id, :amount, :memo)
+      end
+
   end
 end

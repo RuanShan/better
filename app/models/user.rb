@@ -63,9 +63,6 @@ class User < MemberBase
     end
   end
 
-  def real_name
-    country_code == "CN" ? "#{last_name}#{first_name}" : "#{first_name} #{last_name}"
-  end
 
   def set_default_role
     self.role ||= :user
