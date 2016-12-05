@@ -1,6 +1,6 @@
-<table class="table biaoge<%=t_class%>">
+<table class="table biaoge">
   <thead>
-    <tr class="<%=th_class%>">
+    <tr class="">
       <th>ID</th>
       <th>日期/时间(GMT+8)</th>
       <th>交易号码</th>
@@ -13,12 +13,12 @@
   <tbody>
 
     <% if @deposits.empty? %>
-      <tr class="<%=tr_class%>">
+      <tr class="">
         <td colspan="6">暂无记录</td>
       <tr>
     <% else %>
     <% @deposits.each do |deposit| %>
-      <tr class="<%=tr_class%>">
+      <tr class="">
         <td><%= deposit.created_at.to_i %></td>
         <td><%= deposit.display_created_at %></td>
         <td><%= deposit.number %></td>
@@ -26,7 +26,6 @@
         <td><%= deposit.display_amount %></td>
         <td><%= t(deposit.state) %></td>
       </tr>
-      <%total_amount += deposit.amount%>
     <% end %>
   <% end %>
   </tbody>

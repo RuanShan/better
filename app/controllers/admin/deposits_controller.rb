@@ -5,7 +5,7 @@ module Admin
     # GET /deposits
     # GET /deposits.json
     def index
-      @drawings = Drawing.order(created_at: :desc).all.paginate(:page => params[:page])
+      @deposits = Deposit.order(created_at: :desc).all.paginate(:page => params[:page])
 
     end
 
