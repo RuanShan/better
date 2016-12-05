@@ -4,7 +4,7 @@
 .login_before .in01 {width:154px; height:22px;border-radius:2px; background:#e8e8e8; float:left; margin-left:10px; padding-left:6px;}
 .login_before a {width:85px; line-height:30px; float:left; margin-left:0px; display:block; color:#fff4a7;}
 .login_before a:hover {text-decoration:underline;}
-.login_before .btn01 {width:160px; height:23px; text-align:center; border:0px;line-height:23px; color:#fff; background:image_url("new/btn-bg01.png") repeat; font-size:15px; margin-top:5px; margin-right:8px;float:right; border-radius:2px;transition: all .5s;}
+.login_before .btn01 {width:160px; height:23px; text-align:center; border:0px;line-height:23px; color:#fff; background:image-url("new/btn-bg01.png") repeat; font-size:15px; margin-top:5px; margin-right:8px;float:right; border-radius:2px;transition: all .5s;}
 .login_before .btn02 {width:63px; height:50px; text-align:center; line-height:20px; color:#fff; background:url("new/btn-bg03.png") repeat; font-size:15px; margin-top:6px; margin-left:10px; border-radius:2px; text-decoration:none; padding-top:5px; letter-spacing:1px;transition: all .5s;}
 .login_before .btn03 {
     background: rgba(0, 0, 0, 0) url("new/dailid_03.gif") repeat scroll 0 0 / 63px 63px;
@@ -21,8 +21,8 @@
     transition: all 0.5s ease 0s;
     width: 63px;
 }
-.login_before .btn01:hover {background:image_url("new/btn-bg01-h.png") repeat;}
-.login_before .btn02:hover {background:image_url("new/btn-bg02.png") repeat;}
+.login_before .btn01:hover {background:image-url("new/btn-bg01-h.png") repeat;}
+.login_before .btn02:hover {background:image-url("new/btn-bg02.png") repeat;}
 .login_before .login-msg {line-height: 1.6em; color: red;margin-left: 10px;text-align:left;}
 
 .login_after {width:443px; height:73px; background:#3b3b3b; float:right; margin-top:20px; border-radius:2px;}
