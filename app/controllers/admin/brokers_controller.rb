@@ -115,7 +115,7 @@ module Admin
     def lock
       @page = params['page']
       @broker = Broker.find_by_id(params[:id])
-      @broker.access_locked? ? @broker.unlock_access! : @broker.lock_access!
+      @broker.access_locked? ? @broker.unlock_access! : @broker.lock_access!( send_instructions: false )
       redirect_to admin_brokers_path+"?page=#{@page}"
     end
 

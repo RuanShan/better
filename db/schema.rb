@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201151012) do
+ActiveRecord::Schema.define(version: 20161204151012) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -400,9 +400,12 @@ ActiveRecord::Schema.define(version: 20161201151012) do
     t.integer  "id_back_file_size"
     t.datetime "id_back_updated_at"
     t.integer  "administrator_id"
+    t.datetime "deleted_at"
     t.index ["administrator_id"], name: "index_users_on_administrator_id"
     t.index ["broker_id"], name: "index_users_on_broker_id"
     t.index ["created_at"], name: "index_users_on_created_at"
+    t.index ["deleted_at", "type"], name: "index_users_on_deleted_at_and_type"
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["id", "type"], name: "index_users_on_id_and_type"
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true

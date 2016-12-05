@@ -172,6 +172,7 @@ GEM
       sixarm_ruby_unaccent (>= 1.1.1, < 2)
     multi_json (1.12.1)
     mysql2 (0.4.4)
+    mysql2 (0.4.4-x64-mingw32)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
@@ -187,6 +188,8 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+    paranoia (2.2.0)
+      activerecord (>= 4.0, < 5.1)
     parser (2.3.1.4)
       ast (~> 2.2)
     powerpack (0.1.1)
@@ -375,6 +378,7 @@ DEPENDENCIES
   monetize
   mysql2
   paperclip (~> 5.0.0)
+  paranoia (~> 2.2)
   pry-rails
   pry-rescue
   puma (~> 3.0)

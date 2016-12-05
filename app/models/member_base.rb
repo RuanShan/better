@@ -3,6 +3,7 @@ class MemberBase < ApplicationRecord
 
   #支持多级会员系统
   acts_as_nested_set #scope: [:type]
+  acts_as_paranoid
 
   extend  DisplayDateTime
   date_time_methods :created_at
@@ -36,10 +37,18 @@ class MemberBase < ApplicationRecord
   has_many :sale_months, foreign_key: :seller_id
   has_one  :sale_cmonth, ->{ current_month }, foreign_key: :seller_id, class_name: 'SaleMonth'
 
+  # call it before destroy_descendants
+  before_destroy :adjust_children_parent, prepend: true
+
   delegate :energetic_member_count, :clink_visits, :member_count, to: :sale_cmonth, allow_nil: true
 
 
   def real_name
     country_code == "CN" ? "#{last_name}#{first_name}" : "#{first_name} #{last_name}"
   end
+
+  def adjust_children_parent
+    children.update( parent: self.parent)
+  end
+
 end

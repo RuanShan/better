@@ -33,6 +33,8 @@ class Broker < MemberBase
   #default_scope ->{ where( type: 'Broker' )}
   alias_attribute :nickname, :real_name
 
+  #before_destroy :reassign_members
+
   def state
     locked_at.nil? ? "normal" : "frozen"
   end
@@ -57,4 +59,9 @@ class Broker < MemberBase
     website.present? ? (website[0,7] == "http://" ? website : "http://"+website) : "无"
   end
 
+  private
+
+  def reassign_members
+    members.update( broker: self.parent )
+  end
 end

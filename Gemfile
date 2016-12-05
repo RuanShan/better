@@ -67,7 +67,9 @@ gem 'monetize'
 
 # 代理树形结构
 gem 'awesome_nested_set'
-#gem 'paranoid'
+
+# acts_as_paranoid
+gem "paranoia", "~> 2.2"
 
 # send sms
 gem 'alidayu-ruby', require: 'alidayu'
