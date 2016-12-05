@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.relative_url_root = '/r'
+  config.relative_url_root = '/private'
 
   # Code is not reloaded between requests.
   config.cache_classes = true
