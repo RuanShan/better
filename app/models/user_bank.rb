@@ -16,6 +16,25 @@ class UserBank < ApplicationRecord
 
   attr_accessor :current_money_password
 
+  before_save :validate_bank
+
+  def self.valid_create(user, bank_options)
+    user.password_prefix="money_"
+    current_money_password = bank_options["current_money_password"]
+    new_user_bank = user.user_banks.build(bank_options)
+    if new_user_bank.id.present? && user.user_banks.pluck(:id).include?(new_user_bank.id.to_i)
+      new_user_bank = UserBank.find(new_user_bank.id)
+    end
+    if user.valid_password? current_money_password
+      unless new_user_bank.persisted?
+        new_user_bank.save
+      end
+    else
+      new_user_bank.errors.add(:current_money_password, "当前资金密码不正确")
+    end
+    new_user_bank
+  end
+
 
   # Returns a display-friendly version of the card number.
   #
@@ -29,5 +48,15 @@ class UserBank < ApplicationRecord
   # @return [String] a display-friendly version of the card number
   def display_number
     self.class.mask(number)
+  end
+
+  def validate_bank
+    error_code, result = Juhe::Bank.verify_bank(card_number, user.id_number, user.real_name)
+    if error_code.to_i == 0
+      match = result["res"].to_i == 1 ? true : false
+      errors.add(:card_number, "真实姓名和银行卡号不匹配，请重新输入") unless match
+    else
+      errors.add(:card_number, "验证失败 : #{result}")
+    end
   end
 end

@@ -14,7 +14,7 @@ module My
     def deposit
       @user = current_user
     end
-    
+
     def invitable_qrcode
     end
 
@@ -106,22 +106,7 @@ module My
       end
     end
 
-    def bind_bank
-      if request.post?
-        @user_bank = current_user.bind_bank(bank_params)
-        if @user_bank.errors.empty?
-          flash[:notice] = t(:bind_bank_success)
-          redirect_to security_center_my_account_path(current_user)
-        else
-          render :bind_bank
-        end
-      else
-        @user_bank = current_user.user_banks.green.present? ? current_user.user_banks.green.first : current_user.user_banks.new
-      end
-    end
-
     private
-
 
     def secure_params
       params.require(:user).permit(:role)
@@ -153,10 +138,6 @@ module My
 
     def bind_name_params
       params.require(:user).permit(:first_name, :last_name, :id_type, :id_number, :phone, :validate_code)
-    end
-
-    def bank_params
-      params.require(:user_bank).permit(:name, :card_number, :branch_name, :address, :current_money_password)
     end
 
     def get_code_options

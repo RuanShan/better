@@ -157,6 +157,7 @@ Rails.application.routes.draw do
       get 'search', on: :collection
     end
 
+    resources :user_banks
   end
 
   post '/sms/create_verify_code', to: 'sms#create_verify_code'
