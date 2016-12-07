@@ -1,9 +1,8 @@
 class SmsController < ApplicationController
-  before_action :build_sms, only: [:create_verify_code]
+  before_action :build_sms, only: [:create_verify_code, :get_verify_code]
   before_action :set_sms, only: [:show, :edit, :update, :destroy]
 
   def create_verify_code
-
     session[:sign_up_sms] = @sms.tap{|sms| sms.send_at = DateTime.current}
     render :stub_create_verify_code
     return
@@ -21,9 +20,17 @@ class SmsController < ApplicationController
     else
 
     end
+  end
 
-
-
+  def get_verify_code
+    # validate phone number
+    if @sms.valid?
+      # send successfully
+      if @sms.send_for_sign_up
+        session[:sms] = @sms
+      end
+    end
+    render :create_verify_code
   end
 
   private

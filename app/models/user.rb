@@ -135,79 +135,19 @@ class User < MemberBase
     self.update_attributes(pp_options)
   end
 
-  def save_with_validate_code(send_code, attr_options, code_options)
-    self.assign_attributes(attr_options)
-
-    if send_code == 1
-      code=123456
-=begin
-      code =rand(999999).to_s
-      alidayu_respond = Alidayu.send_sms({
-        template_id: "SMS_22595044",
-        sign_name: "软山网络",#软山网络,大连软山
-        params: {
-          code: code,
-          product: '',
-        },
-        phones: phone
-      })
-      #logger.debug "----------------code=#{code},alidayu_respond=#{alidayu_respond.inspect}"
-      validate_alidayu_response(alidayu_respond)
-=end
-      if errors.empty?
-        code_options["validate_phone"] = phone
-        code_options["validate_code"] = code
-        code_options["validate_code_send_time"] = Time.now
-      end
-      errors.add(:validate_code, "验证码已发送至您的手机，请输入")
-    else
-      validate_my_code(code_options)
-      if code_options["validate_phone"] == phone
-        if @binding_name == true
-          if id_type == "id_card"
-            error_code, result = Juhe::IdCard.search(id_number, real_name)
-            if error_code.to_i == 0
-              match = result["res"].to_i == 1 ? true : false
-              errors.add(:first_name, "真实姓名和身份证不匹配，请重新输入") unless match
-            else
-              errors.add(:first_name, "验证失败 : #{result}")
-            end
-          end
-        end
-        self.save if self.errors.empty?
-      else
-        errors.add(:phone, "必须使用发送验证码的电话号码")
-      end
-    end
-  end
-
-  def bind_name(send_code, name_options, code_options)
+  def bind_name(name_options)
     @binding_name = true
-    save_with_validate_code(send_code, attr_options, code_options)
-  end
-
-  def bind_bank(bank_options)
-    @password_prefix="money_"
-    current_money_password = bank_options["current_money_password"]
-    new_user_bank = user_banks.build(bank_options)
-    if new_user_bank.id.present? && user_banks.pluck(:id).include?(new_user_bank.id.to_i)
-      new_user_bank = UserBank.find(new_user_bank.id)
-    end
-    if valid_password? current_money_password
-      unless new_user_bank.persisted?
-        error_code, result = Juhe::Bank.verify_bank(new_user_bank.card_number, id_number, real_name)
-        if error_code.to_i == 0
-          match = result["res"].to_i == 1 ? true : false
-          new_user_bank.errors.add(:card_number, "真实姓名和银行卡号不匹配，请重新输入") unless match
-        else
-          new_user_bank.errors.add(:card_number, "验证失败 : #{result}")
-        end
-        new_user_bank.save if new_user_bank.errors.empty?
+    self.assign_attributes(name_options)
+    if id_type == "id_card"
+      error_code, result = Juhe::IdCard.search(id_number, real_name)
+      if error_code.to_i == 0
+        match = result["res"].to_i == 1 ? true : false
+        errors.add(:first_name, "真实姓名和身份证不匹配，请重新输入") unless match
+      else
+        errors.add(:first_name, "验证失败 : #{result}")
       end
-    else
-      new_user_bank.errors.add(:current_money_password, "当前资金密码不正确")
+      self.save if self.errors.empty?
     end
-    new_user_bank
   end
 
   def drawing(drawing_options)
@@ -331,42 +271,6 @@ class User < MemberBase
     self.send "#{@password_prefix}password=", new_password
     self.send "#{@password_prefix}password_confirmation=", new_password_confirmation
     save
-  end
-
-  def validate_my_code(code_options)
-    if code_options["validate_code"].present? && code_options["validate_code_send_time"].present?
-      last_send_duration = Time.now - code_options["validate_code_send_time"].to_datetime
-      if last_send_duration > 10*60
-        errors.add(:validate_code, "验证码过期，请重新发送")
-      else
-        #logger.debug "++++++++++validate_code=#{validate_code},code_options['validate_code']=#{code_options['validate_code']}"
-        unless validate_code.to_s == code_options["validate_code"].to_s
-          errors.add(:validate_code, "验证码不正确")
-        end
-      end
-    else
-      errors.add(:validate_code, "请先发送验证码至手机，再输入")
-    end
-  end
-  #error_respond={"error_response"=>{"code"=>15, "msg"=>"Remote service error", "sub_code"=>"isv.BUSINESS_LIMIT_CONTROL", "sub_msg"=>"触发业务流控", "request_id"=>"3b4kmfzkvbq7"}}
-  #success_respond={"alibaba_aliqin_fc_sms_num_send_response"=>{"result"=>{"err_code"=>"0", "model"=>"104132741839^1105207555898", "success"=>true}, "request_id"=>"z24nkhmlp79h"}}
-  def validate_alidayu_response(alidayu_response)
-    if alidayu_response["error_response"]
-      error_code = alidayu_response["error_response"]["code"]
-      case error_code
-      when 15
-      when 40
-        errors.add(:phone, "请输入手机号")
-      else
-        error_message = alidayu_response["error_response"]["msg"]+":"+alidayu_response["error_response"]["sub_msg"]
-        errors.add(:validate_code, error_message)
-      end
-    else
-      rresponse = alidayu_response["alibaba_aliqin_fc_sms_num_send_response"]["result"]
-      unless rresponse["success"] == true
-        errors.add(:validate_code, "发送失败，请重新发送")
-      end
-    end
   end
 
   def adjust_sale_day

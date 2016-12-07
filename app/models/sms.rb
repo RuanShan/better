@@ -27,12 +27,15 @@ class Sms
     end
 
     self.errors.empty?
+    true
   end
 
   def verify_sign_up_sms( some_phone, some_code )
-    #logger.debug "++++++++++validate_code=#{validate_code},code_options['validate_code']=#{code_options['validate_code']}"
+    unless phone == some_phone.to_s
+      errors.add(:phone, "必须使用发送验证码的电话号码")
+    end
     unless code == some_code.to_s
-      errors.add(:code, "验证码不正确")
+      errors.add(:validate_code, "验证码不正确")
     end
     send_at_validation
     errors.empty?
@@ -51,20 +54,22 @@ class Sms
   def validate_alidayu_response(alidayu_response)
     success = false
     if alidayu_response["error_response"]
+      Rails.logger.debug "alidayu_response['error_response']=#{alidayu_response['error_response']}"
       error_code = alidayu_response["error_response"]["code"]
       case error_code
       when 15
       when 40
-        #errors.add(:phone, "请输入手机号")
+        errors.add(:phone, "请输入手机号")
       else
-        error_message = alidayu_response["error_response"]["msg"]+":"+alidayu_response["error_response"]["sub_msg"]
+        error_message = alidayu_response["error_response"]["msg"]
+        error_message += ":"+alidayu_response["error_response"]["sub_msg"] if alidayu_response["error_response"]["sub_msg"]
         Rails.logger.debug "error_code=#{error_code}, error_message = #{error_message}"
-        #errors.add(:validate_code, error_message)
+        errors.add(:validate_code, error_message)
       end
     else
       rresponse = alidayu_response["alibaba_aliqin_fc_sms_num_send_response"]["result"]
       success = rresponse["success"] == true
-
+      errors.add(:validate_code, "发送失败，请重新发送") unless success
     end
     success
   end
