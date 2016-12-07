@@ -21,6 +21,8 @@
 //= require base
 //= require cable
 //= require better
+//= require highstock
+//= require forex
 
 $(function(){
   setInterval(update, 1000);

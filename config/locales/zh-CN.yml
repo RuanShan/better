@@ -78,3 +78,9 @@ zh-CN:
   checked: 已审
   success: 成功
   deposit_amount_percent: 充值满送百分比
+  forex:
+    symbol:
+      USEURUSD: 美汇欧元
+      USGBPUSD: 美汇英镑
+      USAUDUSD: 美汇澳元
+      USUSDCAD: 美汇加元

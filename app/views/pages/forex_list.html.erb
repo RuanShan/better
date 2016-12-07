@@ -1,0 +1,19 @@
+<%= render "sign_up" %>
+<div class="jiaoyi1body forex-list">
+  <hr>
+        <div class="jiaoyi1body_nei">
+          <div class="jiaoyi1_left">
+            <%= render "forex_header" %>
+
+            <% symbols = ["USEURUSD","USGBPUSD","USAUDUSD","USUSDCAD"] %>
+            <% symbols.each_with_index{|symbol,i| %>
+                <%= render partial:"forex_chart", locals: { symbol: symbol, container_id: "forex-chart#{i}"} %>
+            <% } %>
+          </div>
+
+          <div class="jiaoyi1_right">
+            <%= render "forex_sidebar" %>
+          </div>
+
+        </div>
+</div>

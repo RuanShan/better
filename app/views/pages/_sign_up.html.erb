@@ -1,0 +1,38 @@
+<div class="sign1">
+      <h1>免费创建账户</h1>
+      <form method="POST" action="https://trading.ggbinary.com/index/sign-up?redirectUrl=http://www.ggbinary.com/Recharge" id="reg-form" class="sign_box">
+        <input type="text" placeholder="名" id="reg-first-name" name="firstName" class="in01">
+        <input type="text" style="margin-right:30px;" placeholder="姓" id="reg-last-name" name="lastName" class="in01">
+        <input type="text" class="in02" placeholder="电子邮箱" id="reg-email" name="email">
+        <input type="text" class="in04" placeholder="QQ" id="reg-qq" name="qq">
+
+        <input type="text" class="in05" id="reg-area-code" value="+86" name="countryDialCode">
+        <input type="text" class="in06" placeholder=" 电话" id="reg-phone" name="phone">
+
+        <input type="password" class="in03" placeholder="密码" id="reg-password" name="password">
+        <input type="text" class="in07" placeholder="验证码" id="reg-verify-code" name="verifyCode">
+
+        <input type="hidden" readonly="readonly" value="" name="landing" id="landing">
+        <input type="button" class="btn01 obtainVerifyCode" value="获取验证码">
+      </form>
+      <div class="cee">
+        <div class="ce1">
+        <span>
+          <%= image_tag "new/sign-icon04.png" %>经纪人:
+        </span>
+        <label class="cho">
+          <input type="radio" value="1" class="ch" name="affiliate">
+          有
+        </label>
+        <label class="cho">
+          <input type="radio" value="0" class="ch" checked="checked" name="affiliate">
+          无
+        </label>
+        <input type="text" placeholder="经纪人编码" id="reg-first-name" name="firstName" class="in11">
+        </div>
+
+        <input type="checkbox" id="reg-agreement" class="bo1" checked="checked" name="reg-agreement">
+        我已阅读并同意 <a target="_blank" href="http://www.ggbinary.com/zh-cn/TermsOfAgreement/">服务条款</a> 和 <a target="_blank" href="http://www.ggbinary.com/zh-cn/PrivacyPolicy/">隐私政策</a>
+      </div>
+      <input type="button" id="reg-submit" class="btn02" value="免费创建账户" name="input2">
+</div>

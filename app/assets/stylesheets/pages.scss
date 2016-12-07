@@ -1,3 +1,121 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.forex-simple{
+  .forex-chart{
+    height: 300px;
+  }
+}
+.forex-list{
+  .forex-wrapper{
+    background: #3a3a3a none repeat scroll 0 0;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  a { display: inline-block;}
+  .huobiright_ti1{
+    background-color: #3a3a3a;
+  }
+  .forex-chart{
+    height: 240px;
+  }
+  .huobiti_right1{
+    width: 48%;
+    float: right;
+    overflow: hidden;
+    text-align: center;
+  }
+  .huobiti_right1 p{
+        line-height: 14px;
+      margin: 0px;
+      color: #f3d34c;
+      font-weight: bold;
+      height: 22px;
+      overflow: hidden;
+  }
+  .huobiti_right1 h1{
+     color: #dbdadb;
+      font-size: 46px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      font-family: 微软雅黑;
+      font-weight: bold;
+      margin-left: 10px;
+
+  }
+  .huobiti_left1{
+    float: left;
+    width: 50%;
+
+  }
+  .huobiti_left1 h4{
+
+      background: #dbdadb;
+      border-radius: 7px;
+      margin: auto;
+      width: 100px;
+      margin-top: 20px;
+      text-align: center;
+  }
+  .duichong1 img{
+    width: 10px;
+    height: 10px;
+    margin-right: 2px;
+  }
+  .duichong1{
+    float: right;
+    text-align: left;
+  }
+
+  .szxd3{
+    margin: 15px 27px;
+    float: left;
+
+  }
+  .szxd4{
+    margin: 15px 0px;
+
+  }
+  .shouyi1{
+    margin:0px;
+  }
+  .chushou1{
+    float: left;
+    text-align: right;
+
+  }
+  .chushou1 img{
+    width: 10px;
+    height: 10px;
+    margin-right: 2px;
+  }
+  .jiabei1{
+    clear: both;
+  }
+  .ssshou{
+        float: left;
+      width: 50%;
+      color: #dabf49;
+      font-weight: bold;
+      margin-top: 36px;
+  }
+
+  .sshuou{
+    width: 50%;
+    float: right;
+    padding-top: 10px;
+  }
+  .sshuou a{
+    text-decoration: none;
+  }
+  .sshuou span{
+    padding: 2px 5px;
+    background:#aaa;
+    color: #333;
+    text-align: center;
+    margin-left: 5px;
+    border-radius: 5px;
+    margin-top: 8px;
+  }
+}

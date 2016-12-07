@@ -443,11 +443,13 @@ section{margin:4em 0;}
   overflow: hidden;
 
 }
-#footer_top span,p{
-  line-height: 1.6em;
-  color: #333;
-  font-weight: bold;
-  font-size: 14px;
+#footer_top {
+  span,p{
+    line-height: 1.6em;
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+  }
 }
 #footer_down{
   width: 100%;

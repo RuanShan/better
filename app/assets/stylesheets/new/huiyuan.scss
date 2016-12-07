@@ -1010,7 +1010,7 @@
 .jiaoyi1_shanglan{
 	background: #939393;
 	width: 100%;
- 
+
 }
 .jiaoyi1_shanglan img{
 	width: 20px;
@@ -2057,10 +2057,12 @@
 	overflow: hidden;
 
 }
-#footer_top span,p{
-	color: #333;
-	font-weight: bold;
-	font-size: 14px;
+#footer_top {
+	span, p{
+		color: #333;
+		font-weight: bold;
+		font-size: 14px;
+	}
 }
 #footer_down li{
 	float: left;

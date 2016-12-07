@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   include HighVoltage::StaticPage
   layout :layout_for_page
+  before_action :set_cros_header
   helper_method :current_seller
 
   def current_seller
@@ -10,7 +11,6 @@ class PagesController < ApplicationController
   private
 
   def layout_for_page
-    Rails.logger.debug " layout_for_page #{params[:id]}"
     case params[:id]
     when /^my/
       'user'
@@ -19,4 +19,9 @@ class PagesController < ApplicationController
     end
   end
 
+  def set_cros_header
+    if params[:id] =~ /forex/
+      response.headers['Access-Control-Allow-Origin'] = '*'
+    end
+  end
 end
