@@ -1,0 +1,48 @@
+<% # locals {container_id, symbol}
+%>
+
+<div class="forex-wrapper forex-grid-cell">
+  <div class="one_zhang1 clearfix">
+    <div class="clearfix">
+      <div class="one_zz">
+        <%= image_tag "new/jiaoyi/jiaoyi2_03.gif" %>
+        <span> <%= t( "forex.symbol.#{symbol}") %></span>
+      </div>
+      <div class="one_z11">
+  		    <button class="btn2" type="button" id="1">涨/跌</button>
+          <button class="btn1" type="button" id="2">60秒</button>
+      </div>
+    </div>
+    <div class="one_z5 ">
+		    <button class="btn4" type="button" id="3">今天10:48</button>
+        <button class="btn3" type="button" id="4">30sec</button>
+        <button class="btn3" type="button" id="5">60sec</button>
+        <button class="btn3" type="button" id="6">2min</button>
+        <button class="btn3" type="button" id="7">5min</button>
+    </div>
+
+  </div>
+  <div class="guoqi clearfix">
+      		<div class=""><span><%= t( "forex.symbol.#{symbol}") %>收盘时价格将低于或高于？</span></div>
+      		<div class=""><span>剩余时间：</span><div class="shijiamokuan"><%= image_tag "new/jiaoyi/tiaozi1.jpg" %> </div>
+      	</div>
+  </div>
+
+  <div class="huobiright_ti clearfix">
+  				<div class="huobiti_left2">
+            <a href="" class="szxd5"> <%= image_tag "new/jiaoyi/jiaoyi1_101.gif" %></a>
+            <%= content_tag "h4","0.0000", class: "forex-label", data: {symbol: symbol} %>
+            <a href="" class="szxd6"> <%= image_tag "new/jiaoyi/jiaoyi1_109.gif" %></a>
+  				</div>
+  				<div class="huobiti_right">
+  					<h1>70%</h1>
+  					<p>收益</p>
+            <p class="chushou"><%= image_tag "new/jiaoyi/jiaoyi1_112.gif" %>出售</p>
+            <p class="duichong"><%= image_tag "new/jiaoyi/jiaoyi1_114.gif" %>对冲</p>
+  					<p class="jiabei">X2加倍</p>
+  				</div>
+  </div>
+  <div>
+    <%= content_tag "div","", id: container_id, class: "forex-chart", data: {symbol: symbol} %>
+  </div>
+</div>

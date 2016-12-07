@@ -1,330 +1,335 @@
 <%= render "sign_up" %>
-<hr>
+<%
+symbol = "USEURUSD"
+%>
 <div class="jiaoyi1body forex-simple">
-        <div class="jiaoyi1body_nei">
-          <div class="jiaoyi1_left">
-            <div class="jiaoyi1_zhulan">
-              <ul>
-                <li class="btn1" id="2"><a href=""><%= image_tag "new/jiaoyi/jiaoyi1_31.gif" %> <span>所有</span></a></li>
-                <li class="btn2" id="1"><a href=""><%= image_tag "new/jiaoyi/jiaoyi1_28.gif" %> <span>热门资产</span></a></li>
-                <li class="btn1" id="3"><a href=""><%= image_tag "new/jiaoyi/jiaoyi1_34.gif" %> <span>收藏</span></a></li>
-                <li class="btn1" id="4"><a href=""><span>资深交易者</span></a></li>
-                <li>
-                  <%= image_tag "new/jiaoyi/jiaoyi1_22.gif", class: "shipingtubiao" %>
-                  <div class="sousuoanniu"><a href=""><%= image_tag "new/jiaoyi/jiaoyi1_32.gif" %> </a></div><input class="sousuo">
-                </li>
-              </ul>
+  <hr>
+    <div class="jiaoyi1body_nei">
+      <div class="jiaoyi1_left ">
+        <div class="jiaoyi1_zhulan">
+          <ul>
+            <li class="btn1" id="2"><a href=""><%= image_tag "new/jiaoyi/jiaoyi1_31.gif" %> <span>所有</span></a></li>
+            <li class="btn2" id="1"><a href=""><%= image_tag "new/jiaoyi/jiaoyi1_28.gif" %> <span>热门资产</span></a></li>
+            <li class="btn1" id="3"><a href=""><%= image_tag "new/jiaoyi/jiaoyi1_34.gif" %> <span>收藏</span></a></li>
+            <li class="btn1" id="4"><a href=""><span>资深交易者</span></a></li>
+            <li>
+              <%= image_tag "new/jiaoyi/jiaoyi1_22.gif", class: "shipingtubiao" %>
+              <div class="sousuoanniu"><a href=""><%= image_tag "new/jiaoyi/jiaoyi1_32.gif" %> </a></div><input class="sousuo">
+            </li>
+          </ul>
+        </div>
+        <%= render "forex_header" %>
+        <div class="forex-wrapper">
+          <%= content_tag "div","", id: "forex-chart-#{symbol}", class: "forex-chart", data: {symbol: symbol} %>
+          
+          <div class="jiaoyi1_qiehuanti">
+
+            <div class="one_huobi">
+            		<div class="huobi_left">
+            			<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
+              			<%= image_tag "new/jiaoyi/jiaoyi1_131.gif" %> <span>美汇欧元</span><b class="forex-label" data-symbol="USEURUSD">0.0000</b>
+              		</div>
+              		<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
+              			<%= image_tag "new/jiaoyi/jiaoyi1_131.gif" %><span>美汇英镑</span><b class="forex-label" data-symbol="USGBPUSD">0.0000</b>
+              		</div>
+              		<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
+              			<%= image_tag "new/jiaoyi/jiaoyi1_142.gif" %> <span>美汇澳元</span><b class="forex-label" data-symbol="USAUDUSD">0.0000</b>
+              		</div>
+              		<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
+              			<%= image_tag "new/jiaoyi/jiaoyi1_131.gif" %><span>美汇加元</span><b class="forex-label" data-symbol="USUSDCAD">0.0000</b>
+              		</div>
+              		<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
+              			<%= image_tag "new/jiaoyi/jiaoyi1_142.gif" %><span>美汇日元</span><b class="forex-label" data-symbol="USUSDJPY">0.0000</b>
+              		</div>
+            		</div>
+            		<div class="huobi_right">
+            			<div class="huobiright_top">
+            				 <span><%= t( "forex.symbol.#{symbol}") %></span><b>00:17</b>
+            			</div>
+            			<div class="huobiright_ti">
+            				<div class="huobiti_left">
+                      <a href="" class="szxd1"> <%= image_tag "new/jiaoyi/jiaoyi1_101.gif" %></a>
+                      <a href="" class="szxd2"> <%= image_tag "new/jiaoyi/jiaoyi1_109.gif" %></a>
+            				</div>
+            				<div class="huobiti_right">
+            					<h1>70%</h1>
+            					<p>收益</p>
+            					<p class="chushou"><%= image_tag "new/jiaoyi/jiaoyi1_112.gif" %>出售</p>
+            					<p class="duichong"><%= image_tag "new/jiaoyi/jiaoyi1_114.gif" %>对冲</p>
+            					<p class="jiabei">X2加倍</p>
+            				</div>
+            			</div>
+            		</div>
             </div>
-              <%= render "forex_header" %>
-             <div id="chart1" class="forex-chart" data-symbol="USEURUSD">
-             </div>
-            <div class="jiaoyi1_qiehuanti">
 
-              <div class="one_huobi">
-              		<div class="huobi_left">
-              			<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
-                			<%= image_tag "new/jiaoyi/jiaoyi1_131.gif" %> <span>美汇欧元</span><b class="forex-label" data-symbol="USEURUSD">0.0000</b>
-                		</div>
-                		<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
-                			<%= image_tag "new/jiaoyi/jiaoyi1_131.gif" %><span>美汇英镑</span><b class="forex-label" data-symbol="USGBPUSD">0.0000</b>
-                		</div>
-                		<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
-                			<%= image_tag "new/jiaoyi/jiaoyi1_142.gif" %> <span>美汇澳元</span><b class="forex-label" data-symbol="USAUDUSD">0.0000</b>
-                		</div>
-                		<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
-                			<%= image_tag "new/jiaoyi/jiaoyi1_131.gif" %><span>美汇加元</span><b class="forex-label" data-symbol="USUSDCAD">0.0000</b>
-                		</div>
-                		<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
-                			<%= image_tag "new/jiaoyi/jiaoyi1_142.gif" %><span>美汇日元</span><b class="forex-label" data-symbol="USUSDJPY">0.0000</b>
-                		</div>
-              		</div>
-              		<div class="huobi_right">
-              			<div class="huobiright_top">
-              				 <span>英镑/美元</span><b>00:17</b>
-              			</div>
-              			<div class="huobiright_ti">
-              				<div class="huobiti_left">
-                        <a href="" class="szxd1"> <%= image_tag "new/jiaoyi/jiaoyi1_101.gif" %></a>
-                        <a href="" class="szxd2"> <%= image_tag "new/jiaoyi/jiaoyi1_109.gif" %></a>
-              				</div>
-              				<div class="huobiti_right">
-              					<h1>70%</h1>
-              					<p>收益</p>
-              					<p class="chushou"><%= image_tag "new/jiaoyi/jiaoyi1_112.gif" %>出售</p>
-              					<p class="duichong"><%= image_tag "new/jiaoyi/jiaoyi1_114.gif" %>对冲</p>
-              					<p class="jiabei">X2加倍</p>
-              				</div>
-              			</div>
-              		</div>
-              </div>
+            <div class="jiaoyi1biao">
+              				<table rules="rows">
+              					<tbody><tr class="bbiao1">
+              						<td class="a18"><h2>工具</h2></td>
+              						<td class="a18"><h2>最近到期价格</h2></td>
+              						<td class="a14"><h2>收益</h2></td>
+              						<td class="a32"><h2>情绪</h2></td>
+              						<td class="a18"><h2>波动性</h2></td>
+              					</tr>
+              					<tr class="bbiao2">
+              						<td class="a18">货币</td>
+              						<td class="a18"></td>
+              						<td class="a14"></td>
+              						<td class="a32"></td>
+              						<td class="a18"></td>
+              					</tr>
+              					<tr class="bbiao3">
+              						<td><p>AUD/JPY</p></td>
+              						<td><p>80.422</p></td>
+              						<td><p>70%</p></td>
+              						<td><div class="baifenbi">
+              							<span class="baifenbi1">30%</span>
+              							<span class="baifenbi2">70%</span>
+              						</div></td>
+              						<td><div id="bodong">
+              							<div id="chi"> </div>
+              							<div id="cheng"> </div>
+              							<div id="huang"> </div>
+              							<div id="lv"> </div>
+              							<div id="qing"> </div>
+              							<div id="lan"> </div>
 
-              <div class="jiaoyi1biao">
-                				<table rules="rows">
-                					<tbody><tr class="bbiao1">
-                						<td class="a18"><h2>工具</h2></td>
-                						<td class="a18"><h2>最近到期价格</h2></td>
-                						<td class="a14"><h2>收益</h2></td>
-                						<td class="a32"><h2>情绪</h2></td>
-                						<td class="a18"><h2>波动性</h2></td>
-                					</tr>
-                					<tr class="bbiao2">
-                						<td class="a18">货币</td>
-                						<td class="a18"></td>
-                						<td class="a14"></td>
-                						<td class="a32"></td>
-                						<td class="a18"></td>
-                					</tr>
-                					<tr class="bbiao3">
-                						<td><p>AUD/JPY</p></td>
-                						<td><p>80.422</p></td>
-                						<td><p>70%</p></td>
-                						<td><div class="baifenbi">
-                							<span class="baifenbi1">30%</span>
-                							<span class="baifenbi2">70%</span>
-                						</div></td>
-                						<td><div id="bodong">
-                							<div id="chi"> </div>
-                							<div id="cheng"> </div>
-                							<div id="huang"> </div>
-                							<div id="lv"> </div>
-                							<div id="qing"> </div>
-                							<div id="lan"> </div>
+              						</div></td>
+              					</tr>
+              					<tr class="bbiao3">
+              						<td><p>AUD/JPY</p></td>
+              						<td><p>80.422</p></td>
+              						<td><p>70%</p></td>
+              						<td><div class="baifenbi">
+              							<span class="baifenbi1">30%</span>
+              							<span class="baifenbi2">70%</span>
+              						</div></td>
+              						<td><div id="bodong">
+              							<div id="chi"> </div>
+              							<div id="cheng"> </div>
+              							<div id="huang"> </div>
+              							<div id="lv"> </div>
+              							<div id="qing"> </div>
+              							<div id="lan"> </div>
 
-                						</div></td>
-                					</tr>
-                					<tr class="bbiao3">
-                						<td><p>AUD/JPY</p></td>
-                						<td><p>80.422</p></td>
-                						<td><p>70%</p></td>
-                						<td><div class="baifenbi">
-                							<span class="baifenbi1">30%</span>
-                							<span class="baifenbi2">70%</span>
-                						</div></td>
-                						<td><div id="bodong">
-                							<div id="chi"> </div>
-                							<div id="cheng"> </div>
-                							<div id="huang"> </div>
-                							<div id="lv"> </div>
-                							<div id="qing"> </div>
-                							<div id="lan"> </div>
+              						</div></td>
+              					</tr>
+              					<tr class="bbiao3">
+              						<td><p>AUD/JPY</p></td>
+              						<td><p>80.422</p></td>
+              						<td><p>70%</p></td>
+              						<td><div class="baifenbi">
+              							<span class="baifenbi1">30%</span>
+              							<span class="baifenbi2">70%</span>
+              						</div></td>
+              						<td><div id="bodong">
+              							<div id="chi"> </div>
+              							<div id="cheng"> </div>
+              							<div id="huang"> </div>
+              							<div id="lv"> </div>
+              							<div id="qing"> </div>
+              							<div id="lan"> </div>
 
-                						</div></td>
-                					</tr>
-                					<tr class="bbiao3">
-                						<td><p>AUD/JPY</p></td>
-                						<td><p>80.422</p></td>
-                						<td><p>70%</p></td>
-                						<td><div class="baifenbi">
-                							<span class="baifenbi1">30%</span>
-                							<span class="baifenbi2">70%</span>
-                						</div></td>
-                						<td><div id="bodong">
-                							<div id="chi"> </div>
-                							<div id="cheng"> </div>
-                							<div id="huang"> </div>
-                							<div id="lv"> </div>
-                							<div id="qing"> </div>
-                							<div id="lan"> </div>
+              						</div></td>
+              					</tr>
+              					<tr class="bbiao3">
+              						<td><p>AUD/JPY</p></td>
+              						<td><p>80.422</p></td>
+              						<td><p>70%</p></td>
+              						<td><div class="baifenbi">
+              							<span class="baifenbi1">30%</span>
+              							<span class="baifenbi2">70%</span>
+              						</div></td>
+              						<td><div id="bodong">
+              							<div id="chi"> </div>
+              							<div id="cheng"> </div>
+              							<div id="huang"> </div>
+              							<div id="lv"> </div>
+              							<div id="qing"> </div>
+              							<div id="lan"> </div>
 
-                						</div></td>
-                					</tr>
-                					<tr class="bbiao3">
-                						<td><p>AUD/JPY</p></td>
-                						<td><p>80.422</p></td>
-                						<td><p>70%</p></td>
-                						<td><div class="baifenbi">
-                							<span class="baifenbi1">30%</span>
-                							<span class="baifenbi2">70%</span>
-                						</div></td>
-                						<td><div id="bodong">
-                							<div id="chi"> </div>
-                							<div id="cheng"> </div>
-                							<div id="huang"> </div>
-                							<div id="lv"> </div>
-                							<div id="qing"> </div>
-                							<div id="lan"> </div>
+              						</div></td>
+              					</tr>
+              					<tr class="bbiao2">
+              						<td class="a18">股票</td>
+              						<td class="a18"></td>
+              						<td class="a14"></td>
+              						<td class="a32"></td>
+              						<td class="a18"></td>
+              					</tr>
+              					<tr class="bbiao3">
+              						<td><p>AUD/JPY</p></td>
+              						<td><p>80.422</p></td>
+              						<td><p>70%</p></td>
+              						<td><div class="baifenbi">
+              							<span class="baifenbi1">30%</span>
+              							<span class="baifenbi2">70%</span>
+              						</div></td>
+              						<td><div id="bodong">
+              							<div id="chi"> </div>
+              							<div id="cheng"> </div>
+              							<div id="huang"> </div>
+              							<div id="lv"> </div>
+              							<div id="qing"> </div>
+              							<div id="lan"> </div>
 
-                						</div></td>
-                					</tr>
-                					<tr class="bbiao2">
-                						<td class="a18">股票</td>
-                						<td class="a18"></td>
-                						<td class="a14"></td>
-                						<td class="a32"></td>
-                						<td class="a18"></td>
-                					</tr>
-                					<tr class="bbiao3">
-                						<td><p>AUD/JPY</p></td>
-                						<td><p>80.422</p></td>
-                						<td><p>70%</p></td>
-                						<td><div class="baifenbi">
-                							<span class="baifenbi1">30%</span>
-                							<span class="baifenbi2">70%</span>
-                						</div></td>
-                						<td><div id="bodong">
-                							<div id="chi"> </div>
-                							<div id="cheng"> </div>
-                							<div id="huang"> </div>
-                							<div id="lv"> </div>
-                							<div id="qing"> </div>
-                							<div id="lan"> </div>
+              						</div></td>
+              					</tr>
+              					<tr class="bbiao3">
+              						<td><p>AUD/JPY</p></td>
+              						<td><p>80.422</p></td>
+              						<td><p>70%</p></td>
+              						<td><div class="baifenbi">
+              							<span class="baifenbi1">30%</span>
+              							<span class="baifenbi2">70%</span>
+              						</div></td>
+              						<td><div id="bodong">
+              							<div id="chi"> </div>
+              							<div id="cheng"> </div>
+              							<div id="huang"> </div>
+              							<div id="lv"> </div>
+              							<div id="qing"> </div>
+              							<div id="lan"> </div>
 
-                						</div></td>
-                					</tr>
-                					<tr class="bbiao3">
-                						<td><p>AUD/JPY</p></td>
-                						<td><p>80.422</p></td>
-                						<td><p>70%</p></td>
-                						<td><div class="baifenbi">
-                							<span class="baifenbi1">30%</span>
-                							<span class="baifenbi2">70%</span>
-                						</div></td>
-                						<td><div id="bodong">
-                							<div id="chi"> </div>
-                							<div id="cheng"> </div>
-                							<div id="huang"> </div>
-                							<div id="lv"> </div>
-                							<div id="qing"> </div>
-                							<div id="lan"> </div>
+              						</div></td>
+              					</tr>
+              					<tr class="bbiao2">
+              						<td class="a18">商品</td>
+              						<td class="a18"></td>
+              						<td class="a14"></td>
+              						<td class="a32"></td>
+              						<td class="a18"></td>
+              					</tr>
+              					<tr class="bbiao3">
+              						<td><p>AUD/JPY</p></td>
+              						<td><p>80.422</p></td>
+              						<td><p>70%</p></td>
+              						<td><div class="baifenbi">
+              							<span class="baifenbi1">30%</span>
+              							<span class="baifenbi2">70%</span>
+              						</div></td>
+              						<td><div id="bodong">
+              							<div id="chi"> </div>
+              							<div id="cheng"> </div>
+              							<div id="huang"> </div>
+              							<div id="lv"> </div>
+              							<div id="qing"> </div>
+              							<div id="lan"> </div>
 
-                						</div></td>
-                					</tr>
-                					<tr class="bbiao2">
-                						<td class="a18">商品</td>
-                						<td class="a18"></td>
-                						<td class="a14"></td>
-                						<td class="a32"></td>
-                						<td class="a18"></td>
-                					</tr>
-                					<tr class="bbiao3">
-                						<td><p>AUD/JPY</p></td>
-                						<td><p>80.422</p></td>
-                						<td><p>70%</p></td>
-                						<td><div class="baifenbi">
-                							<span class="baifenbi1">30%</span>
-                							<span class="baifenbi2">70%</span>
-                						</div></td>
-                						<td><div id="bodong">
-                							<div id="chi"> </div>
-                							<div id="cheng"> </div>
-                							<div id="huang"> </div>
-                							<div id="lv"> </div>
-                							<div id="qing"> </div>
-                							<div id="lan"> </div>
+              						</div></td>
+              					</tr>
+              					<tr class="bbiao3">
+              						<td><p>AUD/JPY</p></td>
+              						<td><p>80.422</p></td>
+              						<td><p>70%</p></td>
+              						<td><div class="baifenbi">
+              							<span class="baifenbi1">30%</span>
+              							<span class="baifenbi2">70%</span>
+              						</div></td>
+              						<td><div id="bodong">
+              							<div id="chi"> </div>
+              							<div id="cheng"> </div>
+              							<div id="huang"> </div>
+              							<div id="lv"> </div>
+              							<div id="qing"> </div>
+              							<div id="lan"> </div>
 
-                						</div></td>
-                					</tr>
-                					<tr class="bbiao3">
-                						<td><p>AUD/JPY</p></td>
-                						<td><p>80.422</p></td>
-                						<td><p>70%</p></td>
-                						<td><div class="baifenbi">
-                							<span class="baifenbi1">30%</span>
-                							<span class="baifenbi2">70%</span>
-                						</div></td>
-                						<td><div id="bodong">
-                							<div id="chi"> </div>
-                							<div id="cheng"> </div>
-                							<div id="huang"> </div>
-                							<div id="lv"> </div>
-                							<div id="qing"> </div>
-                							<div id="lan"> </div>
+              						</div></td>
+              					</tr>
+              					<tr class="bbiao2">
+              						<td class="a18">指数</td>
+              						<td class="a18"></td>
+              						<td class="a14"></td>
+              						<td class="a32"></td>
+              						<td class="a18"></td>
+              					</tr>
+              					<tr class="bbiao3">
+              						<td><p>AUD/JPY</p></td>
+              						<td><p>80.422</p></td>
+              						<td><p>70%</p></td>
+              						<td><div class="baifenbi">
+              							<span class="baifenbi1">30%</span>
+              							<span class="baifenbi2">70%</span>
+              						</div></td>
+              						<td><div id="bodong">
+              							<div id="chi"> </div>
+              							<div id="cheng"> </div>
+              							<div id="huang"> </div>
+              							<div id="lv"> </div>
+              							<div id="qing"> </div>
+              							<div id="lan"> </div>
 
-                						</div></td>
-                					</tr>
-                					<tr class="bbiao2">
-                						<td class="a18">指数</td>
-                						<td class="a18"></td>
-                						<td class="a14"></td>
-                						<td class="a32"></td>
-                						<td class="a18"></td>
-                					</tr>
-                					<tr class="bbiao3">
-                						<td><p>AUD/JPY</p></td>
-                						<td><p>80.422</p></td>
-                						<td><p>70%</p></td>
-                						<td><div class="baifenbi">
-                							<span class="baifenbi1">30%</span>
-                							<span class="baifenbi2">70%</span>
-                						</div></td>
-                						<td><div id="bodong">
-                							<div id="chi"> </div>
-                							<div id="cheng"> </div>
-                							<div id="huang"> </div>
-                							<div id="lv"> </div>
-                							<div id="qing"> </div>
-                							<div id="lan"> </div>
+              						</div></td>
+              					</tr>
+              					<tr class="bbiao3">
+              						<td><p>AUD/JPY</p></td>
+              						<td><p>80.422</p></td>
+              						<td><p>70%</p></td>
+              						<td><div class="baifenbi">
+              							<span class="baifenbi1">30%</span>
+              							<span class="baifenbi2">70%</span>
+              						</div></td>
+              						<td><div id="bodong">
+              							<div id="chi"> </div>
+              							<div id="cheng"> </div>
+              							<div id="huang"> </div>
+              							<div id="lv"> </div>
+              							<div id="qing"> </div>
+              							<div id="lan"> </div>
 
-                						</div></td>
-                					</tr>
-                					<tr class="bbiao3">
-                						<td><p>AUD/JPY</p></td>
-                						<td><p>80.422</p></td>
-                						<td><p>70%</p></td>
-                						<td><div class="baifenbi">
-                							<span class="baifenbi1">30%</span>
-                							<span class="baifenbi2">70%</span>
-                						</div></td>
-                						<td><div id="bodong">
-                							<div id="chi"> </div>
-                							<div id="cheng"> </div>
-                							<div id="huang"> </div>
-                							<div id="lv"> </div>
-                							<div id="qing"> </div>
-                							<div id="lan"> </div>
+              						</div></td>
+              					</tr>
+              					<tr class="bbiao3">
+              						<td><p>AUD/JPY</p></td>
+              						<td><p>80.422</p></td>
+              						<td><p>70%</p></td>
+              						<td><div class="baifenbi">
+              							<span class="baifenbi1">30%</span>
+              							<span class="baifenbi2">70%</span>
+              						</div></td>
+              						<td><div id="bodong">
+              							<div id="chi"> </div>
+              							<div id="cheng"> </div>
+              							<div id="huang"> </div>
+              							<div id="lv"> </div>
+              							<div id="qing"> </div>
+              							<div id="lan"> </div>
 
-                						</div></td>
-                					</tr>
-                					<tr class="bbiao3">
-                						<td><p>AUD/JPY</p></td>
-                						<td><p>80.422</p></td>
-                						<td><p>70%</p></td>
-                						<td><div class="baifenbi">
-                							<span class="baifenbi1">30%</span>
-                							<span class="baifenbi2">70%</span>
-                						</div></td>
-                						<td><div id="bodong">
-                							<div id="chi"> </div>
-                							<div id="cheng"> </div>
-                							<div id="huang"> </div>
-                							<div id="lv"> </div>
-                							<div id="qing"> </div>
-                							<div id="lan"> </div>
+              						</div></td>
+              					</tr>
+              					<tr class="bbiao3">
+              						<td><p>AUD/JPY</p></td>
+              						<td><p>80.422</p></td>
+              						<td><p>70%</p></td>
+              						<td><div class="baifenbi">
+              							<span class="baifenbi1">30%</span>
+              							<span class="baifenbi2">70%</span>
+              						</div></td>
+              						<td><div id="bodong">
+              							<div id="chi"> </div>
+              							<div id="cheng"> </div>
+              							<div id="huang"> </div>
+              							<div id="lv"> </div>
+              							<div id="qing"> </div>
+              							<div id="lan"> </div>
 
-                						</div></td>
-                					</tr>
-                					<tr class="bbiao3">
-                						<td><p>AUD/JPY</p></td>
-                						<td><p>80.422</p></td>
-                						<td><p>70%</p></td>
-                						<td><div class="baifenbi">
-                							<span class="baifenbi1">30%</span>
-                							<span class="baifenbi2">70%</span>
-                						</div></td>
-                						<td><div id="bodong">
-                							<div id="chi"> </div>
-                							<div id="cheng"> </div>
-                							<div id="huang"> </div>
-                							<div id="lv"> </div>
-                							<div id="qing"> </div>
-                							<div id="lan"> </div>
+              						</div></td>
+              					</tr>
+              					<tr class="bbiao3">
+              						<td><p> </p></td>
+              						<td><p> </p></td>
+              						<td><p> </p></td>
+              						<td></td>
+              						<td></td>
+              					</tr>
 
-                						</div></td>
-                					</tr>
-                					<tr class="bbiao3">
-                						<td><p> </p></td>
-                						<td><p> </p></td>
-                						<td><p> </p></td>
-                						<td></td>
-                						<td></td>
-                					</tr>
-
-                				</tbody></table>
-              </div>
+              				</tbody></table>
             </div>
           </div>
-          <div class="jiaoyi1_right">
-            <%= render "forex_sidebar" %>
-          </div>
+        </div>
       </div>
+      <div class="jiaoyi1_right">
+        <%= render "forex_sidebar" %>
+      </div>
+    </div>
 </div>
