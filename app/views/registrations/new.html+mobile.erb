@@ -17,14 +17,13 @@
 
         <%=f.input "email", label: false, placeholder: "电子邮箱", input_html: {}  %>
 				<%=f.input "password", label: false, placeholder: "登录密码" %>
-        <%=f.input "phone", label: false, placeholder: "手机号码", input_html: {id:'phone'}  %>
+        <%=f.input "phone", label: false, placeholder: "手机号码" %>
 				<div class="clearfix">
 	  			<div style="width:50%; float:left;">
 						<%=f.input :validate_code, label: false, placeholder: "验证码" %>
 	  			</div>
 					<div style="width:50%; float:left;">
 						<input type="button" name="somewhat" id="obtainVerifyCode" class="get_vercode btn" value="获取验证码" >
-	          <%=hidden_field_tag :send_code, "0" %>
 	  			</div>
 				</div>
         <div class=" radio">
