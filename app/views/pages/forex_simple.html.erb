@@ -20,8 +20,8 @@ symbol = "USEURUSD"
         </div>
         <%= render "forex_header" %>
         <div class="forex-wrapper">
-          <%= content_tag "div","", id: "forex-chart-#{symbol}", class: "forex-chart", data: {symbol: symbol} %>
-          
+          <%= content_tag "div","", id: "advanced-chart-line-#{symbol}", class: "forex-chart", data: {symbol: symbol} %>
+
           <div class="jiaoyi1_qiehuanti">
 
             <div class="one_huobi">
@@ -333,3 +333,4 @@ symbol = "USEURUSD"
       </div>
     </div>
 </div>
+<%= render 'registry' %>

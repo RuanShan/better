@@ -173,7 +173,9 @@ function InitializeChart(message){
               return format_forex_price( this.value );
               //return format_float( this.value, digits);
             }
-          }
+          },
+          gridLineDashStyle: 'Solid',//横向网格线样式
+          gridLineWidth: 1,//横向网格线宽度
         },
         rangeSelector: {
             buttons: [{

@@ -8,7 +8,7 @@
 
       <% symbols = ["USEURUSD","USGBPUSD","USAUDUSD","USUSDCAD"] %>
       <% symbols.each_with_index{|symbol,i| %>
-          <%= render partial:"forex_chart_as_grid_cell", locals: { symbol: symbol, container_id: "forex-chart#{i}"} %>
+          <%= render partial:"forex_chart_as_grid_cell", locals: { symbol: symbol, container_id: "advanced-chart-line-#{symbol}"} %>
       <% } %>
     </div>
 
@@ -18,3 +18,4 @@
 
   </div>
 </div>
+<%= render 'registry' %>

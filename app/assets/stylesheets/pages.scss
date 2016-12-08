@@ -1,6 +1,9 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.forex-chart{
+  background-color: #1D1D1D;
+}
 
 .forex-simple{
   .forex-chart{
@@ -371,7 +374,7 @@
   margin: 10px 10px 0 0;
   width: 318px;
   float: left;
-  span{
+  .guoqi span{
     color: #dbdadb;
   }
 

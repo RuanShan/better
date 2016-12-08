@@ -20,9 +20,11 @@
 //= require select2
 //= require base
 //= require cable
+//= require ext
 //= require better
 //= require highstock
-//= require forex
+//= require forex.base
+//= require forex.chart
 
 $(function(){
   setInterval(update, 1000);

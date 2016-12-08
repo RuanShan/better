@@ -1,0 +1,320 @@
+<script type="text/javascript">
+
+
+var Registry = {
+   env: 'production',
+   time: 1481090938000,
+   domain: 'ggbinary.com',
+   lsHost: 'feed-hk-a.tradesmarter.com',
+   lsPort: '443',
+   lsSecondHost: '',
+   alias: 'ggbinary',
+   siteID: '83',
+   uriBase: '',
+   urlBaseSecure: 'https://trading.ggbinary.com',
+   urlBaseNonSecure: 'http://trading.ggbinary.com',
+   url: 'http://trading.ggbinary.com',
+   cdn: 'https://d2vl6u6wrj3tgq.cloudfront.net/trading',
+   cdnBase: 'https://d2vl6u6wrj3tgq.cloudfront.net',
+   assets: 'https://d2vl6u6wrj3tgq.cloudfront.net/assets/v5',
+   types: {"forex":"1","stocks":"2","commodities":"3","indices":"4","pairs":"5"},
+   _: {},
+   loggedIn: false,
+   wallet: [],
+   userCurrency: 1,
+   trades: [],
+   featured: ["146","152","2","18","14","3","15","1","5","157","4","7","8","27","31","33","34","36","81","89","95","96","98","99","103","104","105","107","111","113","114","115","116","117","118","119","120","121","122","127","128","131","134","137","138","140","141","142","143","144","145","149","150","151","153","154","156","159","160","163","168","169","170","171","172","173","174","175","176","177","178","180","181","184","190","191","192","193","194","195","196","197","198","199","200"],
+   starred: [],
+   confirmed: true,
+   frozen: true,
+   tester: true,
+   assertions: {},
+   banner: [],
+   intro: [],
+   shortGames: ["1","2","4","5","6","18","25","26","57","114","115","116","117","118","120","121","129","134","131","138","140","141","142","143","144","145","146","147","148","149","150","151","152","157","158","156","159"],
+   longTermGames: ["1","2","3","4","5","6","7","8","14","15","18","25","26","31","36","105","127","138","140","141","142","143","144","145","146","147","148","149","150","151","152","156","157"],
+   financialPanelEnabled: true,
+   investmentLimits: {"minStake":20,"maxStake":2000,"minStakeStrategic":50,"maxStakeStrategic":500,"minStakeWeekend":10,"maxStakeWeekend":1000,"minStake60sec":5,"maxStake60sec":"500","minStakeABOrder":"","maxStakeABOrder":"","minStakeLongTerm":25,"maxStakeLongTerm":1000},
+   investmentOptions: ["10","25","50","100","200","250","300","400","500","750","1000","1250","1500","1750","2000","2500","3000","3500","4000","4500","5000"],
+   investmentDefaults: {"financialPanel":"100","highLow":"100","sixtySeconds":"100"},
+   mode: 'default',
+   chartUpdateFrequency: 2000,
+   mobileChartUpdateFrequency: 3000,
+   chartConfig: {"colors":{"plotBorder":"#33394b","axis":"#33394b","axisgrid":"#292c34","guide":"#bac0c3","line":"#a2270c","up":"#4f900f","down":"#eb4823","background":"#fff","marker":"#F2FC00","markerIn":"#4f900f","markerOut":"#eb4823","markerAt":"#888888","fillColor":{"top":"rgba(30,30,30,0.5)","bottom":"rgba(17,17,17,0.7)"},"plotBackground":"#1f1f1f","plotBackgroundGradient":{"top":"rgba(31,31,31,1)","bottom":"rgba(17,17,17,1)"},"axisLabel":"#dbcd84"},"candlestick":{"colors":{"line":"#c7c7c7","up":"#55980d","down":"#ee4723"}},"indicator":"1","leftToRight":"0","financialPanel":{"colors":{"plotBorder":"#4a4a4a","plotBackgroundColor":"rgba(255,255,255,0)","line":"#6d1515","areaLine":"rgba(109,21,21,1)","fillColor":{"top":"rgba(35,35,35,0.5)","bottom":"rgba(20,20,20,0.7)"},"axis":"#4a4a4a","axisgrid":"#505050","axisLabel":"#8f8f8f"},"lineWidth":"1"},"mobile":{"colors":{"axis":"#42525c","axisgrid":"#455560","guide":"#bac0c3","line":"#a2270c","fillColor":{"top":"","bottom":""}}},"markers":{"myTrades":{"show":"1"},"social":{"show":"1"}},"base":{"markers":{"trades":{"symbols":{"open":{"call":"images\/pin-yellow-call-10x15.png","put":"images\/pin-yellow-put-10x15.png","social":"images\/pin-yellow-social-17x21_d.png"},"inTheMoney":{"call":"images\/pin-green-call-10x15.png","put":"images\/pin-green-put-10x15.png"},"out":{"call":"images\/pin-red-call-10x15.png","put":"images\/pin-red-put-10x15.png"},"at":{"call":"images\/pin-gray-call-10x15.png","put":"images\/pin-gray-put-10x15.png"},"close":{"social":"images\/pin-green-social-17x21_d.png"}}}}},"advanced":{"markers":{"trades":{"symbols":{"open":{"call":"images\/pin-yellow-call-10x15.png","put":"images\/pin-yellow-put-10x15.png","social":"images\/pin-yellow-social-23x31_d.png"},"inTheMoney":{"call":"images\/pin-green-call-10x15.png","put":"images\/pin-green-put-10x15.png"},"out":{"call":"images\/pin-red-call-10x15.png","put":"images\/pin-red-put-10x15.png"},"at":{"call":"images\/pin-gray-call-10x15.png","put":"images\/pin-gray-put-10x15.png"},"close":{"social":"images\/pin-green-social-23x31_d.png"}}}},"colors":{"line":"#6495ed"}},"wow":{"inTheMoney":{"color":"rgba(99, 248, 253, 0.2)","LabelClassColor":"rgb(99, 248, 253)"},"outTheMoney":{"color":"rgba(255, 184, 101, 0.2)","LabelClassColor":"rgb(255, 184, 101)"},"atTheMoney":{"color":"rgba(220, 220, 220,0.1)","LabelClassColor":"rgb(220, 220, 220)"}},"chart":{"indicatorLine":{"width":"1","color":"#acacac"},"indicatorAboveLine":{"color":"#78ad2e","width":"1"},"indicatorBelowLine":{"color":"#c60b26","width":"1"},"belowBand":{"color":"rgba(198,11,38,0.2)"},"aboveBand":{"color":"rgba(120,173,46,0.2)"},"markerDefaultColor":"#f0e319","markerBorderColor":"rgba(0,0,0,0)","markerInColor":"#007f00","markerOutColor":"#ff0000","markerAtColor":"#cccccc","line":{"color":"#acacac","width":"1"},"gradientTop":"rgba(73,75,74,0.5)","gradientBottom":"rgba(73,75,74,0.5)","yAxisCrosshair":{"lineColor":"#acacac"},"tooltip":{"borderColor":"#000000"},"tradeIndicator":{"borderColor":"#000000","backgroundColor":"#fffc00"},"candlestick":{"backgroundColor":"#c70b26","backgroundUpColor":"#8db15a","borderColor":"#c70b26","borderUpColor":"#8db15a"}},"grid":{"xAxisLine":{"color":"#3b3b3b"},"yAxisLine":{"color":"#3b3b3b"},"axisLabel":{"color":"#acacac"},"border":{"color":"#3b3b3b","width":"1"},"bottomGridLine":{"color":"#3b3b3b"},"outerBackground":{"color":"rgba(0,0,0,0)"},"innerBackground":{"color":"rgba(0,0,0,0)","colorTop":"","colorBottom":""}},"expiryLabel":{"color":"#acacac"},"deadPeriodLabel":{"color":"#acacac"},"deadPeriodBand":{"gradientTop":"rgba(107,107,107,0.8)","gradientBottom":"rgba(107,107,107,0.1)"},"expiryLineColor":"#5b5b5b","deadPeriodLineColor":"#5b5b5b"},
+   lang: 'zh-cn',
+   blockRegistrationWidget: 0,
+   facebookSupport: 0,
+   mobileSubdomain: '',
+   platformSubdomain: 'trading',
+   tradeOperationsConfig: {"timeout":"3","sellbackInstruments":["1","2","3","4","5","6","14","15","18","25","26","129"],"sellbackDeadPeriod":"30","doubleupInstruments":["1","2","3","4","5","6","7","8","14","15","18","25","26","31","33","34","36","89","95","96","97","98","99","103","104","105","107","111","112","113","114","115","116","117","118","119","120","121","122","127","129","131","132","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","156","157","158","159","160","161","162","163","164","165","166"]},
+   advancedGamesConfig: {"game_above_below":["1","2","3","4","5","18","25","26"],"game_range":["1","2","3","4","5","6","14","18","25","26"],"game_touch":["1","2","3","4","5","6","14","18","25","26"],"game_no_touch":["1","2","3","4","5","6","14","18","25","26"]},
+   weekendGames: [],
+   gameABOrder: ["1","2","3","6"],
+   gameABOrder5: [],
+   gameABOrder1: [],
+   financialPanelDistanceLimits: {"3":{"min":0.00035,"max":0.050000000000000003},"4":{"min":1.0000000000000001e-5,"max":0.001},"5":{"min":0.00050000000000000001,"max":0.050000000000000003},"6":{"min":1.0000000000000001e-5,"max":0.001}},
+   expiries: {"expiry_high_low":[{"round":300,"expiry":600,"deadPeriod":300},{"round":300,"expiry":900,"deadPeriod":300},{"round":300,"expiry":1200,"deadPeriod":300},{"round":300,"expiry":1500,"deadPeriod":300},{"round":300,"expiry":1800,"deadPeriod":300},{"round":900,"expiry":2700,"deadPeriod":300},{"round":900,"expiry":3600,"deadPeriod":300},{"round":900,"expiry":4500,"deadPeriod":300},{"round":900,"expiry":5400,"deadPeriod":300},{"round":900,"expiry":7200,"deadPeriod":300},{"round":86400,"expiry":50400,"deadPeriod":7200},{"round":86400,"expiry":75600,"deadPeriod":7200}],"expiry_sixty_second":[{"round":60,"expiry":60,"deadPeriod":30},{"round":60,"expiry":120,"deadPeriod":60},{"round":60,"expiry":180,"deadPeriod":120},{"round":60,"expiry":360,"deadPeriod":300}],"expiry_ab_order":[{"round":"300","expiry":900,"deadPeriod":600},{"round":"300","expiry":1200,"deadPeriod":600}],"expiry_ab_order_5":[{"round":300,"expiry":600,"deadPeriod":300},{"round":300,"expiry":900,"deadPeriod":300}],"expiry_ab_order_1":[{"round":60,"expiry":120,"deadPeriod":60},{"round":60,"expiry":180,"deadPeriod":60}]},
+   instrumentExpiries: {"15":{"expiry_high_low":[{"round":300,"expiry":1200,"deadPeriod":300},{"round":300,"expiry":1500,"deadPeriod":300},{"round":300,"expiry":1800,"deadPeriod":300},{"round":900,"expiry":2700,"deadPeriod":300},{"round":900,"expiry":3600,"deadPeriod":300},{"round":86400,"expiry":50400,"deadPeriod":7200},{"round":86400,"expiry":75600,"deadPeriod":7200}]},"94":{"expiry_high_low":[{"round":900,"expiry":2700,"deadPeriod":1800},{"round":900,"expiry":3600,"deadPeriod":1800}]},"95":{"expiry_high_low":[{"round":900,"expiry":2700,"deadPeriod":1800},{"round":900,"expiry":3600,"deadPeriod":1800}]},"96":{"expiry_high_low":[{"round":900,"expiry":2700,"deadPeriod":1800},{"round":900,"expiry":3600,"deadPeriod":1800},{"round":86400,"expiry":50400,"deadPeriod":7200},{"round":86400,"expiry":75600,"deadPeriod":7200}]},"97":{"expiry_high_low":[{"round":900,"expiry":2700,"deadPeriod":1800},{"round":900,"expiry":3600,"deadPeriod":1800}]},"111":{"expiry_high_low":[{"round":900,"expiry":2700,"deadPeriod":1800},{"round":900,"expiry":3600,"deadPeriod":1800}]},"121":{"expiry_high_low":[{"round":900,"expiry":2700,"deadPeriod":1800},{"round":900,"expiry":3600,"deadPeriod":1800}]},"122":{"expiry_high_low":[{"round":900,"expiry":2700,"deadPeriod":1800},{"round":900,"expiry":3600,"deadPeriod":1800}]},"132":{"expiry_high_low":[{"round":300,"expiry":1800,"deadPeriod":1500},{"round":900,"expiry":2700,"deadPeriod":1800},{"round":900,"expiry":3600,"deadPeriod":1800},{"round":900,"expiry":7200,"deadPeriod":300}]},"135":{"expiry_high_low":[{"round":300,"expiry":1200,"deadPeriod":900},{"round":300,"expiry":1500,"deadPeriod":900},{"round":300,"expiry":1800,"deadPeriod":900},{"round":900,"expiry":2700,"deadPeriod":900},{"round":900,"expiry":3600,"deadPeriod":900},{"round":86400,"expiry":50400,"deadPeriod":7200},{"round":86400,"expiry":75600,"deadPeriod":7200}]},"136":{"expiry_high_low":[{"round":900,"expiry":3600,"deadPeriod":900},{"round":86400,"expiry":50400,"deadPeriod":7200},{"round":86400,"expiry":75600,"deadPeriod":7200}]},"137":{"expiry_high_low":[{"round":300,"expiry":1200,"deadPeriod":300},{"round":300,"expiry":1500,"deadPeriod":300},{"round":300,"expiry":1800,"deadPeriod":300},{"round":900,"expiry":2700,"deadPeriod":300},{"round":900,"expiry":3600,"deadPeriod":300},{"round":900,"expiry":4500,"deadPeriod":300},{"round":900,"expiry":5400,"deadPeriod":300},{"round":900,"expiry":7200,"deadPeriod":300},{"round":86400,"expiry":50400,"deadPeriod":7200},{"round":86400,"expiry":75600,"deadPeriod":7200}]},"139":{"expiry_high_low":[{"round":900,"expiry":2700,"deadPeriod":1800},{"round":900,"expiry":3600,"deadPeriod":1800},{"round":86400,"expiry":50400,"deadPeriod":7200},{"round":86400,"expiry":75600,"deadPeriod":7200}]},"183":{"expiry_high_low":[{"round":900,"expiry":2700,"deadPeriod":1800},{"round":900,"expiry":3600,"deadPeriod":1800}]},"184":{"expiry_high_low":[{"round":900,"expiry":2700,"deadPeriod":1800},{"round":900,"expiry":3600,"deadPeriod":1800}]}},
+   registrationPhoneFieldFormat: 1,
+   userID : '',
+   userAccountLevel: 0,
+   permissionLevels: {"autochartist":2,"wowPlatform":3},
+   weekendOptionExpiryTimestamp: 1481630400000,
+   longTermOptionExpiryTimestamps: [1481292000000,1481896800000,1482501600000,1483106400000,1483711200000,1484316000000,1484920800000,1485525600000,1487944800000,1490364000000,1492783200000,1495202400000],
+   customIndexView: 0,
+   defaultGameTemplate: 'regular',
+   financialViewConfig: {"enabled":"1","defaultChartType":"candlestick"},
+   baseCurrencyID: 1,
+   baseCurrencySymbol: '$',
+   lastFeedInstrumentID: 260,
+   iframe: true,
+   gameBoxDemoWidgetRedirectUrl: 'http://www.ggbinary.com/zh-cn/Trading/?showLogin=1',
+   payoutDeltas: Ext.decode('[]'),
+   questionaryRequired: 0,
+   defaultPlatformRedirectUrl: 'http://www.ggbinary.com/Trading',
+   defaultPaymentsRedirectUrl: 'http://www.ggbinary.com/zh-cn/Recharge',
+   mobileFeedHost: 'feed-hk-a.tradesmarter.com',
+   mobileFeedPort: '443',
+   mobileFeedScheme: 'https',
+   frozenUrl: '',
+   scheme: 'https',
+   practiceMode: false,
+   practiceWallet: [],
+   customRegistrationWidgetUrl: 'https://www.ggbinary.com/zh-cn/Widgets/index'
+}
+
+Registry._['Switch to real account'] = 'Switch to real account';
+Registry._['Continue practicing'] = 'Continue practicing';
+Registry._['Your practice account expired'] = 'Your practice account expired';
+Registry._['Your account was restarted back to the initial amount'] = 'Your account was restarted back to the initial amount';
+Registry._['Practice technical error'] = 'Practice technical error';
+
+
+Registry._['game-filter-search-msg-no-results'] = '没有找到结果，请修改您的搜索，然后再试一次。';
+
+Registry.assertions.minTrade = 0;
+Registry.assertions.maxTrade = 20000;
+
+Registry._['questionary-required'] = 'For regulatory reasons, please answer the following questionnaire before you start trading.';
+Registry._['questionary-required-button'] = 'Go to questionnaire';
+Registry._['trading-message-trade-accepted'] = '交易已接受！';
+Registry._['trading-error-general'] = '交易未接受';
+Registry._['invalid-strike'] = '执行价格无效';
+Registry._['min-trade'] = '最低投资额';
+Registry._['max-trade'] = '最高投资额';
+Registry._['deposit-required'] = '请存款或输入一个更低的金额';
+Registry._['account-frozen-title'] = '您的账户已被冻结';
+Registry._['today'] = '今天';
+Registry._['tomorrow'] = '明天';
+Registry._['more'] = '更多';
+Registry._['less'] = '更少';
+Registry._['social'] = '社区';
+<!--Registry._['more-activity'] = '--><!--';-->
+Registry._['less-activity'] = '隐藏活动';
+Registry._['riskometer'] = '损益调整';
+Registry._['button-trade'] = '交易';
+Registry._['sentiment-traders-choice'] = '交易者的选择';
+Registry._['label-above'] = '高于';
+Registry._['label-below'] = '低于';
+Registry._['trade-info-trade-number'] = '交易';
+Registry._['trade-info-investment'] = '投资';
+Registry._['trade-info-payout'] = '收益';
+Registry._['trade-info-payout-desc'] = '收益';
+Registry._['trade-info-return'] = '收益';
+Registry._['trade-info-insurance'] = '返回';
+Registry._['trade-info-created'] = '已创建';
+Registry._['trade-info-expires'] = '有效期';
+Registry._['trade-info-expired'] = '已过期';
+Registry._['trade-info-current-price'] = '当前价格';
+Registry._['trade-info-to-close'] = '即将结束';
+Registry._['trade-info-action'] = '行动';
+Registry._['game-question'] = '[[[instrument]]]收盘时价格将高于或低于?';
+Registry._['game-label-expiry'] = '到期';
+Registry._['game-label-time-remaining'] = '剩余时间';
+Registry._['closed-game-opens-at'] = '此期权可交易时间为';
+Registry._['closed-game-opens-today-at'] = '此期权可交易时间为今天';
+Registry._['closed-game-opens-tomorrow-at'] = '此期权可交易时间为明天';
+Registry._['in-the-money'] = '价内期权';
+Registry._['out-the-money'] = '价外期权';
+Registry._['game-indicators-sixty-seconds-active'] = '60秒到期时间是有效的';
+Registry._['game-indicators-sixty-seconds-inactive'] = '请从下拉菜单中选择60秒到期时间';
+Registry._['game-indicators-fifteen-minutes-active'] = '15分钟到期时间是有效的';
+Registry._['game-indicators-fifteen-minutes-inactive'] = '请从下拉菜单中选择15分钟到期时间';
+Registry._['form-label-sign-up-area-code'] = '区域';
+Registry._['label-rebate'] = '返回';
+Registry._['label-return-amount'] = '收益';
+Registry._['social-no-open-trades'] = '无开仓交易';
+Registry._['social-enable-social-trades'] = '实时查看其他交易者的未平仓头寸';
+Registry._['social-enable-social-activity'] = '实时查看其他交易者的活动';
+Registry._['social-settings-enable-social'] = '启用社区';
+Registry._['trade-action-sell-back'] = '出售';
+Registry._['trade-action-sell-back-tip'] = '点击获取出售评估';
+Registry._['trade-action-estimate-sell-back'] = '出售并获得';
+Registry._['trade-action-estimate-return'] = '返回';
+Registry._['trade-action-estimate-confirm'] = '确认';
+Registry._['trade-action-fail-action'] = '行动失败.<br>请再次尝试';
+Registry._['trade-action-fail-evaluation'] = '评估出错.<br>请再次尝试';
+Registry._['trade-action-help-sell-back'] = '出售允许您在所选择的时间到期前关闭交易.<br>点击“出售”按钮将评估您的返回。然后，您将有3秒确认返回。';
+Registry._['markers-legend-label-open-social'] = '社区开仓头寸';
+Registry._['markers-legend-label-close-social'] = '社区盈利头寸';
+Registry._['markers-legend-label-open-position'] = '开仓头寸';
+Registry._['markers-legend-label-in-the-money-position'] = '价内期权头寸';
+Registry._['markers-legend-label-out-of-the-money-position'] = '价外期权头寸';
+Registry._['markers-legend-label-at-the-money-position'] = '平价期权头寸';
+Registry._['game-type-name-high-low'] = '涨/跌';
+Registry._['game-type-name-60-sec'] = '60秒';
+Registry._['game-type-name-weekend-option'] = '周末期权';
+Registry._['activity-event-open-position'] = '[[[nickname]]] 刚刚开仓一个 [[[option-name]]] [[[option-type]]] 期权 @ [[[expiry]]]';
+Registry._['activity-event-close-position'] = '[[[nickname]]] 刚刚获得了 $[[[amount]]]';
+Registry._['activity-event-top-day-pnl'] = '[[[nickname]]] 刚刚成为今日顶尖 [[[limit]]] 最赚钱交易者之一。';
+Registry._['activity-event-top-day-pnl-first'] = '[[[nickname]]] 刚刚成为今日获利排名第一的交易者。';
+Registry._['activity-event-top-day-win-ratio'] = '[[[nickname]]] 刚刚成为今日顶尖[[[limit]]] “价内期权”交易者之一';
+Registry._['activity-event-top-day-win-ratio-first'] = '[[[nickname]]] 刚刚成为今日“价内期权”排名第一的交易者';
+Registry._['activity-event-top-week-pnl'] = '[[[nickname]]] 刚刚成为本周顶尖 [[[limit]]] 最赚钱交易者之一。';
+Registry._['activity-event-top-week-pnl-first'] = '[[[nickname]]] 刚刚成为本周最赚钱排名第一的交易者';
+Registry._['activity-event-top-week-win-ratio'] = '[[[nickname]]] 刚刚成为本周顶尖 [[[limit]]] “价内期权”交易者之一。';
+Registry._['activity-event-top-week-win-ratio-first'] = '[[[nickname]]]刚刚成为本周“价内期权”排名第一的交易者';
+Registry._['activity-event-like-trade'] = '[[[nickname]]] 刚刚赞了你的交易';
+Registry._['social-indicator-title'] = '此资产可启用社区交易';
+Registry._['sell-back-indicator-title'] = '出售功能可用于此资产';
+Registry._['roll-over-indicator-title'] = '隐藏图表的指标';
+Registry._['double-up'] = '加倍';
+Registry._['double-up-indicator-title'] = '加倍功能可应用于此资产';
+Registry._['hedge'] = '对冲';
+Registry._['hedge-indicator-title'] = '对冲功能适用于此资产';
+Registry._['short-text-call'] = '看涨';
+Registry._['short-text-put'] = '看跌';
+Registry._['short-text-opened'] = '开仓';
+Registry._['short-text-closed'] = '关闭';
+Registry._['short-text-a-binary'] = '一个二元';
+Registry._['short-text-binary'] = '二元';
+Registry._['short-text-option'] = '期权';
+Registry._['short-text-gain'] = '获得';
+Registry._['short-text-like'] = '赞';
+Registry._['short-text-time-seconds-ago'] = '秒之前';
+Registry._['short-text-time-second-ago'] = '秒之前';
+Registry._['short-text-time-minutes-ago'] = '分钟之前';
+Registry._['short-text-time-minute-ago'] = '分钟之前';
+Registry._['short-text-time-hours-ago'] = '小时之前';
+Registry._['short-text-time-hour-ago'] = '小时之前';
+Registry._['short-text-time-days-ago'] = '天之前';
+Registry._['short-text-time-months-ago'] = '月之前';
+Registry._['short-text-time-years-ago'] = '年之前';
+Registry._['short-text-time-approximately'] = '大约';
+Registry._['sellback-help-window-title'] = '出售 - 控制风险的极佳工具';
+Registry._['sellback-help-window-how-it-works'] = '它是如何工作的：';
+Registry._['sellback-help-window-step-one'] = '点击出售按钮';
+Registry._['sellback-help-window-step-two'] = '您将有3秒钟的时间确认出售';
+Registry._['sellback-help-window-step-three'] = '您将看到您的回报';
+Registry._['sellback-help-window-feature-overview-title'] = '功能概述';
+Registry._['sellback-help-window-feature-overview'] = '出售功能，允许你关闭你的交易，在你的期权到期之前将它出售给系统。你可以用它来锁定利润，如果你的头寸现在处于价内，而你觉得它在到期时可能会成为价外。你可以用它来止损，如果你的头寸现在是价外，而且你觉得该资产将不会改变方向。';
+Registry._['sellback-help-window-note-one'] = '出售的交易不被计入奖金成交量。';
+Registry._['sellback-help-window-note-two'] = '到期前最后30秒不能出售。';
+Registry._['double-up-help-window-title'] = '加倍——一次点击即可交易';
+Registry._['double-up-help-window-how-it-works'] = '如何运作';
+Registry._['double-up-help-window-one-click-trade'] = '按交易';
+Registry._['double-up-help-window-feature-overview-title'] = '功能概览';
+Registry._['double-up-help-window-feature-overview'] = '加倍功能令您可以加倍投资下单。当您点击加倍按键时，您则是下达指令，基于现时的资产价格和收益率，以同一金额、资产、方向和到期时间再下一单。';
+Registry._['hedge-help-window-title'] = '对冲——点击交易';
+Registry._['hedge-help-window-how-it-works'] = '它如何运作：';
+Registry._['hedge-help-window-one-click-trade'] = '点击交易';
+Registry._['hedge-help-window-feature-overview-title'] = '功能概述';
+Registry._['hedge-help-window-feature-overview'] = '不论您的期权是价内还是价外，对冲功能可令您投资相同的金额交易相反方向的期权。当您点击对冲按键，以现行资产价格和赢率为标准，您则于相同资产和到期时间，以相同投资金额下达了购买相反方向的新期权的指令。';
+Registry._['weekend-option-help-window-title'] = '周末期权';
+Registry._['weekend-option-help-window-feature-overview-title'] = '功能概述';
+Registry._['weekend-option-help-window-feature-overview'] = '在周末交易我们长期的涨/跌二元期权。周末期权为您提供一个机会，预测某资产的市场价格在到期时是否会高于或低于所提供的价格。周末期权到期在[[[day-of-week]]] 的 [[[time]]].';
+Registry._['risk-o-meter-help-window-title'] = '损益偏好';
+Registry._['risk-o-meter-help-window-feature-overview-title'] = '功能概述 ';
+Registry._['risk-o-meter-help-window-feature-overview'] = '允许您根据自己的偏好，选择价内期权最高达90％的收益支出，价外期权最高达15%的返回。收益越高，返回越低。';
+Registry._['day-1'] = '星期日';
+Registry._['day-2'] = '星期一';
+Registry._['day-3'] = '星期二';
+Registry._['day-4'] = '星期三';
+Registry._['day-5'] = '星期四';
+Registry._['day-6'] = '星期五';
+Registry._['day-7'] = '星期六';
+Registry._['advanced-chart-social'] = '社区图表';
+Registry._['advanced-chart-line'] = '曲线图表';
+Registry._['advanced-chart-candlestick'] = '蜡烛图表';
+Registry._['long-term'] = 'Long Term';
+
+Registry._['financial-panel-button-above'] = '高于';
+Registry._['financial-panel-button-below'] = '低于';
+Registry._['financial-panel-button-range-up'] = '上区间';
+Registry._['financial-panel-button-range-down'] = '下区间';
+Registry._['financial-panel-button-touch-up'] = '上触及';
+Registry._['financial-panel-button-touch-down'] = '下触及';
+Registry._['financial-panel-button-no-touch-up'] = '上不触及';
+Registry._['financial-panel-button-no-touch-down'] = '下不触及';
+
+Registry._['financial-panel-question-above'] = '[[[instrument-name]]] 到期时会否位于执行价格上限之上？';
+Registry._['financial-panel-question-below'] = '[[[instrument-name]]]到期时会否位于执行价格下限之下？';
+Registry._['financial-panel-question-range-up'] = '[[[instrument-name]]]到期时会否位于市场现价和上限价格之内？';
+Registry._['financial-panel-question-range-down'] = '[[[instrument-name]]]到期时会否位于市场现价和下限价格之内？';
+Registry._['financial-panel-question-touch-up'] = '[[[instrument-name]]]在到期前会触及执行价格上限吗？';
+Registry._['financial-panel-question-touch-down'] = ' [[[instrument-name]]]在到期前会触及执行价格下限吗？';
+Registry._['financial-panel-question-no-touch-up'] = '[[[instrument-name]]]在到期前会不触及执行价格上限吗？';
+Registry._['financial-panel-question-no-touch-down'] = '[[[instrument-name]]]在到期前会不触及执行价格下限吗？';
+
+Registry._['financial-panel-info-box-above'] = '获利 [[[payout]]] 如果 [[[instrument-name]]] 到期时高于执行价格上限。';
+Registry._['financial-panel-info-box-below'] = '获利 [[[payout]]] 如果 [[[instrument-name]]] 到期时低于执行价格下限。';
+Registry._['financial-panel-info-box-range-up'] = '获利 [[[payout]]] 如果 [[[instrument-name]]] 到期时位于市场现价和执行价格上限之内。';
+Registry._['financial-panel-info-box-range-down'] = '获利 [[[payout]]]如果 [[[instrument-name]]] 到期时位于市场现价和执行价格下限之内。';
+Registry._['financial-panel-info-box-touch-up'] = '获利 [[[payout]]]如果 [[[instrument-name]]] 到期前触及执行价格上限。';
+Registry._['financial-panel-info-box-touch-down'] = '获利 [[[payout]]]如果 [[[instrument-name]]] 到期前触及执行价格下限。';
+Registry._['financial-panel-info-box-no-touch-up'] = '获利 [[[payout]]]如果 [[[instrument-name]]] 到期前不触及执行价格上限。';
+Registry._['financial-panel-info-box-no-touch-down'] = '获利 [[[payout]]]如果 [[[instrument-name]]] 到期前不触及执行价格下限。';
+
+Registry._['financial-panel-trade-accepted'] = '交易已接受！';
+Registry._['financial-panel-trade-rejected'] = '交易拒绝！';
+Registry._['financial-panel-trade-was-not-accepted'] = '交易未接受';
+Registry._['financial-panel-login-required'] = '请登录！';
+Registry._['financial-panel-request'] = '请单击“请求访问”以激活此功能。';
+Registry._['financial-panel-request-response-success'] = '谢谢。您的请求已成功提交。我们的客户经理会尽快与您联系。';
+
+Registry._['January'] = '一月';
+Registry._['February'] = '二月';
+Registry._['March'] = '三月';
+Registry._['April'] = '四月';
+Registry._['May'] = '五月';
+Registry._['June'] = '六月';
+Registry._['July'] = '七月';
+Registry._['August'] = '八月';
+Registry._['September'] = '九月';
+Registry._['October'] = '十月';
+Registry._['November'] = '十一月';
+Registry._['December'] = '十二月';
+
+Registry._['cancelled-successfully'] = 'Cancelled successfully';
+Registry._['Trade closed'] = 'Trade closed';
+Registry._['Trade cancelled'] = 'Trade cancelled';
+Registry._['Cancel'] = 'Cancel';
+
+Registry.showLogin = 0;
+Registry.email = '';
+Registry.facebookID = null;
+Registry.isFirstTimeLead = 0;
+
+Registry.socialSite = true;
+Registry.socialUser = false;
+Registry.socialInstruments = ["1","2","3","4","5","6","7","8","14","15","18","25","26","27","31","33","34","36","42","46","47","57","61","62","63","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207"];
+Registry.socialImageUrlPattern = 'https://s3-eu-west-1.amazonaws.com/tradesmarter-cdn/social/images/[[[userID]]].png';
+Registry.socialUrl = 'https://trading.ggbinary.com/account/settings/setting/social';
+Registry.questionnaireUrl = 'https://trading.ggbinary.com/account/settings/setting/questionary';
+Registry.questionnaireTargetUrl = '';
+Registry.socialActivityEventTypes = {"openPosition":"10","closePosition":"20","topDayPnl":"3","topDayPnlFirst":"31","topDayWinRatio":"4","topDayWinRatioFirst":"41","topWeekPnl":"5","topWeekPnlFirst":"51","topWeekWinRatio":"6","topWeekWinRatioFirst":"61","likedTrade":"70"};
+
+Registry.payoutDisplay = 2;
+
+Registry.sixtySecondsOptions = ["5","15","25","50","100","200","250","500"];
+
+Registry.currenciesInfo = {"2":{"currencyName":"eur","currencySymbol":"\u20ac","conversionRate":1.0719000000000001},"3":{"currencyName":"aud","currencySymbol":"A$","conversionRate":0.74339999999999995},"5":{"currencyName":"gbp","currencySymbol":"\u00a3","conversionRate":1.266},"4":{"currencyName":"cny","currencySymbol":"\u00a5","conversionRate":0.1449},"6":{"currencyName":"jpy","currencySymbol":"\u00a5","conversionRate":0.0088000000000000005},"7":{"currencyName":"rub","currencySymbol":"\u0420","conversionRate":0.015699999999999999},"8":{"currencyName":"brl","currencySymbol":"R$","conversionRate":0.29339999999999999},"9":{"currencyName":"pln","currencySymbol":"z\u0142","conversionRate":0.2404},"10":{"currencyName":"cad","currencySymbol":"C$","conversionRate":0.75270000000000004},"11":{"currencyName":"mxn","currencySymbol":"M$","conversionRate":0.049000000000000002},"1":{"currencyName":"usd","currencySymbol":"$","conversionRate":1}};
+
+Registry.currentLang = 'zh-cn';
+
+Registry.displayGameInfo = false ;
+Registry.cancelTradePeriod = '';
+
+Registry._['financial-panel-name'] = '大师期权';
+
+</script>
