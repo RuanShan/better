@@ -1,6 +1,6 @@
 <%= render "sign_up" %>
 <%
-symbol = "USEURUSD"
+symbol = @symbol
 %>
 <div class="jiaoyi1body forex-simple">
   <hr>
@@ -26,21 +26,15 @@ symbol = "USEURUSD"
 
             <div class="one_huobi">
             		<div class="huobi_left">
-            			<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
-              			<%= image_tag "new/jiaoyi/jiaoyi1_131.gif" %> <span>美汇欧元</span><b class="forex-label" data-symbol="USEURUSD">0.0000</b>
-              		</div>
-              		<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
-              			<%= image_tag "new/jiaoyi/jiaoyi1_131.gif" %><span>美汇英镑</span><b class="forex-label" data-symbol="USGBPUSD">0.0000</b>
-              		</div>
-              		<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
-              			<%= image_tag "new/jiaoyi/jiaoyi1_142.gif" %> <span>美汇澳元</span><b class="forex-label" data-symbol="USAUDUSD">0.0000</b>
-              		</div>
-              		<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
-              			<%= image_tag "new/jiaoyi/jiaoyi1_131.gif" %><span>美汇加元</span><b class="forex-label" data-symbol="USUSDCAD">0.0000</b>
-              		</div>
-              		<div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
-              			<%= image_tag "new/jiaoyi/jiaoyi1_142.gif" %><span>美汇日元</span><b class="forex-label" data-symbol="USUSDJPY">0.0000</b>
-              		</div>
+                  <% Forex.symbols.each{|symbol| %>
+                    <div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
+                			<%= image_tag "new/jiaoyi/jiaoyi1_131.gif" %>
+                      <%= link_to content_tag('span', t("forex.symbol.#{symbol}")), page_path( id: 'forex_simple', symbol: symbol) %>
+                      <%= content_tag('b', '0.0000', class: "forex-label", data:{ symbol: symbol}) %>
+                		</div>
+                  <% } %>
+
+
             		</div>
             		<div class="huobi_right">
             			<div class="huobiright_top">
