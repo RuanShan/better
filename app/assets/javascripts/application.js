@@ -38,6 +38,16 @@ $(function(){
       }
     })
   })
+
+  $("#getVerifyCode").click(function(){
+    $.ajax({url:'/sms/get_verify_code',
+      type:'POST',
+      data:{
+        phone:$("#user_phone").val()
+      }
+    })
+  })
+
 })
 
 function copyToClipboard(element) {

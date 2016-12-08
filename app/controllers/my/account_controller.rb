@@ -41,12 +41,6 @@ module My
       end
     end
 
-    def edit_login_password
-    end
-
-    def edit_money_password
-    end
-
     def change_profile
       if request.patch?
         current_user.update_attributes(profile_params)
@@ -93,10 +87,11 @@ module My
 
     def bind_name
       if request.patch?
-        send_code = params["send_code"].to_i
-        code_options = get_code_options
-        current_user.bind_name(send_code, bind_name_params, code_options)
-        set_code_options(code_options)
+        sms = Sms.new(phone: session["sms"]["phone"], code:session["sms"]["code"], send_at:session["sms"]["send_at"] )
+        unless sms.verify_sign_up_sms( bind_name_params["phone"], bind_name_params["validate_code"] )
+          current_user.errors.messages.merge!(sms.errors.messages)
+        end
+        current_user.bind_name(bind_name_params)
         if current_user.errors.empty?
           flash[:notice] = t(:bind_name_success)
           redirect_to security_center_my_account_path(current_user)
@@ -138,22 +133,6 @@ module My
 
     def bind_name_params
       params.require(:user).permit(:first_name, :last_name, :id_type, :id_number, :phone, :validate_code)
-    end
-
-    def get_code_options
-      code_options = {}
-      if session["validate_phone"].present?
-        code_options["validate_phone"] = session["validate_phone"]
-        code_options["validate_code"] = session["validate_code"]
-        code_options["validate_code_send_time"] = session["validate_code_send_time"]
-      end
-      code_options
-    end
-
-    def set_code_options(code_options)
-      session["validate_phone"] = code_options["validate_phone"]
-      session["validate_code"] = code_options["validate_code"]
-      session["validate_code_send_time"] = code_options["validate_code_send_time"]
     end
 
   end

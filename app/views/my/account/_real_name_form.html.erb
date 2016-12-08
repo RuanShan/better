@@ -14,11 +14,10 @@
       <div class="form-group string optional ">
         <div class="col-sm-3"></div>
         <div class="col-sm-9">
-          <%=link_to "发送验证码", {}, class:"btn btn-default", href:"#", onclick:"$('#send_code').val('1');$('#edit_user_#{current_user.id}').submit();return false;" %>
+          <%=link_to "发送验证码", {}, class:"btn btn-default", id:"getVerifyCode", href:"javascript:void(0)" %>
         </div>
       </div>
       <%= f.input :validate_code, label: '验证码', placeholder: "请输入验证码" %>
-      <%=hidden_field_tag :send_code, "0" %>
     </div>
     <div class="form-actions">
       <%= f.button :submit, '绑定实名', class: 'col-md-offset-2 ggtj1' %>

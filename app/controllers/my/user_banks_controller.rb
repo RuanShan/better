@@ -2,7 +2,12 @@ module My
   class UserBanksController < BaseController
 
     def new
-      @user_bank = current_user.user_banks.green.present? ? current_user.user_banks.green.first : current_user.user_banks.new
+      if current_user.bind_name?
+        @user_bank = current_user.user_banks.green.present? ? current_user.user_banks.green.first : current_user.user_banks.new
+      else
+        flash[:notice] = t(:bind_name_first)
+        redirect_to bind_name_my_account_path(current_user)
+      end
     end
 
     def create

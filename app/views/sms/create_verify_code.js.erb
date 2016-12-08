@@ -1,0 +1,21 @@
+$(".help-block").remove();
+<% if @sms.errors.empty? %>
+  if($("#code_help").length==0){
+    $("#user_validate_code").after("<span id='code_help' class='help-block'>验证码已发送，请输入</span>");
+  }
+<% else %>
+  <% error_key = @sms.errors.messages.keys[0]%>
+  <% if error_key == :phone%>
+    if($("#phone_help").length==0){
+      $("#user_phone").after("<span id='phone_help' class='help-block'>请填写正确的电话号码</span>");
+    }
+  <% end %>
+  <% if error_key == :validate_code%>
+  <% error_message = @sms.errors.messages.values[0][0]%>
+    if($("#code_help").length==0){
+      $("#user_validate_code").after("<span id='code_help' class='help-block'><%=error_message%></span>");
+    }else{
+      $("#code_help").html("<%=error_message%>");
+    }
+  <% end %>
+<% end %>
