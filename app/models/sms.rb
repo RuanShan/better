@@ -12,7 +12,7 @@ class Sms
   end
 
   def send_for_sign_up
-    content = "您好，当前验证码为#{code}，请勿泄露给他人。【酷伯二元期权】"
+    content = "您的验证码是：#{code}。请不要把验证码泄露给别人。【Ballmer Asia】"
     url = "http://api.bjszrk.com/sdk/BatchSend.aspx" \
           + "?CorpID=" + ENV["BETTER_CORPID"] \
           + "&pwd=" + ENV["BETTER_PWD"] \
