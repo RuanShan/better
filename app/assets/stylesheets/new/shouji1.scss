@@ -106,7 +106,7 @@ li{list-style: none}
 width: 100%;
 
     position: absolute;
-    max-width: 480px;
+   /* max-width: 480px;*/
     background: #ddd;
 }
 .iphone__content {
@@ -170,13 +170,13 @@ width: 100%;
 }
 /* Default navigation icon */
 .nav__trigger {
-  display: block;
-  position: absolute;
-  width: 30px;
-  height: 25px;
-      right: 0.8em;
-  top: 27px;
-  z-index: 200;
+    display: block;
+    position: absolute;
+    width: 2em;
+    height: 25px;
+    right: 1.2em;
+    top: 27px;
+    z-index: 200;
 }
 .nav--active .nav__trigger {
   opacity: 0.5;
@@ -248,9 +248,10 @@ width: 100%;
 
 }
 #mingcheng{
-  margin-top:10px;
-      padding: 0 0.4em;
-  height: 60px;
+  margin-top: 20px;
+    padding: 0 0.4em;
+    height: 60px;
+    font-size: 24px;
 }
 #iphone_h{
   height: 60px;
@@ -287,6 +288,7 @@ width: 100%;
 
 }
 .iphone_f li{
+  width: 33%;
   float: left;
     color: rgb(255, 255, 255);
     font-weight: bold;
@@ -298,6 +300,7 @@ width: 100%;
 .iphone_f{
   background: #000;
   overflow: hidden;
+  text-align: center;
 }
 .iphone_b{
   overflow: hidden;
@@ -426,6 +429,7 @@ section{margin:4em 0;}
       position: absolute;
     top: 5.5em;
     right: 0.8em;
+        padding-top: 15px;
 }
 #footer{
 
@@ -483,9 +487,38 @@ section{margin:4em 0;}
   background: image-url("new/shouji/kaishe1_02.gif") no-repeat;
   background-size: 100% 850px;
   width: 100%;
-  height: 850px;
-
+  padding-bottom: 20px;
+padding-top: 20px;
   text-align: center;
+
+}
+#shougerentong3{
+ overflow:hidden;
+  background:image-url("new/shouji/ipliuyan_02.gif") no-repeat;
+  background-size: 100% 850px;
+  width: 100%;
+  padding-bottom: 20px;
+padding-top: 20px;
+  text-align: center;
+
+}
+#shougerentong4{
+ overflow:hidden;
+  background:image-url("new/shouji/denglu_06.gif") no-repeat;
+  background-size: 100% 850px;
+  width: 100%;
+  padding-bottom: 20px;
+padding-top: 20px;
+  text-align: center;
+
+}
+#shougerentong5{
+ overflow:hidden;
+ background: #272727;
+  width: 100%;
+  padding-bottom: 20px;
+padding-top: 20px;
+  text-align: left;
 
 }
 .kai12{
@@ -554,7 +587,7 @@ section{margin:4em 0;}
   letter-spacing: 2px;
 }
 .zhucejiaoyi{
-  background: url(../images/shouji/fukuan_05.gif) no-repeat;
+  background: image-url("new/shouji/fukuan_05.gif") no-repeat;
   border:0px;
   width: 100%;
   height: 3em;
@@ -563,7 +596,7 @@ section{margin:4em 0;}
 
 }
 .tixianti{
-   background: url(../images/shouji/tixianti_03.gif) no-repeat;
+   background: image-url("new/shouji/tixianti_03.gif") no-repeat;
   border:0px;
   width: 100%;
   height: 3em;
@@ -597,7 +630,7 @@ section{margin:4em 0;}
     width: 100%;
     height:100%;
         color: #ddd;
-        background: url('../images/shouji/chaxun_03.gif')no-repeat;
+        background: image-url('new/shouji/chaxun_03.gif')no-repeat;
         background-size: 100% 30px;
     color: #000;
     border-radius: 5px;
@@ -733,7 +766,7 @@ section{margin:4em 0;}
     width: 100%;
     height:100%;
         color: #ddd;
-        background: url('../images/shouji/chaxun_03.gif')no-repeat;
+        background: image-url('new/shouji/chaxun_03.gif')no-repeat;
         background-size: 100% 30px;
     color: #000;
 
@@ -779,7 +812,7 @@ section{margin:4em 0;}
     float: left;
     height: 40px;
     border: 0px;
-    background: url(../images/shouji/kaishe_03.gif) no-repeat;
+    background: image-url("new/shouji/kaishe_03.gif") no-repeat;
     background-size: 100% 40px;
     color: #777;
     padding-left: 11%;
@@ -790,7 +823,7 @@ width: 36%;
     float: right;
     height: 40px;
     border: 0px;
-    background: url(../images/shouji/kaishe_05.gif) no-repeat;
+    background: image-url("new/shouji/kaishe_05.gif") no-repeat;
     background-size: 100% 40px;
     color: #777;
     padding-left: 11%;
@@ -802,7 +835,7 @@ width: 36%;
   height: 40px;
   margin-top: 1em;
   border: 0px;
-  background: url(../images/shouji/kaishe_09.gif) no-repeat;
+  background: image-url("new/shouji/kaishe_09.gif") no-repeat;
   background-size: 100% 40px;
   color: #777;
     padding-left: 11%;
@@ -813,7 +846,7 @@ width: 36%;
   height: 40px;
   margin-top: 1em;
   border: 0px;
-    background: url(../images/shouji/kaishe_11.gif) no-repeat;
+    background: image-url("new/shouji/kaishe_11.gif") no-repeat;
   background-size: 100% 40px;
   color: #777;
     padding-left: 11%;
@@ -824,7 +857,7 @@ width: 36%;
   height: 40px;
   margin-top: 1em;
   border: 0px;
-    background: url(../images/shouji/kaishe_13.gif) no-repeat;
+    background: image-url("new/shouji/kaishe_13.gif") no-repeat;
   background-size: 100% 40px;
   color: #777;
     padding-left: 11%;
@@ -857,7 +890,7 @@ width: 36%;
   margin-top: 3em;
   width: 100%;
   height: 40px;
-  background: url(../images/shouji/kaishe_17.gif) no-repeat;
+  background: image-url("new/shouji/kaishe_17.gif") no-repeat;
   background-size: 100% 40px;
   border: 0px;
 }
@@ -897,7 +930,7 @@ width: 36%;
 width: 100%;
 height: 100%;
   overflow:hidden;
-  background:url(../images/shouji/mabg.gif) no-repeat;
+  background:image-url("new/shouji/mabg.gif") no-repeat;
   background-size: 100% 100%;
 
   /*height: 35em;*/
@@ -921,4 +954,304 @@ height: 100%;
 position: relative;
 left:23%;
 margin-bottom: 2em;
+}
+#youcepingc{
+  position: fixed;
+  width: 50%;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+
+  background: #444;
+}
+.zhongduan{
+  width: 100%;
+}
+.iphone_b video{
+  width: 100%;
+  height: 200px;
+
+  background: url(../images/shouji/shouindex_03.gif) no-repeat;
+  background-size: 100% 200px;
+}
+.iphonedenglu{
+  width: 100%;
+  height: 80px;
+  background: url(../images/shouji/shouindex_04.gif) no-repeat;
+  background-size: 100% 80px;
+}
+.iphonedenglu p{
+  color: #fff;
+width: 35%;
+border: 1px solid #fff;
+float: left;
+text-align: center;
+margin: 18px 7%;
+padding: 10px 0;
+}
+.zidongtubiao_timu{
+  width: 100%;
+  background: #292929;
+  overflow: hidden;
+}
+.zidongtubiao_timu h1{
+  color: #f3d34c;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 黑体;
+  padding:8px 0 8px 8px;
+}
+.zidongtbxl{
+  color: #292929;
+  margin: 3px 5px;
+}
+.zidongtubiao_lanmu{
+  width: 100%;
+  height: 36px;
+  background: #939393;
+  border-bottom: 3px solid #707070
+}
+.zidongtubiao_lanmu li{
+  float: left;
+
+}
+.zidongtubiao_lanmu h2{
+    color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 8px 20px;
+}
+.bodyernei_jiaoyi
+{
+  .zidongtable table{
+    width: 100%;
+
+  }
+  .zidongtable{
+    height: 280px;
+    overflow: hidden;
+    width: 100%;
+
+  }
+  .zidongtable td{
+
+    text-align: center;
+    color: #505050;
+    padding: 6px 0;
+    width: auto;
+  }
+  .zidongtable p{
+    font-weight: bold;
+    color: #ddd;
+    font-size: 12px;
+  }
+  .zidongtable tr{
+    margin: 5px 0;
+  }
+}
+.wenziqiehuan{
+  width: 100%;
+  height: 100px;
+  background: url(../images/shouji/shouindex_09.gif) no-repeat;
+  background-size: 100% 100px;
+}
+.wenziqiehuan ul{
+
+}
+#iplun1{
+  width: 100%;
+  float: left;
+  display: block;
+}
+#iplun2{
+  width: 300px;
+  float: left;
+  display: none;
+}
+#iplun3{
+  width: 300px;
+  float: left;
+  display: none;
+}
+.ipbiaoti{
+  width: 100%;
+  text-align: center;
+  color: #f3d34c;
+  font-weight: bold;
+  font-size: 20px;
+ padding: 15px 0 0px;
+}
+.ipneirong{
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  width: 80%;
+  margin: auto;
+  font-size: 10px;
+}
+.qihuanyuan{
+width: 115px;
+overflow: hidden;
+padding-top: 6px;
+margin: auto;
+}
+.yuan:hover{
+  background: #fff;
+}
+.yuan1{
+width: 10px;
+height: 10px;
+border-radius: 10px;
+border: 2px solid #fff;
+float: left;
+margin-left: 10px;
+
+}
+.yuan2{
+width: 10px;
+height: 10px;
+border-radius: 10px;
+border: 2px solid #fff;
+float: left;
+margin-left: 20px;
+
+}
+.yuan3{
+width: 10px;
+height: 10px;
+border-radius: 10px;
+border: 2px solid #fff;
+float: left;
+margin-left: 20px;
+
+}
+.ipwenzhang{
+  width: 100%;
+  background: #373737;
+  height: 60px;
+}
+.wenzip1{
+  width: 33%;
+  height: 80px;
+  background: url(../images/shouji/shouindex_12.gif) no-repeat;
+  background-size: 100% 80px;
+  float: left;
+}
+.wenzip2{
+  width: 33%;
+  height: 80px;
+  background: url(../images/shouji/shouindex_15.gif) no-repeat;
+  background-size: 100% 80px;
+  background-position:33%;
+  float: left;
+}
+.wenzip3{
+  width: 33%;
+  height: 80px;
+  background: url(../images/shouji/shouindex_17.gif) no-repeat;
+  background-size: 100% 80px;
+  background-position:33%;
+  float: left;
+}
+.wenzip1:hover{
+  background: url(../images/shouji/shouindex1_12.gif) no-repeat;
+  background-size: 100% 80px;
+}
+.wenzip2:hover{
+  background: url(../images/shouji/shouindex1_15.gif) no-repeat;
+  background-size: 100% 80px;
+}
+.wenzip3:hover{
+  background: url(../images/shouji/shouindex1_17.gif) no-repeat;
+  background-size: 100% 80px;
+}
+.ipwenzhangliebiao{
+  width: 100%;
+  background:  #373737;
+  height: 160px;
+
+
+}
+.ipwenzhangliebiao ul{
+  max-width: 33.3%;
+  overflow: hidden;
+}
+.ipwenzhangliebiao li{
+  margin-top: 15px;
+  overflow: hidden;
+}
+.ipwenzhangliebiao p{
+  font-size:12px;
+  float: left;
+  color: #ddd;
+  padding: 0 10px;
+}
+.ipwenzhangliebiao p:hover{
+  color: #f3d34c;
+}
+.wangjimima{
+  color: #fff;
+  float: left;
+
+}
+.ipfenxitou{
+  color: #f3d34c;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: 微软雅黑;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #ddd;
+}
+.ipfenxinei{
+  color: #ddd;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: 微软雅黑;
+  height: 80px;
+  overflow: hidden;
+}
+.ipfenxishii{
+  color: #ddd;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: 微软雅黑;
+
+  overflow: hidden;
+}
+#shougerentong5 li{
+  padding:0 30px;
+  overflow: hidden;
+}
+#shougerentong5 a{
+  text-decoration: none;
+}
+#shougerentong5 hr{
+  border:1px solid #000;
+}
+.ipshangffan{
+  border: 0px;
+  background: image-url("new/shouji/ipfanye_03.gif") no-repeat;
+  width: 48px;
+  height: 46px;
+  float: left;
+}
+.ipxiaffan{
+  border: 0px;
+  background: image-url("new/shouji/ipfanye_05.gif") no-repeat;
+  width: 48px;
+  height: 46px;
+  float: right;
+
+}
+.ipgong {
+  padding:8px 20px 8px;
+  border: 3px solid #f3d34c;
+  float: left;
+  color: #f3d34c;
+  font-weight: bold;
+}
+.ipfff{
+  width: 185px;
+  margin: auto;
+
 }

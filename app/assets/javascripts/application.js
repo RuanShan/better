@@ -28,6 +28,7 @@
 //= require forex.base
 //= require forex.chart
 //= require forex.chart.plus
+//= require new/all
 
 $(function(){
   setInterval(update, 1000);

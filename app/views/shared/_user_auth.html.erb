@@ -1,23 +1,24 @@
 <!--新加代码开始-->
 <% unless current_user %>
   <div class="login_before">
+
     <div class="left">
-      <%user = User.new%>
-      <%= simple_form_for(user, :url => user_session_path, :html => { :remote=>true, :role => 'form', :class=> 'login-form'}) do |f| %>
-        <%=f.input "email", label: false, placeholder: "邮箱", input_html: {class: "in01 email", style: "padding:0;"}, wrapper_html: {style: "margin-bottom:0"}  %>
-        <%=f.input "password", label: false, placeholder: "密码", input_html: {class: "in01 password", style: "padding:0;"}, wrapper_html: {style: "margin-bottom:0"}  %>
-        <%=f.input "lang", label: false, as: "hidden" %>
-        <%= link_to "忘记密码?", new_password_path(user) %>
-        <%= f.submit '登录', class: 'btn01' %>
-      <% end %>
-    </div>
-    <%= link_to new_user_registration_path, target:"_blank", class: 'btn02' do%>
-      免费<br>开户
-    <% end %>
-    <%= link_to new_broker_registration_path, target:"_blank", class: 'btn03' do%>
-      申请<br>代理
-    <% end %>
-    <div class="login-msg"></div>
+       <%user = User.new%>
+       <%= simple_form_for(user, :url => user_session_path, :html => { :remote=>true, :role => 'form', :class=> 'login-form'}) do |f| %>
+         <%=f.input "email", label: false, placeholder: "邮箱", input_html: {class: "in01 email", style: "padding:0;"}, wrapper_html: {style: "margin-bottom:0"}  %>
+         <%=f.input "password", label: false, placeholder: "密码", input_html: {class: "in01 password", style: "padding:0;"}, wrapper_html: {style: "margin-bottom:0"}  %>
+         <%=f.input "lang", label: false, as: "hidden" %>
+         <%= link_to "忘记密码?", new_password_path(user) %>
+         <%= f.submit '登录', class: 'btn01' %>
+       <% end %>
+     </div>
+     <%= link_to new_user_registration_path, target:"_blank", class: 'btn02' do%>
+       免费<br>开户
+     <% end %>
+     <%= link_to new_broker_registration_path, target:"_blank", class: 'btn03' do%>
+       申请<br>代理
+     <% end %>
+     <div class="login-msg"></div>
   </div>
 <% else %>
     <div class="login_after1">
