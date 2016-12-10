@@ -12,22 +12,18 @@ class Sms
   end
 
   def send_for_sign_up
-    alidayu_respond = Alidayu.send_sms({
-      template_id: "SMS_22595044",
-      sign_name: "软山网络",#软山网络,大连软山
-      params: {
-        code: code,
-        product: '',
-      },
-      phones: phone
-    })
-
-    if validate_alidayu_response(alidayu_respond)
-      send_at = DateTime.current
-    end
-
-    self.errors.empty?
-    true
+    #Rails.logger.debug "code=#{code}"
+    content = "您的验证码是：#{code}.请不要把验证码泄露给别人. 【Ballmer Asia】"
+    url = "http://api.bjszrk.com/sdk/BatchSend.aspx" \
+          + "?CorpID=" + ENV["BETTER_CORPID"] \
+          + "&pwd=" + ENV["BETTER_PWD"] \
+          + "&Mobile=" + phone \
+          + "&Content="+content
+    query_url = URI::escape(url)
+    result = open(query_url).read.to_i
+    Rails.logger.debug "result=#{result}"
+    get_sms_response_error(result) if result < 0
+    errors.empty? ? true : false
   end
 
   def verify_sign_up_sms( some_phone, some_code )
@@ -49,29 +45,24 @@ class Sms
       end
     end
   end
-  #error_respond={"error_response"=>{"code"=>15, "msg"=>"Remote service error", "sub_code"=>"isv.BUSINESS_LIMIT_CONTROL", "sub_msg"=>"触发业务流控", "request_id"=>"3b4kmfzkvbq7"}}
-  #success_respond={"alibaba_aliqin_fc_sms_num_send_response"=>{"result"=>{"err_code"=>"0", "model"=>"104132741839^1105207555898", "success"=>true}, "request_id"=>"z24nkhmlp79h"}}
-  def validate_alidayu_response(alidayu_response)
-    success = false
-    if alidayu_response["error_response"]
-      Rails.logger.debug "alidayu_response['error_response']=#{alidayu_response['error_response']}"
-      error_code = alidayu_response["error_response"]["code"]
-      case error_code
-      when 15
-      when 40
-        errors.add(:phone, "请输入手机号")
-      else
-        error_message = alidayu_response["error_response"]["msg"]
-        error_message += ":"+alidayu_response["error_response"]["sub_msg"] if alidayu_response["error_response"]["sub_msg"]
-        Rails.logger.debug "error_code=#{error_code}, error_message = #{error_message}"
-        errors.add(:validate_code, error_message)
-      end
+
+  def get_sms_response_error(code)
+=begin
+    –1 账号未注册
+    –2 其他错误
+    –3 帐号或密码错误
+    –4 一次提交信息不能超过10000个手机号码，号码逗号隔开
+    –5 余额不足，请先充值
+    –6 定时发送时间不是有效的时间格式
+    –8 发送内容需在3到250字之间
+    -9 发送号码为空
+    -104 短信内容包含关键字
+=end
+    if code == -9
+      errors.add(:phone, "请输入正确的手机号")
     else
-      rresponse = alidayu_response["alibaba_aliqin_fc_sms_num_send_response"]["result"]
-      success = rresponse["success"] == true
-      errors.add(:validate_code, "发送失败，请重新发送") unless success
+      errors.add(:validate_code, "发送失败")
     end
-    success
   end
 
 end

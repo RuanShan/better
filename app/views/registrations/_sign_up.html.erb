@@ -15,8 +15,7 @@
       <%=f.input "password", label: false, placeholder: "密码", input_html: {class: "in03"}  %>
       <%= f.input :validate_code, label: false, placeholder: "验证码", input_html: {class: "in07"}, wrapper_html:{style:"float:left;margin:5px 5px 5px 0;width:190px;"} %>
       <input id="landing" name="landing" value="" readonly="readonly" type="hidden">
-      <input value="获取验证码" class="btn01 obtainVerifyCode" style="height:36px;float:left;margin:5px 30px 5px 0;" type="button" onclick="$('#send_code').val('1');$('#sign_up_form').submit();return false;">
-      <%=hidden_field_tag :send_code, "0" %>
+      <input value="获取验证码" id="obtainVerifyCode" class="btn01" style="height:36px;float:left;margin:5px 30px 5px 0;" type="button">
     </div>
     <div class="ce" style="margin-top:0;">
       <div class="ce1" style="margin-left:10px;">

@@ -32,22 +32,16 @@
 
 $(function(){
   setInterval(update, 1000);
-
   $("#obtainVerifyCode").click(function(){
-    $('#send_code').val('1');
+    if($("#user_phone").length>0){
+      var phone = $("#user_phone").val();
+    }else {
+      var phone = $("#phone").val();
+    }
     $.ajax({url:'/sms/create_verify_code',
       type:'POST',
       data:{
-        phone:$("#phone").val()
-      }
-    })
-  })
-
-  $("#getVerifyCode").click(function(){
-    $.ajax({url:'/sms/get_verify_code',
-      type:'POST',
-      data:{
-        phone:$("#user_phone").val()
+        phone: phone
       }
     })
   })
