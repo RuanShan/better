@@ -60,6 +60,9 @@
     <h2><%=member_link(@broker) %></h2>
     <h3><%=link_to "复制", nil, href:"javascript:void(0);", onclick: "copyToClipboard('#member_link');" %></h3>
     <h4><a href="<%=member_link(@broker)%>" target="_blank"><xmp><a href="<%=member_link(@broker)%>" target="_blank"><%=member_link(@broker) %></a></xmp></a></h4>
+    <br/>
+    <%= image_tag "my/better.png", id: "code_img", style: "display:none" %>
+    <div id="invite_qrcode" class="qrcode"></div>
   </div>
 
 </div>

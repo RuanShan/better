@@ -1,8 +1,7 @@
 class PagesController < ApplicationController
   include HighVoltage::StaticPage
   layout :layout_for_page
-  #before_action :set_cros_header
-  before_action :set_symbol_by_params
+  before_action :set_cros_header, :set_symbol_by_params, :set_page_width
   helper_method :current_seller
 
   def current_seller
@@ -30,6 +29,12 @@ class PagesController < ApplicationController
   def set_cros_header
     if params[:id] =~ /forex/
       response.headers['Access-Control-Allow-Origin'] = '*'
+    end
+  end
+
+  def set_page_width
+    if params[:id] =~ /forex_adv/
+      @fullwith_content = true
     end
   end
 end

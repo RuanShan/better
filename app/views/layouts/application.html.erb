@@ -17,7 +17,7 @@
       <%= render 'layouts/new_navigation' %>
     </div>
     <div class="page-content-wrapper rebody">
-      <div class="page-content clearfix">
+      <div class="page-content clearfix <%='fullwidth' if @fullwith_content %>">
         <%= yield %>
       </div>
     </div>

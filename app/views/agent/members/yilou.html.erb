@@ -1,0 +1,42 @@
+<div class="dailiright_top">
+  <%=image_tag "new/dailiimg/biaoge_21.gif", class:"biaoimg" %>
+  <div class="biaotou">
+    <h1>投注记录遗漏表</h1>
+    <p>显示当月返回的之前月份产生的投注及输赢</p>
+  </div>
+</div>
+<div class="dailiright_down">
+  <%= render partial: "agent/shared/date_filter_and_export_excel", locals: {thispath: yilou_agent_members_path} %>
+  <table class="biaoge">
+          <tbody><tr>
+            <th class="biaoti"></th>
+            <th class="biaoti">AG</th>
+            <th class="biaoti">PT</th>
+            <th class="biaoti">杀吧</th>
+            <th class="biaoti">BBIN</th>
+            <th class="biaoti">GD</th>
+            <th class="biaoti">MG</th>
+            <th class="biaoti">总计</th>
+          </tr>
+          <tr>
+            <td class="biaoti1">投注额</td>
+            <td class="biaoti1">0.00</td>
+            <td class="biaoti1">0.00</td>
+            <td class="biaoti1">0.00</td>
+            <td class="biaoti1">0.00</td>
+            <td class="biaoti1">0.00</td>
+            <td class="biaoti1">0.00</td>
+            <td class="biaoti1">0.00</td>
+          </tr>
+          <tr>
+            <td class="biaoti1">输赢额</td>
+            <td class="biaoti1">0.00</td>
+            <td class="biaoti1">0.00</td>
+            <td class="biaoti1">0.00</td>
+            <td class="biaoti1">0.00</td>
+            <td class="biaoti1">0.00</td>
+            <td class="biaoti1">0.00</td>
+            <td class="biaoti1">0.00</td>
+          </tr>
+        </tbody></table>
+</div>

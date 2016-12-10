@@ -1,0 +1,217 @@
+<div id="zishenbody" class="zishenbody forex-adv">
+  <div id="gaodi" class="gaodi">
+      <ul>
+        <li class="div1" style="background-color: rgb(102, 102, 102);">
+          <a href="#"><h1><%= image_tag "new/jiaoyi/zishen_05.png" %>  高/低</h1></a></li>
+        <li class="div1" style="background-color: rgb(58, 58, 58);"><a href="#1"><h1><%= image_tag "new/jiaoyi/zishen_03.png" %>  高于/低于</h1></a></li>
+      </ul>
+  </div>
+
+  <div class="zishenti">
+      <div class="zishenti_left">
+        <div id="zishentileft_top" class="zishentileft_top">
+          <div class="zitop_left">
+            <div class="liangleft">
+              <a> <%= image_tag "new/jiaoyi/zishen_19.png", alt: "热门资产"  %> </a>
+              <a> <%= image_tag "new/jiaoyi/zishen_30.png", alt: "收藏" %> </a>
+
+            </div>
+            <div class="danright">
+              <a> <%= image_tag "new/jiaoyi/zishen_21.png", alt: "查询" %> </a>
+            </div>
+          </div>
+          <div class="zitop_right">
+            <a> <%= image_tag "new/jiaoyi/zishen_10.png", alt: "上一页", class: 'shangyi' %> </a>
+
+            <div id="ISL_Cont">
+              <div class="ScrCont">
+                <ul id="List1" class="diyipi">
+                  <%= Forex.symbols.each{|symbol| %>
+                    <li class="div2">
+                        <div class="clearfix">
+                          <a id="shouc" ><%= image_tag "new/jiaoyi/zishen_14.png", alt: "search" %></a>
+                        </div>
+                        <div>
+                          <a href="#21">
+                            <%= image_tag "new/jiaoyi/zishen_25.png", alt: "guoqi1" %>
+                            <%= image_tag "new/jiaoyi/zishen_27.png", alt: "guoqi2" %>
+                            <p> <%= t( "forex.symbol.#{symbol}") %> </p>
+                          </a>
+                        </div>
+                    </li>
+                  <% } %>
+                </ul>
+              </div>
+            </div>
+            <a> <%= image_tag "new/jiaoyi/zishen_199.png", alt: "下一页", class: 'xiayi' %> </a>
+          </div>
+        </div>
+        <div id="zishentileft_down" class="zishentileft_down">
+          <div class="zitop_right1">
+            <a> <%= image_tag "new/jiaoyi/zishen_10.png", alt: "上一页", class: 'shangyi1' %> </a>
+            <div id="ISL_Cont1">
+              <div class="ScrCont">
+                <ul class="dierpi">
+                  <li class="div3"><a href="#31"><span>70%</span><p class="shi">30秒</p><p class="jian">15:09</p></a></li>
+                  <li class="div3"><a href="#32"><span>70%</span><p class="shi">60秒</p><p class="jian">15:10</p></a></li>
+                  <li class="div3"><a href="#33"><span>70%</span><p class="shi">2分钟</p><p class="jian">15:11</p></a></li>
+                  <li class="div3"><a href="#34"><span>70%</span><p class="shi">5分钟</p><p class="jian">15:14</p></a></li>
+                  <li class="div3"><a href="#35"><span>70%</span><p class="shi">今天</p><p class="jian">15:15</p></a></li>
+                  <li class="div3"><a href="#36"><span>70%</span><p class="shi">今天</p><p class="jian">15:20</p></a></li>
+                  <li class="div3"><a href="#37"><span>70%</span><p class="shi">今天</p><p class="jian">15:25</p></a></li>
+                  <li class="div3"><a href="#38"><span>70%</span><p class="shi">今天</p><p class="jian">15:30</p></a></li>
+                  <li class="div3"><a href="#39"><span>70%</span><p class="shi">今天</p><p class="jian">15:35</p></a></li>
+                  <li class="div3"><a href="#30"><span>70%</span><p class="shi">今天</p><p class="jian">15:40</p></a></li>
+
+                  <li class="div3"><a href="#30"><span>70%</span><p class="shi">今天</p><p class="jian">15:40</p></a></li>
+                  <li class="div3"><a href="#30"><span>70%</span><p class="shi">今天</p><p class="jian">15:40</p></a></li>
+                  <li class="div3"><a href="#30"><span>70%</span><p class="shi">今天</p><p class="jian">15:40</p></a></li>
+                  <li class="div3"><a href="#30"><span>70%</span><p class="shi">今天</p><p class="jian">15:40</p></a></li>
+                </ul>
+              </div>
+            </div>
+            <a> <%= image_tag "new/jiaoyi/zishen_199.png", alt: "下一页", class: 'xiayi1' %> </a>
+          </div>
+        </div>
+
+        <div id="kxianti" class="kxianti">
+          <%= content_tag "div","", id: "chart-wrapper", class: "", data: {symbol: @symbol} %>
+          <div id="kxiantitop_center" class="kxiantitop_center">
+            <p> <span>瑞士法郎/美元-今天</span></p>
+          </div>
+
+          <div id="kxianti_top" class="kxianti_top">
+             <div id="kxiantitop_anniu" class="kxiantitop_anniu">
+              <%= image_tag "new/jiaoyi/zishen_50.png", alt: "放大"  %>
+              <%= image_tag "new/jiaoyi/zishen_52.png", alt: "缩小"  %>
+              <%= image_tag "new/jiaoyi/zishen_54.png", alt: "选择图标视图"  %>
+              <%= image_tag "new/jiaoyi/zishen_56.png", alt: "选择时间"  %>
+              <%= image_tag "new/jiaoyi/zishen_58.png", alt: "指标"  %>
+
+            </div>
+
+          </div>
+          <div id="kxianti_down" class="kxianti_down">
+
+            <div class="hou1" ;="" onclick="showhidediv(&quot;div41&quot;)" style="float:left;"></div>
+            <div class="hou2" ;="" onclick="showhidediv(&quot;div42&quot;)" style="float:left;"></div>
+            <div class="hou3" ;="" onclick="showhidediv(&quot;div43&quot;)" style="float:left;"></div>
+            <div class="hou4" ;="" onclick="showhidediv(&quot;div44&quot;)" style="float:left;"></div>
+
+            <div class="xian" style="display:none;float:left;" id="div41_1"><h1>所有</h1></div>
+            <div class="xian" style="display:none;float:left;" id="div42_2"><h1>账户</h1></div>
+            <div class="xian" style="display:none;float:left;" id="div43_3"><h1>社区</h1></div>
+            <div class="xian" style="display:none;float:left;" id="div44_4"><h1>图表</h1></div>
+          </div>
+      </div>
+    </div>
+
+    <div id="zishenti_right" class="zishenti_right">
+      <div class="zishendenglu">
+        <a> <%= image_tag "new/jiaoyi/zishenqian_03.png", alt: "account" %> </a>
+      </div>
+        <div id="zishentiright_down" class="zishentiright_down">
+          <div class="rightdown_top">
+          <div id="ggaoy" class="ggaoy">
+            <input type="button" id="gaoyu1" value="高">
+            <span id="shouyi7">收益70%</span>
+          </div>
+
+           <div id="ddiy" class="ddiy">
+            <input type="button" id="diyu1" value="低">
+            <span id="shouyi8">收益70%</span>
+          </div>
+          <span id="top_span" class="top_span">1.1185</span>
+          </div>
+          <div class="rightdown_down">
+            <div id="r_left" class="r_left">
+              <%= image_tag "new/jiaoyi/zishen_81.png", alt: "account" %>
+            </div>
+            <div id="r_right" class="r_right">
+              <span class="fuhao">$</span>
+              <input type="text" value="100" id="jiaqina" class="jiaqina">
+            </div>
+            <div id="butongjia" class="butongjia">
+              <div class="bu10"><input type="button" value="+10"></div>
+              <div class="bu10"><input type="button" value="+25"></div>
+              <div class="bu10"><input type="button" value="+50"></div>
+              <div class="bu10"><input type="button" value="+100"></div>
+            </div>
+            <div class="dijiaoyi">
+              <input type="button" value="交易">
+              <span>00:00:16</span>
+              <p>剩余时间</p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div id="kac">
+       <div class="kaicang">
+      <ul>
+        <li class="div1" style="background-color: rgb(102, 102, 102);"><a href="#3"><h1>开仓头寸</h1></a></li>
+        <li class="div1" style="background-color: rgb(58, 58, 58);"><a href="#4"><h1>以平仓交易</h1></a></li>
+      </ul>
+
+    </div>
+    <div class="kaicang1">
+      <table rules="rows">
+        <tbody><tr>
+          <td>交易id</td>
+          <td>交易时间</td>
+          <td>到期时间</td>
+          <td>资产</td>
+          <td>交易期权种类</td>
+          <td>执行</td>
+          <td>当期价格</td>
+          <td>投资</td>
+          <td>收益</td>
+          <td>状态</td>
+          <td>返回</td>
+        </tr>
+      </tbody></table>
+    </div>
+    </div>
+</div>
+<script language="javascript">
+  //创建一个showhidediv的方法，直接跟ID属性
+  function showhidediv(id){
+    var div41=document.getElementById("div41_1");
+    var div42=document.getElementById("div42_2");
+    var div43=document.getElementById("div43_3");
+    var div44=document.getElementById("div44_4");
+    if (id == 'div41') {
+       if (div41.style.display=='none') {
+        div41.style.display='block';
+        div42.style.display='none';
+        div43.style.display='none';
+        div44.style.display='none';
+       }
+    } else if(id == 'div42'){
+       if (div42.style.display=='none') {
+        div41.style.display='none';
+        div42.style.display='block';
+        div43.style.display='none';
+        div44.style.display='none';
+       }
+     }
+    else if(id == 'div43'){
+     if (div43.style.display=='none') {
+      div41.style.display='none';
+      div42.style.display='none';
+      div43.style.display='block';
+      div44.style.display='none';
+     }
+   }
+   else if(id == 'div44'){
+     if (div44.style.display=='none') {
+      div41.style.display='none';
+      div42.style.display='nene';
+      div43.style.display='none';
+      div44.style.display='block';
+     }
+   }
+  }
+</script>
+<%= render 'registry' %>

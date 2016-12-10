@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require underscore-min
+//= require promise-min
 //= require tether.min
 //= require bootstrap-sprockets
 //= require moment
@@ -20,11 +22,13 @@
 //= require select2
 //= require base
 //= require cable
-//= require ext
+//= require ext-min
 //= require better
 //= require highstock
 //= require forex.base
 //= require forex.chart
+//= require forex.chart.plus
+//= require new/all
 
 $(function(){
   setInterval(update, 1000);
@@ -61,3 +65,9 @@ function copyToClipboard(element) {
 function update() {
   $('#clock').html(moment().format('北京时间：YYYY年MM月D日 H:mm:ss'));
 }
+
+$(function(){
+  if( $("#chart-wrapper").is('*') ){
+    BetterFinancialPanelPlus();
+  }
+})
