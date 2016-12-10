@@ -1,0 +1,5 @@
+<%if @error_message%>
+  $('.login-msg').html('<%=@error_message%>');
+<%else%>
+  window.location.href = '<%=my_account_index_url%>';
+<%end%>
