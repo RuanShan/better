@@ -100,44 +100,44 @@ $(function () {
       symbols.push( symbol );
     }
   });
-  //var symbols = ['USEURUSD','USGBPUSD'];
     Highcharts.setOptions({
         global : {
             useUTC : false
         }
     });
-
-    var source = new EventSource('http://better.firecart.cn:8080/sse/'+symbols.join(','));
-    source.addEventListener('message', function(e) {
-      var data = JSON.parse(e.data);
-      if( g_quotation_desc.first_pass )
-      {
-        g_quotation_desc.first_pass = false;
-        InitializeChart( data );
-      }else{
-        for( var i = 0; i< symbols.length; i++)
+    if( symbols.length >0 )
+    {
+      var source = new EventSource('http://better.firecart.cn:8080/sse/'+symbols.join(','));
+      source.addEventListener('message', function(e) {
+        var data = JSON.parse(e.data);
+        if( g_quotation_desc.first_pass )
         {
-          var symbol = symbols[i];
-          var time_price = data[symbol];
-          var time = (new Date( parseInt(time_price) )).getTime();
-          var price= ConvertIntegerToCorrectRate( symbol, parseInt(time_price.split('_')[1]));
-          var formatted_price = format_forex_price( price );
-          //console.log("data=%s,%s", time, price);
-          if(g_quotation_desc.panels[symbol])
+          g_quotation_desc.first_pass = false;
+          InitializeChart( data );
+        }else{
+          for( var i = 0; i< symbols.length; i++)
           {
-             g_quotation_desc.panels[symbol].update( time, price, 1, 0 );
+            var symbol = symbols[i];
+            var time_price = data[symbol];
+            var time = (new Date( parseInt(time_price) )).getTime();
+            var price= ConvertIntegerToCorrectRate( symbol, parseInt(time_price.split('_')[1]));
+            var formatted_price = format_forex_price( price );
+            //console.log("data=%s,%s", time, price);
+            if(g_quotation_desc.panels[symbol])
+            {
+               g_quotation_desc.panels[symbol].update( time, price, 1, 0 );
+            }
+            if(g_quotation_desc.labels[symbol])
+            {
+              g_quotation_desc.labels[symbol].html(formatted_price );
+            }
+            // new point added
+            //g_quotation_desc.charts[symbols[i]].yAxis[0].plotLines[0].value = price;
           }
-          if(g_quotation_desc.labels[symbol])
-          {
-            g_quotation_desc.labels[symbol].html(formatted_price );
-          }
-          // new point added
-          //g_quotation_desc.charts[symbols[i]].yAxis[0].plotLines[0].value = price;
         }
-      }
-      console.log(e);
-    }, false);
-
+        console.log(e);
+      }, false);
+    }
 });
 
 
@@ -208,7 +208,7 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, b) {
                           stops : [[0, Registry.chartConfig.financialPanel.colors.fillColor.top],
                                    [1, Registry.chartConfig.financialPanel.colors.fillColor.bottom]]
                       };
-                      
+
       var a = new Highcharts.StockChart({
           xAxis: {
               gridLineWidth: 1,

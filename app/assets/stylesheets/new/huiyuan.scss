@@ -1452,26 +1452,7 @@
 	width: 84%;
 	float: right;
 }
-.liangleft{
-	width: 75%;
-	float: left;
-}
-.liangleft input{
-	width: 100%;
-	height:42px;
-	border: 1px solid #000;
-	border-radius: 3px;
-}
-.danright{
-	width: 25%;
-	float: right;
-}
-.danright input{
-	width: 100%;
-	height:84px;
-	border: 1px solid #000;
-	border-radius: 3px;
-}
+
 .shangyi{
 	width: 5.5%;
 	float: left;
@@ -1618,26 +1599,9 @@
 	background: #333;
 	width: 100%;
 	margin-top: 10px;
+	position: relative;
 }
-.kxianti_top{
-	height: 504px;
-}
-.kxianti_down{
-	height: 76px;
-	border-top: 2px solid #000;
-}
-.kxiantitop_anniu{
-	position: absolute;
-	height: 40px;
-	width: 220px;
-	margin: -493px 0 0 10px;
-}
-.kxiantitop_anniu input{
-	width: 32px;
-	height: 30px;
-	float: left;
-	margin: 0 1px;
-}
+
 .hou1{
 	float: left;
 	border-right: 2px solid #000;
@@ -1692,20 +1656,7 @@
 	font-weight: bold;
 	color: #fff;
 }
-.kxiantitop_center{
-	   width: 220px;
-    height: 30px;
-    margin: -493px 43%;
-    background: image-url('new/jiaoyi/zishen_47.png');
-    background-size: 220px 30px;
-    position: relative;
-}
-.kxiantitop_center p{
-	color: #fff;
-	text-align: center;
-	line-height: 28px;
-	letter-spacing: 1px;
-}
+
 .kk{
 	width: 100%;
 	height: 504px;
@@ -1720,7 +1671,7 @@
 	background:#333;
 }
 .zishendenglu img{
-	width: 100%
+
 }
 .zishendenglu button{
 	width: 40%

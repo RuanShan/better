@@ -94,6 +94,8 @@ Rails.application.routes.draw do
     resources :members do
       get :profit, on: :collection
       get :brokers, on: :collection
+      get :pingtai, on: :collection # FIXME later
+      get :yilou, on: :collection # FIXME later
     end
     resources :user_days
     resources :broker do

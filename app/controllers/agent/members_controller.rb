@@ -72,6 +72,13 @@ module Agent
       end
     end
 
+    def pingtai
+    end
+    
+    def yilou
+      #投注记录遗漏表
+    end
+
     def permitted_search_params
       params.permit(:start_date, :end_date)
     end
