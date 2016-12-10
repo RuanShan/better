@@ -91,8 +91,9 @@ class RegistrationsController < DeviseInvitable::RegistrationsController
       permitted_params = [:type, :first_name, :last_name, :email, :phone, :password, :validate_code]
     else
       if request.xhr?
+        permitted_params = [:type, :last_name, :first_name, :email, :qq, :phone, :password, :validate_code]
       else
-        permitted_params = [:type, :last_name, :first_name, :email, :qq, :phone, :birthday, :country_code, :qq, :phone, :password, :password_confirmation, :validate_code]
+        permitted_params = [:type, :last_name, :first_name, :email, :qq, :birthday, :country_code, :qq, :phone, :password, :password_confirmation, :validate_code]
       end
     end
     params.require(:user).permit(*permitted_params)

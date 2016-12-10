@@ -12,7 +12,8 @@ class Sms
   end
 
   def send_for_sign_up
-    content = "您的验证码是：#{code}。请不要把验证码泄露给别人。【Ballmer Asia】"
+    #Rails.logger.debug "code=#{code}"
+    content = "您的验证码是：#{code}.请不要把验证码泄露给别人. 【Ballmer Asia】"
     url = "http://api.bjszrk.com/sdk/BatchSend.aspx" \
           + "?CorpID=" + ENV["BETTER_CORPID"] \
           + "&pwd=" + ENV["BETTER_PWD"] \
@@ -20,6 +21,7 @@ class Sms
           + "&Content="+content
     query_url = URI::escape(url)
     result = open(query_url).read.to_i
+    Rails.logger.debug "result=#{result}"
     get_sms_response_error(result) if result < 0
     errors.empty? ? true : false
   end
