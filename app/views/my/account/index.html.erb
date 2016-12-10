@@ -61,7 +61,6 @@
     <h3><%=link_to "复制", nil, href:"javascript:void(0);", onclick: "copyToClipboard('#invite_link');" %></h3>
     <h4><a href="<%=invite_link(@user)%>" target="_blank"><xmp><a href="<%=invite_link(@user)%>" target="_blank"><%=invite_link(@user) %></a></xmp></a></h4>
   </div>
-  <%= image_tag "my/better.png", id: "code_img", style: "display:none" %>
-  <div id="invite_qrcode" class="qrcode"></div>
+
 
 </div>
