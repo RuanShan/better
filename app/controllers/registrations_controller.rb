@@ -14,8 +14,8 @@ class RegistrationsController < DeviseInvitable::RegistrationsController
     @parent = get_parent_by_inviter_number
 
       permitted_params = sign_up_params
-      permitted_params[:broker] = @broker
       permitted_params[:parent] = @parent
+      permitted_params[:broker] = @broker || (@parent ? @parent.broker : nil)
       permitted_params[:type] = "User"
       build_resource(permitted_params)
 

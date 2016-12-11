@@ -50,7 +50,7 @@ module Agent
     end
 
     def profit
-      @users = current_seller.members.includes( :user_today, :user_life).paginate( page: params[:page] )
+      @users = current_seller.full_members.includes( :user_today, :user_life).paginate( page: params[:page] )
       @start_date = nil
       @end_date = DateTime.current.to_date
 
@@ -74,7 +74,7 @@ module Agent
 
     def pingtai
     end
-    
+
     def yilou
       #投注记录遗漏表
     end

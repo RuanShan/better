@@ -107,7 +107,8 @@ label{cursor:pointer;}
 
 
 /*头部样式*/
-#header{background: image-url("new/top_bg.jpg") repeat-x; height:166px;}
+#header{background: image-url("new/top_bg.jpg") repeat-x; height:136px;}
+#user_header{background: black; height:166px;}
 #logo{width:291px; height:60px; margin-top:42px;}
 #logo a{display:block; width:291px; height:60px;}
 .header_r{width:550px; text-align:right;}
@@ -116,6 +117,7 @@ label{cursor:pointer;}
 .header_r01 a{color:#aeaeae;}
 
 .header_r02 a{line-height:40px; padding:0 15px;}
+.user_header_r02 a{line-height:00px; padding:0 15px;}
 .top_btn{display:none; height:40px;}
 .header_r02 span a{margin-right:4px;}
 

@@ -11,7 +11,7 @@
     <tr>
       <td class="shujubiao1">
         <%=image_tag "new/dailiimg/shujutu_03.gif" %>
-        <h5><%=current_user.children.size%></h5><h6>总人数</h6>
+        <h5><%=@user.full_members.count%></h5><h6>总人数</h6>
       </td>
       <td class="shujubiao1">
         <%=image_tag "new/dailiimg/shujutu_05.gif" %>
@@ -61,7 +61,6 @@
     <h3><%=link_to "复制", nil, href:"javascript:void(0);", onclick: "copyToClipboard('#invite_link');" %></h3>
     <h4><a href="<%=invite_link(@user)%>" target="_blank"><xmp><a href="<%=invite_link(@user)%>" target="_blank"><%=invite_link(@user) %></a></xmp></a></h4>
     <br/>
-    <%= image_tag "my/better.png", id: "code_img", style: "display:none" %>
     <div id="invite_qrcode" class="qrcode"></div>
   </div>
 

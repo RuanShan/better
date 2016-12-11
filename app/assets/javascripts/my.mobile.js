@@ -20,7 +20,7 @@ $( document ).ready(function() {
 	    //background: document.getElementById("code_img"),
 	    //add label, ecLevel: 'H', minVersion: 5+ work, label too large may not work
 	    mode: 2,
-	    label: 'better',
+	    label: 'Ballmer Asia',
 	    fontname: 'sans',
 	    fontcolor: '#FF9818',
 	    //add image

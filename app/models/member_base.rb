@@ -2,7 +2,7 @@ class MemberBase < ApplicationRecord
   self.table_name = "users"
 
   #支持多级会员系统
-  acts_as_nested_set #scope: [:type]
+  acts_as_nested_set scope: [:type]
   acts_as_paranoid
 
   extend  DisplayDateTime
