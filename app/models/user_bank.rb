@@ -6,6 +6,7 @@ class UserBank < ApplicationRecord
 
   enum state:{ pending: 0, green: 1, red: 4}
   belongs_to :user
+  belongs_to :broker, foreign_key: :user_id
   has_many :drawings
 
   has_attached_file :card_front, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
@@ -51,7 +52,9 @@ class UserBank < ApplicationRecord
   end
 
   def validate_bank
-    error_code, result = Juhe::Bank.verify_bank(card_number, user.id_number, user.real_name)
+    id_number = user ? user.id_number : broker.id_number
+    real_name = user ? user.real_name : broker.real_name
+    error_code, result = Juhe::Bank.verify_bank(card_number, id_number, real_name)
     if error_code.to_i == 0
       match = result["res"].to_i == 1 ? true : false
       errors.add(:card_number, "真实姓名和银行卡号不匹配，请重新输入") unless match
