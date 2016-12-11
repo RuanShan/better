@@ -24,6 +24,7 @@
 //= require cable
 //= require ext-min
 //= require better
+//= require jquery.countdown
 //= require highstock
 //= require forex.base
 //= require forex.chart
@@ -31,7 +32,7 @@
 //= require new/all
 
 $(function(){
-  setInterval(update, 1000);
+  setInterval(time_update, 1000);
   $("#obtainVerifyCode").click(function(){
     if($("#user_phone").length>0){
       var phone = $("#user_phone").val();
@@ -62,8 +63,16 @@ function copyToClipboard(element) {
   }
 }
 
-function update() {
+function time_update() {
   $('#clock').html(moment().format('北京时间：YYYY年MM月D日 H:mm:ss'));
+
+  if($(".b-current-expiry-in").is("*"))
+  {
+    $current_expiry_in = $(".b-current-expiry-in");
+    var expiry_in = parseInt( $current_expiry_in.data("expiry-in") );
+    var seconds = moment().seconds();
+
+  }
 }
 
 $(function(){

@@ -9,6 +9,107 @@ var g_quotation_desc = {
     panels: {}
 };
 
+$(function(){
+  //function getGameType(){
+  //  return parseInt( $(".game-type.active").data('game-type') );
+  //}
+
+  if($(".expiry-panel").is('*')){
+    $(".game-type").click(function(){
+      var $this = $(this);
+      $(".game-type").removeClass("active");
+      $(this).addClass("active");
+      var id = this.id;
+      $(this).parent().siblings().hide();
+      $(this).parent().siblings('.'+id).show();
+
+    });
+
+    $(".b-expiry-in").click(function(){
+      var $this = $(this);
+
+      $(".b-current-expiry-in").html($this.html()).data( {"expiry-in": $this.data("expiry-in")});
+      var i = parseInt( $this.data("expiry-in") );
+      var txt = "";
+
+    });
+
+  }
+
+  $(".b-game-round-start-at").each( function(){
+    $this = $(this);
+    $open_countdown = $(".b-game-round-open-countdown");
+    $this.countdown( moment().toDate(), moment().add(1, 'days').toDate(), function(event){
+      $current_expiry_in = $(".b-current-expiry-in");
+      var expiry_in = parseInt( $current_expiry_in.data("expiry-in") );
+
+      var game_type_id = 1;
+        var timeFormat = "%d day(s) %h小时%m分%s秒";
+        switch(event.type) {
+          case "days":
+            break;
+          case "hours":
+            break;
+          case "minutes":
+            break;
+          case "seconds":
+            if( expiry_in == 300 ){
+              $this.html(moment().add(2, "minutes").format("hh:mm"));
+            }else{
+              $this.html(moment().add(1, "minutes").format("hh:mm"));
+            }
+            //设置游戏投注倒计时
+            if( expiry_in== 30){
+              if( event.value < 30 )
+              {
+                $open_countdown.html( moment().format("00:ss") );
+              }else{
+                $open_countdown.html( "");
+              }
+            }else{
+              $open_countdown.html(  moment().format("00:ss") );
+            }
+            break;
+          case "finished":
+            break;
+        }
+
+    });
+  })
+
+
+})
+
+
+// bid  count down
+$("#better-countdown").each( function(){
+   var $this = $(this);
+   var local_now = new Date( );
+   var local_offset=local_now.getTimezoneOffset()*60000;
+   var now = new Date( $this.data('now'));
+   var end = new Date( $this.data('end'));
+   var d, h, m, s;
+
+   $this.countdown( now, end, function(event){
+     var timeFormat = "%d day(s) %h小时%m分%s秒";
+     switch(event.type) {
+       case "days":
+         break;
+       case "hours":
+         break;
+       case "minutes":
+
+         break;
+       case "seconds":
+         //$this.find(".J_TimeLeft").replaceWith(
+        //    _.template( $("#j_datetime_left").html(), {variable: 'lasting'})(event.lasting));
+         break;
+       case "finished":
+         break;
+     }
+   });
+ });
+
 
 
 function format_intval(v, digits) {

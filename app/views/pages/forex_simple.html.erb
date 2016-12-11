@@ -20,6 +20,8 @@ symbol = @symbol
         </div>
         <%= render "forex_header" %>
         <div class="forex-wrapper">
+          <%= render "expiry_panel" %>
+
           <%= content_tag "div","", id: "advanced-chart-line-#{symbol}", class: "forex-chart", data: {symbol: symbol} %>
 
           <div class="jiaoyi1_qiehuanti">
@@ -38,7 +40,8 @@ symbol = @symbol
             		</div>
             		<div class="huobi_right">
             			<div class="huobiright_top">
-            				 <span><%= t( "forex.symbol.#{symbol}") %></span><b>00:17</b>
+            				 <span><%= t( "forex.symbol.#{symbol}") %></span>
+                     <b class="b-game-round-open-countdown">00:00</b>
             			</div>
             			<div class="huobiright_ti">
             				<div class="huobiti_left">

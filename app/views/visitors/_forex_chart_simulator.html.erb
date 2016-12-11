@@ -1,0 +1,38 @@
+<% # locals {container_id, symbol}
+%>
+
+<div class="forex-wrapper forex-simulator-wrapper">
+  <div class="clearfix">
+    <%= render "pages/expiry_panel" %>
+
+      	<div class="guoqi">
+      		<div class="guoqi_left">
+
+            <span> <%= t( "forex.symbol.#{symbol}") %>收盘时价格将低于或高于？</span></div>
+      		<div class="guoqi_right"><b>剩余时间：</b>
+            <div class="shijiamokuan">
+            <%= image_tag "new/jiaoyi/jiaoyi2_12.gif" %> </div></div>
+      	</div>
+  	</div>
+
+  <%= content_tag "div","", id: container_id, class: "forex-chart forex-chart-simulator", data: {symbol: symbol} %>
+
+  <div class="huobiright_ti1 clearfix">
+			<div class="huobiti_left1 pull-left">
+        <div class="text-center" style=""><%= content_tag "span","0.0000", class: "forex-label", data: {symbol: symbol} %> </div>
+        <a href="" class="szxd3"> <%= image_tag "new/jiaoyi/jiaoyi1_101.gif" %></a>
+        <a href="" class="szxd4"> <%= image_tag "new/jiaoyi/jiaoyi1_109.gif" %></a>
+			</div>
+			<div class="huobiti_right1 pull-right">
+				<div class="sshuou text-center">
+				  <span class="rebate">70%</span>
+				</div>
+				<div class="ssshou" >
+				<p class="shouyi1 text-center">收益</p>
+        <p class="chushou1 pull-left"><%= image_tag "new/jiaoyi/jiaoyi1_112.gif" %>出售</p>
+        <p class="duichong1 pull-right"><%= image_tag "new/jiaoyi/jiaoyi1_114.gif" %>对冲</p>
+				<p class="jiabei1 text-center">X2加倍</p>
+				</div>
+			</div>
+    </div>
+</div>

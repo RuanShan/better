@@ -6,8 +6,13 @@
 }
 
 .forex-simple{
+
+  .one_zhang {
+      background: #b0afb0 none repeat scroll 0 0;
+      padding:  0 20px;
+  }
   .forex-chart{
-    height: 300px;
+    /*height: 300px;*/
   }
 }
 .forex-list{
@@ -489,4 +494,53 @@
     background: image-url('new/jiaoyi/zishen_47.png');
     background-size: 220px 30px;
   }
+}
+.forex-wrapper.forex-simulator-wrapper
+{
+  margin: 8px 0;
+  span{
+    margin: auto;
+  }
+  .btn1{
+    background-color: #000000;
+  }
+  .btn3{
+    background-color: #000000;
+  }
+  .one_zhang{
+    background-color: #3a3a3a;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+    padding: 0 20px;
+  }
+  .guoqi{
+    background-color: #3a3a3a;
+  }
+  .forex-label{
+    text-align: center;
+    marging: 6px 0;
+    padding: 2px 12px;
+    border-radius: 4px;
+    color: #000000;
+    background-color: #ffffff;
+
+  }
+  .forex-chart-simulator
+  {
+     height: 210px;
+  }
+  .huobiright_ti1{
+    background-color: #3a3a3a;
+    color: #FFFFFF;
+    height: 92px;
+    padding: 0 20px;
+  }
+  .sshuou{
+    width: 200px;
+    text-align: center;
+    .rebate{
+      font-size: 20px;
+    }
+  }
+
 }

@@ -113,6 +113,9 @@
         <div class="simulation">
          <!-- <h3>「 模拟交易 &amp; 交易信号 」<span>- 免费模拟，1分钟轻松入门 -</span></h3>-->
           <div style="height: 328px; widht:685px; margin-left:13px;" class="tradding">
+            <%= render partial: 'forex_chart_simulator', locals:{ container_id:"advanced-chart-line-USEURUSD",  symbol: "USEURUSD"} %>
+
+
            </div>
         </div>
         <div class="single">
@@ -272,3 +275,4 @@
 
   </div>
 </div>
+<%= render 'pages/registry' %>
