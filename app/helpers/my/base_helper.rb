@@ -9,6 +9,6 @@ module My::BaseHelper
   end
 
   def invite_link(user)
-    "#{request.protocol}#{request.host_with_port}#{new_user_registration_path}?inviter_number=#{user.number}"
+    "#{request.protocol}#{request.host_with_port}#{invitable_sign_up_path(user.number)}"
   end
 end
