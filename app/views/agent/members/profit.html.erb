@@ -11,28 +11,28 @@
   <table class="biaoge">
     <thead>
       <tr>
-        <th class="biaoti">用户名/ID</th>
-        <th class="biaoti">注册时间</th>
-        <th class="biaoti">状态</th>
-        <th class="biaoti">存款</th>
-        <th class="biaoti">提款</th>
-        <th class="biaoti">红利</th>
-        <th class="biaoti">投注</th>
-        <th class="biaoti">输赢</th>
-        <th class="biaoti">派奖</th>
+        <th class="">用户名/ID</th>
+        <th class="">注册时间</th>
+        <th class="">状态</th>
+        <th class="">存款</th>
+        <th class="">提款</th>
+        <th class="">红利</th>
+        <th class="">投注</th>
+        <th class="">输赢</th>
+        <th class="">派奖</th>
       </tr>
       <tbody>
         <% @member_profit_summaries.each do |member_profit| %>
           <tr>
-            <td class="biaoti1"><%= member_profit.user.nickname %></td>
-            <td class="biaoti1"><%= member_profit.user.display_created_at %></td>
-            <td class="biaoti1"><%= t member_profit.user.state.to_sym %></td>
-            <td class="biaoti1"><%= member_profit.display_deposit_amount %></td>
-            <td class="biaoti1"><%= member_profit.display_drawing_amount %></td>
-            <td class="biaoti1"><%= member_profit.display_bonus %></td>
-            <td class="biaoti1"><%= member_profit.display_bid_amount %></td>
-            <td class="biaoti1"><%= member_profit.display_net %></td>
-            <td class="biaoti1"><%= member_profit.display_profit %></td>
+            <td class=""><%= member_profit.user.nickname %></td>
+            <td class=""><%= member_profit.user.display_created_at %></td>
+            <td class=""><%= t member_profit.user.state.to_sym %></td>
+            <td class=""><%= member_profit.display_deposit_amount %></td>
+            <td class=""><%= member_profit.display_drawing_amount %></td>
+            <td class=""><%= member_profit.display_bonus %></td>
+            <td class=""><%= member_profit.display_bid_amount %></td>
+            <td class=""><%= member_profit.display_net %></td>
+            <td class=""><%= member_profit.display_profit %></td>
           </tr>
         <% end %>
       </tbody>
