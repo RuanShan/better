@@ -3,6 +3,8 @@ class VisitorsController < ApplicationController
   #layout 'visitor'
 
   def index
+    @fullwith_content = true
+
     if params["number"]
       broker = Broker.find_by_number(params["number"])
       if broker.present?
