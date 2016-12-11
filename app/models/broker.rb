@@ -1,7 +1,8 @@
 class Broker < MemberBase
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable,
+  #:confirmable, make sure mail setting and mail view is right before uncomment
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   # 添加 日注册，月注册 scope
