@@ -10,6 +10,10 @@ class Broker < MemberBase
   #better_date_time_scope created_at: [:today, :month]
   #extend  DisplayDateTime
   #date_time_methods :created_at
+  has_attached_file :avatar, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
+  has_attached_file :id_front, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
+  has_attached_file :id_back, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
+  validates_attachment_content_type :avatar, :id_front, :id_back, content_type: /\Aimage\/.*\z/
 
   has_many :user_banks, foreign_key: :user_id
   accepts_nested_attributes_for :user_banks
