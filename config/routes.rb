@@ -104,6 +104,7 @@ Rails.application.routes.draw do
     resources :user, only: [:index]
 
     resources :deposits
+    get '/page_broker', to: 'welcome#page_broker'
     get '/future', to: 'welcome#future'
     get '/product', to: 'welcome#product'
     get '/commission', to: 'welcome#commission'

@@ -64,7 +64,7 @@ function copyToClipboard(element) {
 }
 
 function time_update() {
-  $('#clock').html(moment().format('北京时间：YYYY年MM月D日 H:mm:ss'));
+  $('#clock').html(moment().format('GMT+0800：YYYY年MM月D日 H:mm:ss'));
 
   if($(".b-current-expiry-in").is("*"))
   {
