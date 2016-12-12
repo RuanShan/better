@@ -39,7 +39,7 @@ module Agent
       else
         state_condition = @member_state == "normal" ? "locked_at is NULL" : "locked_at is not NULL"
       end
-      @users = current_seller.members.where(state_condition).paginate( page: params[:page] )
+      @users = current_seller.full_members.where(state_condition).paginate( page: params[:page] )
       respond_to do |format|
         format.html
         format.xls do

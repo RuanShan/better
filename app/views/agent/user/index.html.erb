@@ -59,7 +59,6 @@
     <h1>引导客户去注册</h1>
     <h2 id="invite_link"><%=invite_link(@broker) %></h2>
     <h3><%=link_to "复制", nil, href:"javascript:void(0);", onclick: "copyToClipboard('#invite_link');" %></h3>
-    <h4><a href="<%=invite_link(@broker)%>" target="_blank"><xmp><a href="<%=invite_link(@broker)%>" target="_blank"><%=invite_link(@broker) %></a></xmp></a></h4>
     <br/>
     <div id="invite_qrcode" class="qrcode"></div>
   </div>
