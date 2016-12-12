@@ -158,6 +158,7 @@
 	margin-top: 25px;
 }
 .dailiright{
+	text-align: left;
 	padding: 30px;
 	overflow: hidden;
 }
@@ -300,15 +301,13 @@
     overflow: hidden;
 
 }
-.dailiright_down h3 a{
-	color: #fff;
-}
 .dailiright_down h4{
 	clear: both;
 	font-size: 16px;
-	width: 100%;
+	width: 85%;
 	background: #f1f1f1;
 	padding: 5px 10px 25px;
+	float: left;
 
 }
 .diyi{
@@ -377,7 +376,7 @@
 }
 .qianjingbody{
 	width: 100%;
-    background-image: url(../images/dailiimg/dailgbg.gif);
+    background-image: image-url("new/dailiimg/dailgbg.gif");
     background-size: 100%;
 }
 .dailibanner{
@@ -392,7 +391,7 @@
 	text-align: center;
 }
 .qianjingnei1 li{
-	background-image: image-url("new/dailiimg/qianjing_05.gif");
+	background-image: image-url("new/dailiimg/qjin_03.gif");
 	background-repeat:no-repeat;
 	background-size: 267px 110px;
 	width: 267px;
@@ -450,7 +449,7 @@
 	margin-top: 20px;
 }
 .chanpin1{
-	background-image: image-url("new/dailiimg/chanpin_12.gif");
+	background-image: image-url("new/dailiimg/qianjing_03.gif");
 	background-repeat:no-repeat;
 	background-size: 306px 483px;
 	width: 306px;
@@ -460,7 +459,7 @@
 	font-size: 30px;
 	font-weight: bold;
 	font-family: 微软雅黑;
-	margin-top: 60px;
+	margin-top: 25px;
 }
 .chanpin h2{
 	font-size: 14px;
@@ -487,21 +486,21 @@
 	height: 483px;
 }
 .chanpin4{
-	background-image: image-url("new/dailiimg/chanpin_05.gif");
+	background-image: image-url("new/dailiimg/chanpin_21.gif");
 	background-repeat:no-repeat;
 	background-size: 306px 483px;
 	width: 306px;
 	height: 483px;
 }
 .chanpin5{
-	background-image: image-url("new/dailiimg/chanpin_16.gif");
+	background-image: image-url("new/dailiimg/chanpin_22.gif");
 	background-repeat:no-repeat;
 	background-size: 306px 483px;
 	width: 306px;
 	height: 483px;
 }
 .chanpin6{
-	background-image: image-url("new/dailiimg/chanpin_03.gif");
+	background-image: image-url("new/dailiimg/chanpin_122.gif");
 	background-repeat:no-repeat;
 	background-size: 306px 483px;
 	width: 306px;
@@ -509,7 +508,8 @@
 }
 .chuantongbody{
 	width: 100%;
-	background: #343535
+	background-image:image-url("new/dailiimg/dailgbg.gif");
+	background-size: 100%;
 }
 .chuantongnei{
 	width: 1100px;
@@ -824,4 +824,9 @@
 	border: 1px solid #fff;
 	width: 33%;
 	text-align: center;
+}
+.weixiner{
+	width: 80px;
+height: 80px;
+float: right;
 }

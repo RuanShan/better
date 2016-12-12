@@ -1,6 +1,7 @@
 //= require application
 //= require jquery.easing.min
 //= require jquery.simplesidebar
+//= require swiper.jquery.min
 //= require user.mobile
 
 $( document ).ready(function() {

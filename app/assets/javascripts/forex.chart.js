@@ -9,10 +9,58 @@ var g_quotation_desc = {
     panels: {}
 };
 
-var g_expiry = {
+var g_game = {
+  symbol: '',
+  game_type_id: 1,
+  //return parseInt( $(".game-type.active").data('game-type') );
+  game_round_start_at: function(){
 
+  },
+  expiry_at: function(){
+
+  },
+  update: function(){
+
+  }
 
 };
+
+// game_type_id = 1, 涨跌，
+// game_type_id = 2, 计时， 30s, 1min, 2mins
+function Game( ){
+  var game_type_id = 0;
+  var expiry_in = 0;
+
+  this.game_round_start_at = function(){
+    // 300 open in every 2mins
+    var now = this.current_time();
+    var start_at = null;
+
+    if( game_type_id == 2){
+      var left_mins = now.mintues()%2;
+      if( expiry_in == 300 ){
+        start_at = now.add(left_mins, "minutes");
+      }else{
+        start_at = now.add(1, "minutes");
+      }
+    }else{
+     now.add(5-now.mintues()%5, "minutes");
+    }
+    return start_at.seconds(0);
+  }
+  this.current_time = function(){
+    return moment();
+  }
+
+  function Current(){
+    var game = new Game();
+    game.game_type_id = parseInt( $(".game-type.active").data('game-type') );
+    game.expiry_in = parseInt( $(".b-current-expiry-in").data('expiry-in') );
+    return game;
+  }
+
+}
+
 
 $(function(){
   //function getGameType(){
@@ -20,6 +68,8 @@ $(function(){
   //}
 
   if($(".expiry-panel").is('*')){
+
+
     $(".game-type").click(function(){
       var $this = $(this);
       $(".game-type").removeClass("active");
@@ -27,7 +77,6 @@ $(function(){
       var id = this.id;
       $(this).parent().siblings().hide();
       $(this).parent().siblings('.'+id).show();
-
     });
 
     $(".b-expiry-in").click(function(){
@@ -45,6 +94,7 @@ $(function(){
     var $this = $(this);
     $game_start_at_countdown = $(".b-game-round-open-countdown");
     $this.countdown( moment().toDate(), moment().add(1, 'days').toDate(), function(event){
+      var game = Game.current;
       var $current_expiry_in = $(".b-current-expiry-in");
       var $game_expiry_box = $("#game-expiry-box");
       var expiry_in = parseInt( $current_expiry_in.data("expiry-in") );
