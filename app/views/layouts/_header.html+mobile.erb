@@ -3,9 +3,14 @@
     <%= fa_icon "reorder 2x" %>
 	</div>
   <div id="open-sbr" class="pull-right">
-    <%= fa_icon "home 2x" %>
+		<%=link_to my_account_index_path do %>
+      <%= fa_icon "home 2x" %>
+		<%end%>
 	</div>
   <div class="text-center">
-	<a class="brand">二元期权</a>
+	<a class="brand">Bollmer Asia</a>
   </div>
 </div>
+<script type="text/javascript">
+  Better.referrer = '<%= request.referrer %>';
+</script>

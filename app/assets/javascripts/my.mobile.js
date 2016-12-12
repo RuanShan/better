@@ -49,9 +49,12 @@ $( document ).ready(function() {
 			closingLinks: 'a',
 		}
 	});
-  $(".subNav").click(function(){
+	$(".subNav").click(function(){
   			// 修改数字控制速度， slideUp(500)控制卷起速度
   			$(this).next(".navContent").slideToggle(500);
+  });
+	$(".fanhui").click(function(){
+  			window.location.href = Better.referrer;
   });
 });
 
@@ -62,8 +65,13 @@ function bigger(one){
     $(this).find("td").eq(1).html(index_content);
   });
 	$('#shougerenb').show();
+	$(".fanhui").unbind("click");
 	$('.fanhui').click(function(){
   	$('#shougerenb').hide();
 		$('.dailiright_down').show();
+		$(this).unbind("click");
+		$(this).click(function(){
+			window.location.href = Better.referrer;
+		});
   });
 }

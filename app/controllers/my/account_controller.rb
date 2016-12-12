@@ -73,6 +73,12 @@ module My
       end
     end
 
+    def edit_login_password
+    end
+    
+    def edit_money_password
+    end
+
     def set_password_protection
       if request.patch?
         current_user.set_password_protection(pp_params)
