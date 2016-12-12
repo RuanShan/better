@@ -4,7 +4,7 @@ $(function(){
       $("[data-dismiss='alert']").alert('close');
   });
 
-  $('select').select2();
+  $('select.select2').select2();
 
 })
 

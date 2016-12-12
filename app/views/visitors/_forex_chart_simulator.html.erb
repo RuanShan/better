@@ -3,17 +3,9 @@
 
 <div class="forex-wrapper forex-simulator-wrapper">
   <div class="clearfix">
-    <%= render "pages/expiry_panel" %>
+    <%= render partial: "expiry_panel_simulator", locals: { symbol: symbol } %>
 
-      	<div class="guoqi">
-      		<div class="guoqi_left">
-
-            <span> <%= t( "forex.symbol.#{symbol}") %>收盘时价格将低于或高于？</span></div>
-      		<div class="guoqi_right"><b>剩余时间：</b>
-            <div class="shijiamokuan">
-            <%= image_tag "new/jiaoyi/jiaoyi2_12.gif" %> </div></div>
-      	</div>
-  	</div>
+  </div>
 
   <%= content_tag "div","", id: container_id, class: "forex-chart forex-chart-simulator", data: {symbol: symbol} %>
 

@@ -9,6 +9,11 @@ var g_quotation_desc = {
     panels: {}
 };
 
+var g_expiry = {
+
+
+};
+
 $(function(){
   //function getGameType(){
   //  return parseInt( $(".game-type.active").data('game-type') );
@@ -37,10 +42,11 @@ $(function(){
   }
 
   $(".b-game-round-start-at").each( function(){
-    $this = $(this);
-    $open_countdown = $(".b-game-round-open-countdown");
+    var $this = $(this);
+    $game_start_at_countdown = $(".b-game-round-open-countdown");
     $this.countdown( moment().toDate(), moment().add(1, 'days').toDate(), function(event){
-      $current_expiry_in = $(".b-current-expiry-in");
+      var $current_expiry_in = $(".b-current-expiry-in");
+      var $game_expiry_box = $("#game-expiry-box");
       var expiry_in = parseInt( $current_expiry_in.data("expiry-in") );
 
       var game_type_id = 1;
@@ -51,10 +57,22 @@ $(function(){
           case "hours":
             break;
           case "minutes":
+            var mins = moment().minutes();
+            $game_expiry_box.empty();
+            var remainder= mins%5 // start a agme round in each 5 mins
+            for(var i=0;i < 60/5; i++){
+              var time = moment().subtract(remainder, "minutes").add((i+1)*5,"minutes");
+              var today = (time.day() == moment().day()) ? "今天" : "明天";
+              $game_expiry_box.append("<option value='"+time.unix()+"'>"+ today +time.format("hh:mm")+"</option>")
+            }
             break;
           case "seconds":
+            var now = moment()
+            var game_start_at = moment().add(1, "minutes");
+            // 300 open in every 2mins
+            var left_mins = now.mintues()%2;
             if( expiry_in == 300 ){
-              $this.html(moment().add(2, "minutes").format("hh:mm"));
+              $this.html(moment().add(left_mins, "minutes").format("hh:mm"));
             }else{
               $this.html(moment().add(1, "minutes").format("hh:mm"));
             }
@@ -62,12 +80,12 @@ $(function(){
             if( expiry_in== 30){
               if( event.value < 30 )
               {
-                $open_countdown.html( moment().format("00:ss") );
+                $game_start_at_countdown.html( moment().seconds(event.value).format("00:ss") );
               }else{
-                $open_countdown.html( "");
+                $game_start_at_countdown.html( "");
               }
             }else{
-              $open_countdown.html(  moment().format("00:ss") );
+              $game_start_at_countdown.html(  moment().seconds(event.value).format("00:ss") );
             }
             break;
           case "finished":
