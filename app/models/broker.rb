@@ -64,6 +64,15 @@ class Broker < MemberBase
     website.present? ? (website[0,7] == "http://" ? website : "http://"+website) : "无"
   end
 
+  def full_brokers
+    self_and_descendants.where(["depth>=? AND depth<=?", self.depth, self.depth+6])
+  end
+
+  def full_members
+    User.where("broker_id in (?)", full_brokers.pluck(:id)).all
+  end
+
+
   private
 
   def reassign_members

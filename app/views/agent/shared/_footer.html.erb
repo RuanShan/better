@@ -1,6 +1,12 @@
 <div class="dailifoot">
   <div class="dailifootnei">
-    <ul><li><a href="">代理中心</a></li><li><a href="">前景优势</a></li><li><a href="">我们的产品</a></li><li><a href="">佣金计划</a></li><li><a href="">合约条款</a></li></ul>
+    <ul>
+      <li><%=link_to "代理中心", {controller: "broker", action: "index"} %></li>
+      <li><%=link_to "优势前景", {controller: "welcome", action: "future"} %></li>
+      <li><%=link_to "我们的产品", {controller: "welcome", action: "product"} %></li>
+      <li><%=link_to "佣金计划", {controller: "welcome", action: "commission"} %></li>
+      <li><%=link_to "合约条款", {controller: "welcome", action: "clause"} %></li>
+    </ul>
     <p>代理电话：400-0000000</p><p>招商QQ：111111111</p><p>招商微信：18800001111</p>
   </div>
 </div>
