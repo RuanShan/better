@@ -37,14 +37,14 @@ function Game( ){
     var start_at = null;
 
     if( game_type_id == 2){
-      var left_mins = now.mintues()%2;
+      var left_mins = now.minutes()%2;
       if( expiry_in == 300 ){
         start_at = now.add(left_mins, "minutes");
       }else{
         start_at = now.add(1, "minutes");
       }
     }else{
-     now.add(5-now.mintues()%5, "minutes");
+     now.add(5-now.minutes()%5, "minutes");
     }
     return start_at.seconds(0);
   }
@@ -52,7 +52,7 @@ function Game( ){
     return moment();
   }
 
-  function Current(){
+  function current(){
     var game = new Game();
     game.game_type_id = parseInt( $(".game-type.active").data('game-type') );
     game.expiry_in = parseInt( $(".b-current-expiry-in").data('expiry-in') );
@@ -120,7 +120,7 @@ $(function(){
             var now = moment()
             var game_start_at = moment().add(1, "minutes");
             // 300 open in every 2mins
-            var left_mins = now.mintues()%2;
+            var left_mins = now.minutes()%2;
             if( expiry_in == 300 ){
               $this.html(moment().add(left_mins, "minutes").format("hh:mm"));
             }else{
