@@ -2,7 +2,7 @@
   <%@user||=User.new%>
   <%= simple_form_for(@user, :url => user_registration_path, remote:true,
   :html => { :id=>"sign_up_form", :role => 'form', :class=>"sign_box", style:"width:100%"},
-  defaults: { wrapper_html:{style:"float:left;margin:27px 30px 5px 0;width:295px;"},
+  defaults: { wrapper_html:{style:"float:left;margin:5px 30px 5px 0;width:295px;"},
   input_html:{style:"border-radius: 0px;border:0;box-shadow:0 0;margin:0;"}}) do |f| %>
     <div style="width:688px;float:left;">
       <%=f.input "first_name", label: false, placeholder: "名", input_html: {class: "in01"},
@@ -10,8 +10,8 @@
       <%=f.input "last_name", label: false, placeholder: "姓", input_html: {class: "in01"}, wrapper_html:{style:"float:left;margin:5px 30px 5px 0;width:145px;"} %>
       <%=f.input "email", label: false, placeholder: "电子邮箱", input_html: {class: "in02"}  %>
       <%=f.input "qq", label: false, placeholder: "QQ", input_html: {class: "in04  notx"}  %>
-      <input name="countryDialCode" value="+86" id="reg-area-code" class="in05" type="text" style="margin:27px 0;">
-      <%=f.input "phone", label: false, placeholder: "电话", input_html: {id:'phone',class: "in06"}, wrapper_html:{style:"float:left;margin:27px 30px 5px 0;width:245px;"} %>
+      <input name="countryDialCode" value="+86" id="reg-area-code" class="in05" type="text" style="margin:5px 0;">
+      <%=f.input "phone", label: false, placeholder: "电话", input_html: {id:'phone',class: "in06"}, wrapper_html:{style:"float:left;margin:5px 30px 5px 0;width:245px;"} %>
       <%=f.input "password", label: false, placeholder: "密码", input_html: {class: "in03"}  %>
       <%= f.input :validate_code, label: false, placeholder: "验证码", input_html: {class: "in07"}, wrapper_html:{style:"float:left;margin:5px 5px 5px 0;width:190px;"} %>
       <input id="landing" name="landing" value="" readonly="readonly" type="hidden">
