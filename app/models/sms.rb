@@ -12,7 +12,7 @@ class Sms
   end
 
   def send_for_sign_up
-    #Rails.logger.debug "code=#{code}"
+    #Rails.logger.debug "code=#{code},ENV['BETTER_CORPID']=#{ENV['BETTER_CORPID']},ENV['BETTER_PWD']=#{ENV['BETTER_PWD']}"
     content = "您的验证码是：#{code}.请不要把验证码泄露给别人. 【Ballmer Asia】"
     url = "http://api.bjszrk.com/sdk/BatchSend.aspx" \
           + "?CorpID=" + ENV["BETTER_CORPID"] \

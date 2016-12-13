@@ -3,9 +3,9 @@ class SmsController < ApplicationController
   #before_action :set_sms, only: [:show, :edit, :update, :destroy]
 
   def create_verify_code
-    session[:sms] = @sms.tap{|sms| sms.send_at = DateTime.current}
-    render :stub_create_verify_code
-    return
+    #session[:sms] = @sms.tap{|sms| sms.send_at = DateTime.current}
+    #render :stub_create_verify_code
+    #return
     # validate phone number
     if @sms.valid?
       # send successfully
