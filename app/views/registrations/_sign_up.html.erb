@@ -2,7 +2,7 @@
   <%@user||=User.new%>
   <%= simple_form_for(@user, :url => user_registration_path, remote:true,
   :html => { :id=>"sign_up_form", :role => 'form', :class=>"sign_box", style:"width:100%"},
-  defaults: { wrapper_html:{style:"float:left;margin:5px 30px 5px 0;width:295px;"},
+  defaults: { wrapper_html:{style:"float:left;margin:27px 30px 5px 0;width:295px;"},
   input_html:{style:"border-radius: 0px;border:0;box-shadow:0 0;margin:0;"}}) do |f| %>
     <div style="width:688px;float:left;">
       <%=f.input "first_name", label: false, placeholder: "名", input_html: {class: "in01"},
