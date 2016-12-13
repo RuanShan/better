@@ -13,11 +13,11 @@
     <thead>
       <tr>
         <th>日期</th>
-        <th>推广链接点击数</th>
+        <th style="display:none;">推广链接点击数</th>
         <th>注册数</th>
         <th>新注册并存款</th>
-        <th>注册存款转化率</th>
-        <th>放大</th>
+        <th style="display:none;">注册存款转化率</th>
+        <th>详情</th>
       </tr>
     </thead>
 
@@ -25,11 +25,11 @@
       <% @dates.each do |date| sale_day  = @sale_days.select{|day| day.effective_on == date}.first || SaleDay.new( effective_on: date ) %>
         <tr id="<%= sale_day.effective_on %>">
           <td><%= sale_day.effective_on %></td>
-          <td><%= sale_day.clink_visits %></td>
+          <td style="display:none;"><%= sale_day.clink_visits %></td>
           <td><%= sale_day.member_count %></td>
           <td><%= sale_day.valuable_member_count %></td>
-          <td><%= sale_day.display_valuable_rate %></td>
-          <td><%=link_to "放大", nil, href:"#", onclick: "bigger('#{sale_day.effective_on}');" %></td>
+          <td style="display:none;"><%= sale_day.display_valuable_rate %></td>
+          <td><%=link_to "详情", nil, href:"#", onclick: "bigger('#{sale_day.effective_on}');" %></td>
         </tr>
       <% end %>
     </tbody>
