@@ -42,7 +42,7 @@
                 <%=f.input "first_name", label: false, placeholder: "您的名字", input_html: {class: "short", style:"float:left;"}  %>
               </label>
               <label class="shuru1">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;国家<span>*</span>
+               <span style="float:left;margin:0 0px 0 24px;">国家*</span>
                 <%=f.country_select( "country_code", ["CN"], locale: I18n.locale, class:'form-control  long') %>
               </label>
               <div style="clear:both"></div>
