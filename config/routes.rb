@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   end
 
   devise_for :brokers, controllers: {
-        sessions: 'agent/sessions'
+        sessions: 'agent/sessions',
+        registrations: 'agent/registrations'
   }
   devise_for :administrators , controllers: {
         sessions: 'admin/sessions'

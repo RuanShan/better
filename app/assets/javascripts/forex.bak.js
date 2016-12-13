@@ -90,7 +90,7 @@ $(function () {
   $(".forex-chart[data-symbol]").each(function(){
     symbols.push( $(this).data('symbol') );
   });
-  $(".forex-label[data-symbol]").each(function(){
+  $(".b-instrument-last-quote[data-symbol]").each(function(){
     var $this = $(this);
     var symbol = $this.data('symbol');
     g_quotation_desc.labels[symbol] = $this;

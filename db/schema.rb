@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161204151012) do
+ActiveRecord::Schema.define(version: 20161212090958) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20161204151012) do
     t.integer  "state",         default: 0, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "highlow",       default: 0, null: false
+    t.decimal  "last_quote"
     t.index ["game_round_id"], name: "index_bids_on_game_round_id"
     t.index ["user_id"], name: "index_bids_on_user_id"
   end
@@ -116,9 +118,14 @@ ActiveRecord::Schema.define(version: 20161204151012) do
     t.decimal  "paramd10"
     t.decimal  "paramd11"
     t.decimal  "paramd12"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "instrument_id"
+    t.string   "instrument_code"
+    t.datetime "start_at"
+    t.integer  "period",          default: 0, null: false
     t.index ["game_id"], name: "index_game_rounds_on_game_id"
+    t.index ["instrument_id"], name: "index_game_rounds_on_instrument_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -129,6 +136,15 @@ ActiveRecord::Schema.define(version: 20161204151012) do
     t.integer  "state",          default: 0, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "rule",           default: 0, null: false
+  end
+
+  create_table "instruments", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "messages", force: :cascade do |t|

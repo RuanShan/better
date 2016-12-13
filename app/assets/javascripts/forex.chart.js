@@ -8,191 +8,6 @@ var g_quotation_desc = {
     labels: {},
     panels: {}
 };
-
-// game_type_id = 1, 涨跌，
-// game_type_id = 2, 计时， 30s, 1min, 2mins
-var Game ={
-  current: function( container ){
-    var game = Game.createNew(container);
-    return game;
-  },
-  createNew: function(container){
-    var game = {};
-    game.game_round_start_at_selector = ".b-game-round-start-at";
-    game.game_type_selector = ".b-game-type.active";
-    game.game_expiry_countdown_selector = ".b-game-round-expiry-countdown";
-    game.game_type_id = parseInt( $(".b-game-type.active", container).data('game-type') );
-    game.expiry_in = parseInt( $(".b-current-expiry-in", container).data('expiry-in') );
-
-    game.game_round_start_at= function(){
-      var now = this.current_time();
-      var start_at = null;
-
-      if( game.game_type_id == 2){
-        start_at = now.add(game.expiry_in, "seconds");
-      }else{
-        start_at = now.add(5-(now.minutes()%5), "minutes");
-      }
-      return start_at.seconds(0);
-    },
-
-    // 禁止投注时间
-    game.game_round_expiry_at= function(){
-      // 300 open in every 2mins
-      var now = this.current_time();
-      var expiry_at = game.game_round_start_at();
-
-      if( game.game_type_id == 2){
-        if( game.expiry_in == 30 )
-        {
-          expiry_at = expiry_at.subtract(game.expiry_in - 30, "seconds");
-        }else{
-          expiry_at = expiry_at.subtract(game.expiry_in - 60, "seconds");
-        }
-      }
-      return expiry_at;
-    },
-    game.game_round_start_ats= function(){
-      var sas = [];
-      var now = game.current_time();
-      var mins = now.minutes();
-      var remainder= mins%5 // start a agme round in each 5 mins
-      for(var i=0;i < 60/5; i++){
-        var time = game.current_time().subtract(remainder, "minutes").add((i+1)*5,"minutes");
-        time.seconds(0);
-        sas.push( time )
-      }
-      return sas;
-    },
-    game.seconds_left_to_close_bidding=function(){
-      if (game.game_type_id == 2 )
-        return 60 - game.current_time().seconds();
-      else {
-        var delta = game.game_round_expiry_at() - game.current_time() ;
-        return (delta>0 ? delta/1000 : 0);
-      }
-    },
-    game.milliseconds_left_to_start=function(){
-       return game.game_round_expiry_at() - game.current_time();
-    },
-    game.current_time= function(){
-      return moment();
-    },
-    game.game_round_start_at_tag= function(){
-      return $( game.game_round_start_at_selector, container);
-    },
-    game.game_round_expiry_countdown_tag= function(){
-      return $( game.game_expiry_countdown_selector, container);
-    },
-    game.update= function(){
-      game.game_round_start_at_tag().html( game.game_round_start_at().format("hh:mm"));
-      var s = game.seconds_left_to_close_bidding();
-      var time_left = moment.unix( s );
-      game.game_round_expiry_countdown_tag().html( time_left.format("mm:ss") );
-    };
-
-    return game;
-  }
-
-}
-
-
-$(function(){
-  //function getGameType(){
-  //  return parseInt( $(".game-type.active").data('game-type') );
-  //}
-
-  if($(".expiry-panel").is('*')){
-    var container = $(".expiry-panel");
-
-    $(".b-game-type").click(function(){
-      var $this = $(this);
-      $(".b-game-type").removeClass("active");
-      $(this).addClass("active");
-      var id = this.id;
-      $(this).parent().siblings().hide();
-      $(this).parent().siblings('.'+id).show();
-    });
-
-    $(".b-expiry-in").click(function(){
-      var $this = $(this);
-
-      $(".b-current-expiry-in").data( {"expiry-in": $this.data("expiry-in")}).html($this.html());
-      //var game = Game.current( container );
-    });
-
-
-    $(".b-game-round-expiry-countdown").countdown( moment().toDate(), moment().add(1, 'days').toDate(), function(event){
-      var game = Game.current( container );
-      var $current_expiry_in = $(".b-current-expiry-in");
-      var $game_expiry_box = $("#game-expiry-box");
-
-
-        switch(event.type) {
-          case "days":
-            break;
-          case "hours":
-            break;
-          case "minutes":
-            var start_ats = game.game_round_start_ats();
-            $game_expiry_box.empty();
-            for(var i=0;i < start_ats.length; i++){
-              var time = start_ats[i];
-              var today = (time.day() == moment().day()) ? "今天" : "明天";
-              $game_expiry_box.append("<option value='"+time.unix()+"'>"+ today +time.format("hh:mm")+"</option>")
-            }
-            break;
-          case "seconds":
-            game.update();
-            break;
-          case "finished":
-            break;
-        }
-
-    });
-
-  }
-
-  $(".b-game-round-expiry-at").each( function(){
-    var $this = $(this);
-
-  })
-
-
-})
-
-
-// bid  count down
-$("#better-countdown").each( function(){
-   var $this = $(this);
-   var local_now = new Date( );
-   var local_offset=local_now.getTimezoneOffset()*60000;
-   var now = new Date( $this.data('now'));
-   var end = new Date( $this.data('end'));
-   var d, h, m, s;
-
-   $this.countdown( now, end, function(event){
-     var timeFormat = "%d day(s) %h小时%m分%s秒";
-     switch(event.type) {
-       case "days":
-         break;
-       case "hours":
-         break;
-       case "minutes":
-
-         break;
-       case "seconds":
-         //$this.find(".J_TimeLeft").replaceWith(
-        //    _.template( $("#j_datetime_left").html(), {variable: 'lasting'})(event.lasting));
-         break;
-       case "finished":
-         break;
-     }
-   });
- });
-
-
-
 function format_intval(v, digits) {
     var txt = "";
 
@@ -232,6 +47,195 @@ function format_float(val, digits) {
         return txt;
     }
 }
+// game_type_id = 1, 涨跌，
+// game_type_id = 2, 计时， 30s, 1min, 2mins
+var Game ={
+  current: function( container ){
+    var game = Game.createNew(container);
+    return game;
+  },
+  createNew: function(container){
+    var game = {};
+    game.instrument_last_quote_selector = ".b-instrument-last-quote";
+    game.game_round_start_at_selector = ".b-game-round-start-at";
+    game.game_type_selector = ".b-game-type.active";
+    game.game_expiry_countdown_selector = ".b-game-round-expiry-countdown";
+    game.game_type_id = parseInt( $(".b-game-type.active", container).data('game-type') );
+    game.expiry_in = parseInt( $(".b-current-expiry-in", container).data('expiry-in') );
+
+    game.game_round_start_at= function(){
+      var now = this.current_time();
+      var start_at = null;
+
+      if( game.game_type_id == 2){
+        start_at = now.add(game.expiry_in, "seconds");
+      }else{
+        start_at = now.add(5-(now.minutes()%5), "minutes");
+      }
+      return start_at.seconds(0);
+    },
+    game.game_round_period= function(){
+    //游戏持续秒数
+      return game.game_type_id == 1 ? 300 : game.expiry_in;
+    },
+    // 禁止投注时间
+    game.game_round_expiry_at= function(){
+      // 300 open in every 2mins
+      var now = this.current_time();
+      var expiry_at = game.game_round_start_at();
+
+      if( game.game_type_id == 2){
+        if( game.expiry_in == 30 )
+        {
+          expiry_at = expiry_at.subtract( 30, "seconds");
+        }else{
+          expiry_at = expiry_at.subtract(game.expiry_in - 60, "seconds");
+        }
+      }
+      return expiry_at;
+    },
+    game.game_round_start_ats= function(){
+      var sas = [];
+      var now = game.current_time();
+      var mins = now.minutes();
+      var remainder= mins%5 // start a agme round in each 5 mins
+      for(var i=0;i < 60/5; i++){
+        var time = game.current_time().subtract(remainder, "minutes").add((i+1)*5,"minutes");
+        time.seconds(0);
+        sas.push( time )
+      }
+      return sas;
+    },
+    game.seconds_left_to_close_bidding=function(){
+      //if (game.game_type_id == 2 )
+      //  return 60 - game.current_time().seconds();
+      //else {
+        var delta = game.game_round_expiry_at() - game.current_time() ;
+        return (delta>0 ? delta/1000 : 0);
+      //}
+    },
+    game.milliseconds_left_to_start=function(){
+       return game.game_round_expiry_at() - game.current_time();
+    },
+    game.current_time= function(){
+      return moment();
+    },
+    game.last_quote= function(){
+      return parseFloat( $( game.instrument_last_quote_selector, container).html() );
+    },
+    game.game_round_start_at_tags= function(){
+      return $( game.game_round_start_at_selector, container);
+    },
+    game.game_round_expiry_countdown_tag= function(){
+      return $( game.game_expiry_countdown_selector, container);
+    },
+
+    game.update= function(){
+      game.game_round_start_at_tags().each(function(){
+        if($(this).data('format')=='l')
+        {
+          $(this).html( game.game_round_start_at().format("D-MMM hh:mm"));
+        }else{
+          $(this).html( game.game_round_start_at().format("hh:mm"));
+        }
+      })
+      var s = game.seconds_left_to_close_bidding();
+      var time_left = moment.unix( s );
+      game.game_round_expiry_countdown_tag().html( time_left.format("mm:ss") );
+    };
+
+    return game;
+  }
+
+}
+
+
+$(function(){
+  //function getGameType(){
+  //  return parseInt( $(".game-type.active").data('game-type') );
+  //}
+
+  if($(".forex-wrapper").is('*')){
+    $(".forex-wrapper").each(function(){
+      var container = $(this);
+      $(".b-bid", container).click(function(){
+        $("input[name='bid[highlow]']").val( $(this).data('highlow'));
+        $(".b-game-form-invoice-wrapper .payout").hide();
+        $(".b-game-form-invoice-wrapper .invoice").show();
+      });
+      $(".invoice button.close", container).click(function(){
+        $(".b-game-form-invoice-wrapper .payout").show();
+        $(".b-game-form-invoice-wrapper .invoice").hide();
+      });
+      $(".b-bid-cost", container).change(function(){
+        var v = $(this).val();
+        $(".b-bid-money").html( format_float( v*(1+0.7), 2 ) + " (70%)");
+      });
+      $(".b-submit-bid", container).click(function(){
+        if( $("form#reg-form").is('*')){
+          alert("请先登录或注册！");
+        }else{
+          var game = Game.current( container );
+          var quote = game.last_quote();
+          $("input[name='game_round[start_at]']").val( game.game_round_start_at().toISOString() );
+          $("input[name='game_round[period]']").val( game.game_round_period() );
+          $("input[name='bid[last_quote]']").val( quote );
+
+          $("form", container).submit();
+        }
+      });
+
+
+      $(".b-game-type", container).click(function(){
+        var $this = $(this);
+        $(".b-game-type").removeClass("active");
+        $(this).addClass("active");
+        var id = this.id;
+        $(this).parent().siblings().hide();
+        $(this).parent().siblings('.'+id).show();
+      });
+
+      $(".b-expiry-in", container).click(function(){
+        var $this = $(this);
+        $(".b-current-expiry-in").data( {"expiry-in": $this.data("expiry-in")}).html($this.html());
+        //var game = Game.current( container );
+      });
+
+      $(".b-game-round-expiry-countdown", container).countdown( moment().toDate(), moment().add(1, 'days').toDate(), function(event){
+        var game = Game.current( container );
+        var $current_expiry_in = $(".b-current-expiry-in");
+        var $game_expiry_box = $("#game-expiry-box");
+        switch(event.type) {
+          case "days":
+            break;
+          case "hours":
+            break;
+          case "minutes":
+            var start_ats = game.game_round_start_ats();
+            $game_expiry_box.empty();
+            for(var i=0;i < start_ats.length; i++){
+              var time = start_ats[i];
+              var today = (time.day() == moment().day()) ? "今天" : "明天";
+              $game_expiry_box.append("<option value='"+time.unix()+"'>"+ today +time.format("hh:mm")+"</option>")
+            }
+            break;
+          case "seconds":
+            game.update();
+            break;
+          case "finished":
+            break;
+        }
+      });
+
+    });
+
+  }
+
+
+})
+
+
+
 
 function format_forex_price( price )
 {
@@ -273,10 +277,14 @@ $(function () {
   $(".forex-chart[data-symbol]").each(function(){
     symbols.push( $(this).data('symbol') );
   });
-  $(".forex-label[data-symbol]").each(function(){
+  $(".b-instrument-last-quote[data-symbol]").each(function(){
     var $this = $(this);
     var symbol = $this.data('symbol');
-    g_quotation_desc.labels[symbol] = $this;
+    //there maybe more than one label
+    if( !g_quotation_desc.labels[symbol] )
+    {
+      g_quotation_desc.labels[symbol] = $(".b-instrument-last-quote[data-symbol='"+symbol+"']");
+    }
     if( symbols.indexOf( symbol) == -1)
     {
       symbols.push( symbol );
@@ -289,7 +297,7 @@ $(function () {
     });
     if( symbols.length >0 )
     {
-      var source = new EventSource('http://better.firecart.cn:8080/sse/'+symbols.join(','));
+      var source = new EventSource('http://www.ballmerasia.com/node/sse/'+symbols.join(','));
       source.addEventListener('message', function(e) {
         var data = JSON.parse(e.data);
         if( g_quotation_desc.first_pass )

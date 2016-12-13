@@ -25,6 +25,7 @@
 //= require ext-min
 //= require better
 //= require jquery.countdown
+//= require jquery.simplemodal
 //= require highstock
 //= require forex.base
 //= require forex.chart
