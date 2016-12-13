@@ -75,7 +75,7 @@
               </label>
               <label class="shuru1">
                 <div style="width:10px;height:60px;margin-left:16px;float:left"></div>
-                语言<span>.</span>
+                <span>语言.</span>
                 <%=f.select( "lang", [["中文", "CN"], ["English", "EN"]], class:'form-control long') %>
               </label>
               <label class="shuru1">
@@ -93,7 +93,7 @@
               <h2>佣金支付方式</h2>
               <div class="shuru">
                 <label for="fangshi" class="shuru1" style="width:352px;">
-                  <span>支付方式 </span><span>*</span>
+                  <span>支付方式 *</span>
                   <%=bf.select( "payment_method_id", PaymentMethod.all.map {|payment_method| [payment_method.name,payment_method.id]}, class:'form-control select2 long') %>
                 </label>
                 <label for="mingcheng" class="shuru1">
