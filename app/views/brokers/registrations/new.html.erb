@@ -43,7 +43,7 @@
               </label>
               <label class="shuru1">
                <span style="float:left;margin:0 0px 0 24px;">国家*</span>
-                <%=f.country_select( "country_code", ["CN"], locale: I18n.locale, class:'form-control  long') %>
+                <%=f.country_select( "country_code", ["CN"], locale: I18n.locale, class:'form-control  long select2') %>
               </label>
               <div style="clear:both"></div>
               <label for="ming" class="shuru1">
@@ -76,7 +76,7 @@
               <label class="shuru1">
                 <div style="width:10px;height:60px;margin-left:16px;float:left"></div>
                 <span style="float:left;margin:0 0px 0 0px;">语言.</span>
-                <%=f.select( "lang", [["中文", "CN"], ["English", "EN"]], class:'form-control long') %>
+                <%=f.select( "lang", [["中文", "CN"], ["English", "EN"]], class:'form-control long select2') %>
               </label>
               <label class="shuru1">
                 <div style="width:10px;height:60px;margin-left:16px;float:left"></div>
