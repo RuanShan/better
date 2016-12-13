@@ -8,7 +8,7 @@
       <div id="msg_1" style="display:block;">
         <div class="topye">
           <div class="dailizhanghu">
-            <h2>代理账户</h2>
+            <h2  style="font-size:22px;font-weight:bold">代理账户</h2>
             <div class="shuru">
               <label for="email" class="shuru1">
                 <span >电子邮箱</span><span>*</span>
@@ -29,7 +29,7 @@
           </div>
 
           <div class="gerenxinxi">
-            <h2>个人信息</h2>
+            <h2 style="font-size:22px;font-weight:bold">个人信息</h2>
             <div class="shuru">
               <label for="xing" class="shuru1">
                 <span style="float:left;margin:0 14px 0 24px;">姓*</span>
@@ -90,7 +90,7 @@
           <%resource.user_banks.build if resource.user_banks.blank?%>
           <%= f.fields_for :user_banks, class:"geren", defaults:{ wrapper:false} do |bf| %>
             <div class="dailizhanghu">
-              <h2>佣金支付方式</h2>
+              <h2 style="font-size:22px;font-weight:bold">佣金支付方式</h2>
               <div class="shuru">
                 <label for="fangshi" class="shuru1" style="width:352px;">
                   <span style="float:left;margin:0 0px 0 0px;">支付方式 *</span>
@@ -126,7 +126,7 @@
       <%#=render partial: "upload_files", locals:{f: f}%>
 
       <div id="msg_2" style="display:none;">
-        <h2>代理账户</h2>
+        <h2 style="font-size:22px;font-weight:bold">代理账户</h2>
           <div class="zuobg">
             <h3>身份照正面</h3>
             <h4>须与交易账号名一致，格式：JPG,PNG,大小600K以内。</h4>
