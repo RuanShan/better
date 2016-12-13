@@ -11,20 +11,21 @@
       <%=f.input "email", label: false, placeholder: "电子邮箱", input_html: {class: "in02"}  %>
       <%=f.input "qq", label: false, placeholder: "QQ", input_html: {class: "in04  notx"}  %>
       <input name="countryDialCode" value="+86" id="reg-area-code" class="in05" type="text" style="margin:5px 0;">
-      <%=f.input "phone", label: false, placeholder: "电话", input_html: {class: "in06"}, wrapper_html:{style:"float:left;margin:5px 30px 5px 0;width:245px;"} %>
+      <%=f.input "phone", label: false, placeholder: "电话", input_html: {id:'phone',class: "in06"}, wrapper_html:{style:"float:left;margin:5px 30px 5px 0;width:245px;"} %>
       <%=f.input "password", label: false, placeholder: "密码", input_html: {class: "in03"}  %>
       <%= f.input :validate_code, label: false, placeholder: "验证码", input_html: {class: "in07"}, wrapper_html:{style:"float:left;margin:5px 5px 5px 0;width:190px;"} %>
       <input id="landing" name="landing" value="" readonly="readonly" type="hidden">
-      <input value="获取验证码" id="obtainVerifyCode" class="btn01" style="height:36px;float:left;margin:5px 30px 5px 0;" type="button">
+      <input id="obtainVerifyCode" value="获取验证码" class="btn01 obtainVerifyCode" style="height:36px;float:left;margin:5px 30px 5px 0;" type="button">
+      <%=hidden_field_tag :send_code, "0" %>
     </div>
     <div class="ce" style="margin-top:0;">
       <div class="ce1" style="margin-left:10px;">
         <span><%=image_tag "new/sign-icon04.png" %>经纪人:</span>
         <label class="cho"><input name="affiliate" class="ch" value="1" type="radio" onclick="$('.in11').show()">有</label>
         <label class="cho"><input name="affiliate" checked="checked" class="ch" value="0" type="radio" onclick="$('.in11').hide()">无</label>
-        <%=f.input "broker_number", label: false, placeholder: "经纪人编码", input_html: {class: "in11", style:"border-radius: 0px;border:0;box-shadow:0 0;width:120px;"}, wrapper_html:{style:"float:left;margin:5px 0;width:120px;"}  %>
+        <%=f.input "broker_number", label: false, placeholder: "经纪人编码", input_html: {class: "in11", style:"border-radius: 0px;border:0;box-shadow:0 0;width:120px;"}, wrapper_html:{style:"margin:5px 15px;width:120px;height: 48px;float:right"}  %>
       </div>
-
+      <div style="clear:both"></div>
       <input name="reg-agreement" checked="checked" class="bo" id="reg-agreement" type="checkbox">
      我已阅读并同意
      <a href="http://www.ggbinary.com/zh-cn/TermsOfAgreement/" target="_blank">服务条款</a> 和 <a href="http://www.ggbinary.com/zh-cn/PrivacyPolicy/" target="_blank">隐私政策</a>
