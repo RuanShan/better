@@ -1,4 +1,4 @@
-<div class="sign" style="height:100%">
+<div class="sign" style="">
   <%@user||=User.new%>
   <%= simple_form_for(@user, :url => user_registration_path, remote:true,
   :html => { :id=>"sign_up_form", :role => 'form', :class=>"sign_box", style:"width:100%"},
