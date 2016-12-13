@@ -13,16 +13,16 @@
     <thead>
       <tr>
         <th>月份</th>
-        <th>活跃人数</th>
-        <th>存款(人数)</th>
-        <th>提款(人数)</th>
+        <th style="display:none;">活跃人数</th>
+        <th style="display:none;">存款(人数)</th>
+        <th style="display:none;">提款(人数)</th>
         <th>投注</th>
-        <th>投注补差</th>
-        <th>输赢</th>
-        <th>输赢补差</th>
+        <th style="display:none;">投注补差</th>
+        <th style="display:none;">输赢</th>
+        <th style="display:none;">输赢补差</th>
         <th>红利</th>
-        <th>盈利</th>
-        <th>放大</th>
+        <th style="display:none;">盈利</th>
+        <th>详情</th>
       </tr>
     </thead>
 
@@ -30,16 +30,16 @@
       <% @dates.each do |date| monthly_profit  = @monthly_profits.select{|month| month.effective_on == date}.first || Summary::SaleMonthlyProfit.new( date ) %>
         <tr id="<%= monthly_profit.effective_on.to_s(:year_month) %>">
           <td><%= monthly_profit.effective_on.to_s(:year_month)  %></td>
-          <td><%= 0 %></td>
-          <td><%= monthly_profit.display_deposit_amount %>(<%= monthly_profit.deposit_member_count %>)</td>
-          <td><%= monthly_profit.display_drawing_amount %>(<%= monthly_profit.drawing_member_count %>)</td>
+          <td style="display:none;"><%= 0 %></td>
+          <td style="display:none;"><%= monthly_profit.display_deposit_amount %>(<%= monthly_profit.deposit_member_count %>)</td>
+          <td style="display:none;"><%= monthly_profit.display_drawing_amount %>(<%= monthly_profit.drawing_member_count %>)</td>
           <td><%= monthly_profit.display_bid_amount %></td>
-          <td><%= monthly_profit.display_bid_difference %></td>
-          <td><%= monthly_profit.display_net %></td>
-          <td><%= monthly_profit.display_net_difference %></td>
+          <td style="display:none;"><%= monthly_profit.display_bid_difference %></td>
+          <td style="display:none;"><%= monthly_profit.display_net %></td>
+          <td style="display:none;"><%= monthly_profit.display_net_difference %></td>
           <td><%= monthly_profit.display_bonus %></td>
-          <td><%= monthly_profit.display_profit %></td>
-          <td><%=link_to "放大", nil, href:"#", onclick: "bigger('#{monthly_profit.effective_on.to_s(:year_month)}');" %></td>
+          <td style="display:none;"><%= monthly_profit.display_profit %></td>
+          <td><%=link_to "详情", nil, href:"#", onclick: "bigger('#{monthly_profit.effective_on.to_s(:year_month)}');" %></td>
         </tr>
       <% end %>
     </tbody>

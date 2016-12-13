@@ -15,9 +15,9 @@
         <th>月份</th>
         <th>点击数</th>
         <th>注册数</th>
-        <th>新注册并存款</th>
-        <th>注册存款转化率</th>
-        <th>放大</th>
+        <th style="display:none;">新注册并存款</th>
+        <th style="display:none;">注册存款转化率</th>
+        <th>详情</th>
       </tr>
     </thead>
 
@@ -27,9 +27,9 @@
           <td><%= sale_month.effective_on.to_s(:year_month) %></td>
           <td><%= sale_month.clink_visits %></td>
           <td><%= sale_month.member_count %></td>
-          <td><%= sale_month.valuable_member_count %></td>
-          <td><%= sale_month.display_valuable_rate %></td>
-          <td><%=link_to "放大", nil, href:"#", onclick: "bigger('#{sale_month.effective_on.to_s(:year_month)}');" %></td>
+          <td style="display:none;"><%= sale_month.valuable_member_count %></td>
+          <td style="display:none;"><%= sale_month.display_valuable_rate %></td>
+          <td><%=link_to "详情", nil, href:"#", onclick: "bigger('#{sale_month.effective_on.to_s(:year_month)}');" %></td>
         </tr>
       <% end %>
     </tbody>

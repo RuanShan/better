@@ -8,14 +8,14 @@
     <thead>
       <tr>
         <th>月份/日期</th>
-        <th>活跃人数</th>
+        <th style="display:none;">活跃人数</th>
         <th>盈利</th>
-        <th>银行手续费</th>
-        <th>平台手续费</th>
-        <th>净盈利</th>
-        <th>上月负结余</th>
-        <th>本月结余</th>
-        <th>放大</th>
+        <th style="display:none;">银行手续费</th>
+        <th style="display:none;">平台手续费</th>
+        <th style="display:none;">净盈利</th>
+        <th style="display:none;">上月负结余</th>
+        <th style="display:none;">本月结余</th>
+        <th>详情</th>
       </tr>
     </thead>
 
@@ -23,14 +23,14 @@
       <% @dates.each do |date| broker_balance  = @monthly_balances.select{|balance| balance.effective_on == date}.first || Summary::SaleMonthlyBalance.new( date ) %>
         <tr id="<%= broker_balance.effective_on.to_s(:year_month) %>">
           <td><%= broker_balance.effective_on.to_s(:year_month) %></td>
-          <td><%= 0 %></td>
+          <td style="display:none;"><%= 0 %></td>
           <td><%= broker_balance.display_profit %></td>
-          <td><%= broker_balance.display_bank_charges %></td>
-          <td><%= broker_balance.display_platform_charges %></td>
-          <td><%= broker_balance.display_net_profit %></td>
-          <td><%= broker_balance.display_last_month_negative_balance %></td>
-          <td><%= broker_balance.display_this_month_balance %></td>
-          <td><%=link_to "放大", nil, href:"#", onclick: "bigger('#{broker_balance.effective_on.to_s(:year_month)}');" %></td>
+          <td style="display:none;"><%= broker_balance.display_bank_charges %></td>
+          <td style="display:none;"><%= broker_balance.display_platform_charges %></td>
+          <td style="display:none;"><%= broker_balance.display_net_profit %></td>
+          <td style="display:none;"><%= broker_balance.display_last_month_negative_balance %></td>
+          <td style="display:none;"><%= broker_balance.display_this_month_balance %></td>
+          <td><%=link_to "详情", nil, href:"#", onclick: "bigger('#{broker_balance.effective_on.to_s(:year_month)}');" %></td>
         </tr>
       <% end %>
     </tbody>

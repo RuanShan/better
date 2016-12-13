@@ -9,29 +9,29 @@
     <thead>
       <tr>
         <th>会员</th>
-         <th>活跃人数</th>
-        <th>存款(人数)</th>
-        <th>提款(人数)</th>
+        <th style="display:none;">活跃人数</th>
+        <th style="display:none;">存款(人数)</th>
+        <th style="display:none;">提款(人数)</th>
         <th>投注</th>
         <th>输赢</th>
-        <th>红利</th>
-        <th>盈利</th>
-        <th>放大</th>
+        <th style="display:none;">红利</th>
+        <th style="display:none;">盈利</th>
+        <th>详情</th>
       </tr>
     </thead>
 
     <tbody>
       <% @day_profits.each do |day_profit| %>
-        <tr id="<%= day_profit.seller_name %>">
+        <tr id="dp<%= day_profit.seller.seller.id %>">
           <td><%= day_profit.seller_name %></td>
-           <td><%= 0 %></td>
-          <td><%= day_profit.display_deposit_amount %>(<%= day_profit.deposit_member_count %>)</td>
-          <td><%= day_profit.display_drawing_amount %>(<%= day_profit.drawing_member_count %>)</td>
+          <td style="display:none;"><%= 0 %></td>
+          <td style="display:none;"><%= day_profit.display_deposit_amount %>(<%= day_profit.deposit_member_count %>)</td>
+          <td style="display:none;"><%= day_profit.display_drawing_amount %>(<%= day_profit.drawing_member_count %>)</td>
           <td><%= day_profit.display_bid_amount %></td>
           <td><%= day_profit.display_net %></td>
-          <td><%= day_profit.display_bonus %></td>
-          <td><%= day_profit.display_profit %></td>
-          <td><%=link_to "放大", nil, href:"#", onclick: "bigger('#{day_profit.seller_name}');" %></td>
+          <td style="display:none;"><%= day_profit.display_bonus %></td>
+          <td style="display:none;"><%= day_profit.display_profit %></td>
+          <td><%=link_to "详情", nil, href:"#", onclick: "bigger('dp#{day_profit.seller.seller.id}');" %></td>
         </tr>
       <% end %>
     </tbody>
