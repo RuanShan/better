@@ -13,11 +13,12 @@ class MaintainUserMonth
     User.has_one :month_of_specifed_date, ->{ where( effective_on: first_day_of_month )}, class_name: "UserMonth"
 
     #TODO User 超过 10万 需要分页处理
-    users = User.includes(:specified_date, :month_of_specifed_date).all
+    users = User.includes(:user_life, :specified_date, :month_of_specifed_date).all
 
     users.each{|user|
       month = user.month_of_specifed_date || user.create_month_of_specifed_date!( )
       day = user.specified_date
+      user_life = user.user_life
       if day
         #deposit_amount, drawing_amount, bid_amount, bonus, profit, balance
         month.deposit_amount+=day.deposit_amount
@@ -27,6 +28,16 @@ class MaintainUserMonth
         month.profit+=day.profit
         month.balance = day.balance
         month.save!
+      end
+      if user_life
+        #deposit_amount, drawing_amount, bid_amount, bonus, profit, balance
+        user_life.deposit_amount+=day.deposit_amount
+        user_life.drawing_amount+=day.drawing_amount
+        user_life.bid_amount+=day.bid_amount
+        user_life.bonus+=day.bonus
+        user_life.profit+=day.profit
+        user_life.balance = day.balance
+        user_life.save!
       end
     }
 
