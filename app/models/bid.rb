@@ -32,6 +32,6 @@ class Bid < ApplicationRecord
 
   def human_state
 
-    "到期在  #{self.game_round.end_at }" if pending?
+    "到期在  #{self.game_round.end_at.to_s(:hm ) }" if pending?
   end
 end

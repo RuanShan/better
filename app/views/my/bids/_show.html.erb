@@ -6,5 +6,5 @@
 <hr>
 <div> 到期时间:  <%= @bid.game_round.end_at.to_formatted_s(:short) %> <span></div>
 <div> 目前状态:  <br/>
-  到期在   <%= @bid.game_round.end_at %>
+  <%= @bid.human_state %>
 </div>
