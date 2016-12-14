@@ -1,7 +1,8 @@
 <div class="dailifoot">
   <div class="dailifootnei">
     <ul>
-      <li><%=link_to "代理中心", {controller: "broker", action: "index"} %></li>
+      <% bcontroller = current_broker ? "broker" : "welcome"%>
+      <li><%=link_to "代理中心", {controller: bcontroller, action: "index"} %></li>
       <li><%=link_to "优势前景", {controller: "welcome", action: "future"} %></li>
       <li><%=link_to "扶持政策", {controller: "welcome", action: "product"} %></li>
       <li><%=link_to "商业模式", {controller: "welcome", action: "commission"} %></li>

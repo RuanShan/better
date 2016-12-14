@@ -35,7 +35,7 @@
               <embed src='http://player.youku.com/player.php/sid/XMTg2Mjc3MzMyOA==/v.swf' allowFullScreen='true' quality='high' width='720' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>
               <embed src='http://player.youku.com/player.php/sid/XMTg2Mjc3MzMyOA==/v.swf' allowFullScreen='true' quality='high' width='720' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>
               <embed src='http://player.youku.com/player.php/sid/XMTg2Mjc3MzMyOA==/v.swf' allowFullScreen='true' quality='high' width='720' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>
-              
+
             </div>
 
           </div>
@@ -98,7 +98,6 @@
     </div>
 
   <%unless current_user%>
-    <%= render 'shared/flash_messages' %>
     <div id="sign_up_block" class="bodyernei_zhong" style="">
       <%=render :partial=>"/devise/registrations/sign_up"%>
     </div>
@@ -258,7 +257,7 @@
     <div style="clear:both;padding-top:30px;"></div>
     <div class="zsgg1">
       <%= link_to agent_root_path do %>
-         <p class="zsggnei">加盟代理</p> 
+         <p class="zsggnei">加盟代理</p>
       <% end %>
         <a href="/info/a/zaixianbangzhu/lianxiwomen_/"><p>招商QQ</p></a>
     </div>
