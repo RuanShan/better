@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  #captcha
+  mount RuCaptcha::Engine => "/rucaptcha"
 
   resources :games
   resources :payment_methods
@@ -173,4 +175,5 @@ Rails.application.routes.draw do
 
   # config/routes.rb
   get "/pages/*id" => 'pages#show', as: :page, format: false
+
 end

@@ -18,6 +18,9 @@ if Gem.win_platform?
   gem 'coffee-script-source', '1.8.0'
   gem 'wdm', '>= 0.1.0'
   gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
+  gem 'rucaptcha', path: "../rucaptcha/rucaptcha-master"
+else
+  gem 'rucaptcha'
 end
 
 group :development, :test do
@@ -50,6 +53,9 @@ gem 'high_voltage'
 #https://github.com/plataformatec/simple_form
 gem 'simple_form'
 #https://github.com/activerecord-hackery/ransack
+
+#cache store
+gem 'redis-rails'
 
 gem 'friendly_id', '~> 5.1.0'
 

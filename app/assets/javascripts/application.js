@@ -39,10 +39,12 @@ $(function(){
     }else {
       var phone = $("#phone").val();
     }
+    var captcha = $("#captcha").val();
     $.ajax({url:'/sms/create_verify_code',
       type:'POST',
       data:{
-        phone: phone
+        phone: phone,
+        _rucaptcha: captcha
       }
     })
   })

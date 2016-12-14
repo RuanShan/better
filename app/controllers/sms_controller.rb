@@ -6,12 +6,17 @@ class SmsController < ApplicationController
     #session[:sms] = @sms.tap{|sms| sms.send_at = DateTime.current}
     #render :stub_create_verify_code
     #return
-    # validate phone number
-    if @sms.valid?
-      # send successfully
-      if @sms.send_for_sign_up
-        session[:sms] = @sms
+    if verify_rucaptcha?
+      @captcha = true
+      # validate phone number
+      if @sms.valid?
+        # send successfully
+        if @sms.send_for_sign_up
+          session[:sms] = @sms
+        end
       end
+    else
+      @captcha = false
     end
   end
 

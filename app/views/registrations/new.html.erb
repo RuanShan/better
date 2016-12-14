@@ -49,6 +49,12 @@
         <%=f.input "phone", label: false, placeholder: "请输入电话号码", input_html: {class: "s-in02  notx"}  %>
         <p class="tx"> *请填写正确的电话号码以便接受验证码</p>
 
+        <div class="rem"></div>
+        <div class="form-group string optional user_last_name">
+          <%= rucaptcha_input_tag(id: "captcha", class: "s-in04  notx", placeholder: '输入右图中的内容') %>
+          <%= rucaptcha_image_tag(style: "margin-top:5px;margin-left:30px;", alt: 'Captcha') %>
+        </div>
+
         <div class="rem notx">验证码：</div>
         <%= f.input :validate_code, label: false, placeholder: "验证码", input_html: {class: "s-in04 notx"} %>
         <input type="hidden" name="certification" id="certification" value="468514">
