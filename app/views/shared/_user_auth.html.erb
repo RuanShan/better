@@ -12,12 +12,10 @@
          <%= f.submit '登录', class: 'btn01' %>
        <% end %>
      </div>
-     <%= link_to new_user_registration_path, target:"_blank", class: 'btn02', style: 'display:none;' do%>
-       会员<br>登陆
-     <% end %>
-     <%= link_to new_broker_registration_path, target:"_blank", class: 'btn03' do%>
+     <%= link_to new_user_registration_path, target:"_blank", class: 'btn02' do%>
        免费<br>开户
      <% end %>
+     
      <div class="login-msg"></div>
   </div>
 <% else %>
