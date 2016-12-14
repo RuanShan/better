@@ -1,0 +1,39 @@
+<% if current_user %>
+
+  <div class="jiaoyihou">
+       <div class="jiaoyihou_dengji">
+         <%= image_tag "new/noimages/toux_04.gif" %>
+
+         <h2> <%= current_user.real_name %></h2>
+         <div class="dengjinei"></div>
+       </div>
+       <div class="jiaoyihou_xinxi">
+        <h1>USD ACCOUNT</h1>
+        <div class="xinxi_nei">
+          <ul>
+              <li><%= image_tag "new/jiaoyi/jiaoyi1_03.gif" %> <span>余额：$10000.00</span></li>
+              <li><%= image_tag "new/jiaoyi/jiaoyi1_12.gif" %>  <span>可用现金：$10000.00</span></li>
+              <li><%= image_tag "new/jiaoyi/jiaoyi1_16.gif" %>  <span>已投资：$0.00</span></li>
+              <li><%= image_tag "new/jiaoyi/jiaoyi1_19.gif" %>  <span>待付金额：$0.00</span></li>
+          </ul>
+        </div>
+      </div>
+       <div class="jiaoyihou_zhuangkuang">
+         <h1>我的交易状况</h1>
+        <div class="zhuangkuang_nei">
+          <ul>
+              <li><input type="checkbox" value="" name="Fruit"><span>在图表上显示我的交易</span>
+                <%= image_tag "new/jiaoyi/jiaoyi1_05.gif" %>  </li>
+              <li><input type="checkbox" value="" name="Fruit"><span>隐藏图表的社区标志</span>
+                <%= image_tag "new/jiaoyi/jiaoyi1_08.gif" %>  </li>
+
+          </ul>
+          <div class="jilu">无开仓交易</div>
+        </div>
+       </div>
+   </div>
+<% else %>
+<%= render "sign_up" %>
+
+
+<% end %>

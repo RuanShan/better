@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   end
 
   devise_for :brokers, controllers: {
-        sessions: 'agent/sessions'
+        sessions: 'agent/sessions',
+        registrations: 'agent/registrations'
   }
   devise_for :administrators , controllers: {
         sessions: 'admin/sessions'
@@ -117,7 +118,10 @@ Rails.application.routes.draw do
   namespace :my do
 
     resources :account do
+
       collection do
+        get 'trade1'
+        get 'trade2'
         get 'deposit'
         get 'drawing'
         get 'transfer'

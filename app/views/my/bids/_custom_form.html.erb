@@ -1,0 +1,9 @@
+<%= simple_form_for(@bid) do |f| %>
+<div class="form-inputs">
+  <%= f.association :game_round %>
+  <%= f.association :user %>
+  <%= f.input :amount %>
+  <%= f.input :rate %>
+  <%= f.input :state %>
+</div>
+<% end %>

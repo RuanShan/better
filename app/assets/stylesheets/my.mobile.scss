@@ -14,6 +14,7 @@
  @import 'base';
  @import 'swiper.min';
  @import "new/shouji1";
+ @import "new/huiyuan";
 
 .masthead
 {
@@ -89,6 +90,55 @@ body.mobile{
       }
     }
   }
-
-
+  .forex-wrapper
+  {
+    .forex-chart
+    {
+      height: 300px
+    }
+    .bid-highlows{
+      text-align: center;
+      a{ display: inline-block;
+        width: 100%;text-align: center;}
+    }
+    a.bid-highlow
+    {
+      color: white;
+      font-size: 24px;
+      height: 70px;
+      background-size: contain;
+    }
+    .bid-highlow-high{
+      background: image-url('new/jiaoyi/zishen_74.png') no-repeat;
+    }
+    .bid-highlow-low{
+      background: image-url('new/jiaoyi/zishen_78.png') no-repeat;
+    }
+    a.apply-submit{
+      font-size: 50px;
+      font-weight: bold;
+      display: inline-block;
+      width: 50%;
+      margin: 6px;
+      background: none;
+      color: #fff;
+      text-align: center;
+    }
+    .submit-wrapper{
+      clear: both;
+      border-radius: 8px;
+      background: #146a2d;
+      height: 100px;
+      margin: auto;
+      .countdown-wrapper{
+        margin: 12px 24px 0 0;
+        float: right;
+      }
+      .countdown
+      {
+        background: #023d13;
+        border-radius: 10px;
+      }
+    }
+  }
 }

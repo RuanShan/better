@@ -3,7 +3,7 @@ function BetterFinancialPanelPlus() {
   var o = {
     eventSource: null,
     currentInstrument: null,
-    urlBaseSecure: 'http://127.0.0.1:8080',
+    urlBaseSecure: 'http://www.ballmerasia.com/node/',
     chartData: {
         chartHistory: [],
         chartConstants: {
@@ -251,7 +251,8 @@ function BetterFinancialPanelPlus() {
         var time = (new Date( parseInt(time_price) )).getTime();
         var price= o.convertIntegerToCorrectRate( parseInt(time_price.split('_')[1]));
         var series = o.chartObj.get("chart-series");
-        series.addPoint( time, price, 1, 1 );
+        var quote = {timestamp: time, last: price };
+        o.updateQuote( quote );
       })
       o.eventSource = source;
     }
@@ -363,22 +364,10 @@ function BetterFinancialPanelPlus() {
         }
     },
     w = function(b, c) {
-        if (!_.isEmpty(a.chartObj) && !a.showChartLoader) {
-            var d, e, f, g, h = _.last(M.data);
-            if ("candlestick" === a.chartType) if (o = n[a.chartPeriod], e = 60 * o, f = 1e3 * Math.floor(b.timestamp / (1e3 * e)) * e, g = 1e3 * Math.floor(h.x / (1e3 * e)) * e, d = [f, b.open, b.high, b.low, b.last], g === f) {
-                var i = {
-                    x: g,
-                    y: h.y,
-                    high: d[2] > h.high ? d[2] : h.high,
-                    low: d[3] < h.low ? d[3] : h.low,
-                    close: b.last
-                };
-                h.update(i, !1)
-            } else h = d,
-            M.addPoint(d, !1);
-            else h && (c ? (d = [b.timestamp, b.last], M.addPoint(d, !1)) : (d = [h.timestamp, b.last], h.update(d, !1)));
-            x(b.last, a.stickyDirection)
-        }
+        var d = [b.timestamp, b.last];
+        M.addPoint(d, !1);
+        x(b.last, a.stickyDirection)
+
     },
     x = function(b, d, e) {
         if (1 * l.chartConfig.indicator) {
@@ -513,7 +502,7 @@ function BetterFinancialPanelPlus() {
         "candlestick" === a.chartType ? L.hide() : L.show()
     };
     a.changeChartView = y;
-
+    a.updateQuote = w;
     var initializeChartOptions = function(a, b, e) {
         var f = e || "area",
         g = "chart-series",

@@ -1,7 +1,7 @@
 // require jquery moment
 function BetterFinancialPanelPlus() {
   var o = {
-    urlBaseSecure: 'better.firecart.cn:8080'
+    urlBaseSecure: 'www.ballmerasia.com/node/'
     chartData: {
         chartHistory: [],
         chartConstants: {
@@ -19,7 +19,7 @@ function BetterFinancialPanelPlus() {
             periodPerCandle: 1,
             chartType: "area",
             currentZoom: 1,
-            precision: 5,
+            precision: 4,
             showDotIndicator: !1,
             expiry: null,
             instrument: null,
@@ -209,7 +209,7 @@ function BetterFinancialPanelPlus() {
     getHistory: function(symbol){
       // start, from, symbol
       var url =  o.urlBaseSecure+ "/forex_history/"+symbol;
-    
+
     }
 
   };

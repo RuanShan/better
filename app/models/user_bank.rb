@@ -16,8 +16,8 @@ class UserBank < ApplicationRecord
   validates :name, :card_number, :address, presence: true
 
   attr_accessor :current_money_password
-
-  before_save :validate_bank
+  attr_accessor :skip_validate_bank
+  before_save :validate_bank, unless: :skip_validate_bank
 
   def self.valid_create(user, bank_options)
     user.password_prefix="money_"

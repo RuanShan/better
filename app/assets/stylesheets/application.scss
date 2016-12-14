@@ -95,3 +95,15 @@
     line-height: normal;
   }
 }
+
+#simplemodal-container a.modalCloseImg {
+	/*background:url(/img/x.png) no-repeat;  adjust url as required */
+	width:25px;
+	height:29px;
+	display:inline;
+	z-index:3200;
+	position:absolute;
+	top:0;
+	right:0;
+	cursor:pointer;
+}

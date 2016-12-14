@@ -75,7 +75,7 @@ module My
 
     def edit_login_password
     end
-    
+
     def edit_money_password
     end
 
@@ -106,6 +106,14 @@ module My
         end
       end
     end
+
+    def trade1
+      @symbol = Forex.symbols.first
+    end
+
+    def trade2
+    end
+
 
     private
 

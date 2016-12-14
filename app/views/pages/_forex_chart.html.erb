@@ -6,27 +6,37 @@
   		<div class="one_zz"><%= image_tag "new/jiaoyi/jiaoyi2_03.gif" %>
         <span> <%= t( "forex.symbol.#{symbol}") %></span>
       </div>
-  		<div class="one_z1">
-  		<button class="btn2" type="button" id="1">涨/跌</button>
-          <button class="btn1" type="button" id="2">60秒</button>
+      <div style="padding: 0 8px 0 0;">
+    		<div class="one_z1">
+          <button class="btn2 b-game-type active" type="button" id="game-type-1" data-game-type="1">涨/跌</button>
+          <button class="btn1 b-game-type" type="button" id="game-type-2" data-game-type="2">
+            <span class="b-current-expiry-in">      60秒 </span>
+          </button>
+        </div>
+        <div style="" class="one_z3 b-game-round-time-wrapper game-type-1 pull-right ">
+           <div style="margin: 8px 0; width:120px;">
+            <select   name="game_expriy_box" class="b-game-expiry-box" style="width:100%;">
+              <option value="1481424300000" selected="">今天 10:45</option>
+            </select>
           </div>
-          <div class="one_z2">
-  		    <button class="btn4" type="button" id="3">今天10:48</button>
-          <button class="btn3" type="button" id="4">30sec</button>
-          <button class="btn3" type="button" id="5">60sec</button>
-          <button class="btn3" type="button" id="6">2min</button>
-          <button class="btn3" type="button" id="7">5min</button>
-          </div>
-          <div style="display:none" class="one_z3">
-          <button class="btn5" type="button" id="8">今天10:48</button>
       	</div>
+        <div class="one_z2 b-game-round-time-wrapper game-type-2 pull-right " style="display:none">
+          <button class="btn btn4 game-short-expiry-tooltip" type="button" >
+            今天<span class="b-game-round-start-at"> 10:48  </span>
+          </button>
+          <button class="btn btn3 b-expiry-in" type="button"  data-expiry-in="30">30sec</button>
+          <button class="btn btn3 b-expiry-in" type="button"  data-expiry-in="60">60sec</button>
+          <button class="btn btn3 b-expiry-in" type="button"  data-expiry-in="120">2min</button>
+          <button class="btn btn3 b-expiry-in" type="button"  data-expiry-in="300">5min</button>
+        </div>
+
+      </div>
       	<div class="guoqi">
       		<div class="guoqi_left">
-            
             <span> <%= t( "forex.symbol.#{symbol}") %>收盘时价格将低于或高于？</span></div>
-      		<div class="guoqi_right"><b>剩余时间：</b>
-            <div class="shijiamokuan">
-            <%= image_tag "new/jiaoyi/jiaoyi2_12.gif" %> </div></div>
+      		<div class="guoqi_right" style="padding: 0 8px 0 0;"><b>剩余时间：</b>
+            <b class="b-game-round-expiry-countdown">00:00</b>
+          </div>
       	</div>
   	</div>
 
@@ -34,21 +44,76 @@
 
   <div class="huobiright_ti1 clearfix">
 			<div class="huobiti_left1">
-        <%= content_tag "h4","0.0000", class: "forex-label", data: {symbol: symbol} %>
-        <a href="" class="szxd3"> <%= image_tag "new/jiaoyi/jiaoyi1_101.gif" %></a>
-        <a href="" class="szxd4"> <%= image_tag "new/jiaoyi/jiaoyi1_109.gif" %></a>
+        <%= content_tag "h4","0.0000", class: "b-instrument-last-quote", data: {symbol: symbol} %>
+        <a href="javascript:void(0)" class="szxd3 bid-highlow  b-bid" data-highlow="0"> <%= image_tag "new/jiaoyi/jiaoyi1_101.gif" %></a>
+        <a href="javascript:void(0)" class="szxd4 bid-highlow  b-bid" data-highlow="1"> <%= image_tag "new/jiaoyi/jiaoyi1_109.gif" %></a>
 			</div>
-			<div class="huobiti_right1">
-				<div class="sshuou">
-				<a href=""><span>+更多</span></a><a href=""><span>+chart</span></a>
-				<h1>70%</h1>
-				</div>
-				<div class="ssshou">
-				<p class="shouyi1">收益</p>
-        <p class="chushou1"><%= image_tag "new/jiaoyi/jiaoyi1_112.gif" %>出售</p>
-        <p class="duichong1"><%= image_tag "new/jiaoyi/jiaoyi1_114.gif" %>对冲</p>
-				<p class="jiabei1">X2加倍</p>
-				</div>
-			</div>
+			<div class="huobiti_right1 b-game-form-invoice-wrapper  game-form-invoice-wrapper ">
+        <div class="payout " >
+  				<div class="sshuou">
+  				  <h1>70%</h1>
+  				</div>
+  				<div class="ssshou">
+  				<p class="shouyi1">收益</p>
+          <p class="chushou1"><%= image_tag "new/jiaoyi/jiaoyi1_112.gif" %>出售</p>
+          <p class="duichong1"><%= image_tag "new/jiaoyi/jiaoyi1_114.gif" %>对冲</p>
+  				<p class="jiabei1">X2加倍</p>
+  				</div>
+        </div>
+        <div class="invoice " style="display:none; opacity: 1; color: white; padding: 0;"  data-active="true" >
+          <button type="button" class="close" style="right:0;" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <% @bid = Bid.new %>
+          <%= simple_form_for(@bid, url: my_bids_path, remote: true) do |f| %>
+          <%=  hidden_field_tag "game_round[instrument_code]", symbol %>
+          <%=  hidden_field_tag "game_round[start_at]"  %>
+          <%=  hidden_field_tag "game_round[period]"  %>
+          <%= f.input "rate", as: :hidden   %>
+          <%= f.input "highlow", as: :hidden   %>
+          <%= f.input "last_quote", as: :hidden   %>
+            <div class="message-container">
+                <table><tbody>
+                  <tr><th>即将结束:</th>
+                  <td>
+                    <div class="call-small-icon"></div> <span  class="spot-157 trend-down b-instrument-last-quote" data-symbol="<%=symbol%>">0.0</span>
+                  </td>
+                  </tr>
+                  <tr><th>有效期:</th><td> <span class="b-game-round-start-at" data-format='l'> 13-Dec 10:28 </span></td>
+                    <th>价内期权:</th><td class="cf"><span  class="b-bid-money">170.00 (70%)</span></td>
+                  </tr>
+                  <tr><th valign="middle">投资:</th>
+                    <td>
+                      <div class="investment-amount-wrapper" style="">
+                      <span class="invoice-currency-symbol">$</span>
+                      <select name="bid[amount]" class="b-bid-cost form-control input-sm" style="width:auto;hight:auto;">
+                        <option value="10"> 10 </option>
+                        <option value="25"> 25 </option>
+                        <option value="50"> 50 </option>
+                        <option value="100" selected=""> 100 </option>
+                        <option value="200"> 200 </option>
+                        <option value="250"> 250 </option>
+                        <option value="300"> 300 </option>
+                        <option value="400"> 400 </option>
+                        <option value="500"> 500 </option>
+                      </select>
+                      <span class="combobox" style="position:relative; display:none;">
+                        <input type="text" class="investment-amount" id="investment-amount-157" onchange="Utils.validateStake(event, this); Trading.app.getController('Game').setReturnAmount('157', 70, 0)" onkeyup="Utils.validateStake(event, this); Trading.app.getController('Game').setReturnAmount('157', 70, 0)" onpaste="Utils.validateStake(event, this); Trading.app.getController('Game').setReturnAmount('157', 70, 0)" onblur="Utils.validateStake(event, this); Trading.app.getController('Game').setReturnAmount('157', 70, 0)" style="margin: 0px;"><a href="#" class="combobox_button">
+                        <div class="combobox_arrow"></div></a><div class="combobox_selector" style="display:none">
+                        <ul><li>10</li><li>25</li><li>50</li><li>100</li><li>200</li><li>250</li><li>300</li><li>400</li><li>500</li></ul></div>
+                      </span>
+                    </div>
+                    </td>
+                    <td>价外期权:</td>
+                        <td><span id="invoice-rebate-157">$0.00 (0%)</span></td>
+                  </tr>
+                  <tr></tr>
+                  <tr><td class="apply-wrapper" colspan="4">
+                     <a href="javascript:void(0)" class="btn-danger btn-xs b-submit-bid "  >交易</a>
+                    <span class="loadable" id="loader-157">&nbsp;</span></td></tr></tbody>
+                </table>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
     </div>
 </div>

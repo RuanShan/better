@@ -7,7 +7,7 @@ class Bid < ApplicationRecord
   belongs_to :game_round
   belongs_to :user
 
-  enum state: { failure:0, pending: 2, success:1, unknown:4 }
+  enum state: { pending: 0, success:1, failure:4, unknown:11 }
 
   delegate :game, to: :game_round
 
@@ -30,4 +30,8 @@ class Bid < ApplicationRecord
     self.includes(game_round: :game).where([search_conditions,search_cvalues].flatten).order("bids.created_at desc").references(:game_rounds, :games).all
   end
 
+  def human_state
+
+    "到期在  #{self.game_round.end_at.to_s(:hm ) }" if pending?
+  end
 end

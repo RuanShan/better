@@ -1,0 +1,7 @@
+$(".modal-content").html(<%== ( render :partial => dialog_view,:formats=>[:html] ).to_json %>)
+
+$('#modal').modal(
+  {
+    keyboard: false
+  }
+)

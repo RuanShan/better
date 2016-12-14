@@ -1,5 +1,6 @@
 module My
   class BidsController < BaseController
+
     before_action :set_bid, only: [:show, :edit, :update, :destroy]
 
     # GET /bids
@@ -26,12 +27,16 @@ module My
     # POST /bids
     # POST /bids.json
     def create
-      @bid = Bid.new(bid_params)
+      @game_round = GameRound.find_or_initialize_by game_round_params
+
+      @bid = current_user.bids.build(bid_params)
+      @bid.game_round = @game_round
 
       respond_to do |format|
         if @bid.save
           format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
           format.json { render :show, status: :created, location: @bid }
+          format.js { render :show, status: :created }
         else
           format.html { render :new }
           format.json { render json: @bid.errors, status: :unprocessable_entity }
@@ -80,7 +85,11 @@ module My
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def bid_params
-        params.require(:bid).permit(:game_round_id, :user_id, :amount, :rate, :state)
+        params.require(:bid).permit(:game_round_id, :user_id, :amount, :rate, :highlow, :last_quote)
+      end
+
+      def game_round_params
+        params.require(:game_round).permit(:instrument_code, :start_at, :period )
       end
 
       def search_params
