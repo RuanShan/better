@@ -160,16 +160,16 @@ $(function(){
       var container = $(this);
       $(".b-bid", container).click(function(){
         $("input[name='bid[highlow]']").val( $(this).data('highlow'));
-        $(".b-game-form-invoice-wrapper .payout").hide();
-        $(".b-game-form-invoice-wrapper .invoice").show();
+        $(".b-game-form-invoice-wrapper .payout", container).hide();
+        $(".b-game-form-invoice-wrapper .invoice", container).show();
       });
       $(".invoice button.close", container).click(function(){
-        $(".b-game-form-invoice-wrapper .payout").show();
-        $(".b-game-form-invoice-wrapper .invoice").hide();
+        $(".b-game-form-invoice-wrapper .payout", container).show();
+        $(".b-game-form-invoice-wrapper .invoice", container).hide();
       });
       $(".b-bid-cost", container).change(function(){
         var v = $(this).val();
-        $(".b-bid-money").html( format_float( v*(1+0.7), 2 ) + " (70%)");
+        $(".b-bid-money", container).html( format_float( v*(1+0.7), 2 ) + " (70%)");
       });
       $(".b-submit-bid", container).click(function(){
         if( $("form#reg-form").is('*')){
@@ -177,9 +177,9 @@ $(function(){
         }else{
           var game = Game.current( container );
           var quote = game.last_quote();
-          $("input[name='game_round[start_at]']").val( game.game_round_start_at().toISOString() );
-          $("input[name='game_round[period]']").val( game.game_round_period() );
-          $("input[name='bid[last_quote]']").val( quote );
+          $("input[name='game_round[start_at]']", container).val( game.game_round_start_at().toISOString() );
+          $("input[name='game_round[period]']", container).val( game.game_round_period() );
+          $("input[name='bid[last_quote]']", container).val( quote );
 
           $("form", container).submit();
         }
@@ -188,23 +188,23 @@ $(function(){
 
       $(".b-game-type", container).click(function(){
         var $this = $(this);
-        $(".b-game-type").removeClass("active");
+        $(".b-game-type", container).removeClass("active");
         $(this).addClass("active");
         var id = this.id;
-        $(this).parent().siblings().hide();
-        $(this).parent().siblings('.'+id).show();
+        $(".b-game-round-time-wrapper", container).hide();
+        $(".b-game-round-time-wrapper."+id, container).show();
       });
 
       $(".b-expiry-in", container).click(function(){
         var $this = $(this);
-        $(".b-current-expiry-in").data( {"expiry-in": $this.data("expiry-in")}).html($this.html());
+        $(".b-current-expiry-in", container).data( {"expiry-in": $this.data("expiry-in")}).html($this.html());
         //var game = Game.current( container );
       });
 
       $(".b-game-round-expiry-countdown", container).countdown( moment().toDate(), moment().add(1, 'days').toDate(), function(event){
         var game = Game.current( container );
-        var $current_expiry_in = $(".b-current-expiry-in");
-        var $game_expiry_box = $("#game-expiry-box");
+        var $current_expiry_in = $(".b-current-expiry-in", container);
+        var $game_expiry_box = $(".b-game-expiry-box", container);
         switch(event.type) {
           case "days":
             break;

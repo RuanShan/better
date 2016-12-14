@@ -8,7 +8,8 @@
   }
   .invoice {
     .close{
-      background-color: #010101;
+      border-radius: 3px;
+      background-color: #DEDEDE;
     }
   }
 }
@@ -62,6 +63,21 @@
     border-radius: 10px;
     margin-top: 10px;
   }
+  .game-form-invoice-wrapper{
+    padding: 6px;
+    .payout h1{
+    }
+    .invoice{
+      th{text-align: right;}
+      td{
+        padding-left: 4px;
+        text-align: left;
+      }
+      a{ width: 100%;
+        display: inline-block;
+        text-align: center;}
+    }
+  }
 
 	.one_zz1{
 		float: left;
@@ -91,7 +107,7 @@
     text-align: center;
   }
   .huobiti_right1 p{
-        line-height: 14px;
+      line-height: 14px;
       margin: 0px;
       color: #f3d34c;
       font-weight: bold;
@@ -158,7 +174,7 @@
     clear: both;
   }
   .ssshou{
-        float: left;
+      float: left;
       width: 50%;
       color: #dabf49;
       font-weight: bold;
@@ -192,9 +208,10 @@
 .forex-wrapper{
 
   .one_zhang1{
-    width: 100%;
+    padding: 0 8px;
     background: #b0afb0;
     overflow: hidden;
+
     border-radius: 10px 10px 0 0;
   }
 
@@ -202,7 +219,7 @@
     float: left;
     width: 140px;
     overflow: hidden;
-    padding-top: 7px;
+    padding: 6px 0 0 0;
 
   }
   .one_zz img{
@@ -220,7 +237,7 @@
   }
 
   .one_z11{
-    margin-right: 13px;
+    /*margin-right: 13px;*/
   overflow: hidden;
   float: right;
   }
@@ -253,8 +270,7 @@
 	}
   .btn1{
     border:none;
-    height:25px;
-    background-color:#3a3a3a;
+     background-color:#3a3a3a;
     color:white;
     font-size:14px;
     margin:8px 0;
@@ -264,8 +280,7 @@
   }
   .btn2{
 	  border:none;
-	  height:25px;
-	  background-color:#f3d34c;
+ 	  background-color:#f3d34c;
 	  color:#333;
 	  font-size:14px;
 	  margin:8px 0;
@@ -275,8 +290,7 @@
 
   	.btn3{
   	  border:none;
-  	  height:25px;
-  	  background-color:#3a3a3a;
+   	  background-color:#3a3a3a;
   	  color:white;
   	  font-size:14px;
   	  margin:8px 0;
@@ -286,8 +300,7 @@
   	}
   	.btn4{
   	  border:none;
-  	  height:25px;
-  	  background-color:#f3d34c;
+   	  background-color:#f3d34c;
   	  color:#333;
   	  font-size:14px;
   	  margin:8px 0;
@@ -431,9 +444,10 @@
   .huobiti_left2 {
 	    float: left;
 	    width: 50%;
+      text-align: center;
 	}
 	.huobiti_left2 h4{
-		       margin: 10px 44px;
+		       margin: 10px auto;
 	    background: #dbdadb;
 	    border-radius: 7px;
 	    /* margin: auto; */
@@ -447,15 +461,16 @@
     overflow: hidden;
     text-align: center;
     margin-right: 7px;
-
   }
-
-
   .szxd5{
     margin: 25px 30px 0px;
   }
   .szxd6{
     margin: 0px 30px;
+  }
+  .b-game-round-time-wrapper{
+    height: 42px;
+    overflow: hidden;
   }
 }
 
