@@ -116,7 +116,10 @@ Rails.application.routes.draw do
   namespace :my do
 
     resources :account do
+
       collection do
+        get 'trade1'
+        get 'trade2'
         get 'deposit'
         get 'drawing'
         get 'transfer'

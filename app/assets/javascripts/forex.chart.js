@@ -154,7 +154,6 @@ $(function(){
   //function getGameType(){
   //  return parseInt( $(".game-type.active").data('game-type') );
   //}
-
   if($(".forex-wrapper").is('*')){
     $(".forex-wrapper").each(function(){
       var container = $(this);
