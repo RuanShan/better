@@ -1,11 +1,6 @@
 //交易id	交易时间	到期时间	资产	当期价格	投资	收益	状态
 if( $(".forex-adv").is("*")){
-  var r = "<tr><td><%= @bid.id%> </td><td><%= @bid.display_created_at %></td> \
-  <td><%= @bid.game_round.display_end_at %> </td>\
-  <td><%= @bid.game_round.instrument_code %></td><td><%= @bid.game_round.instrument_quote %></td> \
-  <td><%= @bid.amount %></td> <td><%= @bid.profit %></td> <td><%= @bid.state %></td> </tr>\
-  "
-  $("table.b-bids tbody").prepend(r);
+
   if( $("body.mobile .forex-adv").is("*")){
     $("#simplemodal").html(<%== ( render :partial => "show",:formats=>[:html] ).to_json %>)
 
@@ -18,6 +13,13 @@ if( $(".forex-adv").is("*")){
         containerCss: { width: '240px', height: '240px', padding: '16px 24px', borderRadius: '10px', backgroundColor: '#FFFFFF',
           border: "1px solid #999" }}
     )
+  }else{
+    var r = "<tr><td><%= @bid.id%> </td><td><%= @bid.display_created_at %></td> \
+    <td><%= @bid.game_round.display_end_at %> </td>\
+    <td><%= @bid.game_round.instrument_code %></td><td><%= @bid.game_round.instrument_quote %></td> \
+    <td><%= @bid.amount %></td> <td><%= @bid.profit %></td> <td><%= @bid.state %></td> </tr>\
+    "
+    $("table.b-bids tbody").prepend(r);
   }
 }else {
   $("#simplemodal").html(<%== ( render :partial => "show",:formats=>[:html] ).to_json %>)
