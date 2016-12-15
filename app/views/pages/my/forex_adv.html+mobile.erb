@@ -1,0 +1,89 @@
+<% content_for :page_title  do %>
+  <p class="fanhui"> <%= fa_icon "angle-left" %></p>
+  <p class="iphonelan">交易平台</p>
+<% end %>
+
+<div class="forex-adv">
+
+    <div class="">
+      <div class=" ">
+        <div class="forex-wrapper" style="background-color: #333;">
+            <div class="row">
+              <div class="col-xs-6">
+                <select class="form-control b-symbols" name="symbols">
+                <% Forex.symbols.each{|symbol| %>
+                    <%= content_tag('option', t("forex.symbol.#{symbol}"), class: "", value: symbol, selected: (symbol==@symbol), data:{ symbol: symbol}) %>
+                <% } %>
+                </select>
+              </div>
+              <div class="col-xs-6">
+                <div  class="b-game-round-time-wrapper game-type-1">
+                    <select id = "game-expiry-box" name="" class="b-game-expiry-box form-control" >
+                      <option value="1481424300000" selected="">今天 10:45</option>
+                    </select>
+                </div>
+              </div>
+          </div>
+          <% symbol = @symbol %>
+          <%= content_tag "div","", id: "advanced-chart-line-#{symbol}", class: "forex-chart", data: {symbol: symbol} %>
+
+          <div>
+            <% @bid = Bid.new %>
+            <%= simple_form_for(@bid, url: my_bids_path, remote: true) do |f| %>
+            <%=  hidden_field_tag "game_round[instrument_code]", symbol %>
+            <%=  hidden_field_tag "game_round[start_at]"  %>
+            <%=  hidden_field_tag "game_round[period]"  %>
+            <%= f.input "rate", value: 0.70, as: :hidden   %>
+            <%= f.input "highlow", as: :hidden   %>
+            <%= f.input "last_quote", as: :hidden   %>
+            <input  class="b-game-type active" type="hidden" id="game-type-1" data-game-type="1">
+
+            <div class="">
+                <div  class="">
+                  <div class="row bid-highlows">
+                    <div class="col-xs-6">
+                      <a  class="bid-highlow bid-highlow-high b-bid"  data-highlow="1">高</a>
+                      <span >收益70%</span>
+                    </div>
+                    <div class="col-xs-6">
+                      <a  class="bid-highlow bid-highlow-low b-bid"  data-highlow="0">低</a>
+                      <span >收益70%</span>
+                    </div>
+                      <%= content_tag('span', '0.0000', id: "top_span", class: "top_span b-instrument-last-quote", data:{ symbol: symbol}) %>
+
+                  </div>
+                  <div class="rightdown_down">
+                    <div id="r_left" class="r_left">
+                      <%= image_tag "new/jiaoyi/zishen_81.png", alt: "account" %>
+                    </div>
+                    <div id="r_right" class="r_right">
+                      <span class="fuhao">$</span>
+                      <input type="text" value="100" name="bid[amount]" id="jiaqina" class="jiaqina b-bid-cost">
+                    </div>
+                    <div id="butongjia" class="butongjia">
+                      <div class="bu10"><input type="button"  class="b-bid-more-price" value="+10"></div>
+                      <div class="bu10"><input type="button"  class="b-bid-more-price" value="+25"></div>
+                      <div class="bu10"><input type="button"  class="b-bid-more-price" value="+50"></div>
+                      <div class="bu10"><input type="button"  class="b-bid-more-price" value="+100"></div>
+                    </div>
+                    <div class="submit-wrapper">
+                      <a class="apply-submit b-submit-bid "> 交易 </a>
+
+                      <p class="countdown-wrapper">
+                        <span class='b-bid-icon b-bid-icon-0' style= "display:none;"> <%= fa_icon "arrow-down"%> </span>
+                        <span class='b-bid-icon b-bid-icon-1' style= ""> <%= fa_icon "arrow-up"%> </span>
+
+                        剩余时间<br><span class="b-game-round-expiry-countdown">00:00:16</span></p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+<%= render 'pages/registry' %>

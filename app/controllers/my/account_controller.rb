@@ -108,16 +108,13 @@ module My
     end
 
     def community_set
-      
+
     end
 
     def trade1
       @symbol = Forex.symbols.first
+      render "pages/forex_adv"
     end
-
-    def trade2
-    end
-
 
     private
 

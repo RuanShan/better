@@ -258,9 +258,12 @@ class User < MemberBase
   end
 
 
-
   def full_members
     descendants.where(["depth>? AND depth<=?", self.depth, self.depth+6])
+  end
+
+  def life_statis
+    Summary::MemberProfit.new( self)
   end
 
   private

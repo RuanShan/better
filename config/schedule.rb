@@ -20,7 +20,7 @@ every 1.day, :at => '23:55 am' do
 
 end
 
-every 1.minute, :at => '1' do
-  
+every 1.minute do
+  runner "MaintainGameRound.new.run"
 end
 # Learn more: http://github.com/javan/whenever

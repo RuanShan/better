@@ -44,20 +44,14 @@ class Bid < ApplicationRecord
     "到期在  #{self.game_round.end_at.to_s(:hm ) }" if pending?
   end
 
-
-  def valid_to_process?
-    # has enough money
-    # available money to transfer    true
-    user.user_life.balance > amount
-  end
-
   def adjust_wallet
     create_wallet!( user: user, amount: -self.amount, originator: self, is_bonus: false )
   end
 
 
   def has_enough_money
-    errors.add(:base, 'Must has enough money') if user.user_life.balance < amount
+    #Rails.logger.debug "#{user.wallets.inspect}#{user.id} user.life_statis.balance=#{user.life_statis.balance}, amount=#{amount}"
+    errors.add(:base, 'Must has enough money') if user.life_statis.balance < amount
   end
 
   def complete!
