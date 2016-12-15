@@ -51,4 +51,7 @@ class MemberBase < ApplicationRecord
     children.update( parent: self.parent)
   end
 
+  def as_seller
+    CurrentSeller.new( self )
+  end
 end

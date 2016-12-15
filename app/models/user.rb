@@ -257,9 +257,7 @@ class User < MemberBase
     country.translations[I18n.locale.to_s] || country.name
   end
 
-  def as_seller
-    CurrentSeller.new( self )
-  end
+
 
   def full_members
     descendants.where(["depth>? AND depth<=?", self.depth, self.depth+6])

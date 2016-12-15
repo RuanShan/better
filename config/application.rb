@@ -10,6 +10,7 @@ Bundler.require(*Rails.groups)
 
 module Better
   class Application < Rails::Application
+    #config.cache_store = :redis_store, "redis://localhost:6379/1/cache", { expires_in: 90.minutes }
 
     config.generators do |g|
       g.test_framework :rspec,

@@ -8,6 +8,7 @@ class Bid < ApplicationRecord
   belongs_to :user, required: true
   has_one :wallet, as: :originator
 
+  enum highlow: { high: 1, low: 0 }
   enum state: { pending: 0, win: 1, lose: 4 }
 
   after_create :adjust_wallet
@@ -57,6 +58,16 @@ class Bid < ApplicationRecord
 
   def has_enough_money
     errors.add(:base, 'Must has enough money') if user.user_life.balance < amount
+  end
+
+  def complete!
+    if high? && bid.last_quote> bid.game_round.instrument_quote || low? && bid.last_quote< bid.game_round.instrument_quote
+      create_wallet!( user: user, amount: self.amount, originator: self, is_bonus: false )
+      create_wallet!( user: user, amount: amount*rate , originator: self, is_bonus: true )
+      win!
+    else
+      lose!
+    end
   end
 
 end

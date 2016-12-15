@@ -3,12 +3,13 @@ class GameRound < ApplicationRecord
   extend  DisplayDateTime
   date_time_methods :end_at
 
+  has_many :bids
   before_create :set_end_at
 
   state_machine :state, initial: :pending do
     # pending: 等待处理
     # success: 结束
-    after_transition to: :complete, do: [ :complete_bids ]
+    after_transition to: :success, do: [ :complete_bids ]
 
     event :complete do
       transition pending: :success
@@ -16,7 +17,7 @@ class GameRound < ApplicationRecord
   end
 
   def complete_bids
-
+    bids.each(:complete!)
   end
 
   private
