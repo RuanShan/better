@@ -14,7 +14,7 @@
 		</tr>
     <% game_rounds.each{|gr| %>
 		<tr>
-			<td class="ipnei"><%= t "forex.label.#{gr.instrument_code}" %> </td>
+			<td class="ipnei"><%= t("forex.symbol.#{gr.instrument_code}")  %> </td>
 			<td class="ipnei"><%= gr.display_end_at %></td>
 			<td class="ipnei"><%= gr.instrument_quote %></td>
 			<td class="ipnei"> </td>
