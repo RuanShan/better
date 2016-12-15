@@ -4,10 +4,20 @@ class Bid < ApplicationRecord
   extend  DisplayDateTime
   date_time_methods :created_at
 
-  belongs_to :game_round
-  belongs_to :user
+  belongs_to :game_round , required: true
+  belongs_to :user, required: true
 
-  enum state: { pending: 0, complete:1, failure:4, unknown:11 }
+  state_machine :status, initial: :pending do
+    # pending: 等待处理
+    # success: 结束
+    # failure:
+    after_transition to: :complete, do: [ :adjust_wallet ]
+
+    event :complete do
+      transition pending: :success, if: ->(bid) { bid.valid_to_process? }
+      transition pending: :failure, if: ->(bid) { !bid.valid_to_process? }
+    end
+  end
 
   delegate :game, to: :game_round
 
@@ -37,5 +47,16 @@ class Bid < ApplicationRecord
   def human_state
 
     "到期在  #{self.game_round.end_at.to_s(:hm ) }" if pending?
+  end
+
+
+  def valid_to_process?
+    # has enough money
+    # available money to transfer    true
+    user.user_life.balance > amount
+  end
+
+  def adjust_wallet
+    create_wallet!( user: user, amount: -self.amount, is_bonus: false )
   end
 end

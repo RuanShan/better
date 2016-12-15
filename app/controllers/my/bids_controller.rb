@@ -34,6 +34,7 @@ module My
 
       respond_to do |format|
         if @bid.save
+          @bid.complete
           format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
           format.json { render :show, status: :created, location: @bid }
           format.js { render :show, status: :created }

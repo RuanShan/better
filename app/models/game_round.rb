@@ -3,7 +3,24 @@ class GameRound < ApplicationRecord
   extend  DisplayDateTime
   date_time_methods :end_at
 
-  def end_at
-    start_at.since( self.period)
+  before_create :set_end_at
+
+  state_machine :state, initial: :pending do
+    # pending: 等待处理
+    # success: 结束
+    after_transition to: :complete, do: [ :complete_bids ]
+
+    event :complete do
+      transition pending: :success
+    end
+  end
+
+  def complete_bids
+
+  end
+
+  private
+  def set_end_at
+    self.end_at = start_at.since( self.period)
   end
 end

@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20161215090958) do
     t.datetime "updated_at",                null: false
     t.integer  "highlow",       default: 0, null: false
     t.decimal  "last_quote"
+    t.string   "status"
     t.index ["game_round_id"], name: "index_bids_on_game_round_id"
     t.index ["user_id"], name: "index_bids_on_user_id"
   end
@@ -125,8 +126,11 @@ ActiveRecord::Schema.define(version: 20161215090958) do
     t.datetime "start_at"
     t.integer  "period",           default: 0,     null: false
     t.decimal  "instrument_quote", default: "0.0", null: false
+    t.string   "state"
+    t.datetime "end_at"
     t.index ["game_id"], name: "index_game_rounds_on_game_id"
     t.index ["instrument_id"], name: "index_game_rounds_on_instrument_id"
+    t.index ["instrument_quote", "state", "end_at"], name: "index_game_rounds_on_instrument_quote_and_state_and_end_at"
   end
 
   create_table "games", force: :cascade do |t|

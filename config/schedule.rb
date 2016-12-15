@@ -19,4 +19,8 @@
 every 1.day, :at => '23:55 am' do
 
 end
+
+every 1.minute, :at => '1' do
+  
+end
 # Learn more: http://github.com/javan/whenever
