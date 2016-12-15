@@ -7,7 +7,6 @@
         <p><%= build_user_nav_link "提现", {controller: 'my/drawings', action: 'new'} %></p>
       </div>
     </li>
-    <li><a href="">交易量活动</a></li>
     <li>
       <a>账户明细</a>
       <div class="erxian">
@@ -25,8 +24,7 @@
         <p><%= build_user_nav_link "安全中心", {controller: 'my/account', action: 'security_center', id: current_user} %></p>
       </div>
     </li>
-    <li><a href="/huiyuanzhongxin_shangchuan.html">社区设置</a></li>
-    <li><a href="">交易历史</a></li>
+    <li><%= build_user_nav_link "社区设置", {controller: 'my/account', action: 'community_set', id: current_user} %></li>
     <li><a href="">推荐奖励</a></li>
     <li><a>我的消息</a>
       <div class="erxian">

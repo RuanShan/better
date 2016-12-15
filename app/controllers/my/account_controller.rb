@@ -107,6 +107,10 @@ module My
       end
     end
 
+    def community_set
+      
+    end
+
     def trade1
       @symbol = Forex.symbols.first
     end

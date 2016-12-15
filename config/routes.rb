@@ -126,6 +126,7 @@ Rails.application.routes.draw do
         get 'drawing'
         get 'transfer'
         get 'invitable_qrcode'
+        get 'community_set'
       end
       member do
 
