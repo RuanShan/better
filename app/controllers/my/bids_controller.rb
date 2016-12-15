@@ -34,13 +34,13 @@ module My
 
       respond_to do |format|
         if @bid.save
-          @bid.complete
           format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
           format.json { render :show, status: :created, location: @bid }
           format.js { render :show, status: :created }
         else
           format.html { render :new }
           format.json { render json: @bid.errors, status: :unprocessable_entity }
+          format.js { render :show, status: :created }
         end
       end
     end

@@ -1,6 +1,4 @@
-<% if @bid.errors.present? %>
-
-<% else %>
+<% if @bid.errors.empty? %>
 <h3>交易详情</h3>
 <div><%= @bid.game_round.instrument_code %> - 投资：<%= @bid.amount %></div>
 <div>如果关闭时为价内期权 <%= @bid.highlow == 1 ? "高于" : "低于" %> <br/>
@@ -11,4 +9,10 @@
 <div> 目前状态:  <br/>
   <%= @bid.human_state %>
 </div>
+
+<% else %>
+<h3>交易详情</h3>
+
+<h4>抱歉，投资失败，资金余额不足！</h3>
+
 <%end %>

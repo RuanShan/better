@@ -6,18 +6,12 @@ class Bid < ApplicationRecord
 
   belongs_to :game_round , required: true
   belongs_to :user, required: true
+  has_one :wallet, as: :originator
 
-  state_machine :status, initial: :pending do
-    # pending: 等待处理
-    # success: 结束
-    # failure:
-    after_transition to: :complete, do: [ :adjust_wallet ]
+  enum state: { pending: 0, win: 1, lose: 4 }
 
-    event :complete do
-      transition pending: :success, if: ->(bid) { bid.valid_to_process? }
-      transition pending: :failure, if: ->(bid) { !bid.valid_to_process? }
-    end
-  end
+  after_create :adjust_wallet
+  validate :has_enough_money
 
   delegate :game, to: :game_round
 
@@ -30,7 +24,7 @@ class Bid < ApplicationRecord
   end
 
   def profit
-    complete? ?   amount*rate : 0;
+    win? ?   amount*rate : 0;
   end
 
   def self.search(search_params, user_id=nil)
@@ -57,6 +51,12 @@ class Bid < ApplicationRecord
   end
 
   def adjust_wallet
-    create_wallet!( user: user, amount: -self.amount, is_bonus: false )
+    create_wallet!( user: user, amount: -self.amount, originator: self, is_bonus: false )
   end
+
+
+  def has_enough_money
+    errors.add(:base, 'Must has enough money') if user.user_life.balance < amount
+  end
+
 end
