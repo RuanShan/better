@@ -1,83 +1,52 @@
-<div id="zishenbody" class="zishenbody forex-adv">
+<div id="zishenbody" class="zishenbody forex-adv forex-wrapper">
   <div id="gaodi" class="gaodi">
       <ul>
+
         <li class="div1" style="background-color: rgb(102, 102, 102);">
-          <a href="#"><h1><%= image_tag "new/jiaoyi/zishen_05.png" %>  高/低</h1></a></li>
-        <li class="div1" style="background-color: rgb(58, 58, 58);"><a href="#1"><h1><%= image_tag "new/jiaoyi/zishen_03.png" %>  高于/低于</h1></a></li>
+          <a href="javascript:void(0)" class=" b-game-type active"  id="game-type-1" data-game-type="1"> <%= image_tag "new/jiaoyi/zishen_05.png" %>高/低</a>
+
+        </li>
+        <li class="div1" style="background-color: rgb(58, 58, 58);">
+          <a href="javascript:void(0)" class="b-game-type" id="game-type-2" data-game-type="2"> <%= image_tag "new/jiaoyi/zishen_03.png" %>高于/低于</a>
+         </li>
       </ul>
   </div>
 
   <div class="zishenti">
       <div class="zishenti_left">
         <div id="zishentileft_top" class="zishentileft_top">
-          <div class="zitop_left">
-            <div class="liangleft">
-              <a> <%= image_tag "new/jiaoyi/zishen_19.png", alt: "热门资产"  %> </a>
-              <a> <%= image_tag "new/jiaoyi/zishen_30.png", alt: "收藏" %> </a>
-
-            </div>
-            <div class="danright">
-              <a> <%= image_tag "new/jiaoyi/zishen_21.png", alt: "查询" %> </a>
-            </div>
-          </div>
-          <div class="zitop_right">
-            <a> <%= image_tag "new/jiaoyi/zishen_10.png", alt: "上一页", class: 'shangyi' %> </a>
+          <div class=" ">
+            <a> <%= image_tag "new/jiaoyi/zishen_10.png", alt: "上一页", class: 'shangyi next-page' %> </a>
 
             <div id="ISL_Cont">
-              <div class="ScrCont">
-                <ul id="List1" class="diyipi">
-                  <%= Forex.symbols.each{|symbol| %>
-                    <li class="div2">
+              <div class="swiper-container swiper-container-currency">
+               <div class="swiper-wrapper" id="List1">
+                  <% Forex.symbols.each{|symbol| %>
+                    <div class="swiper-slide div2">
                         <div class="clearfix">
                           <a id="shouc" ><%= image_tag "new/jiaoyi/zishen_14.png", alt: "search" %></a>
                         </div>
                         <div>
-                          <a href="#21">
+                          <%= link_to page_path( id: "forex_adv", symbol: symbol) do %>
+
                             <%= image_tag "new/jiaoyi/zishen_25.png", alt: "guoqi1" %>
                             <%= image_tag "new/jiaoyi/zishen_27.png", alt: "guoqi2" %>
                             <p> <%= t( "forex.symbol.#{symbol}") %> </p>
-                          </a>
+                          <% end %>
                         </div>
-                    </li>
+                    </div>
                   <% } %>
-                </ul>
+                </div>
               </div>
             </div>
-            <a> <%= image_tag "new/jiaoyi/zishen_199.png", alt: "下一页", class: 'xiayi' %> </a>
-          </div>
-        </div>
-        <div id="zishentileft_down" class="zishentileft_down">
-          <div class="zitop_right1">
-            <a> <%= image_tag "new/jiaoyi/zishen_10.png", alt: "上一页", class: 'shangyi1' %> </a>
-            <div id="ISL_Cont1">
-              <div class="ScrCont">
-                <ul class="dierpi">
-                  <li class="div3"><a href="#31"><span>70%</span><p class="shi">30秒</p><p class="jian">15:09</p></a></li>
-                  <li class="div3"><a href="#32"><span>70%</span><p class="shi">60秒</p><p class="jian">15:10</p></a></li>
-                  <li class="div3"><a href="#33"><span>70%</span><p class="shi">2分钟</p><p class="jian">15:11</p></a></li>
-                  <li class="div3"><a href="#34"><span>70%</span><p class="shi">5分钟</p><p class="jian">15:14</p></a></li>
-                  <li class="div3"><a href="#35"><span>70%</span><p class="shi">今天</p><p class="jian">15:15</p></a></li>
-                  <li class="div3"><a href="#36"><span>70%</span><p class="shi">今天</p><p class="jian">15:20</p></a></li>
-                  <li class="div3"><a href="#37"><span>70%</span><p class="shi">今天</p><p class="jian">15:25</p></a></li>
-                  <li class="div3"><a href="#38"><span>70%</span><p class="shi">今天</p><p class="jian">15:30</p></a></li>
-                  <li class="div3"><a href="#39"><span>70%</span><p class="shi">今天</p><p class="jian">15:35</p></a></li>
-                  <li class="div3"><a href="#30"><span>70%</span><p class="shi">今天</p><p class="jian">15:40</p></a></li>
-
-                  <li class="div3"><a href="#30"><span>70%</span><p class="shi">今天</p><p class="jian">15:40</p></a></li>
-                  <li class="div3"><a href="#30"><span>70%</span><p class="shi">今天</p><p class="jian">15:40</p></a></li>
-                  <li class="div3"><a href="#30"><span>70%</span><p class="shi">今天</p><p class="jian">15:40</p></a></li>
-                  <li class="div3"><a href="#30"><span>70%</span><p class="shi">今天</p><p class="jian">15:40</p></a></li>
-                </ul>
-              </div>
-            </div>
-            <a> <%= image_tag "new/jiaoyi/zishen_199.png", alt: "下一页", class: 'xiayi1' %> </a>
+            <a> <%= image_tag "new/jiaoyi/zishen_199.png", alt: "下一页", class: 'xiayi previous-page' %> </a>
           </div>
         </div>
 
         <div id="kxianti" class="kxianti">
-          <%= content_tag "div","", id: "chart-wrapper", class: "", data: {symbol: @symbol} %>
+          <%= content_tag "div","", id: "advanced-chart-line-#{@symbol}", class: "forex-chart", data: {symbol: @symbol} %>
           <div id="kxiantitop_center" class="kxiantitop_center">
-            <p> <span>瑞士法郎/美元-今天</span></p>
+            <p> <span><%= t( "forex.symbol.#{@symbol}") %>-今天</span></p>
           </div>
 
           <div id="kxianti_top" class="kxianti_top">
@@ -87,11 +56,10 @@
               <%= image_tag "new/jiaoyi/zishen_54.png", alt: "选择图标视图"  %>
               <%= image_tag "new/jiaoyi/zishen_56.png", alt: "选择时间"  %>
               <%= image_tag "new/jiaoyi/zishen_58.png", alt: "指标"  %>
-
             </div>
 
           </div>
-          <div id="kxianti_down" class="kxianti_down">
+          <div id="kxianti_down" class="kxianti_down" style="display:none;">
 
             <div class="hou1" ;="" onclick="showhidediv(&quot;div41&quot;)" style="float:left;"></div>
             <div class="hou2" ;="" onclick="showhidediv(&quot;div42&quot;)" style="float:left;"></div>
@@ -107,69 +75,115 @@
     </div>
 
     <div id="zishenti_right" class="zishenti_right">
-      <div class="zishendenglu">
-        <a> <%= image_tag "new/jiaoyi/zishenqian_03.png", alt: "account" %> </a>
-      </div>
-        <div id="zishentiright_down" class="zishentiright_down">
-          <div class="rightdown_top">
-          <div id="ggaoy" class="ggaoy">
-            <input type="button" id="gaoyu1" value="高">
-            <span id="shouyi7">收益70%</span>
+      <%= render "user_auth_adv" %>
+      <div class="zishentiright_down">
+
+          <div  class=" b-game-round-time-wrapper game-type-1">
+            <div style="margin: 8px 0; ">
+              <span style="color:white;">开始时间 </span>
+                <select id = "game-expiry-box" name="" class="b-game-expiry-box select2" style="">
+                  <option value="1481424300000" selected="">今天 10:45</option>
+                </select>
+            </div>
           </div>
 
-           <div id="ddiy" class="ddiy">
-            <input type="button" id="diyu1" value="低">
-            <span id="shouyi8">收益70%</span>
+          <div class=" b-game-round-time-wrapper game-type-2 " style="display:none">
+            <button class="btn game-short-expiry-tooltip" type="button" >
+              今天<span class="b-game-round-start-at"> 10:48  </span>
+            </button>
+            <div class="btn-group" style="margin: 6px 0 0 0;">
+              <button class="btn   b-expiry-in" type="button"  data-expiry-in="30">30sec</button>
+              <button class="btn   b-expiry-in" type="button"  data-expiry-in="60">60sec</button>
+              <button class="btn   b-expiry-in" type="button"  data-expiry-in="120">2min</button>
+              <button class="btn   b-expiry-in" type="button"  data-expiry-in="300">5min</button>
+            </div>
           </div>
-          <span id="top_span" class="top_span">1.1185</span>
+
+       </div>
+      <% @bid = Bid.new %>
+       <%= simple_form_for(@bid, url: my_bids_path, remote: true) do |f| %>
+       <input class="b-current-expiry-in" type="hidden" value="60">
+
+       <%=  hidden_field_tag "game_round[instrument_code]", @symbol %>
+       <%=  hidden_field_tag "game_round[start_at]"  %>
+       <%=  hidden_field_tag "game_round[period]"  %>
+       <%= f.input "rate", as: :hidden, value: '0.70'   %>
+       <%= f.input "highlow", as: :hidden   %>
+       <%= f.input "last_quote", as: :hidden   %>
+        <div id="zishentiright_down" class="zishentiright_down">
+          <div class="rightdown_top">
+            <a href="javascript:void(0)" class="bid-highlow  b-bid" data-highlow="1">
+              <div id="ggaoy" class="ggaoy">
+                <input type="button" id="gaoyu1" value="高">
+                <span id="shouyi7">收益70%</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="bid-highlow  b-bid" data-highlow="0">
+              <div id="ddiy" class="ddiy">
+               <input type="button" id="diyu1" value="低">
+               <span id="shouyi8">收益70%</span>
+              </div>
+            </a>
+            <%= content_tag('span', '0.0000', class: "b-instrument-last-quote top_span", data:{ symbol: @symbol}) %>
           </div>
           <div class="rightdown_down">
             <div id="r_left" class="r_left">
-              <%= image_tag "new/jiaoyi/zishen_81.png", alt: "account" %>
+              <%= image_tag "new/jiaoyi/zishen_80.png", alt: "highlow is 0", class: 'b-bid-icon b-bid-icon-0' , style: "display:none;"%>
+              <%= image_tag "new/jiaoyi/zishen_81.png", alt: "highlow is 1", class: 'b-bid-icon b-bid-icon-1' %>
             </div>
             <div id="r_right" class="r_right">
               <span class="fuhao">$</span>
-              <input type="text" value="100" id="jiaqina" class="jiaqina">
+              <input type="text" value="100" id="jiaqina" class="jiaqina b-bid-cost">
             </div>
             <div id="butongjia" class="butongjia">
-              <div class="bu10"><input type="button" value="+10"></div>
-              <div class="bu10"><input type="button" value="+25"></div>
-              <div class="bu10"><input type="button" value="+50"></div>
-              <div class="bu10"><input type="button" value="+100"></div>
+              <div class="bu10"><input class="b-bid-more-price" type="button" value="+10"></div>
+              <div class="bu10"><input class="b-bid-more-price" type="button" value="+25"></div>
+              <div class="bu10"><input class="b-bid-more-price" type="button" value="+50"></div>
+              <div class="bu10"><input class="b-bid-more-price" type="button" value="+100"></div>
             </div>
             <div class="dijiaoyi">
-              <input type="button" value="交易">
-              <span>00:00:16</span>
+              <input class="  b-submit-bid " type="button" value="交易">
+              <span class="b-game-round-expiry-countdown" style="color:white;">00:00</span>
+
               <p>剩余时间</p>
             </div>
           </div>
         </div>
+      <% end %>
     </div>
   </div>
 
   <div id="kac">
-       <div class="kaicang">
-      <ul>
-        <li class="div1" style="background-color: rgb(102, 102, 102);"><a href="#3"><h1>开仓头寸</h1></a></li>
-        <li class="div1" style="background-color: rgb(58, 58, 58);"><a href="#4"><h1>以平仓交易</h1></a></li>
-      </ul>
-
-    </div>
     <div class="kaicang1">
-      <table rules="rows">
-        <tbody><tr>
-          <td>交易id</td>
-          <td>交易时间</td>
-          <td>到期时间</td>
-          <td>资产</td>
-          <td>交易期权种类</td>
-          <td>执行</td>
-          <td>当期价格</td>
-          <td>投资</td>
-          <td>收益</td>
-          <td>状态</td>
-          <td>返回</td>
-        </tr>
+      <table class="b-bids" rules="rows">
+        <thead>
+          <tr>
+            <td>交易id</td>
+            <td>交易时间</td>
+            <td>到期时间</td>
+            <td>资产</td>
+            <td>当期价格</td>
+            <td>投资</td>
+            <td>收益</td>
+            <td>状态</td>
+           </tr>
+        </thead>
+        <tbody>
+
+        <% if current_user %>
+          <% current_user.bids.pending.order(created_at: :desc).each{ |bid| %>
+            <tr>
+            <td><%= bid.id %></td>
+            <td><%= bid.display_created_at %> </td>
+            <td><%= bid.game_round.display_end_at %></td>
+            <td><%= bid.game_round.instrument_code %></td>
+             <td><%= bid.last_quote %></td>
+            <td><%= bid.amount %></td>
+            <td><%= bid.profit %></td>
+            <td><%= bid.state %></td>
+            </tr>
+          <% } %>
+        <% end %>
       </tbody></table>
     </div>
     </div>

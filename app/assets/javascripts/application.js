@@ -25,6 +25,7 @@
 //= require ext-min
 //= require better
 //= require jquery.countdown
+//= require swiper.jquery.min
 //= require jquery.simplemodal
 //= require highstock
 //= require forex.base
@@ -82,4 +83,13 @@ $(function(){
   if( $("#chart-wrapper").is('*') ){
     BetterFinancialPanelPlus();
   }
+  if( $(".forex-adv").is('*') ){
+    var swiper = new Swiper('.swiper-container-currency', {
+         nextButton: '.xiayi',
+         prevButton: '.shangyi',
+         slidesPerView: 10,
+         centeredSlides: false,
+         spaceBetween: 1,
+     });
+   }
 })

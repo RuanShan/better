@@ -11,10 +11,10 @@
         <h1>USD ACCOUNT</h1>
         <div class="xinxi_nei">
           <ul>
-              <li><%= image_tag "new/jiaoyi/jiaoyi1_03.gif" %> <span>余额：$10000.00</span></li>
-              <li><%= image_tag "new/jiaoyi/jiaoyi1_12.gif" %>  <span>可用现金：$10000.00</span></li>
-              <li><%= image_tag "new/jiaoyi/jiaoyi1_16.gif" %>  <span>已投资：$0.00</span></li>
-              <li><%= image_tag "new/jiaoyi/jiaoyi1_19.gif" %>  <span>待付金额：$0.00</span></li>
+              <li><%= image_tag "new/jiaoyi/jiaoyi1_03.gif" %> <span>余额：<%= current_user.user_life.balance %></span></li>
+              <li><%= image_tag "new/jiaoyi/jiaoyi1_12.gif" %>  <span>可用现金：<%= current_user.user_life.balance %></span></li>
+              <li><%= image_tag "new/jiaoyi/jiaoyi1_16.gif" %>  <span>已投资：<%= current_user.user_life.bid_amount %></span></li>
+              <li><%= image_tag "new/jiaoyi/jiaoyi1_19.gif" %>  <span>待付金额：0 </span></li>
           </ul>
         </div>
       </div>

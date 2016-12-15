@@ -157,8 +157,16 @@ $(function(){
   if($(".forex-wrapper").is('*')){
     $(".forex-wrapper").each(function(){
       var container = $(this);
+      $("select.b-symbols", container).change(function(){
+        location= location.pathname + '?symbol='+ this.value;
+      })
+
       $(".b-bid", container).click(function(){
-        $("input[name='bid[highlow]']").val( $(this).data('highlow'));
+        var highlow = $(this).data('highlow');
+        $("input[name='bid[highlow]']").val( highlow );
+        $(".b-bid-icon", container).hide();
+        $(".b-bid-icon-"+highlow, container).show();
+
         $(".b-game-form-invoice-wrapper .payout", container).hide();
         $(".b-game-form-invoice-wrapper .invoice", container).show();
       });
@@ -170,8 +178,13 @@ $(function(){
         var v = $(this).val();
         $(".b-bid-money", container).html( format_float( v*(1+0.7), 2 ) + " (70%)");
       });
+      $(".b-bid-more-price", container).click(function(){
+        var more = parseInt( $(this).val() );
+        var cost = parseInt( $(".b-bid-cost", container).val() );
+        $(".b-bid-cost", container).val(  more + cost );
+      });
       $(".b-submit-bid", container).click(function(){
-        if( $("form#reg-form").is('*')){
+        if( $("form#reg-form, .login-form").is('*')){
           alert("请先登录或注册！");
         }else{
           var game = Game.current( container );
@@ -239,7 +252,7 @@ $(function(){
 function format_forex_price( price )
 {
   var digits = get_digit_by_price( price );
-  console.info("price=%s, digist=%s",price, digits);
+  //console.info("price=%s, digist=%s",price, digits);
   return format_float(price, digits);
 }
 

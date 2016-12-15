@@ -1,0 +1,21 @@
+<% if current_user %>
+    <div id="zishentiright_top" class="zishentiright_top">
+        <h1><%= current_user.nickname %>- USD 账户</h1>
+        <ul>
+              <li><span>余额： <%= current_user.user_life.balance %></span></li>
+              <li><span>可用现金：<%= current_user.user_life.balance %></span></li>
+              <li><span>已投资：<%= current_user.user_life.bid_amount %></span></li>
+              <li><span>待付金额：0</span></li>
+              <li class="lijianniu">
+                <%= link_to image_tag("new/jiaoyi/zishen_67.png"), new_my_deposit_path %></li>
+        </ul>
+
+    </div>
+<% else %>
+<div class="zishendenglu">
+  <%= link_to new_user_registration_path do %>
+    <%= image_tag "new/jiaoyi/zishenqian_03.png", alt: "open an account" %>
+  <% end %>
+</div>
+
+<% end %>

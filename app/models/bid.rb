@@ -7,7 +7,7 @@ class Bid < ApplicationRecord
   belongs_to :game_round
   belongs_to :user
 
-  enum state: { pending: 0, success:1, failure:4, unknown:11 }
+  enum state: { pending: 0, complete:1, failure:4, unknown:11 }
 
   delegate :game, to: :game_round
 
@@ -17,6 +17,10 @@ class Bid < ApplicationRecord
 
   def win_lose_amount
     amount*rate
+  end
+
+  def profit
+    complete? ?   amount*rate : 0;
   end
 
   def self.search(search_params, user_id=nil)

@@ -25,7 +25,7 @@
             <div class="one_huobi">
             		<div class="huobi_left" >
                   <% Forex.symbols.each{|symbol| %>
-                    <div ondragstart="drag(event, this)" draggable="true" ondragover="allowDrop(event)" ondrop="drop(event,this)" class="huobi">
+                    <div  class="huobi">
                 			<%= image_tag "new/jiaoyi/jiaoyi1_131.gif" %>
                       <%= link_to content_tag('span', t("forex.symbol.#{symbol}")), page_path( id: 'forex_simple', symbol: symbol) %>
                       <%= content_tag('b', '0.0000', class: "b-instrument-last-quote", data:{ symbol: symbol}) %>
