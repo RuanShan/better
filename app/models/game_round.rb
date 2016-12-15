@@ -17,7 +17,7 @@ class GameRound < ApplicationRecord
   end
 
   def complete_bids
-    bids.each(:complete!)
+    bids.each(&:complete!)
   end
 
   private

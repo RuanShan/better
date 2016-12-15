@@ -6,5 +6,6 @@ FactoryGirl.define do
     amount "9.99"
     rate "9.99"
     state 1
+    last_quote 99999
   end
 end

@@ -1,6 +1,6 @@
 require "redis"
 
-class MaintainGameRoundEveryMinute
+class MaintainGameRound
   attr_accessor :specified_time, :redis
 
   def initialize( specified_time = nil)
@@ -10,7 +10,7 @@ class MaintainGameRoundEveryMinute
   end
 
   def run
-    pending_game_rounds = GameRound.pending.where( ["end_at<=?", specified_time] )
+    pending_game_rounds = GameRound.with_state(:pending).where( ["end_at<=?", specified_time] )
 
     close_pending_game(pending_game_rounds )
 
@@ -33,7 +33,8 @@ class MaintainGameRoundEveryMinute
       Forex.symbols.each{|symbol|
         found = existing_game_rounds.find
         unless found
-          attrs = {instrument_quote: , instrument_code: symbol, start_at: start_at,  period: period, end_at: end_at }
+          quote = get_quote_by_time( symbol, time)
+          attrs = {instrument_quote: quote || 0, instrument_code: symbol, start_at: start_at,  period: period, end_at: end_at }
           GameRound.create!( attrs )
         end
       }
@@ -42,7 +43,13 @@ class MaintainGameRoundEveryMinute
 
 
   def get_quote_by_time( symbol, time)
-    
+
+    var key = ["Z", symbol, time.beginning_of_day.ago( 3600*24 * time.wday ).to_i * 1000].join("_");
+
+
+    closest_quote = redis.zrangebyscore( key, time.to_i*1000, time.advance( seconds: 5 ).to_i * 1000 ).first
 
   end
+
+
 end
