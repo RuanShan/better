@@ -8,7 +8,7 @@ class Bid < ApplicationRecord
   belongs_to :user, required: true
   has_one :wallet, as: :originator
 
-  enum highlow: { high: 1, low: 0 }
+  #enum highlow: { high: 1, low: 0 }
   enum state: { pending: 0, win: 1, lose: 4 }
 
   after_create :adjust_wallet
