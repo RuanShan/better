@@ -24,9 +24,9 @@ class GameRound < ApplicationRecord
 
   def desplay_instrument_quote
     if instrument_code  == "USUSDJPY"
-      instrument_quote/100;
+      instrument_quote*1.0/100;
     else
-      instrument_quote/10000;
+      instrument_quote*1.0/10000;
     end
   end
 
