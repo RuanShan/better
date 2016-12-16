@@ -35,7 +35,7 @@ class MaintainGameRound
         unless GameRound.exists?( instrument_code: symbol, end_at: end_at,  period: period )
           quote = get_quote_by_time( symbol, end_at)
           attrs = {instrument_quote: quote || 0, instrument_code: symbol, start_at: start_at,  period: period, end_at: end_at }
-          GameRound.create!( attrs )
+          GameRound.create!( attrs ).complete
         end
       }
     end
