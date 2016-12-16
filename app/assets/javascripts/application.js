@@ -34,6 +34,7 @@
 //= require new/all
 
 $(function(){
+  $('.calendar').datetimepicker({format: "YYYY-MM-DD"});
   setInterval(time_update, 1000);
   $("#obtainVerifyCode").click(function(){
     if($("#user_phone").length>0){

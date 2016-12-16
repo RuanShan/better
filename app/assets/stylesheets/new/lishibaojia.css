@@ -10,7 +10,7 @@
 }
 .lishichaxun{
 	background:#292929;
-	background-size:50px; 
+	background-size:50px;
 	height: 50px;
 	width: 100%;
 	padding: 5px 50px;
@@ -27,13 +27,18 @@
 .lishichaxun span{
 	line-height: 20px;
 }
+.lishichaxun label{
+	color: white;
+}
+.lishichaxun li{
+	color: black;
+}
 .cxx{
 	width: 80px;
 	background: #e4db98;
 }
 .lishichaxun input{
-	height: 30px;
-	margin-top: 5px;
+	height: 36px;
 	color: #333;
 	border-radius: 5px;
 
@@ -48,7 +53,7 @@
 }
 .lsnei_tou span{
 	float: left;
-	padding: 5px 42px; 
+	padding: 5px 42px;
 	font-size: 14px;
 	color: #d1b15e;
 	font-weight: bold;
@@ -56,7 +61,7 @@
 }
 .lsnei_body table{
 	width: 100%;
-	
+
 }
 .black{
 	background: #000;
@@ -82,6 +87,11 @@
 	width: 100%;
 	overflow: hidden;
 }
+.fanye .pagination{
+		background:white;
+		padding: 0 30px;
+}
+
 .fanye li{
 	float: left;
 	padding: 5px;

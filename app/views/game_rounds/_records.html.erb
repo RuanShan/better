@@ -1,0 +1,33 @@
+<div class="lsnei_tou">
+  <span>资产</span>
+  <span>到期时间(GMT)</span>
+  <span>到期价格</span>
+  <span>Bid</span>
+  <span>Ask</span>
+</div>
+<div class="lsnei_body">
+  <table>
+    <tbody>
+      <%tr_class = "black"%>
+      <% if @game_rounds.empty? %>
+        <tr class="<%=tr_class%>">
+          <td colspan="5">暂无记录</td>
+        <tr>
+      <% else %>
+        <% @game_rounds.each{|gr| %>
+          <tr class="<%=tr_class%>">
+            <td><%= t("forex.symbol.#{gr.instrument_code}")  %></td>
+            <td><%= gr.display_end_at %></td>
+            <td><%= gr.desplay_instrument_quote %></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <%tr_class = tr_class == "black" ? "blue" : "black"%>
+        <% } %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="fanye">
+  <%= will_paginate @game_rounds if @game_rounds.respond_to? :total_pages %>
+</div>

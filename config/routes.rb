@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   mount RuCaptcha::Engine => "/rucaptcha"
 
   resources :games
+  resources :game_rounds
   resources :payment_methods
 
   #会员
