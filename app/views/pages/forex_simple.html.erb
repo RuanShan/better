@@ -108,6 +108,7 @@
 
             		</div>
             </div>
+            <% game_rounds = GameRound.last_round %>
 
             <div class="jiaoyi1biao">
               				<table rules="rows">
@@ -125,9 +126,11 @@
               						<td class="a32"></td>
               						<td class="a18"></td>
               					</tr>
+                        <% game_rounds.each{|gr| %>
               					<tr class="bbiao3">
-              						<td><p>AUD/JPY</p></td>
-              						<td><p>80.422</p></td>
+
+              						<td><p><%= t("forex.symbol.#{gr.instrument_code}")  %>  </p></td>
+              						<td><p><%= gr.desplay_instrument_quote %></p></td>
               						<td><p>70%</p></td>
               						<td><div class="baifenbi">
               							<span class="baifenbi1">30%</span>
@@ -143,233 +146,8 @@
 
               						</div></td>
               					</tr>
-              					<tr class="bbiao3">
-              						<td><p>AUD/JPY</p></td>
-              						<td><p>80.422</p></td>
-              						<td><p>70%</p></td>
-              						<td><div class="baifenbi">
-              							<span class="baifenbi1">30%</span>
-              							<span class="baifenbi2">70%</span>
-              						</div></td>
-              						<td><div id="bodong">
-              							<div id="chi"> </div>
-              							<div id="cheng"> </div>
-              							<div id="huang"> </div>
-              							<div id="lv"> </div>
-              							<div id="qing"> </div>
-              							<div id="lan"> </div>
-
-              						</div></td>
-              					</tr>
-              					<tr class="bbiao3">
-              						<td><p>AUD/JPY</p></td>
-              						<td><p>80.422</p></td>
-              						<td><p>70%</p></td>
-              						<td><div class="baifenbi">
-              							<span class="baifenbi1">30%</span>
-              							<span class="baifenbi2">70%</span>
-              						</div></td>
-              						<td><div id="bodong">
-              							<div id="chi"> </div>
-              							<div id="cheng"> </div>
-              							<div id="huang"> </div>
-              							<div id="lv"> </div>
-              							<div id="qing"> </div>
-              							<div id="lan"> </div>
-
-              						</div></td>
-              					</tr>
-              					<tr class="bbiao3">
-              						<td><p>AUD/JPY</p></td>
-              						<td><p>80.422</p></td>
-              						<td><p>70%</p></td>
-              						<td><div class="baifenbi">
-              							<span class="baifenbi1">30%</span>
-              							<span class="baifenbi2">70%</span>
-              						</div></td>
-              						<td><div id="bodong">
-              							<div id="chi"> </div>
-              							<div id="cheng"> </div>
-              							<div id="huang"> </div>
-              							<div id="lv"> </div>
-              							<div id="qing"> </div>
-              							<div id="lan"> </div>
-
-              						</div></td>
-              					</tr>
-              					<tr class="bbiao2">
-              						<td class="a18">股票</td>
-              						<td class="a18"></td>
-              						<td class="a14"></td>
-              						<td class="a32"></td>
-              						<td class="a18"></td>
-              					</tr>
-              					<tr class="bbiao3">
-              						<td><p>AUD/JPY</p></td>
-              						<td><p>80.422</p></td>
-              						<td><p>70%</p></td>
-              						<td><div class="baifenbi">
-              							<span class="baifenbi1">30%</span>
-              							<span class="baifenbi2">70%</span>
-              						</div></td>
-              						<td><div id="bodong">
-              							<div id="chi"> </div>
-              							<div id="cheng"> </div>
-              							<div id="huang"> </div>
-              							<div id="lv"> </div>
-              							<div id="qing"> </div>
-              							<div id="lan"> </div>
-
-              						</div></td>
-              					</tr>
-              					<tr class="bbiao3">
-              						<td><p>AUD/JPY</p></td>
-              						<td><p>80.422</p></td>
-              						<td><p>70%</p></td>
-              						<td><div class="baifenbi">
-              							<span class="baifenbi1">30%</span>
-              							<span class="baifenbi2">70%</span>
-              						</div></td>
-              						<td><div id="bodong">
-              							<div id="chi"> </div>
-              							<div id="cheng"> </div>
-              							<div id="huang"> </div>
-              							<div id="lv"> </div>
-              							<div id="qing"> </div>
-              							<div id="lan"> </div>
-
-              						</div></td>
-              					</tr>
-              					<tr class="bbiao2">
-              						<td class="a18">商品</td>
-              						<td class="a18"></td>
-              						<td class="a14"></td>
-              						<td class="a32"></td>
-              						<td class="a18"></td>
-              					</tr>
-              					<tr class="bbiao3">
-              						<td><p>AUD/JPY</p></td>
-              						<td><p>80.422</p></td>
-              						<td><p>70%</p></td>
-              						<td><div class="baifenbi">
-              							<span class="baifenbi1">30%</span>
-              							<span class="baifenbi2">70%</span>
-              						</div></td>
-              						<td><div id="bodong">
-              							<div id="chi"> </div>
-              							<div id="cheng"> </div>
-              							<div id="huang"> </div>
-              							<div id="lv"> </div>
-              							<div id="qing"> </div>
-              							<div id="lan"> </div>
-
-              						</div></td>
-              					</tr>
-              					<tr class="bbiao3">
-              						<td><p>AUD/JPY</p></td>
-              						<td><p>80.422</p></td>
-              						<td><p>70%</p></td>
-              						<td><div class="baifenbi">
-              							<span class="baifenbi1">30%</span>
-              							<span class="baifenbi2">70%</span>
-              						</div></td>
-              						<td><div id="bodong">
-              							<div id="chi"> </div>
-              							<div id="cheng"> </div>
-              							<div id="huang"> </div>
-              							<div id="lv"> </div>
-              							<div id="qing"> </div>
-              							<div id="lan"> </div>
-
-              						</div></td>
-              					</tr>
-              					<tr class="bbiao2">
-              						<td class="a18">指数</td>
-              						<td class="a18"></td>
-              						<td class="a14"></td>
-              						<td class="a32"></td>
-              						<td class="a18"></td>
-              					</tr>
-              					<tr class="bbiao3">
-              						<td><p>AUD/JPY</p></td>
-              						<td><p>80.422</p></td>
-              						<td><p>70%</p></td>
-              						<td><div class="baifenbi">
-              							<span class="baifenbi1">30%</span>
-              							<span class="baifenbi2">70%</span>
-              						</div></td>
-              						<td><div id="bodong">
-              							<div id="chi"> </div>
-              							<div id="cheng"> </div>
-              							<div id="huang"> </div>
-              							<div id="lv"> </div>
-              							<div id="qing"> </div>
-              							<div id="lan"> </div>
-
-              						</div></td>
-              					</tr>
-              					<tr class="bbiao3">
-              						<td><p>AUD/JPY</p></td>
-              						<td><p>80.422</p></td>
-              						<td><p>70%</p></td>
-              						<td><div class="baifenbi">
-              							<span class="baifenbi1">30%</span>
-              							<span class="baifenbi2">70%</span>
-              						</div></td>
-              						<td><div id="bodong">
-              							<div id="chi"> </div>
-              							<div id="cheng"> </div>
-              							<div id="huang"> </div>
-              							<div id="lv"> </div>
-              							<div id="qing"> </div>
-              							<div id="lan"> </div>
-
-              						</div></td>
-              					</tr>
-              					<tr class="bbiao3">
-              						<td><p>AUD/JPY</p></td>
-              						<td><p>80.422</p></td>
-              						<td><p>70%</p></td>
-              						<td><div class="baifenbi">
-              							<span class="baifenbi1">30%</span>
-              							<span class="baifenbi2">70%</span>
-              						</div></td>
-              						<td><div id="bodong">
-              							<div id="chi"> </div>
-              							<div id="cheng"> </div>
-              							<div id="huang"> </div>
-              							<div id="lv"> </div>
-              							<div id="qing"> </div>
-              							<div id="lan"> </div>
-
-              						</div></td>
-              					</tr>
-              					<tr class="bbiao3">
-              						<td><p>AUD/JPY</p></td>
-              						<td><p>80.422</p></td>
-              						<td><p>70%</p></td>
-              						<td><div class="baifenbi">
-              							<span class="baifenbi1">30%</span>
-              							<span class="baifenbi2">70%</span>
-              						</div></td>
-              						<td><div id="bodong">
-              							<div id="chi"> </div>
-              							<div id="cheng"> </div>
-              							<div id="huang"> </div>
-              							<div id="lv"> </div>
-              							<div id="qing"> </div>
-              							<div id="lan"> </div>
-
-              						</div></td>
-              					</tr>
-              					<tr class="bbiao3">
-              						<td><p> </p></td>
-              						<td><p> </p></td>
-              						<td><p> </p></td>
-              						<td></td>
-              						<td></td>
-              					</tr>
-
+                        <% } %>
+ 
               				</tbody></table>
             </div>
           </div>

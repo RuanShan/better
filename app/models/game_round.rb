@@ -6,7 +6,7 @@ class GameRound < ApplicationRecord
   has_many :bids
   before_create :set_end_at
 
-  scope :last_round, ->{ with_state(:success).where(['end_at>= ?', DateTime.current.ago(10*60)])}
+  scope :last_round, ->{ with_state(:success).where(['end_at>= ?', DateTime.current.ago(5*60)])}
 
   state_machine :state, initial: :pending do
     # pending: 等待处理
