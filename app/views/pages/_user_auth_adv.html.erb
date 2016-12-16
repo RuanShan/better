@@ -2,9 +2,9 @@
     <div id="zishentiright_top" class="zishentiright_top">
         <h1><%= current_user.nickname %>- USD 账户</h1>
         <ul>
-              <li><span>余额： <%= current_user.user_life.balance %></span></li>
-              <li><span>可用现金：<%= current_user.user_life.balance %></span></li>
-              <li><span>已投资：<%= current_user.user_life.bid_amount %></span></li>
+              <li><span>余额： <%= current_user.life_statis.balance %></span></li>
+              <li><span>可用现金：<%= current_user.life_statis.balance %></span></li>
+              <li><span>已投资：<%= current_user.life_statis.bid_amount %></span></li>
               <li><span>待付金额：0</span></li>
               <li class="lijianniu">
                 <%= link_to image_tag("new/jiaoyi/zishen_67.png"), new_my_deposit_path %></li>
