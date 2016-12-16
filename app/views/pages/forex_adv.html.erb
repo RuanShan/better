@@ -171,7 +171,7 @@
         <tbody>
 
         <% if current_user %>
-          <% current_user.bids.with_status(:pending).order(created_at: :desc).each{ |bid| %>
+          <% current_user.bids.pending.order(created_at: :desc).each{ |bid| %>
             <tr>
             <td><%= bid.id %></td>
             <td><%= bid.display_created_at %> </td>

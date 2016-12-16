@@ -10,13 +10,10 @@ class MaintainGameRound
   end
 
   def run
-    Rails.logger.debug "start run"
     pending_game_rounds = GameRound.with_state(:pending).where( ["end_at<=?", specified_time] )
 
-    Rails.logger.debug "before close"
     close_pending_game(pending_game_rounds )
 
-    Rails.logger.debug "before create"
     create_missing_game_rounds( pending_game_rounds )
   end
 
@@ -29,7 +26,7 @@ class MaintainGameRound
 
   def create_missing_game_rounds( existing_game_rounds )
     # game closed in every 5min
-    if specified_time.minute % 2 == 0
+    if specified_time.minute % 5 == 0
       period = 300
       start_at = self.specified_time.ago( period )
       end_at = self.specified_time
@@ -50,7 +47,7 @@ class MaintainGameRound
     key = ["Z", symbol, time.beginning_of_day.ago( 3600*24 * time.wday ).to_i * 1000].join("_");
 
     closest_quote = redis.zrangebyscore( key, time.to_i*1000, time.advance( seconds: 10 ).to_i * 1000 ).first
-Rails.logger.debug " closest_quote=#{closest_quote.inspect}"
+#Rails.logger.debug " closest_quote=#{closest_quote.inspect}"
     closest_quote.split('_').last  if closest_quote
   end
 

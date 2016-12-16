@@ -22,6 +22,14 @@ class GameRound < ApplicationRecord
     bids.each(&:complete!)
   end
 
+  def desplay_instrument_quote
+    if instrument_code  == "USUSDJPY"
+      instrument_quote/100;
+    else
+      instrument_quote/10000;
+    end
+  end
+
   private
   def set_end_at
     self.end_at = start_at.since( self.period)
