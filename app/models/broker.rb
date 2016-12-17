@@ -1,9 +1,7 @@
 class Broker < MemberBase
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-  #:confirmable, make sure mail setting and mail view is right before uncomment
-         :recoverable, :rememberable, :trackable, :validatable, :lockable
+  #devise :confirmable, make sure mail setting and mail view is right before uncomment
 
   # 添加 日注册，月注册 scope
   #extend BetterDateScope
@@ -44,14 +42,6 @@ class Broker < MemberBase
     locked_at.nil? ? "normal" : "frozen"
   end
 
-  def change_password(password_options)
-    if valid_password? password_options["current_password"]
-      reset_password(password_options["password"],password_options["password_confirmation"] )
-    else
-      errors.add(:current_password, "当前密码不正确")
-    end
-  end
-
   def parent_name
     parent.present? ? parent.real_name : "无"
   end
@@ -71,7 +61,6 @@ class Broker < MemberBase
   def full_members
     User.where("broker_id in (?)", full_brokers.pluck(:id)).all
   end
-
 
   private
 

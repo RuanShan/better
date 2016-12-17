@@ -20,8 +20,7 @@ class User < MemberBase
   enum id_type: [:id_card, :passport]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :lockable
+  devise :invitable
   attr_reader :avatar_remote_url
   has_attached_file :avatar, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
   has_attached_file :id_front, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
@@ -33,24 +32,12 @@ class User < MemberBase
   scope :unlocked, ->{ where( locked_at: nil )}
   scope :locked, ->{ where.not( locked_at: nil )}
 
-
   after_initialize :set_default_role, :if => :new_record?
   after_create :adjust_sale_day, if: :broker
   after_create :add_user_life
 
-  #alias_attribute :nickname, :real_name
-
-
-  attr_reader :money_password, :current_money_password, :broker_number
-  attr_accessor :money_password_confirmation, :password_prefix, :setting_pp, :binding_name, :validate_code
-  validates :money_password, confirmation: true
+  attr_accessor :setting_pp
   validates :pp_question, :pp_answer, presence: true, if: :setting_pp
-  validates :first_name, presence: true
-  validates :last_name, presence: true, if: :binding_name
-  validates :email, uniqueness: true
-  validates :id_number, uniqueness: true, allow_blank: true
-  validates :phone, length: { in: 7..11 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(user) { user.phone.present? or user.binding_name }
-  validates :qq, length: { in: 5..10 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(user) { user.qq.present? }
 
   #for broker list members
   def self.to_csv(options = {})
@@ -86,28 +73,6 @@ class User < MemberBase
 
   def state
     locked_at.nil? ? "normal" : "frozen"
-  end
-
-  def password_prefix
-    "" unless @password_prefix
-  end
-
-  def money_password=(new_password)
-    @money_password = new_password
-    self.encrypted_money_password = password_digest(@money_password) if @money_password.present?
-  end
-
-  def valid_password?(password)
-    Devise::Encryptor.compare(self.class, self.send("encrypted_#{@password_prefix}password"), password)
-  end
-
-  def change_password(password_options)
-    @password_prefix = password_options["money_password"] ? "money_" : ""
-    if valid_password? password_options["current_#{@password_prefix}password"]
-      reset_password(password_options["#{@password_prefix}password"],password_options["#{@password_prefix}password_confirmation"] )
-    else
-      errors.add(:current_password, "当前密码不正确")
-    end
   end
 
   def admin_change_password(password_options, administrator_id)
@@ -188,10 +153,6 @@ class User < MemberBase
     score
   end
 
-  def has_money_password?
-    encrypted_money_password.present?
-  end
-
   def bind_name?
     first_name.present? && last_name.present? && id_number.present?
   end
@@ -207,6 +168,7 @@ class User < MemberBase
   def set_password_protection?
     pp_question.present? && pp_answer.present?
   end
+
   #============================money===========================================
   def center_wallet_balance
     #wallets.master.sum(:amount)
@@ -283,12 +245,6 @@ class User < MemberBase
   end
 
   private
-
-  def reset_password(new_password, new_password_confirmation)
-    self.send "#{@password_prefix}password=", new_password
-    self.send "#{@password_prefix}password_confirmation=", new_password_confirmation
-    save
-  end
 
   def adjust_sale_day
     if broker

@@ -35,13 +35,23 @@ module Agent
     end
 
     def change_password
+      @selected_password = params["selected_password"] ? params["selected_password"] : "login"
       if request.patch?
-        current_broker.change_password(params["broker"])
-        if current_broker.errors.empty?
-          flash[:notice] = t :password_changed
-        end
-        render :change_password
+        @selected_password = params["broker"]["password"] ? "login" : "money"
+        broker_params = @selected_password == "login" ? login_password_params : money_password_params
+        current_broker.change_password(broker_params)
       end
     end
+
+    private
+
+    def login_password_params
+      params.require(:broker).permit(:current_password, :password, :password_confirmation)
+    end
+
+    def money_password_params
+      params.require("broker").permit(:current_money_password, :money_password, :money_password_confirmation)
+    end
+
   end
 end
