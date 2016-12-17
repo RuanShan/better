@@ -108,7 +108,16 @@ module My
     end
 
     def community_set
+      if request.patch?
+        current_user.update_attributes(community_params)
+        if current_user.errors.empty?
+          flash[:notice] = t(:profile_updated)
+        end
+      end
+    end
 
+    def test_nickname
+      @user = User.find_by_nickname(params[:nickname])
     end
 
     def trade1
@@ -148,6 +157,22 @@ module My
 
     def bind_name_params
       params.require(:user).permit(:first_name, :last_name, :id_type, :id_number, :phone, :validate_code)
+    end
+
+    def community_params
+      if params["user"]["avatar_remote_url"].present?
+        if params["user"]["avatar_remote_url"][0,4] != "http"
+          image_parts = params["user"]["avatar_remote_url"].split("/")
+          name,ext = image_parts.last.split(".")
+          new_name = name.split("-").first+"."+ext
+          image_parts[image_parts.length-1] = new_name
+          iurl = request.protocol+request.host_with_port+image_parts.join("/")
+          params["user"]["avatar_remote_url"] = iurl
+        end
+        params.require(:user).permit(:nickname, :avatar, :avatar_remote_url)
+      else
+        params.require(:user).permit(:nickname, :avatar)
+      end
     end
 
   end

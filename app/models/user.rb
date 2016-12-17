@@ -22,7 +22,7 @@ class User < MemberBase
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
-
+  attr_reader :avatar_remote_url
   has_attached_file :avatar, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
   has_attached_file :id_front, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
   has_attached_file :id_back, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
@@ -38,7 +38,7 @@ class User < MemberBase
   after_create :adjust_sale_day, if: :broker
   after_create :add_user_life
 
-  alias_attribute :nickname, :real_name
+  #alias_attribute :nickname, :real_name
 
 
   attr_reader :money_password, :current_money_password, :broker_number
@@ -66,6 +66,22 @@ class User < MemberBase
 
   def set_default_role
     self.role ||= :user
+  end
+
+  def avatar_remote_url=(url_value)
+    self.avatar = url_value
+    # Assuming url_value is http://example.com/photos/face.png
+    # avatar_file_name == "face.png"
+    # avatar_content_type == "image/png"
+    @avatar_remote_url = url_value
+  end
+
+  def avatar_url
+    avatar.present? ? avatar.url : "new/noimages/toux_04.gif"
+  end
+
+  def avatar_upload_url
+    avatar.present? ? avatar.url : "new/default.png"
   end
 
   def state

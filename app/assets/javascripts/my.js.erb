@@ -32,7 +32,54 @@ $(function () {
 	  });
   }
 
+  $(".mingzijian").click(function(){
+    var nickname = $("#user_nickname").val();
+    $.ajax({url:'/my/account/test_nickname',
+      type:'POST',
+      data:{
+        nickname: nickname
+      }
+    })
+  });
+
+  $(".gongzhongduan2 img").click(function(){
+    var image_url = $(this).attr('src');
+    $("#avatar").attr("src", image_url);
+    $("#user_avatar_remote_url").val(image_url);
+  });
+
 });
+
+function preview_avatar(file){
+  var MAXWIDTH  = 80;
+  var MAXHEIGHT = 80;
+  if (file.files && file.files[0])
+  {
+    var img = document.getElementById('avatar');
+    img.onload = function(){
+      var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+      img.width  =  rect.width;
+      img.height =  rect.height;
+      img.style.marginTop = rect.top+'px';
+    }
+    var reader = new FileReader();
+    reader.onload = function(evt){img.src = evt.target.result;}
+    reader.readAsDataURL(file.files[0]);
+    $("#user_avatar_remote_url").val("");
+  }
+  else //兼容IE
+  {
+    var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+    file.select();
+    var src = document.selection.createRange().text;
+    var img = document.getElementById('avatar');
+    img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+    var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+    status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+    div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+  }
+
+}
 
 function select_bank(bank_id, user_bank_json){
   var user_bank = $.parseJSON(user_bank_json);

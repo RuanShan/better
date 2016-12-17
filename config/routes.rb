@@ -127,13 +127,13 @@ Rails.application.routes.draw do
         get 'drawing'
         get 'transfer'
         get 'invitable_qrcode'
-        get 'community_set'
+        post 'test_nickname'
       end
       member do
-
         match 'change_password', via: [:get, :patch]
         match 'change_profile', via: [:get, :patch]
         match 'update_profile', via: [:patch]
+        match 'community_set', via: [:get, :patch]
         get 'security_center'
         match 'set_email', via: [:get, :patch]
         match 'set_password_protection', via: [:get, :patch]

@@ -1,22 +1,39 @@
-<form>
-   <table>
-     <tbody><tr>
-       <td class="gongzhongduan">公众名字：</td>
-       <td><input class="gongzhongmingzi" type="text"><input value="检测" class="mingzijian" type="button"></td>
-     </tr>
-     <tr>
-       <td class="gongzhongduan1">公众头像：</td>
-       <td><div class="touxiangbg"><input type="file"></div><img src="images/toujingshi.png" class="toujingshi"></td>
-       </tr>
-       <tr>
-       <td class="gongzhongduan1"> </td>
-       <td><div class="gongzhongduan2">
-        <img src="images/touxiang1.jpg"><img src="images/touxiang2.jpg"><img src="images/touxiang3.jpg"><img src="images/touxiang4.jpg"><img src="images/touxiang5.jpg">
-        <img src="images/touxiang6.jpg"><img src="images/touxiang7.jpg"><img src="images/touxiang8.jpg"><img src="images/touxiang9.jpg"><img src="images/touxiang10.jpg">
-        <img src="images/touxiang1.jpg"><img src="images/touxiang2.jpg"><img src="images/touxiang3.jpg"><img src="images/touxiang4.jpg"><img src="images/touxiang5.jpg">
-        <img src="images/touxiang6.jpg"><img src="images/touxiang7.jpg"><img src="images/touxiang8.jpg"><img src="images/touxiang9.jpg"><img src="images/touxiang10.jpg">
-      </div></td>
-       </tr>
-   </tbody></table>
-   <input value="上传" class="txan" style="float: left !important;margin-left: 200px;" type="button">
-</form>
+<%= better_form_for(current_user, :url=>{:action=>"community_set"}) do |f| %>
+  <%= f.error_notification %>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gongzhongduan">公众名字：</td>
+        <td>
+          <%= f.input :nickname, label: false, as:"string", input_html:{class:"gongzhongmingzi"} %>
+          <input value="检测" class="mingzijian" type="button">
+          <div id="test_result"></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="gongzhongduan1">公众头像：</td>
+        <td>
+          <div class="touxiangbg">
+            <%= f.input :avatar_remote_url, label: false, as:"hidden"%>
+            <%=image_tag current_user.avatar_upload_url, id:'avatar', onclick:"$('#user_avatar').click();", width:"80", height:"80" %>
+            <%= f.input :avatar, label: false, as:"file", input_html: {style:"margin:0;height:1;width:1;", onchange:"preview_avatar(this)"} %>
+          </div>
+          <%=image_tag "new/toujingshi.png", size:"", class:"toujingshi" %>
+        </td>
+      </tr>
+      <tr>
+        <td class="gongzhongduan1"> </td>
+        <td>
+          <div class="gongzhongduan2">
+            <%=image_tag "new/touxiang1.jpg"%><%=image_tag "new/touxiang2.jpg"%>
+            <%=image_tag "new/touxiang3.jpg"%><%=image_tag "new/touxiang4.jpg"%>
+            <%=image_tag "new/touxiang5.jpg"%><%=image_tag "new/touxiang6.jpg"%>
+            <%=image_tag "new/touxiang7.jpg"%><%=image_tag "new/touxiang8.jpg"%>
+            <%=image_tag "new/touxiang9.jpg"%><%=image_tag "new/touxiang10.jpg"%>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <input value="上传" class="txan" style="float: left !important;margin-left: 200px;" type="submit">
+<% end %>

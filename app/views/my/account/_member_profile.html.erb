@@ -1,7 +1,9 @@
 <div class="huiyuanbody">
   <div class="hybody_top">
     <div class="hbtop_left">
-      <%=image_tag "new/noimages/toux_04.gif", class:"touxiangss"%>
+      <%=link_to community_set_my_account_path(current_user) do %>
+        <%=image_tag current_user.avatar_url, class:"touxiangss"%>
+      <%end%>
       <h2><%= current_user.nickname %></h2>
       <div><%=image_tag "new/noimages/jidui_11.gif", class:"dengjitiao"%> </div>
       <div class="dengji"></div>

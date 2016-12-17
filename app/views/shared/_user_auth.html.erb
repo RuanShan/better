@@ -15,7 +15,7 @@
      <%= link_to new_user_registration_path, target:"_blank", class: 'btn02' do%>
        免费<br>开户
      <% end %>
-     
+
      <div class="login-msg"></div>
   </div>
 <% else %>
@@ -50,7 +50,7 @@
         </div>
       </div>
       <div class="after_right">
-        <%=image_tag "new/noimages/toux_04.gif"%>
+        <%=image_tag current_user.avatar_url%>
       </div>
     </div>
 <% end %>

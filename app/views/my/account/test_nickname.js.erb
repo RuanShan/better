@@ -1,0 +1,5 @@
+<% if @user.present? %>
+  $("#test_result").html("名字已被使用");
+<% else %>
+  $("#test_result").html("恭喜，名字可用");
+<% end %>
