@@ -44,7 +44,7 @@ class User < MemberBase
     CSV.generate(options) do |csv|
       csv << ["用户名/ID", "注册时间", "用户类型", "状态"]
       all.each do |user|
-        values = [user.nickname, user.display_created_at, user.role, user.state]
+        values = [user.real_name, user.display_created_at, user.role, user.state]
         csv << values
       end
     end

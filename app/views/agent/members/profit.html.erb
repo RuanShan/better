@@ -24,7 +24,7 @@
       <tbody>
         <% @member_profit_summaries.each do |member_profit| %>
           <tr>
-            <td class=""><%= member_profit.user.nickname %></td>
+            <td class=""><%= member_profit.user.display_name %></td>
             <td class=""><%= member_profit.user.display_created_at %></td>
             <td class=""><%= t member_profit.user.state.to_sym %></td>
             <td class=""><%= member_profit.display_deposit_amount %></td>

@@ -40,9 +40,9 @@
       <tbody>
         <% @users.each do |user| %>
           <tr>
-            <td><%= user.nickname %></td>
+            <td><%= user.display_name %></td>
             <td><%= user.display_created_at %></td>
-            <td><%= user.parent.nickname %></td>
+            <td><%= user.parent.display_name %></td>
             <td><%= user.depth - @current_seller.depth  %></td>
             <td><%= user.type %></td>
             <td><%= t user.state %></td>

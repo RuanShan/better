@@ -7,6 +7,7 @@ class Sms
   validate :send_at_validation, if: :send_at
 
   def initialize(attributes={})
+    self.send_at = DateTime.current
     self.code = rand(999999).to_s
     super
   end
@@ -27,13 +28,21 @@ class Sms
   end
 
   def verify_sign_up_sms( some_phone, some_code )
-    unless phone == some_phone.to_s
-      errors.add(:phone, "必须使用发送验证码的电话号码")
+    if send_at.present?
+      if code.present?
+        unless phone == some_phone.to_s
+          errors.add(:phone, "必须使用发送验证码的电话号码")
+        end
+        unless code == some_code.to_s
+          errors.add(:validate_code, "验证码不正确")
+        end
+        send_at_validation
+      else
+        errors.add(:validate_code, "请输入验证码")
+      end
+    else
+      errors.add(:validate_code, "请发送验证码")
     end
-    unless code == some_code.to_s
-      errors.add(:validate_code, "验证码不正确")
-    end
-    send_at_validation
     errors.empty?
   end
 

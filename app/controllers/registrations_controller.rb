@@ -13,43 +13,47 @@ class RegistrationsController < DeviseInvitable::RegistrationsController
     @broker = get_broker_by_broker_number
     @parent = get_parent_by_inviter_number
 
-      permitted_params = sign_up_params
-      permitted_params[:parent] = @parent
-      permitted_params[:broker] = @broker || (@parent ? @parent.broker : nil)
-      permitted_params[:type] = "User"
-      build_resource(permitted_params)
-
-          resource.save
-          logger.debug "resource1 = #{resource.errors.inspect}"
-          yield resource if block_given?
-          if resource.persisted?
-            if resource.active_for_authentication?
-              set_flash_message! :notice, :signed_up
-              sign_up(resource_name, resource)
-              if request.xhr?
-                render :js => "window.location = '#{after_sign_up_path_for(resource)}';"
-              else
-                respond_with resource, location: after_sign_up_path_for(resource)
-              end
-            else
-              logger.debug "resource = #{resource.inspect}"
-              set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
-              expire_data_after_sign_in!
-              if request.xhr?
-                render :js => "window.location = '#{after_inactive_sign_up_path_for(resource)}';"
-              else
-                respond_with resource, location: after_inactive_sign_up_path_for(resource)
-              end
-            end
-          else
-            clean_up_passwords resource
-            set_minimum_password_length
-            if request.xhr?
-              render 'shared/partials', locals:{ partial_hash: {"#sign_up_block"=>"sign_up"} }
-            else
-              respond_with resource
-            end
-          end
+    permitted_params = sign_up_params
+    permitted_params[:parent] = @parent
+    permitted_params[:broker] = @broker || (@parent ? @parent.broker : nil)
+    permitted_params[:type] = "User"
+    build_resource(permitted_params)
+    resource.save
+    unless @sms.errors.empty?
+      @sms.errors.each{|key, value|
+        resource.errors.add(key, value)
+      }
+    end
+    logger.debug "resource1 = #{resource.errors.inspect}"
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        if request.xhr?
+          render :js => "window.location = '#{after_sign_up_path_for(resource)}';"
+        else
+          respond_with resource, location: after_sign_up_path_for(resource)
+        end
+      else
+        logger.debug "resource = #{resource.inspect}"
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        if request.xhr?
+          render :js => "window.location = '#{after_inactive_sign_up_path_for(resource)}';"
+        else
+          respond_with resource, location: after_inactive_sign_up_path_for(resource)
+        end
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      if request.xhr?
+        render 'shared/partials', locals:{ partial_hash: {"#sign_up_block"=>"sign_up"} }
+      else
+        respond_with resource
+      end
+    end
 
 #      send_code = params["send_code"].to_i
 #      code_options = get_code_options
@@ -125,20 +129,11 @@ class RegistrationsController < DeviseInvitable::RegistrationsController
 
   def verify_sign_up_sms
     permitted_params = sign_up_params
-    serialized_sms = session[:sign_up_sms]||{}
+    serialized_sms = session[:sms]||{}
     # sms serialized as json in session, it is string key hash here
-    sms = Sms.new( phone: serialized_sms['phone'], code: serialized_sms['code'], send_at: serialized_sms['send_at'])
-Rails.logger.debug " sms = #{sms.inspect}, serialized_sms=#{serialized_sms.inspect}"
-    if sms
-      sms.verify_sign_up_sms( permitted_params[:phone],permitted_params[:code])
-    else
-      flash[:notice] = "验证码错误"
-      if request.xhr?
-        render :js => "window.location = '#{root_path}';"
-      else
-        redirect_to root_path
-      end
-    end
+    @sms = Sms.new( phone: serialized_sms['phone'], code: serialized_sms['code'], send_at: serialized_sms['send_at'])
+Rails.logger.debug " @sms = #{@sms.inspect}, serialized_sms=#{serialized_sms.inspect}"
+    @sms.verify_sign_up_sms( permitted_params[:phone],permitted_params[:code])
   end
 
   def get_code_options

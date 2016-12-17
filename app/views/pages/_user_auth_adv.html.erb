@@ -1,6 +1,6 @@
 <% if current_user %>
     <div id="zishentiright_top" class="zishentiright_top">
-        <h1><%= current_user.nickname %>- USD 账户</h1>
+        <h1><%= current_user.display_name %>- USD 账户</h1>
         <ul>
               <li><span>余额： <%= current_user.life_statis.balance %></span></li>
               <li><span>可用现金：<%= current_user.life_statis.balance %></span></li>

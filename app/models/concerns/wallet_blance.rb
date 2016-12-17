@@ -46,5 +46,18 @@ module WalletBlance
     drawing_sum + balance - deposit_sum
   end
 
+  #可用现金
+  def net_cash
+    balance > delta_cash ? delta_cash : 0;
+  end
+
+  #可用赠金
+  def net_bonus
+    balance - delta_cash
+  end
+
+  def delta_cash
+    deposit_sum - drawing_sum
+  end
 
 end

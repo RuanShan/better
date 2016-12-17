@@ -7,16 +7,16 @@
 	<div class="shou_down">
 		<table class="table">
 			<tbody><tr>
-				<td>余额</td><td> <%= @user_life.balance %></td>
+				<td>余额</td><td> <%= current_user.wallet_balance %></td>
 			</tr>
 			<tr>
-				<td>可用现金</td><td> <%= @user_life.net_cash  %> </td>
+				<td>可用现金</td><td> <%= current_user.net_cash  %> </td>
 			</tr>
 			<tr>
-				<td>可用赠金</td><td> <%= @user_life.net_bonus %> </td>
+				<td>可用赠金</td><td> <%= current_user.net_bonus %> </td>
 			</tr>
 			<tr>
-				<td>已投资</td><td> <%= @user_life.bid_amount %> </td>
+				<td>已投资</td><td> <%= current_user.bid_sum %> </td>
 			</tr>
 		</tbody>
     </table>

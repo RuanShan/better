@@ -55,6 +55,9 @@ class MemberBase < ApplicationRecord
 
   delegate :energetic_member_count, :clink_visits, :member_count, to: :sale_cmonth, allow_nil: true
 
+  def display_name
+    nickname.present? ? nickname : real_name
+  end
 
   def real_name
     country_code == "CN" ? "#{last_name}#{first_name}" : "#{first_name} #{last_name}"
