@@ -91,12 +91,12 @@
 
       </div>
       <div class="denglu">
-        <a href=""><%=image_tag "new/zc_03.gif" %></a>
-        <a href=""><%=image_tag "new/zc_05.gif" %></a>
+        <a href="http://www.ballmerasia.com/pages/forex_simple"><%=image_tag "new/zc_03.gif" %></a>
+        <a href="" onclick="$('#mobile_trade_qrcode').show();"><%=image_tag "new/zc_05.gif" %></a>
       </div>
       <div style="text-align:left;clear:both"><br></div>
     </div>
-
+    <div id="mobile_trade_qrcode" class="qrcode" style="display:none;right: 0px; position: absolute; height: 300px; width: 300px;"></div>
   <%unless current_user%>
     <div id="sign_up_block" class="bodyernei_zhong" style="">
       <%=render :partial=>"/devise/registrations/sign_up"%>

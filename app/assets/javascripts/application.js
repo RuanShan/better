@@ -36,6 +36,39 @@
 $(function(){
   $('.calendar').datetimepicker({format: "YYYY-MM-DD"});
   setInterval(time_update, 1000);
+
+  $("#mobile_trade_qrcode").click(function(){
+    $(this).hide();
+  })
+  if( $('#mobile_trade_qrcode').is('*'))
+  {
+    jQuery('#mobile_trade_qrcode').empty().qrcode({
+      text: "http://www.ballmerasia.com/info/templets/default/shouji_index.htm",
+      minVersion: 5,
+      //error correction level: must be 'H', or we can't scan
+      ecLevel: 'H',
+      //empty space
+      quiet: 2,
+      radius: 0.5,
+      size: 300,
+      //add background, color or image
+      background: "#ffffff",
+      //background: document.getElementById("code_img"),
+      //add label, ecLevel: 'H', minVersion: 5+ work, label too large may not work
+      mode: 2,
+      label: 'Ballmer Asia',
+      fontname: 'sans',
+      fontcolor: '#FF9818',
+      //add image
+      //mode: 4,
+      //image: document.getElementById("code_img"),
+      //label or img size, position
+      mSize: 0.1,
+      mPosX: 0.5,
+      mPosY: 0.5
+    });
+  }
+
   $("#obtainVerifyCode").click(function(){
     if($("#user_phone").length>0){
       var phone = $("#user_phone").val();
