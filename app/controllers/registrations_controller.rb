@@ -132,8 +132,7 @@ class RegistrationsController < DeviseInvitable::RegistrationsController
     serialized_sms = session[:sms]||{}
     # sms serialized as json in session, it is string key hash here
     @sms = Sms.new( phone: serialized_sms['phone'], code: serialized_sms['code'], send_at: serialized_sms['send_at'])
-Rails.logger.debug " @sms = #{@sms.inspect}, serialized_sms=#{serialized_sms.inspect}"
-    @sms.verify_sign_up_sms( permitted_params[:phone],permitted_params[:code])
+    @sms.verify_sign_up_sms( permitted_params['phone'],permitted_params['validate_code'])
   end
 
   def get_code_options

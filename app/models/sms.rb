@@ -33,7 +33,8 @@ class Sms
         unless phone == some_phone.to_s
           errors.add(:phone, "必须使用发送验证码的电话号码")
         end
-        unless code == some_code.to_s
+        Rails.logger.debug "code=#{code},some_code=#{some_code}"
+        unless code.to_s == some_code.to_s
           errors.add(:validate_code, "验证码不正确")
         end
         send_at_validation
