@@ -2,6 +2,7 @@ class GameRoundsController < ApplicationController
   def index
     @page = params["page"]
     @end_date = search_params[:end_date]
+    @end_time = search_params[:end_time]
     #@state = search_params[:state]
     #@instrument_code = search_params[:instrument_code]
     @game_rounds = GameRound.search(search_params).paginate(:page => @page)
@@ -11,7 +12,7 @@ class GameRoundsController < ApplicationController
 
   def search_params
     #params.permit(:end_date, :end_time, :state, :instrument_code)
-    params.permit(:end_date)
+    params.permit(:end_date, :end_time)
   end
 
 end

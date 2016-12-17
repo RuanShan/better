@@ -35,6 +35,10 @@
 
 $(function(){
   $('.calendar').datetimepicker({format: "YYYY-MM-DD"});
+  $('.time_calendar').datetimepicker({
+    format: "HH:mm"
+
+  });
   setInterval(time_update, 1000);
 
   $("#mobile_trade_qrcode").click(function(){

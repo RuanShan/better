@@ -22,10 +22,16 @@ class GameRound < ApplicationRecord
 
   def self.search(search_params)
     if search_params.present?
-      search_conditions = "game_rounds.end_at>? and game_rounds.end_at<?"
-      search_cvalues = [(search_params["end_date"]+" 00:00:00").to_time(:utc),
-      (search_params["end_date"]+" 23:59:59").to_time(:utc)]
-      sconditions = [search_conditions,search_cvalues].flatten
+      if search_params["end_date"].present?
+        time_start = search_params['end_time'].present? ? search_params['end_time'] : "00:00"
+        time_end = search_params['end_time'].present? ? search_params['end_time'] : "23:59"
+        search_conditions = "game_rounds.end_at>=? and game_rounds.end_at<=?"
+        search_cvalues = [(search_params["end_date"]+" #{time_start}:00").to_time(:utc),
+        (search_params["end_date"]+" #{time_end}:59").to_time(:utc)]
+        sconditions = [search_conditions,search_cvalues].flatten
+      else
+        sconditions = "1"
+      end
     else
       sconditions = "1"
     end

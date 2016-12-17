@@ -1,6 +1,6 @@
 <%
-@end_date ||= ""
-@platform ||= "1"
+  @end_date ||= ""
+  @end_time ||= ""
 %>
 <div class="lishibaojiabody">
   <div class="lishibodynei">
@@ -9,6 +9,10 @@
         <div class="form-group">
           <label for="end_date">日期:</label>
           <%=calendar "end_date", @end_date%>
+        </div>
+        <div class="form-group">
+          <label for="end_time">时间:</label>
+          <%=calendar "end_time", @end_time, "time_calendar"%>
         </div>
         <div class="form-group">
           <%=submit_tag "查询", class:"form-control cxx" %>

@@ -22,8 +22,9 @@ module ApplicationHelper
   end
 
   def calendar(text_id, value, calendar_class="calendar")
+    icon = calendar_class=="time_calendar" ? "clock-o" : "calendar"
     calendar_text = text_field_tag(text_id, value, class:'form-control', size:10)
-    calendar_span = content_tag(:span, content_tag(:span, "", class:'fa fa-calendar'), class:'input-group-addon')
+    calendar_span = content_tag(:span, content_tag(:span, "", class:"fa fa-#{icon}"), class:'input-group-addon')
     content_tag(:div, calendar_text+calendar_span, class:"#{calendar_class} input-group date")
   end
 
