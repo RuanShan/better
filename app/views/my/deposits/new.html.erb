@@ -1,47 +1,15 @@
-<%  deposit = @deposit %>
-  <div class="anquan_img"><%=image_tag "new/noimages/chongzhi_03.gif"%><hr></div>
-  <div class="chongzhi_top">
-      <a href="#home" role="tab" data-toggle="tab"><span>在线支付</span></a>
-      <a href="#profile" role="tab" data-toggle="tab"><span>银行转账</span></a>
-      <a href="#messages" role="tab" data-toggle="tab"><span>微信支付</span></a>
-    <p>说明：支付最低限额：RMB50.00元，支付最高限额RMB50.000.00元</p>
-    <hr>
-  </div>
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active zxzhifu" id="home">
-      <span>请选择支付方式：</span><br><br>
-      <%= simple_form_for(deposit, url: my_deposits_path ) do |f| %>
-        <%= f.input :payment_method_id, input_html: { value: 1 }, as: :hidden %>
-        <%= render partial: "payment_methods/method_alipay_bank" %>
-
-        <%= f.input :amount, label: "充值全额", as:"string", placeholder: "请输入提现金额", wrapper_html: { class: 'zhifuzuo' }, input_html: { class: 'zijin' } %>
-        <%= f.input :promotion_number, label: "活动代码", as:"string", placeholder: "未参加活动不用填写", wrapper_html: { class: 'zhifuyou' }, input_html: { class: 'zijin' } %>
-        <hr>
-        <%= f.submit "下一步", class:"txan"  %>
-      <% end %>
-    </div>
-
-    <div role="tabpanel" class="tab-pane zxzhifu" id="profile">
-      <span>请选择转账银行：</span><br><br>
-      <%= simple_form_for(deposit, url: my_deposits_path) do |f| %>
-       <%= f.input :payment_method_id, input_html: { value: 2 }, as: :hidden %>
-        <%= render partial: "payment_methods/method_bank_transfer" %>
-        <%= f.input :amount, label: "充值全额", as:"string", placeholder: "请输入提现金额", wrapper_html: { class: 'zhifuzuo' }, input_html: { class: 'zijin' } %>
-        <%= f.input :promotion_number, label: "活动代码", as:"string", placeholder: "未参加活动不用填写", wrapper_html: { class: 'zhifuyou' }, input_html: { class: 'zijin' } %>
-        <hr>
-        <%= f.submit "下一步", class:"txan"  %>
-      <% end %>
-    </div>
-
-    <div role="tabpanel" class="tab-pane zxzhifu" id="messages">
-      <%= simple_form_for(deposit, url: my_deposits_path) do |f| %>
-       <%= f.input :payment_method_id, input_html: { value: 3 }, as: :hidden %>
-        <%= render partial: "payment_methods/method_weixin" %>
-        <%= f.input :amount, label: "充值全额", as:"string", placeholder: "请输入提现金额", wrapper_html: { class: 'zhifuzuo' }, input_html: { class: 'zijin' } %>
-        <%= f.input :promotion_number, label: "活动代码", as:"string", placeholder: "未参加活动不用填写", wrapper_html: { class: 'zhifuyou' }, input_html: { class: 'zijin' } %>
-        <hr>
-        <%= f.submit "下一步", class:"txan"  %>
-      <% end %>
-    </div>
-
-  </div>
+<div class="anquan_img">
+  <%=link_to domestic_new_my_deposits_path do %>
+    <%=image_tag "new/noimages/guoneiwai_03.jpg", style:"float:left;width: 40%;"%>
+  <%end%>
+  <%=link_to foreign_new_my_deposits_path do %>
+    <%=image_tag "new/noimages/guoneiwai_05.jpg", style:"width: 48%;"%>
+  <%end%>
+  <hr style="clear:both">
+</div>
+<div class="chongzhi_top">
+  <p style="font-weight:bold;color:#8f1616;font-family:微软雅黑;font-size:16px;">
+    为确保客户账户资金安全，首次出金的客户，第三方托管银行将会审核您的个人资料，以确保是您本人操作。请到"个人中心"上传身份证和银行卡的正反面照片。
+    <%=link_to "进入个人中心", my_account_index_path, style:"color:#034890"  %>
+  </p>
+</div>

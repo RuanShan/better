@@ -17,6 +17,14 @@ module My
 
     # GET /deposits/new
     def new
+    end
+
+    def domestic_new
+      @user = current_user
+      @deposit = Deposit.new
+    end
+
+    def foreign_new
       @user = current_user
       @deposit = Deposit.new
     end

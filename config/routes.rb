@@ -147,7 +147,11 @@ Rails.application.routes.draw do
     end
 
     resources :deposits do
-      get 'search', on: :collection
+      collection do
+        get 'search'
+        get 'domestic_new'
+        get 'foreign_new'
+      end
     end
 
     resources :messages do
