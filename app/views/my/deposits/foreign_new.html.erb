@@ -3,10 +3,16 @@
   <hr>
 </div>
 <div class="chongzhi_top">
-    <span>银行电汇</span>
-    <span>国际信用卡</span>
+  <a href="#home" role="tab" data-toggle="tab"><span>银行电汇</span></a>
+  <a href="#profile" role="tab" data-toggle="tab"><span>国际信用卡</span></a>
   <p>说明：支付最低限额：RMB50.00元，支付最高限额RMB50.000.00元</p>
 </div>
-<div class="chongzhinei">
-  <%=image_tag "new/noimages/guochong_08.png"%>
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active chongzhinei" id="home">
+    <%=image_tag "new/noimages/guochong_07.gif"%>
+  </div>
+
+  <div role="tabpanel" class="tab-pane chongzhinei" id="profile">
+    <%=image_tag "new/noimages/guochong_08.png"%>
+  </div>
 </div>
