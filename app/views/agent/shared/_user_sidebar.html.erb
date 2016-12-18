@@ -1,7 +1,8 @@
 <div class="dailileft_top">
   <%=image_tag "new/dailiimg/biaoge_18.gif", class: "topimg"%>
   <div class="toptime">
-    <h1><%= DateTime.current.to_date.to_s %></h1><h1>星期四</h1>
+    <h1><%= DateTime.current.to_date.to_s %></h1>
+    <h1><%= t(:"date.day_names")[DateTime.current.wday] %></h1>
   </div>
 </div>
 <div class="dailileft_down">
