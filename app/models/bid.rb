@@ -21,11 +21,11 @@ class Bid < ApplicationRecord
   end
 
   def win_lose_amount
-    amount*rate
+    (amount.nil? or rate.nil?) ? 0 : amount*rate
   end
 
   def profit
-    win? ?   amount*rate : 0;
+    win? ?   win_lose_amount : 0;
   end
 
   def self.search(search_params, user_id=nil)
