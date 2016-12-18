@@ -17,7 +17,7 @@ class Bid < ApplicationRecord
   delegate :game, to: :game_round
 
   def platform
-    game.name
+    game.nil? ? "" : game.name
   end
 
   def win_lose_amount
