@@ -126,6 +126,7 @@ Rails.application.routes.draw do
         get 'deposit'
         get 'drawing'
         get 'transfer'
+        get 'reward'
         get 'invitable_qrcode'
         post 'test_nickname'
       end

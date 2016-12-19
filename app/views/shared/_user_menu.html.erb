@@ -25,7 +25,7 @@
       </div>
     </li>
     <li><%= build_user_nav_link "社区设置", {controller: 'my/account', action: 'community_set', id: current_user} %></li>
-    <li><a href="">推荐奖励</a></li>
+    <li><%= build_user_nav_link "推荐奖励", {controller: 'my/account', action: 'reward', id: current_user} %></li>
     <li><a>我的消息</a>
       <div class="erxian">
         <p><%= build_user_nav_link "系统通知", {controller: 'my/messages'} %></p>
