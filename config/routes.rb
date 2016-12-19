@@ -109,10 +109,10 @@ Rails.application.routes.draw do
 
     resources :deposits
     get '/page_broker', to: 'welcome#page_broker'
-    get '/future', to: 'welcome#future'
     get '/product', to: 'welcome#product'
     get '/commission', to: 'welcome#commission'
     get '/clause', to: 'welcome#clause'
+	get '/activity', to: 'welcome#activity'
     get '/(:number)', to: 'welcome#index', as: :root
   end
 
