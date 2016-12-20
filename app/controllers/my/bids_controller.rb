@@ -31,9 +31,10 @@ module My
 
       @bid = current_user.bids.build(bid_params)
       @bid.game_round = @game_round
-
+      simulator = params["simulator"] && params["simulator"] == "1" ? true : false
+      ssession = simulator ? session : nil
       respond_to do |format|
-        if @bid.save
+        if @bid.save_with_simulator(simulator, ssession)
           format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
           format.json { render :show, status: :created, location: @bid }
           format.js { render :show, status: :created }

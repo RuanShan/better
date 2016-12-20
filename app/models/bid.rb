@@ -64,4 +64,13 @@ class Bid < ApplicationRecord
     end
   end
 
+  def save_with_simulator(simulator, session=nil)
+    if simulator
+      game_round.end_at = game_round.start_at.since( game_round.period)
+      session["sbid"] = self
+    else
+      self.save
+    end
+  end
+
 end
