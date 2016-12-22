@@ -48,16 +48,17 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp  # add smtp_settings as default options
   config.action_mailer.smtp_settings = {
-    address: 'smtp.getstore.cn',
-    port: 25,
-    user_name: 'better@getstore.cn',
-    password: ENV['BETTER_AT_GETSTORE'],
+    address: '103.214.35.119',
+    port: 465,
+    domain: 'ballmerasian.com',
+    user_name: 'admin',
+    password: ENV['BETTER_EMAIL_PWD'],
     authentication: 'login',
     openssl_verify_mode: 'none',
     enable_starttls_auto: false
   }
 
-
+puts "config.action_mailer.smtp_settings=#{config.action_mailer.smtp_settings.inspect}"
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
