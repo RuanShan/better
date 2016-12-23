@@ -96,10 +96,17 @@
 
 
       </div>
-      <div class="denglu">
+      <div class="denglu"><!--onclick="$('#mobile_trade_qrcode').show();"-->
         <a href="http://www.ballmerasia.com/pages/forex_simple"><%=image_tag "new/zc_03.gif" %></a>
-        <a onclick="$('#mobile_trade_qrcode').show();"><%=image_tag "new/zc_05.gif" %></a>
+        <a class="zccc"><%=image_tag "new/zc_05.gif" %></a>
       </div>
+      <style type="text/css">
+        .zccb{display: none;}
+        .zccc:hover .zccb{
+          display: block;
+        }
+      </style>
+      <%=image_tag "new/mobile.png", class:"zccb" %>
       <div style="text-align:left;clear:both"><br></div>
     </div>
     <div id="mobile_trade_qrcode" class="qrcode" style="right:45%; position: absolute; height: 300px; width: 300px;margin-top:-250px"></div>
