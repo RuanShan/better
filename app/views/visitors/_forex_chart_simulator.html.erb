@@ -30,7 +30,7 @@
         <div class="invoice " style="display:none; opacity: 1; color: white; padding: 0;width:350px;"  data-active="true" >
           <button type="button" class="close" style="right:0;" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
           <% @bid = Bid.new %>
-          <%= simple_form_for(@bid, url: my_bids_path(simulator: 1), remote: true) do |f| %>
+          <%= simple_form_for(@bid, url: simulate_my_bids_path, remote: true) do |f| %>
           <%=  hidden_field_tag "game_round[instrument_code]", symbol %>
           <%=  hidden_field_tag "game_round[start_at]"  %>
           <%=  hidden_field_tag "game_round[period]"  %>
@@ -71,7 +71,8 @@
                   </tr>
                   <tr>
                     <th>有效期:</th>
-                    <td colspan="4"> <span class="b-game-round-start-at" data-format='l'> 13-Dec 10:28 </span></td>
+                    <td colspan="2"> <span class="b-game-round-start-at" data-format='l'> 13-Dec 10:28 </span></td>
+                    <td colspan="2"> <span class="bid_result" style="color:red;"></span></td>
                   </tr>
                   <tr>
                     <th>价内期权:</th>

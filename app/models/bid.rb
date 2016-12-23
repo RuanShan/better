@@ -21,7 +21,15 @@ class Bid < ApplicationRecord
   end
 
   def win_lose_amount
-    (amount.nil? or rate.nil?) ? 0 : amount*rate
+    rate ||= 0.7
+    case state
+    when "win"
+      amount*rate
+    when "lose"
+      -amount
+    else
+      0
+    end
   end
 
   def profit
@@ -44,6 +52,13 @@ class Bid < ApplicationRecord
     "到期在  #{self.game_round.end_at.to_s(:hm ) }" if pending?
   end
 
+  def update_quote(param_quote)
+    quote = MaintainGameRound.new.get_quote_by_time(game_round.instrument_code, game_round.end_at)
+    quote ||= param_quote.to_f
+    game_round.instrument_quote = quote
+    complete!
+  end
+
   def adjust_wallet
     create_wallet!( user: user, amount: -self.amount, originator: self, is_bonus: false )
   end
@@ -51,11 +66,12 @@ class Bid < ApplicationRecord
 
   def has_enough_money
     #Rails.logger.debug "#{user.wallets.inspect}#{user.id} user.life_statis.balance=#{user.life_statis.balance}, amount=#{amount}"
-    errors.add(:base, 'Must has enough money') if user.life_statis.balance < amount
+    #errors.add(:base, 'Must has enough money') if user.life_statis.balance < amount
   end
 
   def complete!
-    if high? && self.last_quote> game_round.instrument_quote || low? && self.last_quote< game_round.instrument_quote
+    rate ||= 0.7
+    if highlow.to_i==1 && self.last_quote> game_round.instrument_quote || highlow.to_i==0 && self.last_quote< game_round.instrument_quote
       create_wallet!( user: user, amount: self.amount, originator: self, is_bonus: false )
       create_wallet!( user: user, amount: amount*rate , originator: self, is_bonus: true )
       win!
@@ -64,13 +80,10 @@ class Bid < ApplicationRecord
     end
   end
 
-  def save_with_simulator(simulator, session=nil)
-    if simulator
-      game_round.end_at = game_round.start_at.since( game_round.period)
-      session["sbid"] = self
-    else
-      self.save
-    end
+  def save_with_simulator(session)
+    game_round.end_at = game_round.start_at.since( game_round.period)
+    session["sbid"] = self
+    session["sgame_round"] = game_round
   end
 
 end

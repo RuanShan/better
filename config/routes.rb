@@ -163,6 +163,8 @@ Rails.application.routes.draw do
 
     resources :bids do
       get 'search', on: :collection
+      post 'simulate', on: :collection
+      put 'simulate_update', on: :collection
     end
     resources :wallets do
       get 'bonuses', on: :collection

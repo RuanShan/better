@@ -2,7 +2,7 @@ module My
   class BidsController < BaseController
 
     before_action :set_bid, only: [:show, :edit, :update, :destroy]
-
+    skip_before_action :customer_authenticate_user!, only: [:simulate, :simulate_update]
     # GET /bids
     # GET /bids.json
     def index
@@ -31,10 +31,8 @@ module My
 
       @bid = current_user.bids.build(bid_params)
       @bid.game_round = @game_round
-      simulator = params["simulator"] && params["simulator"] == "1" ? true : false
-      ssession = simulator ? session : nil
       respond_to do |format|
-        if @bid.save_with_simulator(simulator, ssession)
+        if @bid.save
           format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
           format.json { render :show, status: :created, location: @bid }
           format.js { render :show, status: :created }
@@ -50,7 +48,8 @@ module My
     # PATCH/PUT /bids/1.json
     def update
       respond_to do |format|
-        if @bid.update(bid_params)
+        if @bid.update_quote(params["quote"])
+          format.js { render :show, status: :updated }
           format.html { redirect_to @bid, notice: 'Bid was successfully updated.' }
           format.json { render :show, status: :ok, location: @bid }
         else
@@ -79,7 +78,55 @@ module My
       render :index
     end
 
+    def simulate
+      @game_round = GameRound.find_or_initialize_by game_round_params
+
+      @bid = Bid.new(bid_params)
+      @bid.game_round = @game_round
+
+      respond_to do |format|
+        if @bid.save_with_simulator(session)
+          format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
+          format.json { render :show, status: :created, location: @bid }
+          format.js { render :show, status: :created }
+        else
+        format.html { render :new }
+          format.json { render json: @bid.errors, status: :unprocessable_entity }
+          format.js { render :show, status: :created }
+        end
+      end
+
+    end
+
+    def simulate_update
+      respond_to do |format|
+        if update_quote
+          format.js { render :show, status: :updated }
+          format.html { redirect_to @bid, notice: 'Bid was successfully updated.' }
+          format.json { render :show, status: :ok, location: @bid }
+        else
+          format.html { render :edit }
+          format.json { render json: @bid.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+
     private
+
+      def update_quote
+        @bid = Bid.new(session["sbid"])
+        game_round = GameRound.new(session["sgame_round"])
+        logger.debug "bid=#{@bid.inspect}"
+        logger.debug "game_round=#{game_round.inspect}"
+        quote = MaintainGameRound.new.get_quote_by_time(game_round.instrument_code, game_round.end_at.to_datetime)
+        quote ||= params["quote"].to_f
+        logger.debug "quote=#{quote}"
+        hight_win = (quote - @bid["last_quote"].to_f > 0) && @bid["highlow"].to_i == 1
+        low_win = (quote - @bid["last_quote"].to_f < 0) && @bid["highlow"].to_i == 0
+        @bid.state = hight_win || low_win ? "win" : "lose"
+        game_round.instrument_quote = quote
+        @bid.game_round = game_round
+      end
       # Use callbacks to share common setup or constraints between actions.
       def set_bid
         @bid = Bid.find(params[:id])

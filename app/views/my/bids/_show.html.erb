@@ -6,8 +6,9 @@
 </div>
 <hr>
 <div> 到期时间:  <%= @bid.game_round.end_at.to_formatted_s(:short) %> <span></div>
-<div> 目前状态:  <br/>
-  <%= @bid.human_state %>
+<div> 目前状态:  <span id="bid_status"></span><br/>
+  <%= @bid.human_state %><br/>
+  交易倒计时：<span id="bid_countdown"></span>
 </div>
 
 <% else %>

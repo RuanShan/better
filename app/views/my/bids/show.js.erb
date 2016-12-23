@@ -1,4 +1,10 @@
 //交易id	交易时间	到期时间	资产	当期价格	投资	收益	状态
+<% if @bid.game_round.instrument_quote.to_f > 0 %>
+//update
+  var result = "本轮结束， 收益：<%=@bid.profit%>";
+  $('.modalCloseImg').click();
+  $(".bid_result").html(result);
+<%else%>
 if( $(".forex-adv").is("*")){
     if( $("body.mobile .forex-adv").is("*")){
       $("#simplemodal").html(<%== ( render :partial => "show",:formats=>[:html] ).to_json %>)
@@ -22,6 +28,43 @@ if( $(".forex-adv").is("*")){
     }
 
 }else {
+  var bid = new Utils.countdown({
+    //seconds: parseInt(<%=(@bid.game_round.end_at-Time.now)%>),
+      seconds: parseInt(10),
+      onUpdateStatus: function(l) {
+        var first_quote = <%=@bid.last_quote%>;
+        var last_quote = $(".b-instrument-last-quote").first().html();
+        var highlow = $("input[name='bid[highlow]']").val();
+        var hight_win = (parseInt(last_quote) - first_quote > 0 && parseInt(highlow) == 1);
+        var low_win = (parseInt(last_quote) - first_quote < 0 && parseInt(highlow) == 0);
+        if(hight_win || low_win){
+          var status = "价内期权";
+        }else{
+          var status = "价外期权";
+        }
+        $("#bid_status").html(status);
+        var time_left = moment.unix( l );
+        $("#bid_countdown").html(time_left.format("mm:ss"));
+      },
+      onCounterEnd: function() {
+        //var game = Game.current( $(".forex-wrapper") );
+        var last_quote = $(".b-instrument-last-quote").first().html();
+        var bid_id = <%=@bid.id ? @bid.id : 0%>
+        <% if @bid.persisted? %>
+          var url ='/my/bids/<%=@bid.id%>';
+        <%else%>
+          var url ='/my/bids/simulate_update';
+        <%end%>
+        $.ajax({url: url,
+          type:'PUT',
+          data:{
+            quote: last_quote
+          }
+        })
+      }
+  });
+  bid.start()
+
   $("#simplemodal").html(<%== ( render :partial => "show",:formats=>[:html] ).to_json %>)
 
   $('#simplemodal').simplemodal(
@@ -35,3 +78,4 @@ if( $(".forex-adv").is("*")){
   )
 
 }
+<%end%>

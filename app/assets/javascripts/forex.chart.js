@@ -169,6 +169,7 @@ $(function(){
 
         $(".b-game-form-invoice-wrapper .payout", container).hide();
         $(".b-game-form-invoice-wrapper .invoice", container).show();
+        $(".bid_result").html("");
       });
       $(".invoice button.close", container).click(function(){
         $(".b-game-form-invoice-wrapper .payout", container).show();
@@ -184,7 +185,7 @@ $(function(){
         $(".b-bid-cost", container).val(  more + cost );
       });
       $(".b-submit-bid", container).click(function(){
-        if( $("form#reg-form, .login-form").is('*')){
+        if( $("form#reg-form, .login-form").is('*') && !$(".forex-simulator-wrapper").is('*')){
           alert("请先登录或注册！");
         }else{
           var game = Game.current( container );
