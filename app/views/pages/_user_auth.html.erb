@@ -2,7 +2,7 @@
 
   <div class="jiaoyihou">
        <div class="jiaoyihou_dengji">
-         <%= image_tag "new/noimages/toux_04.gif" %>
+         <%= image_tag current_user.avatar_url %>
 
          <h2> <%= current_user.real_name %></h2>
          <div class="dengjinei"></div>
@@ -11,9 +11,9 @@
         <h1>USD ACCOUNT</h1>
         <div class="xinxi_nei">
           <ul>
-              <li><%= image_tag "new/jiaoyi/jiaoyi1_03.gif" %> <span>余额：<%= current_user.user_life.balance %></span></li>
-              <li><%= image_tag "new/jiaoyi/jiaoyi1_12.gif" %>  <span>可用现金：<%= current_user.user_life.balance %></span></li>
-              <li><%= image_tag "new/jiaoyi/jiaoyi1_16.gif" %>  <span>已投资：<%= current_user.user_life.bid_amount %></span></li>
+              <li><%= image_tag "new/jiaoyi/jiaoyi1_03.gif" %> <span>余额：<%=display_money(current_user.center_wallet_balance) %></span></li>
+              <li><%= image_tag "new/jiaoyi/jiaoyi1_12.gif" %>  <span>可用现金：<%=display_money(current_user.center_wallet_balance) %></span></li>
+              <li><%= image_tag "new/jiaoyi/jiaoyi1_16.gif" %>  <span>已投资：<%= display_money(current_user.bid_sum) %></span></li>
               <li><%= image_tag "new/jiaoyi/jiaoyi1_19.gif" %>  <span>待付金额：0 </span></li>
           </ul>
         </div>
