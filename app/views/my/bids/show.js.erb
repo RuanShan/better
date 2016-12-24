@@ -1,5 +1,5 @@
 //交易id	交易时间	到期时间	资产	当期价格	投资	收益	状态
-<% if @bid.game_round.instrument_quote.to_f > 0 %>
+<% if @bid.state != "pending" %>
 //update
   var result = "本轮结束， 收益：<%=@bid.profit%>";
   $('.modalCloseImg').click();

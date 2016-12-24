@@ -34,8 +34,11 @@
             		</div>
             		<div class="huobi_right">
             			<div class="huobiright_top">
-            				 <span><%= t( "forex.symbol.#{symbol}") %></span>
-                     <b class="b-game-round-expiry-countdown">00:00</b>
+            				<span><%= t( "forex.symbol.#{symbol}") %></span>
+                    <div class="meter" style="float:right;margin:7px;width:200px;">
+                      <span style="width: 0;overflow-x:auto;"></span>
+                      <center class="b-game-round-expiry-countdown" style="position:absolute;top:0;left:0;right:0;">00:00</center>
+                    </div>
             			</div>
             			<div class="huobiright_ti">
             				<div class="pull-left" style ="width:45%;">

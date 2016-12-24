@@ -142,6 +142,8 @@ var Game ={
       var s = game.seconds_left_to_close_bidding();
       var time_left = moment.unix( s );
       game.game_round_expiry_countdown_tag().html( time_left.format("mm:ss") );
+      var bar_persent = ((game.game_round_period()-s)*100/game.game_round_period()).toString();
+      $(".meter span").css("width", bar_persent+"%")
     };
 
     return game;
@@ -169,6 +171,15 @@ $(function(){
 
         $(".b-game-form-invoice-wrapper .payout", container).hide();
         $(".b-game-form-invoice-wrapper .invoice", container).show();
+        if(highlow=="1"){
+          if($(".put-small-icon").is('*')){
+            $(".put-small-icon").attr("class", "call-small-icon")
+          }
+        }else{
+          if($(".call-small-icon").is('*')){
+            $(".call-small-icon").attr("class", "put-small-icon")
+          }
+        }
         $(".bid_result").html("");
       });
       $(".invoice button.close", container).click(function(){
