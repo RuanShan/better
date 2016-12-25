@@ -1,11 +1,11 @@
 module ApplicationHelper
 
   def self.member_link(broker)
-    "http://w.aslbj.com/#{broker.number}"
+    "http://www.ballmerasia.com/#{broker.number}"
   end
 
   def self.broker_link(broker)
-    "http://w.aslbj.com/#{broker.number}"
+    "http://www.ballmerasia.com/agent/#{broker.number}"
   end
 
   def better_form_for(object, *args, &block)

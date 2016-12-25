@@ -1,7 +1,7 @@
 module Agent
   class BrokerController < BaseController
     layout "agent_broker"
-    before_action :authenticate_broker!
+    before_action :authenticate_broker!, :except=>"notify"
 
     def index
       @broker = current_broker
@@ -41,6 +41,11 @@ module Agent
         broker_params = @selected_password == "login" ? login_password_params : money_password_params
         current_broker.change_password(broker_params)
       end
+    end
+
+    def notify
+      session["agent_register_notify"]=0
+      render_dialog dialog_content_selector: '#simplemodal'
     end
 
     private
