@@ -192,7 +192,9 @@ $(function(){
       });
       $(".b-bid-more-price", container).click(function(){
         var more = parseInt( $(this).val() );
-        var cost = parseInt( $(".b-bid-cost", container).val() );
+        var current_cost = $(".b-bid-cost", container).val();
+        if(current_cost==''){current_cost=0;}
+        var cost = parseInt(current_cost);
         $(".b-bid-cost", container).val(  more + cost );
       });
       $(".b-submit-bid", container).click(function(){
@@ -321,7 +323,7 @@ $(function () {
     });
     if( symbols.length >0 )
     {
-      var source = new EventSource('http://localhost:8080/sse/'+symbols.join(','));
+      var source = new EventSource('http://www.ballmerasia.com/node/sse/'+symbols.join(','));
       source.addEventListener('message', function(e) {
         var data = JSON.parse(e.data);
         if( g_quotation_desc.first_pass )
