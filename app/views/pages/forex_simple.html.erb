@@ -5,10 +5,12 @@
   <hr>
     <div class="jiaoyi1body_nei">
       <div class="jiaoyi1_left ">
- 
+
         <%= render "forex_header" %>
         <% if @game_instruments.present? %>
         <div class="forex-wrapper">
+
+          <div class="forex-wrapper-mask" > 此交易暂不可用 </div>
           <div class="xiangqingan">
             <!--
             <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-zoom-in" data-zoom="in"> <%= image_tag "new/jiaoyi/jiaoyi1_77.png", alt: "zoom in" %></a>
