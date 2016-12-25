@@ -17,6 +17,7 @@ module My
 
     # GET /deposits/new
     def new
+      @deposit = Deposit.new
     end
 
     def domestic_new

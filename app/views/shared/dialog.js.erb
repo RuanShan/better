@@ -1,9 +1,20 @@
 
 
 $("<%== dialog_content_selector %>").html(<%== ( render :partial => dialog_view,:formats=>[:html] ).to_json %>)
-
-$('#modal').modal(
-  {
-    keyboard: false
-  }
-)
+<% if dialog_content_selector = "#simplemodal"%>
+  $('#simplemodal').simplemodal(
+    {
+      closeHTML: '<a class="modalCloseImg" title="Close"><i class="fa fa-close"></i></a>',
+      minHeight:240,
+      minWidth: 240,
+      overlayCss: { backgroundColor: '#000000', opacity: 0.5 },
+      containerCss: { width: '400px', height: '240px', padding: '16px 24px', borderRadius: '10px', backgroundColor: '#FFFFFF',
+        border: "1px solid #999" }
+    });
+<%else%>
+    $('#modal').modal(
+      {
+        keyboard: false
+      }
+    )
+<%end%>

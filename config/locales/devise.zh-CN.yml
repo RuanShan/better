@@ -32,10 +32,19 @@ zh-CN:
       confirmation_instructions:
         action: "确认我的帐户"
         greeting: "欢迎 %{recipient}!"
+        broker_greeting: "尊敬的合作伙伴您好"
         instruction: "您可以通过下面的链接确认您的帐户的电子邮件:"
+        broker_instruction: "恭喜您完成Ballmer Asia合营的注册，我们将在3个工作日内对您的申请进行审核。 审核结果将通过邮件形式进行通知,请您注意查收邮件！
+同时为了更有效的提高推广效率，我们为您准备了专业的推广团队7x24小时为您制定专属于您的推广计划。
+如果您在审核通过后的3周内未与我们的推广团队取得联系并且未取得任何推广成绩，我们将会视为您放弃推广，并关闭您的合营账户。"
+        broker_confirmed_instructiona: "感谢您对博马亚洲的支持与信任 您所提交的代理申请已通过，请您妥善保管。"
+        broker_confirmed_instructionb: "如果您有其他任何疑问，不要犹豫，请与我们立即联系，祝您成功。"
+        wish: "祝"
+        wish_word: "商祺！"
         subject: "确认信息"
-        broker_link: "您的代理邀请链接，通过此链接您可以邀请其他人成为您的子代理"
-        member_link: "您的客户邀请链接，通过此链接您可以邀请其他人成为您的客户"
+        broker_number: "代理推广码为"
+        broker_link: "代理推广链接为"
+        member_link: "客户邀请链接为"
       password_change:
         greeting:
         message:

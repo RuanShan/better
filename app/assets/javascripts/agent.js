@@ -34,3 +34,10 @@ $(function () {
   }
 
 });
+
+function show_notify(){
+  $.ajax({url:'/agent/broker/notify',
+    type:'GET'
+  })
+
+}

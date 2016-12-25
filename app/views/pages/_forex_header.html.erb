@@ -1,15 +1,16 @@
-<div class="jiaoyi1_zhulan ">
-  <ul class="clearfix">
+<div class="jiaoyi1_zhulan">
+  <ul>
     <li class="<%if @list=="all"%>btn2<%else%>btn1<%end%>" id="2"><a href="/pages/forex_simple?list=all"><%= image_tag "new/jiaoyi/jiaoyi1_31.gif" %> <span>所有</span></a></li>
     <li class="<%if @list=="popular"%>btn2<%else%>btn1<%end%>" id="1"><a href="/pages/forex_simple?list=popular"><%= image_tag "new/jiaoyi/jiaoyi1_28.gif" %> <span>热门资产</span></a></li>
     <li class="<%if @list=="collection"%>btn2<%else%>btn1<%end%>" id="3"><a href="/pages/forex_simple?list=collection"><%= image_tag "new/jiaoyi/jiaoyi1_34.gif" %> <span>收藏</span></a></li>
-    <li class="btn1" id="4"><a href=""><span>资深交易者</span></a></li>
+    <li class="btn1" id="4"><a href="#" onclick="alert('暂不对初级用户开放!');"><span>资深交易者</span></a></li>
     <li>
       <%= image_tag "new/jiaoyi/jiaoyi1_22.gif", class: "shipingtubiao" %>
       <div class="sousuoanniu"><a href=""><%= image_tag "new/jiaoyi/jiaoyi1_32.gif" %> </a></div><input class="sousuo">
     </li>
   </ul>
 </div>
+
 <div class="jiaoyi1_shanglan">
   <ul class="clearfix">
     <li>

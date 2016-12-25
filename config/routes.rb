@@ -103,6 +103,7 @@ Rails.application.routes.draw do
     end
     resources :user_days
     resources :broker do
+      get "notify", on: :collection
       match 'change_password', via: [:get, :patch]
     end
     resources :user, only: [:index]

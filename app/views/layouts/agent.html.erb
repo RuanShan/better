@@ -12,7 +12,7 @@
     <% # This line ensures javascript code can access the current locale from Rails %>
 		<script type="text/javascript">var tkh_locale = '<%= I18n.locale.to_s %>';</script>
   </head>
-  <body>
+  <body <%if session["agent_register_notify"] && session["agent_register_notify"] == 1%>onload="show_notify();" <%end%>>
     <%= render 'agent/shared/header' %>
     <%= yield %>
     <%= render 'agent/shared/footer' %>

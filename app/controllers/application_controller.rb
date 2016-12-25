@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
     dialog_view = options[:dialog_view]
     dialog_view ||= params[:action]
-    dialog_content_selector = "#modal .modal-content"
+    dialog_content_selector = options[:dialog_content_selector] ? options[:dialog_content_selector] : "#modal .modal-content"
     render 'shared/dialog', locals:{ dialog_view: dialog_view, dialog_content_selector: dialog_content_selector }
 
   end
