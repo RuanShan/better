@@ -538,7 +538,7 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, b) {
           }
       });
       this.lineChart = a;
-      //this.candlestickChart = Trading.app.getController("Game").drawCandlestickChart(c, "advanced-chart-candlestick-", b, e);
+      this.candlestickChart = this.drawCandlestickChart(c, "advanced-chart-candlestick-", b, e);
       //this.markTrades(c, Trading.app.getController("User").trades.data.items);
       //this.markSocialTrades(c)
 }
@@ -641,7 +641,7 @@ BetterFinancialPanel.prototype.quote = function(j, m, h, n) {
         //g.setTradesMarkersVisibility((this.width == 860), true, true);
         this.lastTradeID = n
     }
-    //Trading.app.getController("Game").addPointToCandlestickChart(f, k, j, m)
+    this.addPointToCandlestickChart(f, k, j, m)
 }
 
 BetterFinancialPanel.prototype.markTrades = function(g, m) {
@@ -732,4 +732,230 @@ BetterFinancialPanel.prototype.updateTradeMarker = function(c) {
     if (Ext.fly("advanced-trade-marker-symbol-" + b)) {
         Ext.fly("advanced-trade-marker-symbol-" + b).dom.setAttribute("href", a.symbol)
     }
+}
+
+BetterFinancialPanel.prototype.drawCandlestickChart = function(c, j, b, a) {
+    var g = [];
+    var f = {};
+    var d = new Date();
+    var e = this;
+    Ext.Array.each(b,
+    function(l) {
+        g.push([l[0], l[1], l[2], l[3], l[4]])
+    });
+    var k = b[b.length - 1][0];
+    Ext.Array.each(a,
+    function(m) {
+        var l = Math.floor((m[0] - 1000) / 60000) * 60000;
+        if (l > k) {
+            if (!f[l]) {
+                f[l] = []
+            }
+            f[l].push(m[1])
+        }
+    });
+    Ext.Object.each(f,
+    function(q, m) {
+        var n = m[0];
+        var p = m[m.length - 1];
+        var o = Ext.Array.max(m);
+        var l = Ext.Array.min(m);
+        g.push([q * 1, n, o, l, p])
+    });
+    var h = new Highcharts.StockChart({
+        xAxis: {
+            id: "advanced-chart-candlestick-x-axis-" + c,
+            gridLineWidth: 1,
+            gridLineColor: Registry.chartConfig.colors.axisgrid,
+            lineColor: Registry.chartConfig.colors.axis,
+            tickLength: 0,
+            ordinal: false,
+            labels: {
+                formatter: function() {
+                    d.setTime(this.value);
+                    return Ext.Date.format(d, "H:i")
+                }
+            }
+        },
+        yAxis: {
+            id: "advanced-chart-candlestick-y-axis-" + c,
+            gridLineColor: Registry.chartConfig.colors.axisgrid,
+            labels: {
+                formatter: function() {
+                    return e.getFixedQuote(c, this.value)
+                }
+            }
+        },
+        chart: {
+            renderTo: j + c,
+            plotBorderWidth: 1,
+            backgroundColor: "rgba(255,255,255,0)"
+        },
+        rangeSelector: {
+            enabled: false
+        },
+        navigator: {
+            enabled: false
+        },
+        scrollbar: {
+            enabled: false
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: " ",
+            id: "advanced-chart-candlestick-series-" + c,
+            type: "candlestick",
+            data: g
+        }],
+        plotOptions: {
+            candlestick: {
+                color: Registry.chartConfig.candlestick.colors.down,
+                upColor: Registry.chartConfig.candlestick.colors.up,
+                lineColor: Registry.chartConfig.candlestick.colors.line,
+                dataGrouping: {
+                    enabled: false
+                }
+            },
+            series: {
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                }
+            }
+        },
+        tooltip: {
+            headerFormat: "<span>{point.key}</span><br/>",
+            xDateFormat: "%H:%M",
+            pointFormat: "<span>{point.y}</span>",
+            borderWidth: 1,
+            borderColor: Registry.chartConfig.colors.line,
+            crosshairs: [{
+                color: Registry.chartConfig.colors.guide,
+                dashStyle: "longdash"
+            }]
+        }
+    });
+    return h
+}
+BetterFinancialPanel.prototype.addPointToCandlestickChart = function(d, c, h, f) {
+    c.get("advanced-chart-candlestick-y-axis-" + d).removePlotLine("advanced-chart-candlestick-guide-" + d);
+    c.get("advanced-chart-candlestick-y-axis-" + d).addPlotLine({
+        id: "advanced-chart-candlestick-guide-" + d,
+        value: f,
+        color: Registry.chartConfig.colors.guide,
+        width: 1,
+        dashStyle: "longdash"
+    });
+    var g = Math.floor((h - 1000) / 60000) * 60000;
+    var e = c.get("advanced-chart-candlestick-series-" + d);
+    var a;
+    var b = false;
+    if (e.data.length) {
+        b = ((h - e.data[0].x) > 3600000)
+    }
+    if ((g === this.currentMinute) && e.data.length) {
+        a = e.data[e.data.length - 1];
+        a.close = f;
+        if (f > a.high) {
+            a.high = f
+        }
+        if (f < a.low) {
+            a.low = f
+        }
+        e.data[e.data.length - 1].update(a)
+    } else {
+        this.currentMinute = g;
+        a = {
+            x: g * 1,
+            open: f,
+            high: f,
+            low: f,
+            close: f
+        };
+        e.addPoint(a, true, b)
+    }
+}
+
+BetterFinancialPanel.prototype.showFinancialViewLineChart= function() {
+    var a = this.selectedGameID;
+    $("#chart-wrapper-" + a).removeClass("chart-wrapper-hidden");
+    $("#chart-wrapper-" + a).css("visibility", "visible");
+    $("#chart-wrapper-" + a).show();
+    $("#chart-candlestick-wrapper-" + a).addClass("chart-wrapper-hidden");
+    $("#chart-candlestick-wrapper-" + a).css("visibility", "hidden");
+    $("#chart-candlestick-wrapper-" + a).hide();
+    if (Registry.userID) {
+        $("#financial-view-social-icon").show()
+    }
+    Utils.setCookie(this.chartTypeCookieKey, "line", 365, "/")
+}
+BetterFinancialPanel.prototype.showFinancialViewCandleStickChart = function() {
+    var a = this.selectedGameID;
+    $("#chart-wrapper-" + a).addClass("chart-wrapper-hidden");
+    $("#chart-wrapper-" + a).css("visibility", "hidden");
+    $("#chart-wrapper-" + a).hide();
+    $("#chart-candlestick-wrapper-" + a).removeClass("chart-wrapper-hidden");
+    $("#chart-candlestick-wrapper-" + a).css("visibility", "visible");
+    $("#chart-candlestick-wrapper-" + a).show();
+    if (Registry.userID) {
+        $("#financial-view-social-icon").hide()
+    }
+    Utils.setCookie(this.chartTypeCookieKey, "candlestick", 365, "/")
+}
+BetterFinancialPanel.prototype.zoomChart = function(a) {
+    if (a === "in") {
+        if (this.zoomLevelIndex < this.zoomLevels.length - 1) {
+            this.zoomLevelIndex++;
+            $("#financial-view-reduce-icon").removeClass("disabled");
+            if (this.zoomLevelIndex === this.zoomLevels.length - 1) {
+                $("#financial-view-increase-icon").addClass("disabled")
+            }
+        }
+    } else {
+        if (a === "out") {
+            if (this.zoomLevelIndex > 0) {
+                this.zoomLevelIndex--;
+                $("#financial-view-increase-icon").removeClass("disabled");
+                if (this.zoomLevelIndex === 0) {
+                    $("#financial-view-reduce-icon").addClass("disabled")
+                }
+            }
+        }
+    }
+    this.updateChartZoomRange(this.selectedGameID)
+}
+BetterFinancialPanel.prototype.updateChartZoomRange = function(b) {
+    var d = this.charts[b];
+    var f = "chart-series-" + b;
+    var c = d.get(f);
+    var e = d.get("chart-x-axis-" + b);
+    if (!c || !c.data.length) {
+        return
+    }
+    var a = c.data[c.data.length - 1].x;
+    if (a - c.data[0].x < (this.zoomLevels[this.zoomLevelIndex] - 5) * 60000) {
+        return
+    }
+    e.setExtremes(a - this.zoomLevels[this.zoomLevelIndex] * 60000, null);
+    this.stretchCharts(b);
+    this.moveChartIndicator(b);
+    this.colorBackground(b);
+    d = this.candlestickCharts[b];
+    if (!d) {
+        return
+    }
+    f = "advanced-chart-candlestick-series-" + b;
+    c = d.get(f);
+    e = d.get("advanced-chart-candlestick-x-axis-" + b);
+    if (!c || !c.data.length) {
+        return
+    }
+    a = c.data[c.data.length - 1].x;
+    e.setExtremes(a - this.zoomLevels[this.zoomLevelIndex] * 60000, null);
+    this.stretchCharts(b);
+    this.moveChartIndicator(b);
+    this.colorBackground(b)
 }
