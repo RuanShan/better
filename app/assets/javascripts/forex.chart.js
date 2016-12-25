@@ -581,7 +581,7 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, b) {
           }
       });
       this.lineChart = a;
-      this.candlestickChart = this.drawCandlestickChart(c, "advanced-chart-candlestick-", b, e);
+      //this.candlestickChart = this.drawCandlestickChart(c, "advanced-chart-candlestick-", b, e);
       //this.markTrades(c, Trading.app.getController("User").trades.data.items);
       //this.markSocialTrades(c)
 }

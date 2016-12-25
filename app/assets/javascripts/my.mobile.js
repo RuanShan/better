@@ -56,6 +56,11 @@ $( document ).ready(function() {
 	$(".fanhui").click(function(){
   			window.location.href = Better.referrer;
   });
+
+	$('.nav__trigger').on('click', function(e){
+			 e.preventDefault();
+			 $(this).parent().toggleClass('nav--active');
+		 });
 });
 
 function bigger(one){
