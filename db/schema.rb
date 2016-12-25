@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161225045422) do
+ActiveRecord::Schema.define(version: 20161225055422) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -105,6 +105,16 @@ ActiveRecord::Schema.define(version: 20161225045422) do
     t.index ["name"], name: "index_game_centers_on_name", unique: true
   end
 
+  create_table "game_instruments", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.string   "description"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "category_id", default: 0,   null: false
+    t.         "hot",         default: "f", null: false
+  end
+
   create_table "game_rounds", force: :cascade do |t|
     t.integer  "game_id"
     t.decimal  "paramd1"
@@ -142,14 +152,6 @@ ActiveRecord::Schema.define(version: 20161225045422) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "rule",           default: 0, null: false
-  end
-
-  create_table "instruments", force: :cascade do |t|
-    t.string   "name"
-    t.string   "code"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "messages", force: :cascade do |t|

@@ -1,10 +1,10 @@
-<% # locals {container_id, symbol}
+<% # locals {container_id, symbol, game_instrument}
 %>
 
 <div class="forex-wrapper">
   <div class="one_zhang1 clearfix">
   		<div class="one_zz"><%= image_tag "new/jiaoyi/jiaoyi2_03.gif" %>
-        <span> <%= t( "forex.symbol.#{symbol}") %></span>
+        <span> <%= game_instrument.name %></span>
       </div>
       <div style="padding: 0 8px 0 0;">
     		<div class="one_z1">

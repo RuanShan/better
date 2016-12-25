@@ -20,22 +20,28 @@ class PagesController < ApplicationController
   end
 
   def set_symbol_by_params
-    @list = params[:list]
-    @symbols = case params[:list]
+    @list = params[:list] || session[:instrument_list] ||"popular"
+    @category = params[:category] || session[:instrument_category] ||"currency"
+
+    @game_instruments = case @list
     when "all"
-      Forex.symbols
+      GameInstrument.where(category_id: @category).all.paginate( page: params[:page] )
     when "popular"
-      Forex.popular_symbols
+      GameInstrument.where(category_id: @category).all.hot.paginate( page: params[:page] )
     when "collection"
-      current_user ? current_user.symbols_collection : []
-    else
-      @list = "popular"
-      Forex.popular_symbols
+      current_user ? current_user.game_instruments.where(category_id: @category) : []
     end
-    if @symbols.include? params[:symbol]
+
+    symbols = @game_instruments.pluck(:code)
+    if symbols.include? params[:symbol]
       @symbol = params[:symbol]
     end
-    @symbol ||= @symbols.first
+    @symbol ||= symbols.first
+
+    @game_instrument = GameInstrument.where(code: @symbol).first
+    session[:instrument_list] = @list
+    session[:instrument_category] = @category
+
   end
 
   def set_cros_header

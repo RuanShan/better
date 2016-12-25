@@ -79,8 +79,12 @@ class User < MemberBase
     collection.split(",")
   end
 
+  def game_instruments
+    GameInstrument.where( code: symbols_collection)
+  end
+
   def collect(symbol)
-    if Forex.symbols.include?(symbol)
+    if GameInstrument.exists?( code: symbol)
       symbol_array = symbols_collection
       if symbol_array.include?(symbol)
         symbol_array.delete(symbol)

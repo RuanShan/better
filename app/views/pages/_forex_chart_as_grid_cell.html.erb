@@ -8,7 +8,7 @@
       <div class="clearfix">
         <div class="one_zz">
           <%= image_tag "new/jiaoyi/jiaoyi2_03.gif" %>
-          <span> <%= t( "forex.symbol.#{symbol}") %></span>
+          <span> <%= game_instrument.name %></span>
         </div>
         <div class="one_z11">
           <button class="btn2 b-game-type active" type="button" id="game-type-1" data-game-type="1">涨/跌</button>
@@ -42,7 +42,7 @@
   </div>
   <div class="guoqi clearfix">
       		<div class="" style="margin: 0 6px;">
-            <span><%= t( "forex.symbol.#{symbol}") %>收盘时价格将低于或高于？</span>
+            <span><%= game_instrument.name %>收盘时价格将低于或高于？</span>
             <div class="pull-right">
               <span>剩余时间：</span> <span class="b-game-round-expiry-countdown"> </span>
             </div>

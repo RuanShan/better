@@ -33,7 +33,7 @@ module ApplicationHelper
   end
 
   def instrument_code_select(tag_name, selected_code="")
-    iq_select=select_tag tag_name, options_for_select(["all",""]+Instrument.all.collect {|i| [ i.code, i.code ] } , selected_code), class:"form-control"
+    iq_select=select_tag tag_name, options_for_select(["all",""]+GameInstrument.all.collect {|i| [ i.code, i.code ] } , selected_code), class:"form-control"
   end
 
   def game_round_state_select(tag_name, selected_state=:success)

@@ -1,2 +1,0 @@
-class Instrument < ApplicationRecord
-end

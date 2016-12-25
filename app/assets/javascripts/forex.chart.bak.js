@@ -300,10 +300,10 @@ function ConvertIntegerToCorrectRate( symbol, val  )
 
 $(function () {
   var chart_symbols = [];
-  var label_symbols = [];
   var symbols = [];
   $(".forex-chart[data-symbol]").each(function(){
     chart_symbols.push( $(this).data('symbol') );
+    symbols.push( $(this).data('symbol') );
   });
   $(".b-instrument-last-quote[data-symbol]").each(function(){
     var $this = $(this);
@@ -313,18 +313,19 @@ $(function () {
     {
       g_quotation_desc.labels[symbol] = $(".b-instrument-last-quote[data-symbol='"+symbol+"']");
     }
-    label_symbols.push( symbol );
-
+    if( symbols.indexOf( symbol) == -1)
+    {
+      symbols.push( symbol );
+    }
   });
     Highcharts.setOptions({
         global : {
             useUTC : false
         }
     });
-    if( chart_symbols.length >0 )
+    if( symbols.length >0 )
     {
-      //var source = new EventSource('http://www.ballmerasia.com/node/sse/'+chart_symbols.join(','));
-      var source = new EventSource('http://127.0.0.1:8080/sse/'+chart_symbols.join(','));
+      var source = new EventSource('http://www.ballmerasia.com/node/sse/'+symbols.join(','));
       source.addEventListener('message', function(e) {
         var data = JSON.parse(e.data);
         if( g_quotation_desc.first_pass )
@@ -332,9 +333,9 @@ $(function () {
           g_quotation_desc.first_pass = false;
           InitializeChart( data );
         }else{
-          for( var i = 0; i< chart_symbols.length; i++)
+          for( var i = 0; i< symbols.length; i++)
           {
-            var symbol = chart_symbols[i];
+            var symbol = symbols[i];
             var time_price = data[symbol];
             var time = (new Date( parseInt(time_price) )).getTime();
             var price= ConvertIntegerToCorrectRate( symbol, parseInt(time_price.split('_')[1]));
@@ -344,29 +345,6 @@ $(function () {
             {
                g_quotation_desc.panels[symbol].update( time, price, 1, 0 );
             }
-            // new point added
-            //g_quotation_desc.charts[symbols[i]].yAxis[0].plotLines[0].value = price;
-          }
-        }
-        console.log(e);
-      }, false);
-    }
-    if( label_symbols.length >0 )
-    {
-      //var source = new EventSource('http://www.ballmerasia.com/node/sse/'+symbols.join(','));
-      var source = new EventSource('http://127.0.0.1:8080/sse_ones/'+label_symbols.join(','));
-      source.addEventListener('message', function(e) {
-        var data = JSON.parse(e.data);
-
-          for( var i = 0; i< label_symbols.length; i++)
-          {
-            var symbol = label_symbols[i];
-            var time_price = data[symbol];
-            var time = (new Date( parseInt(time_price) )).getTime();
-            var price= ConvertIntegerToCorrectRate( symbol, parseInt(time_price.split('_')[1]));
-            var formatted_price = format_forex_price( price );
-            //console.log("data=%s,%s", time, price);
-
             if(g_quotation_desc.labels[symbol])
             {
               g_quotation_desc.labels[symbol].html(formatted_price );
@@ -374,7 +352,7 @@ $(function () {
             // new point added
             //g_quotation_desc.charts[symbols[i]].yAxis[0].plotLines[0].value = price;
           }
-
+        }
         console.log(e);
       }, false);
     }
@@ -385,10 +363,9 @@ $(function () {
 function InitializeChart(message){
 
   $(".forex-chart").each(function(){
-    var $wrapper = $(this)
     var $container = $(this);
     var symbol = $container.data('symbol');
-    var panel = new BetterFinancialPanel( this, symbol );
+    var panel = new BetterFinancialPanel( symbol );
     panel.drawCharts( message[symbol] );
 
     //FinancialPanel.drawChart( this.id, symbol, message[symbol]);
@@ -399,9 +376,10 @@ function InitializeChart(message){
   // Create the chart
 }
 
-function BetterFinancialPanel( container, symbol )
+function BetterFinancialPanel( symbol )
 {
-  //this.container = $(container);
+  this.urlBaseSecure = 'http://www.ballmerasia.com/node/';
+
   this.lineChart = null;
   this.instrumentID = symbol;
   this.lastQuotes= [];
@@ -413,13 +391,31 @@ function BetterFinancialPanel( container, symbol )
           useUTC: false
       }
   });
-  $(".b-chart-candlestick", container).click(function(){
-    this.showFinancialViewCandleStickChart();
-  })
-  $(".b-chart-line", container).click(function(){
-    this.showFinancialViewLineChart();
-  })
 }
+BetterFinancialPanel.prototype.renderCharts =function(){
+  var data = this.getHistory();
+  this.drawCharts( data );
+}
+
+BetterFinancialPanel.prototype.getHistory = function(){
+  // start, from, symbol
+  var url =  this.urlBaseSecure+ "/forex_history/"+this.instrumentID;
+  return $.ajax({url:url}).then( function(res) {
+    return this.fixData(res);})
+}
+
+BetterFinancialPanel.prototype.fixData = function( rawData){
+  rawDtata = rawData.sort();
+  var data = [];
+  for (var i = 0; i < rawDtata.length; i += 1) {
+    data.push([
+      (new Date( parseInt(rawDtata[i]) )).getTime(),
+      this.convertIntegerToCorrectRate( parseInt(rawDtata[i].split('_')[1]))
+    ]);
+  }
+  return data;
+}
+
 BetterFinancialPanel.prototype.convertIntegerToCorrectRate = function ( symbol, val  )
 {
   if( symbol == "USUSDJPY")
@@ -435,24 +431,9 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, b) {
       var c = this.instrumentID;
       var f = this.currentMinute;
       var g = new Date();
-      var e = [];// for line chart
-      var b = [];// for candlestick chart
-      var rawDtata = chartData.sort();
-
-      for (var i = 0; i < rawDtata.length; i += 1) {
-        var items = rawDtata[i].split('_');
-        e.push([
-          (new Date( parseInt(rawDtata[i]) )).getTime(),
-          this.convertIntegerToCorrectRate( c, parseInt(rawDtata[i].split('_')[1]))
-        ]);
-        b.push([
-          (new Date( parseInt(rawDtata[i]) )).getTime(),
-          this.convertIntegerToCorrectRate( c, parseInt( items[2] )),
-          this.convertIntegerToCorrectRate( c, parseInt( items[3] )),
-          this.convertIntegerToCorrectRate( c, parseInt( items[4] )),
-          this.convertIntegerToCorrectRate( c, parseInt( items[5] ))
-        ]);
-      }
+      var e = [];
+      e = charData;
+       
       var seriesType = 'line';
       var lineColor = Registry.chartConfig.financialPanel.colors.line;
       var fillColor = {
@@ -581,7 +562,7 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, b) {
           }
       });
       this.lineChart = a;
-      this.candlestickChart = this.drawCandlestickChart(c, "advanced-chart-candlestick-", b, e);
+      //this.candlestickChart = this.drawCandlestickChart(c, "advanced-chart-candlestick-", b, e);
       //this.markTrades(c, Trading.app.getController("User").trades.data.items);
       //this.markSocialTrades(c)
 }
@@ -924,29 +905,29 @@ BetterFinancialPanel.prototype.addPointToCandlestickChart = function(d, c, h, f)
 
 BetterFinancialPanel.prototype.showFinancialViewLineChart= function() {
     var a = this.selectedGameID;
-    $("#advanced-chart-line-" + a).removeClass("chart-wrapper-hidden");
-    $("#advanced-chart-line-" + a).css("visibility", "visible");
-    $("#advanced-chart-line-" + a).show();
-    $("#advanced-chart-candlestick-" + a).addClass("chart-wrapper-hidden");
-    $("#advanced-chart-candlestick-" + a).css("visibility", "hidden");
-    $("#advanced-chart-candlestick-" + a).hide();
+    $("#chart-wrapper-" + a).removeClass("chart-wrapper-hidden");
+    $("#chart-wrapper-" + a).css("visibility", "visible");
+    $("#chart-wrapper-" + a).show();
+    $("#chart-candlestick-wrapper-" + a).addClass("chart-wrapper-hidden");
+    $("#chart-candlestick-wrapper-" + a).css("visibility", "hidden");
+    $("#chart-candlestick-wrapper-" + a).hide();
     if (Registry.userID) {
         $("#financial-view-social-icon").show()
     }
-    //Utils.setCookie(this.chartTypeCookieKey, "line", 365, "/")
+    Utils.setCookie(this.chartTypeCookieKey, "line", 365, "/")
 }
 BetterFinancialPanel.prototype.showFinancialViewCandleStickChart = function() {
     var a = this.selectedGameID;
-    $("#advanced-chart-line-" + a).addClass("chart-wrapper-hidden");
-    $("#advanced-chart-line-" + a).css("visibility", "hidden");
-    $("#advanced-chart-line-" + a).hide();
-    $("#advanced-chart-candlestick-" + a).removeClass("chart-wrapper-hidden");
-    $("#advanced-chart-candlestick-" + a).css("visibility", "visible");
-    $("#advanced-chart-candlestick-" + a).show();
+    $("#chart-wrapper-" + a).addClass("chart-wrapper-hidden");
+    $("#chart-wrapper-" + a).css("visibility", "hidden");
+    $("#chart-wrapper-" + a).hide();
+    $("#chart-candlestick-wrapper-" + a).removeClass("chart-wrapper-hidden");
+    $("#chart-candlestick-wrapper-" + a).css("visibility", "visible");
+    $("#chart-candlestick-wrapper-" + a).show();
     if (Registry.userID) {
         $("#financial-view-social-icon").hide()
     }
-    //Utils.setCookie(this.chartTypeCookieKey, "candlestick", 365, "/")
+    Utils.setCookie(this.chartTypeCookieKey, "candlestick", 365, "/")
 }
 BetterFinancialPanel.prototype.zoomChart = function(a) {
     if (a === "in") {
@@ -1001,9 +982,4 @@ BetterFinancialPanel.prototype.updateChartZoomRange = function(b) {
     this.stretchCharts(b);
     this.moveChartIndicator(b);
     this.colorBackground(b)
-}
-BetterFinancialPanel.prototype.getFixedQuote = function(c, b) {
-    //var a = this.instruments.getById(c).data.precision * 1;
-    //return new Number(b * 1).toFixed(a)
-    return b;
 }

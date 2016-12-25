@@ -5,10 +5,8 @@
         <div class="jiaoyi1body_nei">
           <div class="jiaoyi1_left">
             <%= render "forex_header" %>
-
-            <% symbols = ["USEURUSD","USGBPUSD","USAUDUSD","USUSDCAD"] %>
-            <% symbols.each_with_index{|symbol,i| %>
-                <%= render partial:"forex_chart", locals: { symbol: symbol, container_id: "advanced-chart-line-#{symbol}"} %>
+            <% @game_instruments.each_with_index{|game_instrument,i| symbol = game_instrument.code %>
+                <%= render partial:"forex_chart", locals: { game_instrument: game_instrument, symbol: symbol, container_id: "advanced-chart-line-#{symbol}"} %>
             <% } %>
           </div>
 
