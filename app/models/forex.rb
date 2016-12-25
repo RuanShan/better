@@ -1,8 +1,8 @@
 class Forex
-  class_attribute :symbols
+  class_attribute :symbols, :popular_symbols
   #self.symbols =  [ 'USAUDUSD','USDINIW','USEURUSD','USGBPUSD','USNZDUSD','USUSDCAD','USUSDCHF','USUSDCNY','USUSDHKD','USUSDJPY','USUSDMOP','USUSDMYR','USUSDSGD','USUSDTWD']
   self.symbols =  [ 'USAUDUSD', 'USEURUSD','USGBPUSD','USNZDUSD','USUSDCAD' ,'USUSDCNY','USUSDHKD','USUSDJPY','USUSDMOP','USUSDMYR','USUSDSGD']
-
+  self.popular_symbols = [ 'USEURUSD','USGBPUSD','USUSDCAD' ,'USUSDCNY','USUSDJPY']
 
 
 

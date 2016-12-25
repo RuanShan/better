@@ -321,7 +321,7 @@ $(function () {
     });
     if( symbols.length >0 )
     {
-      var source = new EventSource('http://www.ballmerasia.com/node/sse/'+symbols.join(','));
+      var source = new EventSource('http://localhost:8080/sse/'+symbols.join(','));
       source.addEventListener('message', function(e) {
         var data = JSON.parse(e.data);
         if( g_quotation_desc.first_pass )

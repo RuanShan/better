@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161215090958) do
+ActiveRecord::Schema.define(version: 20161225045422) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -422,6 +422,7 @@ ActiveRecord::Schema.define(version: 20161215090958) do
     t.datetime "id_back_updated_at"
     t.integer  "administrator_id"
     t.datetime "deleted_at"
+    t.string   "collection",               default: "", null: false
     t.index ["administrator_id"], name: "index_users_on_administrator_id"
     t.index ["broker_id"], name: "index_users_on_broker_id"
     t.index ["created_at"], name: "index_users_on_created_at"

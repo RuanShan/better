@@ -144,6 +144,7 @@ Rails.application.routes.draw do
         #for mobile only
         match 'edit_login_password', via: [:get, :patch]
         match 'edit_money_password', via: [:get, :patch]
+        patch 'collect'
       end
     end
 

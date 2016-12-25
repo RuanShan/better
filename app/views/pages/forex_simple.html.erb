@@ -7,9 +7,9 @@
       <div class="jiaoyi1_left ">
         <div class="jiaoyi1_zhulan">
           <ul>
-            <li class="btn1" id="2"><a href=""><%= image_tag "new/jiaoyi/jiaoyi1_31.gif" %> <span>所有</span></a></li>
-            <li class="btn2" id="1"><a href=""><%= image_tag "new/jiaoyi/jiaoyi1_28.gif" %> <span>热门资产</span></a></li>
-            <li class="btn1" id="3"><a href=""><%= image_tag "new/jiaoyi/jiaoyi1_34.gif" %> <span>收藏</span></a></li>
+            <li class="<%if @list=="all"%>btn2<%else%>btn1<%end%>" id="2"><a href="/pages/forex_simple?list=all"><%= image_tag "new/jiaoyi/jiaoyi1_31.gif" %> <span>所有</span></a></li>
+            <li class="<%if @list=="popular"%>btn2<%else%>btn1<%end%>" id="1"><a href="/pages/forex_simple?list=popular"><%= image_tag "new/jiaoyi/jiaoyi1_28.gif" %> <span>热门资产</span></a></li>
+            <li class="<%if @list=="collection"%>btn2<%else%>btn1<%end%>" id="3"><a href="/pages/forex_simple?list=collection"><%= image_tag "new/jiaoyi/jiaoyi1_34.gif" %> <span>收藏</span></a></li>
             <li class="btn1" id="4"><a href=""><span>资深交易者</span></a></li>
             <li>
               <%= image_tag "new/jiaoyi/jiaoyi1_22.gif", class: "shipingtubiao" %>
@@ -18,15 +18,20 @@
           </ul>
         </div>
         <%= render "forex_header" %>
+        <% if @symbols.present? %>
         <div class="forex-wrapper">
           <%= render "expiry_panel" %>
           <%= content_tag "div","", id: "advanced-chart-line-#{symbol}", class: "forex-chart", data: {symbol: symbol} %>
           <div class="jiaoyi1_qiehuanti">
             <div class="one_huobi">
             		<div class="huobi_left" >
-                  <% Forex.symbols.each{|symbol| %>
+                  <% @symbols.each{|symbol| %>
                     <div  class="huobi">
-                			<%= image_tag "new/jiaoyi/jiaoyi1_131.gif" %>
+                      <%=link_to (current_user ? collect_my_account_path(current_user, symbol: symbol) : nil), onclick: (current_user ? "" : "alert('请先登录！')"), remote:true, method:"PATCH" do%>
+                        <% symbol_collect = current_user && current_user.symbols_collection.include?(symbol)%>
+                        <%= image_tag "new/jiaoyi/jiaoyi1_142.gif", id: "#{symbol}_collect", style: symbol_collect ? '' : 'display:none' %>
+                        <%= image_tag "new/jiaoyi/jiaoyi1_131.gif", id: "#{symbol}_not_collect", style: symbol_collect ? 'display:none' : '' %>
+                      <%end%>
                       <%= link_to content_tag('span', t("forex.symbol.#{symbol}")), page_path( id: 'forex_simple', symbol: symbol) %>
                       <%= content_tag('b', '0.0000', class: "b-instrument-last-quote", data:{ symbol: symbol}) %>
                 		</div>
@@ -156,6 +161,11 @@
             </div>
           </div>
         </div>
+        <%else%>
+           <%if @list == "collection"%>
+             <%if current_user%>您还没有任何收藏<%else%>登录以后才能看到您的收藏<%end%>
+           <%end%>
+        <%end%>
       </div>
       <div class="jiaoyi1_right">
         <%= render "forex_sidebar" %>

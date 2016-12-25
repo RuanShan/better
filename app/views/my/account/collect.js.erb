@@ -1,0 +1,13 @@
+<%if current_user.errors.empty? %>
+  <%if current_user.symbols_collection.include?(@symbol) %>
+    $("#<%=@symbol%>_collect").show();
+    $("#<%=@symbol%>_not_collect").hide();
+    alert("收藏成功！");
+  <%else%>
+    $("#<%=@symbol%>_collect").hide();
+    $("#<%=@symbol%>_not_collect").show();
+    alert("取消收藏成功！");
+  <%end%>
+<%else%>
+  alert("收藏失败！");
+<%end%>

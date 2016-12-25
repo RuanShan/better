@@ -20,10 +20,22 @@ class PagesController < ApplicationController
   end
 
   def set_symbol_by_params
-    if Forex.symbols.include? params[:symbol]
+    @list = params[:list]
+    @symbols = case params[:list]
+    when "all"
+      Forex.symbols
+    when "popular"
+      Forex.popular_symbols
+    when "collection"
+      current_user ? current_user.symbols_collection : []
+    else
+      @list = "popular"
+      Forex.popular_symbols
+    end
+    if @symbols.include? params[:symbol]
       @symbol = params[:symbol]
     end
-    @symbol ||= Forex.symbols.first
+    @symbol ||= @symbols.first
   end
 
   def set_cros_header

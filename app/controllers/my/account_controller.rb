@@ -125,6 +125,11 @@ module My
       render "pages/forex_adv"
     end
 
+    def collect
+      @symbol = params["symbol"]
+      current_user.collect(@symbol)
+    end
+
     private
 
     def secure_params

@@ -75,6 +75,25 @@ class User < MemberBase
     locked_at.nil? ? "normal" : "frozen"
   end
 
+  def symbols_collection
+    collection.split(",")
+  end
+
+  def collect(symbol)
+    if Forex.symbols.include?(symbol)
+      symbol_array = symbols_collection
+      if symbol_array.include?(symbol)
+        symbol_array.delete(symbol)
+      else
+        symbol_array.push(symbol)
+      end
+      self.collection = symbol_array.join(",")
+      self.save
+    else
+      errors.add(:collection, "资产不存在")
+    end
+  end
+
   def admin_change_password(password_options, administrator_id)
     self.administrator_id = administrator_id
     @password_prefix = password_options["money_password"] ? "money_" : ""
