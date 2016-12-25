@@ -58,7 +58,6 @@ Rails.application.configure do
     enable_starttls_auto: false
   }
 
-puts "config.action_mailer.smtp_settings=#{config.action_mailer.smtp_settings.inspect}"
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 

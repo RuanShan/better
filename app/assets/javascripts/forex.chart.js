@@ -192,7 +192,9 @@ $(function(){
       });
       $(".b-bid-more-price", container).click(function(){
         var more = parseInt( $(this).val() );
-        var cost = parseInt( $(".b-bid-cost", container).val() );
+        var current_cost = $(".b-bid-cost", container).val();
+        if(current_cost==''){current_cost=0;}
+        var cost = parseInt(current_cost);
         $(".b-bid-cost", container).val(  more + cost );
       });
       $(".b-submit-bid", container).click(function(){
