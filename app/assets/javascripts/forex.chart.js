@@ -313,7 +313,10 @@ $(function () {
     {
       g_quotation_desc.labels[symbol] = $(".b-instrument-last-quote[data-symbol='"+symbol+"']");
     }
-    label_symbols.push( symbol );
+    if( (label_symbols.indexOf( symbol) < 0) )
+    {
+      label_symbols.push( symbol );
+    }
 
   });
     Highcharts.setOptions({
@@ -323,9 +326,9 @@ $(function () {
     });
     if( chart_symbols.length >0 )
     {
-      var source = new EventSource('http://www.ballmerasia.com/node/sse/'+chart_symbols.join(','));
-      //var source = new EventSource('http://127.0.0.1:8080/sse/'+chart_symbols.join(','));
-      source.addEventListener('message', function(e) {
+      //var source = new EventSource('http://www.ballmerasia.com/node/sse/'+chart_symbols.join(','));
+      var source1 = new EventSource('http://127.0.0.1:8080/sse/'+chart_symbols.join(','));
+      source1.addEventListener('message', function(e) {
         var data = JSON.parse(e.data);
         if( g_quotation_desc.first_pass )
         {
@@ -353,23 +356,27 @@ $(function () {
     }
     if( label_symbols.length >0 )
     {
-      var source = new EventSource('http://www.ballmerasia.com/node/sse_ones/'+label_symbols.join(','));
-      //var source = new EventSource('http://127.0.0.1:8080/sse_ones/'+label_symbols.join(','));
-      source.addEventListener('message', function(e) {
+      //var source = new EventSource('http://www.ballmerasia.com/node/sse_ones/'+label_symbols.join(','));
+      var source2 = new EventSource('http://127.0.0.1:8080/sse_ones/'+label_symbols.join(','));
+      source2.addEventListener('message', function(e) {
         var data = JSON.parse(e.data);
 
           for( var i = 0; i< label_symbols.length; i++)
           {
             var symbol = label_symbols[i];
-            var time_price = data[symbol];
-            var time = (new Date( parseInt(time_price) )).getTime();
-            var price= ConvertIntegerToCorrectRate( symbol, parseInt(time_price.split('_')[1]));
-            var formatted_price = format_forex_price( price );
-            //console.log("data=%s,%s", time, price);
-
-            if(g_quotation_desc.labels[symbol])
+            console.log("data=%s,%s", symbol, e.data);
+            var items = data[symbol];
+            // strange. it is called by source1.addEventListener
+            if( items)
             {
-              g_quotation_desc.labels[symbol].html(formatted_price );
+              var time = (new Date( parseInt(items) )).getTime();
+              var price= ConvertIntegerToCorrectRate( symbol, parseInt(items.split('_')[1]));
+              var formatted_price = format_forex_price( price );
+
+              if(g_quotation_desc.labels[symbol])
+              {
+                g_quotation_desc.labels[symbol].html(formatted_price );
+              }
             }
             // new point added
             //g_quotation_desc.charts[symbols[i]].yAxis[0].plotLines[0].value = price;
@@ -385,12 +392,17 @@ $(function () {
 function InitializeChart(message){
 
   $(".forex-chart").each(function(){
-    var $wrapper = $(this)
+    var $wrapper = $(this).parent('.forex-wrapper');
     var $container = $(this);
     var symbol = $container.data('symbol');
-    var panel = new BetterFinancialPanel( this, symbol );
+    var panel = new BetterFinancialPanel( $wrapper, symbol );
     panel.drawCharts( message[symbol] );
-
+    $(".b-chart-candlestick", $wrapper).click(function(){
+       panel.showFinancialViewCandleStickChart();
+    })
+    $(".b-chart-line", $wrapper).click(function(){
+       panel.showFinancialViewLineChart();
+    })
     //FinancialPanel.drawChart( this.id, symbol, message[symbol]);
 
     g_quotation_desc.charts[symbol] = panel.lineChart;
@@ -399,7 +411,7 @@ function InitializeChart(message){
   // Create the chart
 }
 
-function BetterFinancialPanel( container, symbol )
+function BetterFinancialPanel( wrapper, symbol )
 {
   //this.container = $(container);
   this.lineChart = null;
@@ -413,12 +425,8 @@ function BetterFinancialPanel( container, symbol )
           useUTC: false
       }
   });
-  $(".b-chart-candlestick", container).click(function(){
-    this.showFinancialViewCandleStickChart();
-  })
-  $(".b-chart-line", container).click(function(){
-    this.showFinancialViewLineChart();
-  })
+  panel = this;
+
 }
 BetterFinancialPanel.prototype.convertIntegerToCorrectRate = function ( symbol, val  )
 {
@@ -581,7 +589,7 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, b) {
           }
       });
       this.lineChart = a;
-      //this.candlestickChart = this.drawCandlestickChart(c, "advanced-chart-candlestick-", b, e);
+      this.candlestickChart = this.drawCandlestickChart(c, "advanced-chart-candlestick-", b, e);
       //this.markTrades(c, Trading.app.getController("User").trades.data.items);
       //this.markSocialTrades(c)
 }
@@ -684,7 +692,7 @@ BetterFinancialPanel.prototype.quote = function(j, m, h, n) {
         //g.setTradesMarkersVisibility((this.width == 860), true, true);
         this.lastTradeID = n
     }
-    //this.addPointToCandlestickChart(f, k, j, m)
+    this.addPointToCandlestickChart(f, k, j, m)
 }
 
 BetterFinancialPanel.prototype.markTrades = function(g, m) {
@@ -923,7 +931,7 @@ BetterFinancialPanel.prototype.addPointToCandlestickChart = function(d, c, h, f)
 }
 
 BetterFinancialPanel.prototype.showFinancialViewLineChart= function() {
-    var a = this.selectedGameID;
+    var a = this.instrumentID;
     $("#advanced-chart-line-" + a).removeClass("chart-wrapper-hidden");
     $("#advanced-chart-line-" + a).css("visibility", "visible");
     $("#advanced-chart-line-" + a).show();
@@ -936,7 +944,7 @@ BetterFinancialPanel.prototype.showFinancialViewLineChart= function() {
     //Utils.setCookie(this.chartTypeCookieKey, "line", 365, "/")
 }
 BetterFinancialPanel.prototype.showFinancialViewCandleStickChart = function() {
-    var a = this.selectedGameID;
+    var a = this.instrumentID;
     $("#advanced-chart-line-" + a).addClass("chart-wrapper-hidden");
     $("#advanced-chart-line-" + a).css("visibility", "hidden");
     $("#advanced-chart-line-" + a).hide();

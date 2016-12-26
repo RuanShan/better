@@ -121,5 +121,6 @@
   </div>
   <div>
     <%= content_tag "div","", id: container_id, class: "forex-chart", data: {symbol: symbol} %>
+    <%= content_tag "div","", id: "advanced-chart-candlestick-#{symbol}", class: "forex-chart-candlestick", data: {symbol: symbol}, style: "display:none;" %>
   </div>
 </div>
