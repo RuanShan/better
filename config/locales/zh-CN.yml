@@ -91,3 +91,9 @@ zh-CN:
       USUSDMOP: 美元兑葡币
       USUSDMYR: 美汇马币
       USUSDSGD: 美汇新元
+    category:
+      index: 指数
+      currency: 货币
+      product: 商品
+      stock: 股票
+      xxx: 对

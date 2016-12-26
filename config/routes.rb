@@ -26,6 +26,16 @@ Rails.application.routes.draw do
     resources :administrators do
       put :batch_delete, on: :collection
     end
+    resources :game_instruments do
+      put :hot, on: :member
+      collection do
+        get :search
+        put :batch_delete
+        put :batch_hot
+        put :batch_rate
+      end
+    end
+
     resources :deposits
     resources :drawings do
       collection do

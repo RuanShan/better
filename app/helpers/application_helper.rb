@@ -36,6 +36,11 @@ module ApplicationHelper
     iq_select=select_tag tag_name, options_for_select(["all",""]+GameInstrument.all.collect {|i| [ i.code, i.code ] } , selected_code), class:"form-control"
   end
 
+  def instrument_category_select(tag_name, selected_category="")
+    options=[["全部",""],["货币","0"],["指数","1"],["股票","2"],["商品","3"],["对","4"]]
+    select_tag tag_name, options_for_select(options, selected_category), class:"form-control"
+  end
+
   def game_round_state_select(tag_name, selected_state=:success)
     options=GameRound.state_machines[:state].states.map {|s| [t(s.name), s.value]}
     ds_select=select_tag tag_name, options_for_select(options, selected_state), class:"form-control"
