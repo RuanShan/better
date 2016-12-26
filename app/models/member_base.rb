@@ -41,6 +41,14 @@ class MemberBase < ApplicationRecord
 
   attr_reader :money_password, :current_money_password, :broker_number
   attr_accessor :money_password_confirmation, :password_prefix, :binding_name, :setting_money_pwd, :validate_code
+
+  attr_reader :avatar_remote_url
+  has_attached_file :avatar, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
+  has_attached_file :id_front, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
+  has_attached_file :id_back, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
+  validates_attachment_content_type :avatar, :id_front, :id_back, content_type: /\Aimage\/.*\z/
+
+
   validates :money_password, confirmation: true
   validates :money_password, presence: true, if: :setting_money_pwd
   validates :first_name, presence: true

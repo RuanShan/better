@@ -21,11 +21,6 @@ class User < MemberBase
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable
-  attr_reader :avatar_remote_url
-  has_attached_file :avatar, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
-  has_attached_file :id_front, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
-  has_attached_file :id_back, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
-  validates_attachment_content_type :avatar, :id_front, :id_back, content_type: /\Aimage\/.*\z/
 
   #default_scope ->{ where( type: 'User' )}
   # it is for filter

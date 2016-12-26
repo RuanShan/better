@@ -1,0 +1,17 @@
+<% content_for :page_title do %>
+  <%= link_to "代理管理", admin_brokers_url %> /
+   代理详情
+<% end %>
+<%= render 'admin/shared/broker_tabs', current: "image" %>
+
+<div>
+  <p><span>身份证</span></p>
+  <%=image_tag @broker.id_front.url, width:"300px", height:"200px", style:"margin:10px;", onclick:"preview($(this).clone())"%>
+  <%=image_tag @broker.id_back.url, width:"300px", height:"200px", style:"margin:10px;", onclick:"preview($(this).clone())"%>
+  <p><span>银行卡</span></p>
+  <%for bank in @broker.user_banks %>
+    <%=image_tag bank.card_front.url, width:"300px", height:"200px", style:"margin:10px;", onclick:"preview($(this).clone())"%>
+    <%=image_tag bank.card_back.url, width:"300px", height:"200px", style:"margin:10px;", onclick:"preview($(this).clone())"%>
+  <%end%>
+</div>
+<div id="preview" style="position:absolute;top:20px;left:0px;width:900px;height:600px;z-index:10;display:none;"></div>

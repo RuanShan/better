@@ -69,6 +69,7 @@ Rails.application.routes.draw do
       end
       member do
         get :data
+        get :image
         get :report
         put :confirm
         put :lock

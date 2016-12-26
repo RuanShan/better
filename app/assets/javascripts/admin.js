@@ -24,3 +24,14 @@ $(function () {
     $('.calendar').datetimepicker({format: "YYYY-MM-DD"});
   });
 });
+
+function preview(image){
+  image.attr('width','900px');
+  image.attr('height','600px');
+  image.removeAttr("onclick");
+  image.click(function () {
+      $('#preview').hide()
+  });
+  $('#preview').html(image);
+  $('#preview').show()
+}

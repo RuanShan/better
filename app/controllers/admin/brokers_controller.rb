@@ -125,6 +125,10 @@ module Admin
       @user_day = Summary::BrokerDailyProfitFactory.create( @broker.member_todays ).first || Summary::BrokerDailyProfit.new(DateTime.current.to_date)
     end
 
+    def image
+      @broker = Broker.find_by_id(params[:id])
+    end
+
     def report
     end
 
