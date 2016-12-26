@@ -6,12 +6,12 @@
 
 <div>
   <p><span>身份证</span></p>
-  <%=image_tag @broker.id_front.url, width:"300px", height:"200px", style:"margin:10px;", onclick:"preview($(this).clone())"%>
-  <%=image_tag @broker.id_back.url, width:"300px", height:"200px", style:"margin:10px;", onclick:"preview($(this).clone())"%>
+  <%=image_tag @broker.id_front.url, alt:"身份证正面", width:"300px", height:"200px", style:"margin:10px;", onclick:"preview($(this).clone())"%>
+  <%=image_tag @broker.id_back.url, alt:"身份证反面", width:"300px", height:"200px", style:"margin:10px;", onclick:"preview($(this).clone())"%>
   <p><span>银行卡</span></p>
   <%for bank in @broker.user_banks %>
-    <%=image_tag bank.card_front.url, width:"300px", height:"200px", style:"margin:10px;", onclick:"preview($(this).clone())"%>
-    <%=image_tag bank.card_back.url, width:"300px", height:"200px", style:"margin:10px;", onclick:"preview($(this).clone())"%>
+    <%=image_tag bank.card_front.url, alt:"银行卡正面", width:"300px", height:"200px", style:"margin:10px;", onclick:"preview($(this).clone())"%>
+    <%=image_tag bank.card_back.url, alt:"银行卡反面", width:"300px", height:"200px", style:"margin:10px;", onclick:"preview($(this).clone())"%>
   <%end%>
 </div>
 <div id="preview" style="position:absolute;top:20px;left:0px;width:900px;height:600px;z-index:10;display:none;"></div>
