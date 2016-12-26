@@ -326,7 +326,7 @@ $(function () {
     });
     if( chart_symbols.length >0 )
     {
-      var source = new EventSource('http://www.ballmerasia.com/node/sse/'+chart_symbols.join(','));
+      var source1 = new EventSource('http://www.ballmerasia.com/node/sse/'+chart_symbols.join(','));
       //var source1 = new EventSource('http://127.0.0.1:8080/sse/'+chart_symbols.join(','));
       source1.addEventListener('message', function(e) {
         var data = JSON.parse(e.data);
@@ -356,7 +356,7 @@ $(function () {
     }
     if( label_symbols.length >0 )
     {
-      var source = new EventSource('http://www.ballmerasia.com/node/sse_ones/'+label_symbols.join(','));
+      var source2 = new EventSource('http://www.ballmerasia.com/node/sse_ones/'+label_symbols.join(','));
       //var source2 = new EventSource('http://127.0.0.1:8080/sse_ones/'+label_symbols.join(','));
       source2.addEventListener('message', function(e) {
         var data = JSON.parse(e.data);
@@ -589,7 +589,7 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, b) {
           }
       });
       this.lineChart = a;
-      this.candlestickChart = this.drawCandlestickChart(c, "advanced-chart-candlestick-", b, e);
+      this.candlestickChart = this.drawCandlestickChart(c, "advanced-chart-candlestick-", b.slice(0,1), e);
       //this.markTrades(c, Trading.app.getController("User").trades.data.items);
       //this.markSocialTrades(c)
 }
@@ -785,6 +785,10 @@ BetterFinancialPanel.prototype.updateTradeMarker = function(c) {
     }
 }
 
+// c: symbol
+// j: container prefix
+// a
+// b[0] is timestamp
 BetterFinancialPanel.prototype.drawCandlestickChart = function(c, j, b, a) {
     var g = [];
     var f = {};
@@ -891,6 +895,10 @@ BetterFinancialPanel.prototype.drawCandlestickChart = function(c, j, b, a) {
     });
     return h
 }
+// c: chart
+// d: symbol
+// h: timestamp
+// f: data
 BetterFinancialPanel.prototype.addPointToCandlestickChart = function(d, c, h, f) {
     c.get("advanced-chart-candlestick-y-axis-" + d).removePlotLine("advanced-chart-candlestick-guide-" + d);
     c.get("advanced-chart-candlestick-y-axis-" + d).addPlotLine({
