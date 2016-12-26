@@ -22,7 +22,7 @@
       		</div>
           <%= render "expiry_panel" %>
           <%= content_tag "div","", id: "advanced-chart-line-#{symbol}", class: "forex-chart", data: {symbol: symbol} %>
-          <%= content_tag "div","", id: "advanced-chart-candlestick-#{symbol}", class: "forex-chart-candlestick", data: {symbol: symbol}, style: "display:none;" %>
+          <%= content_tag "div","", id: "advanced-chart-candlestick-#{symbol}", class: "forex-chart-candlestick chart-wrapper-hidden", data: {symbol: symbol}, style: "visibility:hidden;" %>
           <div class="jiaoyi1_qiehuanti">
             <div class="one_huobi">
             		<div class="huobi_left" >

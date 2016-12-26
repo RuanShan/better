@@ -326,8 +326,8 @@ $(function () {
     });
     if( chart_symbols.length >0 )
     {
-      //var source = new EventSource('http://www.ballmerasia.com/node/sse/'+chart_symbols.join(','));
-      var source1 = new EventSource('http://127.0.0.1:8080/sse/'+chart_symbols.join(','));
+      var source = new EventSource('http://www.ballmerasia.com/node/sse/'+chart_symbols.join(','));
+      //var source1 = new EventSource('http://127.0.0.1:8080/sse/'+chart_symbols.join(','));
       source1.addEventListener('message', function(e) {
         var data = JSON.parse(e.data);
         if( g_quotation_desc.first_pass )
@@ -356,8 +356,8 @@ $(function () {
     }
     if( label_symbols.length >0 )
     {
-      //var source = new EventSource('http://www.ballmerasia.com/node/sse_ones/'+label_symbols.join(','));
-      var source2 = new EventSource('http://127.0.0.1:8080/sse_ones/'+label_symbols.join(','));
+      var source = new EventSource('http://www.ballmerasia.com/node/sse_ones/'+label_symbols.join(','));
+      //var source2 = new EventSource('http://127.0.0.1:8080/sse_ones/'+label_symbols.join(','));
       source2.addEventListener('message', function(e) {
         var data = JSON.parse(e.data);
 
