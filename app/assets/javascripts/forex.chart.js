@@ -392,7 +392,7 @@ $(function () {
 function InitializeChart(message){
 
   $(".forex-chart").each(function(){
-    var $wrapper = $(this).parent('.forex-wrapper');
+    var $wrapper = $(this).parents('.forex-wrapper');
     var $container = $(this);
     var symbol = $container.data('symbol');
     var panel = new BetterFinancialPanel( $wrapper, symbol );
@@ -589,7 +589,9 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, b) {
           }
       });
       this.lineChart = a;
+      this.showFinancialViewCandleStickChart();
       this.candlestickChart = this.drawCandlestickChart(c, "advanced-chart-candlestick-", b.slice(0,1), e);
+      this.showFinancialViewLineChart();
       //this.markTrades(c, Trading.app.getController("User").trades.data.items);
       //this.markSocialTrades(c)
 }

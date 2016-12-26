@@ -30,10 +30,15 @@
       background: #b0afb0 none repeat scroll 0 0;
       padding:  0 20px;
   }
+  .chart-wrapper{
+
+  }
   .forex-chart{
+    width: 660px;
     height: 300px;
   }
   .forex-chart-candlestick {
+    width: 660px;
     height: 300px;
   }
   .huobiright_ti{
@@ -620,6 +625,6 @@
   }
 }
 
-.chart-wrapper-hidden{
+.forex-chart-candlestick.chart-wrapper-hidden{
   height: 0;
 }
