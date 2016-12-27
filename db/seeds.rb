@@ -21,3 +21,4 @@ Gateway::Weixin.create!  name: "微信充值", merchant: "腾讯", enabled: true
 PaymentMethod.create! name: "内部充值", merchant: "汇潮", enabled: true
 
 #
+load "db/game_instruments.rb"

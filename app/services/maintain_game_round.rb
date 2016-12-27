@@ -4,7 +4,6 @@ class MaintainGameRound
   attr_accessor :specified_time, :redis
 
   def initialize( specified_time = nil)
-    self.redis = Redis.new
 
     self.specified_time = specified_time || DateTime.current.beginning_of_minute
   end
@@ -15,6 +14,7 @@ class MaintainGameRound
     close_pending_game(pending_game_rounds )
 
     create_missing_game_rounds( pending_game_rounds )
+
   end
 
 
@@ -46,7 +46,7 @@ class MaintainGameRound
 
     key = ["Z", symbol, time.beginning_of_day.ago( 3600*24 * time.wday ).to_i * 1000].join("_");
 
-    closest_quote = redis.zrangebyscore( key, time.to_i*1000, time.advance( seconds: 10 ).to_i * 1000 ).first
+    closest_quote = $redis.zrangebyscore( key, time.to_i*1000, time.advance( seconds: 10 ).to_i * 1000 ).first
 #Rails.logger.debug " closest_quote=#{closest_quote.inspect}"
     closest_quote.split('_').second  if closest_quote
   end
