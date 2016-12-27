@@ -9,8 +9,8 @@ if( $(".forex-adv").is("*")){
     if( $("body.mobile .forex-adv").is("*")){
 
       var bid = new Utils.countdown({
-        //seconds: parseInt(<%=(@bid.game_round.end_at-Time.now)%>),
-          seconds: parseInt(10),
+          seconds: parseInt(<%=(@bid.game_round.end_at-Time.now)%>),
+        //seconds: parseInt(10),
           onUpdateStatus: function(l) {
             var first_quote = <%=@bid.last_quote%>;
             var last_quote = $(".b-instrument-last-quote").first().html();
@@ -67,8 +67,8 @@ if( $(".forex-adv").is("*")){
 
 }else {
   var bid = new Utils.countdown({
-    //seconds: parseInt(<%=(@bid.game_round.end_at-Time.now)%>),
-      seconds: parseInt(10),
+    seconds: parseInt(<%=(@bid.game_round.end_at-Time.now)%>),
+    //seconds: parseInt(10),
       onUpdateStatus: function(l) {
         var first_quote = <%=@bid.last_quote%>;
         var last_quote = $(".b-instrument-last-quote").first().html();

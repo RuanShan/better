@@ -30,7 +30,7 @@ class MaintainGameRound
       period = 300
       start_at = self.specified_time.ago( period )
       end_at = self.specified_time
-      Forex.symbols.each{|symbol|
+      GameInstrument.all.pluck(:code).each{|symbol|
         #found = GameRound.exists?{ symbol: symbol, end_at: end_at,  period: period }
         unless GameRound.exists?( instrument_code: symbol, end_at: end_at,  period: period )
           quote = get_quote_by_time( symbol, end_at)
@@ -48,7 +48,7 @@ class MaintainGameRound
 
     closest_quote = redis.zrangebyscore( key, time.to_i*1000, time.advance( seconds: 10 ).to_i * 1000 ).first
 #Rails.logger.debug " closest_quote=#{closest_quote.inspect}"
-    closest_quote.split('_').last  if closest_quote
+    closest_quote.split('_').second  if closest_quote
   end
 
 

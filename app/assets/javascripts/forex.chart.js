@@ -403,6 +403,13 @@ function InitializeChart(message){
     $(".b-chart-line", $wrapper).click(function(){
        panel.showFinancialViewLineChart();
     })
+
+    $(".b-chart-zoom-in", $wrapper).click(function(){
+       panel.zoomChart("in");
+    })
+    $(".b-chart-zoom-out", $wrapper).click(function(){
+       panel.zoomChart("out");
+    })
     //FinancialPanel.drawChart( this.id, symbol, message[symbol]);
 
     g_quotation_desc.charts[symbol] = panel.lineChart;
@@ -413,6 +420,11 @@ function InitializeChart(message){
 
 function BetterFinancialPanel( wrapper, symbol )
 {
+  this.zoomLevels = [60, 30, 15];
+  this.regularZoomLevels = [60, 30, 15];
+  this.weekendZoomLevels = [120, 60, 30];
+  this.zoomLevelIndex = 0;
+  this.currentMinute = 0;
   //this.container = $(container);
   this.lineChart = null;
   this.instrumentID = symbol;
@@ -986,10 +998,11 @@ BetterFinancialPanel.prototype.zoomChart = function(a) {
             }
         }
     }
-    this.updateChartZoomRange(this.selectedGameID)
+    this.updateChartZoomRange(this.instrumentID)
 }
+// b: symbol
 BetterFinancialPanel.prototype.updateChartZoomRange = function(b) {
-    var d = this.charts[b];
+    var d = g_quotation_desc.charts[b]//this.charts[b];
     var f = "chart-series-" + b;
     var c = d.get(f);
     var e = d.get("chart-x-axis-" + b);
