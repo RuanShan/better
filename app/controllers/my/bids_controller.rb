@@ -31,6 +31,7 @@ module My
 
       @bid = current_user.bids.build(bid_params)
       @bid.game_round = @game_round
+      @bid.rate = @game_round.game_instrument.default_rate
       respond_to do |format|
         if @bid.save
           format.html { redirect_to @bid, notice: 'Bid was successfully created.' }

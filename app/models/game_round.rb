@@ -1,6 +1,6 @@
 class GameRound < ApplicationRecord
   belongs_to :game
-  belongs_to :instrument
+  belongs_to :game_instrument, foreign_key: 'instrument_code', primary_key: 'code'
 
   extend  DisplayDateTime
   date_time_methods :end_at
@@ -49,6 +49,7 @@ class GameRound < ApplicationRecord
       instrument_quote*1.0/10000;
     end
   end
+
 
   private
   def set_end_at

@@ -23,9 +23,9 @@ module Admin
     end
 
     def batch_rate
-      rate = params["rate"]
+      rate = params["default_rate"]
       GameInstrument.all.each{|gi|
-        gi.rate = rate
+        gi.default_rate = rate
         gi.save
       }
       redirect_to admin_game_instruments_path

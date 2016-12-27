@@ -56,7 +56,7 @@
 
                     <div class="b-game-form-invoice-wrapper game-form-invoice-wrapper pull-right huobiti_right" style ="width:55%; margin:0;" id="game-form-invoice-wrapper-157" style="">
                       <div class="payout " >
-                        <h1><%=@game_instrument.display_rate%></h1>
+                        <h1><%=@game_instrument.display_default_rate%></h1>
                         <p>收益</p>
                         <p class="chushou"><%= image_tag "new/jiaoyi/jiaoyi1_112.gif" %>出售</p>
                         <p class="duichong"><%= image_tag "new/jiaoyi/jiaoyi1_114.gif" %>对冲</p>
@@ -120,30 +120,36 @@
 
             		</div>
             </div>
-            <% game_rounds = GameRound.last_round %>
+            <%
+            game_instruments = GameInstrument.includes(:last_game_round).all
+            game_rounds = GameRound.last_round
+            %>
 
             <div class="jiaoyi1biao">
-              				<table rules="rows">
-              					<tbody><tr class="bbiao1">
-              						<td class="a18"><h2>工具</h2></td>
-              						<td class="a18"><h2>最近到期价格</h2></td>
-              						<td class="a14"><h2>收益</h2></td>
-              						<td class="a32"><h2>情绪</h2></td>
-              						<td class="a18"><h2>波动性</h2></td>
-              					</tr>
+            				<table rules="rows">
+            					<tbody><tr class="bbiao1">
+            						<td class="a18"><h2>工具</h2></td>
+            						<td class="a18"><h2>最近到期价格</h2></td>
+            						<td class="a14"><h2>收益</h2></td>
+            						<td class="a32"><h2>情绪</h2></td>
+            						<td class="a18"><h2>波动性</h2></td>
+            					</tr>
+                      <% GameInstrument.category_ids.each{|key,val| gis = game_instruments.select{|gi| gi.category_id == key}
+                          next if gis.blank?
+                      %>
               					<tr class="bbiao2">
-              						<td class="a18">货币</td>
+              						<td class="a18"><%= t( "forex.category.#{key}") %></td>
               						<td class="a18"></td>
               						<td class="a14"></td>
               						<td class="a32"></td>
               						<td class="a18"></td>
               					</tr>
-                        <% game_rounds.each{|gr| %>
+                        <% gis.each{|gi| next if gi.last_game_round.blank? %>
               					<tr class="bbiao3">
 
-              						<td><p><%= t("forex.symbol.#{gr.instrument_code}")  %>  </p></td>
-              						<td><p><%= gr.desplay_instrument_quote %></p></td>
-              						<td><p>70%</p></td>
+              						<td><p><%= gi.name  %>  </p></td>
+              						<td><p><%= gi.last_game_round.desplay_instrument_quote %></p></td>
+              						<td><p><%= gi.display_default_rate %></p></td>
               						<td><div class="baifenbi">
               							<span class="baifenbi1">30%</span>
               							<span class="baifenbi2">70%</span>
@@ -159,6 +165,7 @@
               						</div></td>
               					</tr>
                         <% } %>
+                      <% } %>
 
               				</tbody></table>
             </div>

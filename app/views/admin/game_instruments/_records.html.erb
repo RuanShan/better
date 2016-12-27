@@ -5,7 +5,9 @@
         <th>名称</th>
         <th>代码</th>
         <th>类别</th>
+        <th>赔率</th>
         <th>热门</th>
+
 <!--
         <th colspan="2">
           <%=link_to "添加资产", new_admin_game_instrument_path, class: "btn btn-primary btn_xs"%>
@@ -28,6 +30,7 @@
           <td><%= game_instrument.name %></td>
           <td><%= game_instrument.code %></td>
           <td><%= t "forex.category."+game_instrument.category_id %></td>
+          <td><%= game_instrument.default_rate %></td>
           <td><%= game_instrument.hot==true ? "是" : "否" %></td>
 <!--
           <td><%= link_to "查看", admin_game_instrument_path(game_instrument), method: 'get' %></td>
