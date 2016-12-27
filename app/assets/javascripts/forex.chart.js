@@ -201,13 +201,17 @@ $(function(){
         if( $("form#reg-form, .login-form").is('*') && !$(".forex-simulator-wrapper").is('*')){
           alert("请先登录或注册！");
         }else{
-          var game = Game.current( container );
-          var quote = game.last_quote();
-          $("input[name='game_round[start_at]']", container).val( game.game_round_start_at().toISOString() );
-          $("input[name='game_round[period]']", container).val( game.game_round_period() );
-          $("input[name='bid[last_quote]']", container).val( quote );
+          if($(".forex-simulator-wrapper").is('*')){
+            var game = Game.current( container );
+            var quote = game.last_quote();
+            $("input[name='game_round[start_at]']", container).val( game.game_round_start_at().toISOString() );
+            $("input[name='game_round[period]']", container).val( game.game_round_period() );
+            $("input[name='bid[last_quote]']", container).val( quote );
 
-          $("form", container).submit();
+            $("form", container).submit();
+          }else{
+            alert("系统内排期，暂停交易，首页的模拟交易不变");
+          }
         }
       });
 
