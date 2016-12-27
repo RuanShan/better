@@ -601,7 +601,7 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, b) {
           }
       });
       this.lineChart = a;
-      if($("#advanced-chart-candlestick-"+c ).is('*')){        
+      if($("#advanced-chart-candlestick-"+c ).is('*')){
         this.showFinancialViewCandleStickChart();
         this.candlestickChart = this.drawCandlestickChart(c, "advanced-chart-candlestick-", b.slice(0,1), e);
         this.showFinancialViewLineChart();
@@ -708,7 +708,9 @@ BetterFinancialPanel.prototype.quote = function(j, m, h, n) {
         //g.setTradesMarkersVisibility((this.width == 860), true, true);
         this.lastTradeID = n
     }
-    this.addPointToCandlestickChart(f, k, j, m)
+    if($("#advanced-chart-candlestick-"+f ).is('*')){
+      this.addPointToCandlestickChart(f, k, j, m)
+    }
 }
 
 BetterFinancialPanel.prototype.markTrades = function(g, m) {
