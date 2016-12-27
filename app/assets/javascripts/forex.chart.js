@@ -210,7 +210,7 @@ $(function(){
 
             $("form", container).submit();
           }else{
-            alert("系统内排期，暂停交易，首页的模拟交易不变");
+            alert("系统内排期，暂停交易");
           }
         }
       });
