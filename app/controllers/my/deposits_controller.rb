@@ -2,6 +2,9 @@ module My
   class DepositsController < BaseController
     before_action :set_deposit, only: [:show, :edit, :update, :destroy]
 
+    PAYMENT_GATEWAY_URL = "https://pay.fuiou.com/smpGate.do"
+    PAYMENT_GATEWAY_TEST_URL = "http://www-1.fuiou.com:8888/wg1_run/smpGate.do"
+
     # GET /deposits
     # GET /deposits.json
     def index
@@ -39,11 +42,14 @@ module My
     def create
       @deposit = Deposit.new(deposit_params)
       @deposit.user = current_user
+
       @deposit.do_with_promotion
 
       respond_to do |format|
         if @deposit.errors.empty?
-          format.html { redirect_to my_deposits_url, notice: t(:deposit_success) }
+          @url = Gateway::Fuiou::Service.create_yemadai_url( params )
+Rails.logger.debug " @url = #{@url} "
+          format.html { render :goto_gateway, notice: t(:deposit_success) }
           format.json { render :show, status: :created, location: @deposit }
           format.js { redirect_to action: 'index', status: 303 }
           #format.js{ render_dialog dialog_view: 'wait_gateway_response' }

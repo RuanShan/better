@@ -20,6 +20,9 @@
 //= require moment/zh-cn
 //= require bootstrap-datetimepicker
 //= require select2
+//= require jquery-validate/jquery.validate.min
+//= require jquery-validate/messages_zh
+//= require base
 //= require base
 //= require cable
 //= require ext-min
@@ -89,6 +92,16 @@ $(function(){
     })
   })
 
+  $('form.new_deposit').validate({
+     rules: {
+       'deposit[amount]': { min: 50 }
+     }
+  })
+  $('form.new_deposit').submit(function(event){
+    event.stopPropagation();
+    alert("支付系统调试中！");
+
+  })
 })
 
 function copyToClipboard(element) {

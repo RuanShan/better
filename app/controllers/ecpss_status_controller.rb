@@ -1,6 +1,9 @@
 class EcpssStatusController < ApplicationController
-  layout "gateway_redirect"
+  #layout "gateway_redirect"
 
+  def goto_gateway
+
+  end
 
   # ReturnURL
   def done

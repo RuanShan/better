@@ -52,7 +52,7 @@ class Deposit < ApplicationRecord
     else
       self.save
       #TODO remove process in prodution
-      self.process!
+      #self.process!
     end
   end
 
