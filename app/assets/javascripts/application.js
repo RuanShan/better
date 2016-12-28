@@ -94,10 +94,10 @@ $(function(){
 
   $('form.new_deposit').validate({
      rules: {
-       'deposit[amount]': { min: 50 }
+       'deposit[amount]': { min: 1000 }
      }
   })
-  $('form.new_deposit').submit(function(event){
+  $('#new_deposit, form.new_deposit').submit(function(event){
     event.stopPropagation();
     alert("支付系统调试中！");
 
