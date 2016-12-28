@@ -35,7 +35,7 @@ class GameRound < ApplicationRecord
     else
       sconditions = "1"
     end
-    self.includes(:instrument).where(sconditions).order("game_rounds.end_at desc").references(:instruments).all
+    self.includes(:game_instrument).where(sconditions).order("game_rounds.end_at desc").references(:instruments).all
   end
 
   def complete_bids
