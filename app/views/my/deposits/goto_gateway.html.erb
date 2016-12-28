@@ -1,0 +1,10 @@
+<% #auto redirect_to ecpss
+
+order_pay_type = 'B2C'
+%>
+<form id="fuiou_form" action="<%= @url %>" method="post">
+
+ </form>
+ <%= javascript_tag defer: 'defer' do -%>
+   document.getElementById("fuiou_form").submit();
+ <% end -%>

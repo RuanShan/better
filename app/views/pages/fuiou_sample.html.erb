@@ -1,0 +1,27 @@
+<%= simple_form_for(Deposit.new, url: my_deposits_path ) do |f| %>
+
+  <table>
+        <tr>
+            <td colspan="4">
+                支付金额<%= f.input :amount %> <br/>
+
+                支付类型
+                <select name="order_pay_type">
+                	<option value="B2C" >B2C</option>
+                	<option value="B2B" >B2B</option>
+                </select> <br/>
+
+                银行
+		<select name="iss_ins_cd">
+			<option value="0000000000" >其他银行</option>
+		</select> <br/>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <input type="submit" value="确认支付">
+            </td>
+        </tr>
+    </table>
+<% end %>
