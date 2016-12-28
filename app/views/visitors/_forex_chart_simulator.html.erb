@@ -1,4 +1,5 @@
 <% # locals {container_id, symbol}
+game_instrument = GameInstrument.where(code: symbol).first
 %>
 
 <div class="forex-wrapper forex-simulator-wrapper">
@@ -18,7 +19,7 @@
 			<div class="b-game-form-invoice-wrapper huobiti_right1 pull-right">
         <div class="payout " >
   				<div class="sshuou text-center">
-  				  <span class="rebate">70%</span>
+  				  <span class="rebate"> <%= game_instrument.display_default_rate %></span>
   				</div>
   				<div class="ssshou" >
     				<p class="shouyi1 text-center">收益</p>
