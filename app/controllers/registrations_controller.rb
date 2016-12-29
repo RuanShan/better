@@ -123,7 +123,7 @@ class RegistrationsController < DeviseInvitable::RegistrationsController
 
   def get_broker_by_broker_number
     broker_number = params.try(:user).try(:broker_number)
-    broker_number ||= session["broker_number"]
+    broker_number = session["broker_number"] unless broker_number.present?
     Broker.find_by_number(broker_number) if broker_number
   end
 
