@@ -48,7 +48,7 @@ module My
           @url = Gateway::Fuiou::Service.create_pc_url( order_id: @deposit.number, order_amt: @deposit.amount_in_cent, iss_ins_cd:  @iss_ins_cd)
           @md5 = Gateway::Fuiou::Service.create_sign_string(  order_id: @deposit.number, order_amt: @deposit.amount_in_cent, iss_ins_cd: @iss_ins_cd )
 
-          format.html { render :goto_gateway, notice: t(:deposit_success) }
+          format.html { render :goto_gateway2, layout: false, notice: t(:deposit_success) }
           format.json { render :show, status: :created, location: @deposit }
           format.js { redirect_to action: 'index', status: 303 }
           #format.js{ render_dialog dialog_view: 'wait_gateway_response' }
