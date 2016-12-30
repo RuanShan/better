@@ -2,7 +2,7 @@
 
 order_pay_type = 'B2C'
 %>
-<form id="fuiou_form" action="https://pay.fuiou.com/smpGate.do" method="post">
+<form id="fuiou_form" action="<%= Gateway::Fuiou::Service.gateway_url%>" method="post">
   <input type="hidden" name="md5" value="<%=@md5 %>" />
             <input type="hidden" name="mchnt_cd" value="<%= Gateway::Fuiou.mchnt_cd %>" />
             <input type="hidden" name="order_id" value="<%= @deposit.number %>" />

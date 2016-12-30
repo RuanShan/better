@@ -4,6 +4,10 @@ module Gateway::Fuiou
     GATEWAY_TEST_URL = 'http://www-1.fuiou.com:8888/wg1_run/smpGate.do'
     CREATE_YEMADAI_REQUIRED_PARAMS = %w(order_id order_amt iss_ins_cd)
 
+    def self.gateway_url
+      Rails.env.production? ? GATEWAY_URL : GATEWAY_TEST_URL
+    end
+
     def self.create_pc_url(params, options = {})
       # optional params: products, remark, defaultBankNumber
 
@@ -46,8 +50,7 @@ module Gateway::Fuiou
     end
 
     def self.request_uri(params, options = {})
-      url = Rails.env.production? ? GATEWAY_URL : GATEWAY_TEST_URL
-      uri = URI(url)
+      uri = URI(gateway_url)
       uri.query = URI.encode_www_form(sign_params(params, options))
       uri
     end

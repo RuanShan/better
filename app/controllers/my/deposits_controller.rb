@@ -44,7 +44,7 @@ module My
 
       respond_to do |format|
         if @deposit.errors.empty?
-          @iss_ins_cd = params['iss_ins_cd'] || '0000000000'
+          @iss_ins_cd = '0000000000'#params['iss_ins_cd'] || '0000000000'
           @url = Gateway::Fuiou::Service.create_pc_url( order_id: @deposit.number, order_amt: @deposit.amount_in_cent, iss_ins_cd:  @iss_ins_cd)
           @md5 = Gateway::Fuiou::Service.create_sign_string(  order_id: @deposit.number, order_amt: @deposit.amount_in_cent, iss_ins_cd: @iss_ins_cd )
 
