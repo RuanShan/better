@@ -2,9 +2,6 @@ module My
   class DepositsController < BaseController
     before_action :set_deposit, only: [:show, :edit, :update, :destroy]
 
-    PAYMENT_GATEWAY_URL = "https://pay.fuiou.com/smpGate.do"
-    PAYMENT_GATEWAY_TEST_URL = "http://www-1.fuiou.com:8888/wg1_run/smpGate.do"
-
     # GET /deposits
     # GET /deposits.json
     def index

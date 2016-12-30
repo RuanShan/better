@@ -47,7 +47,8 @@ module Gateway::Fuiou
     end
 
     def self.request_uri(params, options = {})
-      uri = URI(GATEWAY_TEST_URL)
+      url = Rails.env.production? ? GATEWAY_URL : GATEWAY_TEST_URL
+      uri = URI(url)
       uri.query = URI.encode_www_form(sign_params(params, options))
       uri
     end

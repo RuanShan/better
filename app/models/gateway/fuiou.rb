@@ -6,8 +6,10 @@ module Gateway
     @ver = '1.0.1'
     @debug_mode = true
     @sign_type = 'MD5'
-    @page_notify_url = "http://127.0.0.1:3000/fuiou_status/done"
-    @back_notify_url = "http://127.0.0.1:3000/fuiou_status/notify"
+    #@page_notify_url = "http://127.0.0.1:3000/fuiou_status/done"
+    #@back_notify_url = "http://127.0.0.1:3000/fuiou_status/notify"
+    @page_notify_url = "http://www.ballmerasia.com/fuiou_status/done"
+    @back_notify_url = "http://www.ballmerasia.com/fuiou_status/notify"
     @iss_ins_cd_enum = { '中国工商银行': '0801020000',
       '中国农业银行' =>	'0801030000',
       '中国建设银行' => '0801050000',
