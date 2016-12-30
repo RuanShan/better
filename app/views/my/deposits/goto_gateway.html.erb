@@ -2,7 +2,7 @@
 
 order_pay_type = 'B2C'
 %>
-<form id="fuiou_form" action="http://www-1.fuiou.com:8888/wg1_run/smpGate.do" method="post">
+<form id="fuiou_form" action="https://pay.fuiou.com/smpGate.do" method="post">
   <input type="hidden" name="md5" value="<%=@md5 %>" />
             <input type="hidden" name="mchnt_cd" value="<%= Gateway::Fuiou.mchnt_cd %>" />
             <input type="hidden" name="order_id" value="<%= @deposit.number %>" />
@@ -11,7 +11,7 @@ order_pay_type = 'B2C'
             <input type="hidden" name="page_notify_url" value="<%=Gateway::Fuiou.page_notify_url %>" />
             <input type="hidden" name="back_notify_url" value="<%=Gateway::Fuiou.back_notify_url %>" />
             <input type="hidden" name="order_valid_time" value="15m" />
-            <input type="hidden" name="iss_ins_cd" value="0000000000" />
+            <input type="hidden" name="iss_ins_cd" value="<%= @iss_ins_cd %>" />
             <input type="hidden" name="goods_name" value="" />
             <input type="hidden" name="goods_display_url" value="" />
             <input type="hidden" name="rem" value="" />

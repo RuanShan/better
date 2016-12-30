@@ -2,7 +2,6 @@ module Gateway::Fuiou
   module Service
     GATEWAY_URL = 'https://pay.fuiou.com/smpGate.do'
     GATEWAY_TEST_URL = 'http://www-1.fuiou.com:8888/wg1_run/smpGate.do'
-                      #http://www-1.fuiou.com:8888/wg1_run/smpGate.do
     CREATE_YEMADAI_REQUIRED_PARAMS = %w(order_id order_amt iss_ins_cd)
 
     def self.create_pc_url(params, options = {})

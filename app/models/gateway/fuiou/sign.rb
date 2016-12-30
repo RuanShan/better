@@ -5,6 +5,7 @@ module Gateway::Fuiou
       params = Utils.stringify_keys(params)
       key = options[:mchnt_key] || Gateway::Fuiou.mchnt_key
       string = params_to_string(params)
+      Rails.logger.debug "string=#{string}, key=#{key}"
       sign(key, string)
 
     end
@@ -41,8 +42,6 @@ module Gateway::Fuiou
       key =  Gateway::Fuiou.mchnt_key
       string = response_params_to_string(params)
       new_sign = sign(key, string)
-
-Rails.logger.debug "string=#{string}, new_sign=#{new_sign}, sign=#{md5}"
 
       case sign_type
       when 'MD5'
