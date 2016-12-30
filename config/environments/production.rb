@@ -74,7 +74,7 @@ Rails.application.configure do
     port: 465,
     domain: 'ballmerasian.com',
     user_name: 'admin',
-    password: ENV['BETTER_EMAIL_PWD'],
+    password: 'mail_admin',
     authentication: 'login',
     openssl_verify_mode: 'none',
     enable_starttls_auto: false
