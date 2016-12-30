@@ -51,8 +51,10 @@ class GameRound < ApplicationRecord
   end
 
 
+
   private
   def set_end_at
     self.end_at = start_at.since( self.period)
   end
+
 end

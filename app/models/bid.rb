@@ -53,7 +53,7 @@ class Bid < ApplicationRecord
   end
 
   def update_quote(param_quote)
-    quote = MaintainGameRound.new.get_quote_by_time(game_round.instrument_code, game_round.end_at)
+    quote = RedisService.get_quote_by_time(game_round.instrument_code, game_round.end_at)
     quote ||= param_quote.to_f
     game_round.instrument_quote = quote
     complete!
