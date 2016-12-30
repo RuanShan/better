@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161226251704) do
+ActiveRecord::Schema.define(version: 20161227251704) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -447,7 +447,7 @@ ActiveRecord::Schema.define(version: 20161226251704) do
 
   create_table "wallets", force: :cascade do |t|
     t.integer  "user_id"
-    t.decimal  "amount"
+    t.decimal  "amount",          default: "0.0"
     t.string   "memo"
     t.datetime "deleted_at"
     t.integer  "originator_id"

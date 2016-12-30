@@ -193,9 +193,9 @@ Rails.application.routes.draw do
 
   post '/sms/create_verify_code', to: 'sms#create_verify_code'
 
-  get '/ecpss_status/goto_gateway' => 'ecpss_status#goto_gateway', :as => :ecpss_goto_gateway
-  get '/ecpss_status/done/' => 'ecpss_status#done', :as => :ecpss_done
-  post '/ecpss_status/notify/' => 'ecpss_status#notify', :as => :ecpss_notify
+  get '/fuiou_status/goto_gateway' => 'fuiou_status#goto_gateway', :as => :fuiou_goto_gateway
+  post '/fuiou_status/done/' => 'fuiou_status#done', :as => :fuiou_done
+  post '/fuiou_status/notify/' => 'fuiou_status#notify', :as => :fuiou_notify
 
   #root to: 'visitors#index'
   get '/(:number)', to: 'visitors#index', as: :root

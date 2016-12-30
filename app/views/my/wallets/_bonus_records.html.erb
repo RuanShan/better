@@ -25,11 +25,11 @@
         <tr class="<%=tr_class%>">
           <td><%= bonus.created_at.to_i %></td>
           <td><%= bonus.display_created_at %></td>
-          <td><%= bonus.number %></td>
+          <td> </td>
           <td><%= bonus.display_amount %></td>
           <td><%= bonus.memo %></td>
         </tr>
-        <%total_amount += transfer.amount%>
+        <%total_amount += bonus.amount%>
       <% end %>
     <% end %>
   </tbody>

@@ -23,6 +23,9 @@ class Deposit < ApplicationRecord
   delegate :nickname, to: :user, prefix: true
 
   validates :amount, numericality: { greater_than_or_equal_to: 50, less_than_or_equal_to: 50000}
+  validate :available_promotion_number#, if: ->(deposit){ deposit.promotion_number.present? }
+
+
 
   # 缺省状态是等待处理， 即 pending: 0
   state_machine :state, initial: :pending do
@@ -81,9 +84,41 @@ class Deposit < ApplicationRecord
     # add wallet
     wallets.create!( user: user, amount: self.amount, is_bonus: false )
     if promotion.present?
-      bonus = promotion.compute_bonus(amount)
-      wallets.create!( user: user, amount: bonus, is_bonus: true )
+      if promotion.deposit_commission_default?
+        bonus = promotion.compute_bonus(amount)
+        if user.parent.present?
+          wallets.create!( user: user.parent, amount: bonus, is_bonus: true )
+        end
+      else
+        bonus = promotion.compute_bonus(amount)
+        wallets.create!( user: user, amount: bonus, is_bonus: true )
+      end
     end
   end
 
+  def available_promotion_number
+    if promotion_number.blank?
+      # 即送
+      if  Promotion.deposit_commission_default.present?
+        self.promotion_number = Promotion.deposit_commission_default.first.number
+      end
+    end
+
+    return if promotion_number.blank?
+
+    if promotion.present?
+      unless promotion.valid_amount?(amount)
+        promotion_number_error_message= "活动需要至少充值#{promotion.factor1}元"
+        errors.add(:promotion_number, promotion_number_error_message)
+      end
+    else
+      promotion_number_error_message= "活动代码不存在"
+      errors.add(:promotion_number, promotion_number_error_message)
+    end
+  end
+
+
+  def amount_in_cent
+    (self.amount*100).to_i
+  end
 end

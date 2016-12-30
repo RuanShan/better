@@ -12,7 +12,7 @@ class Promotion < ApplicationRecord
 
   belongs_to :administrator
 
-  enum rule: { deposit_amount_percent: 1 }
+  enum rule: { deposit_amount_percent: 1 , deposit_commission_default: 100 }
 
   def self.search(search_params)
     rule = search_params["rule"]
@@ -25,7 +25,7 @@ class Promotion < ApplicationRecord
 
   def valid_amount?(amount)
     case rule
-    when 1
+    when 'deposit_amount_percent', 'deposit_commission_default'
       return true if amount >= factor1
     end
     return false
@@ -33,8 +33,10 @@ class Promotion < ApplicationRecord
 
   def compute_bonus(amount)
     case rule
-    when 1
-      factor3
+    when 'deposit_amount_percent', 'deposit_commission_default'
+      amount * factor3
+    else
+      0
     end
   end
 

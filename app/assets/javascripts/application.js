@@ -98,8 +98,8 @@ $(function(){
      }
   })
   $('#new_deposit, form.new_deposit').submit(function(event){
-    event.stopPropagation();
-    alert("支付系统调试中！");
+    //event.stopPropagation();
+    //alert("支付系统调试中！");
 
   })
 })

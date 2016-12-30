@@ -68,3 +68,6 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
+
+Gateway::Fuiou.mchnt_cd = '0001000F0040992'
+Gateway::Fuiou.mchnt_key = 'vau6p7ldawpezyaugc0kopdrrwm4gkpu'

@@ -5,7 +5,7 @@ module Gateway::Fuiou
                       #http://www-1.fuiou.com:8888/wg1_run/smpGate.do
     CREATE_YEMADAI_REQUIRED_PARAMS = %w(order_id order_amt iss_ins_cd)
 
-    def self.create_yemadai_url(params, options = {})
+    def self.create_pc_url(params, options = {})
       # optional params: products, remark, defaultBankNumber
 
       params = Utils.stringify_keys(params)
@@ -26,6 +26,25 @@ module Gateway::Fuiou
       request_uri(params, options).to_s
     end
 
+    def self.create_sign_string(params, options = {})
+      # optional params: products, remark, defaultBankNumber
+
+      params = Utils.stringify_keys(params)
+
+      params = {
+        'mchnt_cd' => Gateway::Fuiou.mchnt_cd,   #商户号
+        'order_pay_type' => options[:order_pay_type] || 'B2C', #银联其它银行
+        'page_notify_url' => Gateway::Fuiou.page_notify_url,
+        'back_notify_url' => Gateway::Fuiou.back_notify_url,
+        'ver' => '1.0.1',
+        'order_valid_time' => '15m',
+        'goods_name'=>'',
+        'goods_display_url'=>'',
+        'rem'=>''
+        #'iss_ins_cd'
+      }.merge(params)
+      Gateway::Fuiou::Sign.generate(params, options)
+    end
 
     def self.request_uri(params, options = {})
       uri = URI(GATEWAY_TEST_URL)

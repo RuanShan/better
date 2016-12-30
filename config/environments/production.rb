@@ -102,3 +102,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
+
+
+Gateway::Fuiou.mchnt_cd = '0002220F0361183'
+Gateway::Fuiou.mchnt_key = 'w3t3b33cccugpzewyvqll2embwn0phah'

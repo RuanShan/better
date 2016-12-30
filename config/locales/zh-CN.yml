@@ -78,6 +78,7 @@ zh-CN:
   checked: 已审
   success: 成功
   deposit_amount_percent: 充值满送百分比
+  deposit_commission_default: 缺省充值满上级反佣百分比
   forex:
     symbol:
       USEURUSD: 美汇欧元

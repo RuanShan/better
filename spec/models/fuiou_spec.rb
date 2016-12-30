@@ -12,7 +12,7 @@ RSpec.describe Gateway::Fuiou, type: :model do
 
   it "should generate request url" do
     params = { order_id: "", order_amt: 0.01, iss_ins_cd: '0803010000' }
-    url = Gateway::Fuiou::Service.create_yemadai_url( params )
+    url = Gateway::Fuiou::Service.create_pc_url( params )
     puts "url = #{url}"
     expect( url ).to be_present
   end

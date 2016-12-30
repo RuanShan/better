@@ -47,8 +47,10 @@ module My
 
       respond_to do |format|
         if @deposit.errors.empty?
-          @url = Gateway::Fuiou::Service.create_yemadai_url( params )
-Rails.logger.debug " @url = #{@url} "
+          iss_ins_cd = params['iss_ins_cd'] || '0000000000'
+          @url = Gateway::Fuiou::Service.create_pc_url( order_id: @deposit.number, order_amt: @deposit.amount_in_cent, iss_ins_cd:  iss_ins_cd)
+          @md5 = Gateway::Fuiou::Service.create_sign_string(  order_id: @deposit.number, order_amt: @deposit.amount_in_cent, iss_ins_cd: iss_ins_cd )
+
           format.html { render :goto_gateway, notice: t(:deposit_success) }
           format.json { render :show, status: :created, location: @deposit }
           format.js { redirect_to action: 'index', status: 303 }

@@ -15,6 +15,18 @@ FactoryGirl.define do
       broker
     end
 
+    trait :children do
+      after(:create) {|object|
+        create :user, parent: object
+      }
+    end
+
     factory :user_and_broker, traits: [:broker]
+
+    factory :user_and_children , traits: [:children]
+
   end
+
+
+
 end

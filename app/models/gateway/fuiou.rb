@@ -6,8 +6,8 @@ module Gateway
     @ver = '1.0.1'
     @debug_mode = true
     @sign_type = 'MD5'
-    @page_notify_url = "/fuiou_status/done"
-    @back_notify_url = "/fuiou_status/notify"
+    @page_notify_url = "http://127.0.0.1:3000/fuiou_status/done"
+    @back_notify_url = "http://127.0.0.1:3000/fuiou_status/notify"
     @iss_ins_cd_enum = { '中国工商银行': '0801020000',
       '中国农业银行' =>	'0801030000',
       '中国建设银行' => '0801050000',
@@ -30,7 +30,7 @@ module Gateway
       '银联'=>'0000000000'}
 
     class << self
-      attr_accessor :mchnt_cd, :mchnt_key, :sign_type, :debug_mode
+      attr_accessor :mchnt_cd, :mchnt_key, :sign_type, :debug_mode, :ver
       attr_accessor :page_notify_url, :back_notify_url
       def debug_mode?
         !!@debug_mode

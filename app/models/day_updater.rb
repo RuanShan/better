@@ -28,6 +28,7 @@ class DayUpdater
 
     if is_deposit?              #存款
       if is_bonus? #红利
+#Rails.logger.debug " day.bonus=#{day.bonus.inspect}, wallet=#{wallet.amount.to_i}, amount=#{amount.to_i}"        
         day.bonus += amount
       else        #存款
         self.is_first_deposit_today = true if day.deposit_amount == 0
