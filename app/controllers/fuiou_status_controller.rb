@@ -9,6 +9,7 @@ class FuiouStatusController < ApplicationController
   # ReturnURL
   def done
     notify_params = permitted_notify_params
+    Rails.logger.info " notify_params=#{notify_params.inspect}"
     if (Gateway::Fuiou::Sign.verify?( notify_params ))
       status = notify_params['order_pay_code']
 
