@@ -60,7 +60,24 @@ $( document ).ready(function() {
 	$('.nav__trigger').on('click', function(e){
 			 e.preventDefault();
 			 $(this).parent().toggleClass('nav--active');
-		 });
+	});
+
+	function adjust_deposit_iss_ins_cd()
+	{
+		if( $('#deposit_payment_method_id').val() == '1'){
+			$('.deposit_iss_ins_cd').show();
+		}else{
+			$('.deposit_iss_ins_cd').hide();
+		}
+	}
+	if( $('#deposit_payment_method_id').is('*')){
+		adjust_deposit_iss_ins_cd();
+		$('#deposit_payment_method_id').change(function(){
+			adjust_deposit_iss_ins_cd();
+		})
+	}
+
+
 });
 
 function bigger(one){

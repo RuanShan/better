@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161227251704) do
+ActiveRecord::Schema.define(version: 20161231151704) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20161227251704) do
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.integer  "administrator_id"
+    t.string   "iss_ins_cd",                   default: "",    null: false
     t.index ["administrator_id"], name: "index_deposits_on_administrator_id"
     t.index ["number"], name: "index_deposits_on_number"
     t.index ["payment_method_id"], name: "index_deposits_on_payment_method_id"

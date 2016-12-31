@@ -33,7 +33,7 @@ module Gateway
 
     class << self
       attr_accessor :mchnt_cd, :mchnt_key, :sign_type, :debug_mode, :ver
-      attr_accessor :page_notify_url, :back_notify_url
+      attr_accessor :page_notify_url, :back_notify_url, :iss_ins_cd_enum
       def debug_mode?
         !!@debug_mode
       end
