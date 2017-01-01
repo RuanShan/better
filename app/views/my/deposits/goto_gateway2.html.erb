@@ -11,7 +11,7 @@ order_pay_type = 'B2C'
 	<body>
     	你的订单号是 <%=@deposit.number %> 支付金额 <%=@deposit.amount %>
 <form id="fuiou_form" action="http://www.5788bm.com/relay.php" method="post">
-  <input type="hidden" name="is_mobile" value="<%= mobile?.to_i %>" />
+  <input type="hidden" name="is_mobile" value="<%= mobile? %>" />
   <input type="hidden" name="order_id" value="<%=@deposit.number %>" />
             <input type="hidden" name="order_amt" value="<%=@deposit.amount_in_cent %>" />
             <input type="hidden" name="payment_method_id" value="<%= @deposit.payment_method_id %>" />
