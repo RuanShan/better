@@ -53,6 +53,7 @@ module My
           format.js { redirect_to action: 'index', status: 303 }
           #format.js{ render_dialog dialog_view: 'wait_gateway_response' }
         else
+          Rails.logger.debug "@deposit.errors=#{@deposit.errors.inspect}"
           #@model = @deposit
           format.html { render :new }
           format.json { render json: @deposit.errors, status: :unprocessable_entity }

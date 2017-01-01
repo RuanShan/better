@@ -7,9 +7,9 @@
 
 	<div class="shou_top2">
 		<%= better_form_for(@deposit, url: my_deposits_path ) do |f| %>
-      <%= f.input :payment_method_id, label: "支付方式", collection: PaymentMethod.all.map {|payment_method| [payment_method.name,payment_method.id]}, input_html: { class: ' select2 fullwidth' }, wrapper_html:{ style:'float:none;'}, label_html:{ style: 'margin:0;'}   %>
-      <%= f.input :iss_ins_cd, label: "支付银行", collection: Gateway::Fuiou.iss_ins_cd_enum.to_a, input_html: { class: ' select2 fullwidth' }, wrapper_html:{ style:'float:none;'}, label_html:{ style: 'margin:0;'}   %>
-      <%= f.input :amount, label: "充值全额", as:"string", placeholder: "请输入提现金额", wrapper_html: { class: 'zhifuzuo' }, input_html: { class: 'zijin' } %>
+      <%= f.input :payment_method_id, label: "支付方式", collection: PaymentMethod.all.map {|payment_method| [payment_method.name,payment_method.id]}, input_html: {  style: 'margin:0;' }, wrapper_html:{ style:'float:none;'}, label_html:{ style: 'margin:0;'}   %>
+      <%= f.input :iss_ins_cd, label: "支付银行", collection: Gateway::Fuiou.iss_ins_cd_enum.to_a, input_html: { style: 'margin:0;'  }, wrapper_html:{ style:'float:none;'}, label_html:{ style: 'margin:0;'}   %>
+      <%= f.input :amount, label: "充值全额", as:"decimal", placeholder: "请输入提现金额", wrapper_html: { class: 'zhifuzuo' }, input_html: { class: 'zijin' } %>
       <%= f.input :promotion_number, label: "活动代码", as:"string", placeholder: "未参加活动不用填写", wrapper_html: { class: 'zhifuyou' }, input_html: { class: 'zijin' } %>
       <div class="form-actions">
         <div class="form-group">

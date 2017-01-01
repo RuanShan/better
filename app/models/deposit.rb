@@ -22,7 +22,7 @@ class Deposit < ApplicationRecord
   delegate :name, to: :payment_method, prefix: true
   delegate :nickname, to: :user, prefix: true
 
-  validates :amount, numericality: { greater_than_or_equal_to: 50, less_than_or_equal_to: 50000}
+  validates :amount, numericality: { greater_than_or_equal_to: 0.01, less_than_or_equal_to: 50000}
   validate :available_promotion_number#, if: ->(deposit){ deposit.promotion_number.present? }
 
 
