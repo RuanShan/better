@@ -94,7 +94,7 @@
               <div class="shuru">
                 <label for="fangshi" class="shuru1" style="width:352px;">
                   <span style="float:left;margin:0 0px 0 0px;">支付方式 *</span>
-                  <%=bf.select( "payment_method_id", PaymentMethod.all.map {|payment_method| [payment_method.name,payment_method.id]}, class:'form-control select2 long') %>
+                  <%=bf.select( "payment_method_id", PaymentMethod.enabled.map {|payment_method| [payment_method.name,payment_method.id]}, class:'form-control select2 long') %>
                 </label>
                 <label for="mingcheng" class="shuru1">
                   <span>银行名称</span><span>*</span>
