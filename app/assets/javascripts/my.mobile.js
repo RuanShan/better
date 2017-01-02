@@ -82,6 +82,10 @@ $( document ).ready(function() {
 		})
 	}
 
+  $(".sign_up_wrapper .chuangjiankaihu").click(function(){
+  	var classes = $(this).attr("class");
+		$(this).attr("class",classes+" active");
+  });
 
 });
 
