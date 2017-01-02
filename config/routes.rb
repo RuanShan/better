@@ -55,7 +55,10 @@ Rails.application.routes.draw do
       end
     end
     resources :users do
-      resources :user_banks
+      resources :user_banks do
+        put :enable
+        put :disable
+      end
       collection do
         get :search
         put :batch_delete

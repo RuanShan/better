@@ -27,6 +27,20 @@
         <td>银行地址</td>
         <td><%= @user_bank.address %></td>
       </tr>
+      <tr>
+        <td>状态</td>
+        <td><%= t(@user_bank.state) %></td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table> <tr> <td><%= button_to "通过", admin_user_user_bank_enable_path( @user, @user_bank), method: :put %> </td>
+             <td><%= button_to "禁用", admin_user_user_bank_disable_path( @user, @user_bank ), method: :put %> </td></tr>
+          </table>
+
+
+        </td>
+      </tr>
     </tbody>
   </table>
 

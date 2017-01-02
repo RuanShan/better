@@ -11,7 +11,8 @@
         <tr>
           <th>银行名称</th>
           <th>添加时间</th>
-          <th></th>
+          <th>状态</th>
+        <th></th>
         </tr>
       </thead>
 
@@ -23,6 +24,7 @@
             <tr>
               <td><%=bank.name%></td>
               <td><%=bank.display_created_at%></td>
+              <td><%= t(bank.state) %></td>
               <td><%= link_to "查看", admin_user_user_bank_path(@user, bank), method: 'get' %></td>
             </tr>
           <% end %>

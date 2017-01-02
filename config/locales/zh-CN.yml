@@ -77,6 +77,8 @@ zh-CN:
   pending: 待审
   checked: 已审
   success: 成功
+  green: 通过
+  red: 禁用
   deposit_amount_percent: 充值满送百分比
   deposit_commission_default: 缺省充值满上级反佣百分比
   forex:
