@@ -124,7 +124,7 @@ Rails.application.routes.draw do
     get '/product', to: 'welcome#product'
     get '/commission', to: 'welcome#commission'
     get '/clause', to: 'welcome#clause'
-	get '/activity', to: 'welcome#activity'
+	  get '/activity', to: 'welcome#activity'
     get '/(:number)', to: 'welcome#index', as: :root
   end
 

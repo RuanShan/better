@@ -102,6 +102,13 @@ $(function(){
     //alert("支付系统调试中！");
 
   })
+
+  $("a#signal_classic").click(function(){
+    alert("系统内排，暂不提供！");
+  })
+  $("a#signal_rss").click(function(){
+    alert("系统内排，暂不提供！");
+  })
 })
 
 function copyToClipboard(element) {

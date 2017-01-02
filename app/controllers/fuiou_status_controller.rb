@@ -12,17 +12,14 @@ class FuiouStatusController < ApplicationController
     Rails.logger.info " notify_params=#{notify_params.inspect}"
     if (Gateway::Fuiou::Sign.verify?( notify_params ))
       status = notify_params['order_pay_code']
-
       if status == "0000"
-
         complete_deposit( notify_params )
-
         redirect_to controller: "my/deposits", notice: "入金成功"
       else
-        redirect_to controller: "my/deposits", notice: "入金失败，请联系客服！"
+        redirect_to controller: "my/deposits", action: 'domestic_new', notice: "入金失败，请联系客服！"
       end
     else
-      redirect_to root_path, status: 404
+      redirect_to controller: "my/deposits", action: 'domestic_new'
     end
   end
 
