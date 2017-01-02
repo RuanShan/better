@@ -88,9 +88,12 @@ function select_bank(bank_id, user_bank_json){
     disable = false;
     $("#password_div").show();
     $("#submit_div").show();
+    $("#state_div").hide();
   }else{
     $("#password_div").hide();
     $("#submit_div").hide();
+    $("#state_div").show();
+
   }
   $("#user_bank_name").val(user_bank.name).attr("disabled",disable);
   $("#user_bank_card_number").val(user_bank.card_number).attr("disabled",disable);

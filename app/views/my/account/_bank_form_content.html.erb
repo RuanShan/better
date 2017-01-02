@@ -12,6 +12,14 @@
 <%= bank_form.input :card_number, label: '银行卡号', placeholder: "请输入银行卡号", as:"string", disabled: disabled  %>
 <%= bank_form.input :branch_name, label: '分支名称', placeholder: "请输入分支名称", as:"string", disabled: disabled  %>
 <%= bank_form.input :address, label: '地址', placeholder: "请输入地址", as:"string", disabled: disabled  %>
+<div id="state_div" class="form-group string optional" style="display:block;margin:10px 0;">
+  <% if @user_bank.persisted? %>
+  <%=bank_form.label :real_name, "状态", class: 'col-sm-3', style: 'text-align:right;' %>
+  <div class="col-sm-9">
+    <%= t(@user_bank.state) %>
+  </div>
+  <% end %>
+</div>
 <div id="password_div" style="<%=password_display%>">
   <%= bank_form.input :current_money_password, label: '资金密码', class:"required", placeholder: "请输入资金密码" %>
 </div>
