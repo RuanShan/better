@@ -16,7 +16,6 @@ class User < MemberBase
 
 
   enum role: [:user, :vip ]
-  enum gender: [:secret, :male, :female ]
   enum id_type: [:id_card, :passport]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

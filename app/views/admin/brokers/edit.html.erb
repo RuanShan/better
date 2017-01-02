@@ -9,7 +9,7 @@
       <%= f.input :last_name %>
       <%= f.input :email %>
       <%= f.input :phone %>
-      <%= f.input :role, label: '性别' do %>
+      <%= f.input :gender, label: '性别' do %>
         <%= f.collection_radio_buttons :gender,[['male', '男'] ,['female', '女'],['secret', '保密']], :first, :last%>
       <% end %>
       <%= f.input :birthday, prompt: { day: '选择日', month: '选择月', year: '选择年' }, start_year: Date.today.year - 100, end_year: Date.today.year - 18, label_html: {class: "col-sm-3", style: "margin-right:15px;"} %>

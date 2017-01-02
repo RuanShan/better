@@ -18,6 +18,8 @@ class MemberBase < ApplicationRecord
   #friendly_id :number, slug_column: :number, use: :slugged
   include NumberGenerator.new( prefix: 'B', length: 10, letters: true )
 
+  enum gender: [:secret, :male, :female ]
+
   #用户每日信息统计
   has_many :user_days, foreign_key: :user_id
   has_many :user_months, foreign_key: :user_id
@@ -38,6 +40,7 @@ class MemberBase < ApplicationRecord
   # 销售的月统计
   has_many :sale_months, foreign_key: :seller_id
   has_one  :sale_cmonth, ->{ current_month }, foreign_key: :seller_id, class_name: 'SaleMonth'
+
 
   attr_reader :money_password, :current_money_password, :broker_number
   attr_accessor :money_password_confirmation, :password_prefix, :binding_name, :setting_money_pwd, :validate_code

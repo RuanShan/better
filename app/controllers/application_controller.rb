@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include CommonHelper
 
   protect_from_forgery with: :exception
+  prepend_before_action :handle_broker_website
   #around_action :set_current_user
   before_action :config_params, :configure_permitted_parameters, if: :devise_controller?
   #注册失败时，不应删除邀请码，注册成功，session更新，
@@ -60,5 +61,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def handle_broker_website
+    Rails.logger.debug "request.host=#{request.host}"
+    unless request.host =~ /ballmerasia.com/
+      #來自代理網站
+      broker = Broker.where( website: request.host).first
+      set_broker_scope( broker ) if broker.present?
+    end
+  end
 
+
+  def set_broker_scope( broker )
+
+    if session["broker_number"] != broker.number
+      session["broker_number"] = broker.number
+    end
+    Rails.logger.debug "  session[broker_number] =#{  session["broker_number"]}"
+  end
 end
