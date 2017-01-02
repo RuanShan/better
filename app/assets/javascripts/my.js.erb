@@ -48,6 +48,16 @@ $(function () {
     $("#user_avatar_remote_url").val(image_url);
   });
 
+  $('a[href="#pm3"]').on('show.bs.tab', function(e) {
+    alert("内排期间，暂停使用");
+    e.preventDefault();
+  });
+
+  $('a[href="#pm5"]').on('show.bs.tab', function(e) {
+    alert("内排期间，暂停使用");
+    e.preventDefault();
+  });
+
 });
 
 function preview_avatar(file){
