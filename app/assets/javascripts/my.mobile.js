@@ -69,6 +69,11 @@ $( document ).ready(function() {
 		}else{
 			$('.deposit_iss_ins_cd').hide();
 		}
+		if ( $('#deposit_payment_method_id').val() == '3' || $('#deposit_payment_method_id').val() == '5'){
+			alert("内排期间，暂停使用");
+			$('#deposit_payment_method_id').val('1');
+			adjust_deposit_iss_ins_cd();
+		}
 	}
 	if( $('#deposit_payment_method_id').is('*')){
 		adjust_deposit_iss_ins_cd();
@@ -77,6 +82,10 @@ $( document ).ready(function() {
 		})
 	}
 
+  $(".sign_up_wrapper .chuangjiankaihu").click(function(){
+  	var classes = $(this).attr("class");
+		$(this).attr("class",classes+" active");
+  });
 
 });
 

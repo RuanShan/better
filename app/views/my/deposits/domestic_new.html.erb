@@ -1,49 +1,38 @@
 <%  deposit = @deposit %>
   <div class="anquan_img" style="text-align:left"><%=image_tag "new/noimages/guoneiwai_03.jpg"%><hr></div>
   <div class="chongzhi_top">
-      <a href="#home" role="tab" data-toggle="tab"><span>在线支付</span></a>
-      <a href="#profile" role="tab" data-toggle="tab"><span>银行转账</span></a>
-      <a href="#messages" role="tab" data-toggle="tab"><span>微信支付</span></a>
+    <%PaymentMethod.enabled.each{|payment_method|%>
+      <a href="#pm<%=payment_method.id%>" role="tab" data-toggle="tab"><span <%if payment_method.id==1 %>style="font-weight:bold;" <%end%>><%=payment_method.name%></span></a>
+    <%}%>
     <p>说明：支付最低限额：150.00美金。</p>
     <hr>
   </div>
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active zxzhifu" id="home">
-      <span>请选择支付方式：</span><br><br>
-      <%= simple_form_for(deposit, url: my_deposits_path) do |f| %>
-        <%= f.input :payment_method_id, input_html: { value: 1 }, as: :hidden %>
-        <%= render partial: "payment_methods/method_alipay_bank" %>
-
-        <%= f.input :amount, label: "充值全额", as:"string", placeholder: "请输入提现金额", wrapper_html: { class: 'zhifuzuo' }, input_html: { class: 'zijin' } %>
-        <%= f.input :promotion_number, label: "活动代码", as:"string", placeholder: "未参加活动不用填写", wrapper_html: { class: 'zhifuyou' }, input_html: { class: 'zijin' } %>
-        <hr>
-        <div class= "clearfix">
-          <%= f.submit "下一步", class:"txan"  %>
-        </div>
-      <% end %>
-    </div>
-
-    <div role="tabpanel" class="tab-pane zxzhifu" id="profile">
-      <span>请选择转账银行：</span><br><br>
-      <%= simple_form_for(deposit, url: my_deposits_path, target: "_blank", class: "clearfix" ) do |f| %>
-       <%= f.input :payment_method_id, input_html: { value: 2 }, as: :hidden %>
-        <%= render partial: "payment_methods/method_bank_transfer" %>
-        <%= f.input :amount, label: "充值全额", as:"string", placeholder: "请输入提现金额", wrapper_html: { class: 'zhifuzuo' }, input_html: { class: 'zijin' } %>
-        <%= f.input :promotion_number, label: "活动代码", as:"string", placeholder: "未参加活动不用填写", wrapper_html: { class: 'zhifuyou' }, input_html: { class: 'zijin' } %>
-        <hr>
-        <%= f.submit "下一步", class:"txan"  %>
-      <% end %>
-    </div>
-
-    <div role="tabpanel" class="tab-pane zxzhifu" id="messages">
-      <%= simple_form_for(deposit, url: my_deposits_path, target: "_blank", class: "clearfix" ) do |f| %>
-       <%= f.input :payment_method_id, input_html: { value: 3 }, as: :hidden %>
-        <%= render partial: "payment_methods/method_weixin" %>
-        <%= f.input :amount, label: "充值全额", as:"string", placeholder: "请输入提现金额", wrapper_html: { class: 'zhifuzuo' }, input_html: { class: 'zijin' } %>
-        <%= f.input :promotion_number, label: "活动代码", as:"string", placeholder: "未参加活动不用填写", wrapper_html: { class: 'zhifuyou' }, input_html: { class: 'zijin' } %>
-        <hr>
-        <%= f.submit "下一步", class:"txan"  %>
-      <% end %>
-    </div>
+    <%PaymentMethod.enabled.each{|payment_method|%>
+      <%active_class = payment_method.id==1 ? "active" : "" %>
+      <div role="tabpanel" class="tab-pane zxzhifu <%=active_class%>" id="pm<%=payment_method.id%>">
+        <% if payment_method.id==1%>
+          <span>请选择支付方式：</span><br><br>
+        <% elsif payment_method.id==2 %>
+          <span>请选择转账银行：</span><br><br>
+        <%end%>
+        <%= simple_form_for(deposit, url: my_deposits_path, target: "_blank", class: "clearfix") do |f| %>
+          <%= f.input :payment_method_id, input_html: { value: payment_method.id }, as: :hidden %>
+          <% if payment_method.id==1%>
+            <%= render partial: "payment_methods/method_alipay_bank" %>
+          <% elsif payment_method.id==2 %>
+            <%= render partial: "payment_methods/method_bank_transfer" %>
+          <% elsif payment_method.id==3 %>
+            <%= render partial: "payment_methods/method_weixin" %>
+          <%end%>
+          <%= f.input :amount, label: "充值全额", as:"string", placeholder: "请输入提现金额", wrapper_html: { class: 'zhifuzuo' }, input_html: { class: 'zijin' } %>
+          <%= f.input :promotion_number, label: "活动代码", as:"string", placeholder: "未参加活动不用填写", wrapper_html: { class: 'zhifuyou' }, input_html: { class: 'zijin' } %>
+          <hr>
+          <div class= "clearfix">
+            <%= f.submit "下一步", class:"txan"  %>
+          </div>
+        <% end %>
+      </div>
+    <%}%>
 
   </div>

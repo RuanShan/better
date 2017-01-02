@@ -91,6 +91,10 @@ body.mobile{
         input{ height: auto;}
         font-size: 60%;
       }
+
+      input.active{
+        background: #600000 none repeat scroll 0 0;
+      }
     }
   }
   .forex-wrapper
