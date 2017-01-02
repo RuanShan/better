@@ -2,7 +2,7 @@
   <div class="anquan_img" style="text-align:left"><%=image_tag "new/noimages/guoneiwai_03.jpg"%><hr></div>
   <div class="chongzhi_top">
     <%PaymentMethod.enabled.each{|payment_method|%>
-      <a href="#pm<%=payment_method.id%>" role="tab" data-toggle="tab"><span><%=payment_method.name%></span></a>
+      <a href="#pm<%=payment_method.id%>" role="tab" data-toggle="tab"><span <%if payment_method.id==1 %>style="font-weight:bold;" <%end%>><%=payment_method.name%></span></a>
     <%}%>
     <p>说明：支付最低限额：150.00美金。</p>
     <hr>

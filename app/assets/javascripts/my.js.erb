@@ -48,16 +48,27 @@ $(function () {
     $("#user_avatar_remote_url").val(image_url);
   });
 
-  $('a[href="#pm3"]').on('show.bs.tab', function(e) {
-    alert("内排期间，暂停使用");
-    e.preventDefault();
-  });
+//  after enable weixin and alipay or other paymentmethods, uncomment it
+//  $('a[role="tab"]').on('show.bs.tab', function(e) {
+//    var href_value = $(this).attr('href');
+//    $('a[role="tab"]').each(function(){
+//      if($(this).attr('href') == href_value){
+//        $(this).css("font-weight", "bold");
+//      }else{
+//        $(this).css("font-weight", "normal");
+//      }
+//    });
+//  });
 
-  $('a[href="#pm5"]').on('show.bs.tab', function(e) {
-    alert("内排期间，暂停使用");
-    e.preventDefault();
-  });
+    $('a[href="#pm3"]').on('show.bs.tab', function(e) {
+      alert("内排期间，暂停使用");
+      e.preventDefault();
+    });
 
+    $('a[href="#pm5"]').on('show.bs.tab', function(e) {
+      alert("内排期间，暂停使用");
+      e.preventDefault();
+    });
 });
 
 function preview_avatar(file){
