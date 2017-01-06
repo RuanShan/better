@@ -1,7 +1,7 @@
 module Agent
   class SaleMonthsController < BaseController
     layout :select_layout_by_current_seller
-    
+
     before_action :authenticate_seller!
     before_action :set_children, only: [:children, :children_profit, :children_balance]
 
@@ -97,7 +97,7 @@ module Agent
         @member_state = params["member_state"] || "all"
         level = current_seller.depth + @member_level
 
-        q = current_seller.descendants.includes(:parent).where(depth: level)
+        q = current_seller.descendants.includes(:parent).where(depth: level).confirmed
         if @member_state != "all"
           q = q.unlocked if @member_state == "normal"
           q = q.locked if @member_state == "frozen"

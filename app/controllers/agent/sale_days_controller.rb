@@ -130,7 +130,7 @@ module Agent
         @member_state = params["member_state"] || "all"
         level = current_seller.depth + @member_level
 
-        q = current_seller.descendants.includes(:parent).where(depth: level)
+        q = current_seller.descendants.includes(:parent).where(depth: level).confirmed
         if @member_state != "all"
           q = q.unlocked if @member_state == "normal"
           q = q.locked if @member_state == "frozen"

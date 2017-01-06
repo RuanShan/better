@@ -11,9 +11,9 @@ module Agent
 
       if @member_level>0
         level = current_seller.depth + @member_level
-        q = q.where( depth: level)
+        q = q.where( depth: level).confirmed
       else
-        q = q.where( ["depth<=?", current_seller.depth + 6])
+        q = q.where( ["depth<=?", current_seller.depth + 6]).confirmed
       end
 
       if @member_state != "all"

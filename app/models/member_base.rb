@@ -65,6 +65,11 @@ class MemberBase < ApplicationRecord
   before_destroy :adjust_children_parent, prepend: true
 
   delegate :energetic_member_count, :clink_visits, :member_count, to: :sale_cmonth, allow_nil: true
+  scope :red, -> { where(color: 'red') }
+  #scope :unconfirmed, -> { where(confirmed_at: nil) }
+  scope :confirmed, -> { where("confirmed_at is not NULL") }
+  scope :locked, -> { where("locked_at is not NULL") }
+  scope :unlocked, -> { where("locked_at is NULL") }
 
   def display_name
     nickname.present? ? nickname : real_name
