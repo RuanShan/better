@@ -8,11 +8,21 @@ class SmsController < ApplicationController
     #return
     #if verify_rucaptcha?
       @captcha = true
-      # validate phone number
-      if @sms.valid?
-        # send successfully
-        if @sms.send_for_sign_up
-          session[:sms] = @sms
+      less_than_one_minute = false
+      if session[:sms]
+        last_send_time = Time.parse(session[:sms]['send_at'])
+        send_duration = Time.now - last_send_time
+        less_than_one_minute = send_duration <= 60
+      end
+      if less_than_one_minute
+        @sms.errors.add(:validate_code, "验证码每分钟只能发送一次")
+      else
+        # validate phone number
+        if @sms.valid?
+          # send successfully
+          if @sms.send_for_sign_up
+            session[:sms] = @sms
+          end
         end
       end
     #else

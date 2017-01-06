@@ -111,6 +111,23 @@ $(function(){
   })
 })
 
+function validate_code_time(code_id, wait) {
+  var code_button = $("#"+code_id);
+		if (wait == 0) {
+			code_button.removeAttr("disabled");
+			code_button.val("获取验证码");
+		} else {
+			code_button.attr("disabled", true);
+      code_button.val("重新发送(" + wait + ")");
+			wait = wait-1;
+			setTimeout(function() {
+				validate_code_time(code_id, wait)
+			},
+			1000)
+		}
+}
+
+
 function copyToClipboard(element) {
   var copy_text = $(element).text();
   var $temp = $("<input>");
