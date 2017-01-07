@@ -1,7 +1,7 @@
 class MemberBase < ApplicationRecord
   self.table_name = "users"
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :lockable
+         :recoverable, :rememberable, :trackable, :lockable
 
   #支持多级会员系统
   acts_as_nested_set scope: [:type]
@@ -52,11 +52,20 @@ class MemberBase < ApplicationRecord
   validates_attachment_content_type :avatar, :id_front, :id_back, content_type: /\Aimage\/.*\z/
 
 
+  validates_presence_of   :email, if: :email_required?
+  validates_uniqueness_of :email, scope: :type, if: :email_changed?
+  validates_format_of     :email, with: /\A[^@\s]+@[^@\s]+\z/, allow_blank: true, if: :email_changed?
+
+  validates_presence_of     :password, if: :password_required?
+  validates_confirmation_of :password, if: :password_required?
+  validates_length_of :password, within: 6..8
+
   validates :money_password, confirmation: true
   validates :money_password, presence: true, if: :setting_money_pwd
+  validates_length_of :money_password, within: 6..8, if: :setting_money_pwd
+
   validates :first_name, presence: true
   validates :last_name, presence: true, if: :binding_name
-  validates :email, uniqueness: true
   validates :id_number, uniqueness: true, allow_blank: true
   validates :phone, length: { in: 7..11 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(member) { member.phone.present? or member.binding_name }
   validates :qq, length: { in: 5..10 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(member) { member.qq.present? }
@@ -120,6 +129,17 @@ class MemberBase < ApplicationRecord
     return true if @password_prefix == "money_" && !has_money_password?
     Devise::Encryptor.compare(self.class, self.send("encrypted_#{@password_prefix}password"), password)
   end
+
+  protected
+
+  def password_required?
+    !persisted? || !password.nil? || !password_confirmation.nil?
+  end
+
+  def email_required?
+    true
+  end
+
 
   private
 

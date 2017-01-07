@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161231151704) do
+ActiveRecord::Schema.define(version: 20170107031443) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -433,7 +433,7 @@ ActiveRecord::Schema.define(version: 20161231151704) do
     t.index ["created_at"], name: "index_users_on_created_at"
     t.index ["deleted_at", "type"], name: "index_users_on_deleted_at_and_type"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_users_on_email"
     t.index ["id", "type"], name: "index_users_on_id_and_type"
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
