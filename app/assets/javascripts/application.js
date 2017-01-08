@@ -22,6 +22,7 @@
 //= require select2
 //= require jquery-validate/jquery.validate.min
 //= require jquery-validate/messages_zh
+//= require jquery-validate/extend
 //= require base
 //= require base
 //= require cable
@@ -92,6 +93,17 @@ $(function(){
     })
   })
 
+  $('#broker_next_step').on('click', function(){
+      var broker_form = $("#bsign_up_form");
+      broker_form.validate(brokerValidate)
+      if(broker_form.valid()){
+         $('#msg_2').show();$('#msg_1').hide();
+      }
+  })
+
+  $("#bsign_up_form").validate(brokerValidate);
+  $("#sign_up_form").validate(userValidate);
+
   $('form.new_deposit').validate({
      rules: {
        'deposit[amount]': { min: 1000 }
@@ -100,7 +112,6 @@ $(function(){
   $('#new_deposit, form.new_deposit').submit(function(event){
     //event.stopPropagation();
     //alert("支付系统调试中！");
-
   })
 
   $("a#signal_classic").click(function(){
@@ -110,6 +121,152 @@ $(function(){
     alert("系统内排，暂不提供！");
   })
 })
+
+var userValidate = {
+  rules: {
+    'user[email]': {
+      required: true,
+      email: true
+    },
+    'user[password]': {
+      required: true,
+      isPassword: true,
+      rangelength:[6,12]
+    },
+    'user[password_confirmation]': {
+      required: true,
+      equalTo: '#sign_up_form #user_password'
+    },
+    'user[first_name]': {
+      required: true,
+      stringCheck: true,
+      byteRangeLength:[2,16]
+    },
+    'user[last_name]': {
+      stringCheck: true,
+      byteRangeLength:[2,16]
+    },
+    'user[phone]': {
+      required: true,
+      isMobile: true
+    },
+    'user[id_number]': {
+      required: true,
+      isIdCardNo: true
+    },
+    'user[website]': {
+      url:true
+    },
+    'user[birthday]': {
+      isBirthday: true
+    },
+    'user[validate_code]': {
+      required: true,
+      rangelength:[5,6]
+    },
+
+    'user[user_banks_attributes][0][name]': {
+      required: true,
+    },
+    'user[user_banks_attributes][0][card_number]': {
+      required: true,
+    },
+    'user[user_banks_attributes][0][address]': {
+      required: true,
+    },
+    'user[user_banks_attributes][0][payee]': {
+      required: true,
+    }
+
+  },
+  errorPlacement:function(error,element) {
+    var position = element.position();
+    //alert(position.top);
+    error.css({
+      "position" : "absolute",
+      "line-height" : "20px",
+      "top" : position.top+30,
+      "left": position.left
+    })
+    error.addClass("label label-danger");
+    error.appendTo(element.parent());
+  },
+  submitHandler:function(form) {
+
+  },
+  success:function() {
+    //alert("Submitted!")
+  }
+}
+
+var brokerValidate = {
+  rules: {
+    'broker[email]': {
+      required: true,
+      email: true
+    },
+    'broker[password]': {
+      required: true,
+      isPassword: true,
+      rangelength:[6,12]
+    },
+    'broker[password_confirmation]': {
+      required: true,
+      isPassword: true,
+      rangelength:[6,12],
+      equalTo: "#bsign_up_form #broker_password"
+    },
+    'broker[first_name]': {
+      required: true,
+      stringCheck: true,
+      byteRangeLength:[2,16]
+    },
+    'broker[last_name]': {
+      stringCheck: true,
+      byteRangeLength:[2,16]
+    },
+    'broker[phone]': {
+      required: true,
+      isMobile: true
+    },
+    'broker[id_number]': {
+      required: true,
+      isIdCardNo: true
+    },
+    'broker[website]': {
+      url:true
+    },
+
+    'broker[user_banks_attributes][0][name]': {
+      required: true,
+    },
+    'broker[user_banks_attributes][0][card_number]': {
+      required: true,
+      isBankcard: true
+    },
+    'broker[user_banks_attributes][0][address]': {
+      required: true,
+    },
+    'broker[user_banks_attributes][0][payee]': {
+      required: true,
+    }
+
+  },
+  errorPlacement:function(error,element) {
+    var position = element.position();
+    //alert(position.top);
+    error.css({
+      "position" : "absolute",
+      "line-height" : "20px",
+      "top" : position.top+30,
+      "left": position.left
+    })
+    error.addClass("label label-danger");
+    error.appendTo(element.parent());
+  },
+
+
+}
 
 function validate_code_time(code_id, wait) {
   var code_button = $("#"+code_id);
@@ -126,7 +283,6 @@ function validate_code_time(code_id, wait) {
 			1000)
 		}
 }
-
 
 function copyToClipboard(element) {
   var copy_text = $(element).text();

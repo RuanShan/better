@@ -1,5 +1,4 @@
 <%= better_form_for(current_user, :url=>{:action=>"community_set"}) do |f| %>
-  <%= f.error_notification %>
   <table>
     <tbody>
       <tr>
@@ -19,6 +18,9 @@
             <%= f.input :avatar, label: false, as:"file", input_html: {style:"margin:0;height:1;width:1;", onchange:"preview_avatar(this)"} %>
           </div>
           <%=image_tag "new/toujingshi.png", size:"", class:"toujingshi" %>
+          <%if current_user.errors.has_key?(:avatar)%>
+            <span style="color:red;border:0;"><%= current_user.errors[:avatar].first%></span>
+          <%end%>
         </td>
       </tr>
       <tr>

@@ -4,7 +4,7 @@
 <div class="gerenbody">
   <div class="gerennei">
     <h1>个人代理加盟</h1>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), class:"geren", defaults:{ wrapper:false}) do |f| %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), class:"geren", :html => { :id=>'bsign_up_form'}, defaults:{ wrapper:false}) do |f| %>
       <div id="msg_1" style="display:block;">
         <div class="topye">
           <div class="dailizhanghu">
@@ -15,15 +15,15 @@
                 <%=f.input "email", label: false, placeholder: "请输入电子邮箱", input_html: {class: "long"}  %>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
               </label>
-              <label for="email" class="shuru1">
+              <label for="password" class="shuru1">
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码</span><span>*</span>
                 <%=f.input "password", label: false, placeholder: "请输入密码", input_html: {class: "long"}  %>
-                <p style="color:gray;">*密码必须为6至8个字母数字组合</p>
+                <p style="color:gray;">*6-12个字符(字母、数字、下划线)</p>
               </label>
-              <label for="email" class="shuru1">
+              <label for="password_confirmation" class="shuru1">
                 <span>确认密码</span><span>*</span>
                 <%=f.input "password_confirmation", label: false, placeholder: "请再次输入您的密码", input_html: {class: "long"}  %>
-                <p style="color:gray;">*密码必须为6至8个字母数字组合</p>
+                <p style="color:gray;">*6-12个字符(字母、数字、下划线)</p>
               </label>
             </div>
           </div>
@@ -32,7 +32,7 @@
             <h2 style="font-size:22px;font-weight:bold">个人信息</h2>
             <div class="shuru">
               <label for="xing" class="shuru1">
-                <span style="float:left;margin:0 14px 0 24px;">姓*</span>
+                <span style="float:left;margin:0 14px 0 24px;">姓</span>
 
                 <%=f.input "last_name", label: false, placeholder: "您的姓氏", input_html: {class: "short", style:"float:left;"}  %>
               </label>
@@ -42,21 +42,21 @@
                 <%=f.input "first_name", label: false, placeholder: "您的名字", input_html: {class: "short", style:"float:left;"}  %>
               </label>
               <label class="shuru1">
-               <span style="float:left;margin:0 0px 0 24px;">国家*</span>
+               <span style="float:left;margin:0 0px 0 24px;">国家</span>
                 <%=f.country_select( "country_code", ["CN"], locale: I18n.locale, class:'form-control  long select2') %>
               </label>
               <div style="clear:both"></div>
               <label for="ming" class="shuru1">
-                <span style="float:left;margin:0 14px 0 24px;">省*</span>
+                <span style="float:left;margin:0 14px 0 24px;">省</span>
                 <%=f.input "province", label: false, placeholder: "您的省份", input_html: {class: "short", style:"float:left;"}  %>
               </label>
               <label for="xing" class="shuru2">
-                <span style="float:left;margin:0 14px 0 24px;">市*</span>
+                <span style="float:left;margin:0 14px 0 24px;">市</span>
                 <%=f.input "city", label: false, placeholder: "您的城市", input_html: {class: "short", style:"float:left;"}  %>
               </label>
               <label class="shuru1">
                 <div style="width:10px;height:60px;margin-left:10px;float:left"></div>
-                地址<span>*</span>
+                地址<span></span>
                 <%=f.input "address", label: false, placeholder: "请输入您的地址", input_html: {class: "long"}  %>
               </label>
               <div style="clear:both"></div>
@@ -169,9 +169,9 @@
         }
     </style>
         <p class="terms">
-        <input type="checkbox" checked="checked" name="age" id="age" class="s-check2" style="height:5px;">我已年满18岁,能理性的投资理财。<br>
-        <input type="checkbox" checked="checked" name="provideinformation" id="provideinformation" class="s-check2" style="height:5px;">需要一切投资内容的提供信息。<br>
-        <input type="checkbox" checked="checked" name="terms" id="terms" class="s-check2" style="height:5px;">我已阅读并同意 <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">《服务条款》</a> 和 <a href = "javascript:void(0)" onclick = "document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'">《隐私政策》</a>。<br></p>
+        <input type="checkbox" checked="checked" name="age" id="age" class="s-check2" style="height:5px;" required>我已年满18岁,能理性的投资理财。<br>
+        <input type="checkbox" checked="checked" name="provideinformation" id="provideinformation" class="s-check2" style="height:5px;" required>需要一切投资内容的提供信息。<br>
+        <input type="checkbox" checked="checked" name="terms" id="terms" class="s-check2" style="height:5px;" required>我已阅读并同意 <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">《服务条款》</a> 和 <a href = "javascript:void(0)" onclick = "document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'">《隐私政策》</a>。<br></p>
          <div id="light" class="white_content">
             <h1>条款协议</h1><br>
             <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'" style="float:right;color:#333">点这里关闭本窗口</a>
@@ -216,7 +216,7 @@
         </div>
 
         <div id="fade" class="black_overlay"></div>
-        <input value="下一步" class="xia" id="photoTitle" type="button" onclick="$('#msg_2').show();$('#msg_1').hide();">
+        <input value="下一步" class="xia" id="broker_next_step" type="button">
       </div>
       <!--上传证件-->
       <%#=render partial: "upload_files", locals:{f: f}%>

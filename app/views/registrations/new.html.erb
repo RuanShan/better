@@ -20,11 +20,11 @@
 
         <div class="rem">密码：</div>
         <%=f.input "password", label: false, placeholder: "请输入您的密码", input_html: {class: "s-in02"}  %>
-        <p class="tx"> *至少8个字符(字母、数字、符号)</p>
+        <p class="tx"> *6-12个字符(字母、数字、下划线)</p>
 
         <div class="rem">确认密码：</div>
         <%=f.input "password_confirmation", label: false, placeholder: "请再次输入您的密码", input_html: {class: "s-in02"}  %>
-        <p class="tx"> *至少8个字符(字母、数字、符号)</p>
+        <p class="tx"> *6-12个字符(字母、数字、下划线)</p>
 
         <div class="rem notx">国家：</div>
         <%=f.country_select( "country_code", ["CN"], locale: I18n.locale, class:'form-control select2 s-in02 notx') %>
@@ -118,9 +118,9 @@
         }
     </style>
         <p class="terms">
-        <input type="checkbox" checked="checked" name="age" id="age" class="s-check2" style="height:5px;">我已年满18岁,能理性的投资理财。<br>
-        <input type="checkbox" checked="checked" name="provideinformation" id="provideinformation" class="s-check2" style="height:5px;">需要一切投资内容的提供信息。<br>
-        <input type="checkbox" checked="checked" name="terms" id="terms" class="s-check2" style="height:5px;">我已阅读并同意 <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">《服务条款》</a> 和 <a href = "javascript:void(0)" onclick = "document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'">《隐私政策》</a>。<br></p>
+        <input type="checkbox" checked="checked" name="age" id="age" class="s-check2" style="height:5px;" required>我已年满18岁,能理性的投资理财。<br>
+        <input type="checkbox" checked="checked" name="provideinformation" id="provideinformation" class="s-check2" style="height:5px;" required>需要一切投资内容的提供信息。<br>
+        <input type="checkbox" checked="checked" name="terms" id="terms" class="s-check2" style="height:5px;" required>我已阅读并同意 <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">《服务条款》</a> 和 <a href = "javascript:void(0)" onclick = "document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'">《隐私政策》</a>。<br></p>
         <a href="#">
           <div id="light" class="white_content">
             <h1>条款协议</h1><br>
@@ -166,7 +166,7 @@
         </div>
 
         <div id="fade" class="black_overlay"></div>
-          <input type="submit" name="" class="s-btn02" value="确认开户">
+          <input type="submit" name="" class="s-btn02" value="确认开户" diasble=true>
         </a>
         <%=image_tag "new/kfbg_03.gif", style:"margin-top:0" %>
       </div>

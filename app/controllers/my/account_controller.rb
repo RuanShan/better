@@ -110,8 +110,10 @@ module My
     def community_set
       if request.patch?
         current_user.update_attributes(community_params)
-        if current_user.errors.empty?
-          flash[:notice] = t(:profile_updated)
+        logger.debug "current_user.errors=#{current_user.errors.inspect}"
+        if current_user.errors[:avatar]
+          db_user=User.find(current_user.id)
+          current_user.avatar = db_user.avatar
         end
       end
     end

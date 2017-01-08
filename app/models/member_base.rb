@@ -50,6 +50,7 @@ class MemberBase < ApplicationRecord
   has_attached_file :id_front, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
   has_attached_file :id_back, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :avatar, :id_front, :id_back, content_type: /\Aimage\/.*\z/
+  validates_attachment_size :avatar, :id_front, :id_back, in: 0..600.kilobytes
 
 
   validates_presence_of   :email, if: :email_required?
@@ -58,15 +59,15 @@ class MemberBase < ApplicationRecord
 
   validates_presence_of     :password, if: :password_required?
   validates_confirmation_of :password, if: :password_required?
-  validates_length_of :password, within: 6..8
+  validates_length_of :password, within: 6..12, if: :password_required?
 
   validates :money_password, confirmation: true
   validates :money_password, presence: true, if: :setting_money_pwd
-  validates_length_of :money_password, within: 6..8, if: :setting_money_pwd
+  validates_length_of :money_password, within: 6..12, if: :setting_money_pwd
 
   validates :first_name, presence: true
   validates :last_name, presence: true, if: :binding_name
-  validates :id_number, uniqueness: true, allow_blank: true
+  validates :id_number, uniqueness: { scope: :type}, allow_blank: true
   validates :phone, length: { in: 7..11 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(member) { member.phone.present? or member.binding_name }
   validates :qq, length: { in: 5..10 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(member) { member.qq.present? }
 

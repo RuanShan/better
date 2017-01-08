@@ -12,7 +12,7 @@ class UserBank < ApplicationRecord
   has_attached_file :card_front, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
   has_attached_file :card_back, :whiny => false, styles: { medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :card_front, :card_back, content_type: /\Aimage\/.*\z/
-
+  validates_attachment_size :card_front, :card_back, in: 0..600.kilobytes
   validates :name, :card_number, :address, presence: true
 
   attr_accessor :current_money_password
