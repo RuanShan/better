@@ -28,6 +28,7 @@ zh-CN:
         postcode: 邮编
         lang: 语言
         website: 网站
+        avatar: 头像
       promotion:
         name: 活动名称
         description: 活动详情
@@ -100,3 +101,22 @@ zh-CN:
       product: 商品
       stock: 股票
       xxx: 对
+
+#paperclip
+  errors:
+    messages:
+      in_between: "文件大小必须介于 %{min} 到 %{max} 之间"
+      spoofed_media_type: "扩展名与内容类型不符"
+
+  number:
+    human:
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one:   "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
