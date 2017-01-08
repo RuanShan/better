@@ -32,9 +32,9 @@
 //= require jquery.simplemodal
 //= require highstock
 //= require forex.base
-//= require forex.chart
-//= require forex.chart.plus
+//= require forex_chart_new
 //= require new/all
+// require forex.chart.plus
 
 $(function(){
   $('.calendar').datetimepicker({format: "YYYY-MM-DD"});

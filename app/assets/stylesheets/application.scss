@@ -46,7 +46,7 @@
   .reg-wrapper .reg .reg_box { width:100%;  overflow:hidden; padding-top:17px; font-size:13px;height: 630px;border-bottom: 5px solid #860000;}
   .reg-wrapper .reg .reg_box .rem {letter-spacing: -1.0px;width:90px; font-size:18px; font-family:"微软雅黑"; color:#3c3c3c; float:left; height:30px; line-height:30px; text-align:right;}
   .reg-wrapper .reg .reg_box .tx {font-size:12px; margin-left:70px; color:#860000; margin-bottom:20px; display:block; margin-top:6px;  width:275px;}
-  .reg-wrapper .reg .reg_box input,select {font-family:"宋体"; font-size:13px;background:#fff; float:left;border:1px solid #d9f9f9f; padding-left:5px;-webkit-box-sizing: border-box;
+  .reg-wrapper .reg .reg_box input,.reg-wrapper .reg .reg_box select {font-family:"宋体"; font-size:13px;background:#fff; float:left;border:1px solid #d9f9f9f; padding-left:5px;-webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;    box-sizing: border-box;
     height: 30px;
