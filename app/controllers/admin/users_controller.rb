@@ -15,6 +15,13 @@ module Admin
       else
         @users = User.order("created_at desc").all.paginate(:page => @page)
       end
+      respond_to do |format|
+        format.html
+        format.csv do
+          csv_file_name = "user_records.csv"
+          send_data User.admin_generate_csv(@users, col_sep: ","), filename: csv_file_name
+        end
+      end
     end
 
     def new

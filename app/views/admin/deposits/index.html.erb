@@ -1,7 +1,10 @@
+<div style="float:right;">
+  <%=link_to "导出", admin_deposits_path(format: "csv"), class: "btn btn-primary"%>
+</div>
 <table class="table biaoge">
   <thead>
     <tr class="">
-      <th>ID</th>
+      <th>用户名</th>
       <th>日期/时间(GMT+8)</th>
       <th>交易号码</th>
       <th>存款方式</th>
@@ -19,7 +22,7 @@
     <% else %>
     <% @deposits.each do |deposit| %>
       <tr class="">
-        <td><%= deposit.created_at.to_i %></td>
+        <td><%= deposit.user.real_name %></td>
         <td><%= deposit.display_created_at %></td>
         <td><%= deposit.number %></td>
         <td><%= deposit.payment_method.name %></td>

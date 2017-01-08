@@ -11,6 +11,9 @@
         <%=submit_tag "查询",  class:"form-control"%>
       </div>
     <%end%>
+    <div style="float:right;">
+      <%=link_to "导出", admin_users_path(format: "csv"), class: "btn btn-primary"%>
+    </div>
   </div>
   <div style="padding-top:20px;">
     <span>显示方式</span>
