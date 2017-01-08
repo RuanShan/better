@@ -67,7 +67,7 @@ class MemberBase < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true, if: :binding_name
-  validates :id_number, uniqueness: true, allow_blank: true
+  validates :id_number, uniqueness: { scope: :type}, allow_blank: true
   validates :phone, length: { in: 7..11 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(member) { member.phone.present? or member.binding_name }
   validates :qq, length: { in: 5..10 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(member) { member.qq.present? }
 
