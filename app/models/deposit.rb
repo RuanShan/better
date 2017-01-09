@@ -40,6 +40,15 @@ class Deposit < ApplicationRecord
     end
   end
 
+  def self.generate_csv(deposits, options = {})
+    CSV.generate(options) do |csv|
+      csv << ["用户名", "日期", "交易号码", "交易金额(RMB)"]
+      deposits.each do |deposit|
+        csv << [deposit.user.real_name, deposit.display_created_at, deposit.number, deposit.display_amount]
+      end
+    end
+  end
+
   def do_with_promotion
     if promotion_number.present?
       if promotion.present?

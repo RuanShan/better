@@ -44,6 +44,15 @@ class User < MemberBase
     end
   end
 
+  def self.admin_generate_csv(users, options = {})
+    CSV.generate(options) do |csv|
+      csv << ["姓名", "日期", "邮箱", "电话"]
+      users.each do |user|
+        csv << [user.real_name, user.display_created_at, user.email, user.phone]
+      end
+    end
+  end
+
 
   def set_default_role
     self.role ||= :user

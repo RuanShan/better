@@ -6,7 +6,13 @@ module Admin
     # GET /deposits.json
     def index
       @deposits = Deposit.order(created_at: :desc).all.paginate(:page => params[:page])
-
+      respond_to do |format|
+        format.html
+        format.csv do
+          csv_file_name = "deposit_records.csv"
+          send_data Deposit.generate_csv(@deposits, col_sep: ","), filename: csv_file_name
+        end
+      end
     end
 
     # GET /deposits/1
@@ -67,6 +73,9 @@ module Admin
         format.html { redirect_to deposits_url, notice: 'Deposit was successfully destroyed.' }
         format.json { head :no_content }
       end
+    end
+
+    def export
     end
 
     private
