@@ -334,7 +334,7 @@ function InitializeChart(  ){
           console.log("data=%s, %s,%s",symbol, time, price);
           if(g_quotation_desc.panels[symbol])
           {
-             //g_quotation_desc.panels[symbol].update( time, price, 1, 0 );
+             g_quotation_desc.panels[symbol].update( time, price, 1, 0 );
           }
 
           if(g_quotation_desc.labels[symbol])
@@ -510,7 +510,7 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, candlestickChart
                   },
                   events: {
                       click: function(h) {
-                          Trading.app.getController("Game").selectClosestTradePoint(h.point)
+                          //Trading.app.getController("Game").selectClosestTradePoint(h.point)
                       }
                   },
                   allowPointSelect: false
@@ -599,7 +599,7 @@ BetterFinancialPanel.prototype.quote = function(j, m, h, n) {
         }
     }
     e = a.get("advanced-chart-line-series-" + f);
-    if (e.data.length) {
+    if (  e.data.length) {
         l = e.data[e.data.length - 1];
         if (l.marker && !l.marker.keep) {
             l.marker = {
@@ -613,14 +613,15 @@ BetterFinancialPanel.prototype.quote = function(j, m, h, n) {
         x: j,
         y: m,
         marker: {
-            enabled: true,
+            // for strange reason, marker show every one minute, disable it here
+            enabled: false,
             fillColor: d,
             lineColor: Registry.chartConfig.colors.guide,
             lineWidth: 1,
             keep: false
         }
     };
-    if (n > this.lastTradeID) {
+    if ( n > this.lastTradeID) {
         var b = g.charts[f].tradesMarkers;
         l.x = b[n].x;
         l.y = b[n].y;
