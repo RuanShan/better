@@ -329,17 +329,20 @@ function InitializeChart(  ){
         {
           var symbol = symbols[i];
           var time_price = data[symbol];
-          var time = (new Date( parseInt(time_price) )).getTime();
-          var price = parseFloat(time_price.split('_')[1]);
-          console.log("data=%s, %s,%s",symbol, time, price);
-          if(g_quotation_desc.panels[symbol])
+          if( time_price )
           {
-             g_quotation_desc.panels[symbol].update( time, price, 1, 0 );
-          }
+            var time = (new Date( parseInt(time_price) )).getTime();
+            var price = parseFloat(time_price.split('_')[1]);
+            console.log("data=%s, %s,%s",symbol, time, price);
+            if(g_quotation_desc.panels[symbol])
+            {
+               g_quotation_desc.panels[symbol].update( time, price, 1, 0 );
+            }
 
-          if(g_quotation_desc.labels[symbol])
-          {
-            g_quotation_desc.labels[symbol].html(price );
+            if(g_quotation_desc.labels[symbol])
+            {
+              g_quotation_desc.labels[symbol].html(price );
+            }
           }
           // new point added
           //g_quotation_desc.charts[symbols[i]].yAxis[0].plotLines[0].value = price;
