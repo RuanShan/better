@@ -49,7 +49,7 @@ class MaintainGameRound
 
     closest_quote = self.redis.zrangebyscore( key, time.to_i*1000, time.advance( seconds: 10 ).to_i * 1000 ).first
 #Rails.logger.debug " closest_quote=#{closest_quote.inspect}"
-    closest_quote.split('_').second  if closest_quote
+    closest_quote.split('_').second.to_f  if closest_quote
   end
 
 
