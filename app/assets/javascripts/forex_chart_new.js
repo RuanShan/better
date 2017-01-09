@@ -200,7 +200,7 @@ $(function(){
         if( $("form#reg-form, .login-form").is('*') && !$(".forex-simulator-wrapper").is('*')){
           alert("请先登录或注册！");
         }else{
-          if($(".forex-simulator-wrapper").is('*')){
+          //if($(".forex-simulator-wrapper").is('*')){
             var game = Game.current( container );
             var quote = game.last_quote();
             $("input[name='game_round[start_at]']", container).val( game.game_round_start_at().toISOString() );
@@ -208,9 +208,9 @@ $(function(){
             $("input[name='bid[last_quote]']", container).val( quote );
 
             $("form", container).submit();
-          }else{
-            alert("系统内排期，暂停交易");
-          }
+          //}else{
+          //  alert("系统内排期，暂停交易");
+          //}
         }
       });
 
@@ -247,7 +247,7 @@ $(function(){
             for(var i=0;i < start_ats.length; i++){
               var time = start_ats[i];
               var today = (time.day() == moment().day()) ? "今天" : "明天";
-              $game_expiry_box.append("<option value='"+time.unix()+"'>"+ today +time.format("hh:mm")+"</option>")
+              $game_expiry_box.append("<option value='"+time.unix()+"'>"+ today +time.format("HH:mm")+"</option>")
             }
             break;
           case "seconds":
