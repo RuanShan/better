@@ -59,11 +59,11 @@ class MemberBase < ApplicationRecord
 
   validates_presence_of     :password, if: :password_required?
   validates_confirmation_of :password, if: :password_required?
-  validates_length_of :password, within: 6..12, if: :password_required?
+  validates_length_of :password, within: 6..15, if: :password_required?
 
   validates :money_password, confirmation: true
   validates :money_password, presence: true, if: :setting_money_pwd
-  validates_length_of :money_password, within: 6..12, if: :setting_money_pwd
+  validates_length_of :money_password, within: 6..15, if: :setting_money_pwd
 
   validates :first_name, presence: true
   validates :last_name, presence: true, if: :binding_name

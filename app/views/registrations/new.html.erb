@@ -20,11 +20,11 @@
 
         <div class="rem">密码：</div>
         <%=f.input "password", label: false, placeholder: "请输入您的密码", input_html: {class: "s-in02"}  %>
-        <p class="tx"> *6-12个字符(字母、数字、下划线)</p>
+        <p class="tx"> *6-15个字符(字母、数字、下划线)</p>
 
         <div class="rem">确认密码：</div>
         <%=f.input "password_confirmation", label: false, placeholder: "请再次输入您的密码", input_html: {class: "s-in02"}  %>
-        <p class="tx"> *6-12个字符(字母、数字、下划线)</p>
+        <p class="tx"> *6-15个字符(字母、数字、下划线)</p>
 
         <div class="rem notx">国家：</div>
         <%=f.country_select( "country_code", ["CN"], locale: I18n.locale, class:'form-control select2 s-in02 notx') %>
