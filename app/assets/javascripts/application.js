@@ -77,6 +77,21 @@ $(function(){
     });
   }
 
+  $(".weixinxin").click(function(){
+    $(".xiann").toggle();
+  })
+  $(".btnOpen").click(function(){
+    $(".floatR").show();
+    $(".btnOpen").hide();
+    $(".btnCtn").show();
+  })
+  $(".btnCtn").click(function(){
+    $(".floatR").hide();
+    $(".btnCtn").hide();
+    $(".btnOpen").show();
+  })
+
+
   $("#obtainVerifyCode").click(function(){
     if($("#user_phone").length>0){
       var phone = $("#user_phone").val();

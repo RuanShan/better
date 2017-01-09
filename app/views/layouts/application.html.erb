@@ -17,11 +17,14 @@
     <div class="header">
       <%= render 'layouts/new_navigation' %>
     </div>
+
     <div class="page-content-wrapper rebody">
       <div class="page-content clearfix <%='fullwidth' if @fullwith_content %>">
         <%= yield %>
       </div>
     </div>
+    <%= render 'shared/online_service_tools' %>
+
     <%= render 'layouts/footer' %>
 
     <%= render 'shared/dialog' %>

@@ -1,0 +1,129 @@
+
+.rides-cs {
+    border-radius: 6px 0 0 6px;
+    font-size: 12px;
+    position: fixed;
+    right: 0;
+    top: 250px;
+    z-index: 1500;
+}
+.rides-cs a {
+    color: #00a0e9;
+}
+.rides-cs a:hover {
+    color: #ff8100;
+    text-decoration: none;
+}
+.rides-cs .floatL {
+    float: left;
+    height: 181px;
+    margin-top: 21px;
+    position: relative;
+    width: 36px;
+    z-index: 1;
+}
+.rides-cs .floatL a {
+    display: block;
+    font-size: 0;
+    text-indent: -999em;
+}
+.rides-cs .floatR {
+    float: left;
+    overflow: hidden;
+    padding: 5px;
+    width: 130px;
+}
+.rides-cs .floatR .cn {
+    background: #f7f7f7 none repeat scroll 0 0;
+    border-radius: 6px;
+    margin-top: 4px;
+}
+.rides-cs .cn .titZx {
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    padding: 5px;
+    text-align: center;
+}
+.rides-cs .cn ul {
+    padding: 0;
+}
+.rides-cs .cn ul li {
+    border-bottom: 1px solid #fff;
+    height: 100px;
+    line-height: 38px;
+    overflow: hidden;
+    text-align: center;
+}
+.rides-cs .cn ul li span {
+    color: #777;
+}
+.rides-cs .cn ul li a {
+    color: #777;
+}
+.rides-cs .cn ul li img {
+    vertical-align: middle;
+}
+.rides-cs .btnOpen, .rides-cs .btnCtn {
+    background-image: image-url("new/shopnc.png");
+    background-repeat: no-repeat;
+    display: block;
+    height: 146px;
+    left: 0;
+    padding: 8px;
+    position: relative;
+    top: 0;
+    z-index: 9;
+}
+.rides-cs .btnOpen {
+    background-position: -410px 0;
+}
+.rides-cs .btnCtn {
+    background-position: -450px 0;
+}
+.rides-cs ul li.top {
+    border-bottom: 1px solid #ace5f9;
+}
+.rides-cs ul li.bot {
+    border-bottom: medium none;
+}
+.qq_img{
+  background-image: image-url("new/qqq.png");
+  background-size: 65px 50px;
+  width: 110px;
+  height: 100px;
+  background-position: 17px;
+  background-repeat: no-repeat;
+}
+.wx_img{
+  background-image: image-url("new/www.png");
+  background-size: 65px 50px;
+  width: 110px;
+  height: 100px;
+  background-position: 17px;
+  background-repeat: no-repeat;
+}
+.hh_img{
+  background-image: image-url("new/hhh.png");
+  background-size: 65px 50px;
+  width: 110px;
+  height: 100px;
+  background-position: 17px;
+  background-repeat: no-repeat;
+}
+.qqqq {
+    background: #f87e9b none repeat scroll 0 0;
+}
+.weixinxin {
+    background: #7ebada none repeat scroll 0 0;
+}
+.xiann {
+    width: 150px;
+    height: 150px;
+    display: none;
+    background: #fff;
+    position: absolute;
+    right: 136px;
+    margin-top: -50px;
+}
