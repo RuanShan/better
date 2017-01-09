@@ -131,7 +131,7 @@ var userValidate = {
     'user[password]': {
       required: true,
       isPassword: true,
-      rangelength:[6,12]
+      rangelength:[6,15]
     },
     'user[password_confirmation]': {
       required: true,
@@ -208,7 +208,7 @@ var brokerValidate = {
     'broker[password]': {
       required: true,
       isPassword: true,
-      rangelength:[6,12]
+      rangelength:[6,15]
     },
     'broker[password_confirmation]': {
       required: true,
