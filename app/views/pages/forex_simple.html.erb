@@ -64,7 +64,7 @@
                         <button type="button" class="close" style="right:0;" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                         <% @bid = Bid.new %>
                         <%= simple_form_for(@bid, url: my_bids_path, remote: true) do |f| %>
-                        <%=  hidden_field_tag "game_round[instrument_code]", symbol %>
+                        <%=  hidden_field_tag "game_round[instrument_code]", @symbol %>
                         <%=  hidden_field_tag "game_round[start_at]"  %>
                         <%=  hidden_field_tag "game_round[period]"  %>
                         <%= f.input "rate", as: :hidden   %>
@@ -74,8 +74,8 @@
                               <table><tbody>
                                 <tr><th>即将结束:</th>
                                 <td>
-                                  <div class="close-button" style="display:none;" onclick="Trading.app.getController('Game').hideInvoice('157')"></div>
-                                  <div class="call-small-icon"></div> <span id="invoice-spot-157" class="spot-157 trend-down b-instrument-last-quote" data-symbol="<%=symbol%>">0.0</span>
+                                  <div class="close-button" style="display:none;"  ></div>
+                                  <div class="call-small-icon"></div> <span id="invoice-spot-157" class="spot-157 trend-down b-instrument-last-quote" data-symbol="<%=@symbol%>">0.0</span>
                                 </td>
                                 </tr>
                                 <tr><th>有效期:</th><td> <span class="b-game-round-start-at" data-format='l'> 13-Dec 10:28 </span></td></tr>

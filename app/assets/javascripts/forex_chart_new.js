@@ -226,6 +226,8 @@ $(function(){
 
       $(".b-expiry-in", container).click(function(){
         var $this = $(this);
+        $(".expiry-in", container).removeClass("active");
+        $this.addClass("active");
         $(".b-current-expiry-in", container).data( {"expiry-in": $this.data("expiry-in")}).html($this.html());
         //var game = Game.current( container );
       });
@@ -826,6 +828,7 @@ BetterFinancialPanel.prototype.drawCandlestickChart = function(c, j, b, a) {
         chart: {
             renderTo: j + c,
             plotBorderWidth: 1,
+            plotBorderColor: Registry.chartConfig.financialPanel.colors.plotBorder,
             backgroundColor: "rgba(255,255,255,0)"
         },
         rangeSelector: {
