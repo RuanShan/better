@@ -11,3 +11,8 @@ echo never > /sys/kernel/mm/transparent_hugepage/enabled
 2. install node yum install npm
 
    sudo npm install forever -g
+
+
+3. Centos7 开放端口 8080
+http://www.centoscn.com/CentOS/config/2015/0310/4848.html
+firewall-cmd --zone=public --add-port=80/tcp --permanent
