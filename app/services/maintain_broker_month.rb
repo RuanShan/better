@@ -1,5 +1,5 @@
 # sale_month 计划任务 每天 開始的時候 維護昨天的信息, 月統計 + 昨日統計， 如3:00am
-class MaintainSaleMonth
+class MaintainBrokerMonth
   attr_accessor :specified_date
 
   def initialize( specified_date = nil)
@@ -9,8 +9,8 @@ class MaintainSaleMonth
   def run
     first_day_of_month =  DateTime.civil_from_format( :local, specified_date.year, specified_date.month, 1 ).to_date
     date = specified_date
-    Broker.has_one :specified_date, ->{ where( effective_on: date )}, class_name: "SaleDay"
-    Broker.has_one :month_of_specifed_date, ->{ where( effective_on: first_day_of_month )}, class_name: "SaleMonth"
+    Broker.has_one :specified_date, ->{ where( effective_on: date )}, class_name: "SaleDay", foreign_key: 'seller_id'
+    Broker.has_one :month_of_specifed_date, ->{ where( effective_on: first_day_of_month )}, class_name: "SaleMonth", foreign_key: 'seller_id'
 
     #TODO Broker 超过 10万 需要分页处理
     brokers = Broker.includes(:specified_date, :month_of_specifed_date).all

@@ -3,7 +3,7 @@ class MaintainUserMonth
   attr_accessor :specified_date
 
   def initialize( date = nil)
-    specified_date = date || DateTime.current.to_date.yesterday
+    self.specified_date = date || DateTime.current.to_date.yesterday
   end
 
   def run
@@ -29,7 +29,8 @@ class MaintainUserMonth
         month.balance = day.balance
         month.save!
       end
-      if user_life
+      #puts " user=#{user.inspect} user_life=#{user_life.inspect}"
+      if user_life && day
         #deposit_amount, drawing_amount, bid_amount, bonus, profit, balance
         user_life.deposit_amount+=day.deposit_amount
         user_life.drawing_amount+=day.drawing_amount
