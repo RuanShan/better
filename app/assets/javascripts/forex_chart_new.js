@@ -603,6 +603,9 @@ BetterFinancialPanel.prototype.quote = function(j, m, h, n) {
             d = Registry.chartConfig.colors.down
         }
     }
+    // for unknow reason  a is null rarely
+    if( !a ) return;
+
     e = a.get("advanced-chart-line-series-" + f);
     if (  e.data.length) {
         l = e.data[e.data.length - 1];
