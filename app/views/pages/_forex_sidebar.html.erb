@@ -11,7 +11,7 @@
         <li><h2>形态</h2></li>
         <li><h2>时间</h2></li>
       </ul>
-      <div class="zidongtable">
+      <div class="zidongtable b_instrument_trends" data-instruments='<%=@game_instruments.map(&:code).join(',') %>'>
         <table>
           <tbody><tr>
             <td class="up1"><%= image_tag "new/jiaoyi/jiaoyi1_58.gif" %> </td>

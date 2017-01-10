@@ -4,6 +4,11 @@ Rails.application.routes.draw do
 
   resources :games
   resources :game_rounds
+  resources :game_instruments do
+    collection do
+      get :trends
+    end
+  end
   resources :payment_methods
 
   #会员
