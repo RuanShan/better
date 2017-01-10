@@ -16,8 +16,9 @@ module RedisService
     now = DateTime.current
     period_ago = DateTime.current.ago( period )
     $redis.multi do
+      # get prices before 10 mins
       symbols.each{|symbol|
-        $redis.zrangebyscore( key, time.ago( 10 ).to_i * 1000, period_ago.to_i*1000 )
+        #$redis.zrangebyscore( key, period_ago.ago( 10 ).to_i * 1000, period_ago.to_i*1000 ).last
       }
     end
 
