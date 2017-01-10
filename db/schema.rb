@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170109251704) do
+ActiveRecord::Schema.define(version: 20170110251704) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -35,11 +35,11 @@ ActiveRecord::Schema.define(version: 20170109251704) do
     t.string   "number"
     t.decimal  "amount"
     t.decimal  "rate"
-    t.integer  "state",         default: 0, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "highlow",       default: 0, null: false
-    t.decimal  "last_quote"
+    t.integer  "state",                                  default: 0,     null: false
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.integer  "highlow",                                default: 0,     null: false
+    t.decimal  "last_quote",    precision: 14, scale: 6, default: "0.0", null: false
     t.string   "status"
     t.index ["game_round_id"], name: "index_bids_on_game_round_id"
     t.index ["user_id"], name: "index_bids_on_user_id"
