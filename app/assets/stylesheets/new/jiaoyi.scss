@@ -93,15 +93,21 @@
 	}
 	.huobi_right{
 		width: 310px;
-		height: 195px;
+		/*height: 195px;*/
 		overflow: hidden;
 		float: right;
-		background-image:image-url('new/jiaoyi/jiaoyi1_104.gif');
-		background-size: 310px 195px;
+		background-color: #3A3A3A;
+		/*background-image:image-url('new/jiaoyi/jiaoyi1_104.gif');
+		background-repeat: no-repeat;
+		background-size: cover;
+		*/
+		border: none;
+		border-radius: 10px;
 
 	}
 	.huobiright_top{
 		height: 34px;
+		background-color: #282828;
 		overflow: hidden;
 	}
 	.huobiright_top img{
@@ -129,6 +135,7 @@
 	.huobiright_ti{
 		width: 100%;
 		overflow:hidden;
+		padding: 6px 0 12px;
 	}
 
 	.huobiti_left{
