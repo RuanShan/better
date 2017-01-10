@@ -117,7 +117,7 @@ $(function(){
   })
 
   $("#bsign_up_form").validate(brokerValidate);
-  $("#sign_up_form").validate(userValidate);
+  //$("#sign_up_form").validate(userValidate);
 
   $('form.new_deposit').validate({
      rules: {

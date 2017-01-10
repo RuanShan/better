@@ -16,8 +16,8 @@
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
 # end
-every 1.day, :at => '23:55 am' do
-
+every 1.day, :at => '03:05 am' do
+  runner "MaintainBrokerMonth.new.run; MaintainUserMonth.new.run;"
 end
 
 every 1.minute do

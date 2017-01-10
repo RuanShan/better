@@ -24,7 +24,7 @@ if( $(".forex-adv").is("*")){
             }
             $("#bid_status").html(status);
             var time_left = moment.unix( l );
-            $("#bid_countdown").html(time_left.format("mm:ss"));
+            $("#bid_countdown_<%=@bid.id%>").html(time_left.format("mm:ss"));
           },
           onCounterEnd: function() {
             //var game = Game.current( $(".forex-wrapper") );
@@ -57,7 +57,7 @@ if( $(".forex-adv").is("*")){
             border: "1px solid #999" }}
       )
     }else{
-      var r = "<tr><td><%= @bid.id%> </td><td><%= @bid.created_at %></td> \
+      var r = "<tr><td><%= @bid.id%> </td><td><%= @bid.display_created_at %></td> \
       <td><%= @bid.game_round.end_at %> </td>\
       <td><%= @bid.game_round.instrument_code %></td><td><%= @bid.game_round.instrument_quote %></td> \
       <td><%= @bid.amount %></td> <td><%= @bid.profit %></td> <td><%= @bid.state %></td> </tr>\
@@ -82,7 +82,7 @@ if( $(".forex-adv").is("*")){
         }
         $("#bid_status").html(status);
         var time_left = moment.unix( l );
-        $("#bid_countdown").html(time_left.format("mm:ss"));
+        $("#bid_countdown_<%=@bid.id%>").html(time_left.format("mm:ss"));
       },
       onCounterEnd: function() {
         //var game = Game.current( $(".forex-wrapper") );

@@ -5,10 +5,10 @@
  <span> <%= @bid.last_quote %> </span>
 </div>
 <hr>
-<div> 到期时间:  <%= @bid.game_round.end_at.to_formatted_s(:short) %> <span></div>
+<div> 到期时间:  <%= @bid.game_round.display_end_at %> <span></div>
 <div> 目前状态:  <span id="bid_status"></span><br/>
   <%#= @bid.human_state %>
-  交易倒计时：<span id="bid_countdown"></span>
+  交易倒计时：<span id="bid_countdown_<%=@bid.id%>"></span>
 </div>
 
 <% else %>

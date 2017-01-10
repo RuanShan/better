@@ -11,8 +11,8 @@
             <div class="row">
               <div class="col-xs-6">
                 <select class="form-control b-symbols" name="symbols">
-                <% Forex.symbols.each{|symbol| %>
-                    <%= content_tag('option', t("forex.symbol.#{symbol}"), class: "", value: symbol, selected: (symbol==@symbol), data:{ symbol: symbol}) %>
+                <% @game_instruments.each{|instrument| symbol = instrument.code%>
+                    <%= content_tag('option', instrument.name, class: "", value: symbol, selected: (symbol==@symbol), data:{ symbol: symbol}) %>
                 <% } %>
                 </select>
               </div>

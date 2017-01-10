@@ -118,9 +118,9 @@
         }
     </style>
         <p class="terms">
-        <input type="checkbox" checked="checked" name="age" id="age" class="s-check2" style="height:5px;" required>我已年满18岁,能理性的投资理财。<br>
-        <input type="checkbox" checked="checked" name="provideinformation" id="provideinformation" class="s-check2" style="height:5px;" required>需要一切投资内容的提供信息。<br>
-        <input type="checkbox" checked="checked" name="terms" id="terms" class="s-check2" style="height:5px;" required>我已阅读并同意 <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">《服务条款》</a> 和 <a href = "javascript:void(0)" onclick = "document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'">《隐私政策》</a>。<br></p>
+        <div><input type="checkbox" checked="checked" name="age" id="age" class="s-check2" style="height:5px;" required>我已年满18岁,能理性的投资理财。</div>
+        <div><input type="checkbox" checked="checked" name="provideinformation" id="provideinformation" class="s-check2" style="height:5px;" required>需要一切投资内容的提供信息。</div>
+        <div><input type="checkbox" checked="checked" name="terms" id="terms" class="s-check2" style="height:5px;" required>我已阅读并同意 <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">《服务条款》</a> 和 <a href = "javascript:void(0)" onclick = "document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'">《隐私政策》</a>。</div></p>
         <a href="#">
           <div id="light" class="white_content">
             <h1>条款协议</h1><br>
@@ -166,7 +166,7 @@
         </div>
 
         <div id="fade" class="black_overlay"></div>
-          <input type="submit" name="" class="s-btn02" value="确认开户" diasble=true>
+          <input type="submit" name="" class="s-btn02" value="确认开户" >
         </a>
         <%=image_tag "new/kfbg_03.gif", style:"margin-top:0" %>
       </div>
