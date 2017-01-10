@@ -82,6 +82,7 @@ class Bid < ApplicationRecord
 
   def save_with_simulator(session)
     game_round.end_at = game_round.start_at.since( game_round.period)
+    self.created_at = DateTime.current # it is required to show
     session["sbid"] = self
     session["sgame_round"] = game_round
   end

@@ -58,7 +58,7 @@ if( $(".forex-adv").is("*")){
       )
     }else{
       var r = "<tr><td><%= @bid.id%> </td><td><%= @bid.display_created_at %></td> \
-      <td><%= @bid.game_round.end_at %> </td>\
+      <td><%= @bid.game_round.display_end_at %> </td>\
       <td><%= @bid.game_round.instrument_code %></td><td><%= @bid.game_round.instrument_quote %></td> \
       <td><%= @bid.amount %></td> <td><%= @bid.profit %></td> <td><%= @bid.state %></td> </tr>\
       "
