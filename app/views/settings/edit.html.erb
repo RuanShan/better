@@ -3,7 +3,7 @@
 <%= render 'tab_admin_menu' %>
 
 <%= simple_form_for @setting do |f| %>
-	<%= f.error_notification %>
+	<%#= f.error_notification %>
 
 		<%= f.input :company_name %>
 		<%= f.input :contact_email, hint: t('settings.hint.contact_email') %>

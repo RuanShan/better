@@ -35,9 +35,9 @@ return this.optional(element) || checknumber(value);
 
 // bankcard
 jQuery.validator.addMethod("isBankcard", function(value, element) {
-var card = /^\d{19}$/; // 以19位数字开头，以19位数字结尾;
+var card = /^(\d{16}|\d{19})$/; // 16或19位
 return this.optional(element) || (card.test(value));
-}, "请您填写正确的19位银行卡号");
+}, "请您填写正确的16或19位银行卡号");
 
 // 手机号码验证
 jQuery.validator.addMethod("isMobile", function(value, element) {

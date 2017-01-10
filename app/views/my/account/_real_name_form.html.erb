@@ -2,7 +2,7 @@
 <%disabled = db_user.bind_name? ? true : false%>
 <div class="zxzhifu">
   <%= better_form_for(current_user, :url=>{:controller=>"my/account",:action=>"bind_name"}) do |f| %>
-    <%= f.error_notification %>
+    <%#= f.error_notification %>
     <div class="form-inputs">
       <%= f.input :first_name, label: '名', disabled: disabled%>
       <%= f.input :last_name, label: '姓', disabled: disabled%>

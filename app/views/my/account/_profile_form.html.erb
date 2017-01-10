@@ -1,6 +1,6 @@
 <div class="zxzhifu">
   <%= better_form_for(current_user, :url=>{:action=>"change_profile"}) do |f| %>
-    <%= f.error_notification %>
+    <%#= f.error_notification %>
 
     <div class="form-inputs">
       <%= f.input :first_name, label: '名', as:"string", placeholder: "请输入名" %>

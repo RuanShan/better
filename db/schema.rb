@@ -110,12 +110,12 @@ ActiveRecord::Schema.define(version: 20170110251704) do
     t.string   "name"
     t.string   "code"
     t.string   "description"
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
-    t.integer  "category_id",                          default: 0,     null: false
-    t.         "hot",                                  default: "f",   null: false
-    t.string   "rate",                                 default: "",    null: false
-    t.decimal  "default_rate", precision: 6, scale: 2, default: "0.7", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "category_id",  default: 0,     null: false
+    t.         "hot",          default: "f",   null: false
+    t.string   "rate",         default: "",    null: false
+    t.decimal  "default_rate", default: "0.7", null: false
   end
 
   create_table "game_rounds", force: :cascade do |t|
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 20170110251704) do
     t.string   "instrument_code"
     t.datetime "start_at"
     t.integer  "period",                                    default: 0,     null: false
-    t.decimal  "instrument_quote", precision: 12, scale: 4, default: "0.0", null: false
+    t.decimal  "instrument_quote", precision: 14, scale: 6, default: "0.0", null: false
     t.string   "state"
     t.datetime "end_at"
     t.index ["game_id"], name: "index_game_rounds_on_game_id"

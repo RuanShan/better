@@ -68,8 +68,8 @@ class MemberBase < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true, if: :binding_name
   validates :id_number, uniqueness: { scope: :type}, allow_blank: true
-  validates :phone, length: { in: 7..11 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(member) { member.phone.present? or member.binding_name }
-  validates :qq, length: { in: 5..10 }, format: { with: /\A\d+\z/, message: "must be number" }, if: ->(member) { member.qq.present? }
+  validates :phone, format: { with: /\A(((13[0-9]{1})|(15[0-9]{1}))+\d{8})\z/, message: "手机号格式不正确" }, if: ->(member) { member.phone.present? or member.binding_name }
+  validates :qq, length: { in: 5..10 }, format: { with: /\A[1-9]\d{4,9}\z/, message: "QQ格式不正确" }, if: ->(member) { member.qq.present? }
 
   # call it before destroy_descendants
   before_destroy :adjust_children_parent, prepend: true

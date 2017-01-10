@@ -117,7 +117,7 @@ $(function(){
   })
 
   $("#bsign_up_form").validate(brokerValidate);
-  //$("#sign_up_form").validate(userValidate);
+  $("#sign_up_form").validate(userValidate);
 
   $('form.new_deposit').validate({
      rules: {
@@ -175,6 +175,9 @@ var userValidate = {
     'user[birthday]': {
       isBirthday: true
     },
+    'user[qq]': {
+      qq: true
+    },
     'user[validate_code]': {
       required: true,
       rangelength:[5,6]
@@ -205,13 +208,8 @@ var userValidate = {
     })
     error.addClass("label label-danger");
     error.appendTo(element.parent());
-  },
-  submitHandler:function(form) {
-
-  },
-  success:function() {
-    //alert("Submitted!")
   }
+
 }
 
 var brokerValidate = {
@@ -250,6 +248,9 @@ var brokerValidate = {
     },
     'broker[website]': {
       url:true
+    },
+    'broker[qq]': {
+      qq:true
     },
 
     'broker[user_banks_attributes][0][name]': {
