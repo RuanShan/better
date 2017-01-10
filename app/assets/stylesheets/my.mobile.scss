@@ -63,7 +63,12 @@
   color: #000000;
 }
 
-body.mobile{
+body.mobile
+
+  input.denglu {
+    background: #860000 none repeat scroll 0 0;
+      width: 100%;
+  }
 
   .sign_up_wrapper {
     background: image-url("new/shouji/kaishe1_02.gif") no-repeat;
