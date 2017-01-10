@@ -21,7 +21,7 @@ class PagesController < ApplicationController
 
   def set_symbol_by_params
     page_id = params[:id]
-    if page_id =~/^forex/
+    if page_id =~/forex/
       @list = params[:list] || session[:instrument_list] ||"popular"
       @category = params[:category] || session[:instrument_category] ||"currency"
 
@@ -35,6 +35,8 @@ class PagesController < ApplicationController
       when "popular"
         if page_id == 'forex_simple'
           GameInstrument.where(category_id: @category).all
+        elsif  page_id == 'my/forex_adv'
+          GameInstrument.all          
         else
           GameInstrument.where(category_id: @category).all.hot.paginate( page: params[:page] )
         end
