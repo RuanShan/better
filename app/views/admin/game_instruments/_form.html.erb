@@ -1,4 +1,6 @@
-<%= simple_form_for( @game_instrument, url: admin_game_instruments_path(@game_instrument)) do |f| %>
+<% url = @game_instrument.new_record? ? admin_game_instruments_path : admin_game_instrument_path( @game_instrument ) %>
+
+<%= simple_form_for( @game_instrument, url:  url ) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
