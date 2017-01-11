@@ -69,38 +69,69 @@ var Game ={
     game.game_round_start_at_selector = ".b-game-round-start-at";
     game.game_type_selector = ".b-game-type.active";
     game.game_expiry_countdown_selector = ".b-game-round-expiry-countdown";
-    game.game_type_id = parseInt( $(".b-game-type.active", container).data('game-type') );
-    game.expiry_in = parseInt( $(".b-current-expiry-in", container).data('expiry-in') );
+    game.game_expiry_box_selector = '.b-game-expiry-box';
 
-    game.game_round_start_at= function(){
-      var now = this.current_time();
-      var start_at = null;
+    // game_type_id, expiry_in should be in function.
 
-      if( game.game_type_id == 2){
-        start_at = now.add(game.expiry_in, "seconds");
+    game.game_type_id = function()
+    {
+      return parseInt( $(".b-game-type.active", container).data('game-type') );
+    },
+    game.expiry_in = function()
+    {
+      return parseInt( $(".b-current-expiry-in", container).data('expiry-in') );
+    },
+    //当前选择的游戏开始时间
+    game.selected_game_round_start_at= function(){
+
+      if( game.game_type_id() == 2){
+        start_at = this.game_round_start_at();
       }else{
-        start_at = now.add(5-(now.minutes()%5), "minutes");
+        start_at = moment.unix( $(this.game_expiry_box_selector).val());
       }
       return start_at.seconds(0);
     },
+    //下一次游戏开始时间
+    game.game_round_start_at= function(){
+      var now = this.current_time();
+      var start_at = null;
+      var expiry_in = game.expiry_in();
+      if( game.game_type_id() == 2){
+        if( expiry_in == 30  )
+        {
+          if( now.seconds() >=30 )
+          {
+            start_at = now.add( 1, "minutes").seconds(30);
+          }else{
+            start_at = now.seconds(30);
+          }
+        }else{
+          start_at = now.add( 1, "minutes").seconds(0);
+        }
+      }else{
+        start_at = now.add(5-(now.minutes()%5), "minutes").seconds(0);
+      }
+      console.log('game start at now=%s start_at=%s', this.current_time().toString(), start_at.toString());
+      return start_at;
+    },
     game.game_round_period= function(){
     //游戏持续秒数
-      return game.game_type_id == 1 ? 300 : game.expiry_in;
+      return game.game_type_id() == 1 ? 300 : game.expiry_in();
     },
     // 禁止投注时间
     game.game_round_expiry_at= function(){
       // 300 open in every 2mins
       var now = this.current_time();
-      var expiry_at = game.game_round_start_at();
+      var expiry_at = this.game_round_start_at();
 
-      if( game.game_type_id == 2){
-        if( game.expiry_in == 30 )
-        {
-          expiry_at = expiry_at.subtract( 30, "seconds");
-        }else{
-          expiry_at = expiry_at.subtract(game.expiry_in - 60, "seconds");
-        }
-      }
+      //if( this.game_type_id() == 2){
+      //  if( this.expiry_in() == 30 )
+      //  {
+      //    expiry_at = expiry_at.subtract( 30, "seconds");
+      //  }else{
+      //    expiry_at = expiry_at.subtract(game.expiry_in() - 60, "seconds");
+      //  }
+      //}
       return expiry_at;
     },
     game.game_round_start_ats= function(){
@@ -119,7 +150,7 @@ var Game ={
       //if (game.game_type_id == 2 )
       //  return 60 - game.current_time().seconds();
       //else {
-        var delta = game.game_round_expiry_at() - game.current_time() ;
+        var delta = this.game_round_expiry_at() - this.current_time() ;
         return (delta>0 ? delta/1000 : 0);
       //}
     },
@@ -143,9 +174,9 @@ var Game ={
       game.game_round_start_at_tags().each(function(){
         if($(this).data('format')=='l')
         {
-          $(this).html( game.game_round_start_at().format("D-MMM hh:mm"));
+          $(this).html( game.game_round_start_at().format("D-MMM HH:mm"));
         }else{
-          $(this).html( game.game_round_start_at().format("hh:mm"));
+          $(this).html( game.game_round_start_at().format("HH:mm"));
         }
       })
       var s = game.seconds_left_to_close_bidding();
@@ -217,8 +248,9 @@ $(function(){
           //if($(".forex-simulator-wrapper").is('*')){
             var game = Game.current( container );
             var quote = game.last_quote();
-            $("input[name='game_round[start_at]']", container).val( game.game_round_start_at().toISOString() );
+            $("input[name='game_round[start_at]']", container).val( game.selected_game_round_start_at().toISOString() );
             $("input[name='game_round[period]']", container).val( game.game_round_period() );
+            $("input[name='game_round[game_id]']", container).val( game.game_type_id() );
             $("input[name='bid[last_quote]']", container).val( quote );
 
             $("form", container).submit();
