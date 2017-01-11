@@ -1,5 +1,5 @@
 class GameInstrument < ApplicationRecord
-  self.per_page = 4
+  #self.per_page = 4
 
   has_one :last_game_round, ->{ last_round }, primary_key: :code, foreign_key: :instrument_code, class_name: 'GameRound'
 

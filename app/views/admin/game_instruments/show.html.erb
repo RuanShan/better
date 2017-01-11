@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @game_instrument.name %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @game_instrument.code %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @game_instrument.description %>
+</p>
+
+<p>
+  <strong>Hot:</strong>
+  <%= @game_instrument.hot %>
+</p>
+
+<p>
+  <strong>Default rate:</strong>
+  <%= @game_instrument.default_rate %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_game_instrument_path(@game_instrument) %> |
+<%= link_to 'Back', admin_game_instruments_path %>

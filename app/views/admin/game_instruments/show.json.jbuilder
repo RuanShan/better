@@ -1,0 +1,1 @@
+json.partial! "game_instruments/game_instrument", game_instrument: @game_instrument

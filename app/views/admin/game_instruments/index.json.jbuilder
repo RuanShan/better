@@ -1,0 +1,1 @@
+json.array! @game_instruments, partial: 'game_instruments/game_instrument', as: :game_instrument

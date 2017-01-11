@@ -8,10 +8,11 @@
         <th>赔率</th>
         <th>热门</th>
 
-<!--
-        <th colspan="2">
+
+        <th colspan="3">
           <%=link_to "添加资产", new_admin_game_instrument_path, class: "btn btn-primary btn_xs"%>
         </th>
+<!--
         <th><%=submit_tag "删除", class: "btn btn-primary btn_xs"%></th>
         <th><%=submit_tag "设为热门", class: "btn btn-primary btn_xs", formaction: batch_hot_admin_game_instruments_path%></th>
         <th><%= check_box_tag "selectall", 1, false %></th>
@@ -32,10 +33,12 @@
           <td><%= t "forex.category."+game_instrument.category_id %></td>
           <td><%= game_instrument.default_rate %></td>
           <td><%= game_instrument.hot==true ? "是" : "否" %></td>
+
+
+          <td><%= link_to "编辑", edit_admin_game_instrument_path(game_instrument) %></td>
+          <td><%= link_to "删除", admin_game_instrument_path(game_instrument), method: 'delete', data: { confirm: 'Are you sure?' } %></td>
 <!--
           <td><%= link_to "查看", admin_game_instrument_path(game_instrument), method: 'get' %></td>
-          <td><%= link_to "编辑", edit_admin_game_instrument_path(game_instrument) %></td>
-          <td><%= link_to "删除", admin_game_instrument_path(game_instrument), method: 'delete' %></td>
           <td><%= link_to (game_instrument.hot == 1 ? "取消热门" : "设成热门"), hot_admin_game_instrument_path(game_instrument), method: 'put' %></td>
           <td><%= check_box_tag "selected_game_instruments[]", game_instrument.id, false, class: "selectedId" %></td>
 -->

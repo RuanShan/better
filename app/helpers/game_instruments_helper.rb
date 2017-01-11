@@ -1,0 +1,2 @@
+module GameInstrumentsHelper
+end

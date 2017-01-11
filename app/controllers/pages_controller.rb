@@ -30,7 +30,7 @@ class PagesController < ApplicationController
         if page_id == 'forex_simple'
           GameInstrument.where(category_id: @category).all
         else
-          GameInstrument.where(category_id: @category).all.paginate( page: params[:page] )
+          GameInstrument.where(category_id: @category).all.paginate( page: params[:page], :per_page => 4 )
         end
       when "popular"
         if page_id == 'forex_simple'
@@ -38,7 +38,7 @@ class PagesController < ApplicationController
         elsif  page_id == 'my/forex_adv'
           GameInstrument.all
         else
-          GameInstrument.where(category_id: @category).all.hot.paginate( page: params[:page] )
+          GameInstrument.where(category_id: @category).all.hot.paginate( page: params[:page], :per_page => 4 )
         end
       when "collection"
         current_user ? current_user.game_instruments.where(category_id: @category) : []
