@@ -39,7 +39,7 @@
 	height:20px;
 	*height:24px;
 	overflow:hidden;
-	background:url("new/ico-3.gif") 2px 8px no-repeat;
+	background:image-url("new/ico-3.gif") 2px 8px no-repeat;
 	font-size:0px;
 }
 .place{
@@ -146,7 +146,7 @@
 
 .index .bignews div.newarticle{
 	height:24px;
-	background:url("new/new-article.gif") 8px 3px no-repeat;
+	background:image-url("new/new-article.gif") 8px 3px no-repeat;
 	font-size:0px;
 	color:#fff;
 }
@@ -516,7 +516,7 @@
 }
 .viewbox .labeltitle{
 	height:23px;
-	background:url("new/view-labeltitle-bg.gif") left 10px repeat-x;
+	background:image-url("new/view-labeltitle-bg.gif") left 10px repeat-x;
 	clear:both;
 	overflow:hidden;
 	margin:0px auto 0px;
@@ -531,7 +531,7 @@
 	letter-spacing:1px;
 	display:block;
 	float:left;
-	background:url("new/view-labeltitle-bg.gif") left -44px no-repeat;
+	background:image-url("new/view-labeltitle-bg.gif") left -44px no-repeat;
 	overflow:hidden;
 }
 
@@ -563,7 +563,7 @@
 	height:10px;
 	overflow:hidden;
 	clear:both;
-	background:url("new/boxoff.gif") left 15px repeat-x;
+	background:image-url("new/boxoff.gif") left 15px repeat-x;
 	margin:4px auto;
 	padding-top:10px;
 }
@@ -574,7 +574,7 @@
 	overflow:hidden;
 	font-size:0px;
 	line-height:100px;
-	background:url("new/boxoff.gif") right -10px no-repeat;
+	background:image-url("new/boxoff.gif") right -10px no-repeat;
 	float:left;
 }
 .viewbox .newdigg{
@@ -634,10 +634,10 @@
 	background:#000;
 }
 .viewbox .newdigg .digg_good{
-	background:url("new/newdigg-bg.png") left top no-repeat;
+	background:image-url("new/newdigg-bg.png") left top no-repeat;
 }
 .viewbox .newdigg .digg_bad{
-	background:url("new/newdigg-bg.png") right top no-repeat;
+	background:image-url("new/newdigg-bg.png") right top no-repeat;
 }
 .viewbox .newdigg .digg_good .digg_act{
 	color:#C30;
@@ -669,7 +669,7 @@
 	width:59px;
 	height:59px;
 	float:left;
-	background:url("new/digg-bg.gif") no-repeat;
+	background:image-url("new/digg-bg.gif") no-repeat;
 	margin-right:12px;
 }
 .viewbox .handle .digg .digg_num{
@@ -709,7 +709,7 @@
 .viewbox .actbox ul li{
 	display:inline;
 	padding-left:22px;
-	background-image:url("new/actbox-ico.gif");
+	background-image:image-url("new/actbox-ico.gif");
 	background-repeat:no-repeat;
 	margin-right:10px;
 }
@@ -736,7 +736,7 @@
 }
 .viewbox .downurllist li{
 	height:27px;
-	background:url("new/downurl-bg.gif") right top no-repeat;
+	background:image-url("new/downurl-bg.gif") right top no-repeat;
 	padding-right:4px;
 	float:left;
 	margin-right:10px;
@@ -745,7 +745,7 @@
 }
 .viewbox .downurllist li a{
 	height:27px;
-	background:url("new/downurl-bg.gif") left top no-repeat;
+	background:image-url("new/downurl-bg.gif") left top no-repeat;
 	display:block;
 	font-size:12px;
 	color:#555;
@@ -1209,7 +1209,7 @@
 	clear:both;
 	width:99%;
 	margin:2px auto 0px;
-/*	background:url("new/ico-comment-quote.gif) 0px 4px no-repeat;
+/*	background:image-url("new/ico-comment-quote.gif) 0px 4px no-repeat;
 	text-indent:18px;*/
 }
 .dede_comment .decmt-box .decmt-content img{
@@ -1336,7 +1336,7 @@
 	width:70px;
 	height:25px;
 	border:none;
-	background:url("new/btn-bg2.gif") no-repeat;
+	background:image-url("new/btn-bg2.gif") no-repeat;
 	line-height:25px;
 	letter-spacing:1px;
 	overflow:hidden;

@@ -28,7 +28,7 @@
 .login_after {width:443px; height:73px; background:#3b3b3b; float:right; margin-top:20px; border-radius:2px;}
 .login_after .left {width:370px; float:left; font-size:14px; color:#fff; line-height:36px; margin-left:5px;}
 .login_after .left span {color:#ffc85c;}
-.login_after .left .v { background:url("new/vip-icon.png") no-repeat left; width:40px; display:block; float:right; padding-left:28px; margin-right:80px;}
+.login_after .left .v { background:image-url("new/vip-icon.png") no-repeat left; width:40px; display:block; float:right; padding-left:28px; margin-right:80px;}
 .login_after .left a {display:block; width:65px; height:30px; padding-left:26px; color:#fff; line-height:30px; float:left; margin-right:1px; text-align:left; transition: all .5s; }
 .login_after .left .rj {background:#242d36 url("new/after-icon01.png") no-repeat left; background-position:7px center;}
 .login_after .left .cj {background:#242d36 url("new/after-icon02.png") no-repeat left; background-position:7px center;}
@@ -44,21 +44,21 @@
 .nav span {color:#88929e; font-size:15px; float:left;}
 .nav ul {width:645px; float:right; height:40px;}
 .nav ul li{float:left; width:84px; font-size:16px; color:#fff; line-height:40px; padding-left:45px;}
-.nav ul .pt {background:url("new/nav-icon01.png")  no-repeat left; background-position:20px 13px; }
-.nav ul .gj {background:url("new/nav-icon02.png")  no-repeat left; background-position:20px 13px; }
-.nav ul .zn {background:url("new/nav-icon03.png")  no-repeat left; background-position:20px 13px; }
-.nav ul .bz {background:url("new/nav-icon04.png")  no-repeat left; background-position:20px 13px; }
-.nav ul .sc {background:url("new/nav-icon05.png")  no-repeat left; background-position:20px 13px; }
+.nav ul .pt {background:image-url("new/nav-icon01.png")  no-repeat left; background-position:20px 13px; }
+.nav ul .gj {background:image-url("new/nav-icon02.png")  no-repeat left; background-position:20px 13px; }
+.nav ul .zn {background:image-url("new/nav-icon03.png")  no-repeat left; background-position:20px 13px; }
+.nav ul .bz {background:image-url("new/nav-icon04.png")  no-repeat left; background-position:20px 13px; }
+.nav ul .sc {background:image-url("new/nav-icon05.png")  no-repeat left; background-position:20px 13px; }
 .nav ul li a {color:#fff;}
 .nav ul li img { margin-left:18px; margin-right:10px; float:left; margin-top:13px;}
 .nav ul li:hover {border-bottom:2px solid #ffd770; height:38px; color:#ffd770}
 .nav ul .list {display:none;}
-.nav ul .pt:hover {background:url("new/nav-icon06.png")  no-repeat left; background-position:20px 13px; }
-.nav ul .gj:hover {background:url("new/nav-icon07.png")  no-repeat left; background-position:20px 13px; }
-.nav ul .zn:hover {background:url("new/nav-icon08.png")  no-repeat left; background-position:20px 13px; }
-.nav ul .bz:hover {background:url("new/nav-icon09.png")  no-repeat left; background-position:20px 13px; }
-.nav ul .sc:hover {background:url("new/nav-icon10.png")  no-repeat left; background-position:20px 13px; }
-.nav ul:hover .list {display:block; width:645px; height:319px; position:absolute; z-index:50; background:url("new/nav-bg.png") repeat; margin-top:40px; padding:5px 0;}
+.nav ul .pt:hover {background:image-url("new/nav-icon06.png")  no-repeat left; background-position:20px 13px; }
+.nav ul .gj:hover {background:image-url("new/nav-icon07.png")  no-repeat left; background-position:20px 13px; }
+.nav ul .zn:hover {background:image-url("new/nav-icon08.png")  no-repeat left; background-position:20px 13px; }
+.nav ul .bz:hover {background:image-url("new/nav-icon09.png")  no-repeat left; background-position:20px 13px; }
+.nav ul .sc:hover {background:image-url("new/nav-icon10.png")  no-repeat left; background-position:20px 13px; }
+.nav ul:hover .list {display:block; width:645px; height:319px; position:absolute; z-index:50; background:image-url("new/nav-bg.png") repeat; margin-top:40px; padding:5px 0;}
 .nav ul:hover .list ul {width:645px; float:right; height:319px; font-family:"宋体";}
 .nav ul:hover .list ul li{float:left; width:129px; font-size:16px; color:#fff; height:319px; padding:0;}
 .nav ul:hover .list ul li:hover{ border:0;}
@@ -101,8 +101,8 @@
 .nav3 .nav_box {width:525px; float:right}
 .nav3 .nav_box .s01 {width:148px; height:0px; background:#fff; padding-left:8px; line-height:22px; border-radius:4px; margin-right:5px; float:left;}
 .nav3 .nav_box .s02 {width:122px; height:0px; background:#fff; padding-left:8px; line-height:22px; border-radius:4px; margin-right:5px; float:left;}
-.nav3 .nav_box .s03 {width:100px; height:0px; background:url("new/FooterNew/btn-bg01.png") repeat-x center; text-align:center; line-height:20px; font-size:14px; color:#fff; float:left; border-radius:4px;}
-.nav3 .nav_box .s04 {width:100px; height:0px; background:url("new/FooterNew/btn-bg03.png") repeat-x center; text-align:center; line-height:20px; font-size:14px; color:#fff; float:left; border-radius:4px; background-size:30%}
+.nav3 .nav_box .s03 {width:100px; height:0px; background:image-url("new/FooterNew/btn-bg01.png") repeat-x center; text-align:center; line-height:20px; font-size:14px; color:#fff; float:left; border-radius:4px;}
+.nav3 .nav_box .s04 {width:100px; height:0px; background:image-url("new/FooterNew/btn-bg03.png") repeat-x center; text-align:center; line-height:20px; font-size:14px; color:#fff; float:left; border-radius:4px; background-size:30%}
 .nav3 .nav_box  .h {color:#636363; background:none; width:25px; float:left; font-size:18px; margin-top:0px; display:block; height:0px; text-align:center;}
 .nav3 .main .login-msg {float:right; ;margin-right:1em; color:red;}
 .nav3 .main .user-info {float:right; margin-right: 1em;}
