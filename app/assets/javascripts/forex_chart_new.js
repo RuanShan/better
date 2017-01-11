@@ -69,7 +69,8 @@ var Game ={
     game.game_round_start_at_selector = ".b-game-round-start-at";
     game.game_round_expiry_at_selector = ".b-game-round-expiry-at";
     game.game_type_selector = ".b-game-type.active";
-    game.game_expiry_countdown_selector = ".b-game-round-expiry-countdown";
+    // it is b-game-round-start-countdown
+    game.game_start_countdown_selector = ".b-game-round-start-countdown";
     game.game_expiry_box_selector = '.b-game-expiry-box';
 
     // game_type_id, expiry_in should be in function.
@@ -80,7 +81,8 @@ var Game ={
     },
     game.expiry_in = function()
     {
-      return parseInt( $(".b-current-expiry-in", container).data('expiry-in') );
+      // for game type 2
+      return parseInt( $(".b-expiry-in.active", container).data('expiry-in') );
     },
     //当前选择的游戏开始时间
     game.selected_game_round_start_at= function(){
@@ -88,9 +90,9 @@ var Game ={
       if( game.game_type_id() == 2){
         start_at = this.game_round_start_at();
       }else{
-        start_at = moment.unix( $(this.game_expiry_box_selector).val());
+        start_at = moment.unix( $(this.game_expiry_box_selector).val()).subtract(5,'minutes');
       }
-      return start_at.seconds(0);
+      return start_at;
     },
     //下一次游戏开始时间
     game.game_round_start_at= function(){
@@ -106,6 +108,7 @@ var Game ={
           }else{
             start_at = now.seconds(30);
           }
+          //console.log()
         }else{
           start_at = now.add( 1, "minutes").seconds(0);
         }
@@ -132,7 +135,7 @@ var Game ={
       //    expiry_at = expiry_at.subtract(game.expiry_in() - 60, "seconds");
       //  }
       //}
-      console.log('game start at now=%s expiry_at=%s', now.toString(), expiry_at.toString());
+      console.log('game start at now=%s start=%s expiry_at=%s period=%s', now.toString(),this.selected_game_round_start_at().toString(), expiry_at.toString(), this.game_round_period());
 
       return expiry_at;
     },
@@ -184,8 +187,8 @@ var Game ={
     game.game_round_expiry_at_tags= function(){
       return $( game.game_round_expiry_at_selector, container);
     },
-    game.game_round_expiry_countdown_tag= function(){
-      return $( game.game_expiry_countdown_selector, container);
+    game.game_round_start_countdown_tag= function(){
+      return $( game.game_start_countdown_selector, container);
     },
 
     game.update= function(){
@@ -207,7 +210,7 @@ var Game ={
       })
       var s = game.seconds_left_to_close_bidding();
       var time_left = moment.unix( s );
-      game.game_round_expiry_countdown_tag().html( time_left.format("mm:ss") );
+      game.game_round_start_countdown_tag().html( time_left.format("mm:ss") );
       var bar_persent = ((game.game_round_period()-s)*100/game.game_round_period()).toString();
       $(".meter span").css("width", bar_persent+"%")
     };
@@ -298,15 +301,15 @@ $(function(){
 
       $(".b-expiry-in", container).click(function(){
         var $this = $(this);
-        $(".expiry-in", container).removeClass("active");
+        $(".b-expiry-in", container).removeClass("active");
         $this.addClass("active");
         $(".b-current-expiry-in", container).data( {"expiry-in": $this.data("expiry-in")}).html($this.html());
         //var game = Game.current( container );
       });
 
-      $(".b-game-round-expiry-countdown", container).countdown( moment().toDate(), moment().add(1, 'days').toDate(), function(event){
+      $(".b-game-round-start-countdown", container).countdown( moment().toDate(), moment().add(1, 'days').toDate(), function(event){
         var game = Game.current( container );
-        var $current_expiry_in = $(".b-current-expiry-in", container);
+        //var $current_expiry_in = $(".b-current-expiry-in", container);
         var $game_expiry_box = $(".b-game-expiry-box", container);
         switch(event.type) {
           case "days":

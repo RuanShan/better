@@ -59,7 +59,7 @@ var Game ={
     game.instrument_last_quote_selector = ".b-instrument-last-quote";
     game.game_round_start_at_selector = ".b-game-round-start-at";
     game.game_type_selector = ".b-game-type.active";
-    game.game_expiry_countdown_selector = ".b-game-round-expiry-countdown";
+    game.game_expiry_countdown_selector = ".b-game-round-start-countdown";
     game.game_type_id = parseInt( $(".b-game-type.active", container).data('game-type') );
     game.expiry_in = parseInt( $(".b-current-expiry-in", container).data('expiry-in') );
 
@@ -233,7 +233,7 @@ $(function(){
         //var game = Game.current( container );
       });
 
-      $(".b-game-round-expiry-countdown", container).countdown( moment().toDate(), moment().add(1, 'days').toDate(), function(event){
+      $(".b-game-round-start-countdown", container).countdown( moment().toDate(), moment().add(1, 'days').toDate(), function(event){
         var game = Game.current( container );
         var $current_expiry_in = $(".b-current-expiry-in", container);
         var $game_expiry_box = $(".b-game-expiry-box", container);
