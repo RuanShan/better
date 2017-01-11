@@ -11,65 +11,11 @@
         <li><h2>形态</h2></li>
         <li><h2>时间</h2></li>
       </ul>
-      <div class="zidongtable b_instrument_trends" data-instruments='<%=@game_instruments.map(&:code).join(',') %>'>
-        <table>
-          <tbody><tr>
-            <td class="up1"><%= image_tag "new/jiaoyi/jiaoyi1_58.gif" %> </td>
-            <td><p>美元/日元（1-5分钟）</p></td>
-            <td><p>反弹</p></td>
-            <td><p>10分钟前</p></td>
-            <td class="up2"><%= image_tag "new/jiaoyi/jiaoyi1_61.gif" %> </td>
-          </tr>
-          <tr>
-            <td class="down1"><%= image_tag "new/jiaoyi/jiaoyi1_67.gif" %> </td>
-            <td><p>美元/日元（1-5分钟）</p></td>
-            <td><p>反弹</p></td>
-            <td><p>10分钟前</p></td>
-            <td class="down2"><%= image_tag "new/jiaoyi/jiaoyi1_68.gif" %> </td>
-          </tr>
-          <tr>
-            <td class="down1"><%= image_tag "new/jiaoyi/jiaoyi1_67.gif" %> </td>
-            <td><p>美元/日元（1-5分钟）</p></td>
-            <td><p>反弹</p></td>
-            <td><p>10分钟前</p></td>
-            <td class="down2"><%= image_tag "new/jiaoyi/jiaoyi1_68.gif" %> </td>
-          </tr>
-          <tr>
-            <td class="down1"><%= image_tag "new/jiaoyi/jiaoyi1_67.gif" %> </td>
-            <td><p>美元/日元（1-5分钟）</p></td>
-            <td><p>反弹</p></td>
-            <td><p>10分钟前</p></td>
-            <td class="down2"><%= image_tag "new/jiaoyi/jiaoyi1_68.gif" %> </td>
-          </tr>
-          <tr>
-            <td class="down1"><%= image_tag "new/jiaoyi/jiaoyi1_58.gif" %> </td>
-            <td><p>美元/日元（1-5分钟）</p></td>
-            <td><p>反弹</p></td>
-            <td><p>10分钟前</p></td>
-            <td class="down2"><%= image_tag "new/jiaoyi/jiaoyi1_61.gif" %> </td>
-          </tr>
-          <tr>
-            <td class="down1"><%= image_tag "new/jiaoyi/jiaoyi1_67.gif" %> </td>
-            <td><p>美元/日元（1-5分钟）</p></td>
-            <td><p>反弹</p></td>
-            <td><p>10分钟前</p></td>
-            <td class="down2"><%= image_tag "new/jiaoyi/jiaoyi1_68.gif" %> </td>
-          </tr>
-           <tr>
-            <td class="down1"><%= image_tag "new/jiaoyi/jiaoyi1_58.gif" %> </td>
-            <td><p>美元/日元（1-5分钟）</p></td>
-            <td><p>反弹</p></td>
-            <td><p>10分钟前</p></td>
-            <td class="down2"><%= image_tag "new/jiaoyi/jiaoyi1_61.gif" %> </td>
-          </tr>
-             <tr>
-            <td class="down1"><%= image_tag "new/jiaoyi/jiaoyi1_58.gif" %> </td>
-            <td><p>美元/日元（1-5分钟）</p></td>
-            <td><p>反弹</p></td>
-            <td><p>10分钟前</p></td>
-            <td class="down2"><%= image_tag "new/jiaoyi/jiaoyi1_61.gif" %> </td>
-          </tr>
-        </tbody></table>
+      <%= form_tag  trends_game_instruments_path, { method: :get, remote: true, id: 'instrument_trends_update_form'} do  %>
+        <%= hidden_field_tag "instrument_codes",@game_instruments.map(&:code).join(',') %>
+       <% end %>
+      <div class="zidongtable b_instrument_trends" data-instrument-codes='<%=@game_instruments.map(&:code).join(',') %>'>
+         <%= render partial: 'game_instruments/trends' %>
       </div>
     </div>
     <div class="zishenjiaoyi">

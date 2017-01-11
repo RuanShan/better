@@ -153,6 +153,8 @@ var Game ={
 
 
 $(function(){
+
+
   //function getGameType(){
   //  return parseInt( $(".game-type.active").data('game-type') );
   //}

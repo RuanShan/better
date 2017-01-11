@@ -48,6 +48,14 @@ function format_float(val, digits) {
         return txt;
     }
 }
+function update_instrument_trends(){
+  var container = $('#instrument_trends_update_form');
+  if( container.is('*'))
+  {
+    container.submit();
+  }
+}
+
 // game_type_id = 1, 涨跌，
 // game_type_id = 2, 计时， 30s, 1min, 2mins
 var Game ={
@@ -155,6 +163,12 @@ $(function(){
   //function getGameType(){
   //  return parseInt( $(".game-type.active").data('game-type') );
   //}
+
+
+  if( $('#instrument_trends_update_form').is('*')){
+     setInterval( "update_instrument_trends()", 2.5*60*1000 );
+  }
+
   if($(".forex-wrapper").is('*')){
     $(".forex-wrapper").each(function(){
       var container = $(this);

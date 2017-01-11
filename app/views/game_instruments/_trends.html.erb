@@ -1,0 +1,17 @@
+<table>
+  <tbody>
+    <% @game_instruments.each_with_index{| game_instrument, i|  %>
+    <tr>
+      <td><p> <%= game_instrument.name %></p></td>
+      <td><p>10分钟前</p></td>
+      <td  >
+        <% if @game_instrument_trends[i] == 1 %>
+        <%= image_tag "new/jiaoyi/jiaoyi1_61.gif" %>
+        <% else %>
+        <%= image_tag "new/jiaoyi/jiaoyi1_68.gif" %>
+        <% end %>
+      </td>
+    </tr>
+  <% } %>
+
+</tbody></table>

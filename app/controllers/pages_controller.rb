@@ -36,7 +36,7 @@ class PagesController < ApplicationController
         if page_id == 'forex_simple'
           GameInstrument.where(category_id: @category).all
         elsif  page_id == 'my/forex_adv'
-          GameInstrument.all          
+          GameInstrument.all
         else
           GameInstrument.where(category_id: @category).all.hot.paginate( page: params[:page] )
         end
@@ -45,6 +45,10 @@ class PagesController < ApplicationController
       end
 
       symbols = @game_instruments.pluck(:code)
+
+      @game_instrument_trends = RedisService.get_trend_in_period(symbols, 600)
+
+
       if symbols.include? params[:symbol]
         @symbol = params[:symbol]
       end
