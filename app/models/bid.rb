@@ -66,7 +66,7 @@ class Bid < ApplicationRecord
 
   def has_enough_money
     #Rails.logger.debug "#{user.wallets.inspect}#{user.id} user.life_statis.balance=#{user.life_statis.balance}, amount=#{amount}"
-    #errors.add(:base, 'Must has enough money') if user.life_statis.balance < amount
+    errors.add(:base, 'Must has enough money') if user.life_statis.balance < amount
   end
 
   def complete!

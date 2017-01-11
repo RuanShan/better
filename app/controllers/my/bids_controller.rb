@@ -40,7 +40,7 @@ module My
         else
           format.html { render :new }
           format.json { render json: @bid.errors, status: :unprocessable_entity }
-          format.js { render :show, status: :created }
+          format.js { render :failure, status: :created }
         end
       end
     end
