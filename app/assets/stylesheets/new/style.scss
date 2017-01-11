@@ -403,7 +403,7 @@ Slider navigation
   width: 60px;
   height: 100%;
   color: #d44457;
-  background:url("new/bg02.jpg") no-repeat center;
+  background:image-url("new/bg02.jpg") no-repeat center;
   -webkit-transition: -webkit-transform 0.2s, box-shadow 0.2s;
   -moz-transition: -moz-transform 0.2s, box-shadow 0.2s;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -459,7 +459,7 @@ Slider navigation
   font-size: 1rem;
   font-weight: 700;
   color: #9e9e9e;
-  background:url("new/bg04.jpg") no-repeat right;
+  background:image-url("new/bg04.jpg") no-repeat right;
   -webkit-transition: background-color 0.2s;
   -moz-transition: background-color 0.2s;
   transition: background-color 0.2s;

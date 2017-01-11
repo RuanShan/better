@@ -65,7 +65,7 @@ input,select,button{
 	font-size:0px;
 	text-indent:-200px;
 	overflow:hidden;
-	background:url("new/top-logo.gif") center center no-repeat;
+	background:image-url("new/top-logo.gif") center center no-repeat;
 }
 .header .searchform{
 	float:left;

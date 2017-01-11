@@ -34,7 +34,7 @@
 .grid2-right .sdmenu .collapsed{ background: url("new/img_menu_02.jpg");background-repeat:no-repeat;color:#000}
 .grid2-right .sdmenu .collapsed span{color:#fff;line-height:36px;}
 .grid2-right .sdmenu .collapsed span a.current{color:#ad8634;}
-.grid2-right .sdmenu  a{ background:url("new/img_menu_03.jpg") no-repeat;    width: 248px;padding-left: 70px; text-decoration: none; display: block;  height: 39px;line-height:39px; border-bottom: 1px solid #d3d3d3; background:#fff; font-size:15px;  color:#000000;}
+.grid2-right .sdmenu  a{ background:image-url("new/img_menu_03.jpg") no-repeat;    width: 248px;padding-left: 70px; text-decoration: none; display: block;  height: 39px;line-height:39px; border-bottom: 1px solid #d3d3d3; background:#fff; font-size:15px;  color:#000000;}
 .grid2-right .sdmenu  a:hover{ background: url("new/img_menu_hover.jpg") no-repeat; width:248px; height:39px;}
 .grid2-right .sdmenu  a.current{background: url("new/img_menu_hover.jpg") no-repeat; width:248px; height:39px;}
 .grid2-right .sdmenu  span a.current{background:none;color:#fff}

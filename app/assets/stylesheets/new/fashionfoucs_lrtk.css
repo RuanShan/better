@@ -23,9 +23,9 @@
 #banner_ctr { position: absolute; width: 960px; height: 40px; margin-left: -480px; left: 50%; bottom: 70px; z-index: 1; }
     #banner_ctr ul { width: 960px; height: 60px; background: url("new/serv_ico.png") center no-repeat; font-size: 0; line-height: 0; position: relative; }
     #banner_ctr li { display: block; float: left; width: 20px; height: 80px; cursor: pointer; }
-#drag_ctr { position: absolute; top:23px; left:0; width:15px; height:15px; bottom: 170px; background:url("new/hover.png") no-repeat; z-index:9999;}
+#drag_ctr { position: absolute; top:23px; left:0; width:15px; height:15px; bottom: 170px; background:image-url("new/hover.png") no-repeat; z-index:9999;}
 
 
 
-.banner_btn{width:100%; background:url("new/banner_btn.png") repeat; height:70px; text-align:center; position:absolute; bottom:0; z-index:999;}
+.banner_btn{width:100%; background:image-url("new/banner_btn.png") repeat; height:70px; text-align:center; position:absolute; bottom:0; z-index:999;}
 .banner_btn a{line-height:40px; padding:0 50px; margin:0 15px; margin-top:15px; font-size:18px;}

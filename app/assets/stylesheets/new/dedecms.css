@@ -95,7 +95,7 @@ input,select,button{
 	width:56px;
 	height:24px;
 	border:none;
-	background:url("new/comm-bt.gif") no-repeat;
+	background:image-url("new/comm-bt.gif") no-repeat;
 	line-height:25px;
 	letter-spacing:1px;
 	cursor:pointer;
@@ -106,7 +106,7 @@ input,select,button{
 	width:70px;
 	height:25px;
 	border:none;
-	background:url("new/btn-bg2.gif") left top no-repeat;
+	background:image-url("new/btn-bg2.gif") left top no-repeat;
 	line-height:25px;
 	overflow:hidden;
 	color:#444;
@@ -128,7 +128,7 @@ input,select,button{
 	border-bottom:1px solid #DBDBDB;
 	color:#676767;
 	overflow:hidden;
-    background:url("new/green_skin.png") repeat-x scroll 0 -188px transparent;
+    background:image-url("new/green_skin.png") repeat-x scroll 0 -188px transparent;
 	}
 .header_top .time{
 	float:left;
@@ -372,7 +372,7 @@ input,select,button{
 	border: 1px solid #93E1EB;
 	border-top: 0px solid #3CA2DC;
 	background-color: #FFF;
-	background:url("new/mmenubg.gif");
+	background:image-url("new/mmenubg.gif");
 	padding-top:6px;
 	padding-bottom:6px;
 }
@@ -413,7 +413,7 @@ input,select,button{
 	font-size:0px;
 	color:#fafafa;
 	border:0px;
-	background:url("new/search-bt.gif") no-repeat;
+	background:image-url("new/search-bt.gif") no-repeat;
 }
 .search-option {
 	margin-left:3px;
@@ -475,7 +475,7 @@ input,select,button{
 	border:1px solid #BADAA1;
 	height:22px;
 	line-height:21px;
-	background:url("new/channel_bg.png") repeat-x;
+	background:image-url("new/channel_bg.png") repeat-x;
 	display:inline-block;
 	}
 .channel-nav .sonnav span a.thisclass{
@@ -497,7 +497,7 @@ input,select,button{
 	padding-left:20px;
 	letter-spacing:2px;
 	float:right;
-	background:url("new/ico-home.gif") 4px 10px no-repeat;
+	background:image-url("new/ico-home.gif") 4px 10px no-repeat;
 }
 .channel-nav .back a{
 	color:#397CBE;
@@ -573,11 +573,11 @@ input,select,button{
   outline: 0;
 }
 .infiniteCarousel .forward {
-  background:url("new/green_skin.png") 0 -256px no-repeat;
+  background:image-url("new/green_skin.png") 0 -256px no-repeat;
   right: 0;
 }
 .infiniteCarousel .back {
-  background:url("new/green_skin.png") 0 -222px no-repeat;
+  background:image-url("new/green_skin.png") 0 -222px no-repeat;
   left: 0;
 }
 /*----------dedeinfolink  ---------*/
@@ -586,7 +586,7 @@ input,select,button{
 	}
 #dedeinfolink tr td div {
 	padding:0 5px;
-	background:url("new/white_bg.gif") repeat-x;
+	background:image-url("new/white_bg.gif") repeat-x;
 	margin-right:8px;
 	}
 #dedeinfolink tr td {
@@ -701,7 +701,7 @@ input,select,button{
  }
 .sidebar  ul li{
   line-height:24px;
-  background:url("new/ico-3.gif") 4px 9px no-repeat;
+  background:image-url("new/ico-3.gif") 4px 9px no-repeat;
  }
 .resultlist{
   overflow:hidden;
