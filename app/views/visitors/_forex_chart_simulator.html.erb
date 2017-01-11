@@ -29,7 +29,7 @@ game_instrument = GameInstrument.where(code: symbol).first
   				</div>
         </div>
         <div class="invoice " style="display:none; opacity: 1; color: white; padding: 0;width:350px;"  data-active="true" >
-          <button type="button" class="close" style="right:0;" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <button type="button" class="close" style="right:0; opacity: 0.5;" ><span style="display:block;padding: 2px; color:black;"> X </span><span class="sr-only">Close</span></button>
           <% @bid = Bid.new %>
           <%= simple_form_for(@bid, url: simulate_my_bids_path, remote: true) do |f| %>
           <%=  hidden_field_tag "game_round[instrument_code]", symbol %>
@@ -73,7 +73,7 @@ game_instrument = GameInstrument.where(code: symbol).first
                   </tr>
                   <tr>
                     <th>有效期:</th>
-                    <td colspan="2"> <span class="b-game-round-start-at" data-format='l'> 13-Dec 10:28 </span></td>
+                    <td colspan="2"> <span class="b-game-round-expiry-at" data-format='l'> 13-Dec 10:28 </span></td>
                     <td colspan="2"> <span class="bid_result" style="color:red;"></span></td>
                   </tr>
                   <tr>

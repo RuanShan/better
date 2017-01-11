@@ -67,6 +67,7 @@ var Game ={
     var game = {};
     game.instrument_last_quote_selector = ".b-instrument-last-quote";
     game.game_round_start_at_selector = ".b-game-round-start-at";
+    game.game_round_expiry_at_selector = ".b-game-round-expiry-at";
     game.game_type_selector = ".b-game-type.active";
     game.game_expiry_countdown_selector = ".b-game-round-expiry-countdown";
     game.game_expiry_box_selector = '.b-game-expiry-box';
@@ -111,18 +112,17 @@ var Game ={
       }else{
         start_at = now.add(5-(now.minutes()%5), "minutes").seconds(0);
       }
-      console.log('game start at now=%s start_at=%s', this.current_time().toString(), start_at.toString());
       return start_at;
     },
     game.game_round_period= function(){
     //游戏持续秒数
       return game.game_type_id() == 1 ? 300 : game.expiry_in();
     },
-    // 禁止投注时间
-    game.game_round_expiry_at= function(){
+    // 游戏到期时间
+    game.selected_game_round_expiry_at= function(){
       // 300 open in every 2mins
       var now = this.current_time();
-      var expiry_at = this.game_round_start_at();
+      var expiry_at = this.selected_game_round_start_at().add( this.game_round_period(), "seconds");
 
       //if( this.game_type_id() == 2){
       //  if( this.expiry_in() == 30 )
@@ -132,7 +132,22 @@ var Game ={
       //    expiry_at = expiry_at.subtract(game.expiry_in() - 60, "seconds");
       //  }
       //}
+      console.log('game start at now=%s expiry_at=%s', now.toString(), expiry_at.toString());
+
       return expiry_at;
+    },
+    game.game_round_expiry_ats= function(){
+      var sas = [];
+      var now = this.current_time();
+      var mins = now.minutes();
+      var remainder= mins%5 // start a agme round in each 5 mins
+      now.add( 5-remainder, "minutes")
+      for(var i=0;i < 60/5; i++){
+        var time = moment(now).add((i+1)*5,"minutes");
+        time.seconds(0);
+        sas.push( time )
+      }
+      return sas;
     },
     game.game_round_start_ats= function(){
       var sas = [];
@@ -150,12 +165,12 @@ var Game ={
       //if (game.game_type_id == 2 )
       //  return 60 - game.current_time().seconds();
       //else {
-        var delta = this.game_round_expiry_at() - this.current_time() ;
+        var delta = this.selected_game_round_start_at() - this.current_time() ;
         return (delta>0 ? delta/1000 : 0);
       //}
     },
     game.milliseconds_left_to_start=function(){
-       return game.game_round_expiry_at() - game.current_time();
+       return game.selected_game_round_start_at() - game.current_time();
     },
     game.current_time= function(){
       return moment();
@@ -165,6 +180,9 @@ var Game ={
     },
     game.game_round_start_at_tags= function(){
       return $( game.game_round_start_at_selector, container);
+    },
+    game.game_round_expiry_at_tags= function(){
+      return $( game.game_round_expiry_at_selector, container);
     },
     game.game_round_expiry_countdown_tag= function(){
       return $( game.game_expiry_countdown_selector, container);
@@ -177,6 +195,14 @@ var Game ={
           $(this).html( game.game_round_start_at().format("D-MMM HH:mm"));
         }else{
           $(this).html( game.game_round_start_at().format("HH:mm"));
+        }
+      })
+      game.game_round_expiry_at_tags().each(function(){
+        if($(this).data('format')=='l')
+        {
+          $(this).html( game.selected_game_round_expiry_at().format("D-MMM HH:mm"));
+        }else{
+          $(this).html( game.selected_game_round_expiry_at().format("HH:mm"));
         }
       })
       var s = game.seconds_left_to_close_bidding();
@@ -288,10 +314,10 @@ $(function(){
           case "hours":
             break;
           case "minutes":
-            var start_ats = game.game_round_start_ats();
+            var expiry_ats = game.game_round_expiry_ats();
             $game_expiry_box.empty();
-            for(var i=0;i < start_ats.length; i++){
-              var time = start_ats[i];
+            for(var i=0;i < expiry_ats.length; i++){
+              var time = expiry_ats[i];
               var today = (time.day() == moment().day()) ? "今天" : "明天";
               $game_expiry_box.append("<option value='"+time.unix()+"'>"+ today +time.format("HH:mm")+"</option>")
             }
