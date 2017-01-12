@@ -1,6 +1,6 @@
 class Bid < ApplicationRecord
   extend DisplayMoney
-  money_methods :amount, :win_lose_amount
+  money_methods :amount, :net_amount
   extend  DisplayDateTime
   date_time_methods :created_at
 
@@ -20,7 +20,7 @@ class Bid < ApplicationRecord
     game.nil? ? "" : game.name
   end
 
-  def win_lose_amount
+  def net_amount
     rate ||= 0.7
     case state
     when "win"
@@ -33,18 +33,18 @@ class Bid < ApplicationRecord
   end
 
   def profit
-    win? ?   win_lose_amount : 0;
+    win? ?   net_amount : 0;
   end
 
   def self.search(search_params, user_id=nil)
-    search_conditions = "bids.created_at>? and bids.created_at<? and games.id=?"
+    search_conditions = "bids.created_at>? and bids.created_at<? and game_rounds.instrument_code=?"
     search_cvalues = [(search_params["start_date"]+" 00:00:00").to_time(:utc),
     (search_params["end_date"]+" 23:59:59").to_time(:utc),search_params["game_id"]]
     unless user_id.nil?
       search_conditions += " and bids.user_id=?"
       search_cvalues << user_id
     end
-    self.includes(game_round: :game).where([search_conditions,search_cvalues].flatten).order("bids.created_at desc").references(:game_rounds, :games).all
+    self.includes(:game_round).where([search_conditions,search_cvalues].flatten).order("bids.created_at desc").references(:game_rounds).all
   end
 
   def human_state

@@ -7,6 +7,8 @@ module My
     # GET /bids.json
     def index
       @page = params["page"]
+      @bid_sum = current_user.life_statis.bid_amount > 0 ? current_user.life_statis.bid_amount : Bid.where("user_id=?",current_user.id).all.sum(:amount)
+      @net_sum = current_user.life_statis.net > 0 ? current_user.life_statis.net : Bid.where("user_id=?",current_user.id).all.inject(0){|sum,bid|sum+=bid.net_amount}
       @bids = Bid.where("user_id=?",current_user.id).all.paginate(:page => @page)
     end
 
@@ -74,8 +76,12 @@ module My
       @page = params["page"]
       @start_date = search_params[:start_date]
       @end_date = search_params[:end_date]
-      @platform = search_params[:game_id]
-      @bids = Bid.search(search_params, current_user.id).paginate(:page => @page)
+      @game_instrument = search_params[:game_id]
+      all_bids = Bid.search(search_params, current_user.id)
+      @bid_sum = all_bids.sum(:amount)
+      @net_sum = all_bids.inject(0){|sum,bid|sum+=bid.net_amount}
+      logger.debug "@bid_sum=#{@bid_sum}"
+      @bids = all_bids.paginate(:page => @page)
       render :index
     end
 

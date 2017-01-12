@@ -1,7 +1,7 @@
 <%
 @start_date ||= ""
 @end_date ||= ""
-@platform ||= "1"
+@game_instrument ||= "0"
 %>
 
 <%=form_tag search_my_bids_path, method:"get", class:"form-inline", role:"form" do%>
@@ -14,8 +14,8 @@
     <%=calendar "end_date", @end_date%>
   </div>
   <div class="form-group">
-    <label for="game_id">平台</label>
-    <%=bid_platform_select "game_id", @platform%>
+    <label for="game_id">资产</label>
+    <%=bid_platform_select "game_id", @game_instrument%>
   </div>
   <div class="form-group">
     <%=submit_tag "查询", class:"form-control richa", src:"new/noimages/tbqw_07.gif" %>
