@@ -135,7 +135,7 @@ module My
         game_round = GameRound.new(session["sgame_round"])
         logger.debug "bid=#{@bid.inspect}"
         logger.debug "game_round=#{game_round.inspect}"
-        quote = RedisService.get_quote_by_time(game_round.instrument_code, game_round.end_at.to_datetime)
+        quote, hack_quote = RedisService.get_quote_by_time(game_round.instrument_code, game_round.end_at.to_datetime)
         quote ||= params["quote"].to_f
         logger.debug "quote=#{quote}"
         hight_win = (quote - @bid["last_quote"].to_f > 0) && @bid["highlow"].to_i == 1
