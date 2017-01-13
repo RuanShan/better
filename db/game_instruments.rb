@@ -92,6 +92,8 @@ attributes = [
   { name:"天然气", code: 'NATGAS', category_id: 3, scales: 3, hot: true },
   { name:"黄金", code: 'GOLD', category_id: 3 , scales: 2 },
   { name:"白银", code: 'XAGUSD', category_id: 3, scales: 3},
+  { name:"铂金", code: 'XPTUSD', category_id: 3 , scales: 3 },
+  { name:"钯金", code: 'XPDUSD', category_id: 3, scales: 3},
 ]
 
 GameInstrument.delete_all
