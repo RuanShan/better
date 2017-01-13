@@ -12,11 +12,11 @@
     <div class="hbtop_right">
           <div class="bton">
             <div class="yuanbg"><%=image_tag "new/noimages/gerentu_03.gif"%><b>余额：</b><span><%=display_money(current_user.center_wallet_balance)%></span></div>
-            <div class="yuanbg"><%=image_tag "new/noimages/gerentu_06.gif"%><b>已投资：</b><span><%=display_money(current_user.bid_sum) %></span></div>
+            <div class="yuanbg"><%=image_tag "new/noimages/gerentu_06.gif"%><b>已投资：</b><span><%=display_money(current_user.life_statis.bid_amount) %></span></div>
             <div class="yuanbg"><%=image_tag "new/noimages/gerentu_08.gif"%><b>待付奖金：</b><span>0</span></div>
           </div>
           <div class="bton1">
-            <div class="yuanbg1"><b>总交易量：</b><span><%=display_money(current_user.bid_sum)%></span></div>
+            <div class="yuanbg1"><b>总交易量：</b><span><%=display_money(current_user.life_statis.bid_amount)%></span></div>
             <%= link_to image_tag("new/noimages/jidui_08.gif"), agent_user_index_path, class: '' %>
           </div>
     </div>

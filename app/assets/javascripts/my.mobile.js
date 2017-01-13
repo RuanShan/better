@@ -53,6 +53,10 @@ $( document ).ready(function() {
   			// 修改数字控制速度， slideUp(500)控制卷起速度
   			$(this).next(".navContent").slideToggle(500);
   });
+	$(".subNavlink").click(function(){
+			var url=	$(this).next(".navContent").children("li").children("a").attr("href");
+      window.location.href=url;
+	});
 	$(".fanhui").click(function(){
   			window.location.href = Better.referrer;
   });

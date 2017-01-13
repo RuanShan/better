@@ -8,15 +8,13 @@
     <tr class="<%=th_class%>">
       <th>ID</th>
       <th>日期/时间(GMT+8)</th>
-      <th>平台</th>
+      <th>资产</th>
       <th>投注全额(RMB)</th>
       <th>输赢全额(RMB)</th>
     </tr>
   </thead>
 
   <tbody>
-    <%total_amount=0%>
-    <%total_win_lose_amount=0%>
     <% if @bids.empty? %>
       <tr class="<%=tr_class%>">
         <td colspan="5">暂无记录</td>
@@ -26,16 +24,14 @@
         <tr class="<%=tr_class%>">
           <td><%= bid.created_at.to_i %></td>
           <td><%= bid.display_created_at %></td>
-          <td><%= bid.platform %></td>
+          <td><%= bid.game_round.game_instrument.name %></td>
           <td><%= bid.display_amount %></td>
-          <td><%= bid.display_win_lose_amount %></td>
+          <td><%= bid.display_net_amount %></td>
         </tr>
-        <%total_amount += bid.amount%>
-        <%total_win_lose_amount += bid.win_lose_amount%>
       <% end %>
     <% end %>
 
   </tbody>
 </table>
-<p class="<%=p_class%>">投注记录总额：<b><%=display_money(total_amount)%></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp输赢记录总额：<b><%=display_money(total_win_lose_amount)%></b></p>
+<p class="<%=p_class%>">投注记录总额：<b><%=display_money(@bid_sum)%></b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp输赢记录总额：<b><%=display_money(@net_sum)%></b></p>
 <%= will_paginate @bids if @bids.respond_to? :total_pages %>

@@ -13,7 +13,7 @@
           <ul>
               <li><%= image_tag "new/jiaoyi/jiaoyi1_03.gif" %> <span>余额：<%=display_money(current_user.center_wallet_balance) %></span></li>
               <li><%= image_tag "new/jiaoyi/jiaoyi1_12.gif" %>  <span>可用现金：<%=display_money(current_user.center_wallet_balance) %></span></li>
-              <li><%= image_tag "new/jiaoyi/jiaoyi1_16.gif" %>  <span>已投资：<%= display_money(current_user.bid_sum) %></span></li>
+              <li><%= image_tag "new/jiaoyi/jiaoyi1_16.gif" %>  <span>已投资：<%= display_money(current_user.life_statis.bid_amount) %></span></li>
               <li><%= image_tag "new/jiaoyi/jiaoyi1_19.gif" %>  <span>待付金额：0 </span></li>
           </ul>
         </div>

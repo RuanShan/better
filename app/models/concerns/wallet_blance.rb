@@ -14,36 +14,7 @@ module WalletBlance
   end
   # 余额，应该和中心钱包的余额相同
   def balance
-    user_days.last ? user_days.last.balance : 0
-  end
-  #充值总额
-  def deposit_sum
-    today_amount = user_today ? user_today.deposit_amount : 0
-    user_months.sum(:deposit_amount)+today_amount
-  end
-  #提款总额
-  def drawing_sum
-    today_amount = user_today ? user_today.drawing_amount : 0
-    user_months.sum(:drawing_amount)+today_amount
-  end
-  #投注总额
-  def bid_sum
-    today_amount = user_today ? user_today.bid_amount : 0
-    user_months.sum(:bid_amount)+today_amount
-  end
-  #红利总额
-  def bonus_sum
-    today_amount = user_today ? user_today.bonus : 0
-    user_months.sum(:bonus)+today_amount
-  end
-  #盈利总额
-  def profit_sum
-    today_amount = user_today ? user_today.profit : 0
-    user_months.sum(:profit)+today_amount
-  end
-  #输赢总额
-  def net_sum
-    drawing_sum + balance - deposit_sum
+    life_statis.balance
   end
 
   #可用现金
@@ -57,7 +28,7 @@ module WalletBlance
   end
 
   def delta_cash
-    deposit_sum - drawing_sum
+    life_statis.deposit_amount - life_statis.drawing_amount
   end
 
 end

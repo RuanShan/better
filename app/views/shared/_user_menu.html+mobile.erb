@@ -8,7 +8,7 @@
 			<p style="margin-left:0.2em"><%= current_user.real_name%></p>
 			<p>USD 账户</p>
 			<p style="margin-top:1.2em;">余额<i><%= current_user.wallet_balance %></i></p>
-			<p>已投资<i><%= current_user.bid_sum %></i></p>
+			<p>已投资<i><%= current_user.life_statis.bid_amount %></i></p>
 			</div>
 		</div>
 	</div>
@@ -73,7 +73,7 @@
 		<li><%= build_nav_link "日盈利表", { controller: 'agent/sale_days', action: 'children_profit', member_level: 6 	}%></li>
 
 	</ul>
-	<div class="subNav"><h6>交易平台</h6></div>
+	<div class="subNavlink"><h6>交易平台</h6></div>
 	<ul class="navContent">
 		<li><%= build_nav_link "高/低", page_path('my/forex_adv')%></li>
 	</ul>
@@ -87,8 +87,8 @@
 	<div class="subNav"><h6>账户设置</h6></div>
 	<ul class="navContent">
 		<li><a href="#">上传文件</a></li>
-		<li><%= build_nav_link "设置登录密码", { controller: 'my/account', action: 'edit_login_password', id: current_user.id}%></li>
-		<li><%= build_nav_link "设置资金密码", { controller: 'my/account', action: 'edit_money_password', id: current_user.id}%></li>
+		<li><%= build_nav_link "修改登录密码", { controller: 'my/account', action: 'edit_login_password', id: current_user.id}%></li>
+		<li><%= build_nav_link "修改资金密码", { controller: 'my/account', action: 'edit_money_password', id: current_user.id}%></li>
 	</ul>
 	<div class="subNav"><h6>报告</h6></div>
 	<ul class="navContent">
