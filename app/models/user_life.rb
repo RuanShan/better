@@ -8,16 +8,16 @@ class UserLife < ApplicationRecord
 
   #
   def recompute!
-    self.deposit_amount = user.deposits.with_state(:success).sum(:amount)
-    self.drawing_amount = user.drawings.with_state(:success).sum(:amount)
-    self.bid_amount = user.bids.sum(:amount)
-    bonuses = user.wallets.bonuses.includes(:originator)
+    self.deposit_amount = user.deposits.with_state(:success).before_today.sum(:amount)
+    self.drawing_amount = user.drawings.with_state(:success).before_today.sum(:amount)
+    self.bid_amount = user.bids.before_today.sum(:amount)
+    bonuses = user.wallets.bonuses.before_today.includes(:originator)
     self.bonus = bonuses.select{|bonus| bonus.originator.is_a? Deposit }.sum(&:amount)
 
     # 赢了多前
     self.profit =bonuses.select{|bonus| bonus.originator.is_a? Bid }.sum(&:amount)
 
-    self.balance = user.wallets.sum(:amount)
+    self.balance = user.wallets.before_today.sum(:amount)
 
     self.save!
   end
