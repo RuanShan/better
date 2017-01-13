@@ -12,7 +12,7 @@ class Bid < ApplicationRecord
   enum state: { pending: 0, win: 1, lose: 4 }
 
   after_create :adjust_wallet
-  validate :has_enough_money
+  validate :has_enough_money,  on: [:create]
 
   delegate :game, to: :game_round
 
