@@ -73,7 +73,7 @@ class Bid < ApplicationRecord
 
   def complete!
     rate ||= 0.7
-    if highlow==1 && self.last_quote < game_round.instrument_quote || highlow==0 && self.last_quote > game_round.instrument_quote
+    if highlow==1 && self.last_quote < game_round.final_instrument_quote || highlow==0 && self.last_quote > game_round.final_instrument_quote
       create_wallet!( user: user, amount: self.amount, originator: self, is_bonus: false )
       create_wallet!( user: user, amount: amount*rate , originator: self, is_bonus: false )
       win!
