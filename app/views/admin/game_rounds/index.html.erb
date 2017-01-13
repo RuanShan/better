@@ -28,9 +28,8 @@
         <td><%= game_round.period %></td>
         <td><%= game_round.display_end_at %></td>
         <td><%= game_round.instrument_quote%> /<%=game_round.instrument_hack_quote %></td>
-        <td><%= link_to 'Show', admin_game_round_path(game_round) %></td>
-      </tr>
+       </tr>
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @game_instruments if @game_instruments.respond_to? :total_pages%>
+<%= will_paginate @game_rounds if @game_rounds.respond_to? :total_pages%>
