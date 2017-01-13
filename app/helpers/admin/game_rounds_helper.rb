@@ -6,6 +6,6 @@ module Admin::GameRoundsHelper
 
     quotes.sort!
 
-    "#{amount} (#{bids.count}) [#{quotes.first}~#{quotes.last})]"
+    "#{amount} (#{bids.count}) [#{quotes.first}~#{quotes.last}]"
   end
 end
