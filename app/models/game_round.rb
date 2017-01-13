@@ -83,9 +83,9 @@ class GameRound < ApplicationRecord
     end
     return quote,highlow
   end
-  
+
   def final_instrument_quote
-    hack_instrument_quote>0 ?  hack_instrument_quote : instrument_quote
+    instrument_hack_quote>0 ?  instrument_hack_quote : instrument_quote
   end
 
   private

@@ -53,7 +53,7 @@ Rails.logger.debug "MaintainGameRound at=#{ DateTime.current} "
   end
 
 
-  def close_started_game(pending_game_rounds )
+  def close_started_game( pending_game_rounds )
     pending_game_rounds.each{|pgr|
       quote, hack_quote = get_quote_by_time( self.redis, pgr.instrument_code, pgr.end_at)
       pgr.instrument_quote = quote
