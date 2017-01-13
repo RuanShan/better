@@ -609,11 +609,22 @@
   span{
     margin: auto;
   }
-  .btn1{
+  .expiry-in{
     background-color: #000000;
   }
-  .btn3{
+  .expiry-in.active {
+   background-color: #f3d34c;
+   color: #333333;
+  }
+  .btn5{
     background-color: #000000;
+  }
+  .game-type {
+    background-color: #000000;
+  }
+  .game-type.active {
+   background-color: #f3d34c;
+   color: #333333;
   }
   .one_zhang{
     background-color: #3a3a3a;
@@ -655,7 +666,7 @@
   }
   .left_time{
     width: 200px;
-    margin: 0 8px;
+    margin: 0 20px;
   }
 }
 

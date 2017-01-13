@@ -2,8 +2,8 @@
   <div class="one_zhang ">
     <div id="game-types-menu" class="one_z1 btn-group">
 
-      <button class="btn2 b-game-type active" type="button" id="game-type-1" data-game-type="1">涨/跌</button>
-      <button class="btn1 b-game-type" type="button" id="game-type-2" data-game-type="2">
+      <button class="b-game-type game-type active" type="button" id="game-type-1" data-game-type="1">涨/跌</button>
+      <button class="b-game-type game-type " type="button" id="game-type-2" data-game-type="2">
         <span class="b-current-expiry-in">      60秒 </span>
       </button>
     </div>
@@ -17,13 +17,13 @@
     </div>
 
       <div class="one_z2 btn-group  btn-group-sm pull-right b-game-round-time-wrapper game-type-2 " style="display:none">
-        <button class="btn btn4 game-short-expiry-tooltip" type="button" id="3">
+        <button class="btn btn5 game-short-expiry-tooltip" type="button" id="3">
           今天<span class="b-game-round-expiry-at"> 00:00  </span>
         </button>
-        <button class="btn btn3 b-expiry-in" type="button" id="4" data-expiry-in="30">30sec</button>
-        <button class="btn btn3 b-expiry-in" type="button" id="5" data-expiry-in="60">60sec</button>
-        <button class="btn btn3 b-expiry-in" type="button" id="6" data-expiry-in="120">2min</button>
-        <button class="btn btn3 b-expiry-in" type="button" id="7" data-expiry-in="300">5min</button>
+        <button class="btn  b-expiry-in expiry-in active" type="button" id="4" data-expiry-in="30">30sec</button>
+        <button class="btn  b-expiry-in expiry-in" type="button" id="5" data-expiry-in="60">60sec</button>
+        <button class="btn  b-expiry-in expiry-in" type="button" id="6" data-expiry-in="120">2min</button>
+        <button class="btn  b-expiry-in expiry-in" type="button" id="7" data-expiry-in="300">5min</button>
       </div>
   </div>
   <div class="guoqi">
@@ -32,9 +32,10 @@
       <span> <%= t( "forex.symbol.#{symbol}") %>收盘时价格将低于或高于？</span>
     </div>
     <div class="guoqi_right left_time clearfix">
-      <div class="pull-left">
-        <span>剩余时间：</span> <span class="b-game-round-start-countdown"> </span>
-      </div>
+        <div class="meter" style=" width:200px;">
+          <span style="width: 0;overflow-x:auto;margin-left:0px;"></span>
+          <center class="b-game-round-start-countdown" style="position:absolute;top:0;left:0;right:0;">00:00</center>
+        </div>
 
     </div>
   </div>
