@@ -69,4 +69,30 @@ Rails.logger.debug "key=#{key}, hack_key=#{hack_key}, score_from=#{score_from} s
     trends
   end
 
+  def self.custom_game_ground_winlose( game_ground )
+    specified_time = game_ground.end_at
+    expected_quote_hash = game_ground.expected_quote_hash
+    hmkey = build_hquote_hmkey( specified_time )
+    if expected_quote_hash.present?
+      #puts "redis hash =#{hmkey} #{expected_quote_hash.inspect}"
+      if game_ground.hack_win? || game_ground.hack_lose?
+        expire_at = specified_time.advance( days: (8- specified_time.wday)).end_of_day.to_i*1000
+        $redis.multi do
+          $redis.hmset hmkey, *expected_quote_hash.to_a
+          $redis.pexpireat hmkey, expire_at
+        end
+      else
+        $redis.multi do
+          $redis.hdel hmkey, *expected_quote_hash.keys
+        end
+      end
+    end
+  end
+
+
+  #expected quote key
+  def self.build_hquote_hmkey( time )
+    key = ["HM","hquote", time.beginning_of_day.ago( 3600*24 * time.wday ).to_i * 1000].join("_");
+  end
+
 end

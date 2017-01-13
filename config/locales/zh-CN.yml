@@ -18,6 +18,7 @@ zh-CN:
         start_at: "开始时间"
         end_at: "结束时间"
         instrument_quote: "到期价格"
+        custom_highlow: "控制输赢"
       user:
         first_name: 名
         last_name: 姓
@@ -59,6 +60,9 @@ zh-CN:
       game_instrument:
         one: 游戏工具
         other: 游戏工具
+      game_round:
+        one: 游戏期局
+        other: 游戏期局
   actions:
     back: 返回
   admin:

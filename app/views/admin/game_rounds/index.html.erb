@@ -13,6 +13,7 @@
       <th>持续秒数</th>
       <th>结束时间</th>
       <th>点数/滑点</th>
+      <th>控制输赢</th>
       <th ></th>
     </tr>
   </thead>
@@ -28,6 +29,8 @@
         <td><%= game_round.period %></td>
         <td><%= game_round.display_end_at %></td>
         <td><%= game_round.instrument_quote%> /<%=game_round.instrument_hack_quote %></td>
+        <td><%= game_round.custom_highlow == 0 ? '否' : '是' %></td>
+        <td> <%= link_to "编辑", edit_admin_game_round_path(game_round) %> </td>
        </tr>
     <% end %>
   </tbody>

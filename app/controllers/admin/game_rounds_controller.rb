@@ -46,7 +46,12 @@ module Admin
     def update
       respond_to do |format|
         if @game_round.update(game_round_params)
-          format.html { redirect_to @game_round, notice: 'Game round was successfully updated.' }
+
+          if @game_round.started? && @game_round.previous_changes.key?( 'custom_highlow')
+            RedisService.custom_game_ground_winlose @game_round
+          end
+
+          format.html { redirect_to action: :index, notice: 'Game round was successfully updated.' }
           format.json { render :show, status: :ok, location: @game_round }
         else
           format.html { render :edit }
@@ -73,7 +78,7 @@ module Admin
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def game_round_params
-        params.require(:game_round).permit(:instrument_code, :start_at, :end_at, :period)
+        params.require(:game_round).permit(:instrument_code, :start_at, :end_at, :period, :custom_highlow )
       end
   end
 end

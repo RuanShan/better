@@ -30,21 +30,23 @@ Rails.logger.debug "MaintainGameRound at=#{ DateTime.current} "
     started_game_rounds = GameRound.with_state(:pending).where( ["start_at<=? and end_at>=?", specified_time, specified_time] )
     expected_quote_hash = {}
     started_game_rounds.each{| game_round |
-      expected_quote, highlow = game_round.get_platform_expected_quote
-      if expected_quote != 0
-        # hmset  name:hm_week_start_at  key: symbol_end_at  val: expected_quote_highlow
-        val = [expected_quote, highlow].join('_')
-        expected_quote_hash.store build_expected_quote_key( game_round ), val
+      #expected_quote, highlow = game_round.get_platform_expected_quote
+      #if expected_quote != 0
+      #  # hmset  name:hm_week_start_at  key: symbol_end_at  val: expected_quote_highlow
+      #  val = [expected_quote, highlow].join('_')
+      #  expected_quote_hash.store build_expected_quote_key( game_round ), val
+      #end
+      if game_round.hack_win?
+        expected_quote_hash.merge! game_round.expected_quote_hash
       end
-
       game_round.start_up
     }
-    puts " expected_quote_hash =#{expected_quote_hash }"
+    #puts " expected_quote_hash =#{expected_quote_hash }"
 
     if expected_quote_hash.present?
       # expire at next Monday midnight
       expire_at = specified_time.advance( days: (8- specified_time.wday)).end_of_day.to_i*1000
-      puts "redis store =#{hmkey} #{expected_quote_hash.inspect}"
+      #puts "redis store =#{hmkey} #{expected_quote_hash.inspect}"
       redis.multi do
         redis.hmset hmkey, *expected_quote_hash.to_a
         redis.pexpireat hmkey, expire_at

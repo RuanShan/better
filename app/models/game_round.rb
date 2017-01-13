@@ -68,7 +68,44 @@ class GameRound < ApplicationRecord
     bids.select{|bid| bid.highlow == 0}
   end
 
-  # platform expect
+
+
+  def final_instrument_quote
+    instrument_hack_quote>0 ?  instrument_hack_quote : instrument_quote
+  end
+
+  def hack_none?
+    custom_highlow == 0
+  end
+
+  def hack_win?
+    custom_highlow == 1
+  end
+
+  def hack_lose?
+    custom_highlow == 2
+  end
+
+  ##################################################################
+  #  redis store related methods
+  ##################################################################
+  def expected_quote_hash
+    # hmset  name:hm_week_start_at  key: symbol_end_at  val: expected_quote_highlow
+    quote, highlow = get_platform_expected_quote
+
+    if quote > 0
+      val = [ quote, highlow].join('_')
+      { expected_quote_key => val }
+    else
+      {}
+    end
+  end
+
+  #symbol_end_at_highlow_period
+  def expected_quote_key
+    key = [ self.instrument_code, self.end_at.to_i ].join('_')
+  end
+
   def get_platform_expected_quote
     amount_for_high = high_bids.sum(&:amount)
     amount_for_low = low_bids.sum(&:amount)
@@ -82,10 +119,6 @@ class GameRound < ApplicationRecord
       quote = low_bids.map(&:last_quote).sort.last
     end
     return quote,highlow
-  end
-
-  def final_instrument_quote
-    instrument_hack_quote>0 ?  instrument_hack_quote : instrument_quote
   end
 
   private

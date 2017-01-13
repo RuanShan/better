@@ -1,14 +1,15 @@
-<%= simple_form_for(@game_round) do |f| %>
+<% url = @game_round.new_record? ? admin_game_rounds_path : admin_game_round_path( @game_round ) %>
+
+<%= simple_form_for(@game_round, url:  url) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :instrumet_code %>
-    <%= f.input :start_at %>
-    <%= f.input :end_at %>
+    <%= f.input :instrument_code %>
     <%= f.input :period %>
+    <%= f.input :custom_highlow %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn btn-primary' %>
   </div>
 <% end %>

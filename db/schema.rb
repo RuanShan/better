@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113181704) do
+ActiveRecord::Schema.define(version: 20170113381704) do
 
   create_table "administrators", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(version: 20170113181704) do
     t.string   "state"
     t.datetime "end_at"
     t.decimal  "instrument_hack_quote", precision: 14, scale: 6, default: "0.0", null: false
+    t.integer  "custom_highlow",                                 default: 0,     null: false
     t.index ["game_id"], name: "index_game_rounds_on_game_id", using: :btree
     t.index ["instrument_id"], name: "index_game_rounds_on_instrument_id", using: :btree
     t.index ["instrument_quote", "state", "end_at"], name: "index_game_rounds_on_instrument_quote_and_state_and_end_at", using: :btree
