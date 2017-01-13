@@ -2,7 +2,7 @@
   <%=image_tag "new/dailiimg/biaoge_21.gif", class:"biaoimg" %>
   <div class="biaotou">
     <h1>月盈利表</h1>
-    <p>显示各代理下线会员创造的月度盈利</p>
+    <p>显示各<%= @current_seller.broker? ? "代理" : "级下线会员"%>的下线会员创造的月度盈利</p>
   </div>
 </div>
 <div class="dailiright_down">

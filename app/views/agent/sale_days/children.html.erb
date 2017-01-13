@@ -2,7 +2,7 @@
   <%=image_tag "new/dailiimg/biaoge_21.gif", class:"biaoimg" %>
   <div class="biaotou">
     <h1>日推广效果表</h1>
-    <p>显示各代理的日度推广注册效果</p>
+    <p>显示各<%= @current_seller.broker? ? "代理" : "级下线会员"%>的日度推广注册效果</p>
   </div>
 </div>
 <div class="dailiright_down">

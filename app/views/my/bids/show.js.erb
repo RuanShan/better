@@ -5,6 +5,16 @@
   $('.modalCloseImg').click();
   $(".bid_result").html(result);
 <%else%>
+var info = "<%= ( render :partial => 'show',:formats=>[:html] ).to_json %>";
+var options = {
+  closeHTML: '<a class="modalCloseImg" title="Close" style="float:right;"><i class="fa fa-close"></i></a>',
+  minHeight:240,
+  minWidth: 240,
+  overlayCss: { backgroundColor: '#000000', opacity: 0.5 },
+  containerCss: { width: '240px', height: '250px', padding: '16px 24px', borderRadius: '10px', backgroundColor: '#FFFFFF',
+    border: "1px solid #999" }
+}
+
 if( $(".forex-adv").is("*")){
     if( $("body.mobile .forex-adv").is("*")){
 
@@ -45,17 +55,8 @@ if( $(".forex-adv").is("*")){
       });
       bid.start()
 
-      $("#simplemodal").html(<%== ( render :partial => "show",:formats=>[:html] ).to_json %>)
+      $.simplemodal(info.substring(6,info.length-6), options);
 
-      $('#simplemodal').simplemodal(
-        {
-          closeHTML: '<a class="modalCloseImg" title="Close"><i class="fa fa-close"></i></a>',
-          minHeight:240,
-          minWidth: 240,
-          overlayCss: { backgroundColor: '#000000', opacity: 0.5 },
-          containerCss: { width: '240px', height: '240px', padding: '16px 24px', borderRadius: '10px', backgroundColor: '#FFFFFF',
-            border: "1px solid #999" }}
-      )
     }else{
       var r = "<tr><td><%= @bid.id%> </td><td><%= @bid.display_created_at %></td> \
       <td><%= @bid.game_round.display_end_at %> </td>\
@@ -167,7 +168,7 @@ if( $(".forex-adv").is("*")){
       }
   });
   //bid.start()
-
+  $.simplemodal(info.substring(6,info.length-6), options);
 
 }
 <%end%>
