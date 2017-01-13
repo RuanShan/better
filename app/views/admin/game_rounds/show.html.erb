@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Instrumet code:</strong>
+  <%= @game_round.instrumet_code %>
+</p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @game_round.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @game_round.end_at %>
+</p>
+
+<p>
+  <strong>Period:</strong>
+  <%= @game_round.period %>
+</p>
+
+<%= link_to 'Edit', edit_game_round_path(@game_round) %> |
+<%= link_to 'Back', game_rounds_path %>

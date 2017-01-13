@@ -27,8 +27,9 @@ module My
     # POST /bids
     # POST /bids.json
     def create
-      @game_round = GameRound.find_or_initialize_by game_round_params
-
+      @game_round = GameRound.where(game_round_params).first || GameRound.new( game_round_params)
+      #Rails.logger.debug " @game_round=#{@game_round.inspect}"
+      #Rails.logger.debug " game_round=#{GameRound.last.inspect}"
       @bid = current_user.bids.build(bid_params)
       @bid.game_round = @game_round
       @bid.rate = @game_round.game_instrument.default_rate
@@ -49,7 +50,16 @@ module My
     # PATCH/PUT /bids/1.json
     def update
       respond_to do |format|
-        if @bid.update_quote(params["quote"])
+
+        Rails.logger.debug " bid update #{DateTime.current}"
+
+        game_round = @bid.game_round
+        unless @bid.game_round.success?
+          if game_round.time_to_close?
+            @bid.complete_game_round(params["quote"])
+          end
+        end
+        if true
           format.js { render :show, status: :updated }
           format.html { redirect_to @bid, notice: 'Bid was successfully updated.' }
           format.json { render :show, status: :ok, location: @bid }
@@ -139,7 +149,11 @@ module My
       end
 
       def game_round_params
-        params.require(:game_round).permit(:instrument_code, :start_at, :period )
+        permitted_params = params.require(:game_round).permit(:instrument_code, :start_at, :period )
+        #permitted_params[:start_at] "2017-01-12T06:28:00.219Z" => time_with_zone
+        # or can not find record by condition ["start_at", "2017-01-12T06:28:00.219Z"]
+        permitted_params[:start_at] = Time.zone.parse(permitted_params[:start_at])
+        permitted_params
       end
 
       def search_params

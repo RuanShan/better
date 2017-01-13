@@ -34,5 +34,7 @@ module Better
 
     config.i18n.default_locale = :"zh-CN"
 
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+
   end
 end

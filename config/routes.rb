@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   mount RuCaptcha::Engine => "/rucaptcha"
 
   resources :games
-  resources :game_rounds
   resources :game_instruments do
     collection do
       get :trends
     end
   end
+  #歷史報價
+  resources :game_rounds
+
   resources :payment_methods
 
   #会员
@@ -99,6 +101,8 @@ Rails.application.routes.draw do
       put :batch_send, on: :collection
       put :one_send, on: :member
     end
+    resources :game_rounds
+
     get '/', to: 'welcome#index', as: :root
   end
   namespace :agent do

@@ -12,6 +12,12 @@ zh-CN:
         category_id: "类别"
         default_rate: "赔率"
         hot: "热门"
+      game_round:
+        game_id: 游戏类型ID
+        instrument_code: "工具代码"
+        start_at: "开始时间"
+        end_at: "结束时间"
+        instrument_quote: "到期价格"
       user:
         first_name: 名
         last_name: 姓

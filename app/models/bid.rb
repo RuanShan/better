@@ -52,11 +52,13 @@ class Bid < ApplicationRecord
     "到期在  #{self.game_round.end_at.to_s(:hm ) }" if pending?
   end
 
-  def update_quote(param_quote)
-    quote = RedisService.get_quote_by_time(game_round.instrument_code, game_round.end_at)
-    quote ||= param_quote.to_f
+  def complete_game_round(param_quote)
+    quote, hack_quote = RedisService.get_quote_by_time(game_round.instrument_code, game_round.end_at)
     game_round.instrument_quote = quote
-    complete!
+    game_round.instrument_hack_quote = hack_quote
+    game_round.complete
+    #complete!
+    self.reload
   end
 
   def adjust_wallet

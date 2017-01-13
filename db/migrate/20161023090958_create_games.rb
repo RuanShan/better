@@ -3,8 +3,9 @@ class CreateGames < ActiveRecord::Migration[5.0]
 
     # 投注记录
     create_table :bids do |t|
-      t.references :game_round, foreign_key: true
-      t.references :user, foreign_key: true
+      # comment out "foreign_key" for mysql (errno: 150 "Foreign key constraint is incorrectly formed"
+      t.references :game_round  #, foreign_key: true
+      t.references :user        #, foreign_key: true
       t.string :number  #serial number
       t.decimal :amount  # 投注价格
       t.decimal :rate    # 倍率
