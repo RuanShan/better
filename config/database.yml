@@ -40,6 +40,6 @@ production:
   reconnect: false
   database: better_production
   pool: 5
-  username: <%= ENV["BETTER_PRODUCTION_DB_USER"] %>
-  password: <%= ENV["BETTER_PRODUCTION_DB_PASS"] %>
+  username: root
+  password: boma_admin
   socket: /var/lib/mysql/mysql.sock
