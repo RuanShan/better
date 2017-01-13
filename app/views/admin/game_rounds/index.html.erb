@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>风控管理</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>游戏代码</th>
+      <th>状态</th>
+      <th>开始时间</th>
+      <th>看涨(人数)</th>
+      <th>看跌(人数)</th>
+      <th>持续秒数</th>
+      <th>结束时间</th>
+      <th>点数/滑点</th>
+      <th ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @game_rounds.each do |game_round| %>
+      <tr>
+        <td><%= game_round.instrument_code %></td>
+        <td><%= game_round.state %></td>
+        <td><%= game_round.display_start_at %></td>
+        <td><%= display_bids_detail(game_round.high_bids) %> </td>
+        <td><%= display_bids_detail game_round.low_bids %></td>
+        <td><%= game_round.period %></td>
+        <td><%= game_round.display_end_at %></td>
+        <td><%= game_round.instrument_quote%> /<%=game_round.instrument_hack_quote %></td>
+       </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @game_rounds if @game_rounds.respond_to? :total_pages%>

@@ -1,0 +1,14 @@
+<%= simple_form_for(@game_round) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :instrumet_code %>
+    <%= f.input :start_at %>
+    <%= f.input :end_at %>
+    <%= f.input :period %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

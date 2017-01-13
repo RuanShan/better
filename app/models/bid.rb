@@ -4,6 +4,9 @@ class Bid < ApplicationRecord
   extend  DisplayDateTime
   date_time_methods :created_at
 
+  extend BetterDateScope
+  better_date_time_scope created_at: [:before_today]
+
   belongs_to :game_round , required: true
   belongs_to :user, required: true
   has_one :wallet, as: :originator
@@ -12,7 +15,7 @@ class Bid < ApplicationRecord
   enum state: { pending: 0, win: 1, lose: 4 }
 
   after_create :adjust_wallet
-  validate :has_enough_money
+  validate :has_enough_money,  on: [:create]
 
   delegate :game, to: :game_round
 
@@ -52,11 +55,13 @@ class Bid < ApplicationRecord
     "到期在  #{self.game_round.end_at.to_s(:hm ) }" if pending?
   end
 
-  def update_quote(param_quote)
-    quote = RedisService.get_quote_by_time(game_round.instrument_code, game_round.end_at)
-    quote ||= param_quote.to_f
+  def complete_game_round(param_quote)
+    quote, hack_quote = RedisService.get_quote_by_time(game_round.instrument_code, game_round.end_at)
     game_round.instrument_quote = quote
-    complete!
+    game_round.instrument_hack_quote = hack_quote
+    game_round.complete
+    #complete!
+    self.reload
   end
 
   def adjust_wallet
@@ -71,7 +76,7 @@ class Bid < ApplicationRecord
 
   def complete!
     rate ||= 0.7
-    if highlow.to_i==1 && self.last_quote> game_round.instrument_quote || highlow.to_i==0 && self.last_quote< game_round.instrument_quote
+    if highlow==1 && self.last_quote < game_round.final_instrument_quote || highlow==0 && self.last_quote > game_round.final_instrument_quote
       create_wallet!( user: user, amount: self.amount, originator: self, is_bonus: false )
       create_wallet!( user: user, amount: amount*rate , originator: self, is_bonus: false )
       win!

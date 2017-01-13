@@ -1,0 +1,1 @@
+json.array! @game_rounds, partial: 'game_rounds/game_round', as: :game_round

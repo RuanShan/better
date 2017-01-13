@@ -12,6 +12,9 @@ class Wallet < ApplicationRecord
   extend  DisplayDateTime
   date_time_methods :created_at
 
+  extend BetterDateScope
+  better_date_time_scope created_at: [:before_today]
+  
   belongs_to :user, required: true
   belongs_to :originator, polymorphic: true
 

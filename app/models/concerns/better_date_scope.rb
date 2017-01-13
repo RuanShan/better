@@ -9,6 +9,7 @@ module BetterDateScope
           scope :in_day, ->(datetime){ where( ["#{field_name}>? and #{field_name}<?",  datetime.beginning_of_day, datetime.end_of_day] )}
           scope :in_days, ->(from_datetime, days ){ where( ["#{field_name}>? and #{field_name}<?", datetime.end_of_day.advance( days: days), datetime.end_of_day ] )}
           scope :in_month, ->(datetime){ where( ["#{field_name}>? and #{field_name}<?", beginning_of_month(datetime), end_of_month(datetime)] )}
+
           timespans.each{|span|
             case span
             when :today
@@ -17,6 +18,8 @@ module BetterDateScope
               scope :week, ->{ in_days( DateTime.current, 7 ) }
             when :month
               scope :month, ->{ in_month( DateTime.current ) }
+            when :before_today
+              scope :before_today, ->{ where( [" #{field_name}<?",  DateTime.current.beginning_of_day] ) }
             end
           }
         end

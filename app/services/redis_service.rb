@@ -5,9 +5,25 @@
 module RedisService
 
   def self.get_quote_by_time( symbol, time)
-      key = ["Z", symbol, time.beginning_of_day.ago( 3600*24 * time.wday ).to_i * 1000].join("_")
-      closest_quote = $redis.zrangebyscore( key, time.ago( 10 ).to_i * 1000, time.to_i*1000 ).last
-      closest_quote.present? ? closest_quote.split('_').second.to_f : 0
+    key = ["Z", symbol, time.beginning_of_day.ago( 3600*24 * time.wday ).to_i * 1000].join("_");
+    hack_key = ["Z", 'hquote', symbol, time.beginning_of_day.ago( 3600*24 * time.wday ).to_i * 1000].join("_");
+
+    score_from = time.to_i*1000
+    score_to = time.advance( seconds: 10 ).to_i * 1000
+Rails.logger.debug "key=#{key}, hack_key=#{hack_key}, score_from=#{score_from} score_to=#{score_to}"
+    closest_quote = $redis.zrangebyscore( key, score_from, score_to ).first
+    hack_closest_quote = $redis.zrangebyscore( hack_key, score_from, score_to ).first
+
+    quote = 0, hack_quote = 0
+    if hack_closest_quote
+      hack_quote = hack_closest_quote.split('_').second.to_f
+    end
+    if closest_quote
+      quote = closest_quote.split('_').second.to_f
+    end
+
+    return quote, hack_quote
+
   end
 
   # compare instrument current price with old price,  ex. in 10mins, it raise or down

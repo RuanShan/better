@@ -1,0 +1,1 @@
+json.partial! "game_rounds/game_round", game_round: @game_round

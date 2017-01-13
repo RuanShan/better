@@ -1,6 +1,6 @@
 <% if @bid.errors.empty? %>
 <h3>交易详情</h3>
-<div><%= @bid.game_round.instrument_code %> - 投资：<%= @bid.amount %></div>
+<div  class="b-bid-countdown-<%=@bid.id.to_i%>"><%= @bid.game_round.instrument_code %> - 投资：<%= @bid.amount %></div>
 <div>如果关闭时为价内期权 <%= @bid.highlow == 1 ? "高于" : "低于" %> <br/>
  <span> <%= @bid.last_quote %> </span>
 </div>
@@ -10,7 +10,6 @@
   <%#= @bid.human_state %>
   交易倒计时：<span id="bid_countdown_<%=@bid.id%>"></span>
 </div>
-
 <% else %>
 <h3>交易详情</h3>
 

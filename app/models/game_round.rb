@@ -3,7 +3,7 @@ class GameRound < ApplicationRecord
   belongs_to :game_instrument, foreign_key: 'instrument_code', primary_key: 'code'
 
   extend  DisplayDateTime
-  date_time_methods :end_at
+  date_time_methods :start_at, :end_at
 
   has_many :bids
   before_create :set_end_at
@@ -12,11 +12,16 @@ class GameRound < ApplicationRecord
 
   state_machine :state, initial: :pending do
     # pending: 等待处理
+    # started: 等待处理
     # success: 结束
     after_transition to: :success, do: [ :complete_bids ]
 
+    event :start_up do
+      transition pending: :started
+    end
+
     event :complete do
-      transition pending: :success
+      transition any => :success
     end
   end
 
@@ -38,6 +43,10 @@ class GameRound < ApplicationRecord
     self.includes(:game_instrument).where(sconditions).order("game_rounds.end_at desc").references(:instruments).all
   end
 
+  def time_to_close?
+    DateTime.current > self.end_at
+  end
+
   def complete_bids
     bids.each(&:complete!)
   end
@@ -51,7 +60,33 @@ class GameRound < ApplicationRecord
     #end
   end
 
+  def high_bids
+    bids.select{|bid| bid.highlow == 1}
+  end
 
+  def low_bids
+    bids.select{|bid| bid.highlow == 0}
+  end
+
+  # platform expect
+  def get_platform_expected_quote
+    amount_for_high = high_bids.sum(&:amount)
+    amount_for_low = low_bids.sum(&:amount)
+
+    highlow = 1
+    quote = 0
+    if amount_for_high > amount_for_low
+      quote = high_bids.map(&:last_quote).sort.first
+      highlow = 0
+    elsif  amount_for_high < amount_for_low
+      quote = low_bids.map(&:last_quote).sort.last
+    end
+    return quote,highlow
+  end
+
+  def final_instrument_quote
+    instrument_hack_quote>0 ?  instrument_hack_quote : instrument_quote
+  end
 
   private
   def set_end_at

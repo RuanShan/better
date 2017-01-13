@@ -10,6 +10,16 @@ default: &default
   timeout: 5000
 
 development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: better_development
+  pool: 5
+  username: root
+  password:
+  socket: /var/lib/mysql/mysql.sock
+
+development_david:
   <<: *default
   database: db/development.sqlite3
 
@@ -30,6 +40,6 @@ production:
   reconnect: false
   database: better_production
   pool: 5
-  username: <%= ENV["BETTER_PRODUCTION_DB_USER"] %>
-  password: <%= ENV["BETTER_PRODUCTION_DB_PASS"] %>
+  username: root
+  password: boma_admin
   socket: /var/lib/mysql/mysql.sock

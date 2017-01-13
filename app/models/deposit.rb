@@ -9,6 +9,9 @@ class Deposit < ApplicationRecord
   extend  DisplayDateTime
   date_time_methods :created_at
 
+  extend BetterDateScope
+  better_date_time_scope completed_at: [:before_today]
+
   #extend FriendlyId
   #friendly_id :number, slug_column: :number, use: :slugged
   include NumberGenerator.new(prefix: NUMBER_PROFIX, length: 20, letters: false)

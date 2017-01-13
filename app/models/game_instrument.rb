@@ -20,4 +20,5 @@ class GameInstrument < ApplicationRecord
     "%i%" % (default_rate*100)
   end
 
+
 end
