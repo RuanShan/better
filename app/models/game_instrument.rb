@@ -21,7 +21,4 @@ class GameInstrument < ApplicationRecord
   end
 
 
-  def final_instrument_quote
-    hack_instrument_quote>0 ?  hack_instrument_quote : instrument_quote
-  end
 end
