@@ -509,7 +509,7 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, candlestickChart
            parseFloat( items[3] ), parseFloat( items[4] )
         ]);
       }
-      var seriesType = 'line';
+      var seriesType = 'area';
       var lineColor = Registry.chartConfig.financialPanel.colors.line;
       var fillColor = {
                           linearGradient : {
@@ -661,9 +661,10 @@ BetterFinancialPanel.prototype.quote = function(j, m, h, n) {
     m = m * 1;
     //var g = Trading.app.getController("Game");
     var f = this.instrumentID;
-    //if (this.lastQuotes[f] && (j - this.lastQuotes[f] < Registry.chartUpdateFrequency)) {
-    //    return
-    //}
+    // for network reason, j may not in time sequence, it happens rarely
+    if (this.lastQuotes[f] && (j - this.lastQuotes[f] < 0)) {
+        return
+    }
     this.lastQuotes[f] = j;
     var d = Registry.chartConfig.colors.line;
     var e;
@@ -697,7 +698,7 @@ BetterFinancialPanel.prototype.quote = function(j, m, h, n) {
         y: m,
         marker: {
             // for strange reason, marker show every one minute, disable it here
-            enabled: false,
+            enabled: true,
             fillColor: d,
             lineColor: Registry.chartConfig.colors.guide,
             lineWidth: 1,
