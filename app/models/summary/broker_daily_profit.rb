@@ -16,7 +16,7 @@ module Summary
 
       self.balance, self.bonus, self.profit, self.net = 0, 0, 0, 0
       self.deposit_amount , self.drawing_amount , self.bid_amount  = 0, 0 ,0
-      self.deposit_member_count , self.drawing_member_count = 0 , 0
+      self.deposit_member_count , self.drawing_member_count, self.energetic_member_count = 0 , 0 , 0
 
       initialize_attributes
     end
@@ -31,6 +31,7 @@ module Summary
         self.profit += day.profit
         self.deposit_member_count += 1 if day.deposit_amount>0
         self.drawing_member_count += 1 if day.drawing_amount>0
+        self.energetic_member_count += 1 if day.bid_amount>2000
       }
       self.net = drawing_amount + balance - deposit_amount
     end
@@ -39,7 +40,7 @@ module Summary
       CSV.generate(options) do |csv|
         csv << ["日期", "活跃人数", "存款(人数)", "提款(人数)", "投注", "输赢", "红利", "盈利"]
         daily_profits.each do |daily_profit|
-          csv << [daily_profit.effective_on, 0, daily_profit.deposit_amount.to_s+"(#{daily_profit.deposit_member_count})",
+          csv << [daily_profit.effective_on, daily_profit.energetic_member_count, daily_profit.deposit_amount.to_s+"(#{daily_profit.deposit_member_count})",
             daily_profit.drawing_amount.to_s+"(#{daily_profit.drawing_member_count})", daily_profit.bid_amount,
             daily_profit.net,daily_profit.bonus, daily_profit.profit]
         end

@@ -30,7 +30,7 @@
       <% @dates.each do |date| monthly_profit  = @monthly_profits.select{|month| month.effective_on == date}.first || Summary::SaleMonthlyProfit.new( date ) %>
         <tr id="<%= monthly_profit.effective_on.to_s(:year_month) %>">
           <td><%= monthly_profit.effective_on.to_s(:year_month)  %></td>
-          <td style="display:none;"><%= 0 %></td>
+          <td style="display:none;"><%= monthly_profit.energetic_member_count %></td>
           <td style="display:none;"><%= monthly_profit.display_deposit_amount %>(<%= monthly_profit.deposit_member_count %>)</td>
           <td style="display:none;"><%= monthly_profit.display_drawing_amount %>(<%= monthly_profit.drawing_member_count %>)</td>
           <td><%= monthly_profit.display_bid_amount %></td>

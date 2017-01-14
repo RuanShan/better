@@ -25,7 +25,7 @@
       <% @month_profits.each do |month_profit| %>
         <tr id="mp<%= month_profit.seller.seller.id %>">
           <td><%= month_profit.seller_name %></td>
-          <td style="display:none;"><%= 0 %></td>
+          <td style="display:none;"><%= month_profit.energetic_member_count %></td>
           <td style="display:none;"><%= month_profit.display_deposit_amount %>(<%= month_profit.deposit_member_count %>)</td>
           <td style="display:none;"><%= month_profit.display_drawing_amount %>(<%= month_profit.drawing_member_count %>)</td>
           <td><%= month_profit.display_bid_amount %></td>
