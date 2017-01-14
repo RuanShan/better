@@ -20,7 +20,6 @@ module Agent
     def profit
       @start_date, @end_date, @dates = get_paginated_dates
       user_months = current_seller.member_months.where(effective_on: @dates )
-      logger.debug "user_months=#{user_months.inspect}"
       @monthly_profits = Summary::SaleMonthlyFactory.create("profit", user_months )
       respond_to do |format|
         format.html
@@ -97,13 +96,15 @@ module Agent
         @member_level = 1 if @member_level>6 || @member_level<1
         @member_state = params["member_state"] || "all"
         level = current_seller.depth + @member_level
-
-        q = current_seller.descendants.includes(:parent).where(depth: level).confirmed
+        if current_seller.broker?
+          q = current_seller.descendants.includes(:parent).where(depth: level).confirmed
+        else
+          q = current_seller.descendants.includes(:parent).where(depth: level)
+        end
         if @member_state != "all"
           q = q.unlocked if @member_state == "normal"
           q = q.locked if @member_state == "frozen"
         end
-
         @children_brokers = q.paginate(:page => @page)
       end
 

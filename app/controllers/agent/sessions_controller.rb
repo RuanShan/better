@@ -1,8 +1,8 @@
 class Agent::SessionsController < Devise::SessionsController
   layout "agent"
 
-  skip_before_filter :verify_authenticity_token, :only => :create
-  
+  skip_before_action :verify_authenticity_token, :only => :create
+
   def create
     self.resource = warden.authenticate(auth_options)
     if resource.nil?
