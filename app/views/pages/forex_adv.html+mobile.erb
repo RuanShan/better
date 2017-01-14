@@ -5,15 +5,17 @@
 </div>
 
 <div class="forex-adv">
-
+  <% if !current_user %>
+    <div class="login-form"> </div>
+  <% end %>
     <div class="">
       <div class=" ">
         <div class="forex-wrapper" style="background-color: #333;">
             <div class="row">
               <div class="col-xs-6">
                 <select class="form-control b-symbols" name="symbols">
-                <% @game_instruments.each{|symbol| %>
-                    <%= content_tag('option', t("forex.symbol.#{symbol}"), class: "", value: symbol, selected: (symbol==@symbol), data:{ symbol: symbol}) %>
+                <% @game_instruments.each{|game_instrument| symbol = game_instrument.code %>
+                    <%= content_tag('option', game_instrument.name, class: "", value: symbol, selected: (symbol==@symbol), data:{ symbol: symbol}) %>
                 <% } %>
                 </select>
               </div>
@@ -26,8 +28,19 @@
               </div>
           </div>
           <% symbol = @symbol %>
-          <%= content_tag "div","", id: "advanced-chart-line-#{symbol}", class: "forex-chart", data: {symbol: symbol} %>
-
+          <div class="forex-wrapper-mask" style="display:none;" > 此交易暂不可用 </div>
+          <div class="xiangqingan clearfix" style="padding: 5px 0 0 0;">
+            <div style="float:right;" >
+            <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-zoom-in" data-zoom="in"> <%=fa_icon 'zoom-in 2x', style: 'color:white;' %></a>
+            <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-zoom-out" data-zoom="out"> <%=fa_icon 'zoom-out 2x', style: 'color:white;' %></a>
+            <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-candlestick"  >  <%=fa_icon 'bar-chart 2x', style: 'color:white;' %> </a>
+            <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-line"  > <%=fa_icon 'picture 2x', style: 'color:white;' %> </a>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <%= content_tag "div","", id: "advanced-chart-line-#{symbol}", class: "forex-chart", data: {symbol: symbol} %>
+            <%= content_tag "div","", id: "advanced-chart-candlestick-#{symbol}", class: "forex-chart-candlestick chart-wrapper-hidden", data: {symbol: symbol}, style: "visibility:hidden;" %>
+          </div>
           <div>
             <% @bid = Bid.new %>
             <%= simple_form_for(@bid, url: my_bids_path, remote: true) do |f| %>
