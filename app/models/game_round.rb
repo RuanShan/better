@@ -1,4 +1,7 @@
 class GameRound < ApplicationRecord
+#period5m_enabled, period30s_enabled, period60s_enabled, period120s_enabled, period300s_enabled
+#period5m_max_price, period30s_max_price, period60s_max_price, period120s_max_price, period300s_max_price
+
   belongs_to :game
   belongs_to :game_instrument, foreign_key: 'instrument_code', primary_key: 'code'
 

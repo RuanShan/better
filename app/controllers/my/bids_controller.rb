@@ -155,7 +155,7 @@ module My
       end
 
       def game_round_params
-        permitted_params = params.require(:game_round).permit(:instrument_code, :start_at, :period )
+        permitted_params = params.require(:game_round).permit(:instrument_code, :start_at, :period, :game_id )
         #permitted_params[:start_at] "2017-01-12T06:28:00.219Z" => time_with_zone
         # or can not find record by condition ["start_at", "2017-01-12T06:28:00.219Z"]
         permitted_params[:start_at] = Time.zone.parse(permitted_params[:start_at])

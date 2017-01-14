@@ -98,5 +98,20 @@ attributes = [
 
 GameInstrument.delete_all
 attributes.each{|attrs|
+  attrs[:day1_open_at] = DateTime.current.beginning_of_day
+  attrs[:day1_close_at] = DateTime.current.end_of_day
+  attrs[:day2_open_at] = DateTime.current.beginning_of_day
+  attrs[:day2_close_at] = DateTime.current.end_of_day
+  attrs[:day3_open_at] = DateTime.current.beginning_of_day
+  attrs[:day3_close_at] = DateTime.current.end_of_day
+  attrs[:day4_open_at] = DateTime.current.beginning_of_day
+  attrs[:day4_close_at] = DateTime.current.end_of_day
+  attrs[:day5_open_at] = DateTime.current.beginning_of_day
+  attrs[:day5_close_at] = DateTime.current.end_of_day
+  attrs[:day6_open_at] = DateTime.current.beginning_of_day
+  attrs[:day6_close_at] = DateTime.current.end_of_day
+  attrs[:day7_open_at] = DateTime.current.beginning_of_day
+  attrs[:day7_close_at] = DateTime.current.end_of_day
+
   GameInstrument.create!( attrs)
 }

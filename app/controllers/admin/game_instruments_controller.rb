@@ -89,7 +89,12 @@ module Admin
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def game_instrument_params
-        params.require(:game_instrument).permit(:name, :code, :description, :hot, :default_rate, :decimal)
+        params.require(:game_instrument).permit(:name, :code, :description, :hot, :default_rate, :decimal,    \
+         :day1_open_at, :day1_close_at,:day2_open_at, :day2_close_at,:day3_open_at, :day3_close_at, \
+         :day4_open_at, :day4_close_at,:day5_open_at, :day5_close_at,:day6_open_at, :day6_close_at,\
+         :day7_open_at, :day7_close_at, \
+         :period5m_enabled, :period30s_enabled, :period60s_enabled, :period120s_enabled, :period300s_enabled, \
+         :period5m_max_price, :period30s_max_price, :period60s_max_price, :period120s_max_price, :period300s_max_price)
       end
   end
 end

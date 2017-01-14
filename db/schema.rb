@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113381704) do
+ActiveRecord::Schema.define(version: 20170142151704) do
 
   create_table "administrators", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -132,6 +132,16 @@ ActiveRecord::Schema.define(version: 20170113381704) do
     t.time     "day7_close_at"
     t.string   "disabled_game_period",                         default: "111111", null: false
     t.integer  "scales",                                       default: 0,        null: false
+    t.integer  "period5m_enabled",                             default: 1,        null: false
+    t.integer  "period30s_enabled",                            default: 1,        null: false
+    t.integer  "period60s_enabled",                            default: 1,        null: false
+    t.integer  "period120s_enabled",                           default: 1,        null: false
+    t.integer  "period300s_enabled",                           default: 1,        null: false
+    t.integer  "period5m_max_price",                           default: 0,        null: false
+    t.integer  "period30s_max_price",                          default: 0,        null: false
+    t.integer  "period60s_max_price",                          default: 0,        null: false
+    t.integer  "period120s_max_price",                         default: 0,        null: false
+    t.integer  "period300s_max_price",                         default: 0,        null: false
   end
 
   create_table "game_rounds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

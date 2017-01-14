@@ -1,7 +1,11 @@
-<div class="biaotiqw">
-    <a href="" onclick="javascript :history.back(-1);"><p class="fanhui">&lt;</p></a>
-    <p class="iphonelan">BALLMER ASIA</p>
-    <a href="/info/templets/default/shouji_index.htm"><%= image_tag "new/jiaoyi/shouyet_03.png", class: "hiushouye"%>  </a>
+<div class="biaotiqw " style="text-align:center;">
+    <a href="" onclick="javascript :history.back(-1);" class="pull-left" style="color:white;" >
+      <%= fa_icon 'chevron-left 2x', style: "color:white; "%>
+     </a>
+    <a href="/info/templets/default/shouji_index.htm" class="pull-right">
+    <%= fa_icon 'home 2x', style: "color:white;"%>
+    </a>
+    <span class="iphonelan" style="line-height:inherit;">BALLMER ASIA</span>
 </div>
 
 <div class="forex-adv">
@@ -53,18 +57,20 @@
             <input  class="b-game-type active" type="hidden" id="game-type-1" data-game-type="1">
 
             <div class="">
-                <div  class="">
-                  <div class="row bid-highlows">
-                    <div class="col-xs-6">
-                      <a  class="bid-highlow bid-highlow-high b-bid"  data-highlow="1">高</a>
-                      <span >收益70%</span>
-                    </div>
-                    <div class="col-xs-6">
-                      <a  class="bid-highlow bid-highlow-low b-bid"  data-highlow="0">低</a>
-                      <span >收益70%</span>
-                    </div>
-                      <%= content_tag('span', '0.0000', id: "top_span", class: "top_span b-instrument-last-quote", data:{ symbol: symbol}) %>
+                <div >
+                  <div  class="container">
+                    <div class="row bid-highlows">
+                      <div class="col-xs-6">
+                        <a  class="bid-highlow bid-highlow-high b-bid"  data-highlow="1">高</a>
+                        <span >收益70%</span>
+                      </div>
+                      <div class="col-xs-6">
+                        <a  class="bid-highlow bid-highlow-low b-bid"  data-highlow="0">低</a>
+                        <span >收益70%</span>
+                      </div>
+                        <%= content_tag('span', '0.0000', id: "top_span", class: "top_span b-instrument-last-quote", data:{ symbol: symbol}) %>
 
+                    </div>
                   </div>
                   <div class="rightdown_down">
                     <div id="r_left" class="r_left">

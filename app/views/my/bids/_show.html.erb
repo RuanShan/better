@@ -13,6 +13,8 @@
 <% else %>
 <h3>交易详情</h3>
 
-<h4>抱歉，投资失败，资金余额不足！</h3>
+<h4>
+  <%= @bid.errors.full_messages %>
+</h4>
 
 <%end %>

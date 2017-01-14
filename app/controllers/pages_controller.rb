@@ -35,7 +35,7 @@ class PagesController < ApplicationController
       when "popular"
         if page_id == 'forex_simple'
           GameInstrument.where(category_id: @category).all
-        elsif  page_id == 'forex_adv'
+        elsif  page_id =~ /forex_adv/ #include my/forex_adv
           GameInstrument.all
         else
           GameInstrument.where(category_id: @category).all.hot.paginate( page: params[:page], :per_page => 4 )

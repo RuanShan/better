@@ -15,7 +15,8 @@ class Bid < ApplicationRecord
   enum state: { pending: 0, win: 1, lose: 4 }
 
   after_create :adjust_wallet
-  validate :has_enough_money,  on: [:create]
+
+  validate :custom_validate,  on: [:create] #ex. has_enough_money
 
   delegate :game, to: :game_round
 
@@ -69,9 +70,23 @@ class Bid < ApplicationRecord
   end
 
 
-  def has_enough_money
+  def custom_validate
     #Rails.logger.debug "#{user.wallets.inspect}#{user.id} user.life_statis.balance=#{user.life_statis.balance}, amount=#{amount}"
-    errors.add(:base, 'Must has enough money') if user.life_statis.balance < amount
+    errors.add(:base, '抱歉，投资失败，资金余额不足！') if user.life_statis.balance < amount
+
+    game_instrument = game_round.game_instrument
+    # is open time
+    available_at = game_instrument.available_at
+    errors.add(:base, "当前游戏的开放时间是 #{available_at}" ) unless game_instrument.is_open_at?( game_round.start_at )
+
+    # is period enabled
+    errors.add(:base, "当前游戏的投注时段暂不开放" ) unless game_instrument.is_period_enabled?( game_round )
+
+    # is amount < max
+    max_price = game_instrument.get_max_price( game_round )
+
+    errors.add(:base, "投注最高限额为#{max_price}"  ) unless game_instrument.is_price_enabled?(amount, game_round )
+
   end
 
   def complete!

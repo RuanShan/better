@@ -3,13 +3,56 @@
 <%= simple_form_for( @game_instrument, url:  url ) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :code %>
-    <%= f.input :description %>
-    <%= f.input :hot %>
-    <%= f.input :default_rate %>
-    <%= f.input :category_id %>
+  <div class="form-inputs ">
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.input :name %>
+          <%= f.input :description %>
+          <%= f.input :default_rate %>
+        </div>
+
+        <div class="col-md-6">
+          <%= f.input :code %>
+          <%= f.input :category_id %>
+          <br/>
+          <%= f.input :hot %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <%= f.input :day1_open_at %>
+          <%= f.input :day2_open_at %>
+          <%= f.input :day3_open_at %>
+          <%= f.input :day4_open_at %>
+          <%= f.input :day5_open_at %>
+          <%= f.input :day6_open_at %>
+          <%= f.input :day7_open_at %>
+        </div>
+        <div class="col-md-3">
+          <%= f.input :day1_close_at %>
+          <%= f.input :day2_close_at %>
+          <%= f.input :day3_close_at %>
+          <%= f.input :day4_close_at %>
+          <%= f.input :day5_close_at %>
+          <%= f.input :day6_close_at %>
+          <%= f.input :day7_close_at %>
+        </div>
+        <div class="col-md-3">
+          <%= f.input :period5m_enabled %>
+          <%= f.input :period30s_enabled %>
+          <%= f.input :period60s_enabled %>
+          <%= f.input :period120s_enabled %>
+          <%= f.input :period300s_enabled %>
+        </div>
+        <div class="col-md-3">
+          <%= f.input :period5m_max_price %>
+          <%= f.input :period30s_max_price %>
+          <%= f.input :period60s_max_price %>
+          <%= f.input :period120s_max_price %>
+          <%= f.input :period300s_max_price %>
+        </div>
+      </div>
    </div>
 
   <div class="form-actions">
