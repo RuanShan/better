@@ -39,8 +39,19 @@
               </div>
           </div>
           <% symbol = @symbol %>
-          <%= content_tag "div","", id: "advanced-chart-line-#{symbol}", class: "forex-chart", data: {symbol: symbol} %>
-
+          <div class="forex-wrapper-mask" style="display:none;" > 此交易暂不可用 </div>
+          <div class="xiangqingan clearfix" style="padding: 5px 0 0 0;">
+            <div style="float:right;" >
+            <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-zoom-in" data-zoom="in"> <%=fa_icon 'zoom-in 2x', style: 'color:white;' %></a>
+            <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-zoom-out" data-zoom="out"> <%=fa_icon 'zoom-out 2x', style: 'color:white;' %></a>
+            <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-candlestick"  >  <%=fa_icon 'bar-chart 2x', style: 'color:white;' %> </a>
+            <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-line"  > <%=fa_icon 'picture 2x', style: 'color:white;' %> </a>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <%= content_tag "div","", id: "advanced-chart-line-#{symbol}", class: "forex-chart", data: {symbol: symbol} %>
+            <%= content_tag "div","", id: "advanced-chart-candlestick-#{symbol}", class: "forex-chart-candlestick chart-wrapper-hidden", data: {symbol: symbol}, style: "visibility:hidden;" %>
+          </div>
           <div>
             <% @bid = Bid.new %>
             <%= simple_form_for(@bid, url: my_bids_path, remote: true) do |f| %>
