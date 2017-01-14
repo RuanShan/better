@@ -1,7 +1,16 @@
 <table>
   <tbody>
+    <tr style="background: #939393; border-bottom: 3px solid #707070; color: #333;font-weight: bold;font-size: 14px;">
+        <th style="width: 30px;">
+          <h2>  <%= image_tag "new/jiaoyi/jiaoyi1_49.gif" %>  </h2>
+        </th>
+        <th><h2>符号</h2></th>
+        <th><h2>形态</h2></th>
+        <th><h2>时间</h2></th>
+     </tr>
     <% @game_instruments.each_with_index{| game_instrument, i|  %>
     <tr>
+      <td style="width: 30px;"> </td>
       <td><p> <%= game_instrument.name %></p></td>
       <td><p>10分钟前</p></td>
       <td  >

@@ -136,80 +136,20 @@
         </div>
         <div class="single">
           <div style="margin: 8px 3px;" class="zidongtubiao_timu">
-                <ul class="zidongtubiao_lanmu">
-                  <li>
-                    <a href=""class="zidongtbxl"> <%= image_tag "new/jiaoyi/jiaoyi1_49.gif" %>  </a>
-                   </li>
-                  <li><h2>符号</h2></li>
-                  <li><h2>形态</h2></li>
-                  <li><h2>时间</h2></li>
-                </ul>
-                <div class="zidongtable">
-                  <table>
-                    <tbody><tr>
-                      <td class="up1"><%= image_tag "new/jiaoyi/jiaoyi1_58.gif" %>  </td>
-                      <td><p>美元/日元（1-5分钟）</p></td>
-                      <td><p>反弹</p></td>
-                      <td><p>10分钟前</p></td>
-                      <td class="up2"><%= image_tag "new/jiaoyi/jiaoyi1_61.gif" %>  </td>
-                    </tr>
-                    <tr>
-                      <td class="down1"><%= image_tag "new/jiaoyi/jiaoyi1_67.gif" %>  </td>
-                      <td><p>美元/日元（1-5分钟）</p></td>
-                      <td><p>反弹</p></td>
-                      <td><p>10分钟前</p></td>
-                      <td class="down2"><%= image_tag "new/jiaoyi/jiaoyi1_68.gif" %>  </td>
-                    </tr>
-                    <tr>
-                      <td class="down1"><%= image_tag "new/jiaoyi/jiaoyi1_67.gif" %> </td>
-                      <td><p>美元/日元（1-5分钟）</p></td>
-                      <td><p>反弹</p></td>
-                      <td><p>10分钟前</p></td>
-                      <td class="down2"><%= image_tag "new/jiaoyi/jiaoyi1_68.gif" %> </td>
-                    </tr>
-                    <tr>
-                      <td class="down1"><%= image_tag "new/jiaoyi/jiaoyi1_67.gif" %> </td>
-                      <td><p>美元/日元（1-5分钟）</p></td>
-                      <td><p>反弹</p></td>
-                      <td><p>10分钟前</p></td>
-                      <td class="down2"><%= image_tag "new/jiaoyi/jiaoyi1_68.gif" %>  </td>
-                    </tr>
-                    <tr>
-                      <td class="down1"><%= image_tag "new/jiaoyi/jiaoyi1_58.gif" %> </td>
-                      <td><p>美元/日元（1-5分钟）</p></td>
-                      <td><p>反弹</p></td>
-                      <td><p>10分钟前</p></td>
-                      <td class="down2"><%= image_tag "new/jiaoyi/jiaoyi1_61.gif" %> </td>
-                    </tr>
-                    <tr>
-                      <td class="down1"><%= image_tag "new/jiaoyi/jiaoyi1_67.gif" %>  </td>
-                      <td><p>美元/日元（1-5分钟）</p></td>
-                      <td><p>反弹</p></td>
-                      <td><p>10分钟前</p></td>
-                      <td class="down2"><%= image_tag "new/jiaoyi/jiaoyi1_68.gif" %>  </td>
-                    </tr>
-                     <tr>
-                      <td class="down1"><%= image_tag "new/jiaoyi/jiaoyi1_58.gif" %>  </td>
-                      <td><p>美元/日元（1-5分钟）</p></td>
-                      <td><p>反弹</p></td>
-                      <td><p>10分钟前</p></td>
-                      <td class="down2"><%= image_tag "new/jiaoyi/jiaoyi1_61.gif" %>  </td>
-                    </tr>
-                       <tr>
-                      <td class="down1"><%= image_tag "new/jiaoyi/jiaoyi1_58.gif" %> </td>
-                      <td><p>美元/日元（1-5分钟）</p></td>
-                      <td><p>反弹</p></td>
-                      <td><p>10分钟前</p></td>
-                      <td class="down2"><%= image_tag "new/jiaoyi/jiaoyi1_61.gif" %>  </td>
-                    </tr>
-                  </tbody></table>
+                <%= form_tag  trends_game_instruments_path, { method: :get, remote: true, id: 'instrument_trends_update_form'} do  %>
+                  <%= hidden_field_tag "instrument_codes",@game_instruments.map(&:code).join(',') %>
+                <% end %>
+                <div class="zidongtable  b_instrument_trends" style="height:318px;">
+                  <%= render partial: 'game_instruments/trends' %>
                 </div>
-          <a  href="javascript:void(0);" id="signal_classic">
-            <input type="button" class="btn03" value="免费信号获取" name="input">
-          </a>
-          <a  href="javascript:void(0);" id="signal_rss">
-            <input type="button" class="btn04" value="免费行情订阅" name="input">
-          </a>
+                <div style="text-align:center;">
+                  <a  href="javascript:void(0);" id="signal_classic" >
+                    <input type="button" class="btn03" value="免费信号获取" name="input" style="float: none;">
+                  </a>
+                  <a  href="javascript:void(0);" id="signal_rss">
+                    <input type="button" class="btn04" value="免费行情订阅" name="input" style="float: none;border: 1px solid #44899d;">
+                  </a>
+              </div>
         </div>
 
       </div>

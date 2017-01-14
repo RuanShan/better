@@ -3,14 +3,7 @@
       <a class="zidongtb"><%= image_tag "new/jiaoyi/jiaoyi1_72.png" %></a>
 
       <h1>自动图标分析</h1>
-      <ul class="zidongtubiao_lanmu">
-        <li>
-          <a class="zidongtbxl"><%= image_tag "new/jiaoyi/jiaoyi1_49.gif" %></a>
-        </li>
-        <li><h2>符号</h2></li>
-        <li><h2>形态</h2></li>
-        <li><h2>时间</h2></li>
-      </ul>
+
       <%= form_tag  trends_game_instruments_path, { method: :get, remote: true, id: 'instrument_trends_update_form'} do  %>
         <%= hidden_field_tag "instrument_codes",@game_instruments.map(&:code).join(',') %>
        <% end %>

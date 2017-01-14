@@ -4,6 +4,9 @@ class VisitorsController < ApplicationController
 
   def index
     @fullwith_content = true
+    @game_instruments = GameInstrument.hot.limit( 8)
+    symbols = @game_instruments.pluck(:code)
+    @game_instrument_trends = RedisService.get_trend_in_period(symbols, 600)
 
     if params["number"]
       broker = Broker.find_by_number(params["number"])
@@ -11,7 +14,7 @@ class VisitorsController < ApplicationController
         if current_broker || current_user
           session.clear
         end
-        set_broker_scope( broker )        
+        set_broker_scope( broker )
       end
     end
   end
