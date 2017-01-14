@@ -19,7 +19,7 @@
       <%end %>
     </li>
     <li>
-      <%= link_to page_path( id: params[:id], category: 'stock')  do %>
+      <%= link_to page_path( id: params[:id], category: 'stock'), onclick: "alert('暂不提供股票数据，具体提供时间请看官方公告。!'); return false;"  do %>
         <%= image_tag "new/jiaoyi/jiaoyi1_42.gif" %> <span>股票</span>
       <%end %>
     </li>

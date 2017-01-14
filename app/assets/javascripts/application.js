@@ -35,6 +35,7 @@
 //= require forex.base
 //= require forex_chart_new
 //= require new/all
+//= require fake_data
 // require forex.chart.plus
 
 $(function(){
