@@ -25,7 +25,7 @@
         <tr id="mb<%= month_balance.seller.seller.id %>">
           <td><%= month_balance.seller_name %></td>
           <td><%= t month_balance.state.to_sym %></td>
-          <td style="display:none;"><%= 0 %></td>
+          <td style="display:none;"><%= month_balance.energetic_member_count %></td>
           <td><%= month_balance.display_profit %></td>
           <td style="display:none;"><%= month_balance.display_bank_charges %></td>
           <td style="display:none;"><%= month_balance.display_platform_charges %></td>

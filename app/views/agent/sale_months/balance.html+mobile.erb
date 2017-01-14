@@ -23,7 +23,7 @@
       <% @dates.each do |date| broker_balance  = @monthly_balances.select{|balance| balance.effective_on == date}.first || Summary::SaleMonthlyBalance.new( date ) %>
         <tr id="<%= broker_balance.effective_on.to_s(:year_month) %>">
           <td><%= broker_balance.effective_on.to_s(:year_month) %></td>
-          <td style="display:none;"><%= 0 %></td>
+          <td style="display:none;"><%= broker_balance.energetic_member_count %></td>
           <td><%= broker_balance.display_profit %></td>
           <td style="display:none;"><%= broker_balance.display_bank_charges %></td>
           <td style="display:none;"><%= broker_balance.display_platform_charges %></td>

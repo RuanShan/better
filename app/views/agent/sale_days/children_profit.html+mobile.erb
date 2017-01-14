@@ -24,7 +24,7 @@
       <% @day_profits.each do |day_profit| %>
         <tr id="dp<%= day_profit.seller.seller.id %>">
           <td><%= day_profit.seller_name %></td>
-          <td style="display:none;"><%= 0 %></td>
+          <td style="display:none;"><%= day_profit.energetic_member_count %></td>
           <td style="display:none;"><%= day_profit.display_deposit_amount %>(<%= day_profit.deposit_member_count %>)</td>
           <td style="display:none;"><%= day_profit.display_drawing_amount %>(<%= day_profit.drawing_member_count %>)</td>
           <td><%= day_profit.display_bid_amount %></td>

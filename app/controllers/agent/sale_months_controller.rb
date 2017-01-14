@@ -20,6 +20,7 @@ module Agent
     def profit
       @start_date, @end_date, @dates = get_paginated_dates
       user_months = current_seller.member_months.where(effective_on: @dates )
+      logger.debug "user_months=#{user_months.inspect}"
       @monthly_profits = Summary::SaleMonthlyFactory.create("profit", user_months )
       respond_to do |format|
         format.html

@@ -28,7 +28,7 @@
       <% @dates.each do |date| daily_profit  = @daily_profits.select{|day| day.effective_on == date}.first || Summary::BrokerDailyProfit.new( date ) %>
         <tr id="<%= daily_profit.effective_on %>">
           <td><%= daily_profit.effective_on %></td>
-          <td style="display:none;"><%= 0 %></td>
+          <td style="display:none;"><%= daily_profit.energetic_member_count %></td>
           <td style="display:none;"><%= daily_profit.display_deposit_amount %>(<%= daily_profit.deposit_member_count %>)</td>
           <td style="display:none;"><%= daily_profit.display_drawing_amount %>(<%= daily_profit.drawing_member_count %>)</td>
           <td><%= daily_profit.display_bid_amount %></td>
