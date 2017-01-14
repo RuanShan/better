@@ -25,7 +25,7 @@
           </div>
           <div class="jiaoyi1_qiehuanti">
             <div class="one_huobi">
-            		<div class="huobi_left" style="height:auto;" >
+            		<div class="huobi_left" >
                   <% @game_instruments.each{|game_instrument| symbol = game_instrument.code %>
                     <div  class="huobi">
                       <%=link_to (current_user ? collect_my_account_path(current_user, symbol: symbol) : nil), onclick: (current_user ? "" : "alert('请先登录！')"), remote:true, method:"PATCH" do%>

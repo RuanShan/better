@@ -59,10 +59,10 @@
 
 
 	.huobi_left{
-		width: 310px;
-		height: 195px;
+		width: 330px;
+		height: 210px;
 		float: left;
-
+    overflow-y: scroll;
 	}
 	.huobi{
 		width: 310px;
@@ -93,7 +93,7 @@
 	}
 	.huobi_right{
 		width: 310px;
-		/*height: 195px;*/
+		height: 210px;
 		overflow: hidden;
 		float: right;
 		background-color: #3A3A3A;
