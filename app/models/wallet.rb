@@ -14,11 +14,11 @@ class Wallet < ApplicationRecord
 
   extend BetterDateScope
   better_date_time_scope created_at: [:before_today]
-  
+
   belongs_to :user, required: true
   belongs_to :originator, polymorphic: true
 
-  scope :bonuses, -> { where(is_bonus: true) }
+  scope :bonuses, -> { where("is_bonus=1 and originator_type='Deposit'") }
 
   after_create :adjust_days
 
@@ -30,7 +30,7 @@ class Wallet < ApplicationRecord
       search_conditions += " and user_id=?"
       search_cvalues << user_id
     end
-    self.where([search_conditions,search_cvalues].flatten).order("created_at desc").all
+    self.where([search_conditions,search_cvalues].flatten).order("created_at desc").bonuses.all
   end
 
   private
