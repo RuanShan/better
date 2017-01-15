@@ -164,6 +164,28 @@ var Game ={
       }
       return sas;
     },
+    game.game_round_start_ats_for_game2= function(){
+      var sas = [];
+      //            expiry_at 60s   2m  5m
+      // 10:02:10              4    5   8        today 10
+      //    08:01              10   11  13       today 15
+      //    04:00              6     7   9       today 10
+      //    05:59              7     8   11      today 15
+      sas.push( game.current_time().seconds(0).add( 2, 'minutes') );  // 60s
+      sas.push( game.current_time().seconds(0).add( 3, 'minutes') );  // 2m
+      sas.push( game.current_time().seconds(0).add( 6, 'minutes') );  // 5m
+
+      var now = game.current_time().seconds(0).add( 7, 'minutes');
+      var mins = now.minutes();
+      var remainder= mins%5 // start a agme round in each 5 mins
+
+      for(var i=0;i < 60/5; i++){
+        var time = moment(now).subtract(remainder, "minutes").add((i+1)*5,"minutes");
+        time.seconds(0);
+        sas.push( time )
+      }
+      return sas;
+    },
     game.seconds_left_to_close_bidding=function(){
       //if (game.game_type_id == 2 )
       //  return 60 - game.current_time().seconds();
@@ -311,18 +333,48 @@ $(function(){
         var game = Game.current( container );
         //var $current_expiry_in = $(".b-current-expiry-in", container);
         var $game_expiry_box = $(".b-game-expiry-box", container);
+        var $game_expiry_box_type_2 = $(".b-game-expiry-box-type-2", container);
+        var expiry_box = null
         switch(event.type) {
           case "days":
             break;
           case "hours":
             break;
           case "minutes":
-            var expiry_ats = game.game_round_expiry_ats();
-            $game_expiry_box.empty();
-            for(var i=0;i < expiry_ats.length; i++){
-              var time = expiry_ats[i];
-              var today = (time.day() == moment().day()) ? "今天" : "明天";
-              $game_expiry_box.append("<option value='"+time.unix()+"'>"+ today +time.format("HH:mm")+"</option>")
+            var expiry_ats = []
+            if( $game_expiry_box.is('*'))
+            {
+              expiry_ats = game.game_round_expiry_ats();
+              expiry_box = $game_expiry_box;
+              expiry_box.empty();
+              for(var i=0;i < expiry_ats.length; i++){
+                var time = expiry_ats[i];
+                var today = (time.day() == moment().day()) ? "今天" : "明天";
+                expiry_box.append("<option value='"+time.unix()+"'>"+ today +time.format("HH:mm")+"</option>")
+              }
+            }
+            if( game.game_type_id() == 2) {
+              expiry_ats = game.game_round_start_ats_for_game2();
+              expiry_box = $game_expiry_box_type_2;
+              if( expiry_box.is('*'))
+              {
+                expiry_box.empty();
+                for(var i=0;i < expiry_ats.length; i++){
+                  var time = expiry_ats[i];
+                  var desc = "";
+                  if( i == 0){
+                    desc = "60秒 - "
+                  }else if( i == 1){
+                    desc = "2分钟 - "
+                  }else if( i == 2){
+                    desc = "5分钟 - "
+                  }else{
+                    desc = (time.day() == moment().day()) ? "今天" : "明天";
+                  }
+
+                  expiry_box.append("<option value='"+time.unix()+"'>"+ desc +time.format("HH:mm")+"</option>")
+                }
+              }
             }
             break;
           case "seconds":

@@ -32,7 +32,7 @@
               </div>
               <div class="col-xs-6">
                 <div  class="b-game-round-time-wrapper game-type-1">
-                    <select id = "game-expiry-box" name="" class="b-game-expiry-box form-control" >
+                    <select id = "game-expiry-box" name="" class="b-game-expiry-box-type-2 form-control" >
                       <option value="1481424300000" selected="">今天 10:45</option>
                     </select>
                 </div>
@@ -58,11 +58,11 @@
             <%=  hidden_field_tag "game_round[instrument_code]", symbol %>
             <%=  hidden_field_tag "game_round[start_at]"  %>
             <%=  hidden_field_tag "game_round[period]"  %>
-            <%=  hidden_field_tag "game_round[game_id]",1  %>
+            <%=  hidden_field_tag "game_round[game_id]",2  %>
             <%= f.input "rate", value: 0.70, as: :hidden   %>
             <%= f.input "highlow", as: :hidden   %>
             <%= f.input "last_quote", as: :hidden   %>
-            <input  class="b-game-type active" type="hidden" id="game-type-1" data-game-type="1">
+            <input  class="b-game-type active" type="hidden" id="game-type-1" data-game-type="2">
 
             <div class="">
                 <div  class="">
