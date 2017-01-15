@@ -157,4 +157,15 @@ body.mobile{
       }
     }
   }
+  .zidongtable table {
+    width: 100%;
+  }
+  .zidongtable table th {
+    padding: 6px 0;
+  }
+  .zidongtable table th h2{
+    font-size: inherit;
+    font-weight: bold;
+    text-align: center;
+  }
 }

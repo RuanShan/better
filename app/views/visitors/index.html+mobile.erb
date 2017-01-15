@@ -1,3 +1,109 @@
-<script language="javascript">
-  window.location= "http://www.ballmerasia.com/info/templets/default/shouji_index.htm";
-</script>
+<!--手机导航begin-->
+
+<div class="iphone__screen" id="iphone__screen">
+
+
+  <div class="biaotiqw" style="text-align:center; padding: 12px 6px;">
+    <a href="" onclick="javascript :history.back(-1);" class="pull-left" style="color:white;" >
+      <%= fa_icon 'chevron-left 2x', style: "color:white; "%>
+     </a>
+    <a href="http://www.ballmerasia.com/" class="pull-right">
+    <%= fa_icon 'home 2x', style: "color:white;"%>
+    </a>
+    <span class="iphonelan" style="line-height:inherit;">BALLMER ASIA</span>
+
+  </div>
+
+  <div class="iphone_b">
+    <%= image_tag "new/shouji/shouindex_02.gif", class: "zhongduan" %>
+
+    <video controls="controls" poster="http://www.ballmerasia.com/info/templets/default/images/shouji/fengmian.jpg">
+       <source src="http://www.ballmerasia.com/info/templets/default/movie.ogg" type="video/ogg">
+       <source src="http://www.ballmerasia.com/info/templets/default/movie.mp4" type="video/mp4">
+    </video>
+        <div class="swiper-container wenziqiehuan swiper-container-horizontal" style="background:#131313">
+          <ul class="swiper-wrapper">
+
+            <li  class="swiper-slide">
+             <a href="javascript:jumpto('http://www.ballmerasia.com/info/plus/list.php?tid=127')"></a>
+             <%= javascript_include_tag "new/santi2.js" %>
+            </li>
+            <li  class="swiper-slide">
+              <a href="javascript:jumpto('http://www.ballmerasia.com/info/plus/list.php?tid=128')"></a>
+              <%= javascript_include_tag "new/santi3.js" %>
+            </li>
+          </ul>
+
+      <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span></div>
+          <!--<div class="qihuanyuan">
+            <div class="yuan1" id="iplun1_1"></div>
+            <div class="yuan2" id="iplun2_2"></div>
+            <div class="yuan3" id="iplun3_3"></div>
+          </div>-->
+
+    </div>
+    <%= image_tag "new/shouji/shouindex_05.gif", class: "zhongduan" %>
+
+    <div class="zidongtubiao_timu">
+
+          <h1>自动图标分析</h1>
+          <%= form_tag  trends_game_instruments_path, { method: :get, remote: true, id: 'instrument_trends_update_form'} do  %>
+            <%= hidden_field_tag "instrument_codes",@game_instruments.map(&:code).join(',') %>
+          <% end %>
+          <div class="zidongtable  b_instrument_trends" >
+            <%= render partial: 'game_instruments/trends' %>
+          </div>
+        </div>
+        <div class="iphonedenglu">
+          <a href="http://www.ballmerasia.com/users/sign_in"><p>请登陆</p></a>
+          <a href="http://www.ballmerasia.com/users/sign_up"><p>快速注册</p></a>
+        </div>
+         <%= image_tag "new/shouji/shouindex_07.gif", class: "zhongduan" %>
+
+        <div class="swiper-container wenziqiehuan swiper-container-horizontal">
+          <ul class="swiper-wrapper">
+            <li  class="swiper-slide"><p class="ipbiaoti">100%赠金</p><p class="ipneirong">入金$1000以上，百分之百赠金送给您，如果多少送多少！</p></li>
+            <li  class="swiper-slide"><p class="ipbiaoti">交易收益</p><p class="ipneirong">业内最高93%单笔收益率</p></li>
+            <li  class="swiper-slide"><p class="ipbiaoti">最小交易</p><p class="ipneirong">60秒期权最低5美金，涨跌期权最低20美金</p></li>
+          </ul>
+    <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet"></span></div>
+          <!--<div class="qihuanyuan">
+            <div class="yuan1" id="iplun1_1"></div>
+            <div class="yuan2" id="iplun2_2"></div>
+            <div class="yuan3" id="iplun3_3"></div>
+          </div>-->
+
+        </div>
+        <%= image_tag "new/shouji/shouindex_10.gif", class: "zhongduan" %>
+
+        <ul>
+          <li class = "active"><a href="javascript:jumpto('http://www.ballmerasia.com/info/plus/list.php?tid=116')"><div class="wenzip1" onlick='dian("we1")'></div></a></li>
+    		   <li class=""><a href="javascript:jumpto('http://www.ballmerasia.com/info/plus/list.php?tid=117')"><div class="wenzip2" onlick='dian("we2")'></div></a></li>
+    		   <li class=""><a href="javascript:jumpto('http://www.ballmerasia.com/info/plus/list.php?tid=118')"><div class="wenzip3" onlick='dian("we3")'></div></a></li>
+
+        </ul>
+
+        <div id="content" class="tab-content" style="width:300%;background-color: #373737;">
+          <%= javascript_include_tag "new/santi1.js" %>
+        </div>
+
+
+        <%= image_tag "new/shouji/shouindex_22.gif", class: "zhongduan" %>
+
+         <a href="http://www.ballmerasia.com/info/templets/default/shouji_lianxi.htm"><p style="font-size: 20px;margin: auto;color: #e8ca4a;width: 84px;margin-top: -100px;margin-bottom: 68px;">联系我们</p></a>
+        </div>
+        <div class="iphone_f">
+
+        <ul>
+          <li>在线电话</li>
+          <li>客服咨询</li>
+          <li>English</li>
+        </ul>
+
+        </div>
+  </div>
+
+
+
+
+<!--手机导航结束-->

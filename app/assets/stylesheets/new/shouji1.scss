@@ -841,8 +841,30 @@ width: 36%;
   color: #777;
     padding-left: 11%;
 }
+.ipemail1{
+  width: 88%;
+  clear: both;
+  height: 40px;
+  margin-top: 1em;
+  border: 0px;
+  background: image-url("new/shouji/kaishe_033.gif") no-repeat;
+  background-size: 100% 40px;
+  color: #777;
+  padding-left: 11%;
+}
 .iphaoma{
   width: 88%;
+  clear: both;
+  height: 40px;
+  margin-top: 1em;
+  border: 0px;
+    background: image-url("new/shouji/kaishe_11.gif") no-repeat;
+  background-size: 100% 40px;
+  color: #777;
+    padding-left: 11%;
+}
+.iphaoma1{
+  width: 99%;
   clear: both;
   height: 40px;
   margin-top: 1em;
@@ -895,6 +917,19 @@ width: 36%;
   background-size: 100% 40px;
   border: 0px;
 }
+.chuangjiankaihu1{
+  margin-top: 3em;
+  width: 100%;
+  height: 40px;
+  background: image-url("new/shouji/ipliuyan_10.gif") no-repeat;
+  background-size: 100% 40px;
+  border: 0px;
+      color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
 .xingbiao{
   width:2.5em;
   height:2.5em;
@@ -972,13 +1007,11 @@ margin-bottom: 2em;
   width: 100%;
   height: 200px;
 
-  background: url(../images/shouji/shouindex_03.gif) no-repeat;
-  background-size: 100% 200px;
 }
 .iphonedenglu{
   width: 100%;
   height: 80px;
-  background: url(../images/shouji/shouindex_04.gif) no-repeat;
+  background: image-url("new/shouji/shouindex_04.gif") no-repeat;
   background-size: 100% 80px;
 }
 .iphonedenglu p{
@@ -1053,7 +1086,7 @@ padding: 10px 0;
 .wenziqiehuan{
   width: 100%;
   height: 100px;
-  background: url(../images/shouji/shouindex_09.gif) no-repeat;
+  background: image-url("new/shouji/shouindex_09.gif") no-repeat;
   background-size: 100% 100px;
 }
 .wenziqiehuan ul{
@@ -1134,14 +1167,14 @@ margin-left: 20px;
 .wenzip1{
   width: 33%;
   height: 80px;
-  background: url(../images/shouji/shouindex_12.gif) no-repeat;
+  background: image-url("new/shouji/shouindex_12.gif") no-repeat;
   background-size: 100% 80px;
   float: left;
 }
 .wenzip2{
   width: 33%;
   height: 80px;
-  background: url(../images/shouji/shouindex_15.gif) no-repeat;
+  background: image-url("new/shouji/shouindex_15.gif") no-repeat;
   background-size: 100% 80px;
   background-position:33%;
   float: left;
@@ -1149,21 +1182,21 @@ margin-left: 20px;
 .wenzip3{
   width: 33%;
   height: 80px;
-  background: url(../images/shouji/shouindex_17.gif) no-repeat;
+  background: image-url("new/shouji/shouindex_17.gif") no-repeat;
   background-size: 100% 80px;
   background-position:33%;
   float: left;
 }
 .wenzip1:hover{
-  background: url(../images/shouji/shouindex1_12.gif) no-repeat;
+  background: image-url("new/shouji/shouindex1_12.gif") no-repeat;
   background-size: 100% 80px;
 }
 .wenzip2:hover{
-  background: url(../images/shouji/shouindex1_15.gif) no-repeat;
+  background: image-url("new/shouji/shouindex1_15.gif") no-repeat;
   background-size: 100% 80px;
 }
 .wenzip3:hover{
-  background: url(../images/shouji/shouindex1_17.gif) no-repeat;
+  background: image-url("new/shouji/shouindex1_17.gif") no-repeat;
   background-size: 100% 80px;
 }
 .ipwenzhangliebiao{
