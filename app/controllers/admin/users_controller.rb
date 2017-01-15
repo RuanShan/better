@@ -118,8 +118,8 @@ module Admin
 
     def data
       @user_seller = CurrentSeller.new( @user )
-      @user_month = Summary::SaleMonthlyFactory.create("profit", @user_seller.member_cmonths ).first || Summary::SaleMonthlyProfit.new(DateTime.current.to_date)
-      @user_day = Summary::BrokerDailyProfitFactory.create( @user_seller.member_todays ).first || Summary::BrokerDailyProfit.new(DateTime.current.to_date)
+      @user_month = Summary::SaleMonthlyFactory.create("profit", @user_seller.descendant_cmonths ).first || Summary::SaleMonthlyProfit.new(DateTime.current.to_date)
+      @user_day = Summary::BrokerDailyProfitFactory.create( @user_seller.descendant_todays ).first || Summary::BrokerDailyProfit.new(DateTime.current.to_date)
     end
 
     def lock

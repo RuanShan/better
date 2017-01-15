@@ -12,14 +12,15 @@ module Summary
         elsif type == "profit"
           children.map{|child|
             seller = child.as_seller
-
-            member_months = seller.member_months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date )
+            months = seller.broker? ? seller.member_months : child.user_months
+            member_months = months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date )
             SaleMonthProfit.new( seller, member_months)
           }
         else
           children.map{|child|
             seller = child.as_seller
-            member_months = seller.member_months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date )
+            months = seller.broker? ? seller.member_months : child.user_months
+            member_months = months.where(  "effective_on>=? and effective_on<=? ", from_date, to_date )
             SaleMonthBalance.new( seller, member_months)
           }
         end
