@@ -20,7 +20,7 @@
           <%= render "expiry_panel" %>
           <div class="chart-wrapper">
             <% unless @game_instrument.is_open_at? %>
-            <div class="chart-wrapper-mask" style="padding: 100px 0 0 0;" >
+              <div class="chart-wrapper-mask" style="padding: 100px 0 0 0;" >
               <h4>  此交易暂不可用 </h4>
               <p> 开始时间：<%=@game_instrument.available_at.to_s(:db) %></p>
              </div>

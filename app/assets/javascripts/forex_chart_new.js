@@ -293,6 +293,13 @@ $(function(){
         $(".b-bid-cost", container).val(  more + cost );
       });
       $(".b-submit-bid", container).click(function(){
+        var highlow = $("input[name='bid[highlow]']", container).val( );
+        if( parseInt( highlow ) < 0 )
+        {
+          alert("请先选择投注高或者低！");
+          return ;
+        }
+
         if( $("form#reg-form, .login-form").is('*') && !$(".forex-simulator-wrapper").is('*')){
           alert("请先登录或注册！");
         }else{

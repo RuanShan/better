@@ -8,6 +8,7 @@
     <div class="">
       <div class=" ">
         <div class="forex-wrapper" style="background-color: #333;">
+
           <div>
             <table style="width:100%;margin-bottom:5px;">
               <tr>
@@ -38,76 +39,85 @@
                 </div>
               </div>
           </div>
-          <% symbol = @symbol %>
-          <div class="forex-wrapper-mask" style="display:none;" > 此交易暂不可用 </div>
-          <div class="xiangqingan clearfix" style="padding: 5px 0 0 0;">
-            <div style="float:right;" >
-            <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-zoom-in" data-zoom="in"> <%=fa_icon 'zoom-in 2x', style: 'color:white;' %></a>
-            <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-zoom-out" data-zoom="out"> <%=fa_icon 'zoom-out 2x', style: 'color:white;' %></a>
-            <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-candlestick"  >  <%=fa_icon 'bar-chart 2x', style: 'color:white;' %> </a>
-            <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-line"  > <%=fa_icon 'picture 2x', style: 'color:white;' %> </a>
-            </div>
-          </div>
-          <div class="chart-wrapper">
-            <%= content_tag "div","", id: "advanced-chart-line-#{symbol}", class: "forex-chart", data: {symbol: symbol} %>
-            <%= content_tag "div","", id: "advanced-chart-candlestick-#{symbol}", class: "forex-chart-candlestick chart-wrapper-hidden", data: {symbol: symbol}, style: "visibility:hidden;" %>
-          </div>
-          <div>
-            <% @bid = Bid.new %>
-            <%= simple_form_for(@bid, url: my_bids_path, remote: true) do |f| %>
-            <%=  hidden_field_tag "game_round[instrument_code]", symbol %>
-            <%=  hidden_field_tag "game_round[start_at]"  %>
-            <%=  hidden_field_tag "game_round[period]"  %>
-            <%=  hidden_field_tag "game_round[game_id]",2  %>
-            <%= f.input "rate", value: 0.70, as: :hidden   %>
-            <%= f.input "highlow", as: :hidden   %>
-            <%= f.input "last_quote", as: :hidden   %>
-            <input  class="b-game-type active" type="hidden" id="game-type-1" data-game-type="2">
 
-            <div class="">
-                <div  class="">
-                  <div class="row bid-highlows">
-                    <div class="col-xs-6">
-                      <a  class="bid-highlow bid-highlow-high b-bid"  data-highlow="1">高</a>
-                      <span >收益70%</span>
-                    </div>
-                    <div class="col-xs-6">
-                      <a  class="bid-highlow bid-highlow-low b-bid"  data-highlow="0">低</a>
-                      <span >收益70%</span>
-                    </div>
-                      <%= content_tag('span', '0.0000', id: "top_span", class: "top_span b-instrument-last-quote", data:{ symbol: symbol}) %>
-
-                  </div>
-                  <div class="rightdown_down">
-                    <div id="r_left" class="r_left">
-                      <%= image_tag "new/jiaoyi/zishen_81.png", alt: "account" %>
-                    </div>
-                    <div id="r_right" class="r_right">
-                      <span class="fuhao">$</span>
-                      <input type="text" value="100" name="bid[amount]" id="jiaqina" class="jiaqina b-bid-cost">
-                    </div>
-                    <div id="butongjia" class="butongjia">
-                      <div class="bu10"><input type="button"  class="b-bid-more-price" value="+10"></div>
-                      <div class="bu10"><input type="button"  class="b-bid-more-price" value="+25"></div>
-                      <div class="bu10"><input type="button"  class="b-bid-more-price" value="+50"></div>
-                      <div class="bu10"><input type="button"  class="b-bid-more-price" value="+100"></div>
-                    </div>
-                    <div class="submit-wrapper">
-                      <a class="apply-submit b-submit-bid "> 交易 </a>
-
-                      <p class="countdown-wrapper">
-                        <span class='b-bid-icon b-bid-icon-0' style= "display:none;"> <%= fa_icon "arrow-down"%> </span>
-                        <span class='b-bid-icon b-bid-icon-1' style= ""> <%= fa_icon "arrow-up"%> </span>
-
-                        剩余时间<br><span class="b-game-round-start-countdown">00:00:16</span>
-                        <br><span class="bid_result" style="color:red;"></span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-            </div>
+          <div style="position: relative;">
+            <% unless @game_instrument.is_open_at? %>
+              <div class="chart-wrapper-mask" style="padding: 100px 0 0 0;" >
+              <h4>  此交易暂不可用 </h4>
+              <p> 开始时间：<%=@game_instrument.available_at.to_s(:db) %></p>
+             </div>
             <% end %>
+            <% symbol = @symbol %>
+            <div class="xiangqingan clearfix" style="padding: 5px 0 0 0;">
+              <div style="float:right;" >
+              <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-zoom-in" data-zoom="in"> <%=fa_icon 'zoom-in 2x', style: 'color:white;' %></a>
+              <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-zoom-out" data-zoom="out"> <%=fa_icon 'zoom-out 2x', style: 'color:white;' %></a>
+              <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-candlestick"  >  <%=fa_icon 'bar-chart 2x', style: 'color:white;' %> </a>
+              <a href="javascript:void(0)" class="zidongtbxl chart-update-icon  b-chart-line"  > <%=fa_icon 'picture 2x', style: 'color:white;' %> </a>
+              </div>
+            </div>
+            <div class="chart-wrapper">
 
+              <%= content_tag "div","", id: "advanced-chart-line-#{symbol}", class: "forex-chart", data: {symbol: symbol} %>
+              <%= content_tag "div","", id: "advanced-chart-candlestick-#{symbol}", class: "forex-chart-candlestick chart-wrapper-hidden", data: {symbol: symbol}, style: "visibility:hidden;" %>
+            </div>
+            <div>
+              <% @bid = Bid.new %>
+              <%= simple_form_for(@bid, url: my_bids_path, remote: true) do |f| %>
+              <%=  hidden_field_tag "game_round[instrument_code]", symbol %>
+              <%=  hidden_field_tag "game_round[start_at]"  %>
+              <%=  hidden_field_tag "game_round[period]"  %>
+              <%=  hidden_field_tag "game_round[game_id]",2  %>
+              <%= f.input "rate", value: @game_instrument.default_rate, as: :hidden   %>
+              <input class="form-control hidden" type="hidden" value="-1" name="bid[highlow]" >
+              <%= f.input "last_quote", as: :hidden   %>
+              <input  class="b-game-type active" type="hidden" id="game-type-1" data-game-type="2">
+
+              <div class="">
+                  <div  class="">
+                    <div class="row bid-highlows">
+                      <div class="col-xs-6">
+                        <a  class="bid-highlow bid-highlow-high b-bid"  data-highlow="1">高</a>
+                        <span ><%= @game_instrument.display_default_rate %></span>
+                      </div>
+                      <div class="col-xs-6">
+                        <a  class="bid-highlow bid-highlow-low b-bid"  data-highlow="0">低</a>
+                        <span ><%= @game_instrument.display_default_rate %></span>
+                      </div>
+                        <%= content_tag('span', '0.0000', id: "top_span", class: "top_span b-instrument-last-quote", data:{ symbol: symbol}) %>
+
+                    </div>
+                    <div class="rightdown_down">
+                      <div id="r_left" class="r_left">
+                        <%= image_tag "new/jiaoyi/zishen_81.png", alt: "account" %>
+                      </div>
+                      <div id="r_right" class="r_right">
+                        <span class="fuhao">$</span>
+                        <input type="text" value="100" name="bid[amount]" id="jiaqina" class="jiaqina b-bid-cost">
+                      </div>
+                      <div id="butongjia" class="butongjia">
+                        <div class="bu10"><input type="button"  class="b-bid-more-price" value="+10"></div>
+                        <div class="bu10"><input type="button"  class="b-bid-more-price" value="+25"></div>
+                        <div class="bu10"><input type="button"  class="b-bid-more-price" value="+50"></div>
+                        <div class="bu10"><input type="button"  class="b-bid-more-price" value="+100"></div>
+                      </div>
+                      <div class="submit-wrapper">
+                        <a class="apply-submit b-submit-bid "> 交易 </a>
+
+                        <p class="countdown-wrapper">
+                          <span class='b-bid-icon b-bid-icon-0' style= "display:none;"> <%= fa_icon "arrow-down"%> </span>
+                          <span class='b-bid-icon b-bid-icon-1' style= "display:none;"> <%= fa_icon "arrow-up"%> </span>
+
+                          剩余时间<br><span class="b-game-round-start-countdown">00:00:16</span>
+                          <br><span class="bid_result" style="color:red;"></span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <% end %>
+
+            </div>
           </div>
         </div>
       </div>

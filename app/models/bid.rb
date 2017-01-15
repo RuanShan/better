@@ -85,7 +85,12 @@ class Bid < ApplicationRecord
     # is amount < max
     max_price = game_instrument.get_max_price( game_round )
 
-    errors.add(:base, "投注最高限额为#{max_price}"  ) unless game_instrument.is_price_enabled?(amount, game_round )
+    if game_round.persisted?
+      total = game_round.bids.where( user: user).sum(:amount)
+      errors.add(:base, "投注最高限额为#{max_price}"  ) unless game_instrument.is_price_enabled?( total+amount, game_round )
+    else
+      errors.add(:base, "投注最高限额为#{max_price}"  ) unless game_instrument.is_price_enabled?(amount, game_round )
+    end
 
   end
 
