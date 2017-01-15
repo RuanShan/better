@@ -93,6 +93,10 @@ module Admin
          :day1_open_at, :day1_close_at,:day2_open_at, :day2_close_at,:day3_open_at, :day3_close_at, \
          :day4_open_at, :day4_close_at,:day5_open_at, :day5_close_at,:day6_open_at, :day6_close_at,\
          :day7_open_at, :day7_close_at, \
+         :day1_halftime_start_at,:day2_halftime_start_at,:day3_halftime_start_at,:day4_halftime_start_at,\
+         :day5_halftime_start_at,:day6_halftime_start_at,:day7_halftime_start_at, \
+         :day1_halftime_end_at, :day2_halftime_end_at, :day3_halftime_end_at,:day4_halftime_end_at, \
+         :day5_halftime_end_at, :day6_halftime_end_at, :day7_halftime_end_at, \
          :period5m_enabled, :period30s_enabled, :period60s_enabled, :period120s_enabled, :period300s_enabled, \
          :period5m_max_price, :period30s_max_price, :period60s_max_price, :period120s_max_price, :period300s_max_price)
       end

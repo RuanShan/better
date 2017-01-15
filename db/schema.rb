@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170142151704) do
+ActiveRecord::Schema.define(version: 20170142351704) do
 
   create_table "administrators", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -110,12 +110,12 @@ ActiveRecord::Schema.define(version: 20170142151704) do
     t.string   "name"
     t.string   "code"
     t.string   "description"
-    t.datetime "created_at",                                                      null: false
-    t.datetime "updated_at",                                                      null: false
-    t.integer  "category_id",                                  default: 0,        null: false
-    t.boolean  "hot",                                          default: false,    null: false
-    t.string   "rate",                                         default: "",       null: false
-    t.decimal  "default_rate",         precision: 6, scale: 2, default: "0.7",    null: false
+    t.datetime "created_at",                                                        null: false
+    t.datetime "updated_at",                                                        null: false
+    t.integer  "category_id",                                    default: 0,        null: false
+    t.boolean  "hot",                                            default: false,    null: false
+    t.string   "rate",                                           default: "",       null: false
+    t.decimal  "default_rate",           precision: 6, scale: 2, default: "0.7",    null: false
     t.time     "day1_open_at"
     t.time     "day1_close_at"
     t.time     "day2_open_at"
@@ -130,18 +130,32 @@ ActiveRecord::Schema.define(version: 20170142151704) do
     t.time     "day6_close_at"
     t.time     "day7_open_at"
     t.time     "day7_close_at"
-    t.string   "disabled_game_period",                         default: "111111", null: false
-    t.integer  "scales",                                       default: 0,        null: false
-    t.integer  "period5m_enabled",                             default: 1,        null: false
-    t.integer  "period30s_enabled",                            default: 1,        null: false
-    t.integer  "period60s_enabled",                            default: 1,        null: false
-    t.integer  "period120s_enabled",                           default: 1,        null: false
-    t.integer  "period300s_enabled",                           default: 1,        null: false
-    t.integer  "period5m_max_price",                           default: 0,        null: false
-    t.integer  "period30s_max_price",                          default: 0,        null: false
-    t.integer  "period60s_max_price",                          default: 0,        null: false
-    t.integer  "period120s_max_price",                         default: 0,        null: false
-    t.integer  "period300s_max_price",                         default: 0,        null: false
+    t.string   "disabled_game_period",                           default: "111111", null: false
+    t.integer  "scales",                                         default: 0,        null: false
+    t.integer  "period5m_enabled",                               default: 1,        null: false
+    t.integer  "period30s_enabled",                              default: 1,        null: false
+    t.integer  "period60s_enabled",                              default: 1,        null: false
+    t.integer  "period120s_enabled",                             default: 1,        null: false
+    t.integer  "period300s_enabled",                             default: 1,        null: false
+    t.integer  "period5m_max_price",                             default: 0,        null: false
+    t.integer  "period30s_max_price",                            default: 0,        null: false
+    t.integer  "period60s_max_price",                            default: 0,        null: false
+    t.integer  "period120s_max_price",                           default: 0,        null: false
+    t.integer  "period300s_max_price",                           default: 0,        null: false
+    t.time     "day1_halftime_start_at"
+    t.time     "day1_halftime_end_at"
+    t.time     "day2_halftime_start_at"
+    t.time     "day2_halftime_end_at"
+    t.time     "day3_halftime_start_at"
+    t.time     "day3_halftime_end_at"
+    t.time     "day4_halftime_start_at"
+    t.time     "day4_halftime_end_at"
+    t.time     "day5_halftime_start_at"
+    t.time     "day5_halftime_end_at"
+    t.time     "day6_halftime_start_at"
+    t.time     "day6_halftime_end_at"
+    t.time     "day7_halftime_start_at"
+    t.time     "day7_halftime_end_at"
   end
 
   create_table "game_rounds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

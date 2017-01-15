@@ -8,6 +8,9 @@
             <% @game_instruments.each_with_index{|game_instrument,i| symbol = game_instrument.code %>
                 <%= render partial:"forex_chart", locals: { game_instrument: game_instrument, symbol: symbol, container_id: "advanced-chart-line-#{symbol}"} %>
             <% } %>
+
+            <%= will_paginate @game_instruments if @game_instruments.respond_to? :total_pages %>
+
           </div>
 
           <div class="jiaoyi1_right">

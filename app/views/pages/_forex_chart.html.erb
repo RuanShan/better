@@ -2,6 +2,13 @@
 %>
 
 <div class="forex-wrapper">
+  <% unless game_instrument.is_open_at? %>
+    <div class="forex-wrapper-mask" style="padding: 100px 0 0 0;" >
+    <h4>  此交易暂不可用 </h4>
+    <p> 开始时间：<%=game_instrument.available_at.to_s(:db) %></p>
+   </div>
+  <% end %>
+
   <div class="one_zhang1 clearfix">
   		<div class="one_zz"><%= image_tag "new/jiaoyi/jiaoyi2_03.gif" %>
         <span> <%= game_instrument.name %></span>
