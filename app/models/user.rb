@@ -14,7 +14,6 @@ class User < MemberBase
 
   belongs_to :broker, optional: true
 
-
   enum role: [:user, :vip ]
   enum id_type: [:id_card, :passport]
   # Include default devise modules. Others available are:
@@ -51,6 +50,18 @@ class User < MemberBase
         csv << [user.real_name, user.display_created_at, user.email, user.phone]
       end
     end
+  end
+
+  def six_descendants
+     self.class.where("users.lft>? and users.rgt<? and users.depth>? and users.depth<=?", lft, rgt, depth, depth+6).all
+  end
+
+  def descendant_todays
+    UserDay.where(user_id: six_descendants.pluck(:id)).today.all
+  end
+
+  def descendant_cmonths
+    UserMonth.where(user_id: six_descendants.pluck(:id)).current_month.all
   end
 
 

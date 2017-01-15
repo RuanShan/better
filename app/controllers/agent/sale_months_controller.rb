@@ -19,7 +19,7 @@ module Agent
 
     def profit
       @start_date, @end_date, @dates = get_paginated_dates
-      user_months = current_seller.member_months.where(effective_on: @dates )
+      user_months = current_seller.broker? ? current_seller.member_months.where(effective_on: @dates ) : current_seller.descendant_months(@dates)
       @monthly_profits = Summary::SaleMonthlyFactory.create("profit", user_months )
       respond_to do |format|
         format.html
@@ -32,7 +32,7 @@ module Agent
 
     def balance
       @start_date, @end_date, @dates = get_paginated_dates
-      user_months = current_seller.member_months.where(effective_on: @dates+[DateTime.parse(@start_date).to_date.advance( months: -1 )] )
+      user_months = current_seller.broker? ? current_seller.member_months.where(effective_on: @dates+[DateTime.parse(@start_date).to_date.advance( months: -1 )] ) : current_seller.descendant_months(@dates+[DateTime.parse(@start_date).to_date.advance( months: -1 )])
       @monthly_balances = Summary::SaleMonthlyFactory.create("balance", user_months, @dates )
       respond_to do |format|
         format.html

@@ -11,12 +11,14 @@ class MaintainBrokerMonth
     date = specified_date
     Broker.has_one :specified_date, ->{ where( effective_on: date )}, class_name: "SaleDay", foreign_key: 'seller_id'
     Broker.has_one :month_of_specifed_date, ->{ where( effective_on: first_day_of_month )}, class_name: "SaleMonth", foreign_key: 'seller_id'
+    User.has_one :specified_date, ->{ where( effective_on: date )}, class_name: "SaleDay", foreign_key: 'seller_id'
+    User.has_one :month_of_specifed_date, ->{ where( effective_on: first_day_of_month )}, class_name: "SaleMonth", foreign_key: 'seller_id'
 
     #TODO Broker 超过 10万 需要分页处理
-    brokers = Broker.includes(:specified_date, :month_of_specifed_date).all
-    brokers.each{|broker|
-      month = broker.month_of_specifed_date || broker.create_month_of_specifed_date!( )
-      day = broker.specified_date
+    sellers = MemberBase.includes(:specified_date, :month_of_specifed_date).all
+    sellers.each{|seller|
+      month = seller.month_of_specifed_date || seller.create_month_of_specifed_date!( )
+      day = seller.specified_date
       if day
         #clink_visits, blink_visits, member_count, valuable_member_count, energetic_member_count
         month.clink_visits+=day.clink_visits

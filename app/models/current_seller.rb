@@ -33,6 +33,23 @@ class CurrentSeller
     is_user ? seller.child_todays : seller.member_todays
   end
 
+  def descendant_days(dates)
+    UserDay.where(effective_on: dates, user_id: seller.six_descendants.pluck(:id)).all
+  end
+
+  def descendant_months(dates)
+    UserMonth.where(effective_on: dates, user_id: seller.six_descendants.pluck(:id)).all
+  end
+
+  def descendant_todays
+    seller.descendant_todays
+  end
+
+  def descendant_cmonths
+    seller.descendant_cmonths
+  end
+
+
   def broker?
     seller.type == 'Broker'
   end
