@@ -34,6 +34,18 @@ $( document ).ready(function() {
 	  });
   }
 
+
+	 var swiper = new Swiper('.swiper-container', {
+			pagination: '.swiper-pagination',
+	        slidesPerView: 1,
+	        centeredSlides: false,
+	        spaceBetween: 1,
+			paginationClickable: true,
+	    });
+
+	})
+	  
+
 	//$( '.sidebar' ).simpleSidebar({
 	//	settings: {
 	//		opener: '#open-sbl',
