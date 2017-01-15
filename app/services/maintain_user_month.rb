@@ -16,7 +16,7 @@ class MaintainUserMonth
     users = User.includes(:user_life, :specified_date, :month_of_specifed_date).all
 
     users.each{|user|
-      month = user.month_of_specifed_date || user.create_month_of_specifed_date!( )
+      month = user.month_of_specifed_date || user.create_month_of_specifed_date!( broker: user.broker)
       day = user.specified_date
       user_life = user.user_life
       if day
