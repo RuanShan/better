@@ -113,5 +113,20 @@ attributes.each{|attrs|
   attrs[:day7_open_at] = DateTime.current.beginning_of_day
   attrs[:day7_close_at] = DateTime.current.end_of_day
 
+  attrs[:day1_halftime_start_at] = DateTime.current.beginning_of_day
+  attrs[:day1_halftime_end_at] = DateTime.current.beginning_of_day
+  attrs[:day2_halftime_start_at] = DateTime.current.beginning_of_day
+  attrs[:day2_halftime_end_at] = DateTime.current.beginning_of_day
+  attrs[:day3_halftime_start_at] = DateTime.current.beginning_of_day
+  attrs[:day3_halftime_end_at] = DateTime.current.beginning_of_day
+  attrs[:day4_halftime_start_at] = DateTime.current.beginning_of_day
+  attrs[:day4_halftime_end_at] = DateTime.current.beginning_of_day
+  attrs[:day5_halftime_start_at] = DateTime.current.beginning_of_day
+  attrs[:day5_halftime_end_at] = DateTime.current.beginning_of_day
+  attrs[:day6_halftime_start_at] = DateTime.current.beginning_of_day
+  attrs[:day6_halftime_end_at] = DateTime.current.beginning_of_day
+  attrs[:day7_halftime_start_at] = DateTime.current.beginning_of_day
+  attrs[:day7_halftime_end_at] = DateTime.current.beginning_of_day
+
   GameInstrument.create!( attrs)
 }

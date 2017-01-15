@@ -69,30 +69,41 @@ class GameInstrument < ApplicationRecord
     end
   end
 
-  def is_open_at?( time )
+  def is_open_at?( time = DateTime.current )
     wday = time.wday
 
     open_close = get_business_time_by_wday( wday )
+    halftime_open_close = get_halftime_by_wday( wday )
 
-    (open_close[0].to_s(:time)<= time.to_s(:time) && open_close[1].to_s(:time)>= time.to_s(:time))
+    is_open = (open_close[0].to_s(:time)<= time.to_s(:time) && open_close[1].to_s(:time)>= time.to_s(:time))
+
+    return is_open unless is_open
+
+    return is_open if halftime_open_close[0] == halftime_open_close[1]
+
+    return halftime_open_close[0].to_s(:time) > time.to_s(:time) || halftime_open_close[1].to_s(:time) < time.to_s(:time)
   end
 
   def available_at
-    now = DateTime.current
+    open_at = DateTime.current
 
-    return now if is_open_at?( now )
+    return open_at if is_open_at?( open_at )
 
-    time = null
-    ((now.wday+1)..6).each{|i|
+    time = nil
+    wday = open_at.wday
+    ((wday+1)..6).each{|i|
+      open_at =open_at.advance( days: 1 )
       open_close = get_business_time_by_wday( i )
       if open_close[0] != open_close[1]
         time = open_close[0]
         break
       end
     }
+    #puts "1open_at=#{open_at}, time=#{time}"
 
     if time.nil?
-      (0...(now.wday)).each{|i|
+      (0...( wday)).each{|i|
+        open_at = open_at.advance( days: 1 )
         open_close = get_business_time_by_wday( i )
         if open_close[0] != open_close[1]
           time = open_close[0]
@@ -100,7 +111,36 @@ class GameInstrument < ApplicationRecord
         end
       }
     end
-    time
+    #puts "2open_at=#{open_at}, time=#{time}"
+    
+    if time.present?
+      open_at=DateTime.civil_from_format( :local, open_at.year, open_at.month, open_at.day, time.hour, time.min )
+    end
+    open_at
+  end
+
+  def get_halftime_by_wday( wday )
+    open_close = case wday
+      when 1
+        [ day1_halftime_start_at, day1_halftime_end_at ]
+      when 2
+        [ day2_halftime_start_at, day2_halftime_end_at ]
+      when 3
+        [ day3_halftime_start_at, day3_halftime_end_at ]
+      when 4
+        [ day4_halftime_start_at, day4_halftime_end_at ]
+      when 5
+        [ day5_halftime_start_at, day5_halftime_end_at ]
+      when 6
+        [ day6_halftime_start_at, day6_halftime_end_at ]
+      when 0
+        [ day7_halftime_start_at, day7_halftime_end_at ]
+    end
+
+    open_close[0] = DateTime.current.beginning_of_day if open_close[0].nil?
+    open_close[1] = DateTime.current.beginning_of_day if open_close[1].nil?
+
+    open_close
   end
 
   def get_business_time_by_wday( wday )
