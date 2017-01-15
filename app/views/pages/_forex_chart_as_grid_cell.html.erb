@@ -2,6 +2,13 @@
 %>
 
 <div class="forex-wrapper forex-grid-cell">
+  <% unless game_instrument.is_open_at? %>
+    <div class="forex-wrapper-mask" style="padding: 100px 0 0 0;" >
+    <h4>  此交易暂不可用 </h4>
+    <p> 开始时间：<%=@game_instrument.available_at.to_s(:db) %></p>
+   </div>
+  <% end %>
+
   <div class="one_zhang1 clearfix">
     <div class="clearfix">
 
@@ -42,7 +49,7 @@
   </div>
   <div class="guoqi clearfix">
       		<div class="" style="margin: 0 6px;">
-            <span><%= game_instrument.name %>收盘时价格将低于或高于？</span>
+            <span><%= game_instrument.name %></span>
             <div class="pull-right">
               <span>剩余时间：</span> <span class="b-game-round-start-countdown"> </span>
             </div>
