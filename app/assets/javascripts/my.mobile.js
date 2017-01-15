@@ -41,10 +41,8 @@ $( document ).ready(function() {
 	        centeredSlides: false,
 	        spaceBetween: 1,
 			paginationClickable: true,
-	    });
+  });
 
-	})
-	  
 
 	//$( '.sidebar' ).simpleSidebar({
 	//	settings: {
