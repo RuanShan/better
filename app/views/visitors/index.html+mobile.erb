@@ -2,7 +2,6 @@
 <style type="text/css"> #footer{ display: none;}</style>
 <div style="background: #ddd;">
 
-
   <div class="biaotiqw" style="text-align:center; padding: 12px 6px;">
     <a href="" onclick="javascript :history.back(-1);" class="pull-left" style="color:white;" >
       <%= fa_icon 'chevron-left 2x', style: "color:white; "%>
@@ -14,7 +13,7 @@
 
   </div>
 
-  <div class="iphone_b">
+  <div class="iphone_b" style="" >
     <%= image_tag "new/shouji/shouindex_02.gif", class: "zhongduan" %>
 
     <video controls="controls" poster="http://www.ballmerasia.com/info/templets/default/images/shouji/fengmian.jpg">
@@ -44,7 +43,7 @@
     </div>
     <%= image_tag "new/shouji/shouindex_05.gif", class: "zhongduan" %>
 
-    <div class="zidongtubiao_timu">
+    <div class="zidongtubiao_timu" style="">
 
           <h1>自动图标分析</h1>
           <%= form_tag  trends_game_instruments_path, { method: :get, remote: true, id: 'instrument_trends_update_form'} do  %>
@@ -76,7 +75,7 @@
         </div>
         <%= image_tag "new/shouji/shouindex_10.gif", class: "zhongduan" %>
 
-        <ul>
+        <ul class="clearfix">
           <li class = "active"><a href="javascript:jumpto('http://www.ballmerasia.com/info/plus/list.php?tid=116')"><div class="wenzip1" onlick='dian("we1")'></div></a></li>
     		   <li class=""><a href="javascript:jumpto('http://www.ballmerasia.com/info/plus/list.php?tid=117')"><div class="wenzip2" onlick='dian("we2")'></div></a></li>
     		   <li class=""><a href="javascript:jumpto('http://www.ballmerasia.com/info/plus/list.php?tid=118')"><div class="wenzip3" onlick='dian("we3")'></div></a></li>
@@ -92,9 +91,9 @@
 
          <a href="http://www.ballmerasia.com/info/templets/default/shouji_lianxi.htm"><p style="font-size: 20px;margin: auto;color: #e8ca4a;width: 84px;margin-top: -100px;margin-bottom: 68px;">联系我们</p></a>
         </div>
-        <div class="iphone_f">
+        <div class="iphone_f" style="">
 
-        <ul>
+        <ul class="clearfix">
           <li>在线电话</li>
           <li>客服咨询</li>
           <li>English</li>
