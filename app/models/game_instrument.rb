@@ -91,15 +91,28 @@ class GameInstrument < ApplicationRecord
 
     time = nil
     wday = open_at.wday
-    ((wday+1)..6).each{|i|
-      open_at =open_at.advance( days: 1 )
-      open_close = get_business_time_by_wday( i )
-      if open_close[0] != open_close[1]
-        time = open_close[0]
-        break
-      end
-    }
-    #puts "1open_at=#{open_at}, time=#{time}"
+
+    open_close = get_business_time_by_wday( wday )
+    halftime_open_close = get_halftime_by_wday( wday )
+
+    # check start time of today
+    time = open_close[0] if open_close[0].to_s(:time) > open_at.to_s(:time)
+    # check halftime
+    #if time.nil?
+    #  time = halftime_open_close[1] if halftime_open_close[1].to_s(:time) > open_at.to_s(:time)
+    #end
+    # get start time in next days
+    if time.nil?
+      ((wday+1)..6).each{|i|
+        open_at =open_at.advance( days: 1 )
+        open_close = get_business_time_by_wday( i )
+        if open_close[0] != open_close[1]
+          time = open_close[0]
+          break
+        end
+      }
+    end
+    puts "1open_at=#{open_at}, time=#{time}"
 
     if time.nil?
       (0...( wday)).each{|i|
@@ -111,8 +124,8 @@ class GameInstrument < ApplicationRecord
         end
       }
     end
-    #puts "2open_at=#{open_at}, time=#{time}"
-    
+    puts "2open_at=#{open_at}, time=#{time}"
+
     if time.present?
       open_at=DateTime.civil_from_format( :local, open_at.year, open_at.month, open_at.day, time.hour, time.min )
     end
