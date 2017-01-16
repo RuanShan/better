@@ -13,8 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require underscore-min
-//= require promise-min
-//= require tether.min
+//= require eventsource.min
+// require promise-min
+// require tether.min
 //= require bootstrap-sprockets
 //= require moment
 //= require moment/zh-cn
@@ -23,7 +24,6 @@
 //= require jquery-validate/jquery.validate.min
 //= require jquery-validate/messages_zh
 //= require jquery-validate/extend
-//= require base
 //= require base
 //= require cable
 //= require ext-min
