@@ -36,6 +36,10 @@ class Bid < ApplicationRecord
     end
   end
 
+  def income
+    win? ?   amount + profit : -amount;
+  end
+
   def profit
     win? ?   net_amount : 0;
   end
