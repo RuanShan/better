@@ -26,7 +26,7 @@
               </div>
               <div class="col-xs-6">
                 <div  class="b-game-round-time-wrapper game-type-1">
-                    <select id = "game-expiry-box" name="" class="b-game-expiry-box form-control" >
+                    <select id = "game-expiry-box" name="" class="b-game-expiry-box-type-2 form-control" >
                       <option value="1481424300000" selected="">今天 10:45</option>
                     </select>
                 </div>
@@ -52,11 +52,13 @@
             <%= simple_form_for(@bid, url: my_bids_path, remote: true) do |f| %>
             <%=  hidden_field_tag "game_round[instrument_code]", symbol %>
             <%=  hidden_field_tag "game_round[start_at]"  %>
+            <%=  hidden_field_tag "game_round[game_id]",2  %>
             <%=  hidden_field_tag "game_round[period]"  %>
-            <%= f.input "rate", value: 0.70, as: :hidden   %>
-            <%= f.input "highlow", as: :hidden   %>
+            <%= f.input "rate", value: @game_instrument.default_rate, as: :hidden   %>
+            <input class="form-control hidden" type="hidden" value="-1" name="bid[highlow]" >
             <%= f.input "last_quote", as: :hidden   %>
-            <input  class="b-game-type active" type="hidden" id="game-type-1" data-game-type="1">
+            <input  class="b-game-type active" type="hidden" id="game-type-1" data-game-type="2">
+            <input  class="b-expiry-in active" type="hidden"  data-expiry-in="60">
 
             <div class="">
                 <div >
@@ -93,7 +95,7 @@
 
                       <p class="countdown-wrapper">
                         <span class='b-bid-icon b-bid-icon-0' style= "display:none;"> <%= fa_icon "arrow-down"%> </span>
-                        <span class='b-bid-icon b-bid-icon-1' style= ""> <%= fa_icon "arrow-up"%> </span>
+                        <span class='b-bid-icon b-bid-icon-1' style= "display:none;"> <%= fa_icon "arrow-up"%> </span>
 
                         剩余时间<br><span class="b-game-round-start-countdown">00:00:16</span></p>
                     </div>

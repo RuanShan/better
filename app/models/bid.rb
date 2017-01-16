@@ -77,10 +77,10 @@ class Bid < ApplicationRecord
     game_instrument = game_round.game_instrument
     # is open time
     available_at = game_instrument.available_at
-    errors.add(:base, "当前游戏的开放时间是 #{available_at}" ) unless game_instrument.is_open_at?( game_round.start_at )
+    errors.add(:base, "当前资产的开放时间是 #{available_at}" ) unless game_instrument.is_open_at?( game_round.start_at )
 
     # is period enabled
-    errors.add(:base, "当前游戏的投注时段暂不开放" ) unless game_instrument.is_period_enabled?( game_round )
+    errors.add(:base, "当前资产的投注时段暂不开放" ) unless game_instrument.is_period_enabled?( game_round )
 
     # is amount < max
     max_price = game_instrument.get_max_price( game_round )

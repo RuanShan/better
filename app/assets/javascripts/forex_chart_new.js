@@ -336,6 +336,23 @@ $(function(){
         //var game = Game.current( container );
       });
 
+      $(".b-game-expiry-box-type-2", container).change(function(){
+        var $this = $(this);
+        var text = $('option:selected', this).text();
+        var expiry_in = 300;
+        if( text.indexOf("60秒")>=0) {
+          expiry_in = 60;
+        }else if ( text.indexOf("2分钟")>=0){
+          expiry_in = 120;
+
+        }else if ( text.indexOf("30秒")>=0){
+          expiry_in = 30;
+        }
+
+        $(".b-expiry-in.active", container).data( {"expiry-in": expiry_in});
+        //var game = Game.current( container );
+      });
+
       $(".b-game-round-start-countdown", container).countdown( moment().toDate(), moment().add(1, 'days').toDate(), function(event){
         var game = Game.current( container );
         //var $current_expiry_in = $(".b-current-expiry-in", container);
