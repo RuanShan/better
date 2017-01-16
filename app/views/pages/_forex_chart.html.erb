@@ -86,7 +86,7 @@
                   </td>
                   </tr>
                   <tr><th>有效期:</th><td> <span class="b-game-round-expiry-at" data-format='l'> 13-Dec 10:28 </span></td>
-                    <th>价内期权:</th><td class="cf"><span  class="b-bid-money">170.00 (70%)</span></td>
+                    <th>价内期权:</th><td class="cf"><span  class="b-bid-money"><%=(1+game_instrument.default_rate) * 100 %> (<%=game_instrument.display_default_rate%>)</span></td>
                   </tr>
                   <tr><th valign="middle">投资:</th>
                     <td>
@@ -111,7 +111,7 @@
                     </div>
                     </td>
                     <td>价外期权:</td>
-                        <td><span id="invoice-rebate-157">$0.00 (0%)</span></td>
+                        <td><span id="invoice-rebate-157">0.00 (0%)</span></td>
                   </tr>
                   <tr></tr>
                   <tr><td class="apply-wrapper" colspan="4">

@@ -98,9 +98,11 @@ class GameInstrument < ApplicationRecord
     # check start time of today
     time = open_close[0] if open_close[0].to_s(:time) > open_at.to_s(:time)
     # check halftime
-    #if time.nil?
-    #  time = halftime_open_close[1] if halftime_open_close[1].to_s(:time) > open_at.to_s(:time)
-    #end
+    if time.nil?
+      if halftime_open_close[0] != halftime_open_close[1]
+        time = halftime_open_close[1] if halftime_open_close[1].to_s(:time) > open_at.to_s(:time)
+      end
+    end
     # get start time in next days
     if time.nil?
       ((wday+1)..6).each{|i|
