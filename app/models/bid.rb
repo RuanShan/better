@@ -15,6 +15,7 @@ class Bid < ApplicationRecord
   enum state: { pending: 0, win: 1, lose: 4 }
 
   after_create :adjust_wallet
+  before_validation :fix_last_quote, on: [:create]
 
   validate :custom_validate,  on: [:create] #ex. has_enough_money
 
@@ -116,6 +117,14 @@ class Bid < ApplicationRecord
     self.created_at = DateTime.current # it is required to show
     session["sbid"] = self
     session["sgame_round"] = game_round
+  end
+
+  def fix_last_quote
+    if self.last_quote<=0
+      quote, hack_quote = RedisService.get_quote_by_time( game_round.instrument_code, DateTime.current )
+      Rails.logger.debug " quote =#{quote}, hack_quote =#{ hack_quote}"
+      self.last_quote = quote
+    end
   end
 
 end
