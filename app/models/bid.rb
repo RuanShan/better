@@ -121,7 +121,7 @@ class Bid < ApplicationRecord
 
   def fix_last_quote
     if self.last_quote<=0
-      quote, hack_quote = RedisService.get_quote_by_time( game_round.instrument_code, DateTime.current )
+      quote, hack_quote = RedisService.get_quote_by_time( game_round.instrument_code, DateTime.current.ago(1) )
       Rails.logger.debug " quote =#{quote}, hack_quote =#{ hack_quote}"
       self.last_quote = quote
     end
