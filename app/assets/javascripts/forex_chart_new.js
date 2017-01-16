@@ -283,7 +283,8 @@ $(function(){
       });
       $(".b-bid-cost", container).change(function(){
         var v = $(this).val();
-        $(".b-bid-money", container).html( format_float( v*(1+0.7), 2 ) + " (70%)");
+        var rate = parseFloat($(".b-bid-rate", container).val());
+        $(".b-bid-money", container).html( format_float( v*(1+rate), 2 ) + " ("+rate*100+"%)");
       });
       $(".b-bid-more-price", container).click(function(){
         var more = parseInt( $(this).val() );

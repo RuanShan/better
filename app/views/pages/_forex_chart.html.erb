@@ -75,7 +75,7 @@
           <%=  hidden_field_tag "game_round[instrument_code]", symbol %>
           <%=  hidden_field_tag "game_round[start_at]"  %>
           <%=  hidden_field_tag "game_round[period]"  %>
-          <%= f.input "rate", as: :hidden   %>
+          <%=  hidden_field_tag "bid[rate]", game_instrument.default_rate, class: 'b-bid-rate' %>
           <%= f.input "highlow", as: :hidden   %>
           <%= f.input "last_quote", as: :hidden   %>
             <div class="message-container">
