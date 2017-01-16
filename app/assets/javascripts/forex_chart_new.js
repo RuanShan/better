@@ -1116,11 +1116,14 @@ BetterFinancialPanel.prototype.updateChartZoomRange = function(b) {
     var c = d.get(f);
 
     var e = d.get("advanced-chart-line-x-axis-" + b);
-    if (!c || !c.data.length) {
+    // for areachart c.data.length is always 0,
+    if (!c || !c.xData.length) {
         return
     }
-    var a = c.data[c.data.length - 1].x;
-    if (a - c.data[0].x < (this.zoomLevels[this.zoomLevelIndex] - 5) * 60000) {
+    var xmax = c.xAxis.max;
+    var xmin = c.xData[0];
+    var a =  xmax;//c.data[c.data.length - 1].x;
+    if (xmax - xmin < (this.zoomLevels[this.zoomLevelIndex] - 5) * 60000) {
         return
     }
     e.setExtremes(a - this.zoomLevels[this.zoomLevelIndex] * 60000, null);
