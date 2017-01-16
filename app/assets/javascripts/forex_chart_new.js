@@ -142,6 +142,8 @@ var Game ={
     game.game_round_expiry_ats= function(){
       var sas = [];
       var now = this.current_time();
+      //console.log('game_round_expiry_ats- now -%s', now.toString());
+      // countdown trigger it, countdown maybe litte slow or fast, we should add 5s to fix
       var mins = now.minutes();
       var remainder= mins%5 // start a agme round in each 5 mins
       now.add( 5-remainder, "minutes")
@@ -235,6 +237,53 @@ var Game ={
       game.game_round_start_countdown_tag().html( time_left.format("mm:ss") );
       var bar_persent = ((game.game_round_period()-s)*100/game.game_round_period()).toString();
       $(".meter span").css("width", bar_persent+"%")
+
+
+      //////////////////////////////////////////////////////////////////////////////////
+      // update expiry times
+      var $game_expiry_box = $(".b-game-expiry-box", container);
+      var $game_expiry_box_type_2 = $(".b-game-expiry-box-type-2", container);
+      var expiry_box = null
+      var expiry_ats = []
+      if( game.current_time().seconds()==0 || ($game_expiry_box.is('*') && $game_expiry_box.val()==null )|| ($game_expiry_box_type_2.is('*') && $game_expiry_box_type_2.val()==null))
+      {
+        if( $game_expiry_box.is('*'))
+        {
+          expiry_ats = game.game_round_expiry_ats();
+          expiry_box = $game_expiry_box;
+          expiry_box.empty();
+          for(var i=0;i < expiry_ats.length; i++){
+            var time = expiry_ats[i];
+            var today = (time.day() == moment().day()) ? "今天" : "明天";
+            expiry_box.append("<option value='"+time.unix()+"'>"+ today +time.format("HH:mm")+"</option>")
+          }
+        }
+        if( game.game_type_id() == 2) {
+          expiry_ats = game.game_round_start_ats_for_game2();
+          expiry_box = $game_expiry_box_type_2;
+          if( expiry_box.is('*'))
+          {
+            expiry_box.empty();
+            for(var i=0;i < expiry_ats.length; i++){
+              var time = expiry_ats[i];
+              var desc = "";
+              if( i == 0){
+                desc = "60秒 - "
+              }else if( i == 1){
+                desc = "2分钟 - "
+              }else if( i == 2){
+                desc = "5分钟 - "
+              }else{
+                desc = (time.day() == moment().day()) ? "今天" : "明天";
+              }
+
+              expiry_box.append("<option value='"+time.unix()+"'>"+ desc +time.format("HH:mm")+"</option>")
+            }
+          }
+        }
+      }
+      //////////////////////////////////////////////////////////////////////////////////
+
     };
     return game;
   }
@@ -366,41 +415,40 @@ $(function(){
           case "hours":
             break;
           case "minutes":
-            var expiry_ats = []
-            if( $game_expiry_box.is('*'))
-            {
-              expiry_ats = game.game_round_expiry_ats();
-              expiry_box = $game_expiry_box;
-              expiry_box.empty();
-              for(var i=0;i < expiry_ats.length; i++){
-                var time = expiry_ats[i];
-                var today = (time.day() == moment().day()) ? "今天" : "明天";
-                expiry_box.append("<option value='"+time.unix()+"'>"+ today +time.format("HH:mm")+"</option>")
-              }
-            }
-            if( game.game_type_id() == 2) {
-              expiry_ats = game.game_round_start_ats_for_game2();
-              expiry_box = $game_expiry_box_type_2;
-              if( expiry_box.is('*'))
-              {
-                expiry_box.empty();
-                for(var i=0;i < expiry_ats.length; i++){
-                  var time = expiry_ats[i];
-                  var desc = "";
-                  if( i == 0){
-                    desc = "60秒 - "
-                  }else if( i == 1){
-                    desc = "2分钟 - "
-                  }else if( i == 2){
-                    desc = "5分钟 - "
-                  }else{
-                    desc = (time.day() == moment().day()) ? "今天" : "明天";
-                  }
-
-                  expiry_box.append("<option value='"+time.unix()+"'>"+ desc +time.format("HH:mm")+"</option>")
-                }
-              }
-            }
+            //var expiry_ats = []
+            //if( $game_expiry_box.is('*'))
+            //{
+            //  expiry_ats = game.game_round_expiry_ats();
+            //  expiry_box = $game_expiry_box;
+            //  expiry_box.empty();
+            //  for(var i=0;i < expiry_ats.length; i++){
+            //    var time = expiry_ats[i];
+            //    var today = (time.day() == moment().day()) ? "今天" : "明天";
+            //    expiry_box.append("<option value='"+time.unix()+"'>"+ today +time.format("HH:mm")+"</option>")
+            //  }
+            //}
+            //if( game.game_type_id() == 2) {
+            //  expiry_ats = game.game_round_start_ats_for_game2();
+            //  expiry_box = $game_expiry_box_type_2;
+            //  if( expiry_box.is('*'))
+            //  {
+            //    expiry_box.empty();
+            //    for(var i=0;i < expiry_ats.length; i++){
+            //      var time = expiry_ats[i];
+            //      var desc = "";
+            //      if( i == 0){
+            //        desc = "60秒 - "
+            //      }else if( i == 1){
+            //        desc = "2分钟 - "
+            //      }else if( i == 2){
+            //        desc = "5分钟 - "
+            //      }else{
+            //        desc = (time.day() == moment().day()) ? "今天" : "明天";
+            //      }
+            //      expiry_box.append("<option value='"+time.unix()+"'>"+ desc +time.format("HH:mm")+"</option>")
+            //    }
+            //  }
+            //}
             break;
           case "seconds":
             game.update();
@@ -487,7 +535,7 @@ function InitializeChart(  ){
           {
             var time = (new Date( parseInt(time_price) )).getTime();
             var price = parseFloat(time_price.split('_')[1]);
-            console.log("data=%s, %s,%s",symbol, time, price);
+            //console.log("data=%s, %s,%s",symbol, time, price);
             if(g_quotation_desc.panels[symbol])
             {
                g_quotation_desc.panels[symbol].update( time, price, 1, 0 );
@@ -502,7 +550,7 @@ function InitializeChart(  ){
           //g_quotation_desc.charts[symbols[i]].yAxis[0].plotLines[0].value = price;
         }
 
-      console.log(e);
+      //console.log(e);
     }, false);
   }
 }
