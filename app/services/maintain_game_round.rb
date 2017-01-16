@@ -73,7 +73,7 @@ Rails.logger.debug "MaintainGameRound at=#{ DateTime.current} "
       GameInstrument.all.pluck(:code).each{|symbol|
         #found = GameRound.exists?{ symbol: symbol, end_at: end_at,  period: period }
         unless GameRound.exists?( instrument_code: symbol, end_at: end_at,  period: period )
-          quote, hack = get_quote_by_time( symbol, end_at)
+          quote, hack = get_quote_by_time(self.redis, symbol, end_at)
           attrs = {instrument_quote: quote || 0, instrument_code: symbol, start_at: start_at,  period: period, end_at: end_at }
           GameRound.create!( attrs ).complete
         end
