@@ -75,6 +75,8 @@ class Bid < ApplicationRecord
 
 
   def custom_validate
+    errors.add(:base, '抱歉，指数必须>0！') if self.last_quote<=0
+
     #Rails.logger.debug "#{user.wallets.inspect}#{user.id} user.life_statis.balance=#{user.life_statis.balance}, amount=#{amount}"
     errors.add(:base, '抱歉，投资失败，资金余额不足！') if user.life_statis.balance < amount
 
