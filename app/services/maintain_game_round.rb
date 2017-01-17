@@ -36,9 +36,9 @@ Rails.logger.debug "MaintainGameRound at=#{ DateTime.current} "
       #  val = [expected_quote, highlow].join('_')
       #  expected_quote_hash.store build_expected_quote_key( game_round ), val
       #end
-      if game_round.hack_win?
+      #if game_round.hack_win?
         expected_quote_hash.merge! game_round.expected_quote_hash
-      end
+      #end
       game_round.start_up
     }
     #puts " expected_quote_hash =#{expected_quote_hash }"
@@ -59,11 +59,11 @@ Rails.logger.debug "MaintainGameRound at=#{ DateTime.current} "
     pending_game_rounds.each{|pgr|
       quote, hack_quote = get_quote_by_time( self.redis, pgr.instrument_code, pgr.end_at)
       pgr.instrument_quote = quote
-      if pgr.hack_win?
+      #if pgr.hack_win?
         # since hack_quote may not same as :get_platform_expected_quote  due to time mismatches
         hack_quote = pgr.get_platform_expected_quote
         pgr.instrument_hack_quote = hack_quote
-      end
+      #end
       pgr.complete!
     }
   end
