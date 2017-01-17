@@ -59,7 +59,7 @@ Rails.logger.debug "MaintainGameRound at=#{ DateTime.current} "
     pending_game_rounds.each{|pgr|
       quote, hack_quote = get_quote_by_time( self.redis, pgr.instrument_code, pgr.end_at)
       pgr.instrument_quote = quote
-      if pgr.game_round.hack_win?
+      if pgr.hack_win?
         # since hack_quote may not same as :get_platform_expected_quote  due to time mismatches
         hack_quote = pgr.get_platform_expected_quote
         pgr.instrument_hack_quote = hack_quote
