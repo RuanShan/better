@@ -75,6 +75,9 @@ Rails.application.routes.draw do
         get :search
         put :batch_delete
         put :batch_lock
+
+        get :bid_statistic
+        
       end
       member do
         get :record

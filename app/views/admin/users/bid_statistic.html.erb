@@ -1,0 +1,46 @@
+<div> <h2 class="page-header">会员投注统计 </h2>
+
+<div>
+  <%=form_tag bid_statistic_admin_users_path, method:"get", class:"form-inline", role:"form" do%>
+    <div class="form-group">
+      <label for="start_date">会员邮箱</label>
+      <%=text_field_tag "email", '', class:"form-control"%>
+    </div>
+    <div class="form-group">
+      <%=submit_tag "查询",  class:"form-control"%>
+    </div>
+  <%end%>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>会员名</th>
+      <th>注册时间</th>
+      <th>账户余额</th>
+      <th>今日投注量</th>
+      <th>当月投注量</th>
+      <th>投注总量</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if @users.empty? %>
+      <tr><td colspan="4">暂无会员</td><tr>
+    <% else %>
+      <% @users.each{|user| %>
+        <tr>
+          <td> <%= user.real_name %> </td>
+          <td> <%= user.display_created_at %> </td>
+          <td> <%= user.user_life.balance %> </td>
+          <td> <%= (user.user_today.try( :bid_amount ) || 0) %> </td>
+          <td> <%= (user.user_tomonth.try( :bid_amount) || 0) +   (user.user_today.try( :bid_amount ) || 0) %> </td>
+          <td> <%= user.user_life.bid_amount+  (user.user_today.try( :bid_amount ) || 0)  %> </td>
+        </tr>
+      <% } %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @users if @users.respond_to? :total_pages%>

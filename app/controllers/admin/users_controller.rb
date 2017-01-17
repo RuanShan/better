@@ -131,6 +131,14 @@ module Admin
       redirect_to action: :index, page: params[:page]
     end
 
+    def bid_statistic
+      q = User.includes( :user_today, :user_tomonth, :user_life)
+      if params[:email].present?
+        q = q.where(email: params[:email])
+      end
+      @users = q.paginate(:page => params[:page])
+    end
+
     private
     def set_user
       @user =  User.find(params[:id])
