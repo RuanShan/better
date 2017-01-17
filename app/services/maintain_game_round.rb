@@ -60,9 +60,13 @@ Rails.logger.debug "MaintainGameRound at=#{ DateTime.current} "
       quote, hack_quote = get_quote_by_time( self.redis, pgr.instrument_code, pgr.end_at)
       pgr.instrument_quote = quote
       if pgr.hack_win?
-        # since hack_quote may not same as :get_platform_expected_quote  due to time mismatches
-        hack_quote = pgr.get_platform_expected_quote.first
-        pgr.instrument_hack_quote = hack_quote
+        hack_quote, highlow = pgr.get_platform_expected_quote
+        if highlow == 1 && quote < hack_quote
+          pgr.instrument_hack_quote = hack_quote
+        elsif  highlow == 0 && quote > hack_quote
+          pgr.instrument_hack_quote = hack_quote
+        end
+
       end
       pgr.complete!
     }
