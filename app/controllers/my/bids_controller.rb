@@ -32,6 +32,7 @@ module My
       @game_round = GameRound.where(game_round_params).first || GameRound.new( game_round_params)
       #Rails.logger.debug " @game_round=#{@game_round.inspect}"
       #Rails.logger.debug " game_round=#{GameRound.last.inspect}"
+      @game_round.custom_highlow = 1
       @bid = current_user.bids.build(bid_params)
       @bid.game_round = @game_round
       @bid.rate = @game_round.game_instrument.default_rate
