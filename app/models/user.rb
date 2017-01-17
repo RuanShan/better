@@ -281,6 +281,32 @@ class User < MemberBase
     Summary::MemberProfit.new( self)
   end
 
+
+  def bind_bank(bank_options)
+     @password_prefix="money_"
+     current_money_password = bank_options["current_money_password"]
+     new_user_bank = user_banks.build(bank_options)
+     if new_user_bank.id.present? && user_banks.pluck(:id).include?(new_user_bank.id.to_i)
+       new_user_bank = UserBank.find(new_user_bank.id)
+     end
+     if valid_password? current_money_password
+       unless new_user_bank.persisted?
+         error_code, result = Juhe::Bank.verify_bank(new_user_bank.card_number, id_number, real_name)
+         if error_code.to_i == 0
+           match = result["res"].to_i == 1 ? true : false
+           new_user_bank.errors.add(:card_number, "真实姓名和银行卡号不匹配，请重新输入") unless match
+         else
+           new_user_bank.errors.add(:card_number, "验证失败 : #{result}")
+         end
+         new_user_bank.save if new_user_bank.errors.empty?
+       end
+     else
+       new_user_bank.errors.add(:current_money_password, "当前资金密码不正确")
+     end
+     new_user_bank
+   end
+
+
   private
 
   def adjust_sale_day

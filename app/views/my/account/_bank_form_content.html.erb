@@ -4,7 +4,7 @@
 <%password_display= pdisplay ? pdisplay : (disabled == true ? "display:none" : "display:block")%>
 <div class="form-group string optional" style="display:block;margin:10px 0;">
   <%=bank_form.label :real_name, "户名", class: 'col-sm-3', style: 'text-align:right;' %>
-  <div class="col-sm-9">
+  <div class="col-sm-9" style="text-align:left">
     <%= inline_text_span(current_user.real_name)%>
   </div>
 </div>
@@ -14,7 +14,7 @@
 <%= bank_form.input :address, label: '地址', placeholder: "请输入地址", as:"string", disabled: disabled  %>
 <div id="state_div" class="form-group string optional" style="display:block;margin:10px 0;">
   <% if @user_bank.persisted? %>
-  <%=bank_form.label :real_name, "状态", class: 'col-sm-3', style: 'text-align:right;' %>
+  <%=bank_form.label :real_name, "状态", class: 'col-sm-3', style: 'text-align:left;' %>
   <div class="col-sm-9">
     <%= t(@user_bank.state) %>
   </div>

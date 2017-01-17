@@ -28,12 +28,14 @@ module Juhe
     end
 
     def self.verify_bank(bank_number, id_card, real_name, options = nil)
-      app_key = (options[:app_key] if options) || Juhe::Bank.verify_app_key || 'abc'
+      return [0, {"bankcard"=>"123456", "realname"=>"ABC", "idcard"=>"123456787654", "res"=>1}]
+
+      app_key =  Juhe::Bank.verify_app_key || 'abc'
       url = "http://v.juhe.cn/verifybankcard3" \
-            + "/query?key=" + app_key \
-            + "&idcard=" + id_card \
-            + "&bankcard=" + bank_number \
-            + "&realname=" + real_name
+            + "/query?key=#{app_key}" \
+            + "&idcard=#{id_card}"  \
+            + "&bankcard=#{bank_number}" \
+            + "&realname=#{real_name}"
       query_url = URI::escape(url)
       #Rails.logger.debug "+++++++++++++++++++++++query_url=#{query_url.inspect}"
       #result = JSON.parse(open(query_url).read)
