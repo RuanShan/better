@@ -68,13 +68,16 @@ var Game ={
     game.instrument_last_quote_selector = ".b-instrument-last-quote";
     game.game_round_start_at_selector = ".b-game-round-start-at";
     game.game_round_expiry_at_selector = ".b-game-round-expiry-at";
+    game.game_round_instrument_code_selector = "b-game-round-instrument-code";
     game.game_type_selector = ".b-game-type.active";
     // it is b-game-round-start-countdown
     game.game_start_countdown_selector = ".b-game-round-start-countdown";
     game.game_expiry_box_selector = '.b-game-expiry-box';
 
     // game_type_id, expiry_in should be in function.
-
+    game.instrument_code = function(){
+       return $(".b-game-round-instrument-code", container).val();
+    },
     game.game_type_id = function()
     {
       return parseInt( $(".b-game-type.active", container).data('game-type') );
@@ -203,7 +206,9 @@ var Game ={
       return moment();
     },
     game.last_quote= function(){
-      return parseFloat( $( game.instrument_last_quote_selector, container).html() );
+      var code =  game.instrument_code();
+      var selector = game.instrument_last_quote_selector+"[data-symbol='"+code+"']";
+      return parseFloat( $( selector, container).html() );
     },
     game.game_round_start_at_tags= function(){
       return $( game.game_round_start_at_selector, container);

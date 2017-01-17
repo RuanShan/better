@@ -52,6 +52,8 @@ class GameRound < ApplicationRecord
 
   def complete_bids
     bids.each(&:complete!)
+    self.bid_count = bids.count
+    self.save
   end
 
   def desplay_instrument_quote

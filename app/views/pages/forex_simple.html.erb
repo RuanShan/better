@@ -69,7 +69,7 @@
                         <button type="button" class="close" style="right:0;" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                         <% @bid = Bid.new %>
                         <%= simple_form_for(@bid, url: my_bids_path, remote: true) do |f| %>
-                        <%=  hidden_field_tag "game_round[instrument_code]", @symbol %>
+                        <%=  hidden_field_tag "game_round[instrument_code]", @symbol, class: 'b-game-round-instrument-code' %>
                         <%=  hidden_field_tag "game_round[start_at]"  %>
                         <%=  hidden_field_tag "game_round[period]"  %>
                         <%=  hidden_field_tag "game_round[game_id]", 1  %>
