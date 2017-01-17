@@ -43,7 +43,12 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :deposits
+    resources :deposits do
+      member do
+        put :pass
+      end
+    end
+
     resources :drawings do
       collection do
         get :search
@@ -101,7 +106,11 @@ Rails.application.routes.draw do
       put :batch_send, on: :collection
       put :one_send, on: :member
     end
-    resources :game_rounds
+    resources :game_rounds do
+      member do
+        put :winlose
+      end
+    end
 
     get '/', to: 'welcome#index', as: :root
   end

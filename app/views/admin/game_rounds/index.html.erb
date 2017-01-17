@@ -14,13 +14,13 @@
       <th>结束时间</th>
       <th>点数/滑点</th>
       <th>控制输赢</th>
-      <th ></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @game_rounds.each do |game_round| %>
-      <tr>
+      <tr data-id=<%= game_round.id %>>
         <td><%= game_round.instrument_code %></td>
         <td><%= game_round.state %></td>
         <td><%= game_round.display_start_at %></td>
@@ -29,8 +29,15 @@
         <td><%= game_round.period %></td>
         <td><%= game_round.display_end_at %></td>
         <td><%= game_round.instrument_quote%> /<%=game_round.instrument_hack_quote %></td>
-        <td><%= game_round.custom_highlow == 0 ? '否' : '是' %></td>
-        <td> <%= link_to "编辑", edit_admin_game_round_path(game_round) %> </td>
+        <td class="highlow">
+          <%= game_round.custom_highlow == 0 ? '否' : '是' %>
+        </td>
+        <td>
+          <%= link_to "控制", winlose_admin_game_round_path(game_round), remote: true, method: :put %>
+        </td>
+        <td>
+           <%= link_to "编辑", edit_admin_game_round_path(game_round) %>
+        </td>
        </tr>
     <% end %>
   </tbody>
