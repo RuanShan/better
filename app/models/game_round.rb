@@ -18,9 +18,10 @@ class GameRound < ApplicationRecord
     # started: 等待处理
     # success: 结束
     after_transition to: :success, do: [ :complete_bids ]
+    after_transition to: :started, do: [ :update_bid_count ]
 
     event :start_up do
-      transition pending: :started
+      transition  pending: :started
     end
 
     event :complete do
@@ -52,8 +53,7 @@ class GameRound < ApplicationRecord
 
   def complete_bids
     bids.each(&:complete!)
-    self.bid_count = bids.count
-    self.save
+
   end
 
   def desplay_instrument_quote
@@ -124,6 +124,11 @@ class GameRound < ApplicationRecord
       quote = low_bids.map(&:last_quote).sort.last
     end
     return quote,highlow
+  end
+
+  def update_bid_count
+    self.bid_count = bids.count
+    self.save!
   end
 
   private

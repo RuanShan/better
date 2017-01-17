@@ -7,7 +7,7 @@ module Admin
     def index
       @page = params['page'] || 1
       #.with_state(:pending)
-      @game_rounds = GameRound.where(["(state=? OR state=?  OR (state=? AND bid_count>0))",:pending,:started,:complete]).includes(:bids).order("start_at desc").paginate(:page => @page)
+      @game_rounds = GameRound.where(["(state=? OR state=?  OR (state=? AND bid_count>0))",:pending,:started,:success]).includes(:bids).order("start_at desc").paginate(:page => @page)
 
     end
 
