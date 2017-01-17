@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170142351704) do
+ActiveRecord::Schema.define(version: 20170142381704) do
 
   create_table "administrators", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20170142351704) do
     t.integer  "user_id"
     t.string   "number"
     t.decimal  "amount",        precision: 10
-    t.decimal  "rate",          precision: 10
+    t.decimal  "rate",          precision: 10, scale: 4, default: "0.7", null: false
     t.integer  "state",                                  default: 0,     null: false
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false

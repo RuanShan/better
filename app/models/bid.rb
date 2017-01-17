@@ -26,10 +26,10 @@ class Bid < ApplicationRecord
   end
 
   def net_amount
-    rate ||= 0.7
+    self.rate ||= 0.7
     case state
     when "win"
-      amount*rate
+      amount * self.rate
     when "lose"
       -amount
     else
@@ -102,7 +102,7 @@ class Bid < ApplicationRecord
   end
 
   def complete!
-    rate ||= 0.7
+    #rate ||= 0.7
     if highlow==1 && self.last_quote < game_round.final_instrument_quote || highlow==0 && self.last_quote > game_round.final_instrument_quote
       create_wallet!( user: user, amount: self.amount, originator: self, is_bonus: false )
       create_wallet!( user: user, amount: amount*rate , originator: self, is_bonus: true )
