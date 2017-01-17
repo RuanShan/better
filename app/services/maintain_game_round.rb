@@ -61,7 +61,7 @@ Rails.logger.debug "MaintainGameRound at=#{ DateTime.current} "
       pgr.instrument_quote = quote
       if pgr.hack_win?
         # since hack_quote may not same as :get_platform_expected_quote  due to time mismatches
-        hack_quote = pgr.get_platform_expected_quote
+        hack_quote = pgr.get_platform_expected_quote.first
         pgr.instrument_hack_quote = hack_quote
       end
       pgr.complete!
