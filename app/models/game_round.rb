@@ -8,7 +8,7 @@ class GameRound < ApplicationRecord
   extend  DisplayDateTime
   date_time_methods :start_at, :end_at
 
-  has_many :bids
+  has_many :bids, dependent: :destroy
   before_create :set_end_at
 
   scope :last_round, ->{ with_state(:success).where(['end_at>= ?', DateTime.current.ago(5*60)])}
@@ -57,12 +57,7 @@ class GameRound < ApplicationRecord
   end
 
   def desplay_instrument_quote
-    instrument_quote
-    #if instrument_code  == "USUSDJPY"
-    #  instrument_quote*1.0/100;
-    #else
-    #  instrument_quote*1.0/10000;
-    #end
+    final_instrument_quote
   end
 
   def high_bids

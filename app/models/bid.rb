@@ -46,14 +46,28 @@ class Bid < ApplicationRecord
   end
 
   def self.search(search_params, user_id=nil)
-    search_conditions = "bids.created_at>? and bids.created_at<? and game_rounds.instrument_code=?"
-    search_cvalues = [(search_params["start_date"]+" 00:00:00").to_time(:utc),
-    (search_params["end_date"]+" 23:59:59").to_time(:utc),search_params["game_id"]]
-    unless user_id.nil?
-      search_conditions += " and bids.user_id=?"
-      search_cvalues << user_id
+
+    Rails.logger.debug " search_params =#{search_params.inspect}"
+    q = self.includes(:game_round)
+
+    if GameInstrument.exists?( code: search_params["game_id"] )
+       q = q.where( game_rounds: { instrument_code: search_params["game_id"]} )
     end
-    self.includes(:game_round).where([search_conditions,search_cvalues].flatten).order("bids.created_at desc").references(:game_rounds).all
+
+    if search_params["start_date"].present?
+      start_date = search_params["start_date"].to_time || DateTime.current.ago( 1.month)
+       q = q.where( ["bids.created_at > ?", start_date] )
+    end
+
+    if search_params["end_date"].present?
+      end_date = search_params["end_date"].to_time || DateTime.current
+      q = q.where( ["bids.created_at < ?", end_date] )
+    end
+
+    unless user_id.nil?
+      q = q.where( user_id: user_id )
+    end
+    q.order( created_at: :desc )
   end
 
   def human_state
