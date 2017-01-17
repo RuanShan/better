@@ -123,7 +123,12 @@ module Admin
     end
 
     def lock
-      @user.lock_access!
+      if @user.access_locked?
+        @user.unlock_access!
+      else
+        @user.lock_access!
+      end
+      redirect_to action: :index, page: params[:page]
     end
 
     private
