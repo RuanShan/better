@@ -170,6 +170,8 @@ class User < MemberBase
 
   def drawing(drawing_options)
     new_user_bank = bind_bank(drawing_options['user_bank_attributes'])
+    #later when we remove bind_bank, use this 
+    #new_user_bank = UserBank.valid_create(self, drawing_options['user_bank_attributes'])
     new_drawing = self.drawings.build
     new_drawing.user_bank = new_user_bank
     if new_user_bank.errors.empty?
