@@ -5,7 +5,7 @@
     <a href="" onclick="javascript :history.back(-1);" class="pull-left" style="color:white;" >
       <%= fa_icon 'chevron-left 2x', style: "color:white; "%>
      </a>
-    <a href="http://www.ballmerasia.com/" class="pull-right">
+    <a href="/" class="pull-right">
     <%= fa_icon 'home 2x', style: "color:white;"%>
     </a>
     <span class="iphonelan" style="line-height:inherit;">BALLMER ASIA</span>
@@ -50,8 +50,8 @@
           </div>
         </div>
         <div class="iphonedenglu">
-          <a href="http://www.ballmerasia.com/users/sign_in"><p>请登陆</p></a>
-          <a href="http://www.ballmerasia.com/users/sign_up"><p>快速注册</p></a>
+          <a href="/users/sign_in"><p>请登陆</p></a>
+          <a href="/users/sign_up"><p>快速注册</p></a>
         </div>
         <%= image_tag "new/shouji/shouindex_07.gif", class: "zhongduan" %>
 
