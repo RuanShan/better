@@ -22,7 +22,7 @@ class GameInstrument < ApplicationRecord
 
   def is_price_enabled?( amount, game_round )
     max_price = get_max_price( game_round )
-    max_price == 0 || amount < max_price
+    max_price == 0 || amount <= max_price
   end
 
   def get_max_price( game_round )
