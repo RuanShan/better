@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     resources :administrators do
       put :batch_delete, on: :collection
     end
+    resources :bids
+
     resources :game_instruments do
       put :hot, on: :member
       collection do
@@ -77,7 +79,7 @@ Rails.application.routes.draw do
         put :batch_lock
 
         get :bid_statistic
-        
+
       end
       member do
         get :record
