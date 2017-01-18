@@ -1,6 +1,6 @@
 module Admin
   class DepositsController < BaseController
-    before_action :set_deposit, only: [:show, :edit, :update, :destroy]
+    before_action :set_deposit, only: [:show, :edit, :update, :destroy, :pass]
 
     # GET /deposits
     # GET /deposits.json
@@ -76,6 +76,14 @@ module Admin
     end
 
     def export
+    end
+
+    def pass
+      @page = params['page']
+
+      @deposit.process!
+
+      redirect_to action: :index, page: @page
     end
 
     private

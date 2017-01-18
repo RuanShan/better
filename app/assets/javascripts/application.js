@@ -122,7 +122,7 @@ $(function(){
 
   $('form.new_deposit').validate({
      rules: {
-       'deposit[amount]': { min: 1000 }
+       'deposit[amount]': { min: 0.01 }
      }
   })
   $('#new_deposit, form.new_deposit').submit(function(event){

@@ -10,6 +10,7 @@
       <th>存款方式</th>
       <th>全额(RMB)</th>
       <th>状态</th>
+      <th> </th>
     </tr>
   </thead>
 
@@ -28,6 +29,11 @@
         <td><%= deposit.payment_method.name %></td>
         <td><%= deposit.display_amount %></td>
         <td><%= t(deposit.state) %></td>
+        <td>
+          <% if deposit.pending? %>
+            <%= link_to "通过", pass_admin_deposit_path(deposit),  method: :put %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   <% end %>

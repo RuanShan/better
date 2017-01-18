@@ -1,6 +1,6 @@
 module Admin
   class GameRoundsController < BaseController
-    before_action :set_game_round, only: [:show, :edit, :update, :destroy]
+    before_action :set_game_round, only: [:show, :edit, :update, :destroy, :winlose]
 
     # GET /game_rounds
     # GET /game_rounds.json
@@ -67,6 +67,18 @@ module Admin
       respond_to do |format|
         format.html { redirect_to game_rounds_url, notice: 'Game round was successfully destroyed.' }
         format.json { head :no_content }
+      end
+    end
+
+    def winlose
+      if @game_round.hack_win?
+        @game_round.update_attribute :custom_highlow, 0
+      else
+        @game_round.update_attribute :custom_highlow, 1
+      end
+      respond_to do |format|
+        format.html { redirect_to game_rounds_url, notice: 'Game round was successfully destroyed.' }
+        format.js
       end
     end
 

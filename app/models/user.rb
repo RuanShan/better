@@ -13,6 +13,8 @@ class User < MemberBase
   has_many :bids
 
   belongs_to :broker, optional: true
+  has_one :user_today, ->{ where( effective_on: DateTime.current.to_date ) }, class_name: "UserDay"
+  has_one :user_tomonth, ->{ where( effective_on: DateTime.civil_from_format( :local, DateTime.current.year, DateTime.current.month, 1 ).to_date ) }, class_name: 'UserMonth'
 
   enum role: [:user, :vip ]
   enum id_type: [:id_card, :passport]

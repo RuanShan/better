@@ -1,12 +1,13 @@
 module Admin
 
   class DrawingsController < BaseController
+    before_action :set_drawing, only: [  :trans]
 
     def index
       @page = params['page'] || 1
       @check = params['check']
       if @check == "1"
-        @drawings = Drawing.pending.order("created_at desc").all.paginate(:page => @page)
+        @drawings = Drawing.with_state( :pending, :checked).order("created_at desc").all.paginate(:page => @page)
         render :check
       else
         @drawings = Drawing.order("created_at desc").all.paginate(:page => @page)
@@ -54,6 +55,13 @@ module Admin
       redirect_to admin_drawings_path+"?check=1&page=#{@page}"
     end
 
+    def trans
+      @page = params['page']
+      @drawing.administrator = current_administrator
+      @drawing.process!
+      redirect_to admin_drawings_path( check: 1, page: @page )
+    end
+
     def batch_deny
       @page = params['page']
       drawing_ids = params["selected_drawings"]
@@ -80,7 +88,10 @@ module Admin
     end
 
     private
-
+      # Use callbacks to share common setup or constraints between actions.
+      def set_drawing
+        @drawing = Drawing.find(params[:id])
+      end
       def search_params
         params.permit(:start_date, :end_date, :state)
       end

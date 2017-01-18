@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     resources :administrators do
       put :batch_delete, on: :collection
     end
+    resources :bids
+
     resources :game_instruments do
       put :hot, on: :member
       collection do
@@ -43,7 +45,12 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :deposits
+    resources :deposits do
+      member do
+        put :pass
+      end
+    end
+
     resources :drawings do
       collection do
         get :search
@@ -53,6 +60,7 @@ Rails.application.routes.draw do
       member do
         put :pass
         put :deny
+        put :trans
       end
     end
     resources :promotions do
@@ -70,6 +78,9 @@ Rails.application.routes.draw do
         get :search
         put :batch_delete
         put :batch_lock
+
+        get :bid_statistic
+
       end
       member do
         get :record
@@ -101,7 +112,11 @@ Rails.application.routes.draw do
       put :batch_send, on: :collection
       put :one_send, on: :member
     end
-    resources :game_rounds
+    resources :game_rounds do
+      member do
+        put :winlose
+      end
+    end
 
     get '/', to: 'welcome#index', as: :root
   end

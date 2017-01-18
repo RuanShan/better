@@ -1,0 +1,44 @@
+<div> <h2 class="page-header">会员投注列表 </h2>
+
+<table class="table biaoge">
+  <thead>
+    <tr class="">
+      <th>ID</th>
+      <th>用户名</th>
+      <th>日期/时间(GMT+8)</th>
+
+      <th>资产</th>
+      <th>投注全额(RMB)</th>
+      <th>赔率 </th>
+      <th>涨跌 </th>
+      <th>周期（秒）</th>
+      <th>输赢 </th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% if @bids.empty? %>
+      <tr class="">
+        <td colspan="6">暂无记录</td>
+      <tr>
+    <% else %>
+    <% @bids.each do |bid| %>
+      <tr class="">
+        <td><%= bid.id %></td>
+        <td><%= bid.user.real_name %></td>
+        <td><%= bid.display_created_at %></td>
+        <td><%= bid.game_round.instrument_code %></td>
+        <td><%= bid.display_amount %></td>
+        <td><%= bid.rate %></td>
+        <td><%= bid.highlow == 1 ? "涨" : "跌" %></td>
+        <td><%= bid.game_round.period %> </td>
+        <td><%= t(bid.state) %></td>
+
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @bids if @bids.respond_to? :total_pages%>
