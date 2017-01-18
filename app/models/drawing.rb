@@ -49,6 +49,7 @@ class Drawing < ApplicationRecord
     event :deny do
       transition pending: :failure
     end
+
     event :process do
       transition checked: :success, if: ->(drawing) { drawing.valid_to_process? }
       transition checked: :failure, if: ->(drawing) { !drawing.valid_to_process? }
@@ -69,6 +70,7 @@ class Drawing < ApplicationRecord
   def valid_to_process?
     #TODO
     # available money to transfer    true
+    true
   end
 
   def drawing_money

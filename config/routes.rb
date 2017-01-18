@@ -60,6 +60,7 @@ Rails.application.routes.draw do
       member do
         put :pass
         put :deny
+        put :trans
       end
     end
     resources :promotions do

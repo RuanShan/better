@@ -11,6 +11,7 @@
         <th>提现详情</th>
         <th><%=submit_tag "通过", class: "btn btn-primary btn_xs"%></th>
         <th><%=submit_tag "拒绝", class: "btn btn-primary btn_xs", formaction: batch_deny_admin_drawings_path(page: @page)%></th>
+        <th></th>
         <th><%= check_box_tag "selectall", 1, false %></th>
       <% else %>
         <th>提现状态</th>
@@ -36,8 +37,9 @@
           <td><%= drawing.display_amount %></td>
           <%if check == true%>
             <td><%= link_to "提现详情", admin_drawing_path(drawing.id, page: @page), method: :get %></td>
-            <td><%= link_to "通过", pass_admin_drawing_path(drawing.id, page: @page), method: :put %></td>
-            <td><%= link_to "拒绝", deny_admin_drawing_path(drawing.id, page: @page), method: :put %></td>
+            <td><%= link_to_if drawing.pending?, "通过", pass_admin_drawing_path(drawing.id, page: @page), method: :put %></td>
+            <td><%= link_to_if drawing.pending?, "拒绝", deny_admin_drawing_path(drawing.id, page: @page), method: :put %></td>
+            <td><%= link_to_if drawing.checked?, "划款", trans_admin_drawing_path(drawing.id, page: @page), method: :put %></td>
             <td><%= check_box_tag "selected_drawings[]", drawing.id, false, class: "selectedId" %></td>
           <% else %>
             <td><%=t drawing.state %></td>
