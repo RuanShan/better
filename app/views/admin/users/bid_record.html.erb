@@ -1,3 +1,6 @@
+<% @bid_sum = @user.life_statis.bid_amount
+   @net_sum = @user.wallets.where( originator_type: 'Bid').sum(:amount)
+%>
 <% content_for :page_title do %>
   <%= link_to "会员管理", admin_users_url %> /
    会员详情

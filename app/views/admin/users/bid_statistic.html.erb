@@ -33,7 +33,7 @@
         <tr>
           <td> <%= user.real_name %> </td>
           <td> <%= user.display_created_at %> </td>
-          <td> <%= user.user_life.balance %> </td>
+          <td> <%= user.life_statis.balance %> </td>
           <td> <%= (user.user_today.try( :bid_amount ) || 0) %> </td>
           <td> <%= (user.user_tomonth.try( :bid_amount) || 0) +   (user.user_today.try( :bid_amount ) || 0) %> </td>
           <td> <%= user.user_life.bid_amount+  (user.user_today.try( :bid_amount ) || 0)  %> </td>
