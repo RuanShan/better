@@ -1,0 +1,38 @@
+<div> <h2 class="page-header">日盈利报表</h2>
+  <h3>用户信息</h3>
+</div>
+<div>
+  <div style="padding-top:20px;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>用户名</th>
+          <th>日期</th>
+          <th>账户余额</th>
+          <th>投注</th>
+          <th>输赢</th>
+          <th>红利</th>
+          <th>盈利</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @user_days.each do |user_day| %>
+          <tr>
+            <td><%= user_day.user.real_name %></td>
+            <td><%= user_day.effective_on %></td>
+            <td><%= user_day.balance %></td>
+            <td><%= user_day.display_bid_amount %></td>
+            <td><%= user_day.display_net %></td>
+            <td><%= user_day.display_bonus %></td>
+            <td><%= user_day.display_profit %></td>
+          </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+
+    <%= will_paginate @user_days %>
+
+  </div>
+</div>

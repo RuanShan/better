@@ -1,0 +1,42 @@
+<div> <h2 class="page-header">月盈利报表</h2>
+  <h3>用户信息</h3>
+</div>
+<div>
+  <div style="padding-top:20px;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>用户名</th>
+          <th>月份</th>
+          <th>账户余额</th>
+          <th>投注</th>
+          <th>投注补差</th>
+          <th>输赢</th>
+          <th>输赢补差</th>
+          <th>红利</th>
+          <th>盈利</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @user_months.each do |user_month| %>
+          <tr>
+            <td><%= user_month.user.real_name %></td>
+            <td><%= user_month.effective_on.to_s(:year_month) %></td>
+            <td><%= user_month.balance %></td>
+            <td><%= user_month.display_bid_amount %></td>
+            <td><%= user_month.display_bid_difference %></td>
+            <td><%= user_month.display_net %></td>
+            <td><%= user_month.display_net_difference %></td>
+            <td><%= user_month.display_bonus %></td>
+            <td><%= user_month.display_profit %></td>
+          </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+
+    <%= will_paginate @user_months %>
+
+  </div>
+</div>

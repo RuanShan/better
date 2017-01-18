@@ -9,8 +9,8 @@
       <i class="menu-expand"></i>
       </a>
       <ul class="submenu">
-        <li><a>日明细报表</a></li>
-        <li><a>月综合报表</a></li>
+        <li><%= build_nav_link "日盈利报表", { controller: 'admin/reports', action: 'daily_profits'}%></li>
+        <li><%= build_nav_link "月盈利报表", { controller: 'admin/reports', action: 'monthly_profits'}%></li>
       </ul>
     </li>
 

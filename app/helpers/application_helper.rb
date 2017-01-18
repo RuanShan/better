@@ -46,6 +46,10 @@ module ApplicationHelper
     ds_select=select_tag tag_name, options_for_select(options, selected_state), class:"form-control"
   end
 
+  def broker_select(tag_name, selected_broker=0)
+    select_tag tag_name, options_for_select([["查看代理报表","0"]]+Broker.all.collect {|i| [ i.real_name, i.id ] } , selected_broker), class:"form-control"
+  end
+
 end
 
 class BetterFormBuilder < SimpleForm::FormBuilder
