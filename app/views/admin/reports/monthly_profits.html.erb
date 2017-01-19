@@ -1,0 +1,79 @@
+<div> <h2 class="page-header">月盈利报表</h2>
+</div>
+<div>
+  <div class="">
+    <%broker = @broker.present? ? @broker.id : 0%>
+    <%@start_date||=""%>
+    <%@end_date||=""%>
+    <%=form_tag monthly_profits_admin_reports_path, method:"get", class:"form-inline", role:"form" do%>
+      <div class="row">
+        <div class="form-group">
+          <label for="start_date">起始日期</label>
+          <%=calendar "start_date", @start_date, "mcalendar"%>
+        </div>
+        <div class="form-group">
+          <label for="end_date">到</label>
+          <%=calendar "end_date", @end_date, "mcalendar"%>
+        </div>
+
+        <div class="form-group">
+          <%=broker_select "broker_id", broker %>
+        </div>
+        <div class="form-group">
+          <%=submit_tag "查询",  class:"form-control"%>
+        </div>
+      </div>
+    <%end%>
+    <div style="float:right;">
+      <%=link_to "导出", monthly_profits_admin_reports_path(format: "csv"), class: "btn btn-primary"%>
+    </div>
+  </div>
+  <div style="padding-top:20px;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>日期</th>
+          <th>活跃人数</th>
+          <th>存款(人数)</th>
+          <th>提款(人数)</th>
+          <th>投注</th>
+          <th>投注补差</th>
+          <th>输赢</th>
+          <th>输赢补差</th>
+          <th>红利</th>
+          <th>盈利</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @dates.each do |date| monthly_profit  = @monthly_profits.select{|month| month.effective_on == date}.first || Summary::SaleMonthlyProfit.new( date ) %>
+          <tr>
+            <td><%= monthly_profit.effective_on.to_s(:year_month)  %></td>
+            <td><%= monthly_profit.energetic_member_count %></td>
+            <td><%= monthly_profit.display_deposit_amount %>(<%= monthly_profit.deposit_member_count %>)</td>
+            <td><%= monthly_profit.display_drawing_amount %>(<%= monthly_profit.drawing_member_count %>)</td>
+            <td><%= monthly_profit.display_bid_amount %></td>
+            <td><%= monthly_profit.display_bid_difference %></td>
+            <td><%= monthly_profit.display_net %></td>
+            <td><%= monthly_profit.display_net_difference %></td>
+            <td><%= monthly_profit.display_bonus %></td>
+            <td><%= monthly_profit.display_profit %></td>
+            <td><%=link_to "详情", broker_user_months_admin_reports_path(broker_id:broker, date:monthly_profit.effective_on) %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td colspan="11">
+            <span style="margin:10px;50px;"><%if @broker.present?%>代理<%end%>平台投注总额: <b><%=display_money(@bid_sum)%></b></span>
+            <span style="margin:10px;50px;"><%if @broker.present?%>代理<%end%>平台输赢总额: <b><%=display_money(@net_sum)%></b></span>
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+    <%= will_paginate @dates %>
+
+  </div>
+</div>

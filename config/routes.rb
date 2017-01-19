@@ -117,7 +117,12 @@ Rails.application.routes.draw do
         put :winlose
       end
     end
-
+    resources :reports do
+      get :daily_profits, on: :collection
+      get :broker_user_days, on: :collection
+      get :monthly_profits, on: :collection
+      get :broker_user_months, on: :collection
+    end
     get '/', to: 'welcome#index', as: :root
   end
   namespace :agent do
