@@ -44,8 +44,7 @@ $(function(){
     format: "HH:mm"
 
   });
-  setInterval(time_update, 1000);
-
+ 
   $("#mobile_trade_qrcode").click(function(){
     $(this).hide();
   })
@@ -315,17 +314,7 @@ function copyToClipboard(element) {
   }
 }
 
-function time_update() {
-  $('#clock').html(moment().format('GMT+0800：YYYY年MM月D日 H:mm:ss'));
 
-  if($(".b-current-expiry-in").is("*"))
-  {
-    $current_expiry_in = $(".b-current-expiry-in");
-    var expiry_in = parseInt( $current_expiry_in.data("expiry-in") );
-    var seconds = moment().seconds();
-
-  }
-}
 
 $(function(){
   if( $("#chart-wrapper").is('*') ){

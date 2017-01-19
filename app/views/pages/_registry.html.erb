@@ -3,17 +3,18 @@
 
 var Registry = {
    env: 'production',
-   time: 1481090938000,
-   domain: 'ggbinary.com',
+   time: <%= DateTime.current.to_i*1000 %>,
+   localtime: 0,
+   domain: 'ballmerasia.com',
    lsHost: 'feed-hk-a.tradesmarter.com',
    lsPort: '443',
    lsSecondHost: '',
-   alias: 'ggbinary',
+   alias: 'ballmerasia',
    siteID: '83',
    uriBase: 'http://127.0.0.1:3000',
-   urlBaseSecure: 'https://trading.ggbinary.com',
-   urlBaseNonSecure: 'http://trading.ggbinary.com',
-   url: 'http://trading.ggbinary.com',
+   urlBaseSecure: 'https://trading.ballmerasia.com',
+   urlBaseNonSecure: 'http://trading.ballmerasia.com',
+   url: 'http://trading.ballmerasia.com',
    cdn: 'https://d2vl6u6wrj3tgq.cloudfront.net/trading',
    cdnBase: 'https://d2vl6u6wrj3tgq.cloudfront.net',
    assets: 'https://d2vl6u6wrj3tgq.cloudfront.net/assets/v5',
@@ -68,11 +69,11 @@ var Registry = {
    baseCurrencySymbol: '$',
    lastFeedInstrumentID: 260,
    iframe: true,
-   gameBoxDemoWidgetRedirectUrl: 'http://www.ggbinary.com/zh-cn/Trading/?showLogin=1',
+   gameBoxDemoWidgetRedirectUrl: 'http://www.ballmerasia.com/zh-cn/Trading/?showLogin=1',
    payoutDeltas: Ext.decode('[]'),
    questionaryRequired: 0,
-   defaultPlatformRedirectUrl: 'http://www.ggbinary.com/Trading',
-   defaultPaymentsRedirectUrl: 'http://www.ggbinary.com/zh-cn/Recharge',
+   defaultPlatformRedirectUrl: 'http://www.ballmerasia.com/Trading',
+   defaultPaymentsRedirectUrl: 'http://www.ballmerasia.com/zh-cn/Recharge',
    mobileFeedHost: 'feed-hk-a.tradesmarter.com',
    mobileFeedPort: '443',
    mobileFeedScheme: 'https',
@@ -82,7 +83,7 @@ var Registry = {
    practiceWallet: [],
    //instrumentDataUrl: 'http://127.0.0.1:8080',
    instrumentDataUrl: 'http://www.ballmerasia.com:8080',
-   customRegistrationWidgetUrl: 'https://www.ggbinary.com/zh-cn/Widgets/index'
+   customRegistrationWidgetUrl: 'https://www.ballmerasia.com/zh-cn/Widgets/index'
 }
 
 Registry._['Switch to real account'] = 'Switch to real account';
@@ -301,8 +302,8 @@ Registry.socialSite = true;
 Registry.socialUser = false;
 Registry.socialInstruments = ["1","2","3","4","5","6","7","8","14","15","18","25","26","27","31","33","34","36","42","46","47","57","61","62","63","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207"];
 Registry.socialImageUrlPattern = 'https://s3-eu-west-1.amazonaws.com/tradesmarter-cdn/social/images/[[[userID]]].png';
-Registry.socialUrl = 'https://trading.ggbinary.com/account/settings/setting/social';
-Registry.questionnaireUrl = 'https://trading.ggbinary.com/account/settings/setting/questionary';
+Registry.socialUrl = 'https://trading.ballmerasia.com/account/settings/setting/social';
+Registry.questionnaireUrl = 'https://trading.ballmerasia.com/account/settings/setting/questionary';
 Registry.questionnaireTargetUrl = '';
 Registry.socialActivityEventTypes = {"openPosition":"10","closePosition":"20","topDayPnl":"3","topDayPnlFirst":"31","topDayWinRatio":"4","topDayWinRatioFirst":"41","topWeekPnl":"5","topWeekPnlFirst":"51","topWeekWinRatio":"6","topWeekWinRatioFirst":"61","likedTrade":"70"};
 
@@ -318,5 +319,25 @@ Registry.displayGameInfo = false ;
 Registry.cancelTradePeriod = '';
 
 Registry._['financial-panel-name'] = '大师期权';
+
+
+console.debug( " in html server time =%s, %s, execute at =%s, %s", moment(Registry.time).toString(), Registry.time, moment().toString(),moment().valueOf()  );
+Registry.local_time= new Date().getTime();
+
+function time_update() {
+  var delta = Registry.local_time - Registry.time;
+  // assume  net consume less than 5s
+  if ( delta< 5000 ) delta = 0;
+  var fixed_time = ( new Date().getTime() ) - delta;
+  $('#clock').html(moment(fixed_time).format('GMT+0800：YYYY年MM月D日 H:mm:ss'));
+
+  if($(".b-current-expiry-in").is("*"))
+  {
+    //$current_expiry_in = $(".b-current-expiry-in");
+    //var expiry_in = parseInt( $current_expiry_in.data("expiry-in") );
+    //var seconds = moment().seconds();
+  }
+}
+setInterval(time_update, 1000);
 
 </script>

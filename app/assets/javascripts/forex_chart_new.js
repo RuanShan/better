@@ -138,7 +138,7 @@ var Game ={
       //    expiry_at = expiry_at.subtract(game.expiry_in() - 60, "seconds");
       //  }
       //}
-      console.log('game start at now=%s start=%s expiry_at=%s period=%s', now.toString(),this.selected_game_round_start_at().toString(), expiry_at.toString(), this.game_round_period());
+      //console.log('game start at now=%s start=%s expiry_at=%s period=%s', now.toString(),this.selected_game_round_start_at().toString(), expiry_at.toString(), this.game_round_period());
 
       return expiry_at;
     },
