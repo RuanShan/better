@@ -32,6 +32,9 @@
     <table class="table">
       <thead>
         <tr>
+          <%unless @broker.present?%>
+            <th>代理</th>
+          <% end %>
           <th>日期</th>
           <th>活跃人数</th>
           <th>存款(人数)</th>
@@ -43,10 +46,20 @@
           <th>操作</th>
         </tr>
       </thead>
-
+      <% datas = @broker.present? ? @dates : @broker_days%>
       <tbody>
-        <% @dates.each do |date| daily_profit  = @daily_profits.select{|day| day.effective_on == date}.first || Summary::BrokerDailyProfit.new( date ) %>
+        <% datas.each do |data| %>
+          <%if @broker.present?%>
+            <% broker_id = @broker.id %>
+            <% daily_profit = @daily_profits.select{|day| day.effective_on == data}.first || Summary::BrokerDailyProfit.new( data )%>
+          <% else %>
+            <% broker_id = data.broker_id %>
+            <% daily_profit = @daily_profits.select{|day| day.effective_on == data.effective_on && day.user_days.first.broker_id == data.broker_id}.first %>
+          <% end %>
           <tr>
+            <%unless @broker.present?%>
+              <td><%= data.broker.present? ? data.broker.real_name : "其他"%></td>
+            <% end %>
             <td><%= daily_profit.effective_on %></td>
             <td><%= daily_profit.energetic_member_count %></td>
             <td><%= daily_profit.display_deposit_amount %>(<%= daily_profit.deposit_member_count %>)</td>
@@ -55,11 +68,12 @@
             <td><%= daily_profit.display_net %></td>
             <td><%= daily_profit.display_bonus %></td>
             <td><%= daily_profit.display_profit %></td>
-            <td><%=link_to "详情", broker_user_days_admin_reports_path(broker_id:broker, date:daily_profit.effective_on) %></td>
+            <td><%=link_to "详情", broker_user_days_admin_reports_path(broker_id:broker_id, date:daily_profit.effective_on), remote: true %></td>
           </tr>
         <% end %>
         <tr>
-          <td colspan="9">
+          <%colspan = @broker.present? ? 9 : 10%>
+          <td colspan="<%=colspan%>">
             <span style="margin:10px;50px;"><%if @broker.present?%>代理<%end%>平台投注总额: <b><%=display_money(@bid_sum)%></b></span>
             <span style="margin:10px;50px;"><%if @broker.present?%>代理<%end%>平台输赢总额: <b><%=display_money(@net_sum)%></b></span>
           </td>
@@ -69,7 +83,9 @@
 
     </table>
 
-    <%= will_paginate @dates %>
+    <%= will_paginate datas %>
 
   </div>
+</div>
+<div id="user_details">
 </div>
