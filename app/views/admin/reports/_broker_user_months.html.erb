@@ -1,4 +1,4 @@
-<div> <h2 class="page-header">月盈利报表</h2>
+<div>
   <h3>用户信息</h3>
 </div>
 <div>
@@ -36,7 +36,7 @@
 
     </table>
 
-    <%= will_paginate @user_months %>
+    <%= full_will_paginate @user_months, :remote=>true %>
 
   </div>
 </div>

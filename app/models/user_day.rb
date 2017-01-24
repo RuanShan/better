@@ -9,12 +9,16 @@ class UserDay < ApplicationRecord
 
   belongs_to :user
   belongs_to :broker, optional: true
-
+  
   # only for select( ... count(*) as group_count ).group( fields )
   attribute :group_count, :integer, default: 0
   attr_reader :net
 
   def net
     drawing_amount + balance - deposit_amount
+  end
+
+  def broker_days
+    self.class.where(broker_id: broker_id, effective_on: effective_on)
   end
 end

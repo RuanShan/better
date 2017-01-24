@@ -5,34 +5,46 @@ module Admin
       @page = params['page'] || 1
       @start_date, @end_date, @dates = get_paginated_dates
       @broker = Broker.find(params[:broker_id]) if params[:broker_id].present? && params[:broker_id].to_i > 0
-      user_days = @broker.present? ? @broker.member_days.where(effective_on: @dates) : UserDay.where(effective_on: @dates)
-      @daily_profits = Summary::BrokerDailyProfitFactory.create( user_days )
-      @bid_sum = UserDay.where(effective_on: @dates).sum(:bid_amount)
-      @net_sum = UserDay.where(effective_on: @dates).sum("drawing_amount + balance - deposit_amount")
+      if @broker.present?
+        user_days = @broker.member_days.where(effective_on: @dates)
+        @daily_profits = Summary::BrokerDailyProfitFactory.create( user_days )
+      else
+        @broker_days = UserDay.where("effective_on>=? and effective_on<=?", @start_date, @end_date).group(:broker_id, :effective_on).order(:effective_on).paginate(:page => params["page"])
+        @daily_profits = []
+        @broker_days.each{|broker_day| @daily_profits += Summary::BrokerDailyProfitFactory.create( broker_day.broker_days )}
+      end
+      @bid_sum = UserDay.where("effective_on>=? and effective_on<=?", @start_date, @end_date).sum(:bid_amount)
+      @net_sum = UserDay.where("effective_on>=? and effective_on<=?", @start_date, @end_date).sum("drawing_amount + balance - deposit_amount")
     end
 
     def broker_user_days
       @page = params['page'] || 1
       @date = params[:date] || DateTime.current.to_date
       @broker = Broker.find(params[:broker_id]) if params[:broker_id].present? && params[:broker_id].to_i > 0
-      @user_days = @broker.present? ? @broker.member_days.where(effective_on: @date).paginate(:page => params["page"]) : UserDay.where(effective_on: @date).paginate(:page => params["page"])
+      @user_days = @broker.present? ? @broker.member_days.where(effective_on: @date).paginate(:page => params["page"]) : UserDay.where(broker_id:nil, effective_on: @date).paginate(:page => params["page"])
     end
 
     def monthly_profits
       @page = params['page'] || 1
       @start_date, @end_date, @dates = get_paginated_months
       @broker = Broker.find(params[:broker_id]) if params[:broker_id].present? && params[:broker_id].to_i > 0
-      user_months = @broker.present? ? @broker.member_months.where(effective_on: @dates) : UserMonth.where(effective_on: @dates)
-      @monthly_profits = Summary::SaleMonthlyFactory.create("profit", user_months )
-      @bid_sum = UserMonth.where(effective_on: @dates).sum(:bid_amount)
-      @net_sum = UserMonth.where(effective_on: @dates).sum("drawing_amount + balance - deposit_amount")
+      if @broker.present?
+        user_months = @broker.member_months.where(effective_on: @dates)
+        @monthly_profits = Summary::SaleMonthlyFactory.create("profit", user_months )
+      else
+        @broker_months = UserMonth.where("effective_on>=? and effective_on<=?", @start_date, @end_date).group(:broker_id, :effective_on).order(:effective_on).paginate(:page => params["page"])
+        @monthly_profits = []
+        @broker_months.each{|broker_month| @monthly_profits += Summary::SaleMonthlyFactory.create( "profit", broker_month.broker_months )}
+      end
+      @bid_sum = UserMonth.where("effective_on>=? and effective_on<=?", @start_date, @end_date).sum(:bid_amount)
+      @net_sum = UserMonth.where("effective_on>=? and effective_on<=?", @start_date, @end_date).sum("drawing_amount + balance - deposit_amount")
     end
 
     def broker_user_months
       @page = params['page'] || 1
       @date = params[:date] || DateTime.current.to_date
       @broker = Broker.find(params[:broker_id]) if params[:broker_id].present? && params[:broker_id].to_i > 0
-      @user_months = @broker.present? ? @broker.member_months.where(effective_on: @date).paginate(:page => params["page"]) : UserMonth.where(effective_on: @date).paginate(:page => params["page"])
+      @user_months = @broker.present? ? @broker.member_months.where(effective_on: @date).paginate(:page => params["page"]) : UserMonth.where(broker_id:nil, effective_on: @date).paginate(:page => params["page"])
     end
 
     private

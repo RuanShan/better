@@ -24,15 +24,16 @@
         </div>
       </div>
     <%end%>
-    <div style="float:right;">
-      <%=link_to "导出", monthly_profits_admin_reports_path(format: "csv"), class: "btn btn-primary"%>
-    </div>
+
   </div>
   <div style="padding-top:20px;">
     <table class="table">
       <thead>
         <tr>
-          <th>日期</th>
+          <%unless @broker.present?%>
+            <th>代理</th>
+          <% end %>
+         <th>日期</th>
           <th>活跃人数</th>
           <th>存款(人数)</th>
           <th>提款(人数)</th>
@@ -45,10 +46,20 @@
           <th>操作</th>
         </tr>
       </thead>
-
+      <% datas = @broker.present? ? @dates : @broker_months%>
       <tbody>
-        <% @dates.each do |date| monthly_profit  = @monthly_profits.select{|month| month.effective_on == date}.first || Summary::SaleMonthlyProfit.new( date ) %>
+        <% datas.each do |data|  %>
+          <%if @broker.present?%>
+            <% broker_id = @broker.id %>
+            <% monthly_profit  = @monthly_profits.select{|month| month.effective_on == data}.first || Summary::SaleMonthlyProfit.new( data )%>
+          <% else %>
+            <% broker_id = data.broker_id %>
+            <% monthly_profit = @monthly_profits.select{|month| month.effective_on == data.effective_on && month.user_months.first.broker_id == data.broker_id}.first %>
+          <% end %>
           <tr>
+            <%unless @broker.present?%>
+              <td><%= data.broker.present? ? data.broker.real_name : "其他"%></td>
+            <% end %>
             <td><%= monthly_profit.effective_on.to_s(:year_month)  %></td>
             <td><%= monthly_profit.energetic_member_count %></td>
             <td><%= monthly_profit.display_deposit_amount %>(<%= monthly_profit.deposit_member_count %>)</td>
@@ -59,11 +70,12 @@
             <td><%= monthly_profit.display_net_difference %></td>
             <td><%= monthly_profit.display_bonus %></td>
             <td><%= monthly_profit.display_profit %></td>
-            <td><%=link_to "详情", broker_user_months_admin_reports_path(broker_id:broker, date:monthly_profit.effective_on) %></td>
+            <td><%=link_to "详情", broker_user_months_admin_reports_path(broker_id:broker_id, date:monthly_profit.effective_on), remote: true %></td>
           </tr>
         <% end %>
         <tr>
-          <td colspan="11">
+          <%colspan = @broker.present? ? 11 : 12%>
+          <td colspan="<%=colspan%>">
             <span style="margin:10px;50px;"><%if @broker.present?%>代理<%end%>平台投注总额: <b><%=display_money(@bid_sum)%></b></span>
             <span style="margin:10px;50px;"><%if @broker.present?%>代理<%end%>平台输赢总额: <b><%=display_money(@net_sum)%></b></span>
           </td>
@@ -73,7 +85,9 @@
 
     </table>
 
-    <%= will_paginate @dates %>
+    <%= will_paginate datas %>
 
   </div>
+</div>
+<div id="user_details">
 </div>

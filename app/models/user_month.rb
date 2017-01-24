@@ -27,6 +27,10 @@ class UserMonth < ApplicationRecord
     0
   end
 
+  def broker_months
+    self.class.where(broker_id: broker_id, effective_on: effective_on)
+  end
+
   private
   #def set_current_as_effective_on
   #  effective_on = DateTime.civil_from_format :local, DateTime.current.year, DateTime.current.month, 1
