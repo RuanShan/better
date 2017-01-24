@@ -28,7 +28,13 @@
         <td><%= display_bids_detail game_round.low_bids %></td>
         <td><%= game_round.period %></td>
         <td><%= game_round.display_end_at %></td>
-        <td><%= game_round.instrument_quote%> /<%=game_round.instrument_hack_quote %></td>
+        <td>
+          <% if game_round.instrument_hack_quote > 0 %>
+          <%= game_round.instrument_hack_quote%> /<%=game_round.instrument_quote %>
+          <% else %>
+          <%= game_round.instrument_quote%> /<%=game_round.instrument_hack_quote %>
+          <% end %>
+        </td>
         <td class="highlow">
           <%= game_round.custom_highlow == 0 ? '否' : '是' %>
         </td>

@@ -626,10 +626,10 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, candlestickChart
 
       for (var i = 0; i < rawDtata.length; i += 1) {
         var items = rawDtata[i].split('_');
-        e.push([
-          (new Date( parseInt(items[0]) )).getTime(),
-          parseFloat(rawDtata[i].split('_')[1])
-        ]);
+        var t = Math.floor(parseInt(items[0])/1000)*1000 ;
+        var p = parseFloat(items[1]);
+        //console.debug( "t=%s,p=%s",t,p);
+        e.push([t, p ]);
       }
       for (var i = 0; i < candlestickChartData.length; i += 1) {
         var items = candlestickChartData[i].split('_');
@@ -651,7 +651,18 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, candlestickChart
                           stops : [[0, Registry.chartConfig.financialPanel.colors.fillColor.top],
                                    [1, Registry.chartConfig.financialPanel.colors.fillColor.bottom]]
                       };
-
+      var tooltip = {
+                          enabledIndicators: !0,
+                          headerFormat: "<span>{point.key}</span><br/>",
+                          xDateFormat: "%H:%M:%S",
+                          pointFormat: "<span><strong>{point.y}</strong></span><br/>",
+                          crosshairs: [{
+                              color: "rgba(232, 232, 232, 0.4)",
+                              zIndex: 7,
+                              dashStyle: "longdash"
+                          }],
+                          useHTML: !0
+                      };
       var a = new Highcharts.StockChart({
           xAxis: {
             id: "advanced-chart-line-x-axis-" + c,
@@ -726,6 +737,9 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, candlestickChart
                   allowPointSelect: false
               },
               series: {
+                dataGrouping: {
+                    enabled: !1
+                },
                 color: lineColor,
                 lineWidth: Registry.chartConfig.financialPanel.lineWidth,
                   states: {
@@ -736,7 +750,7 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, candlestickChart
               }
           },
           tooltip: {
-              headerFormat: "<span>{point.key}</span><br/>",
+               headerFormat: "<span>{point.x}</span><br/>",
               xDateFormat: "%H:%M:%S",
               pointFormat: "<span>{point.y}</span>",
               borderWidth: 1,
@@ -747,26 +761,12 @@ BetterFinancialPanel.prototype.drawCharts = function(chartData, candlestickChart
               formatter: function() {
                   var o = this.points[0].point;
                   var n = "<span>" + Ext.Date.format(new Date(o.x), "H:i:s") + "</span><br/><span>" + o.y + "</span>";
-                  if (o.marker && o.marker.keep) {
-                      var m = (o.tooltipData.direction == 1) ? Registry._["label-above"] : Registry._["label-below"];
-                      n = '<span class="tooltip-label">' + Registry._["game-label-expiry"] + ":</span><span> " + Ext.Date.format(new Date(o.tooltipData.expiry), "H:i:s") + '</span><br/><span class="tooltip-label">' + m + " " + o.y + '</span><br/><span class="tooltip-label">' + Registry._["trade-info-investment"] + ":</span><span> " + Registry.baseCurrencySymbol + o.tooltipData.stake + '</span><br/><span class="tooltip-label">' + Registry._["trade-info-payout"] + ":</span><span> " + o.tooltipData.payout + '%</span><br/><span class="tooltip-label">' + Registry._["label-rebate"] + ":</span><span> " + o.tooltipData.rebate + "%</span>";
-                      n += Ext.isEmpty(o.tooltipData.returnedAmount) ? "": '<br/><span class="tooltip-label">' + Registry._["label-return-amount"] + ":</span><span> " + Registry.baseCurrencySymbol + o.tooltipData.returnedAmount + "</span>";
-                      if (o.tooltipData.social) {
-                          var q = o.tooltipData.social.userID;
-                          var h = Registry.socialImageUrlPattern.replace("[[[userID]]]", q) + "?v=" + Math.floor(new Date().getTime() / 10000);
-                          var k = o.tooltipData.social.nickname;
-                          var l = (o.tooltipData.direction == 1) ? "images/small-green-arrow-up-10x11.png": "images/small-red-arrow-down-10x11.png";
-                          var m = (o.tooltipData.direction == 1) ? Registry._["short-text-call"] : Registry._["short-text-put"];
-                          var j = Ext.isEmpty(o.tooltipData.returnedAmount) ? Registry._["short-text-opened"] : Registry._["short-text-closed"];
-                          var p = Ext.isEmpty(o.tooltipData.returnedAmount) ? "": '<br/><span class="tooltip-gain">' + Registry._["short-text-gain"] + ": " + Registry.baseCurrencySymbol + o.tooltipData.returnedAmount + "</span>";
-                          n = '<div id="tooltip-social-container"><div class="social-user-img-container"><img class="social-user-img" src="' + h + '" /><img class="social-user-arrow-img" src="' + l + '">&nbsp;</img></div><div class="advanced-social-trade-info"><span class="tooltip-nickname">' + k + ((Registry.env == "development") ? " (" + o.tooltipData.tradeID + ") ": "") + '</span><br/><span class="tooltip-status">' + j + " " + Registry._["short-text-a-binary"] + " " + m + " option</span>" + p + "</div></div>"
-                      }
-                  }
+
                   return '<div class="tooltip-container">' + n + "</div>"
               },
               useHTML: true
           }
-      });
+       });
       this.lineChart = a;
       if($("#advanced-chart-candlestick-"+c ).is('*')){
         if( b.length >0 )
