@@ -5,6 +5,7 @@ var Registry = {
    env: 'production',
    time: <%= DateTime.current.to_i*1000 %>,
    localtime: 0,
+   current_time: <%= DateTime.current.to_i*1000 %>,
    domain: 'ballmerasia.com',
    lsHost: 'feed-hk-a.tradesmarter.com',
    lsPort: '443',
@@ -329,7 +330,9 @@ function time_update() {
   // assume  net consume less than 5s
   if ( delta< 5000 ) delta = 0;
   var fixed_time = ( new Date().getTime() ) - delta;
-  $('#clock').html(moment(fixed_time).format('GMT+0800：YYYY年MM月D日 H:mm:ss'));
+  var time = moment(fixed_time);
+  Registry.current_time = time.valueOf();
+  $('#clock').html(time.format('GMT+0800：YYYY年MM月D日 H:mm:ss'));
 
   if($(".b-current-expiry-in").is("*"))
   {

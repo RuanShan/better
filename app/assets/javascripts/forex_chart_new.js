@@ -203,7 +203,7 @@ var Game ={
        return game.selected_game_round_start_at() - game.current_time();
     },
     game.current_time= function(){
-      return moment();
+      return moment(Registry.current_time);
     },
     game.last_quote= function(){
       var code =  game.instrument_code();
